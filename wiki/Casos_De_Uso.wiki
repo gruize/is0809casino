@@ -1,5 +1,5 @@
 #labels Uso
-Caso de Uso
+Casos de Uso
 
 Descripcion
 
@@ -19,7 +19,6 @@ Alta de Usuario
     * Se genera su usuario, contraseña y regalo de una cantidad de leuros de regalo.  
 
     
-
 Baja de Usuario
 
     * Usuario entra a web
@@ -78,10 +77,4 @@ Jugar un Juego
     * Usuario elegira la accion que crea mas conveniente 
 
 
-Salir de un Juego
-
- 
-
- 
-
- 
+Salir de un Juego 
