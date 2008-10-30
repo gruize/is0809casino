@@ -1,0 +1,42 @@
+#summary One-sentence summary of this page.
+#labels Phase-Requirements
+
+= Especificación de Requisitos según el estándar de IEEE 830 =
+
+
+
+== IEEE Std. 830-1998 ==
+
+== 22 de Octubre de 2008 ==
+
+== 1 Introducción ==
+
+=== 1.1 Propósito ===
+Crear un casino virtual, en el cual se puedan realizar apuestas a distintos tipos de juegos contra otros jugadores físicos. 
+
+=== 1.2 Ámbito de sistema ===
+Se ha constatado la necesidad de un sistema informático que automatice las labores gestión de un casino on-line, asi como de los clientes que formen parte de el.
+
+La aplicación se encarga de gestionar todas las funciones relacionadas con el juego; gestión de los distintos juegos disponibles, mesas virtuales etc. y mantenimiento administración del sistema; gestión de usuarios y juegos, añadir nuevas funcionalidades etc. Esto quiere decir que se encargará de las siguientes funciones:
+
+ * *Sistema de dado de alta de clientes* en la que se requerirá una serie de condiciones como edad, país, método por el cual se ingresara dinero virtual en el juego, cuenta de destino del dinero virtual ganado etc. Sera imprescindible ser mayor de edad para poder darse de alta. Una vez dado de alta el usuario podrá acceder de forma total a los juegos
+ * *Gestionar una base de datos de clientes* con información relevante no solo en el propio de una cuenta (Nombre de usuario, clave de acceso etc.), si no también datos económicos, (dinero disponible para apostar, estadísticas diversas de perdidas y ganancias, preferencias en el juego), para poder ofrecer un servicio adaptado al cliente.  
+
+-	Gestionará el stock de los materiales en venta, permitiendo llevar un control informatizado y automatizado del mismo, de forma que  mostrará avisos cuando el stock de un producto sea reducido, o ya no queden más unidades del mismo.
+-	Realizará la gestión de pedidos. Gestionará los pedidos de productos destinados a la iluminación cinematográfica para un cliente. A través de la aplicación el cliente o el vendedor podrán acceder al catálogo de los productos para los que exista un stock en la empresa y ayudará a la selección de algunos de ellos, realizándose un pedido.
+
+
+=== 1.3 Definiciones, Acronimos y Abreviaturas ===
+==== Definiciones ====
+
+==== Abreviaturas ====
+
+=== 1.4 Referencias ===
+=== 1.5 Visión general del documento ===
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
