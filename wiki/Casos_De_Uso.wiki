@@ -1,5 +1,5 @@
 #labels Uso
-Casos de Uso
+*Casos de Uso*
 
 Descripcion
 
@@ -10,12 +10,13 @@ Comentario
  
 
 -------------------------------------------------
-Alta de Usuario
-
+||Alta de Usuario||
+||
     * Usuario entra a web
     * Usuario introduce sus datos personales
     * Se comprueban datos de Usuario
-    * Se genera su usuario, contraseña y regalo de una cantidad de leuros de regalo.  
+    * Se genera su usuario, contraseña y regalo de una cantidad de leuros de regalo.
+||  
 -------------------------------------------------
 Baja de Usuario
 
