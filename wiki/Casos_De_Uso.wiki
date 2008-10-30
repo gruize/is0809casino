@@ -16,25 +16,25 @@ Alta de Usuario
     * Usuario introduce sus datos personales
     * Se comprueban datos de Usuario
     * Se genera su usuario, contraseña y regalo de una cantidad de leuros de regalo.  
-------------------------------------------------- 
+-------------------------------------------------
 Baja de Usuario
 
     * Usuario entra a web
     * Usuario introduce su usuario y contraseña personales
     * Se comprueban datos
     * Si son correctos seran eliminados completamente sus datos de la aplicacion. 
-------------------------------------------------- 
+-------------------------------------------------
 Modificación de Usuario
 
     * Usuario se loguea en la web
     * Enlace para modificar sus datos y actualizarlos.
-------------------------------------------------- 
+-------------------------------------------------
 Descarga de Aplicacion
 
     * Usuario se loguea en la web
     * Usuario pincha enlace de descarga 
     * Usuario descarga aplicacion 
-------------------------------------------------- 
+-------------------------------------------------
 Consulta de estadisticas
 
     * Usuario se logea en la web
