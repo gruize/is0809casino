@@ -1,0 +1,1 @@
+He subido unas cuantas clases que he hecho.Es una prueba , no tiene todos los métodos implementados y solo esta creada la mesa de Black Jack. Y en la clase Main se crean un par de objetos para probar algun método. Si alguno tiene alguna duda sobre lo que hace algo que pregunte. Sed libres de modificar todo lo que creais oportuno y rellenar donde sea.
