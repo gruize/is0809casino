@@ -79,3 +79,61 @@ Este documento consta de tres secciones. En la primera sección se realiza una i
 En la segunda sección del documento se realiza una descripción general del sistema, con el fin de conocer las principales funciones que éste debe realizar, los datos asociados y los factores, restricciones, supuestos y dependencias que afectan al desarrollo, sin entrar en excesivos detalles.
 
 Por último, la tercera sección del documento es aquella en la que se definen detalladamente los requisitos que debe satisfacer el sistema.
+
+== 2. Descripcion General ==
+
+=== 2.1. Perspectiva del Producto ===
+
+=== 2.2. Funciones del Producto ===
+ 
+   Este casino soportara la conexión simultanea de varios jugadores, permitiendo, en el caso que el juego lo posibilite, la interacción entre los mismos.
+ 
+    Cada jugador podrá jugar a varios juegos simultáneamente.
+ 
+    Existirá una web en la que, una vez realizado el registro, se podrá descargar el software necesario para poder jugar.
+ 
+    Las cantidades que se apuestan no se trata de dinero real.
+ 
+    Para recargar los leuros se realizará una acción aún por definir.
+ 
+    Los usuarios tendrán la posibilidad de charlar durante el funcionamiento del juego mediante un Chat definido por cada mesa.
+   
+    Los jugadores podrán visualizar estadísticas de los juegos a los que han jugado.
+ 
+=== 2.3. Características de los Usuarios ===
+     Este casino esta pensado para mayores de edad, con un nivel cultural indiferente, y con poca experiencia en casinos online a ser posible. 
+ 
+=== 2.4. Restricciones ===
+ * Interfaz para conectar con una entidad bancaria, para la comprobación de las tarjetas de crédito.
+ * Lenguajes y Tecnologías en uso: Java, ORACLE, XML, JSP, AJAX, JAVASCRIPT, HTML, FLASH/ACTIONSCRIPT, SWIFT3D.
+ * Todas los mensajes entre el cliente y servidor deberán estar cifradas, para evitar las trampas.
+ * Los Protocolos de Comunicación serán los definidos por los desarrolladores encargados.
+ * Los desarrolladores programarán en el IDE NetBeans.
+
+    
+=== 2.5. Suposiciones y Dependencias ===
+El sistema correrá sobre cualquier plataforma, pero las pruebas se realizaran sobre el sistema Windows XP.
+ 
+=== 2.6. Requisitos Futuros ===
+ * Mejora de la interfaz Gráfica (Imágenes, animaciones 2d, 3d).
+ * Apuestas con dinero real.
+ * Musica de ambiente.
+ * Posibilidad de jugar desde una PDA
+
+ 
+== 3. Requisitos Especificos ==
+
+ 
+=== 3.1. Interfaces Externas ===
+
+=== 3.2. Funciones ===
+
+=== 3.3. Requisitos de Rendimiento ===
+
+=== 3.4. Restricciones de Diseño ===
+
+=== 3.5. Atributos del Sistema ===
+
+=== 3.6. Otros Requisitos ===
+
+== 4. Apendices ==
