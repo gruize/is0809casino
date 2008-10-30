@@ -1,0 +1,87 @@
+#labels Uso
+Caso de Uso
+
+Descripcion
+
+Objetivo
+
+Comentario
+
+ 
+
+ 
+
+Alta de Usuario
+
+    * Usuario entra a web
+    * Usuario introduce sus datos personales
+    * Se comprueban datos de Usuario
+    * Se genera su usuario, contraseña y regalo de una cantidad de leuros de regalo.  
+
+    
+
+Baja de Usuario
+
+    * Usuario entra a web
+    * Usuario introduce su usuario y contraseña personales
+    * Se comprueban datos
+    * Si son correctos seran eliminados completamente sus datos de la aplicacion. 
+      
+
+Modificación de Usuario
+
+    * Usuario se loguea en la web
+    * Enlace para modificar sus datos y actualizarlos.
+
+
+Descarga de Aplicacion
+
+    * Usuario se loguea en la web
+    * Usuario pincha enlace de descarga 
+    * Usuario descarga aplicacion 
+
+  
+Consulta de estadisticas
+
+    * Usuario se logea en la web
+    * Dispone de un en enlace a estadisticas 
+
+ 
+Administrar creditos
+
+    * Se logea en la web
+    * Dispone de un enlace a recargar creditos  
+
+
+Arranque de la aplicacion
+
+    * Usuario ejecuta la aplicacion
+    * Usuario se identifica
+    * Aplicación realizara la conexion y validara  
+ 
+
+Seleccion de Juego
+
+    * Dentro de la aplicación habra una lista de juegos
+    * Usuario seleccionara un juego de esa lista  
+
+ 
+Seleccion de Mesa de Juego
+
+    * Dentro del tipo de jeugo habra una lista de mesas
+    * Usuario seleccion la mesa 
+
+ 
+Jugar un Juego
+
+    * Dentro de la mesa de un Juego existiran una serie de acciones
+    * Usuario elegira la accion que crea mas conveniente 
+
+
+Salir de un Juego
+
+ 
+
+ 
+
+ 
