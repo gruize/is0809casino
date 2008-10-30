@@ -82,7 +82,7 @@ public class PartidaBJ implements Partida {
                 int i = turno(j.idUsuario);
                 float sal=this.jugadorespartida[i].saldo;
                 if (i==turno){
-                if (this.jugadorespartida[i].saldo<= j.cantidad){
+                if (this.jugadorespartida[i].saldo>= j.cantidad){
                     sal-=j.cantidad;
                     return 1;}
                 else return -2;//apuesta mas de lo que tiene
