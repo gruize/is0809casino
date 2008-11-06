@@ -16,10 +16,10 @@ APUNTES:
   * Los componentes de software utilizado no son reutilizables porque tienen defectos.(Moderate,Serious)(probar y testear)
 NUESTROS:
   * El servidor ha de tener un ancho de banda mínimo capaz de soportar una alta carga de usuarios. 
-  *Probabilidad:* Moderada. *Efectos:* Tolerable.
+   *Probabilidad:* Moderada. *Efectos:* Tolerable.
   _Estrategias:_ Solicitar más ancho de banda ó requerir mejor equipación hardware.
   * La latencia ha de ser suficientemente baja como para ofrecer un buen servicio en tiempo real.
-  *Probabilidad:* Baja. *Efectos:* Insignificante.
+   *Probabilidad:* Baja. *Efectos:* Insignificante.
   _Estrategias:_ Solicitar una mejora en la conexión.
 
 
