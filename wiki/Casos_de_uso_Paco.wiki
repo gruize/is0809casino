@@ -134,25 +134,14 @@ http://is0809casino.googlecode.com/files/fig129431_v2.png
 || Descripción ||Dispone de un apartado con estadisticas generales (ejemplo: dinero total recaudado, usuarios activos, etc)||
 
 || Caso de uso 24 ||Proporcionar crédito a jugador||
-|| Actores || Administrador ||
+|| Actores || Administrador , Jugador||
 || Tipo || Primario ||
-|| Descripción ||Se podrá administrar más crédito a la cuenta de un jugador||
+|| Descripción ||El Administrador podrá suministrar más crédito a la cuenta de un Jugador||
 
 || Caso de uso 25 || Expulsion de un jugador ||
 || Actores || Administrador,jugador,invitado ||
 || Tipo || Secundario ||
-|| Descripción || En el caso que un jugador o invitado no se comporte de manera adecuada podra ser expulsado del juego||
-
-|| Caso de uso 26 || Modo pasivo de jugador ||
-|| Actores || Jugador, Invitado ||
-|| Tipo || Primario ||
-|| Descripción || Cuando un jugador supere el tiempo limite para elegir jugada el servidor ejecutara una accion predefinida por el ||
-
-|| Caso de uso 27 || Error en el servidor||
-|| Actores || Servidor ||
-|| Tipo || Primario ||
-|| Descripción || En el caso que el servidor quede inactivo, al volver a ser operativo se volvera al ultimo estado valido guardado anteriormente ||    
-
+|| Descripción || En el caso que un jugador o invitado no se comporte de manera adecuada podra ser expulsado del juego por un Administrador||
 
 
 
