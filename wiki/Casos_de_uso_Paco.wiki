@@ -62,6 +62,11 @@ http://is0809casino.googlecode.com/files/fig129431_v2.png
 || Tipo || Primario ||
 || Descripción || Un Jugador o un invitado entra en un juego concreto para empezar a jugar, se debe seleccionar el juego al cual se quiere entrar, los jugadores y los invitados, aunque dispongan de un mismo juego, no accederán a areas de juego comunes. Este caso de uso da paso al marco de juego ||
 
+|| Caso de uso 27 || Chat||
+|| Actores || Jugador ||
+|| Tipo || Secundario ||
+|| Descripción || los jugadores de una misma mesa podran comunicarse etnre ellos a traves de este chat ||
+
 
 === Marco de juego ===
 || Caso de uso 12 || Seleccionar mesa de juego ||
@@ -181,7 +186,7 @@ http://is0809casino.googlecode.com/files/fig129431_v2.png
   # (Sistema) El jugador sera borrado.
  * Curso alternativo
   * linea 3: Borrado incompleto de Usuario
----
+----
  * Caso de uso 11: *Seleccion de Juego*
  * Actores: Jugador
  * Propósito: Eleccion de un juego 
@@ -193,4 +198,3 @@ http://is0809casino.googlecode.com/files/fig129431_v2.png
 El jugador sera borrado.
  * Curso alternativo
   * linea 3: Borrado incompleto de Usuario
-
