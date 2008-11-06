@@ -100,8 +100,8 @@ http://is0809casino.googlecode.com/files/fig129431_v2.png
 || Caso de uso 18 ||Identificación del Administrador ||
 || Actores || Administrador ||
 || Tipo || Primario ||
-|| Descripción || •	Dentro de la aplicación el Adminsitrador deberá introducir su  contraseña
-•	Dependiendo de los permisos se le da acceso a determinadas funcionalidades 
+|| Descripción || - Dentro de la aplicación se deberá introducir su  contraseña
+- Dependiendo de los permisos se le da acceso a determinadas funcionalidades 
 ||
 
 == Descripción expandida ==
