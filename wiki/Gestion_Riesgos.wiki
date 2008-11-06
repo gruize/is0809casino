@@ -35,7 +35,7 @@ _Estrategias:_ Mejora de los protocolos de cifrado.
 * Probabilidad:* Alta. *Efectos:* Catastrófico.
 _Estrategias:_ Estudio detallado de los contenidos que han de ser cifrados y del algoritmo de cifrado. Además, puede añadirse la redacción de un documento Log escrito por el servidor que almacene todas las transacciones realizados sobre la BBDD.
 
-== Personal ==
+== Riesgos de Personal ==
 
   * Es imposible encontrar uno o varios desarrolladores con las habilidades necesarias para la realización de una tarea concreta del proyecto.
 * Probabilidad:* Baja. *Efectos:* Catastrófico.
@@ -50,21 +50,32 @@ _Estrategias:_ Estudiar y realizar una buena planificación y distribución de c
 _Estrategias:_ Estructurar correctamente el trabajo y realizar una buena documentación para simplificar a las nuevas incorporaciones una integración rápida a la información ya desarrollada.
 
 
-== Organización ==
-	Apuntes de teoría
-	-Cambio de jefes y cambio de gestión del proyecto.(High, Serious)()
-	-Problemas económicos.(Low,Catastrophic)()
-	**Casino
-	-	
+== Riesgos de Organización ==
 
-== Herramientas ==
-	Apuntes de teoría
-	-La herramienta utilizada genera código ineficiente.(Moderate,Insignificant)
-	-No se puede utilizar la herramienta que estaba pensada por problemas de 	integración(High,Tolerable).
-	**Casino
-	-	
+  * Falta de estructura jerárquica en el grupo del proyecto.
+* Probabilidad:* Moderada. *Efectos:* Serio.
+_Estrategias:_ Realizar una consulta a los miembros del grupo y evaluar todas las posibilidades de forma consensuada, guardando y documentando, en todo caso, todas las opciones recibidas.
 
-== Requisitos ==
+  * Problemas económicos. 
+* Probabilidad:* Baja. *Efectos:* Catastrófico.
+_Estrategias:_ Echar un par de horas en el casino.
+
+  * Falta de coordinación entre los miembros del equipo.
+* Probabilidad:* Alta. *Efectos:* Serio.
+_Estrategias:_ Marcar objetivos temporales y realizables, controlando el desarrollo individual desequilibrado.
+
+
+== Riesgos de Herramientas ==
+
+  * La herramienta utilizada genera código ineficiente.
+* Probabilidad:* Moderada. *Efectos:* Tolerable.
+_Estrategias:_ Realizar pruebas del código generado y probar nuevas herramientas de desarrollo y/o compiladores.
+
+  * No se puede utilizar alguna herramienta que estaba pensada usar por problemas de integración con el resto del sistema.
+* Probabilidad:* Alta. *Efectos:* Tolerable.
+_Estrategias:_ Realizar un estudio sobre los posible problemas que puede presentar el uso de una herramienta antes de comenzar su desarrollo en la misma.
+
+== Riesgos de Requisitos ==
 	Apuntes de teoría
 	-Cambios en los requisitos que requieren un rediseño muy grande.(Moderate,Serious)	(Derive traceability information to assess requirements change impact,maximise information 	hiding in the design)
 	-Los usuarios no entienden el cambio que significa una pequeña modificación en los 	requisitos.
