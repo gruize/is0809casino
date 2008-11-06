@@ -195,6 +195,7 @@ http://is0809casino.googlecode.com/files/fig129431_v2.png
  * Curso típico de eventos
   # (Actor) El jugador selecciona el tipo de juego
   # (Sistema) Resgistro de jugador en ese juego.
+ 
 El jugador sera borrado.
  * Curso alternativo
-  * linea 3: Borrado incompleto de Usuario
+  * linea : Mesa Completa, usuario no puede entrar en la mesa 
