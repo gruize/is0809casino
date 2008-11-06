@@ -83,7 +83,7 @@ _Estrategias:_ Definir de forma concreta todos los requisitos con la intención 
 _Estrategias:_ Escribir un documento con los posibles cambios _a priori_ para convencer al usuario de la envergadura de la modificación.
 
 
-== Estimación ==
+== Riesgos de Estimación ==
 
   * Se ha infravalorado el tiempo requerido para desarrollar el proyecto.
 * Probabilidad:* Moderada. *Efectos:* Catastróficos.
