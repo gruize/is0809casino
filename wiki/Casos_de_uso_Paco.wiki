@@ -90,6 +90,13 @@ http://is0809casino.googlecode.com/files/fig129431_v2.png
 || Tipo || Primario ||
 || Descripción || Comprueba usuario y contraseña en el servidor ||
 
+
+|| Caso de uso 17 || Validacion de cliente ||
+|| Actores || Servidor ||
+|| Tipo || Primario ||
+|| Descripción || Comprueba usuario y contraseña en el servidor ||
+
+
 == Descripción expandida ==
  * Caso de uso 4: *Alta usuario*
  * Actores: Invitado
