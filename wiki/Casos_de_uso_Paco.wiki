@@ -62,6 +62,7 @@ http://is0809casino.googlecode.com/files/fig129431_v2.png
 || Tipo || Primario ||
 || Descripción || Un Jugador o un invitado entra en un juego concreto para empezar a jugar, se debe seleccionar el juego al cual se quiere entrar, los jugadores y los invitados, aunque dispongan de un mismo juego, no accederán a areas de juego comunes. Este caso de uso da paso al marco de juego ||
 
+
 === Marco de juego ===
 || Caso de uso 12 || Seleccionar mesa de juego ||
 || Actores || Jugador invitado ||
@@ -94,28 +95,31 @@ http://is0809casino.googlecode.com/files/fig129431_v2.png
 || Caso de uso 17 || Arranque de la aplicación Servidor ||
 || Actores || Administrador ||
 || Tipo || Primario ||
-|| Descripción || Ejecutar la aplicación servidor ||
+|| Descripción || Ejecutar la aplicación servidor||
 
 
 || Caso de uso 18 ||Identificación del Administrador ||
 || Actores || Administrador ||
 || Tipo || Primario ||
-|| Descripción || Dentro de la aplicación se deberá introducir su  contraseña. Dependiendo de los permisos se le da acceso a determinadas funcionalidades ||
+|| Descripción || Dentro de la aplicación se deberá introducir su  contraseña. Dependiendo de los permisos se le da acceso a determinadas funcionalidades 
+||
 
 || Caso de uso 19 ||Arranque del servidor||
 || Actores || Administrador ||
 || Tipo || Primario ||
-|| Descripción || Se arrancará el servidor y los usuarios podrán conectarse. Se Crearán unas mesas predefinidas.(p.e. una de cada juego). ||
+|| Descripción ||Se arrancará el servidor y los usuarios podrán conectarse. Se Crearán unas mesas predefinidas.(p.e. una de cada juego).
+||
 
 || Caso de uso 20 ||Creación de una mesa  de juego||
 || Actores || Administrador ||
 || Tipo || Primario ||
-|| Descripción || Se podrá añadir mesas de un determinado juego. Cada mesa deberá tener unas características concretas. ||
+|| Descripción ||Se podrá añadir mesas de un determinado juego. Cada mesa deberá tener unas características concretas.
+||
 
 || Caso de uso 21 ||Cierre de una Mesa de Juego ||
 || Actores || Administrador ||
 || Tipo || Primario ||
-|| Descripción ||Se podrá cerrar una mesa de cualquier juego ||
+|| Descripción ||Se podrá cerrar una mesa de cualquier juego||
 
 || Caso de uso 22 ||Observar mesa||
 || Actores || Administrador ||
@@ -125,7 +129,7 @@ http://is0809casino.googlecode.com/files/fig129431_v2.png
 || Caso de uso 22 ||Salir de la mesa en observación||
 || Actores || Administrador ||
 || Tipo || Primario ||
-|| Descripción ||El Administrador  podrá salir en cualquier momento de la mesa que está observando ||
+|| Descripción ||El Administrador  podrá salir en cualquier momento de la mesa que está observando||
 
 || Caso de uso 23 ||Consulta de estadisticas generales ||
 || Actores || Administrador ||
@@ -136,6 +140,23 @@ http://is0809casino.googlecode.com/files/fig129431_v2.png
 || Actores || Administrador ||
 || Tipo || Primario ||
 || Descripción ||Se podrá administrar más crédito a la cuenta de un jugador||
+
+|| Caso de uso 25 || Expulsion de un jugador ||
+|| Actores || Administrador,jugador,invitado ||
+|| Tipo || Secundario ||
+|| Descripción || En el caso que un jugador o invitado no se comporte de manera adecuada podra ser expulsado del juego||
+
+|| Caso de uso 26 || Modo pasivo de jugador ||
+|| Actores || Jugador, Invitado ||
+|| Tipo || Primario ||
+|| Descripción || Cuando un jugador supere el tiempo limite para elegir jugada el servidor ejecutara una accion predefinida por el ||
+
+|| Caso de uso 27 || Error en el servidor||
+|| Actores || Servidor ||
+|| Tipo || Primario ||
+|| Descripción || En el caso que el servidor quede inactivo, al volver a ser operativo se volvera al ultimo estado valido guardado anteriormente ||    
+
+
 
 
 == Descripción expandida ==
