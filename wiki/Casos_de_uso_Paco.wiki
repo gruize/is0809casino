@@ -91,11 +91,18 @@ http://is0809casino.googlecode.com/files/fig129431_v2.png
 || Descripción || Comprueba usuario y contraseña en el servidor ||
 
 
-|| Caso de uso 17 || Validacion de cliente ||
-|| Actores || Servidor ||
+|| Caso de uso 17 || Arranque de la aplicación Servidor ||
+|| Actores || Administrador ||
 || Tipo || Primario ||
-|| Descripción || Comprueba usuario y contraseña en el servidor ||
+|| Descripción || Ejecutar la aplicación servidor||
 
+
+|| Caso de uso 18 ||Identificación del Administrador ||
+|| Actores || Administrador ||
+|| Tipo || Primario ||
+|| Descripción || •	Dentro de la aplicación el Adminsitrador deberá introducir su  contraseña
+•	Dependiendo de los permisos se le da acceso a determinadas funcionalidades 
+||
 
 == Descripción expandida ==
  * Caso de uso 4: *Alta usuario*
