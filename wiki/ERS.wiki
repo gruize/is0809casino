@@ -46,7 +46,7 @@ Un sistema de administración técnica:
  * *Gestión de la base de datos* que conllevará futuras ampliaciones de está necesarias para la incursión de nuevos juegos
 === 1.3 Definiciones, Acronimos y Abreviaturas ===
 ==== Definiciones ====
- * *Dinero virtual:* elemento con el cual se hacen las transacciones, con el que se apuesta y que recoge tanto el dinero ingresado, como el invertido.
+ * *Creditos:* elemento con el cual se hacen las transacciones, con el que se apuesta y que recoge tanto el dinero ingresado, como el invertido.
 
  * *Dinero premiado:* dinero virtual que se ha obtenido a partir de una ganancia en un juego
 
@@ -67,7 +67,11 @@ Un sistema de administración técnica:
  * *Administrador de sistema:* Persona encargada de la administración del sistema y garantizar el correcto funcionamiento.
 
  * *Apuesta:* Acción por la cual un jugador interactúa con el juego mediante el dinero virtual.
+
  * *Cliente:* Programa que se instala en el ordenador del jugador
+
+ * *Área de juego:* Lugar "Virtual" en donde se juega a un juego concreto y se realizan apuestas
+
 ==== Abreviaturas ====
  * *ERS:* Especificación de Requisitos Software. Este documento.
 
