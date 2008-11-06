@@ -35,30 +35,36 @@ _Estrategias:_ Mejora de los protocolos de cifrado.
 * Probabilidad:* Alta. *Efectos:* Catastrófico.
 _Estrategias:_ Estudio detallado de los contenidos que han de ser cifrados y del algoritmo de cifrado. Además, puede añadirse la redacción de un documento Log escrito por el servidor que almacene todas las transacciones realizados sobre la BBDD.
 
-Personal:
-	Apuntes de teoría
-	-Es imposible encontrar gente con las habilidades necesarias.(High,Catastrophic)(alertar al 	usuario de posibles 	retrasos e investigar a conciencia las herramientas a utilizar)
-	-La gente nueva requiere tiempo para aprender y no lo hay.(Moderate,Tolerable)
-	-La gente se pone mala.(Moderate,Serious)(Organizar el trabajo de manera que varios 	puedan hacer varias cosas)
-	**Casino
-	-	
-El personal de mantenimiento del servidor ha de estar capacitado para su mantenimiento.
+== Personal ==
 
-Organización:
+  * Es imposible encontrar uno o varios desarrolladores con las habilidades necesarias para la realización de una tarea concreta del proyecto.
+* Probabilidad:* Baja. *Efectos:* Catastrófico.
+_Estrategias:_ Obtener información y/o documentación por medio escrito u online. Avisar al usuario de la posibilidad del retraso.
+
+  * Incapacidad del personal. Ello incluye la falta de personal por distintos motivos: enfermedad, época de estudios (exámenes), sobrecarga de trabajo ajeno al proyecto, motivos personales... 
+* Probabilidad:* Alta. *Efectos:* Moderado.
+_Estrategias:_ Estudiar y realizar una buena planificación y distribución de carga, según las posibilidades del personal.
+
+  * Nuevas incorporaciones en el equipo de diseño/desarrollo.
+* Probabilidad:* Moderada. *Efectos:* Tolerable.
+_Estrategias:_ Estructurar correctamente el trabajo y realizar una buena documentación para simplificar a las nuevas incorporaciones una integración rápida a la información ya desarrollada.
+
+
+== Organización ==
 	Apuntes de teoría
 	-Cambio de jefes y cambio de gestión del proyecto.(High, Serious)()
 	-Problemas económicos.(Low,Catastrophic)()
 	**Casino
 	-	
 
-Herramientas:
+== Herramientas ==
 	Apuntes de teoría
 	-La herramienta utilizada genera código ineficiente.(Moderate,Insignificant)
 	-No se puede utilizar la herramienta que estaba pensada por problemas de 	integración(High,Tolerable).
 	**Casino
 	-	
 
-Requisitos:
+== Requisitos ==
 	Apuntes de teoría
 	-Cambios en los requisitos que requieren un rediseño muy grande.(Moderate,Serious)	(Derive traceability information to assess requirements change impact,maximise information 	hiding in the design)
 	-Los usuarios no entienden el cambio que significa una pequeña modificación en los 	requisitos.
@@ -67,7 +73,7 @@ Requisitos:
 
 
 
-Estimación:
+== Estimación ==
 	Apuntes de teoría
 	-El tiempo requerido para desarrollar ha sido infravalorado.(Moderate,Tolerable)(Investigate 	buying in components, investigate use of a program generator)
 	-El tamaño del proyecto a desarrollar ha sido infravalorado.(High,Tolerable)
