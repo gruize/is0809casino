@@ -101,20 +101,17 @@ http://is0809casino.googlecode.com/files/fig129431_v2.png
 || Caso de uso 18 ||Identificación del Administrador ||
 || Actores || Administrador ||
 || Tipo || Primario ||
-|| Descripción || Dentro de la aplicación se deberá introducir su  contraseña. Dependiendo de los permisos se le da acceso a determinadas funcionalidades 
-||
+|| Descripción || Dentro de la aplicación se deberá introducir su  contraseña. Dependiendo de los permisos se le da acceso a determinadas funcionalidades ||
 
 || Caso de uso 19 ||Arranque del servidor||
 || Actores || Administrador ||
 || Tipo || Primario ||
-|| Descripción ||Se arrancará el servidor y los usuarios podrán conectarse. Se Crearán unas mesas predefinidas.(p.e. una de cada juego).
-||
+|| Descripción ||Se arrancará el servidor y los usuarios podrán conectarse. Se Crearán unas mesas predefinidas.(p.e. una de cada juego). ||
 
 || Caso de uso 20 ||Creación de una mesa  de juego||
 || Actores || Administrador ||
 || Tipo || Primario ||
-|| Descripción ||Se podrá añadir mesas de un determinado juego. Cada mesa deberá tener unas características concretas.
-||
+|| Descripción ||Se podrá añadir mesas de un determinado juego. Cada mesa deberá tener unas características concretas. ||
 
 || Caso de uso 21 ||Cierre de una Mesa de Juego ||
 || Actores || Administrador ||
