@@ -100,9 +100,46 @@ http://is0809casino.googlecode.com/files/fig129431_v2.png
 || Caso de uso 18 ||Identificación del Administrador ||
 || Actores || Administrador ||
 || Tipo || Primario ||
-|| Descripción || - Dentro de la aplicación se deberá introducir su  contraseña
-- Dependiendo de los permisos se le da acceso a determinadas funcionalidades 
+|| Descripción || Dentro de la aplicación se deberá introducir su  contraseña. Dependiendo de los permisos se le da acceso a determinadas funcionalidades 
 ||
+
+|| Caso de uso 19 ||Arranque del servidor||
+|| Actores || Administrador ||
+|| Tipo || Primario ||
+|| Descripción ||Se arrancará el servidor y los usuarios podrán conectarse. Se Crearán unas mesas predefinidas.(p.e. una de cada juego).
+||
+
+|| Caso de uso 20 ||Creación de una mesa  de juego||
+|| Actores || Administrador ||
+|| Tipo || Primario ||
+|| Descripción ||Se podrá añadir mesas de un determinado juego. Cada mesa deberá tener unas características concretas.
+||
+
+|| Caso de uso 21 ||Cierre de una Mesa de Juego ||
+|| Actores || Administrador ||
+|| Tipo || Primario ||
+|| Descripción ||Se podrá cerrar una mesa de cualquier juego||
+
+|| Caso de uso 22 ||Observar mesa||
+|| Actores || Administrador ||
+|| Tipo || Primario ||
+|| Descripción ||El administrador abrirá una mesa en juego y observara la partida||
+
+|| Caso de uso 22 ||Salir de la mesa en observación||
+|| Actores || Administrador ||
+|| Tipo || Primario ||
+|| Descripción ||El Administrador  podrá salir en cualquier momento de la mesa que está observando||
+
+|| Caso de uso 23 ||Consulta de estadisticas generales ||
+|| Actores || Administrador ||
+|| Tipo || Primario ||
+|| Descripción ||Dispone de un apartado con estadisticas generales (ejemplo: dinero total recaudado, usuarios activos, etc)||
+
+|| Caso de uso 24 ||Proporcionar crédito a jugador||
+|| Actores || Administrador ||
+|| Tipo || Primario ||
+|| Descripción ||Se podrá administrar más crédito a la cuenta de un jugador||
+
 
 == Descripción expandida ==
  * Caso de uso 4: *Alta usuario*
