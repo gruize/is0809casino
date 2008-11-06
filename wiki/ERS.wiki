@@ -67,6 +67,7 @@ Un sistema de administración técnica:
  * *Administrador de sistema:* Persona encargada de la administración del sistema y garantizar el correcto funcionamiento.
 
  * *Apuesta:* Acción por la cual un jugador interactúa con el juego mediante el dinero virtual.
+ * *Cliente:* Programa que se instala en el ordenador del jugador
 ==== Abreviaturas ====
  * *ERS:* Especificación de Requisitos Software. Este documento.
 
