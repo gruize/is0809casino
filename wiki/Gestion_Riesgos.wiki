@@ -12,17 +12,28 @@ Por cada riesgo considerado hay que tener en cuenta su probabilidad(High,Moderat
 
 == Riesgos Tecnológicos == 
 APUNTES:
-  * La base de datos usada en el sistema no puede procesar tantas peticiones por segundo como se había estimado.(Moderate,Serious)(investigar bases de datos alternativas).
-  * Los componentes de software utilizado no son reutilizables porque tienen defectos.(Moderate,Serious)(probar y testear)
+ * La base de datos usada en el sistema no puede procesar tantas peticiones por segundo como se había estimado.(Moderate,Serious)(investigar bases de datos alternativas).
+ * Los componentes de software utilizado no son reutilizables porque tienen defectos.(Moderate,Serious)(probar y testear)
 NUESTROS:
-  * El servidor ha de tener un ancho de banda mínimo capaz de soportar una alta carga de usuarios. 
-   *Probabilidad:* Moderada. *Efectos:* Tolerable.
-  _Estrategias:_ Solicitar más ancho de banda ó requerir mejor equipación hardware.
-  * La latencia ha de ser suficientemente baja como para ofrecer un buen servicio en tiempo real.
-   *Probabilidad:* Baja. *Efectos:* Insignificante.
-  _Estrategias:_ Solicitar una mejora en la conexión.
+ * El servidor ha de tener un ancho de banda mínimo capaz de soportar una alta carga de usuarios. 
+* Probabilidad:* Moderada. *Efectos:* Tolerable.
+_Estrategias:_ Solicitar más ancho de banda ó requerir mejor equipación hardware.
 
+ * La latencia ha de ser suficientemente baja como para ofrecer un buen servicio en tiempo real.
+* Probabilidad:* Baja. *Efectos:* Insignificante.
+_Estrategias:_ Solicitar una mejora en la conexión.
 
+  * La base de datos usada en el sistema no puede procesar tantas peticiones por segundo como se había estimado.
+* Probabilidad:* Moderada. *Efectos:* Serio.
+_Estrategias:_ Solicitar una mejora de hardware en el equipo servidor y/o probar alternativas de SGBD.
+
+  * Privacidad en la comunicación cifrada entre servidor y cliente.
+* Probabilidad:* Alta. *Efectos:* Catastrófico.
+_Estrategias:_ Mejora de los protocolos de cifrado.
+
+  * Privacidad en ciertos contenidos de la Base de Datos susceptibles de contener información personal. (LPD)
+* Probabilidad:* Alta. *Efectos:* Catastrófico.
+_Estrategias:_ Estudio detallado de los contenidos que han de ser cifrados y del algoritmo de cifrado. Además, puede añadirse la redacción de un documento Log escrito por el servidor que almacene todas las transacciones realizados sobre la BBDD.
 
 Personal:
 	Apuntes de teoría
@@ -31,6 +42,7 @@ Personal:
 	-La gente se pone mala.(Moderate,Serious)(Organizar el trabajo de manera que varios 	puedan hacer varias cosas)
 	**Casino
 	-	
+El personal de mantenimiento del servidor ha de estar capacitado para su mantenimiento.
 
 Organización:
 	Apuntes de teoría
