@@ -13,8 +13,8 @@ http://is0809casino.googlecode.com/files/fig129431.png
 
 || Caso de uso 2 || Instalar cliente||
 || Actores || Jugador, Invitado ||
-|| Tipo || Primerio ||
-|| Descripción || Instalacion del cliente en la maquina del Jugador o invitado || 
+|| Tipo || Primero ||
+|| Descripción || Instalación del cliente en la maquina del Jugador o invitado || 
 
 || Caso de uso 3 || Ejecutar cliente ||
 || Actores || Jugador, Invitado ||
@@ -26,17 +26,17 @@ http://is0809casino.googlecode.com/files/fig129431.png
 || Caso de uso 4 || Alta usuario ||
 ||Actores || Jugador ||
 ||Tipo || Primario y esencial ||
-||Descripción || El usuario se introduce en el sistema en para darse de alta, introduce los campos requeridos (Nombre y apellidos, id usuario, correo electrócnico, password, etc.) y solicita darse de alta. El sisetma comprobara que el id de usuario no exista y pedira una confirmacion del correo del usuario. ||
+||Descripción || El usuario se introduce en el sistema en para darse de alta, introduce los campos requeridos (Nombre y apellidos, id usuario, correo electrónico, clave, etc.) y solicita darse de alta. El sistema comprobara que el id de usuario no exista y pedirá una confirmación del correo del usuario. ||
 
 || Caso de uso 5 || Salir del cliente ||
 || Actores || Jugador Invitado ||
 || Tipo || Primario ||
-|| Descripción || El Jugador o invitado sale de la aplicación. _Es necesario haber salido de los juegos antes de salir de la aplicacion_ ||
+|| Descripción || El Jugador o invitado sale de la aplicación. _Es necesario haber salido de los juegos antes de salir de la aplicación_ ||
 
 || Caso de uso 6 || Login ||
 || Actores || Invitado ||
 || Tipo || Primario y esencial ||
-|| Descripción || Un usuario no resgistrado en el sistema introduce su id y su password y se logea en el cliente, el sistema comprueba que los datos son correctos  || 
+|| Descripción || Un usuario no registrado en el sistema introduce su id y su password y se logea en el cliente, el sistema comprueba que los datos son correctos  || 
 
 || Caso de uso 7 || Baja usuario ||
 || Actores || Jugador ||
@@ -46,20 +46,20 @@ http://is0809casino.googlecode.com/files/fig129431.png
 || Caso de uso 8 || Acceso a datos ||
 || Actores || Jugador ||
 || Tipo || Primario ||
-|| Descripción || Un cliente accede a sus datos, los cuales incluyen estadisticas de juego, datos personales, mensajes privados de la administración etc... || 
+|| Descripción || Un cliente accede a sus datos, los cuales incluyen estadísticas de juego, datos personales, mensajes privados de la administración etc... || 
 
 
 || Caso de uso 9 || Modificación de datos ||
 || Actores || Jugador ||
 || Tipo || Secundario ||
-|| Descripción || Modificacion de los datos del cliente, previa comprovación del sistema de que son correctos || 
+|| Descripción || Modificación de los datos del cliente, previa comprobación del sistema de que son correctos || 
 
-|| Caso de uso 10 || Administrar creditos ||
+|| Caso de uso 10 || Administrar créditos ||
 || Actores || Jugador ||
-|| Tipo || Secundaro ||
-|| Descripción || Administras los creditos que dispone un jugador ||
+|| Tipo || Secundario ||
+|| Descripción || Administras los créditos que dispone un jugador ||
 
-|| Caso de uso 11 || Seleccion de juego ||
+|| Caso de uso 11 || Selección de juego ||
 || Actores || Jugador, Invitado ||
 || Tipo || Principal ||
 || Descripción || Un Jugador o un invitado entra en un juego concreto para empezar a jugar, se debe seleccionar el juego al cual se quiere entrar, los jugadores y los invitados, aunque dispongan de un mismo juego, no accederán a areas de juego comunes. Este caso de uso da paso al marco de juego ||
