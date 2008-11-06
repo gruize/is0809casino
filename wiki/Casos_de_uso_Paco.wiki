@@ -1,0 +1,87 @@
+#labels Phase-Design
+= Casos de uso=
+
+== Esquema de casos de uso ==
+http://is0809casino.googlecode.com/files/fig129431.png
+
+== Marco externo a la aplicación ==
+
+|| Caso de uso 1 || Descargar cliente||
+|| Actores || Jugador, Invitado ||
+|| Tipo || Primario ||
+|| Descripción || Un usuario que haya accedido a la web se descarga el cliente || 
+
+|| Caso de uso 2 || Instalar cliente||
+|| Actores || Jugador, Invitado ||
+|| Tipo || Primerio ||
+|| Descripción || Instalacion del cliente en la maquina del Jugador o invitado || 
+
+|| Caso de uso 3 || Ejecutar cliente ||
+|| Actores || Jugador, Invitado ||
+|| Tipo || Primario ||
+|| Descripción || Ejecución del cliente en el sistema. Este caso de uso da lugar al marco de la aplicación  || 
+----
+== Marco de aplicación ==
+
+|| Caso de uso 4 || Alta usuario ||
+||Actores || Jugador ||
+||Tipo || Primario y esencial ||
+||Descripción || El usuario se introduce en el sistema en para darse de alta, introduce los campos requeridos (Nombre y apellidos, id usuario, correo electrócnico, password, etc.) y solicita darse de alta. El sisetma comprobara que el id de usuario no exista y pedira una confirmacion del correo del usuario. ||
+
+|| Caso de uso 5 || Salir del cliente ||
+|| Actores || Jugador Invitado ||
+|| Tipo || Primario ||
+|| Descripción || El Jugador o invitado sale de la aplicación. _Es necesario haber salido de los juegos antes de salir de la aplicacion_ ||
+
+|| Caso de uso 6 || Login ||
+|| Actores || Invitado ||
+|| Tipo || Primario y esencial ||
+|| Descripción || Un usuario no resgistrado en el sistema introduce su id y su password y se logea en el cliente, el sistema comprueba que los datos son correctos  || 
+
+|| Caso de uso 7 || Baja usuario ||
+|| Actores || Jugador ||
+|| Tipo || Secundario ||
+|| Descripción || Un usuario registrado se da de baja del sistema || 
+
+|| Caso de uso 8 || Acceso a datos ||
+|| Actores || Jugador ||
+|| Tipo || Primario ||
+|| Descripción || Un cliente accede a sus datos, los cuales incluyen estadisticas de juego, datos personales, mensajes privados de la administración etc... || 
+
+
+|| Caso de uso 9 || Modificación de datos ||
+|| Actores || Jugador ||
+|| Tipo || Secundario ||
+|| Descripción || Modificacion de los datos del cliente, previa comprovación del sistema de que son correctos || 
+
+|| Caso de uso 10 || Administrar creditos ||
+|| Actores || Jugador ||
+|| Tipo || Secundaro ||
+|| Descripción || Administras los creditos que dispone un jugador ||
+
+|| Caso de uso 11 || Seleccion de juego ||
+|| Actores || Jugador, Invitado ||
+|| Tipo || Principal ||
+|| Descripción || Un Jugador o un invitado entra en un juego concreto para empezar a jugar, se debe seleccionar el juego al cual se quiere entrar, los jugadores y los invitados, aunque dispongan de un mismo juego, no accederán a areas de juego comunes. Este caso de uso da paso al marco de juego ||
+
+== Marco de juego ==
+|| Caso de uso 12 || Seleccionar mesa de juego ||
+|| Actores || Jugador invitado ||
+|| Tipo || Principal ||
+|| Descripción || El jugador o invitado selecciona una de las mesas disponibles en ese momento, el usuario _se queda en modo observador_ ||
+
+|| Caso de uso 13 || Salir del juego ||
+|| Actores || Jugador Invitado ||
+|| Tipo || Principal ||
+|| Descripción || Sales del marco de juego ||
+
+== Marco de Mesa de juego ==
+|| Caso de uso 14 || Empezar a jugar ||
+|| Actores || Jugador invitado ||
+|| Tipo || Principal ||
+|| Descripción || Sales del modo observador en la mesa en la que te encuentras para comenzar a jugar ||
+
+|| Caso de uso 15 || Salir de la mesa ||
+|| Actores || Jugador Invitado ||
+|| Tipo || Principal ||
+|| Descripción || Te sales de la mesa de juego ||
