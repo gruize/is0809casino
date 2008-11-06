@@ -171,3 +171,26 @@ http://is0809casino.googlecode.com/files/fig129431_v2.png
  * Curso alternativo
   * linea 2: Usuario incorrecto
 ----
+ * Caso de uso 7: *Baja de Usuario*
+ * Actores: Jugador
+ * Propósito: borrado de los datos de un usuario en el sistema casino 
+ * Visión general: El jugador elige la opcion borrado de sus datos, el sistema se encarga de su borrado
+ * Referencias: 
+ * Curso típico de eventos
+  # (Actor) El jugador selecciona la opcion de borrar su datos
+  # (Sistema) El jugador sera borrado.
+ * Curso alternativo
+  * linea 3: Borrado incompleto de Usuario
+---
+ * Caso de uso 11: *Seleccion de Juego*
+ * Actores: Jugador
+ * Propósito: Eleccion de un juego 
+ * Visión general: El jugador elige el tipo de juego al que desea jugar.
+ * Referencias: 
+ * Curso típico de eventos
+  # (Actor) El jugador selecciona el tipo de juego
+  # (Sistema) Resgistro de jugador en ese juego.
+El jugador sera borrado.
+ * Curso alternativo
+  * linea 3: Borrado incompleto de Usuario
+
