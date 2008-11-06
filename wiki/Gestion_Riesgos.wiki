@@ -11,10 +11,7 @@ Se entiende por riesgo ..........
 Por cada riesgo considerado hay que tener en cuenta su probabilidad(High,Moderate,Low) y efectos(Catastrophic,Serious,Tolerable,Insignificant) y posibles estrategias para evitar los riesgos en la medida de lo posible.
 
 == Riesgos Tecnológicos == 
-APUNTES:
- * La base de datos usada en el sistema no puede procesar tantas peticiones por segundo como se había estimado.(Moderate,Serious)(investigar bases de datos alternativas).
- * Los componentes de software utilizado no son reutilizables porque tienen defectos.(Moderate,Serious)(probar y testear)
-NUESTROS:
+
  * El servidor ha de tener un ancho de banda mínimo capaz de soportar una alta carga de usuarios. 
 * Probabilidad:* Moderada. *Efectos:* Tolerable.
 _Estrategias:_ Solicitar más ancho de banda ó requerir mejor equipación hardware.
@@ -76,17 +73,18 @@ _Estrategias:_ Realizar pruebas del código generado y probar nuevas herramienta
 _Estrategias:_ Realizar un estudio sobre los posible problemas que puede presentar el uso de una herramienta antes de comenzar su desarrollo en la misma.
 
 == Riesgos de Requisitos ==
-	Apuntes de teoría
-	-Cambios en los requisitos que requieren un rediseño muy grande.(Moderate,Serious)	(Derive traceability information to assess requirements change impact,maximise information 	hiding in the design)
-	-Los usuarios no entienden el cambio que significa una pequeña modificación en los 	requisitos.
-	**Casino
-	-	
 
+  * Cambios en los requisitos que requieren un rediseño de la aplicación grande.
+* Probabilidad:* Alta. *Efectos:* Serio.
+_Estrategias:_ Definir de forma concreta todos los requisitos con la intención de realizar un diseño que sea capaz de afrontar cambios y minimizar el impacto. Es decir, permitir la reusabilidad.
+
+  * El usuario o cliente cree que un cambio significa una pequeña modificación en los requisitos.
+* Probabilidad:* Alta. *Efectos:* Serio.
+_Estrategias:_ Escribir un documento con los posibles cambios _a priori_ para convencer al usuario de la envergadura de la modificación.
 
 
 == Estimación ==
-	Apuntes de teoría
-	-El tiempo requerido para desarrollar ha sido infravalorado.(Moderate,Tolerable)(Investigate 	buying in components, investigate use of a program generator)
-	-El tamaño del proyecto a desarrollar ha sido infravalorado.(High,Tolerable)
-	**Casino
-	-
+
+  * Se ha infravalorado el tiempo requerido para desarrollar el proyecto.
+* Probabilidad:* Moderada. *Efectos:* Catastróficos.
+_Estrategias:_ Adquirir partes del proyecto ya desarrolladas (componentes). Reducir el conjunto de requisitos secundarios gracias a la modularidad de la aplicación.
