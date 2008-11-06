@@ -2,10 +2,9 @@
 = Casos de uso=
 
 == Esquema de casos de uso ==
-http://is0809casino.googlecode.com/files/fig129431.png
-
-== Marco externo a la aplicación ==
-
+http://is0809casino.googlecode.com/files/fig129431_v2.png
+== Descripción de alto nivel ==
+=== Marco externo a la aplicación ===
 || Caso de uso 1 || Descargar cliente||
 || Actores || Jugador, Invitado ||
 || Tipo || Primario ||
@@ -13,19 +12,18 @@ http://is0809casino.googlecode.com/files/fig129431.png
 
 || Caso de uso 2 || Instalar cliente||
 || Actores || Jugador, Invitado ||
-|| Tipo || Primero ||
+|| Tipo || Primario ||
 || Descripción || Instalación del cliente en la maquina del Jugador o invitado || 
 
 || Caso de uso 3 || Ejecutar cliente ||
 || Actores || Jugador, Invitado ||
 || Tipo || Primario ||
 || Descripción || Ejecución del cliente en el sistema. Este caso de uso da lugar al marco de la aplicación  || 
-----
-== Marco de aplicación ==
 
+=== Marco de aplicación ===
 || Caso de uso 4 || Alta usuario ||
-||Actores || Jugador ||
-||Tipo || Primario y esencial ||
+||Actores || Invitado ||
+||Tipo || Primario ||
 ||Descripción || El usuario se introduce en el sistema en para darse de alta, introduce los campos requeridos (Nombre y apellidos, id usuario, correo electrónico, clave, etc.) y solicita darse de alta. El sistema comprobara que el id de usuario no exista y pedirá una confirmación del correo del usuario. ||
 
 || Caso de uso 5 || Salir del cliente ||
@@ -35,7 +33,7 @@ http://is0809casino.googlecode.com/files/fig129431.png
 
 || Caso de uso 6 || Login ||
 || Actores || Invitado ||
-|| Tipo || Primario y esencial ||
+|| Tipo || Primario ||
 || Descripción || Un usuario no registrado en el sistema introduce su id y su password y se logea en el cliente, el sistema comprueba que los datos son correctos  || 
 
 || Caso de uso 7 || Baja usuario ||
@@ -56,32 +54,59 @@ http://is0809casino.googlecode.com/files/fig129431.png
 
 || Caso de uso 10 || Administrar créditos ||
 || Actores || Jugador ||
-|| Tipo || Secundario ||
+|| Tipo || Primario ||
 || Descripción || Administras los créditos que dispone un jugador ||
 
 || Caso de uso 11 || Selección de juego ||
 || Actores || Jugador, Invitado ||
-|| Tipo || Principal ||
+|| Tipo || Primario ||
 || Descripción || Un Jugador o un invitado entra en un juego concreto para empezar a jugar, se debe seleccionar el juego al cual se quiere entrar, los jugadores y los invitados, aunque dispongan de un mismo juego, no accederán a areas de juego comunes. Este caso de uso da paso al marco de juego ||
 
-== Marco de juego ==
+=== Marco de juego ===
 || Caso de uso 12 || Seleccionar mesa de juego ||
 || Actores || Jugador invitado ||
-|| Tipo || Principal ||
+|| Tipo || Primario ||
 || Descripción || El jugador o invitado selecciona una de las mesas disponibles en ese momento, el usuario _se queda en modo observador_ ||
 
 || Caso de uso 13 || Salir del juego ||
 || Actores || Jugador Invitado ||
-|| Tipo || Principal ||
+|| Tipo || Primario ||
 || Descripción || Sales del marco de juego ||
 
-== Marco de Mesa de juego ==
+=== Marco de Mesa de juego ===
 || Caso de uso 14 || Empezar a jugar ||
 || Actores || Jugador invitado ||
-|| Tipo || Principal ||
+|| Tipo || Primario ||
 || Descripción || Sales del modo observador en la mesa en la que te encuentras para comenzar a jugar ||
 
 || Caso de uso 15 || Salir de la mesa ||
 || Actores || Jugador Invitado ||
-|| Tipo || Principal ||
+|| Tipo || Primario ||
 || Descripción || Te sales de la mesa de juego ||
+
+== Descripción expandida ==
+ * Caso de uso 4: *Alta usuario*
+ * Actores: Invitado
+ * Propósito: Dar de alta un nuevo Jugador
+ * Visión general: Un invitado introduce sus datos en el sistema para realizar una alta en el sistema. El cliente lo da de alta tras comprobar que es posible hacerlo
+ * Referencias:
+ * Curso típico de eventos
+  # (Actor) Se accede al apartado de alta de nuevo jugador
+  # (Sistema) Se solicitan los datos del nuevo jugador
+  # (Actor) Se introducen los datos del jugador. Correo electrónico, Id de usuario, clave...
+  # (Sistema) El usuario se da de alta correctamente
+ * Cursos alternativos
+  * Línea 4: Los datos introducidos no son correctos
+  * Línea 4: El id de usuario introducido no se encuentra disponible
+----
+ * Caso de uso 6: *Login*
+ * Actores: Jugador
+ * Propósito: Logear un Jugador en el sistema de cliente
+ * Visión general: El jugador introduce su id y clave para que el sistema lo reconozca. El sistema comprueba que los datos son correctos y da la confirmación. 
+ * Referencias: 
+ * Curso típico de eventos
+  # (Actor) El jugador introduce su id y clave en los campos correspondientes
+  # (Sistema) El jugador esta logeado.
+ * Curso alternativo
+  * linea 2: Usuario incorrecto
+----
