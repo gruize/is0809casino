@@ -130,6 +130,7 @@ El sistema correrá sobre cualquier plataforma, pero las pruebas se realizaran s
  
 === 3.1. Interfaces Externas ===
 
+
 === 3.2. Funciones ===
 
 === 3.3. Requisitos de Rendimiento ===
