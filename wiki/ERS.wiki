@@ -156,6 +156,14 @@ JUGADOR
 
 11. Chat: se podrán visualizar los jugadores que estén en el casino y se podrá chatear con ellos. 
 
+12. Seleccionar Juego: si el jugador tiene saldo, podrá seleccionar un juego. Los juegos que ofrece el casino son: 
+
+     -  blackak
+    
+     -  ruleta
+     
+     - ...
+
 ADMINISTRADOR
 
 
