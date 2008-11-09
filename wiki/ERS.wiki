@@ -154,13 +154,14 @@ ADMINISTRADOR
 === 3.4. Restricciones de Diseño ===
 
 === 3.5. Atributos del Sistema ===
-1. El sistema solo permitirá la entrada a mayores de 18 años. Para ello, a la hora de registrarse se pedirá la fecha de nacimiento del usuario
-2. El acceso al sistema será mediante login y password. 
-3. Un jugador podrá realizar apuestas solo si tiene saldo en su cuenta.
-4. Los jugadores no podrán modificar los datos de sus cuentas, solo la información personal de su perfil. 
-5. Los jugadores podrán jugar a cualquier juego disponible en el casino. 
-6. Toda la información que se envie estará cifrada. 
-7. El sistema correrá tanto en plataformas Windows como en Linux.  
+===1. El sistema solo permitirá la entrada a mayores de 18 años. Para ello, a la hora de registrarse se pedirá la fecha de nacimiento del usuario===
+===2. El acceso al sistema será mediante login y password. ===
+===3. Un jugador podrá realizar apuestas solo si tiene saldo en su cuenta.===
+===4. Los jugadores no podrán modificar los datos de sus cuentas, solo la información personal de su perfil. ===
+===5. Los jugadores podrán jugar a cualquier juego disponible en el casino. ===
+===6. Toda la información que se envie estará cifrada. ===
+===7. El sistema correrá tanto en plataformas Windows como en Linux.===
+  
 === 3.6. Otros Requisitos ===
 
 == 4. Apendices ==
