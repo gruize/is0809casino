@@ -102,7 +102,7 @@ Por último, la tercera sección del documento es aquella en la que se definen d
  
     Los usuarios tendrán la posibilidad de charlar durante el funcionamiento del juego mediante un Chat definido por cada mesa.
    
-    Los jugadores podrán visualizar estadísticas de los juegos a los que han jugado.
+    Los jugadores podrán visualizar estadísticas de los juegos en los que han jugado.
  
 === 2.3. Características de los Usuarios ===
      Este casino esta pensado para mayores de edad, con un nivel cultural indiferente, y con poca experiencia en casinos online a ser posible. 
@@ -132,13 +132,27 @@ El sistema correrá sobre cualquier plataforma, pero las pruebas se realizaran s
 1. El sistema funcionar con dinero real, estableciendo una interfaz con un banco real. 
 
 === 3.2. Funciones ===
+JUGADOR
+1. Se podrá solicitar vía web la entrada al casino. Para ello se registrará proporcionando sus datos personales: nombre y apellidos, fecha de nacimiento, sexo, ciudad, nombre de usuario, contraseña y nombre para mostrar (nick).
+2. Se podrá descargar la aplicación del casino via web. Para ello el jugador proporcionará su nombre de usuario y contraseña. 
+
+
+ADMINISTRADOR
+
 
 === 3.3. Requisitos de Rendimiento ===
+1. El casino soportará la conexión de varios jugadores simultáneamente, permitiento la interacción entre ellos para jugar. 
 
 === 3.4. Restricciones de Diseño ===
 
 === 3.5. Atributos del Sistema ===
-
+1. El sistema solo permitirá la entrada a mayores de 18 años. Para ello, a la hora de registrarse se pedirá la fecha de nacimiento del usuario
+2. El acceso al sistema será mediante login y password. 
+3. Un jugador podrá realizar apuestas solo si tiene saldo en su cuenta.
+4. Los jugadores no podrán modificar los datos de sus cuentas, solo la información personal de su perfil. 
+5. Los jugadores podrán jugar a cualquier juego disponible en el casino. 
+6. Toda la información que se envie estará cifrada. 
+7. El sistema correrá tanto en plataformas Windows como en Linux.  
 === 3.6. Otros Requisitos ===
 
 == 4. Apendices ==
