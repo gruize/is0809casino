@@ -129,7 +129,7 @@ El sistema correrá sobre cualquier plataforma, pero las pruebas se realizaran s
 
  
 === 3.1. Interfaces Externas ===
-
+1. El sistema funcionar con dinero real, estableciendo una interfaz con un banco real. 
 
 === 3.2. Funciones ===
 
