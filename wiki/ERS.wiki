@@ -158,7 +158,7 @@ JUGADOR
 
 12. Seleccionar Juego: si el jugador tiene saldo, podrá seleccionar un juego. Los juegos que ofrece el casino son: 
 
-     -  blackak
+     -  blackjak
     
      -  ruleta
      
