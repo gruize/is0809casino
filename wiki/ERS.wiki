@@ -133,8 +133,8 @@ El sistema correrá sobre cualquier plataforma, pero las pruebas se realizaran s
 
 === 3.2. Funciones ===
 JUGADOR
-1. Alta Usuario: se podrá solicitar vía web la entrada al casino. Para ello se registrará proporcionando sus datos personales: nombre y apellidos, fecha de nacimiento, sexo, ciudad, correo electrónico, id de usuario, contraseña y nombre para mostrar (nick).
-2. Baja Usuario: un jugador podrá solicitar la baja en el casino. Se eliminarán sus datos del sistema.
+* * Alta Usuario: se podrá solicitar vía web la entrada al casino. Para ello se registrará proporcionando sus datos personales: nombre y apellidos, fecha de nacimiento, sexo, ciudad, correo electrónico, id de usuario, contraseña y nombre para mostrar (nick).
+* * Baja Usuario: un jugador podrá solicitar la baja en el casino. Se eliminarán sus datos del sistema.
 3. Descargar Casino: se podrá descargar la aplicación del casino via web. Para ello el jugador proporcionará su nombre de usuario y contraseña. 
 4. Login: cuando un jugador desee entrar a jugar en el casino, deberá introducir su usuario y contraseña. Premisas: el jugador esta dado de alta en el sistema. 
 5. Datos jugador:para cada jugador se guadará: nombre, apellidos, fecha de nacimiento, sexo, ciudad, correo electrónico, id usuario, contraseña, nick, saldo. 
