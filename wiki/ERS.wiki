@@ -133,16 +133,27 @@ El sistema correrá sobre cualquier plataforma, pero las pruebas se realizaran s
 
 === 3.2. Funciones ===
 JUGADOR
-* * Alta Usuario: se podrá solicitar vía web la entrada al casino. Para ello se registrará proporcionando sus datos personales: nombre y apellidos, fecha de nacimiento, sexo, ciudad, correo electrónico, id de usuario, contraseña y nombre para mostrar (nick).
-* * Baja Usuario: un jugador podrá solicitar la baja en el casino. Se eliminarán sus datos del sistema.
+
+1. Alta Usuario: se podrá solicitar vía web la entrada al casino. Para ello se registrará proporcionando sus datos personales: nombre y apellidos, fecha de nacimiento, sexo, ciudad, correo electrónico, id de usuario, contraseña y nombre para mostrar (nick).
+
+2. Baja Usuario: un jugador podrá solicitar la baja en el casino. Se eliminarán sus datos del sistema.
+
 3. Descargar Casino: se podrá descargar la aplicación del casino via web. Para ello el jugador proporcionará su nombre de usuario y contraseña. 
+
 4. Login: cuando un jugador desee entrar a jugar en el casino, deberá introducir su usuario y contraseña. Premisas: el jugador esta dado de alta en el sistema. 
+
 5. Datos jugador:para cada jugador se guadará: nombre, apellidos, fecha de nacimiento, sexo, ciudad, correo electrónico, id usuario, contraseña, nick, saldo. 
+
 6. Modificar datos: cada jugador podrá modificar los datos siguientes: ciudad, correo electrónico, contraseña, nombre para mostrar. 
+
 7. Recarga saldo automática: al darse de alta en el casino el jugador recibirá automáticamente 100 leuros. 
+
 8. Solicitar saldo: se podrá solicitar saldo si se poseen menos de 20 leuros. Se insertarán en la cuenta del jugador. 
+
 9. Consulta datos: cada jugador podrá consultar sus datos en cualquier momento. Además de su información personal y saldo, se mostrarán las estadísticas de juego y mensajes privados enviados por la administración.
+
 10. Estadísticas de juego: se mostrarán ...
+
 11. Chat: se podrán visualizar los jugadores que estén en el casino y se podrá chatear con ellos. 
 
 ADMINISTRADOR
@@ -154,13 +165,20 @@ ADMINISTRADOR
 === 3.4. Restricciones de Diseño ===
 
 === 3.5. Atributos del Sistema ===
-===1. El sistema solo permitirá la entrada a mayores de 18 años. Para ello, a la hora de registrarse se pedirá la fecha de nacimiento del usuario===
-===2. El acceso al sistema será mediante login y password. ===
-===3. Un jugador podrá realizar apuestas solo si tiene saldo en su cuenta.===
-===4. Los jugadores no podrán modificar los datos de sus cuentas, solo la información personal de su perfil. ===
-===5. Los jugadores podrán jugar a cualquier juego disponible en el casino. ===
-===6. Toda la información que se envie estará cifrada. ===
-===7. El sistema correrá tanto en plataformas Windows como en Linux.===
+1. El sistema solo permitirá la entrada a mayores de 18 años. Para ello, a la hora de registrarse se pedirá la fecha de nacimiento del usuario.
+
+2. El acceso al sistema será mediante login y password. 
+
+3. Un jugador podrá realizar apuestas solo si tiene saldo en su cuenta.
+
+4. Los jugadores no podrán modificar los datos de sus cuentas, solo la información personal de su perfil.
+
+5. Los jugadores podrán jugar a cualquier juego disponible en el casino. 
+
+6. Toda la información que se envie estará cifrada. 
+
+7. El sistema correrá tanto en plataformas Windows como en Linux.
+
   
 === 3.6. Otros Requisitos ===
 
