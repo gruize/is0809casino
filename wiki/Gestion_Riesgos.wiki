@@ -6,9 +6,9 @@ Version 0.1
 
 = Introducción =
 
-Se entiende por riesgo ..........
+Se entiende por riesgo a cualquier dificultad o complicación que pudiera suceder a lo largo de la especificación,  diseño, implementación y/o desarrollo en general de un proyecto.
 
-Por cada riesgo considerado hay que tener en cuenta su probabilidad(High,Moderate,Low) y efectos(Catastrophic,Serious,Tolerable,Insignificant) y posibles estrategias para evitar los riesgos en la medida de lo posible.
+Por cada riesgo considerado hay que tener en cuenta su probabilidad de aparición (Alta, Moderada, Baja) y efectos (Catastróficos ,Serios ,Tolerable ,Insignificante) y posibles estrategias para evitar los riesgos en la medida de lo posible.
 
 == Riesgos Tecnológicos == 
 
