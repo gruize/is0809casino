@@ -211,6 +211,10 @@ No aplican
 
 7. El sistema correrá tanto en plataformas Windows como en Linux.
 
+8. Las estadisiticas que puede observar el jugador, seran el dinero actual, dinero ganado, dinero perdido, dinero recargado, y estadisticas particulares de juegos (partidas ganadas, perdidas, dinero apostado)
+
+9. Las estadisticas que podra observar el administrador seran las misma que los jugadores, ultima vez conectado, estado actual del jugador.
+
   
 === 3.6. Otros Requisitos ===
 
