@@ -23,3 +23,8 @@ Queda pendiente revisar los riesgos (que tienen contenidos que interesan a los m
 
 •	Existirá una página Web, donde el usuario se podrá descargar el cliente de la aplicación para poder jugar en el Casio online y donde podrá darse de alta en el sistema.
 Para la próxima clase de prácticas, hay que traer pensados los casos de uso que están colgados code.google.com
+
+*Fecha: 13 de Noviembre de 2008*
+
+
+- Se han completado los documentos de Especifiación de requisitos de Software,Los casos de Uso y la Gestión de Riesgos
