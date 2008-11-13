@@ -107,7 +107,7 @@ La perspectiva del Casino es que sea un casino online similar a los que existen 
     Los jugadores podrán visualizar estadísticas de los juegos en los que han jugado.
  
 === 2.3. Características de los Usuarios ===
-     Este casino esta pensado para mayores de edad, con un nivel cultural indiferente, y con poca experiencia en casinos online a ser posible. 
+    Este casino esta pensado para mayores de edad, con un nivel cultural indiferente, y con poca experiencia en casinos online a ser posible. 
  
 === 2.4. Restricciones ===
  * Interfaz para conectar con una entidad bancaria, para la comprobación de las tarjetas de crédito.
@@ -171,6 +171,8 @@ JUGADOR
      -  ...
 
 
+13. Las estadisiticas que puede observar el jugador, seran el dinero actual, dinero ganado, dinero perdido, dinero recargado, y estadisticas particulares de juegos (partidas ganadas, perdidas, dinero apostado)
+
 ADMINISTRADOR
 
 1. Login administrador: para acceder al servidor del casino el administrador deberá logearse en la aplicación, introduciendo su nombre de usuario y contraseña. 
@@ -181,13 +183,15 @@ ADMINISTRADOR
 
 5. Cerrar mesa de juego: El Administrador podrá cerrar una mesa en cualquier momento. 
 
-7. Observar mesa juego: el administrador podrá observar en cualquier momento el estado de una mesa de cualquier juego. 
+6. Observar mesa juego: el administrador podrá observar en cualquier momento el estado de una mesa de cualquier juego. 
 
-8. Consultar estadísticas generales: el administrador podrá obtener un informe con los datos generales del casino, como son: dinero total recaudado en un determinado rango de fechas, usuarios activos del casino, .... 
+7. Consultar estadísticas generales: el administrador podrá obtener un informe con los datos generales del casino, como son: dinero total recaudado en un determinado rango de fechas, usuarios activos del casino, .... 
 
-9. Proporcionar saldo: el administrador podrá proporcionar mas saldo a un jugador. Para ello deberá haber una solicitud pendiente por parte del jugador. 
+8. Proporcionar saldo: el administrador podrá proporcionar mas saldo a un jugador. Para ello deberá haber una solicitud pendiente por parte del jugador. 
 
-10. Expulsar jugador: el administrador podrá expulsar a un jugador cuando esté participando en un juego.
+9. Expulsar jugador: el administrador podrá expulsar a un jugador cuando esté participando en un juego.
+
+10. Las estadisticas que podra observar el administrador seran las misma que los jugadores, ultima vez conectado, estado actual del jugador.
 
 
 === 3.3. Requisitos de Rendimiento ===
@@ -211,11 +215,14 @@ No aplican
 
 7. El sistema correrá tanto en plataformas Windows como en Linux.
 
-8. Las estadisiticas que puede observar el jugador, seran el dinero actual, dinero ganado, dinero perdido, dinero recargado, y estadisticas particulares de juegos (partidas ganadas, perdidas, dinero apostado)
-
-9. Las estadisticas que podra observar el administrador seran las misma que los jugadores, ultima vez conectado, estado actual del jugador.
-
+8. Las reglas de los jeugos estan definidas en los apendices
   
 === 3.6. Otros Requisitos ===
 
 == 4. Apendices ==
+
+Reglas de poker: http://www.reglasdelpoker.es/reglas.php
+
+Reglas Blak Jack: http://es.wikipedia.org/wiki/Blackjack
+
+Reglas Ruleta: http://www.sistemas-ruleta.com/reglas_juego_ruleta.php
