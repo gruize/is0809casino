@@ -165,6 +165,7 @@ JUGADOR
      - ...
 
 ADMINISTRADOR
+
 1. Login administrador: para acceder al servidor del casino el administrador deberá logearse en la aplicación, introduciendo su nombre de usuario y contraseña. 
 
 2. Datos administrador: los datos que se guardarán para un perfil de administrador son: nombre, id de usuario, contraseña, correo electrónico, módulos a los que tiene acceso. 
