@@ -129,7 +129,7 @@ El sistema correrá sobre cualquier plataforma, pero las pruebas se realizaran s
 
  
 === 3.1. Interfaces Externas ===
-1. El sistema funcionar con dinero real, estableciendo una interfaz con un banco real. 
+e1. En fases posteriores, el sistema podrá funcionar con dinero real, estableciendo una interfaz con un banco real. 
 
 === 3.2. Funciones ===
 JUGADOR
@@ -142,7 +142,7 @@ JUGADOR
 
 4. Login: cuando un jugador desee entrar a jugar en el casino, deberá introducir su usuario y contraseña. Premisas: el jugador esta dado de alta en el sistema. 
 
-5. Datos jugador:para cada jugador se guadará: nombre, apellidos, fecha de nacimiento, sexo, ciudad, correo electrónico, id usuario, contraseña, nick, saldo. 
+5. Datos jugador: para cada jugador se guadará: nombre, apellidos, fecha de nacimiento, sexo, ciudad, correo electrónico, id usuario, contraseña, nick, saldo. 
 
 6. Modificar datos: cada jugador podrá modificar los datos siguientes: ciudad, correo electrónico, contraseña, nombre para mostrar. 
 
@@ -165,6 +165,25 @@ JUGADOR
      - ...
 
 ADMINISTRADOR
+1. Login administrador: para acceder al servidor del casino el administrador deberá logearse en la aplicación, introduciendo su nombre de usuario y contraseña. 
+
+2. Datos administrador: los datos que se guardarán para un perfil de administrador son: nombre, id de usuario, contraseña, correo electrónico, módulos a los que tiene acceso. 
+
+3. Crear mesa de juego: el administrador podrá crear tantas mesas para un juego como crea oportunas. Se configurarán todos los datos de la mesa. 
+
+4. Datos mesa de juego: ...
+
+5. Cerrar mesa de juego: ... 
+
+6. Modificar configuración mesa de juego: los datos de una mesa que se pueden modificar son ... 
+
+7. Observar mesa juego: el administrador podrá observar en cualquier momento el estado de una mesa de cualquier juego. 
+
+8. Consultar estadísticas generales: el administrador podrá obtener un informe con los datos generales del casino, como son: dinero total recaudado en un determinado rango de fechas, usuarios activos del casino, .... 
+
+9. Proporcionar saldo: el administrador podrá proporcionar mas saldo a un jugador. Para ello deberá haber una solicitud pendiente por parte del jugador. 
+
+10. Expulsar jugador: el administrador podrá expulsar a un jugador cuando esté participando en un juego. Premisas/condiciones: ... 
 
 
 === 3.3. Requisitos de Rendimiento ===
