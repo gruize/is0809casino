@@ -1,4 +1,4 @@
-#labels Phase-Requirements,Fase-de-Requisitos
+#labels -,Fase-de-Requisitos
 *Especificación de Requisitos según el estándar de IEEE 830 
 = Especificación de Requisitos según el estándar de IEEE 830 =
 
@@ -158,11 +158,16 @@ JUGADOR
 
 12. Seleccionar Juego: si el jugador tiene saldo, podrá seleccionar un juego. Los juegos que ofrece el casino son: 
 
-     -  blackjak
+     -  Blackjak
     
-     -  ruleta
+     -  Ruleta
      
-     - ...
+     -  Poker
+
+     -  Dados
+
+     -  ...
+
 
 ADMINISTRADOR
 
@@ -172,11 +177,7 @@ ADMINISTRADOR
 
 3. Crear mesa de juego: el administrador podrá crear tantas mesas para un juego como crea oportunas. Se configurarán todos los datos de la mesa. 
 
-4. Datos mesa de juego: ...
-
-5. Cerrar mesa de juego: ... 
-
-6. Modificar configuración mesa de juego: los datos de una mesa que se pueden modificar son ... 
+5. Cerrar mesa de juego: El Administrador podrá cerrar una mesa en cualquier momento. 
 
 7. Observar mesa juego: el administrador podrá observar en cualquier momento el estado de una mesa de cualquier juego. 
 
@@ -184,7 +185,7 @@ ADMINISTRADOR
 
 9. Proporcionar saldo: el administrador podrá proporcionar mas saldo a un jugador. Para ello deberá haber una solicitud pendiente por parte del jugador. 
 
-10. Expulsar jugador: el administrador podrá expulsar a un jugador cuando esté participando en un juego. Premisas/condiciones: ... 
+10. Expulsar jugador: el administrador podrá expulsar a un jugador cuando esté participando en un juego.
 
 
 === 3.3. Requisitos de Rendimiento ===
