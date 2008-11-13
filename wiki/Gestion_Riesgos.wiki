@@ -3,6 +3,7 @@
 = Gestión de Riesgos =
 
 Version 0.1
+Fecha 13 de Noviembre de 2008
 
 = Introducción =
 
@@ -12,23 +13,23 @@ Por cada riesgo considerado hay que tener en cuenta su probabilidad de aparició
 
 == Riesgos Tecnológicos == 
 
- * El servidor ha de tener un ancho de banda mínimo capaz de soportar una alta carga de usuarios. 
+  * El servidor ha de tener un ancho de banda mínimo capaz de soportar una alta carga de usuarios. 
 * Probabilidad:* Moderada. *Efectos:* Tolerable.
-_Estrategias:_ Solicitar más ancho de banda ó requerir mejor equipación hardware.
+_Estrategias:_ Mejorar el protocolo de comunicación para minimizar el tráfico de la aplicación. Como último motivo, se podría solicitar más ancho de banda ó requerir mejor equipación hardware.
 
- * La latencia ha de ser suficientemente baja como para ofrecer un buen servicio en tiempo real.
+  * La latencia ha de ser suficientemente baja como para ofrecer un buen servicio en tiempo real.
 * Probabilidad:* Baja. *Efectos:* Insignificante.
-_Estrategias:_ Solicitar una mejora en la conexión.
+_Estrategias:_ Compactar los posibles mensajes, reduciendo el número de comunicaciones por mensaje. Realizar un estudio del retardo de cada cliente al realizar login a la aplicación. Si el retardo es superior a un máximo establecido se le comunicará con un mensaje de _Imposibilidad de juego_. Como última solución, solicitar una mejora en la conexión.
 
   * La base de datos usada en el sistema no puede procesar tantas peticiones por segundo como se había estimado.
 * Probabilidad:* Moderada. *Efectos:* Serio.
-_Estrategias:_ Solicitar una mejora de hardware en el equipo servidor y/o probar alternativas de SGBD.
+_Estrategias:_ Establecer prioridades en las peticiones sobre el SGBD. Como última solución cabe solicitar una mejora de hardware en el equipo servidor y/o probar alternativas de SGBD.
 
   * Privacidad en la comunicación cifrada entre servidor y cliente.
 * Probabilidad:* Alta. *Efectos:* Catastrófico.
-_Estrategias:_ Mejora de los protocolos de cifrado.
+_Estrategias:_ Encontrar las vulnerabilidades del sistema, analizar posibles soluciones y, en el peor de los casos, seleccionar otro método de cifrado que no posea dichas vulnerabilidades (u otras).
 
-  * Privacidad en ciertos contenidos de la Base de Datos susceptibles de contener información personal. (LPD)
+  * Privacidad en ciertos contenidos de la Base de Datos susceptibles de contener información personal. (Ley de Protección de Datos)
 * Probabilidad:* Alta. *Efectos:* Catastrófico.
 _Estrategias:_ Estudio detallado de los contenidos que han de ser cifrados y del algoritmo de cifrado. Además, puede añadirse la redacción de un documento Log escrito por el servidor que almacene todas las transacciones realizados sobre la BBDD.
 
