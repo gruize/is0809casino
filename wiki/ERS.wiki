@@ -190,6 +190,7 @@ ADMINISTRADOR
 1. El casino soportará la conexión de varios jugadores simultáneamente, permitiento la interacción entre ellos para jugar. 
 
 === 3.4. Restricciones de Diseño ===
+No aplican
 
 === 3.5. Atributos del Sistema ===
 1. El sistema solo permitirá la entrada a mayores de 18 años. Para ello, a la hora de registrarse se pedirá la fecha de nacimiento del usuario.
