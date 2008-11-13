@@ -88,6 +88,8 @@ Por último, la tercera sección del documento es aquella en la que se definen d
 
 === 2.1. Perspectiva del Producto ===
 
+La perspectiva del Casino es que sea un casino online similar a los que existen hoy en dia en internet, y que sea totalmente funcional.
+
 === 2.2. Funciones del Producto ===
  
    Este casino soportara la conexión simultanea de varios jugadores, permitiendo, en el caso que el juego lo posibilite, la interacción entre los mismos.
@@ -129,7 +131,7 @@ El sistema correrá sobre cualquier plataforma, pero las pruebas se realizaran s
 
  
 === 3.1. Interfaces Externas ===
-e1. En fases posteriores, el sistema podrá funcionar con dinero real, estableciendo una interfaz con un banco real. 
+En fases posteriores, el sistema podrá funcionar con dinero real, estableciendo una interfaz con un banco real. 
 
 === 3.2. Funciones ===
 JUGADOR
