@@ -55,7 +55,7 @@ _Estrategias:_ Realizar una consulta a los miembros del grupo y evaluar todas la
 
   * Problemas económicos. 
 * Probabilidad:* Baja. *Efectos:* Catastrófico.
-_Estrategias:_ Echar un par de horas en el casino.
+_Estrategias:_ No existe estrategia de resolución, al no existir presupuesto básico de proyecto. Se asumirán los costes o se abordarán desde alternativas asumibles.
 
   * Falta de coordinación entre los miembros del equipo.
 * Probabilidad:* Alta. *Efectos:* Serio.
