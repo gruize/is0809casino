@@ -185,13 +185,11 @@ ADMINISTRADOR
 
 6. Observar mesa juego: el administrador podrá observar en cualquier momento el estado de una mesa de cualquier juego. 
 
-7. Consultar estadísticas generales: el administrador podrá obtener un informe con los datos generales del casino, como son: dinero total recaudado en un determinado rango de fechas, usuarios activos del casino, .... 
+7. Consultar estadísticas generales: el administrador podrá obtener un informe con los datos generales del casino, como son: dinero total recaudado en un determinado rango de fechas, usuarios activos del casino y estadisiticas personales de cada usuario. 
 
 8. Proporcionar saldo: el administrador podrá proporcionar mas saldo a un jugador. Para ello deberá haber una solicitud pendiente por parte del jugador. 
 
 9. Expulsar jugador: el administrador podrá expulsar a un jugador cuando esté participando en un juego.
-
-10. Las estadisticas que podra observar el administrador seran las misma que los jugadores, ultima vez conectado, estado actual del jugador.
 
 
 === 3.3. Requisitos de Rendimiento ===
