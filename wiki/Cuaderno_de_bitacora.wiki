@@ -27,4 +27,4 @@ Para la próxima clase de prácticas, hay que traer pensados los casos de uso qu
 *Fecha: 13 de Noviembre de 2008*
 
 
-- Se han completado los documentos de Especifiación de requisitos de Software,Los casos de Uso y la Gestión de Riesgos
+- Se han completado los documentos de Especifiación de requisitos de Software,Los casos de Uso y la Gestión de Riesgos.Los tres están en formato PDF en el apartado de Downloads, com la marca **ENTREGA** detras de su nombre. El profesor ya ha sido avisado via mail.
