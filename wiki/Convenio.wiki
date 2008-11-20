@@ -1,3 +1,4 @@
+#summary Convenio usado para una correcta programación
 
 = Convenio utilizado para una correcta programación =
 
@@ -28,5 +29,3 @@ Orden de los metodos de la clase.
  * Métodos Privados.
 
 Constantes todo mayúsculas
-
-
