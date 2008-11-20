@@ -1,3 +1,9 @@
+*Fecha: 20 de Noviembre de 2008*
+
+Links de interés
+Convenio de java.
+http://java.sun.com/docs/codeconv/
+
 *Fecha: 5 de noviembre de 2008*
 
 Diario de a bordo:
