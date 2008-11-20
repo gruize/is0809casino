@@ -4,6 +4,11 @@ Links de interés
 Convenio de java.
 http://java.sun.com/docs/codeconv/
 
+*Fecha: 13 de Noviembre de 2008*
+
+
+- Se han completado los documentos de Especifiación de requisitos de Software,Los casos de Uso y la Gestión de Riesgos.Los tres están en formato PDF en el apartado de Downloads, com la marca **ENTREGA** detras de su nombre. El profesor ya ha sido avisado via mail.
+
 *Fecha: 5 de noviembre de 2008*
 
 Diario de a bordo:
@@ -29,8 +34,3 @@ Queda pendiente revisar los riesgos (que tienen contenidos que interesan a los m
 
 •	Existirá una página Web, donde el usuario se podrá descargar el cliente de la aplicación para poder jugar en el Casio online y donde podrá darse de alta en el sistema.
 Para la próxima clase de prácticas, hay que traer pensados los casos de uso que están colgados code.google.com
-
-*Fecha: 13 de Noviembre de 2008*
-
-
-- Se han completado los documentos de Especifiación de requisitos de Software,Los casos de Uso y la Gestión de Riesgos.Los tres están en formato PDF en el apartado de Downloads, com la marca **ENTREGA** detras de su nombre. El profesor ya ha sido avisado via mail.
