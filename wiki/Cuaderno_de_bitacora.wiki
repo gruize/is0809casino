@@ -1,8 +1,14 @@
 *Fecha: 20 de Noviembre de 2008*
 
-Links de interés
-Convenio de java.
-http://java.sun.com/docs/codeconv/
+ * Links de interés
+ * Declarado el convenio
+ * Plazo de entrega 18 de Diciembre.
+ * Condiciones de entrega
+ * Distribución del trabajo.
+
+
+
+
 
 *Fecha: 13 de Noviembre de 2008*
 
