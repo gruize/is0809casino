@@ -1,4 +1,4 @@
-#Tareas adjudicadas a cada uno
+#summary Tareas adjudicadas a cada uno
 
 = Base de datos =
  * Alberto Fernandez
@@ -43,6 +43,4 @@ plazo Semana antes de la entrega (11-12-2008)
  * Santiago Zomeño
 
 plazo 1 repositorio(27-11-2008)
-
-
 
