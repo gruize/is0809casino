@@ -1,0 +1,27 @@
+#summary Descripción del modulo y de las cosas usadas
+
+= Introducción =
+
+Este modulo intenta conectar dos procesos ya sea via web o dentro de la misma maquina
+
+
+
+== Cosas a tener en cuenta ==
+ * Los procesos tienen que tener un ID que los identifique string
+ * Tratamiento de bloqueos (synchronized)
+ * Tablas en los clientes de los procesos que tiene el cliente
+ * Tabla de el servidor con las ID de los clientes y como comecntar a ellas
+ * Doble capa de comunicacion
+   * Capa baja demonio
+   * Capa alta clase con una interfaz
+ * Cada clase implementa sus mensajes pero se usa una interfaz para pasar el mensaje al demonio
+ * Interfaz de creación de conexiones (aceptación de la conexión y registro en la tabla)
+ * las conexiones no son permanenetes. 
+ * Un mensaje no tiene porque esperar respuesta
+ * Los mensajes pueden llegar sin haberlos solicitado
+ * Se pueden mandar mensajes entre procesos distintos dentro del mismo ordenador
+ * Los mensajes pasan siempre por el servidor cuando son entre clientes distintos
+
+ * Los mensajes son dejados en una cola de mensajes que los recoge el proceso cuando cree necesiario
+ 
+
