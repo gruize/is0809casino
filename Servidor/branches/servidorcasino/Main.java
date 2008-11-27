@@ -23,7 +23,7 @@ public class Main {
         c.anadeJugadorAPartida(j,idPartida);
         Jugada jug = new Jugada(1,idPartida,1,33,44);
         c.procesarJugada(jug);
-        
+        /**/
     }
 
 }
