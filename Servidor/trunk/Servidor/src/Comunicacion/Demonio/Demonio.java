@@ -7,7 +7,7 @@ import java.io.*;
 class Demonio {
     
     public static void main( String args[] ) {
-        // todo: puerto leido en configuración
+        // TODO: puerto leido en configuración
         final int PUERTO = 10809;
         ServerSocket canal;
         Socket conexion;
