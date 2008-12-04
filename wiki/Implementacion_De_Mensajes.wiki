@@ -1,4 +1,4 @@
-#summary Implementaci�n de la clase heredada Mensaje (abstracta)
+#summary Implementación de la clase heredada Mensaje (abstracta)
 
 =POR FAVOR, ESTA DOCUMENTACIÓN ES POCO ADECUADA AQUÍ.=
 =USAR JAVADOC EN CÓDIGO=
