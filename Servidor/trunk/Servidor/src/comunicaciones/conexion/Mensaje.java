@@ -7,8 +7,14 @@ public abstract class Mensaje{
 	private String destino;
 	private int prioridad;
 	
-	
-	
+	public Mensaje(Mensaje otro) {
+		this.tipo = otro.tipo;
+		this.origen = otro.origen;
+		this.destino = otro.destino;
+		this.prioridad = otro.prioridad;
+	}
+
+
 	public int getTipo() {
 		return tipo;
 	}

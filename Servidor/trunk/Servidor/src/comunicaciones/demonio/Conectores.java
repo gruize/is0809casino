@@ -20,14 +20,20 @@ public class Conectores {
 	public String getId() {
 		return Id;
 	}
-	public void setId(String id) {
-		Id = id;
+	public void setId(String id)    {
+		synchronized (this)
+		{
+			Id = id;
+		}
 	}
 	public String getHost() {
 		return host;
 	}
 	public void setHost(String host) {
-		this.host = host;
+		synchronized (this)
+		{
+			this.host = host;
+		}
 	}
 	
 	
