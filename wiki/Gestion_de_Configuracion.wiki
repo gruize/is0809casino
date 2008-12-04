@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary Gestion de Configuracion Software
 
 =IEEE Std 828™-2005=
 ==(Revision of IEEE Std 828-1998)==
@@ -28,7 +28,7 @@ GCS: Gestión de Configuración de Software
 
 
 =Introducción=
-El proyecto software Casino Online
+
 
 =Gestión de GCS=
 
