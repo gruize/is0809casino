@@ -1,13 +1,16 @@
-#summary Implementación de la clase heredada Mensaje (abstracta)
+#summary Implementaciï¿½n de la clase heredada Mensaje (abstracta)
 
-=Implementación de la clase Mensaje=
+=POR FAVOR, ESTA DOCUMENTACIÃ“N ES POCO ADECUADA AQUÃ.=
+=USAR JAVADOC EN CÃ“DIGO=
+
+=Implementaciï¿½n de la clase Mensaje=
 
 Las clases que se implementen que hereden de la clase Mensaje deben estar situadas en el paquete comunicaciones.conexion
 
 ==Atributos heredados==
 
- * private int tipo; Tipo de mensaje enviado, el tipo 1 está reservado por/para el sistema
- * private String origen; Proceso que envia el mensaje, este valor será facilitado por el sistema de comunicación
+ * private int tipo; Tipo de mensaje enviado, el tipo 1 estï¿½ reservado por/para el sistema
+ * private String origen; Proceso que envia el mensaje, este valor serï¿½ facilitado por el sistema de comunicaciï¿½n
  * private String destino; Proceso que recibe el mensaje.
  * private int prioridad; TODO
 
@@ -16,7 +19,7 @@ Las clases que se implementen que hereden de la clase Mensaje deben estar situad
  * public Mensaje clon(); Para versiones futuras. Devuelve una copia del mensaje. 
  * public String getClassName(); Devuelve el nombre de la clase por un String.
 
-==Ejemplo de una posible implementación==
+==Ejemplo de una posible implementaciï¿½n==
 {{{
 package comunicaciones.conexion;
 
