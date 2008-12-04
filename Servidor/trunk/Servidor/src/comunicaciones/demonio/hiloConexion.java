@@ -8,10 +8,11 @@ public class hiloConexion extends Thread{
 	private Socket canal;
 	private boolean esServidor;
 	public Vector<Conectores> tablaDeConectores;
-	public hiloConexion(Socket canal, boolean esServidor) {
+	public hiloConexion(Socket canal, boolean esServidor, Vector<Conectores> vector) {
 		super();
 		this.canal = canal;
 		this.esServidor = esServidor;
+		this.tablaDeConectores = vector;
 	}
 	public void run ()
 	{
@@ -19,6 +20,7 @@ public class hiloConexion extends Thread{
 			ObjectInputStream canalDeEntrada;
 			canalDeEntrada = new ObjectInputStream(canal.getInputStream());
 			Object datos = canalDeEntrada.read();
+			
 			
 			if(esServidor)
 			{

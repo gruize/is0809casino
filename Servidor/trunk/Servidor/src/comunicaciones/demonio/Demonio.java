@@ -27,7 +27,7 @@ class Demonio {
                 canal = new ServerSocket(PUERTO);
                 //esperamos a que halla una conxion
                 conexion = canal.accept();
-                hiloConexion nuevaConexion = new hiloConexion(conexion,esServidor);
+                hiloConexion nuevaConexion = new hiloConexion(conexion,esServidor,tablaConectores);
                 nuevaConexion.start();
                 
                 // TODO close "canal" when close process
