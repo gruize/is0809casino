@@ -58,9 +58,12 @@ public class Modelo {
 		}	
 		String driverBD = propiedadesConexion.getProperty("jdbc.drivers");		
 		if (driverBD != null) {
-			String url=propiedadesConexion.getProperty("jdbc.url");
-			String usuario = propiedadesConexion.getProperty("jdbc.username");
-			String contraseña = propiedadesConexion.getProperty("jdbc.password");
+			//String url=propiedadesConexion.getProperty("jdbc.url");
+			//String usuario = propiedadesConexion.getProperty("jdbc.username");
+			//String contraseña = propiedadesConexion.getProperty("jdbc.password");
+			String url = "http://serv.fis.ucm.es:1521:xe";
+			String usuario = "SYSTEM";
+			String contraseña = "casinois0809ñ";
 			if (driverBD.equals("oracle.jdbc.driver.OracleDriver")) {
 				System.setProperty("jdbc.drivers", driverBD);
 				if (driverBD.equals("oracle.jdbc.driver.OracleDriver")){
