@@ -1,0 +1,41 @@
+#summary One-sentence summary of this page.
+
+=IEEE Std 828™-2005=
+==(Revision of IEEE Std 828-1998)==
+==828TM==
+==IEEE Standard for Software==
+===Configuration Management Plans===
+====3 Park Avenue, New York, NY 10016-5997, USA====
+====IEEE Computer Society====
+
+|| _Autor_ || _Fecha_ || _Comentario_ ||
+|| Alberto Milán y Santiago Zomeño ||04/12/2008 ||Generación del documento inicial ||
+
+
+
+==Definiciones==
+
+*Punto de control*: Punto en el que requisitos específicos son aplicados a los elementos de configuración desarrollados.
+
+*Release*: Versión particular de un elemento de configuración que está disponible para un fin específico. 
+
+
+==Acrónimos==
+
+EC:  Elemento de Configuración
+GCS: Gestión de Configuración de Software
+
+
+
+=Introducción=
+El proyecto software Casino Online
+
+=Gestión de GCS=
+
+=Actividades de GCS=
+
+=Planificación de GCS=
+
+=Recursos de GCS=
+
+=Plan de mantenimiento de GCS=
