@@ -1,5 +1,4 @@
 package servidorcasino;
-
 public class Casino {
     static int MAX_PARTIDAS=1;
     static int MAX_JUGADORES=1;
@@ -11,10 +10,10 @@ public class Casino {
     public Casino(){
         nPartidas=0;
         nJugadores =0;
-        partidas=new Partida[MAX_PARTIDAS];
+        partidas=new PartidaRuleta[MAX_PARTIDAS];
         jugadoresActivos= new Jugador[MAX_JUGADORES];
      };
-    public void anadePartida(Partida p){    	
+    public void anadePartida(PartidaRuleta p){    	
         partidas[nPartidas]= p;
         nPartidas++;
      };
@@ -32,20 +31,24 @@ public class Casino {
         
      };
      
-     
+    public int tiradaPartidaRuleta(int idPart){
+        
+    return partidas[idPart].ultimaTirada;
+    
+    }
      
     public int creaPartidaRuleta(){
          partidas[nPartidas]=new PartidaRuleta(nPartidas);
          nPartidas++;
          return nPartidas-1;
         }
-    public boolean procesarJugada (Jugada j){
+    public int procesarJugada (Jugada j){
         /*TODO : comprobar que la partida y el usuario existen*/
-        boolean b =false;
+      
         int i = 0;
-        b = partidas[j.getIdPartida()].procesarJugada(j);
+        i = partidas[j.getIdPartida()].procesarJugada(j);
         
-        return b;
+        return i;
 
         };
 }

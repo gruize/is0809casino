@@ -10,7 +10,7 @@ import InterfazCliente.Ruleta;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.ServerSocket;
-import java.net.Socket;
+
 
 /**
  *
@@ -74,6 +74,7 @@ public class Servidor {
      * Sobrecarga del método de finalización del hilo del servidor 
      * para poder cerrar el socket del servidor.
      */
+    @Override
     public void finalize() {
         try {
             socketServidor.close();
@@ -120,13 +121,13 @@ public class Servidor {
      * @param tipoapuesta
      */
     //para los números
-    public void nuevaJugada(String tipoApuesta, int cantidadApostada, int casilla) {
+    public void nuevaJugada(String tipoApuesta,int casilla, int cantidadApostada) {
         //crear la jugada: 1, idPArtida, 1, 33, 44
         ApuestaRuleta apuesta=new ApuestaRuleta(tipoApuesta, casilla,cantidadApostada);
         
-        Jugada jug = new Jugada(1, idPartidaRuleta, tipoApuesta, cantidadApostada, casilla);
+        Jugada jug = new Jugada(1, idPartidaRuleta,1, apuesta);
         //procesar la jugada
-        if (casino.procesarJugada(jug)) //mensaje OK al cliente
+        if (casino.procesarJugada(jug)!=-1) //mensaje OK al cliente
         {
             pantallaRuleta.incluirMensaje("Apuesta al " + casilla + " correcta");
         } else {
@@ -137,18 +138,26 @@ public class Servidor {
     //para los colores
         public void nuevaJugada(String tipoApuesta, String color, int cantidadApostada) {
         //crear la jugada: 1, idPArtida, 1, 33, 44
-        ApuestaRuleta apuesta=new ApuestaRuleta(tipoApuesta, casilla,cantidadApostada);
+        ApuestaRuleta apuesta=new ApuestaRuleta(tipoApuesta, color,cantidadApostada);
         
-        Jugada jug = new Jugada(1, idPartidaRuleta, tipoApuesta, cantidadApostada, casilla);
+        Jugada jug = new Jugada(1, idPartidaRuleta, 1, apuesta);
         //procesar la jugada
-        if (casino.procesarJugada(jug)) //mensaje OK al cliente
+        int j =casino.procesarJugada(jug);
+        if (j>-1) //mensaje OK al cliente
         {
-            pantallaRuleta.incluirMensaje("Apuesta al " + casilla + " correcta");
-        } else {
-            pantallaRuleta.incluirMensaje("Apuesta al " + casilla + " NO VALIDA [FALTA SALDO]");
-        }
+            pantallaRuleta.incluirMensaje("Apuesta al " + color + " correcta");
+        } else if (j==-1) {
+            pantallaRuleta.incluirMensaje("Apuesta al " + color + " NO VALIDA [FALTA SALDO]");
+        }else  pantallaRuleta.incluirMensaje("Numero Maximo de Apuestas  Exedido");
     }
-        
+        //Creo la jugada de tipo tirada y la manda al servidor
+        public int nuevaTirada (){
+            ApuestaRuleta apuesta=null;
+            Jugada jugada = new Jugada(1,idPartidaRuleta,2,apuesta);
+            int saldoActual= casino.procesarJugada(jugada);
+            pantallaRuleta.incluirMensaje("Su saldo actual es de:  " + saldoActual  + " Leuros");
+            return saldoActual;
+        }
     /**
      * PETICION DEL CLIENTE: el jugador introduce sus datos y pulsa Aceptar
      * Comprobar, accediendo a la BBBDD, que el jugador está dado de alta en el sistema
@@ -159,5 +168,8 @@ public class Servidor {
     public boolean comprobarJugador(String idUsuario, String password) {
         JugadorDAO jugadorDAO = new JugadorDAO();
         return jugadorDAO.comprobarJugador(idUsuario, password);
+    }
+    public int dameBola(){
+    return casino.tiradaPartidaRuleta(idPartidaRuleta);
     }
 }

@@ -20,7 +20,7 @@ public class PartidaRuleta implements Partida {
     int nApuestas;
     ArrayList <Jugador> jugadoresPartida;
     ArrayList numeros;
-   
+    int ultimaTirada;
 
     public PartidaRuleta(int id) {
         this.id = id;
@@ -64,7 +64,7 @@ public class PartidaRuleta implements Partida {
         this.nApuestas = nApuestas;
     }  
     
-    public boolean procesarJugada(Jugada j){
+    public int procesarJugada(Jugada j){
             
     int i=0;
     /*Tipos dejugada:
@@ -73,30 +73,31 @@ public class PartidaRuleta implements Partida {
     */                  
     switch (j.getTipoJugada() ){
         case 1: return colocarApuesta(j);
-        case 2: int numero=lanzarBola();
-                int ganancias=comprobarApuestas(numero);
+        case 2: ultimaTirada=lanzarBola();
+                int ganancias=comprobarApuestas(ultimaTirada);
                 int posicionJugador=posicionJugador(j.getIdUsuario());
                 int saldoNuevo=ganancias+jugadoresPartida.get(posicionJugador).getSaldo();
                 jugadoresPartida.get(posicionJugador).setSaldo(saldoNuevo);
                 /*Mandar mensaje al cliente con el resultado de la tirada y de sus apuestas.*/
-                return true;
-        default: return false;
+                return saldoNuevo;
+        default: return 0;
         }
         
     }
 
-    private boolean colocarApuesta(Jugada jugada){
+    private int colocarApuesta(Jugada jugada){
         int posicionJugador=posicionJugador(jugada.getIdUsuario());
         if (nApuestas<TAM_MAX){
             int saldoJugador=jugadoresPartida.get(posicionJugador).getSaldo();
-            if (jugada.getCantidad()<= saldoJugador){
-                apuestas.add(nApuestas, new ApuestaRuleta(jugada.getTipoApuesta(),jugada.getCasilla(),jugada.getCantidad()));
+            if ((jugada.getApuesta().get_cantidad())<= saldoJugador){
+                apuestas.add((ApuestaRuleta)jugada.getApuesta());
                 nApuestas++;
-                jugadoresPartida.get(posicionJugador).setSaldo(saldoJugador-jugada.getCantidad());
-                return true;
+                jugadoresPartida.get(posicionJugador).setSaldo(saldoJugador-jugada.getApuesta().get_cantidad());
+                return 1;
             }
+            else return -1;
         } 
-        return false;
+        return -2;
     }
        
     private int lanzarBola(){
@@ -109,15 +110,28 @@ public class PartidaRuleta implements Partida {
         for (int i =0;i<apuestas.size();i++){
            
          saldoParcial =saldoParcial+ apuestaGanadora(apuestas.get(i),bolaLanzada);
+         apuestas.remove(i);
+         nApuestas--;
         } 
+        borrarApuestas();
         return saldoParcial;
     }
     private int apuestaGanadora(ApuestaRuleta apuesta,int bolalanzada){
-    
-        if ((apuesta.get_tipo()==0)&&(apuesta.get_casilla()==bolalanzada)) return apuesta.get_cantidad()*36;
-        if ((apuesta.get_tipo()==1)&&(apuesta.get_casilla()==numeros.indexOf(bolalanzada)%2))return apuesta.get_cantidad()*2;
+        String parimpar;
+        if (numeros.indexOf(bolalanzada)%2==0)parimpar="negro";
+        else parimpar="rojo";
+       
+       if ((apuesta.get_tipo().equals("numero"))&&(apuesta.get_casilla()==bolalanzada)) return apuesta.get_cantidad()*36;
+       else if ((apuesta.get_tipo().equals("parimpar"))&&(apuesta.get_color().equals(parimpar)))return apuesta.get_cantidad()*2;
         return 0;
     }
+    
+      void borrarApuestas(){
+       for (int i =0;i<apuestas.size();i++){
+       apuestas.remove(0);
+       }
+
+      }
     public ArrayList creaRuleta(){
         
           ArrayList ruleta=new ArrayList();

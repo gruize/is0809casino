@@ -9,7 +9,7 @@ package servidorcasino;
  *
  * @author Administrador
  */
-public class ApuestaRuleta {
+public class ApuestaRuleta implements Apuesta {
     //tipo de apuesta: 0-> numero, 1->color, 2->par....
     private String _tipo;
     //color

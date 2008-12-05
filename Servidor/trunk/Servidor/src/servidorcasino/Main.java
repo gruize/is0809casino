@@ -17,12 +17,7 @@ public class Main {
     public static void main(String[] args) {
        
         
-        /*Casino c = new Casino();              
-        int idPartida=c.creaPartidaRuleta();
-        Jugador j= new Jugador(1,100);
-        c.anadeJugadorAPartida(j,idPartida);
-        Jugada jug = new Jugada(1,idPartida,1,33,44);
-        c.procesarJugada(jug);*/
+       
         
         Servidor servidor=new Servidor();
         servidor.iniciaServidor();

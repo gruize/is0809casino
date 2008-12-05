@@ -4,31 +4,29 @@ package servidorcasino;
         int idUsuario;
         int idPartida;
         int tipoJugada;
-        int cantidad;
-        int tipoApuesta;
+        Apuesta apuesta;
 
     public Jugada() {
             }
 
-    public Jugada(int usuario,int partida,int tipojugada,int cantidadApostada,int tipoapuesta){
+    public Jugada(int usuario,int partida,int tipojugada,Apuesta apuesta){
         idUsuario=usuario;
         idPartida=partida;
         tipoJugada=tipojugada;
-        cantidad=cantidadApostada;
-        tipoApuesta=tipoapuesta;
+        this.apuesta=apuesta;
+        
+        
     };
 
-    public int getCantidad() {
-        return cantidad;
-    }
+   
     public int getIdPartida() {
         return idPartida;
     }
     public int getIdUsuario() {
         return idUsuario;
     }
-    public int getTipoApuesta() {
-        return tipoApuesta;
+    public Apuesta getApuesta() {
+        return apuesta;
     }  
    public int getTipoJugada() {
         return tipoJugada;
@@ -36,14 +34,11 @@ package servidorcasino;
    public void setIdPartida(int idPartida) {
         this.idPartida = idPartida;
     }
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
-    public void setTipoApuesta(int tipoApuesta) {
-        this.tipoApuesta = tipoApuesta;
+    public void setTipoApuesta(Apuesta apuesta) {
+        this.apuesta = apuesta;
     }
     public void setTipoJugada(int tipoJugada) {
         this.tipoJugada = tipoJugada;
