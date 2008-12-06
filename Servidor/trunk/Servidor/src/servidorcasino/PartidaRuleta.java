@@ -20,7 +20,7 @@ public class PartidaRuleta implements Partida {
     int nApuestas;
     ArrayList <Jugador> jugadoresPartida;
     ArrayList numeros;
-    int ultimaTirada;
+    int ultimaBola;
 
     public PartidaRuleta(int id) {
         this.id = id;
@@ -73,8 +73,8 @@ public class PartidaRuleta implements Partida {
     */                  
     switch (j.getTipoJugada() ){
         case 1: return colocarApuesta(j);
-        case 2: ultimaTirada=lanzarBola();
-                int ganancias=comprobarApuestas(ultimaTirada);
+        case 2: ultimaBola=lanzarBola();
+                int ganancias=comprobarApuestas(ultimaBola);
                 int posicionJugador=posicionJugador(j.getIdUsuario());
                 int saldoNuevo=ganancias+jugadoresPartida.get(posicionJugador).getSaldo();
                 jugadoresPartida.get(posicionJugador).setSaldo(saldoNuevo);
@@ -110,9 +110,8 @@ public class PartidaRuleta implements Partida {
         for (int i =0;i<apuestas.size();i++){
            
          saldoParcial =saldoParcial+ apuestaGanadora(apuestas.get(i),bolaLanzada);
-         apuestas.remove(i);
-         nApuestas--;
-        } 
+         
+                 } 
         borrarApuestas();
         return saldoParcial;
     }
@@ -127,8 +126,10 @@ public class PartidaRuleta implements Partida {
     }
     
       void borrarApuestas(){
-       for (int i =0;i<apuestas.size();i++){
+       int tam = apuestas.size();
+       for (int i =0;i<tam;i++){
        apuestas.remove(0);
+       nApuestas=0;
        }
 
       }
@@ -165,6 +166,8 @@ public class PartidaRuleta implements Partida {
         return true;
     
     } 
-    
+    public int getUltimaBola(){
+    return this.ultimaBola;
+    }
 
 }

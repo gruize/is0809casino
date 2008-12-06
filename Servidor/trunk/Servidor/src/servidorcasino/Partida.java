@@ -9,8 +9,9 @@ public interface Partida {
     float saldo[]=null;
     float apuesta[]=null;
     int turno=0;
-    int ultimaTirada=0;
+    int ultimaBola=0;
     public int procesarJugada(Jugada j);
     public boolean anadeJugador(Jugador j);
+    public int getUltimaBola();
     
 }

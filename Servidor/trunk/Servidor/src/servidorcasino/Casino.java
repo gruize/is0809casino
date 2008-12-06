@@ -33,7 +33,7 @@ public class Casino {
      
     public int tiradaPartidaRuleta(int idPart){
         
-    return partidas[idPart].ultimaTirada;
+    return partidas[idPart].getUltimaBola();
     
     }
      
