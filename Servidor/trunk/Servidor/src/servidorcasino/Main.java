@@ -22,12 +22,8 @@ public class Main {
         Servidor servidor=new Servidor();
         servidor.iniciaServidor();
         
-        //esto se creará cada vez que un cliente ejecute su aplicación
-        /*// (Cada jugador es un hilo nuevo)
-        Hilo hiloCliente=new Hilo();
-        hiloCliente.start();*/
         
-        		crearRuleta ruleta1 = new crearRuleta();
+        		CrearRuleta ruleta1 = new CrearRuleta();
 		ruleta1.InicializarRuleta();
 		ruleta1.pintarRuleta();
         
