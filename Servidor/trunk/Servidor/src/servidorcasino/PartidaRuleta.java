@@ -5,6 +5,7 @@
 
 package servidorcasino;
 import java.util.*;
+import Casilla.*;
 
 /**
  *
@@ -14,13 +15,13 @@ public class PartidaRuleta implements Partida {
     
     final int TAM_MAX=5;    
     int id;    
-    //Jugador [] jugadoresPartida ;
     int nJugadores;
     ArrayList <ApuestaRuleta>  apuestas;
     int nApuestas;
     ArrayList <Jugador> jugadoresPartida;
     ArrayList numeros;
     int ultimaBola;
+    CreaRuleta ruleta;
 
     public PartidaRuleta(int id) {
         this.id = id;
@@ -28,7 +29,9 @@ public class PartidaRuleta implements Partida {
         nJugadores=0;
         nApuestas=0;
         apuestas=new ArrayList <ApuestaRuleta> ();
-        numeros=creaRuleta();
+        
+        ruleta = new CreaRuleta();
+        ruleta.InicializarRuleta();
     }
 
     public ArrayList <ApuestaRuleta> getApuestas() {
@@ -106,22 +109,21 @@ public class PartidaRuleta implements Partida {
     
     private int comprobarApuestas(int bolaLanzada){
     //TODO ir comprobando las apuestas del jugador e ir aumentando su saldo si corresponde
+        Numero bola =ruleta.getNumero(bolaLanzada);
         int saldoParcial=0;
         for (int i =0;i<apuestas.size();i++){
            
-         saldoParcial =saldoParcial+ apuestaGanadora(apuestas.get(i),bolaLanzada);
+         saldoParcial =saldoParcial+ apuestaGanadora(apuestas.get(i),bolaLanzada,bola);
+         
          
                  } 
         borrarApuestas();
         return saldoParcial;
     }
-    private int apuestaGanadora(ApuestaRuleta apuesta,int bolalanzada){
-        String parimpar;
-        if (numeros.indexOf(bolalanzada)%2==0)parimpar="negro";
-        else parimpar="rojo";
-       
+    private int apuestaGanadora(ApuestaRuleta apuesta,int bolalanzada,Numero casillaBola){
+        
        if ((apuesta.get_tipo().equals("numero"))&&(apuesta.get_casilla()==bolalanzada)) return apuesta.get_cantidad()*36;
-       else if ((apuesta.get_tipo().equals("parimpar"))&&(apuesta.get_color().equals(parimpar)))return apuesta.get_cantidad()*2;
+       else if ((apuesta.get_tipo().equals("PARIMPAR"))&&(apuesta.get_color().equals(casillaBola.getColor())))return apuesta.get_cantidad()*2;
         return 0;
     }
     
@@ -133,21 +135,7 @@ public class PartidaRuleta implements Partida {
        }
 
       }
-    public ArrayList creaRuleta(){
-        
-          ArrayList ruleta=new ArrayList();
-          ruleta.add(0);ruleta.add(32);ruleta.add(15);ruleta.add(19);
-          ruleta.add(4);ruleta.add(21);ruleta.add(2);ruleta.add(25);         
-          ruleta.add(17);ruleta.add(34);ruleta.add(6);ruleta.add(27);
-          ruleta.add(13);ruleta.add(36);ruleta.add(11);ruleta.add(30);
-          ruleta.add(8);ruleta.add(23);ruleta.add(10);ruleta.add(5);
-          ruleta.add(24);ruleta.add(16);ruleta.add(33);ruleta.add(1);
-          ruleta.add(20);ruleta.add(14);ruleta.add(31);ruleta.add(9);
-          ruleta.add(22);ruleta.add(18);ruleta.add(29);ruleta.add(7);
-          ruleta.add(28);ruleta.add(12);ruleta.add(35);ruleta.add(3);
-          ruleta.add(26);
-          return ruleta;
-    } 
+    
     private int posicionJugador(int idJugador){
         boolean encontrado =false;
         int index=0;
@@ -166,8 +154,8 @@ public class PartidaRuleta implements Partida {
         return true;
     
     } 
-    public int getUltimaBola(){
-    return this.ultimaBola;
+    public Numero getUltimaBola(){
+    return ruleta.getNumero(this.ultimaBola);
     }
 
 }

@@ -7,6 +7,7 @@ package servidorcasino;
 import DAO.JugadorDAO;
 import InterfazCliente.LoginJugador;
 import InterfazCliente.Ruleta;
+import Casilla.Numero;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.ServerSocket;
@@ -110,6 +111,7 @@ public class Servidor {
             pantallaRuleta = new Ruleta();
             pantallaRuleta.registraServidor(this);
             pantallaRuleta.muestra();
+            pantallaRuleta.actualizaSaldo(j.getSaldo());
 
         }
     }
@@ -169,7 +171,7 @@ public class Servidor {
         JugadorDAO jugadorDAO = new JugadorDAO();
         return jugadorDAO.comprobarJugador(idUsuario, password);
     }
-    public int dameBola(){
+    public Numero dameBola(){
     return casino.tiradaPartidaRuleta(idPartidaRuleta);
     }
 }

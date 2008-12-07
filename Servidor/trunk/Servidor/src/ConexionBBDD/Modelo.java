@@ -23,7 +23,7 @@ import Excepciones.SinResultadosException;
 /**
  * Clase Modelo.
  * Clase que se comunica con la base de datos realizando consultas SQL.
- * @author Joaquín López Cabezas
+ * @author Joaquï¿½n Lï¿½pez Cabezas
  * @version 1.0
  *
  */
@@ -41,7 +41,7 @@ public class Modelo {
 	 * Constructor
 	 * @param propiedadesConexion Un Properties que contiene la informacion
 	 * de la conexion con la base de datos,procedente del achivo BaseDatos.properties.
-	 * Aqui se configura cogiendo el driver, url,usuario,contraseña.
+	 * Aqui se configura cogiendo el driver, url,usuario,contraseï¿½a.
 	 * @throws SQLException 
 	 */
 	public Modelo() throws SQLException{
@@ -60,14 +60,14 @@ public class Modelo {
 		if (driverBD != null) {
 			//String url=propiedadesConexion.getProperty("jdbc.url");
 			//String usuario = propiedadesConexion.getProperty("jdbc.username");
-			//String contraseña = propiedadesConexion.getProperty("jdbc.password");
+			//String contraseï¿½a = propiedadesConexion.getProperty("jdbc.password");
 			String url = "http://serv.fis.ucm.es:1521:xe";
 			String usuario = "SYSTEM";
-			String contraseña = "casinois0809ñ";
+			String contrasena = "casinois0809ï¿½";
 			if (driverBD.equals("oracle.jdbc.driver.OracleDriver")) {
 				System.setProperty("jdbc.drivers", driverBD);
 				if (driverBD.equals("oracle.jdbc.driver.OracleDriver")){
-					baseDatos = new OracleBD(url,usuario,contraseña);
+					baseDatos = new OracleBD(url,usuario,contrasena);
 				}
 				
 			}

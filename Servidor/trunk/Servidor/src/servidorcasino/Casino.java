@@ -1,4 +1,5 @@
 package servidorcasino;
+import Casilla.Numero;
 public class Casino {
     static int MAX_PARTIDAS=1;
     static int MAX_JUGADORES=1;
@@ -31,7 +32,7 @@ public class Casino {
         
      };
      
-    public int tiradaPartidaRuleta(int idPart){
+    public Numero tiradaPartidaRuleta(int idPart){
         
     return partidas[idPart].getUltimaBola();
     

@@ -1,5 +1,5 @@
 package servidorcasino;
-
+import Casilla.Numero;
 
 public interface Partida {
     Jugador [] jugadorespartida =null;
@@ -12,6 +12,6 @@ public interface Partida {
     int ultimaBola=0;
     public int procesarJugada(Jugada j);
     public boolean anadeJugador(Jugador j);
-    public int getUltimaBola();
+    public Numero getUltimaBola();
     
 }
