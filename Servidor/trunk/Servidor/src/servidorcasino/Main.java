@@ -27,6 +27,10 @@ public class Main {
         Hilo hiloCliente=new Hilo();
         hiloCliente.start();*/
         
+        		crearRuleta ruleta1 = new crearRuleta();
+		ruleta1.InicializarRuleta();
+		ruleta1.pintarRuleta();
+        
         
         
     }
