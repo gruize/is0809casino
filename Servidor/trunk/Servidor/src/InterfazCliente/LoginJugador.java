@@ -75,9 +75,14 @@ public class LoginJugador extends javax.swing.JFrame {
         });
 
         btnCancelar.setText("Limpiar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         jLabel4.setBackground(new java.awt.Color(51, 0, 255));
-        jLabel4.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial Black", 0, 14));
         jLabel4.setText("CASINO FDI");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
@@ -148,6 +153,12 @@ private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 private void sIdUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sIdUsuarioActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_sIdUsuarioActionPerformed
+
+private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+// TODO add your handling code here:
+    this.sIdUsuario.setText("");
+    this.sPassword.setText("");
+}//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
     * @param args the command line arguments

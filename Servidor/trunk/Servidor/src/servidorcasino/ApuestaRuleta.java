@@ -38,7 +38,11 @@ public class ApuestaRuleta implements Apuesta {
         this._cantidad=cantidad;
         
     }
-
+    //apuesta a docenas
+    public ApuestaRuleta(String tipo, int cantidad){
+        this._tipo=tipo;
+        this._cantidad=cantidad;        
+    }
     public String get_color() {
         return _color;
     }
