@@ -3,6 +3,7 @@ package comunicaciones.demonio;
 import java.net.*;
 import java.util.*;
 import java.io.*;
+import comunicaciones.*;
 
 
 class Demonio {
@@ -17,7 +18,7 @@ class Demonio {
 //        ObjectInputStream entradaDatos;
 		tablaConectores = new Vector();
 		if (!esServidor){
-			
+			tablaConectores.add(new Conectores("server","localhost"));
 		}
 		// TODO: puerto leido en configuraci�n
         int dato;
@@ -36,39 +37,7 @@ class Demonio {
         catch (IOException e ) {
             System.out.println( e );
         }
-        // Abrimos una conexión con breogan en el puerto 4321
+        
     }
 }
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/*package conector;
-
-import java.awt.*;
-import java.net.*;
-import java.io.*;
-
-class conector {
-    public static void main( String args[] ) throws IOException {
-        String datos = "pepitogrillo";
-        Socket conexion;
-        OutputStream salidaDatos;
-        final int PUERTO = 10809;
-        final String SERVER = "localhost";
-
-        // Abrimos una conexión con breogan en el puerto 4321
-        try {
-            conexion = new Socket( SERVER,PUERTO);
-            salidaDatos = conexion.getOutputStream();
-            for (int i = 0; i < datos.length();i++)
-                salidaDatos.write((byte)datos.charAt(i));
-        
-
-            conexion.close();
-        } catch( IOException e ) {
-            System.out.println( e );
-        }
-    }
-}*/
