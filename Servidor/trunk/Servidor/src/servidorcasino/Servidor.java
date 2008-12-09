@@ -8,7 +8,7 @@ import DAO.JugadorDAO;
 import InterfazCliente.LoginJugador;
 import InterfazCliente.Ruleta;
 import Casilla.Numero;
-import ConexionBBDD.BaseDeDatos;
+import ConexionBBDD.Modelo;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,7 +26,7 @@ public class Servidor {
     private InputStream entradaDatos;
     private Casino casino;
     private int idPartidaRuleta;
-    private BaseDeDatos bbdd;
+    private Modelo bbdd;
    // LoginJugador pantallaLogin = null;
     //Ruleta pantallaRuleta = null;
 
@@ -43,7 +43,7 @@ public class Servidor {
     	this.casino = new Casino();
 
     	try {
-    		this.bbdd = new BaseDeDatos();
+    		this.bbdd = new Modelo();
     	}
     	catch(Exception e) {
     		//FALLO EN LA BBDD
@@ -97,6 +97,7 @@ public class Servidor {
      */
     @Override
     public void finalize() {
+    	
         try {
             socketServidor.close();
         } catch (IOException e) {
@@ -121,10 +122,18 @@ public class Servidor {
      */
     public void aceptarJugador(String idUsuario, String password) {
 
-        if (comprobarJugador(idUsuario, password)) {
-            //int idPartida = casino.creaPartidaRuleta();
-            idPartidaRuleta = casino.creaPartidaRuleta();
-            Jugador j = new Jugador(1, 100); //TODO debería ser algo del estilo: resultado=jugadorDAO.obtenerDatos(idUsuario);
+    	boolean correcto = false;
+    	
+    	try {
+        	correcto = bbdd.comprobarJugador(idUsuario, password);
+    	}
+    	catch(Exception e) {
+    		
+    	}
+    	if (correcto) {
+        	//int idPartida = casino.creaPartidaRuleta();
+        	idPartidaRuleta = casino.creaPartidaRuleta();
+        	Jugador j = new Jugador(1, 100); //TODO debería ser algo del estilo: resultado=jugadorDAO.obtenerDatos(idUsuario);
 
             casino.anadeJugadorAPartida(j, idPartidaRuleta);
             /*
@@ -137,6 +146,11 @@ public class Servidor {
             pantallaRuleta.actualizaSaldo(j.getSaldo());*/
 
         }
+    	else {
+    		//Mandar mensaje al cliente de que debe
+    		//registrarse de nuevo o error en login
+    	}
+    		
     }
 
 

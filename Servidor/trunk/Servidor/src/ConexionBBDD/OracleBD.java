@@ -149,6 +149,22 @@ public class OracleBD{
 		return null;
 	}
 	
+	public boolean consultarCliente(String tablas, String campos, String condicionWhere) throws SQLException {
+		
+		String consulta="SELECT "+campos+" FROM "+tablas;
+		if(!condicionWhere.equals("")){
+			consulta+=" WHERE "+condicionWhere;
+		}
+		System.out.println(consulta);
+		conectar();
+		resultadoConsulta=sentenciaSQL.executeQuery(consulta);
+		if(resultadoConsulta==null){
+			desconectar();
+			return false;
+		}
+		desconectar();
+		return true;
+	}
 	/**
 	 * M�todo que ejecuta una consulta de actualizaci�n.
 	 * Primero se construye la consulta y despu�s se lanza.Una vez realizada
