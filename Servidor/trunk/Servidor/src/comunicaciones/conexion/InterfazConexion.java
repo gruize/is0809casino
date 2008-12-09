@@ -5,8 +5,7 @@ public interface InterfazConexion {
 	void crearConexion();
 	void eliminarConexion();
 
-	String getId();
-	void setId(String id);
+	public String getId();
 	
 	void enviarMensaje(Mensaje message, String idDestino);
 	//TODO:Mascaras

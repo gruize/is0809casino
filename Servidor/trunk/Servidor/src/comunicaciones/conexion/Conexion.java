@@ -1,33 +1,107 @@
 package comunicaciones.conexion;
 
-import java.util.Vector;
 
-//import comunicacion.demonio.conectores;
+import java.net.*;
+import java.io.*;
 
 
 public class Conexion implements InterfazConexion{
 
-	public String HOST = "local_host";
-	private boolean esServidor;
-	private Vector tabla; 
-	
+	private final String HOST = "local_host";
+	private final int PUERTO = 10809;
+	private String id;
+	private Socket conexion;
+	private boolean creada;
 	public Conexion(boolean esServidor)
 	{
-/*		this.esServidor = esServidor;
-		this.tabla = new Vector();
-		if (! this.esServidor)
-			this.tabla.addElement(new Conectores("",HOST));
+        
+		// establecemos conexion
+		if (!this.establecer())
+        {
+        	// TODO check wrong connection
+        }
+		Mensaje datos = new MensajeString();
+        
+        ObjectOutputStream salidaDatos;
+        ObjectInputStream entradaDatos;
+        
+        // configuramos el mesanje de conxion
+        datos.setTipo(0);
+        datos.setOrigen("localhost");
+       
+        try {
+            // enviamos el mesnajes de conexion
+        	salidaDatos = new ObjectOutputStream(conexion.getOutputStream());
+            this.enviarMensaje(datos,"");
+            salidaDatos.writeObject(datos);
+            
+            // recibimos las respuesta
+            entradaDatos = new ObjectInputStream(conexion.getInputStream());
+            datos = (MensajeString)entradaDatos.readObject();
+            // TODO tratamiento de errores del sistema
+            if (datos.getTipo() == datos.OK)
+            {
+            	this.id = ((MensajeString)datos).getContenido();
+            }
+        } catch( IOException e ) {
+            System.out.println( e );
+        } catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+        
+        // desconectamos
+        this.desconectar();
 		//TODO: Establecer conexion con tu Demonio*/
 	}
 	
 	@Override
 	public void crearConexion() {
+		if (!this.establecer())
+		{
+			//TODO check wrong connection
+		}
+			 
+		
+		// TODO send things
+		
+		
+		this.desconectar();
+
+		
 		// TODO Auto-generated method stub
 		
 	}
-
+	private boolean establecer ()
+	{
+		try {
+			this.conexion = new Socket(this.HOST,this.PUERTO);
+			//FIXME correcto tratamiento del error
+			/*if (!this.conexion)
+				return false;*/
+				
+			
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+	private void desconectar()
+	{
+		try {
+			this.conexion.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	@Override
 	public void eliminarConexion() {
+		if (this.creada == true)
+		{
+			
+		}
 		// TODO Auto-generated method stub
 		
 	}
@@ -46,22 +120,14 @@ public class Conexion implements InterfazConexion{
 
 	@Override
 	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.id;
 	}
 
 
 
-	@Override
-	public void setId(String id) {
-		// TODO Auto-generated method stub
-		
-	}
+
 	
-	private String obtenerId(){
-		//TODO: hacerlo.
-		return " ";
-	}
+
 
 	@Override
 	public Mensaje obtenerMensaje(String mascara) {

@@ -4,6 +4,10 @@ public class MensajeString extends Mensaje{
 	
 	private String contenido;
 	
+	public MensajeString() {
+		super();
+		this.contenido = "";
+	}
 	public MensajeString(MensajeString otro) {
 		super(otro);
 		this.contenido = otro.contenido;
