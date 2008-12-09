@@ -64,12 +64,12 @@ public class Cliente {
 	/**
 	 * Atributo de tipo Number que almacena el saldo inicial de la cuenta
 	 */
-	private Number saldoIni;
+	private double saldoIni;
 	
 	/**
 	 * Atributo de tipo Number que almacena el saldo actual de la cuenta
 	 */
-	private Number saldoAct;
+	private double saldoAct;
 	
 	/**
 	 * Constructor por defecto.
@@ -211,7 +211,7 @@ public class Cliente {
 	 * Metodo que devuelve el valor del atributo saldo inicial de la cueta.
 	 * @return Un Number con el saldo inicial de la cuenta
 	 */
-	public Number getSaldoIni() {
+	public double getSaldoIni() {
 		return saldoIni;
 	}
 	
@@ -219,7 +219,7 @@ public class Cliente {
 	 * Metodo que devuelve el valor del atributo saldo actual de la cuenta.
 	 * @return Un Number con el saldo actual de la cuenta
 	 */
-	public Number getSaldoAct() {
+	public double getSaldoAct() {
 		return saldoAct;
 	}
 	
@@ -308,7 +308,7 @@ public class Cliente {
 	 * Metodo que establece el valor del atributo saldo inicial de la cuenta.
 	 * @param saldoIni Un double con el numero de cuenta.
 	 */
-	public void setSaldoIni(Number saldoIni) {
+	public void setSaldoIni(double saldoIni) {
 		this.saldoIni = saldoIni;
 	}
 	
@@ -316,7 +316,7 @@ public class Cliente {
 	 * Metodo que establece el valor del atributo saldo actual de la cuenta.
 	 * @param saldoAct Un double con el numero de cuenta.
 	 */
-	public void setSaldoAct(Number saldoAct) {
+	public void setSaldoAct(double saldoAct) {
 		this.saldoAct = saldoAct;
 	}
 	

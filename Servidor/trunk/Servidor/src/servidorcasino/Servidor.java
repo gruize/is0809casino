@@ -6,7 +6,6 @@ package servidorcasino;
 
 import DAO.JugadorDAO;
 import Entidades.Cliente;
-import Entidades.Cuenta;
 import InterfazCliente.LoginJugador;
 import InterfazCliente.Ruleta;
 import Casilla.Numero;
@@ -31,7 +30,7 @@ public class Servidor {
     private int idPartidaRuleta;
     private BBDD bbdd;
     private Hashtable<Integer,Integer> jugadores;
-    private Hashtable<Integer,Integer> numeroCuenta;
+    private Hashtable<Integer,Double> saldo;
     private int ID;
    // LoginJugador pantallaLogin = null;
     //Ruleta pantallaRuleta = null;
@@ -42,7 +41,7 @@ public class Servidor {
     	this.casino = null;
     	this.idPartidaRuleta = 0;
     	this.jugadores = new Hashtable<Integer,Integer>();
-    	this.numeroCuenta = new Hashtable<Integer,Integer>();
+    	this.saldo = new Hashtable<Integer,Double>();
     	this.ID = 0;
     }
 
@@ -140,9 +139,9 @@ public class Servidor {
     	if (correcto) {
     		try {
     			Cliente cliente = bbdd.selectCliente(idUsuario, password);
-    			jugadores.put(ID++,cliente.getCodigo());
-    			
-    			numeroCuenta.put(ID,cliente.)
+    			jugadores.put(ID,cliente.getCodigo());
+    			saldo.put(ID,cliente.getSaldoAct());
+    			ID = ID+1;
     		}
     		catch(Exception e) {
     			
@@ -259,8 +258,14 @@ public class Servidor {
     public void finalizarPartida(Integer ID) {
     	
     	int codigoJugador = jugadores.get(ID);
-    	Cuenta cuenta = bbdd.selectCuenta(codigoJugador);
-    	cuenta.setSaldoAct();
-    	updateCuentas(Cuenta cuenta)
+    	double saldoAlmacenado = saldo.get(ID);
+    	try {
+    		Cliente cliente = bbdd.selectCliente(codigoJugador);
+    		cliente.setSaldoAct(cliente.getSaldoAct()+ saldoAlmacenado);
+    	bbdd.updateCliente(cliente);
+    	}
+    	catch(Exception e) {
+    		
+    	}
     }
 }
