@@ -13,7 +13,7 @@ import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 import java.math.BigDecimal;
 
-import ConexionBBDD.Modelo;
+import ConexionBBDD.BBDD;
 import Entidades.Cliente;
 import Entidades.Cuenta;
 import Entidades.Juego;

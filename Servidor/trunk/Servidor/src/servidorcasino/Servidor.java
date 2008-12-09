@@ -8,7 +8,7 @@ import DAO.JugadorDAO;
 import InterfazCliente.LoginJugador;
 import InterfazCliente.Ruleta;
 import Casilla.Numero;
-import ConexionBBDD.Modelo;
+import ConexionBBDD.BBDD;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,7 +26,7 @@ public class Servidor {
     private InputStream entradaDatos;
     private Casino casino;
     private int idPartidaRuleta;
-    private Modelo bbdd;
+    private BBDD bbdd;
    // LoginJugador pantallaLogin = null;
     //Ruleta pantallaRuleta = null;
 
@@ -43,7 +43,7 @@ public class Servidor {
     	this.casino = new Casino();
 
     	try {
-    		this.bbdd = new Modelo();
+    		this.bbdd = new BBDD();
     	}
     	catch(Exception e) {
     		//FALLO EN LA BBDD

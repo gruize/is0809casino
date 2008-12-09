@@ -28,7 +28,7 @@ import Excepciones.SinResultadosException;
  *
  */
 
-public class Modelo {
+public class BBDD {
 	
 	/**
 	 * Atributo de tipo InterfaceBD.Es la referencia a la base de datos
@@ -44,7 +44,7 @@ public class Modelo {
 	 * Aqui se configura cogiendo el driver, url,usuario,contrase�a.
 	 * @throws SQLException 
 	 */
-	public Modelo() throws SQLException{
+	public BBDD() throws SQLException{
 		Properties propiedadesConexion = new Properties();
 		try{
 			FileInputStream archivoPropiedades = new FileInputStream("BaseDeDatos/BaseDatosOracle.properties");
