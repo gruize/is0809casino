@@ -14,7 +14,7 @@ public class Cliente {
 	/**
 	 * Atributo de tipo int que almacena el codigo del cliente
 	 */
-	private int codgo;
+	private int codigo;
 	
 	/**
 	 * Atributo de tipo String que almacena el nombre del cliente
@@ -57,6 +57,21 @@ public class Cliente {
 	private Date fechaIngreso;
 	
 	/**
+	 * Atributo de tipo String que almacena el numero de la cuenta
+	 */
+	private String numero;
+	
+	/**
+	 * Atributo de tipo Number que almacena el saldo inicial de la cuenta
+	 */
+	private Number saldoIni;
+	
+	/**
+	 * Atributo de tipo Number que almacena el saldo actual de la cuenta
+	 */
+	private Number saldoAct;
+	
+	/**
 	 * Constructor por defecto.
 	 *
 	 */
@@ -77,7 +92,7 @@ public class Cliente {
 	 */
 	public Cliente(int codigo, String nombre, String apellidos, String dni, String usuario, String password, String direccion, String telefono, Date fechaIngreso)
 	{
-		this.codgo=codigo;
+		this.codigo=codigo;
 		this.nombre=nombre;
 		this.apellidos=apellidos;
 		this.dni=dni;
@@ -116,8 +131,8 @@ public class Cliente {
 	 * Metodo que devuelve el valor del atributo codigo del cliente.
 	 * @return Un int con el codigo del cliente
 	 */
-	public int getCodgo() {
-		return codgo;
+	public int getCodigo() {
+		return codigo;
 	}
 	
 	/**
@@ -185,11 +200,35 @@ public class Cliente {
 	}
 	
 	/**
+	 * Metodo que devuelve el valor del atributo del numero de cuenta.
+	 * @return Un String con el numero de cuenta.
+	 */
+	public String getNumero() {
+		return numero;
+	}
+	
+	/**
+	 * Metodo que devuelve el valor del atributo saldo inicial de la cueta.
+	 * @return Un Number con el saldo inicial de la cuenta
+	 */
+	public Number getSaldoIni() {
+		return saldoIni;
+	}
+	
+	/**
+	 * Metodo que devuelve el valor del atributo saldo actual de la cuenta.
+	 * @return Un Number con el saldo actual de la cuenta
+	 */
+	public Number getSaldoAct() {
+		return saldoAct;
+	}
+	
+	/**
 	 * Metodo que establece el valor del atributo codigo al que recibe por parametro
 	 * @param codgo Un int con el codigo del cliente.
 	 */
-	public void setCodigo(int codgo) {
-		this.codgo = codgo;
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
 	}
 	
 	/**
@@ -254,6 +293,31 @@ public class Cliente {
 	 */
 	public void setFechaIngreso(Date fechaIngreso) {
 		this.fechaIngreso = fechaIngreso;
+	}
+	
+
+	/**
+	 * Metodo que establece el valor del atributo numero de cuenta.
+	 * @param numero Un String con el numero de cuenta.
+	 */
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+	
+	/**
+	 * Metodo que establece el valor del atributo saldo inicial de la cuenta.
+	 * @param saldoIni Un double con el numero de cuenta.
+	 */
+	public void setSaldoIni(Number saldoIni) {
+		this.saldoIni = saldoIni;
+	}
+	
+	/**
+	 * Metodo que establece el valor del atributo saldo actual de la cuenta.
+	 * @param saldoAct Un double con el numero de cuenta.
+	 */
+	public void setSaldoAct(Number saldoAct) {
+		this.saldoAct = saldoAct;
 	}
 	
 }

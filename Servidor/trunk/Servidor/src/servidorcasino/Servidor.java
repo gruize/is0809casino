@@ -5,6 +5,8 @@
 package servidorcasino;
 
 import DAO.JugadorDAO;
+import Entidades.Cliente;
+import Entidades.Cuenta;
 import InterfazCliente.LoginJugador;
 import InterfazCliente.Ruleta;
 import Casilla.Numero;
@@ -13,6 +15,7 @@ import ConexionBBDD.BBDD;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.ServerSocket;
+import java.util.Hashtable;
 
 /**
  *
@@ -27,6 +30,9 @@ public class Servidor {
     private Casino casino;
     private int idPartidaRuleta;
     private BBDD bbdd;
+    private Hashtable<Integer,Integer> jugadores;
+    private Hashtable<Integer,Integer> numeroCuenta;
+    private int ID;
    // LoginJugador pantallaLogin = null;
     //Ruleta pantallaRuleta = null;
 
@@ -35,7 +41,9 @@ public class Servidor {
     	this.socketServidor = null;
     	this.casino = null;
     	this.idPartidaRuleta = 0;
-
+    	this.jugadores = new Hashtable<Integer,Integer>();
+    	this.numeroCuenta = new Hashtable<Integer,Integer>();
+    	this.ID = 0;
     }
 
     public void iniciaServidor() {
@@ -123,7 +131,6 @@ public class Servidor {
     public void aceptarJugador(String idUsuario, String password) {
 
     	boolean correcto = false;
-    	
     	try {
         	correcto = bbdd.comprobarJugador(idUsuario, password);
     	}
@@ -131,6 +138,16 @@ public class Servidor {
     		
     	}
     	if (correcto) {
+    		try {
+    			Cliente cliente = bbdd.selectCliente(idUsuario, password);
+    			jugadores.put(ID++,cliente.getCodigo());
+    			
+    			numeroCuenta.put(ID,cliente.)
+    		}
+    		catch(Exception e) {
+    			
+    		}
+    		
         	//int idPartida = casino.creaPartidaRuleta();
         	idPartidaRuleta = casino.creaPartidaRuleta();
         	Jugador j = new Jugador(1, 100); //TODO debería ser algo del estilo: resultado=jugadorDAO.obtenerDatos(idUsuario);
@@ -234,21 +251,16 @@ public class Servidor {
         return saldoActual;
     }
 
-    /**
-     * PETICION DEL CLIENTE: el jugador introduce sus datos y pulsa Aceptar
-     * Comprobar, accediendo a la BBBDD, que el jugador está dado de alta en el sistema
-     * @param idUsuario nombre de ususario del jugador
-     * @param password contraseña del jugador
-     * @return
-     */
-    public boolean comprobarJugador(String idUsuario, String password) {
-        //Aqui debe de ir la llamada a la BBDD del servidor.
-
-    	//JugadorDAO jugadorDAO = new JugadorDAO();
-        return false;//jugadorDAO.comprobarJugador(idUsuario, password);
-    }
 
     public Numero dameBola() {
         return casino.tiradaPartidaRuleta(idPartidaRuleta);
+    }
+   
+    public void finalizarPartida(Integer ID) {
+    	
+    	int codigoJugador = jugadores.get(ID);
+    	Cuenta cuenta = bbdd.selectCuenta(codigoJugador);
+    	cuenta.setSaldoAct();
+    	updateCuentas(Cuenta cuenta)
     }
 }

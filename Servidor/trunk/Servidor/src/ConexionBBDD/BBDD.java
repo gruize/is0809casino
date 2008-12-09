@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import Entidades.Cliente;
-import Entidades.Cuenta;
 import Entidades.Juego;
 import Entidades.Mesa;
 import Entidades.Participante;
@@ -191,9 +190,27 @@ public class BBDD {
 		return juego;
 	}
 	
+	public Cliente selectCliente(String idUsuario,String password) throws SQLException {
+		
+		DefaultTableModel tablaDatos = new DefaultTableModel();
+		tablaDatos = baseDatos.ejecutarSelect("CLIENTES","CODIGO,NOMBRE,APELLIDOS,DNI,DIRECCION,USUARIO,PASSWORD,TELEFONO,FECHA_INGRESO","USUARIO = "+idUsuario+" AND PASSWORD = "+password);
+		Cliente cliente = new Cliente();
+		cliente.setCodigo(((BigDecimal)tablaDatos.getValueAt(0,0)).intValue());
+		cliente.setNombre(tablaDatos.getValueAt(0,1).toString());
+		cliente.setApellidos(tablaDatos.getValueAt(0,2).toString());
+		cliente.setDni(tablaDatos.getValueAt(0,3).toString());
+		cliente.setUsuario(tablaDatos.getValueAt(0,4).toString());
+		cliente.setPassword(tablaDatos.getValueAt(0,5).toString());
+		cliente.setDireccion(tablaDatos.getValueAt(0,6).toString());
+		cliente.setTelefono(tablaDatos.getValueAt(0,7).toString());
+		cliente.setFechaIngreso((Date) tablaDatos.getValueAt(0,8));
+		return cliente;
+		
+	}
+	
 	public Cliente selectCliente(int codigo) throws SQLException, SinResultadosException{
 		DefaultTableModel tablaDatos=new DefaultTableModel();
-		tablaDatos=baseDatos.ejecutarSelect("CLIENTES","CODIGO,NOMBRE,APELLIDOS,DNI,DIRECCION,USUARIO,PASSWORD,TELEFONO,FECHA_INGRESO","CODIGO = "+codigo);
+		tablaDatos = baseDatos.ejecutarSelect("CLIENTES","CODIGO,NOMBRE,APELLIDOS,DNI,DIRECCION,USUARIO,PASSWORD,TELEFONO,FECHA_INGRESO","CODIGO = "+codigo);
 		if(tablaDatos==null){
 			throw new SinResultadosException();
 		}
@@ -241,20 +258,6 @@ public class BBDD {
 		//mesa.setApuestaMax(((Integer)tablaDatos.getValueAt(0,5)).doubleValue());
 		
 		return mesa;
-	}
-	
-	public Cuenta selectCuenta(String numero) throws SQLException, SinResultadosException{
-		DefaultTableModel tablaDatos=new DefaultTableModel();
-		tablaDatos=baseDatos.ejecutarSelect("CUENTAS","NUMERO,CLIENTE,SALDOINI,SALDOACT","NUMERO = '"+numero+"'");
-		if(tablaDatos==null){
-			throw new SinResultadosException();
-		}
-		Cuenta cuenta=new Cuenta();
-		cuenta.setNumero(tablaDatos.getValueAt(0,0).toString());
-		cuenta.setCliente(((BigDecimal)tablaDatos.getValueAt(0,1)).intValue());
-		cuenta.setSaldoIni(((BigDecimal)tablaDatos.getValueAt(0,2)).doubleValue());
-		cuenta.setSaldoAct(((BigDecimal)tablaDatos.getValueAt(0,3)).doubleValue());
-		return cuenta;
 	}
 	
 	public Partida selectPartida(int codigo) throws SQLException, SinResultadosException{
@@ -342,7 +345,7 @@ public class BBDD {
 		SimpleDateFormat formatoFecha=new SimpleDateFormat("dd/MM/yyyy");
 		String fecha=formatoFecha.format(cliente.getFechaIngreso());
 		String valores="NOMBRE = '"+cliente.getNombre()+"', APELLIDOS = '"+cliente.getApellidos()+"', DNI = '"+cliente.getDni()+"', USUARIO = '"+cliente.getUsuario()+"', PASSWORD = '"+cliente.getPassword()+"', DIRECCION = '"+cliente.getDireccion()+"', TELEFONO = '"+cliente.getTelefono()+"', FECHA_INGRESO = '"+fecha+"'";
-		baseDatos.ejecutarUpdate("CLIENTES",valores,"CODIGO = "+cliente.getCodgo());
+		baseDatos.ejecutarUpdate("CLIENTES",valores,"CODIGO = "+cliente.getCodigo());
 	}
 	
 	public void updateSala(Sala sala) throws SQLException{
@@ -353,11 +356,6 @@ public class BBDD {
 	public void updateMesa(Mesa mesa) throws SQLException{
 		String valores="SALA = "+mesa.getSala()+", PUESTOS = "+mesa.getPuesto()+", JUGADORES = "+mesa.getJugadores()+", APUESTAMIN = "+mesa.getApuestaMin()+", APUESTAMAX = "+mesa.getApuestaMax();
 		baseDatos.ejecutarUpdate("MESAS",valores,"CODIGO = "+mesa.getCodigo());
-	}
-	
-	public void updateCuentas(Cuenta cuenta) throws SQLException{
-		String valores="CLIENTE = "+cuenta.getCliente()+", SALDOINI = "+cuenta.getSaldoIni()+", SALDOACT = "+cuenta.getSaldoAct();
-		baseDatos.ejecutarUpdate("CUENTAS",valores,"NUMERO = '"+cuenta.getNumero()+"'");
 	}
 	
 	public void updatePartidas(Partida partida) throws SQLException{
@@ -397,11 +395,6 @@ public class BBDD {
 	public void insertMesa(Mesa mesa) throws SQLException{
 		String valoresTabla=/*"'"+mesa.getCodigo()+"','"*/"S_MESAS.NEXTVAL, '"+mesa.getSala()+"','"+mesa.getPuesto()+"','"+mesa.getJugadores()+"','"+mesa.getApuestaMin()+"','"+mesa.getApuestaMax()+"'";
 		baseDatos.ejecutarInsert("MESAS",valoresTabla);
-	}
-	
-	public void insertCuenta(Cuenta cuenta) throws SQLException{
-		String valoresTabla="'"+cuenta.getNumero()+"','"+cuenta.getCliente()+"','"+cuenta.getSaldoIni()+"','"+cuenta.getSaldoAct()+"'";
-		baseDatos.ejecutarInsert("CUENTAS",valoresTabla);
 	}
 	
 	public void insertPartida(Partida partida) throws SQLException{
