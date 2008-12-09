@@ -17,13 +17,13 @@ public class LoginJugador extends javax.swing.JFrame {
 
     Servidor servidor=null;
     HiloCliente cliente=null;
-    
+
     /** Creates new form LoginJugador */
     public LoginJugador() {
         initComponents();
         this.setVisible(false);
     }
-    
+
     /**
      * Muestra el formulario
      */
@@ -142,7 +142,9 @@ private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
     //comprobar que los datos introducidos son correctos
     if (sIdUsuario.getText()!="" && sPassword.toString()!=""){
-        //enviar datos al servidor, para que compruebe el jugador 
+        //enviar datos al servidor, para que compruebe el jugador
+
+    	//Se necesita el socket aqui para enviar los datos.
         servidor.aceptarJugador(sIdUsuario.getText(),sPassword.toString());
         //enviar datos al cliente, q los enviará al servidor
         //this.cliente.enviarDatosLogin(sIdUsuario.getText(),sPassword.toString());
@@ -174,7 +176,7 @@ private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     public void registraServidor(Servidor server){
         this.servidor=server;
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
