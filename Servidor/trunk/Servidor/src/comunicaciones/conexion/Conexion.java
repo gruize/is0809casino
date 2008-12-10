@@ -20,7 +20,7 @@ public class Conexion implements InterfazConexion{
         {
         	// TODO check wrong connection
         }
-		Mensaje datos = new MensajeString();
+		Mensaje datos = new MensajeSistema();
         
         ObjectOutputStream salidaDatos;
         ObjectInputStream entradaDatos;
@@ -30,6 +30,7 @@ public class Conexion implements InterfazConexion{
         datos.setOrigen("localhost");
        
         try {
+
             // enviamos el mesnajes de conexion
         	salidaDatos = new ObjectOutputStream(conexion.getOutputStream());
             this.enviarMensaje(datos,"");
@@ -41,6 +42,7 @@ public class Conexion implements InterfazConexion{
             // TODO tratamiento de errores del sistema
             if (datos.getTipo() == datos.OK)
             {
+            	// TODO aqui esta el id del conector
             	this.id = ((MensajeString)datos).getContenido();
             }
         } catch( IOException e ) {

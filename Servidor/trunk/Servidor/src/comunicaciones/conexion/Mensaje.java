@@ -2,16 +2,29 @@ package comunicaciones.conexion;
 
 public abstract class Mensaje{
 
-	public final int CREAR_CONEXION = 0;
+	
+	// TIPOS DE MENSAJES
+	public final int CREATE_CONNECTION = 0;
 	public final int OK = -1;
+	public final int CLIENT_NOT_FOUND = -2;
+	
+	// CONFIGURACION
+	public final int PUERTO = 10809;
+	public final String HOST_SERVER = "127.0.0.1"; 
 
 	private int tipo;
 	private String origen;
 	private String destino;
 	private int prioridad;
 	private int mascara;
+	// indica si el mensaje ha pasado por el servidor
+	// si el mensaje ha pasado por el servidor no tiene
+	// volver a el
+	// TODO put procesado how protected
+	public boolean procesado;
+	
 	public Mensaje() {
-		
+		this.procesado = false;
 	}
 	public Mensaje(Mensaje otro) {
 		this.tipo = otro.tipo;
@@ -19,6 +32,7 @@ public abstract class Mensaje{
 		this.destino = otro.destino;
 		this.prioridad = otro.prioridad;
 		this.mascara = otro.mascara;
+		this.procesado = otro.procesado;
 	}
 
 
