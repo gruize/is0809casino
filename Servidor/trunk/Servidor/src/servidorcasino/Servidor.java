@@ -14,7 +14,8 @@ import ConexionBBDD.BBDD;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.ServerSocket;
-import java.util.Hashtable;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -29,9 +30,8 @@ public class Servidor {
     private Casino casino;
     private int idPartidaRuleta;
     private BBDD bbdd;
-    private Hashtable<Integer,Integer> jugadores;
-    private Hashtable<Integer,Double> saldo;
-    private int ID;
+    //Preparado para cuando sean más clientes los que jueguen a la vez.
+    private ArrayList<InformacionJugadores> info;
    // LoginJugador pantallaLogin = null;
     //Ruleta pantallaRuleta = null;
 
@@ -40,9 +40,8 @@ public class Servidor {
     	this.socketServidor = null;
     	this.casino = null;
     	this.idPartidaRuleta = 0;
-    	this.jugadores = new Hashtable<Integer,Integer>();
-    	this.saldo = new Hashtable<Integer,Double>();
-    	this.ID = 0;
+    	this.info = new ArrayList<InformacionJugadores>();
+    	
     }
 
     public void iniciaServidor() {
@@ -139,9 +138,10 @@ public class Servidor {
     	if (correcto) {
     		try {
     			Cliente cliente = bbdd.selectCliente(idUsuario, password);
-    			jugadores.put(ID,cliente.getCodigo());
-    			saldo.put(ID,cliente.getSaldoAct());
-    			ID = ID+1;
+    			InformacionJugadores infoJugador = new InformacionJugadores();
+    			infoJugador.setCodigo(cliente.getCodigo());
+    			infoJugador.setSaldo(cliente.getSaldoAct());
+    			info.add(infoJugador);
     		}
     		catch(Exception e) {
     			
@@ -255,14 +255,15 @@ public class Servidor {
         return casino.tiradaPartidaRuleta(idPartidaRuleta);
     }
    
-    public void finalizarPartida(Integer ID) {
+    public void finalizarPartida() {
     	
-    	int codigoJugador = jugadores.get(ID);
-    	double saldoAlmacenado = saldo.get(ID);
+    	Iterator<InformacionJugadores> itr = info.iterator();
+    	while (itr.hasNext())
     	try {
-    		Cliente cliente = bbdd.selectCliente(codigoJugador);
-    		cliente.setSaldoAct(cliente.getSaldoAct()+ saldoAlmacenado);
-    	bbdd.updateCliente(cliente);
+    		InformacionJugadores element = (InformacionJugadores)itr.next(); 
+    		Cliente cliente = bbdd.selectCliente(element.getCodigo());
+    		cliente.setSaldoAct(element.getSaldo());
+    		bbdd.updateCliente(cliente);
     	}
     	catch(Exception e) {
     		
