@@ -1,6 +1,7 @@
 package comunicaciones.demonio;
 
 import java.io.*;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Random;
 import java.util.Vector;
@@ -9,13 +10,15 @@ import comunicaciones.conexion.*;
 public class hiloConexion extends Thread{
 	private Socket canal;
 	private boolean esServidor;
+	private TablaMensajes tablaMensajes;
 	
-	public Vector<Conectores> tablaConectores;
-	public hiloConexion(Socket canal, boolean esServidor, Vector<Conectores> vector) {
+	private Vector<Conectores> tablaConectores;
+	public hiloConexion(Socket canal, boolean esServidor, Vector<Conectores> vector, TablaMensajes tablaMensajes) {
 		super();
 		this.canal = canal;
 		this.esServidor = esServidor;
 		this.tablaConectores = vector;
+		this.tablaMensajes = tablaMensajes;
 	}
 	public void run ()
 	{
@@ -27,20 +30,18 @@ public class hiloConexion extends Thread{
 			datos = canalDeEntrada.readObject();
 			canalDeEntrada.close();
 			Mensaje msg = (Mensaje)datos;
+			// FIXME corregir los procesos que envian al propio servidor
 			if (msg.getTipo() == msg.CREATE_CONNECTION)
 			{
 				if (this.esServidor)
 				{
-					// TODO deberíamos comprobar si el InetAddress esta repe?
-					
 					String id;
 					do {
 						id = this.cadenaAleatoria(10);
 					}while (this.buscarConector(id) != null);
 					
 					this.tablaConectores.add(new Conectores(id,canal.getInetAddress()));
-					// TODO send OK to cliente con el conector creado de manera que lo identifique
-					// mensaje con tipo conector
+
 					ObjectOutputStream salidaDatos = new ObjectOutputStream (this.canal.getOutputStream());
 					msg = new MensajeString();
 					msg.setTipo(msg.OK);
@@ -51,6 +52,7 @@ public class hiloConexion extends Thread{
 					return;
 					
 				}
+				// CREATE_CONNECTION no servidor
 				else 
 				{
 					Socket clientSocket = new Socket(msg.HOST_SERVER,msg.PUERTO);
@@ -61,6 +63,7 @@ public class hiloConexion extends Thread{
 					salidaDatos.close();
 					
 					ObjectInputStream entradaDatos = new ObjectInputStream (clientSocket.getInputStream());
+					// obtenemos la respuesta con el id (posible mensaje de configuracion)
 					msg = (Mensaje) entradaDatos.readObject(); 
 					if (msg.getTipo() == msg.OK)
 						this.tablaConectores.add(new Conectores(((MensajeString)msg).getContenido(),this.canal.getLocalAddress()));
@@ -70,60 +73,101 @@ public class hiloConexion extends Thread{
 					}
 					entradaDatos.close();
 					clientSocket.close();
-					
+					//enviamos la respuesta al proceso
 					salidaDatos = new ObjectOutputStream (this.canal.getOutputStream());
 					salidaDatos.writeObject(msg);
 					salidaDatos.close();
 					this.canal.close();
-					//TODO conectar con el servidor para solicitar la conexion
+					return;
 				}
 			}
-			if (this.buscarConector(msg.getDestino()) == null)
+			// Mensaje de tipo NO CREATE CONNECTION
+			Conectores destino = this.buscarConector(msg.getDestino());
+			// si esta procesado en el cliente, o en el servidor y no lo encuentra
+			// es que no existe
+			if ((msg.procesado) || ((this.esServidor)) && (destino == null))
 			{
-				Conectores destino = this.buscarConector(msg.getDestino());
-				if ((this.esServidor) && (destino != null))
+				Mensaje respuesta = new MensajeSistema ();
+				respuesta.setTipo(respuesta.CLIENT_NOT_FOUND);
+				ObjectOutputStream salidaDatos = new ObjectOutputStream(this.canal.getOutputStream());
+				salidaDatos.writeObject(respuesta);
+				salidaDatos.close();
+		
+			}
+			// estando en un cliente que no tiene el destino y no ha pasado por el servidor
+			else if ((msg.procesado == false) && (destino == null))
+			{
+				Socket clientSocket = new Socket (msg.HOST_SERVER,msg.PUERTO);
+				
+				ObjectOutputStream salidaDatos = new ObjectOutputStream(clientSocket.getOutputStream());
+				salidaDatos.writeObject(msg);
+				salidaDatos.close();
+				ObjectInputStream entradaDatos = new ObjectInputStream(clientSocket.getInputStream());
+				entradaDatos.close();
+				clientSocket.close();
+				msg = (Mensaje)entradaDatos.readObject();
+				if (msg.getTipo()== msg.OK)
 				{
-					msg.procesado = true;
-				}
-				// si el mensaje ya paso por el servidor o estando en el servidor no 
-				// existe como host
-				else if ((msg.procesado) || ((this.esServidor) && (destino == null)))
-				{
-					Mensaje respuesta = new MensajeSistema ();
-					respuesta.setTipo(respuesta.CLIENT_NOT_FOUND);
-					ObjectOutputStream salidaDatos = new ObjectOutputStream(this.canal.getOutputStream());
-					salidaDatos.writeObject(respuesta);
+					Conectores nuevo = new Conectores();
+					nuevo.setId(((MensajeString)msg).getContenido());
+					this.tablaConectores.add(nuevo);
+					salidaDatos = new ObjectOutputStream(this.canal.getOutputStream());
+					salidaDatos.writeObject(msg);
 					salidaDatos.close();
+				}
+				
+				
 			
-				}
-				// estando en un cliente quie no tiene el destino y no ha pasado por el servidor
-				else if ((msg.procesado == false) && (destino == null))
+				else 
 				{
-					// TODO reenviar el mensaje al servidor y esperar su respuesta
+					// TODO tratamiento de errores
 				}
-				// el ultimo paso es que este en tu lista, se lo dejas en la cola de mensajes
-				else
-				{
-					// TODO put message in the list of messages and send OK ¿siempre?
-					Mensaje respuesta = new MensajeSistema();
-					respuesta.setTipo(respuesta.OK);
-					ObjectOutputStream salidaDatos = new ObjectOutputStream(this.canal.getOutputStream());
-					salidaDatos.writeObject(respuesta);
-					salidaDatos.close();
-					
-				}
-				// TODO unificar las respuestas en unas solas lineas
-
-				this.canal.close();
-				return; //FIXME hacer la correcta salida
 				
 			}
-			
-			else 
+			// Si es servidor y existe destino
+			else if ((this.esServidor) && (destino != null))
 			{
-				// TODO: enviar el mensaje al destino en la lista
+				// si el mensaje me viene a mi
+				if (destino.getHost() == InetAddress.getLocalHost())
+					this.tablaMensajes.altaMensaje(msg.clon());
+
+				else
+				{
+					// el mensaje la va pa otro
+					msg.procesado = true;
+					Socket socketServidor = new Socket(destino.getHost(),msg.PUERTO);
+					ObjectOutputStream salidaDatos = new ObjectOutputStream(socketServidor.getOutputStream());
+					
+					salidaDatos.writeObject(msg);
+					salidaDatos.close();
+					ObjectInputStream entradaDatos = new ObjectInputStream(socketServidor.getInputStream());
+					msg = (Mensaje)entradaDatos.readObject();
+					entradaDatos.close();
+					socketServidor.close();
+					if (msg.getTipo() == msg.OK)
+					{
+						salidaDatos = new ObjectOutputStream(this.canal.getOutputStream());
+						salidaDatos.writeObject(msg);
+						salidaDatos.close();
+					}
+				}
+				
 			}
+			// el ultimo paso es que este en tu lista, se lo dejas en la cola de mensajes
+			else
+			{
+				this.tablaMensajes.altaMensaje(msg.clon());
+				Mensaje respuesta = new MensajeSistema();
+				respuesta.setTipo(respuesta.OK);
+				ObjectOutputStream salidaDatos = new ObjectOutputStream(this.canal.getOutputStream());
+				salidaDatos.writeObject(respuesta);
+				salidaDatos.close();
+				
+			}
+
 			this.canal.close();
+			return; //FIXME hacer la correcta salida
+			
 
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
@@ -134,7 +178,6 @@ public class hiloConexion extends Thread{
 			e.printStackTrace();
 		}
 	}
-	// FIXME conrregir buscar por id no pormensaje
 	private Conectores buscarConector(String id)
 	{
 		for (int i = 0; i < this.tablaConectores.size();i++)

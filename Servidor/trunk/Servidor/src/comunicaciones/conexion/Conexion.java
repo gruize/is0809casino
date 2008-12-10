@@ -7,8 +7,6 @@ import java.io.*;
 
 public class Conexion implements InterfazConexion{
 
-	private final String HOST = "local_host";
-	private final int PUERTO = 10809;
 	private String id;
 	private Socket conexion;
 	private boolean creada;
@@ -26,24 +24,31 @@ public class Conexion implements InterfazConexion{
         ObjectInputStream entradaDatos;
         
         // configuramos el mesanje de conxion
-        datos.setTipo(0);
-        datos.setOrigen("localhost");
+		
+        datos.setTipo(datos.CREATE_CONNECTION);
+        // FIXME esto no se sabe muy bien
+        // no hace falta extablecer xq no hay id
+        //datos.setOrigen("");
        
         try {
 
             // enviamos el mesnajes de conexion
         	salidaDatos = new ObjectOutputStream(conexion.getOutputStream());
-            this.enviarMensaje(datos,"");
             salidaDatos.writeObject(datos);
-            
+            salidaDatos.close();
             // recibimos las respuesta
             entradaDatos = new ObjectInputStream(conexion.getInputStream());
             datos = (MensajeString)entradaDatos.readObject();
+            entradaDatos.close();
             // TODO tratamiento de errores del sistema
             if (datos.getTipo() == datos.OK)
             {
-            	// TODO aqui esta el id del conector
+            	// TODO mensaje de configuracion¿?
             	this.id = ((MensajeString)datos).getContenido();
+            }
+            else
+            {
+            	// TODO tratamiento de errores
             }
         } catch( IOException e ) {
             System.out.println( e );
@@ -56,27 +61,13 @@ public class Conexion implements InterfazConexion{
 		//TODO: Establecer conexion con tu Demonio*/
 	}
 	
-	@Override
-	public void crearConexion() {
-		if (!this.establecer())
-		{
-			//TODO check wrong connection
-		}
-			 
-		
-		// TODO send things
-		
-		
-		this.desconectar();
+	
 
-		
-		// TODO Auto-generated method stub
-		
-	}
 	private boolean establecer ()
 	{
 		try {
-			this.conexion = new Socket(this.HOST,this.PUERTO);
+			Mensaje msg = new MensajeSistema();
+			this.conexion = new Socket(msg.HOST_SERVER,msg.PUERTO);
 			//FIXME correcto tratamiento del error
 			/*if (!this.conexion)
 				return false;*/
@@ -100,17 +91,34 @@ public class Conexion implements InterfazConexion{
 	}
 	@Override
 	public void eliminarConexion() {
-		if (this.creada == true)
-		{
-			
-		}
+
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void enviarMensaje(Mensaje message, String idDestino) {
-		// TODO Auto-generated method stub
+	public Mensaje enviarMensaje(Mensaje message) {
+		try {
+			Socket socketCliente = new Socket(InetAddress.getLocalHost(),message.PUERTO);
+			ObjectOutputStream salidaDatos = new ObjectOutputStream(socketCliente.getOutputStream());
+			salidaDatos.writeObject(message);
+			salidaDatos.close();
+			ObjectInputStream entradaDatos = new ObjectInputStream(socketCliente.getInputStream());
+			Mensaje msg = (Mensaje) entradaDatos.readObject();
+			entradaDatos.close();
+			return msg;
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
 		
 	}
 
@@ -132,8 +140,14 @@ public class Conexion implements InterfazConexion{
 
 
 	@Override
-	public Mensaje obtenerMensaje(String mascara) {
+	public Mensaje obtenerMensaje(boolean mascara) {
+		Mensaje msg = new MensajeSistema();
+		msg.setTipo(msg.GET_MESSAGE);
+		
+		msg.setOrigen(this.id);
+		msg.setMascara(mascara);
+		Mensaje respuesta = enviarMensaje(msg);
 		// TODO Auto-generated method stub
-		return null;
+		return respuesta;
 	}
 }

@@ -2,14 +2,14 @@ package comunicaciones.conexion;
 
 public interface InterfazConexion {
 	//TODO: Crear clase conexion
-	void crearConexion();
+
 	void eliminarConexion();
 
 	public String getId();
 	
-	void enviarMensaje(Mensaje message, String idDestino);
+	public Mensaje enviarMensaje(Mensaje message);
 	//TODO:Mascaras
-	Mensaje obtenerMensaje(String mascara);
+	public Mensaje obtenerMensaje( boolean mascara);
 	
 	int estadoConexion();
 }

@@ -7,6 +7,7 @@ public abstract class Mensaje{
 	public final int CREATE_CONNECTION = 0;
 	public final int OK = -1;
 	public final int CLIENT_NOT_FOUND = -2;
+	public final int GET_MESSAGE = -3;
 	
 	// CONFIGURACION
 	public final int PUERTO = 10809;
@@ -16,7 +17,7 @@ public abstract class Mensaje{
 	private String origen;
 	private String destino;
 	private int prioridad;
-	private int mascara;
+	private boolean mascara;
 	// indica si el mensaje ha pasado por el servidor
 	// si el mensaje ha pasado por el servidor no tiene
 	// volver a el
@@ -25,6 +26,8 @@ public abstract class Mensaje{
 	
 	public Mensaje() {
 		this.procesado = false;
+		// TODO inicializar SIEMPRE el origen
+
 	}
 	public Mensaje(Mensaje otro) {
 		this.tipo = otro.tipo;
@@ -36,10 +39,10 @@ public abstract class Mensaje{
 	}
 
 
-	public int getMascara() {
+	public boolean getMascara() {
 		return mascara;
 	}
-	public void setMascara(int mascara) {
+	public void setMascara(boolean mascara) {
 		this.mascara = mascara;
 	}
 	public int getTipo() {
