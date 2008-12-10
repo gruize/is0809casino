@@ -1,4 +1,4 @@
-package Excepciones;
+package ConexionBBDD;
 
 public class SinResultadosException extends Exception {
 

@@ -16,7 +16,6 @@ import Entidades.Mesa;
 import Entidades.Participante;
 import Entidades.Partida;
 import Entidades.Sala;
-import Excepciones.SinResultadosException;
 
 
 /**
@@ -43,44 +42,19 @@ public class BBDD {
 	 * Aqui se configura cogiendo el driver, url,usuario,contrase�a.
 	 * @throws SQLException 
 	 */
-	public BBDD() throws SQLException{
-		Properties propiedadesConexion = new Properties();
-		try{
-			FileInputStream archivoPropiedades = new FileInputStream("BaseDeDatos/BaseDatosOracle.properties");
-			//FileInputStream archivoPropiedades = new FileInputStream("BaseDeDatos/BaseDatosAccess.properties");
-			propiedadesConexion.load(archivoPropiedades);
-			archivoPropiedades.close();
-		}
-		catch (Exception e){
-			JOptionPane.showMessageDialog(null,"***ERROR***\nImposible cargar archivo de propiedades 'BaseDatos.properties'","TIENDA VIRTUAL",JOptionPane.ERROR_MESSAGE);
-			System.exit(0);
-		}	
-		String driverBD = propiedadesConexion.getProperty("jdbc.drivers");		
-		if (driverBD != null) {
-			//String url=propiedadesConexion.getProperty("jdbc.url");
-			//String usuario = propiedadesConexion.getProperty("jdbc.username");
-			//String contrase�a = propiedadesConexion.getProperty("jdbc.password");
-			String url = "http://serv.fis.ucm.es:1521:xe";
-			String usuario = "SYSTEM";
-			String contrasena = "casinois0809�";
-			if (driverBD.equals("oracle.jdbc.driver.OracleDriver")) {
-				System.setProperty("jdbc.drivers", driverBD);
-				if (driverBD.equals("oracle.jdbc.driver.OracleDriver")){
-					baseDatos = new OracleBD(url,usuario,contrasena);
-				}
-				
-			}
-			else {
-				throw new SQLException();
-			}
-		}		
-		else {
-			throw new SQLException();
-		}
+	public BBDD() {
+		
+		String url = "http://serv.fis.ucm.es:1521:xe";
+		String usuario = "SYSTEM";
+		String contrasena = "casinois0809�";
+		String driverBD = "oracle.jdbc.driver.OracleDriver";
+		System.setProperty("jdbc.drivers", driverBD);
+		baseDatos = new OracleBD(url,usuario,contrasena);
+		System.out.println("Ok");	
 	}
 	
-	public DefaultTableModel selectAllJuegos() throws SQLException, SinResultadosException
-	{
+	public DefaultTableModel selectAllJuegos() throws SQLException, SinResultadosException {
+		
 		DefaultTableModel tablaDatos=new DefaultTableModel();
 		tablaDatos=baseDatos.ejecutarSelect("JUEGOS","CODIGO,NOMBRE,JUGADORESMIN,REGLAS","");
 		//System.out.println(tablaDatos.getValueAt(0,0).toString());
@@ -190,10 +164,14 @@ public class BBDD {
 		return juego;
 	}
 	
-	public Cliente selectCliente(String idUsuario,String password) throws SQLException {
+	public Cliente selectCliente(String idUsuario,String password) throws SQLException,SinResultadosException{
 		
 		DefaultTableModel tablaDatos = new DefaultTableModel();
-		tablaDatos = baseDatos.ejecutarSelect("CLIENTES","CODIGO,NOMBRE,APELLIDOS,DNI,DIRECCION,USUARIO,PASSWORD,TELEFONO,FECHA_INGRESO","USUARIO = "+idUsuario+" AND PASSWORD = "+password);
+		tablaDatos = baseDatos.ejecutarSelect("CLIENTES","CODIGO,NOMBRE,APELLIDOS,DNI,USUARIO,PASSWORD," +
+		"DIRECCION,FECHAINGRESO,NUMEROCUENTA,SALDOINI,SALDOACT,TELEFONO","USUARIO = "+idUsuario+" AND PASSWORD = "+password);
+		if(tablaDatos==null){
+			throw new SinResultadosException();
+		}
 		Cliente cliente = new Cliente();
 		cliente.setCodigo(((BigDecimal)tablaDatos.getValueAt(0,0)).intValue());
 		cliente.setNombre(tablaDatos.getValueAt(0,1).toString());
@@ -202,8 +180,12 @@ public class BBDD {
 		cliente.setUsuario(tablaDatos.getValueAt(0,4).toString());
 		cliente.setPassword(tablaDatos.getValueAt(0,5).toString());
 		cliente.setDireccion(tablaDatos.getValueAt(0,6).toString());
-		cliente.setTelefono(tablaDatos.getValueAt(0,7).toString());
-		cliente.setFechaIngreso((Date) tablaDatos.getValueAt(0,8));
+		cliente.setFechaIngreso((Date) tablaDatos.getValueAt(0,7));
+		cliente.setNumero(tablaDatos.getValueAt(0,8).toString());
+		cliente.setSaldoIni((Double)tablaDatos.getValueAt(0,9));
+		cliente.setSaldoAct((Double)tablaDatos.getValueAt(0,10));
+		cliente.setTelefono(tablaDatos.getValueAt(0,11).toString());
+		
 		return cliente;
 		
 	}
