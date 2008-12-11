@@ -38,10 +38,10 @@ _Estrategias:_ Estudio detallado de los contenidos que han de ser cifrados y del
 
   * Es imposible encontrar uno o varios desarrolladores con las habilidades necesarias para la realización de una tarea concreta del proyecto.
 * Probabilidad:* Baja. *Efectos:* Catastrófico.
-_Estrategias:_ Obtener información y/o documentación por medio escrito u online. Avisar al usuario de la posibilidad del retraso que esto pudiera conllevar.
+_Estrategias:_ Obtener información y/o documentación por medio escrito u online. Buscar otras personas dentro del grupo de trabajo cualificadas para realizar la tarea.
 
   * Incapacidad del personal. Ello incluye la falta de personal por distintos motivos: enfermedad, época de estudios (exámenes), sobrecarga de trabajo ajeno al proyecto, motivos personales... 
-* Probabilidad:* Alta. *Efectos:* Moderado.
+* Probabilidad:* Alta. *Efectos:* Serio.
 _Estrategias:_ Estudiar y realizar una buena planificación y distribución de carga, según las posibilidades del personal.
 
   * Nuevas incorporaciones en el equipo de diseño/desarrollo.
