@@ -22,8 +22,8 @@ public class TablaMensajes {
 		for (int i = 0; i < this.tablaMensajes.size();i++)
 		{
 			msg = this.tablaMensajes.elementAt(i);
-			if (msg.getDestino() == id)
-				if ((msg.getTipo() == tipo) || (msg.getMascara() == mascara))
+			if (msg.getDestino().compareTo(id) == 0)
+				if ((msg.getTipo() == tipo))
 				{
 					msg = this.tablaMensajes.get(i).clon();
 					this.tablaMensajes.remove(i);

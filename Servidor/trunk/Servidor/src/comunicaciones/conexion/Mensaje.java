@@ -1,17 +1,25 @@
 package comunicaciones.conexion;
 
-public abstract class Mensaje{
+import java.io.Serializable;
+
+public abstract class Mensaje implements Serializable
+{
 
 	
 	// TIPOS DE MENSAJES
+	
 	public final int CREATE_CONNECTION = 0;
 	public final int OK = -1;
 	public final int CLIENT_NOT_FOUND = -2;
-	public final int GET_MESSAGE = -3;
+	
+	public final int SEND_MESSAGE = -7;
+	public final int READ_MESSAGE_NO_WAIT = -14;
+	public final int READ_MESSAGE_WAIT = -15;
+	public final int NOT_MESSAGE = -16;
 	
 	// CONFIGURACION
-	public final int PUERTO = 10809;
-	public final String HOST_SERVER = "127.0.0.1"; 
+	public final int PUERTO = 40809;
+	public final String HOST_SERVER = "147.96.82.202"; 
 
 	private int tipo;
 	private String origen;

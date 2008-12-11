@@ -9,7 +9,7 @@ public class Conexion implements InterfazConexion{
 
 	private String id;
 	private Socket conexion;
-	private boolean creada;
+	//private boolean creada;
 	public Conexion(boolean esServidor)
 	{
         
@@ -18,43 +18,32 @@ public class Conexion implements InterfazConexion{
         {
         	// TODO check wrong connection
         }
-		Mensaje datos = new MensajeSistema();
+		Mensaje msg = new MensajeSistema();
         
-        ObjectOutputStream salidaDatos;
-        ObjectInputStream entradaDatos;
+
         
         // configuramos el mesanje de conxion
 		
-        datos.setTipo(datos.CREATE_CONNECTION);
+        msg.setTipo(msg.CREATE_CONNECTION);
         // FIXME esto no se sabe muy bien
         // no hace falta extablecer xq no hay id
         //datos.setOrigen("");
        
-        try {
+        // enviamos el mesnajes de conexion
 
-            // enviamos el mesnajes de conexion
-        	salidaDatos = new ObjectOutputStream(conexion.getOutputStream());
-            salidaDatos.writeObject(datos);
-            salidaDatos.close();
-            // recibimos las respuesta
-            entradaDatos = new ObjectInputStream(conexion.getInputStream());
-            datos = (MensajeString)entradaDatos.readObject();
-            entradaDatos.close();
-            // TODO tratamiento de errores del sistema
-            if (datos.getTipo() == datos.OK)
-            {
-            	// TODO mensaje de configuracion¿?
-            	this.id = ((MensajeString)datos).getContenido();
-            }
-            else
-            {
-            	// TODO tratamiento de errores
-            }
-        } catch( IOException e ) {
-            System.out.println( e );
-        } catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+        this.send(null,msg);
+        // recibimos las respuesta
+        msg = this.receive(null);
+        // TODO tratamiento de errores del sistema
+        if (msg.getTipo() == msg.OK)
+        {
+        	// TODO mensaje de configuracion¿?
+        	this.id = ((MensajeString)msg).getContenido();
+        }
+        else
+        {
+        	// TODO tratamiento de errores
+        }
         
         // desconectamos
         this.desconectar();
@@ -97,27 +86,18 @@ public class Conexion implements InterfazConexion{
 	}
 
 	@Override
-	public Mensaje enviarMensaje(Mensaje message) {
-		try {
-			Socket socketCliente = new Socket(InetAddress.getLocalHost(),message.PUERTO);
-			ObjectOutputStream salidaDatos = new ObjectOutputStream(socketCliente.getOutputStream());
-			salidaDatos.writeObject(message);
-			salidaDatos.close();
-			ObjectInputStream entradaDatos = new ObjectInputStream(socketCliente.getInputStream());
-			Mensaje msg = (Mensaje) entradaDatos.readObject();
-			entradaDatos.close();
-			return msg;
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+	public Mensaje enviarMensaje(Mensaje msg) {
+	
+		// FIXME SEND MESSAGE NO TIENE TIPO
+		//msg.setTipo(msg.SEND_MESSAGE);
+		msg.setOrigen(this.getId());
+		this.establecer();
+		this.send(null, msg);
+		msg = this.receive(null);
+		this.desconectar();
+		return msg;
+		
+
 
 		
 	}
@@ -142,12 +122,56 @@ public class Conexion implements InterfazConexion{
 	@Override
 	public Mensaje obtenerMensaje(boolean mascara) {
 		Mensaje msg = new MensajeSistema();
-		msg.setTipo(msg.GET_MESSAGE);
-		
-		msg.setOrigen(this.id);
-		msg.setMascara(mascara);
-		Mensaje respuesta = enviarMensaje(msg);
-		// TODO Auto-generated method stub
-		return respuesta;
+		msg.setOrigen(this.getId());
+		msg.setTipo(msg.READ_MESSAGE_NO_WAIT);
+		this.establecer();
+		this.send(null, msg);
+		msg = this.receive(null);
+		this.desconectar();
+		return msg;
+
 	}
+	private void send(Socket canal, Mensaje msg)
+	{
+		
+		ObjectOutputStream salidaDatos;
+		try {
+			
+			if (canal == null)
+				canal = this.conexion;
+			salidaDatos = new ObjectOutputStream(canal.getOutputStream());
+			salidaDatos.writeObject(msg);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+
+		
+	}
+	private Mensaje receive (Socket canal)
+	{
+		ObjectInputStream entradaDatos;
+		
+		try {
+			if (canal == null)
+				canal = this.conexion;
+			entradaDatos = new ObjectInputStream(canal.getInputStream());
+			return (Mensaje)entradaDatos.readObject();
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
 }
+

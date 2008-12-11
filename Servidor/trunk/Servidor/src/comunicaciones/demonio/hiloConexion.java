@@ -5,12 +5,19 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Random;
 import java.util.Vector;
+
+import com.sun.org.apache.bcel.internal.generic.InstructionConstants.Clinit;
+
 import comunicaciones.conexion.*;
 
 public class hiloConexion extends Thread{
 	private Socket canal;
 	private boolean esServidor;
 	private TablaMensajes tablaMensajes;
+	
+	//FIXME
+	
+	static Long semilla = new Long(0);
 	
 	private Vector<Conectores> tablaConectores;
 	public hiloConexion(Socket canal, boolean esServidor, Vector<Conectores> vector, TablaMensajes tablaMensajes) {
@@ -24,12 +31,8 @@ public class hiloConexion extends Thread{
 	{
 		try {
 			// FIXME close all sockets
-			ObjectInputStream canalDeEntrada;
-			canalDeEntrada = new ObjectInputStream(canal.getInputStream());
-			Object datos;
-			datos = canalDeEntrada.readObject();
-			canalDeEntrada.close();
-			Mensaje msg = (Mensaje)datos;
+			
+			Mensaje msg = this.receive(null);
 			// FIXME corregir los procesos que envian al propio servidor
 			if (msg.getTipo() == msg.CREATE_CONNECTION)
 			{
@@ -39,15 +42,13 @@ public class hiloConexion extends Thread{
 					do {
 						id = this.cadenaAleatoria(10);
 					}while (this.buscarConector(id) != null);
-					
+					// FIXME quitar String cadena3 = canal.getInetAddress().toString();
 					this.tablaConectores.add(new Conectores(id,canal.getInetAddress()));
-
-					ObjectOutputStream salidaDatos = new ObjectOutputStream (this.canal.getOutputStream());
+			
 					msg = new MensajeString();
 					msg.setTipo(msg.OK);
 					((MensajeString)msg).setContenido(id);
-					salidaDatos.writeObject(msg);
-					this.canal.close();
+					this.send(null, msg);
 					this.canal.close();
 					return;
 					
@@ -56,42 +57,66 @@ public class hiloConexion extends Thread{
 				else 
 				{
 					Socket clientSocket = new Socket(msg.HOST_SERVER,msg.PUERTO);
-					ObjectOutputStream salidaDatos = new ObjectOutputStream (clientSocket.getOutputStream());
+					this.send(clientSocket,msg);
 					// FIXME ¿lo puedo reenviar tal cual?
 					
-					salidaDatos.writeObject(msg);
-					salidaDatos.close();
 					
-					ObjectInputStream entradaDatos = new ObjectInputStream (clientSocket.getInputStream());
+					msg = this.receive(clientSocket);
+					
 					// obtenemos la respuesta con el id (posible mensaje de configuracion)
-					msg = (Mensaje) entradaDatos.readObject(); 
+ 
 					if (msg.getTipo() == msg.OK)
+					{
+						String cadena1 = this.canal.getLocalAddress().toString();
 						this.tablaConectores.add(new Conectores(((MensajeString)msg).getContenido(),this.canal.getLocalAddress()));
+					}
+						
 					else
 					{
 						//TODO tratamiento de errores
 					}
-					entradaDatos.close();
+					
 					clientSocket.close();
 					//enviamos la respuesta al proceso
-					salidaDatos = new ObjectOutputStream (this.canal.getOutputStream());
-					salidaDatos.writeObject(msg);
-					salidaDatos.close();
+					this.send(null,msg);
+					// TODO cerrar subcanales
 					this.canal.close();
 					return;
 				}
+			}
+			if (msg.getTipo() == msg.READ_MESSAGE_NO_WAIT)
+			{
+				Mensaje respuesta = this.tablaMensajes.consultaMensaje(msg.getOrigen(), msg.getTipo(), msg.getMascara());
+				if (respuesta == null)
+				{
+					msg.setTipo(msg.NOT_MESSAGE);
+					this.send(null, msg);
+				}
+				else
+					this.send(null, respuesta);
+					
+				
+			}
+			if (msg.getTipo() == msg.READ_MESSAGE_WAIT)
+			{
+				// TODO timeout
+				Mensaje respuesta;
+				do {
+					respuesta = this.tablaMensajes.consultaMensaje(msg.getOrigen(), msg.getTipo(), msg.getMascara());
+				} while (respuesta == null);
+				this.send(null, respuesta);
+					
+				
 			}
 			// Mensaje de tipo NO CREATE CONNECTION
 			Conectores destino = this.buscarConector(msg.getDestino());
 			// si esta procesado en el cliente, o en el servidor y no lo encuentra
 			// es que no existe
-			if ((msg.procesado) || ((this.esServidor)) && (destino == null))
+			if ((msg.procesado || this.esServidor) && destino == null)
 			{
 				Mensaje respuesta = new MensajeSistema ();
 				respuesta.setTipo(respuesta.CLIENT_NOT_FOUND);
-				ObjectOutputStream salidaDatos = new ObjectOutputStream(this.canal.getOutputStream());
-				salidaDatos.writeObject(respuesta);
-				salidaDatos.close();
+				this.send(null,respuesta);
 		
 			}
 			// estando en un cliente que no tiene el destino y no ha pasado por el servidor
@@ -99,21 +124,17 @@ public class hiloConexion extends Thread{
 			{
 				Socket clientSocket = new Socket (msg.HOST_SERVER,msg.PUERTO);
 				
-				ObjectOutputStream salidaDatos = new ObjectOutputStream(clientSocket.getOutputStream());
-				salidaDatos.writeObject(msg);
-				salidaDatos.close();
-				ObjectInputStream entradaDatos = new ObjectInputStream(clientSocket.getInputStream());
-				entradaDatos.close();
-				clientSocket.close();
-				msg = (Mensaje)entradaDatos.readObject();
+
+				this.send(clientSocket, msg);
+				
+				
+				msg = this.receive(clientSocket);
 				if (msg.getTipo()== msg.OK)
 				{
 					Conectores nuevo = new Conectores();
 					nuevo.setId(((MensajeString)msg).getContenido());
 					this.tablaConectores.add(nuevo);
-					salidaDatos = new ObjectOutputStream(this.canal.getOutputStream());
-					salidaDatos.writeObject(msg);
-					salidaDatos.close();
+					this.send(null, msg);
 				}
 				
 				
@@ -128,28 +149,30 @@ public class hiloConexion extends Thread{
 			else if ((this.esServidor) && (destino != null))
 			{
 				// si el mensaje me viene a mi
-				if (destino.getHost() == InetAddress.getLocalHost())
+				//FIXME
+				String cadena1 = destino.getHost().toString();
+				String cadena2 = InetAddress.getLocalHost().toString();
+				//if (destino.getHost().getAddress())
+				if (this.compareIp(destino.getHost().getAddress(), InetAddress.getLocalHost().getAddress()))
+				{	
 					this.tablaMensajes.altaMensaje(msg.clon());
+					msg.setTipo(msg.OK);
+					this.send(null, msg);
+				}
+				
+				// TODO espera de respueesta OK
 
 				else
 				{
 					// el mensaje la va pa otro
 					msg.procesado = true;
 					Socket socketServidor = new Socket(destino.getHost(),msg.PUERTO);
-					ObjectOutputStream salidaDatos = new ObjectOutputStream(socketServidor.getOutputStream());
-					
-					salidaDatos.writeObject(msg);
-					salidaDatos.close();
-					ObjectInputStream entradaDatos = new ObjectInputStream(socketServidor.getInputStream());
-					msg = (Mensaje)entradaDatos.readObject();
-					entradaDatos.close();
+
+					this.send(socketServidor, msg);
+					msg = this.receive(socketServidor);
 					socketServidor.close();
 					if (msg.getTipo() == msg.OK)
-					{
-						salidaDatos = new ObjectOutputStream(this.canal.getOutputStream());
-						salidaDatos.writeObject(msg);
-						salidaDatos.close();
-					}
+						this.send(null, msg);
 				}
 				
 			}
@@ -159,9 +182,8 @@ public class hiloConexion extends Thread{
 				this.tablaMensajes.altaMensaje(msg.clon());
 				Mensaje respuesta = new MensajeSistema();
 				respuesta.setTipo(respuesta.OK);
-				ObjectOutputStream salidaDatos = new ObjectOutputStream(this.canal.getOutputStream());
-				salidaDatos.writeObject(respuesta);
-				salidaDatos.close();
+
+				this.send(null, respuesta);
 				
 			}
 
@@ -173,16 +195,15 @@ public class hiloConexion extends Thread{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+
+		return;
 	}
 	private Conectores buscarConector(String id)
 	{
 		for (int i = 0; i < this.tablaConectores.size();i++)
 		{
-			if (this.tablaConectores.elementAt(i).getId() == id)
+			if (this.tablaConectores.elementAt(i).getId().compareTo(id)==0 )
 			{
 				return this.tablaConectores.elementAt(i);
 			}
@@ -191,18 +212,68 @@ public class hiloConexion extends Thread{
 		return null;
 	}
 	
-	private String cadenaAleatoria(int n)
+	private static String cadenaAleatoria(int n)
 	{
+		semilla++;
 		Random rnd = new Random();
 		String cadena ="";
 		for (int i = 0;i<n;i++)
 		{
-			cadena = cadena + (char)(rnd.nextDouble( ) * 255);
+			cadena = cadena + (char)((rnd.nextDouble( ) * 25)+65);
 
 		}
+		cadena = semilla.toString();
 		return cadena;
 	}
-	
+	// Si es null utilizar el del objeto
+	private void send(Socket canal, Mensaje msg)
+	{
+		
+		ObjectOutputStream salidaDatos;
+		try {
+			
+			if (canal == null)
+				canal = this.canal;
+			salidaDatos = new ObjectOutputStream(canal.getOutputStream());
+			salidaDatos.writeObject(msg);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+
+		
+	}
+	private Mensaje receive (Socket canal)
+	{
+		ObjectInputStream entradaDatos;
+		
+		try {
+			if (canal == null)
+				canal = this.canal;
+			entradaDatos = new ObjectInputStream(canal.getInputStream());
+			return (Mensaje)entradaDatos.readObject();
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+	public boolean compareIp(byte addr1[],byte addr2[])
+	{
+		for (int i = 0;i<4;i++)
+			if (addr1[i] !=addr2[i])
+				return false;
+		return true;
+	}
 
 }
 
