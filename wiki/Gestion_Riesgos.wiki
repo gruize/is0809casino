@@ -2,8 +2,9 @@
 
 = Gestión de Riesgos =
 
-Version 0.1
-Fecha 13 de Noviembre de 2008
+|| _Autor_ || _Fecha_ || _Comentario_ ||
+|| David Fernández y Alberto Fernández ||11/12/2008 ||Revision de Gonzalo ||
+|| Alberto Milán,David Fernández y Alberto Fernández ||13/11/2008 ||Generación del documento inicial ||
 
 = Introducción =
 
@@ -18,7 +19,7 @@ Por cada riesgo considerado hay que tener en cuenta su probabilidad de aparició
 _Estrategias:_ Mejorar el protocolo de comunicación para minimizar el tráfico de la aplicación. Como último motivo, se podría solicitar más ancho de banda ó requerir mejor equipación hardware.
 
   * La latencia ha de ser suficientemente baja como para ofrecer un buen servicio en tiempo real.
-* Probabilidad:* Baja. *Efectos:* Insignificante.
+* Probabilidad:* Baja. *Efectos:* Tolerable.
 _Estrategias:_ Compactar los posibles mensajes, reduciendo el número de comunicaciones por mensaje. Realizar un estudio del retardo de cada cliente al realizar login a la aplicación. Si el retardo es superior a un máximo establecido se le comunicará con un mensaje de _Imposibilidad de juego_. Como última solución, solicitar una mejora en la conexión.
 
   * La base de datos usada en el sistema no puede procesar tantas peticiones por segundo como se había estimado.
@@ -27,7 +28,7 @@ _Estrategias:_ Establecer prioridades en las peticiones sobre el SGBD. Como últ
 
   * Privacidad en la comunicación cifrada entre servidor y cliente.
 * Probabilidad:* Alta. *Efectos:* Catastrófico.
-_Estrategias:_ Encontrar las vulnerabilidades del sistema, analizar posibles soluciones y, en el peor de los casos, seleccionar otro método de cifrado que no posea dichas vulnerabilidades (u otras).
+_Estrategias:_ Salvaguardar con copias incrementales el sistema de manera que sea facilmente recuperable, analizar posibles soluciones a fallos de seguridad, como seleccionar otro método de cifrado que no posea dichas vulnerabilidades (u otras).
 
   * Falta de privacidad en ciertos contenidos de la Base de Datos susceptibles de contener información personal. Incumplimiento de la Ley de Protección de Datos.
 * Probabilidad:* Alta. *Efectos:* Catastrófico.
@@ -60,7 +61,7 @@ _Estrategias:_ No existe estrategia de resolución, al no existir presupuesto b�
 
   * Falta de coordinación entre los miembros del equipo.
 * Probabilidad:* Alta. *Efectos:* Serio.
-_Estrategias:_ Marcar objetivos temporales y realizables, controlando el desarrollo individual desequilibrado.
+_Estrategias:_ Marcar objetivos temporales y realizables, controlando el desarrollo individual desequilibrado. Se realizara reuniones semanales en el laboratorio, y habra una comunicación constante a traves del google code y groups. Ademas de una distribucion en grupos, algunas personas se encargarán de la coordinación.
 
 
 == Riesgos de Herramientas ==
@@ -71,21 +72,21 @@ _Estrategias:_ Realizar pruebas del código generado y probar nuevas herramienta
 
   * No se puede utilizar alguna herramienta que estaba pensada usar por problemas de integración con el resto del sistema.
 * Probabilidad:* Alta. *Efectos:* Tolerable.
-_Estrategias:_ Realizar un estudio sobre los posible problemas que puede presentar el uso de una herramienta antes de comenzar su desarrollo en la misma.
+_Estrategias:_ Realizar un estudio sobre los posible problemas que puede presentar el uso de una herramienta antes de comenzar su desarrollo en la misma. Tener preparadas herramientas alternativas por si durante el desarrollo hubiera problemas con las seleccionadas. 
 
 == Riesgos de Requisitos ==
 
   * Cambios en los requisitos que requieren un rediseño de la aplicación grande.
 * Probabilidad:* Alta. *Efectos:* Serio.
-_Estrategias:_ Definir de forma concreta todos los requisitos con la intención de realizar un diseño que sea capaz de afrontar cambios y minimizar el impacto. Es decir, permitir la reusabilidad.
+_Estrategias:_ Intentar definir de forma concreta todos los requisitos con la intención de realizar un diseño que sea capaz de afrontar cambios y minimizar el impacto.
 
   * El usuario o cliente cree que un cambio significa una pequeña modificación en los requisitos.
 * Probabilidad:* Alta. *Efectos:* Serio.
-_Estrategias:_ Escribir un documento con los posibles cambios _a priori_ para convencer al usuario de la envergadura de la modificación.
+_Estrategias:_ Escribir un documento con los posibles cambios _a priori_ para informar al usuario de la envergadura de la modificación y poder estudiarlos llegado el caso de que interesen.
 
 
 == Riesgos de Estimación ==
 
   * Se ha infravalorado el tiempo requerido para desarrollar el proyecto.
 * Probabilidad:* Moderada. *Efectos:* Catastróficos.
-_Estrategias:_ Adquirir partes del proyecto ya desarrolladas (componentes). Reducir el conjunto de requisitos secundarios gracias a la modularidad de la aplicación.
+_Estrategias:_ Adquirir partes del proyecto ya desarrolladas (componentes). 
