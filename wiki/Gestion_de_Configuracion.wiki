@@ -8,7 +8,7 @@
 ====3 Park Avenue, New York, NY 10016-5997, USA====
 ====IEEE Computer Society====
 
-|| _Autor_ || _Fecha_ || _Comentario_ ||
+|| _Autor/es_ || _Fecha_ || _Comentario_ ||
 || Alberto Milán ||11/12/2008 ||Continuación de generación del documento inicial||
 || Alberto Milán y Santiago Zomeño ||04/12/2008 ||Generación del documento inicial ||
 
