@@ -9,28 +9,68 @@
 ====IEEE Computer Society====
 
 || _Autor_ || _Fecha_ || _Comentario_ ||
+|| Alberto Milán ||11/12/2008 ||Continuación de generación del documento inicial||
 || Alberto Milán y Santiago Zomeño ||04/12/2008 ||Generación del documento inicial ||
 
 
+=2.0 Definiciones y Acrónimos=
 
-==Definiciones==
+==2.1 Definiciones==
 
 *Punto de control*: Punto en el que requisitos específicos son aplicados a los elementos de configuración desarrollados.
 
 *Release*: Versión particular de un elemento de configuración que está disponible para un fin específico. 
 
 
-==Acrónimos==
+==2.2 Acrónimos==
 
 EC:  Elemento de Configuración
+
 GCS: Gestión de Configuración de Software
 
 
 
-=Introducción=
+=3.1 Introducción=
 
+==Descripción==
+El plan de configuración de enmarca en el proyecto Casino Online, desarrollado como proyecto de la asignatura Ingeniería del Software.
+El objetivo de la aplicación es la implementación de dos herramientas: un cliente y un servidor. El servidor mantendrá información de los usuarios y organizará el desarrollo y sincronización de los juegos, y el cliente, por su parte, se limitará a notificar al servidor las opciones seleccionadas por el usuario y representar las acciones que el servidor le comunique, por parte de otros usuarios.
 
-=Gestión de GCS=
+==Identificación de EC==
+El plan de gestión de requisitos se aplicará, principalmente, a los dos contenidos básicos del proyecto: _código_ y _documentación_. Ambos se expondrán de forma más minuciosa en el apartado _3.6 Plan de Mantenimiento_. 
+Si se seleccionan nuevos elementos susceptibles de pertenecer al plan de gestión de configuración se añadirán tanto a este apartado, como al apartado antes mencionado.
+
+==Identificación de software ajeno incluído como parte de la GCS==
+Existe software ajeno al desarrollado por parte del proyecto que estará incluído dentro de la GCS. El software, a expensas de posibles cambios y/o actualizaciones, es el siguiente:
+  * Java JDK 1.6
+  * Eclipse 3.3+
+  * NetBeans 6.x
+  * ORACLE 10g Express
+  * Apache 2.x
+Dicho software afecta a la Gestión de Configuración, dado que, si existiese cualquier cambio o problema con los mismos, afectaría de forma trascendental a otros documentos de especificaciones, que sí están incluídos en la GCS original.
+
+==Grado de formalismo, profundidad de control y parte del ciclo de vida del software al que se aplicará la GCS==
+La GCS intentará adecuarse al nivel de profundidad posible, sin que el mantenimiento del mismo pueda delegar en un perjuicio en otras partes del desarrollo que han de realizarse de forma obligatoria.
+Intentará, en la medida de lo posible, controlar los accesos a los distintos EC por parte de todos los componentes del grupo de desarrollo. Dicho control no especifica quién tiene acceso a determinados EC, sino que marcará dónde y cómo han de estar situados y configurados todos los EC.
+El control del acceso personal, quién puede tocar qué, no se marcará de forma documental ni automatizada, sino de forma organizativa entre los miembros del proyecto.
+
+==Limitaciones que se aplican a la GCS==
+La principal limitación de la GCS es el espacio temporal que pudiera conllevar. No todos los elementos pueden, o deben, ser considerados EC, ya que ello podría acarrear una pérdida de tiempo desproporcionada.
+Por este motivo, se han seleccionado los EC que son susceptibles de someterse a cambios, subjetivamente considerables, y aquellos componentes que requieren cierto control de versiones, con el fin de mejorar la calidad final del producto.
+
+==Posibles impactos en el coste, planificación o desarrollo de las actividades de la GCS==
+El uso inadecuado, por parte de algún desarrollador, componente del grupo y/o cliente, de los EC o el deterioro o pérdida de algún elemento puede conllevar un impacto grave en la planificación y el desarrollo.
+Este tipo de impactos serán abordados desde la Gestión de Riesgos interna del proyecto, y, por lo tanto, es susceptible de ser configurado.
+
+=3.2 Gestión de GCS=
+
+La gestión de GCS marca las responsabilidades y autoridades, tanto colectivamente como individualmente, que tendrán las actividades y su gestión.
+
+==3.2.1 Organización==
+
+==3.2.2 Responsabilidades==
+==3.2.3 Políticas, Directivas y Procedimientos==
+==3.2.4 Gestión del Proceso GCS==
 
 =Actividades de GCS=
 
