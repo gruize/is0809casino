@@ -39,8 +39,6 @@ Añadido a la interacción del usuario con el sistema y con otros usuarios, es n
 
  * *Gestionara una base de datos de clientes* con información relevante, tales como datos personales (Nombre de usuario, clave de acceso etc.) y datos económicos, (dinero disponible para apostar, estadísticas diversas de pérdidas y ganancias, preferencias en el juego), para poder ofrecer un servicio adaptado al cliente.  Los datos de los clientes deberán gestionarse mediante cifrados para evitar la posible intrusión de personal no autorizado. La privacidad de los datos es un punto crítico, puesto que hay dinero de por medio.
 
- * *Gestión de promociones* 
-
 Un sistema de administración técnica:
 
  * *Se añadirá un sistema de control del sistema* en el cual se pueda ver el sistema de carga, así como estadísticas que informen de posibles fallos y momentos críticos.
