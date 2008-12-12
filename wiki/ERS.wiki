@@ -16,36 +16,36 @@
 === 1.1 Propósito ===
 Este documento ha sido redactado con el fin de marcar las pautas generales y las especificaciones que deberá seguir la aplicación a desarrollar, con el objetivo final de suplir las necesidades que el cliente ha planteado en las distintas reuniones realizadas hasta la fecha.
 
-Este documento está dirigido a los desarrolladores encargados de la codificación de la aplicación con el objetivo de que realicen las funciones de desarrollo a partir de las pautas marcadas en él y en los documentos realizados posteriormente.
+Este documento está dirigido a todas las personas con alguna relación en el proyecto encargados de la codificación de la aplicación con el objetivo de que realicen las funciones de desarrollo a partir de las pautas marcadas en él y en los documentos realizados posteriormente.
 
 Este documento servirá de canal de comunicación entre las distintas partes implicadas en el desarrollo de la aplicación y deberán tomar parte en su confección los miembros de cada una de estas partes. Esta especificación está sujeta a revisiones por las partes, especialmente por los potenciales usuarios, que se recogerán por medio de sucesivas revisiones del documento, hasta alcanzar su aprobación. Una vez aprobado servirá de base al equipo de desarrollo para la construcción del nuevo sistema.
 
 === 1.2 Ámbito de sistema ===
-Se ha constatado la necesidad de un sistema informático que automatice las labores gestión de un casino on-line, así como de los clientes que formen parte de el.
+Se ha constatado la necesidad de un sistema informático que ofrezca la posibilidad de poder jugar en un casino real en modo on-line, y permitir la gestión del mismo.
 
 La aplicación se encarga de gestionar todas las funciones relacionadas con el juego; gestión de los distintos juegos disponibles, mesas virtuales etc. y mantenimiento administración del sistema; gestión de usuarios y juegos, añadir nuevas funcionalidades etc. Esto quiere decir que se encargará de las siguientes funciones:
 
  * *Un sistema para probar el juego sin darse de alta* para que usuarios anónimos puedan probar el sistema sin compromiso. Este sistema debe garantizar que no producen ganancias ni perdidas para otros usuarios ni para el casino. Este sistema tendrá un tiempo de uso limitado en tiempo y opciones.
 
- * *Sistema de dado de alta de clientes* en la que se requerirá una serie de condiciones como edad, país, método por el cual se ingresara dinero virtual en el juego, cuenta de destino del dinero virtual ganado etc. Sera imprescindible ser mayor de edad para poder darse de alta. Una vez dado de alta el usuario podrá acceder de forma total a los juegos.
+ * *Sistema de alta de clientes* en la que se requerirá una serie de condiciones como edad, país, método por el cual se ingresara dinero virtual en el juego, cuenta de destino del dinero virtual ganado etc. Sera imprescindible ser mayor de edad para poder darse de alta. Una vez dado de alta el usuario podrá acceder de forma total a los juegos.
 
  * *Gestión de cuenta* donde un usuario pueda acceder a sus datos modificarlos, cancelar una cuenta y cualquier otra acción relacionada con la gestión de cuentas excluyendo la gestión monetaria.
 
  * *Administración monetaria de cara al usuario* el cual permita ingresar y sacar dinero de una cuenta virtual. Para la acción de sacar dinero se deberán poner ciertas restricciones.
 
-Además de la del sistema de interacción del usuario con el sistema es necesario un sistema que gestione los aspectos del casino: 
+Añadido a la interacción del usuario con el sistema y con otros usuarios, es necesario un sistema que gestione los aspectos del casino: 
 
  * *Un sistema de gestión del casino* en el cual se incluirán opciones varias desde gestión de los juegos, estadísticas de estos, creación de eventos especiales y promociones.
 
- * *Gestionara una base de datos de clientes* con información relevante no solo en el propio de una cuenta (Nombre de usuario, clave de acceso etc.), si no también datos económicos, (dinero disponible para apostar, estadísticas diversas de pérdidas y ganancias, preferencias en el juego), para poder ofrecer un servicio adaptado al cliente.  Los datos de los clientes deberán gestionarse mediante cifrados para evitar la posible intrusión de personal no autorizado. La privacidad de los datos es un punto crítico, puesto que hay dinero de por medio.
+ * *Gestionara una base de datos de clientes* con información relevante, tales como datos personales (Nombre de usuario, clave de acceso etc.) y datos económicos, (dinero disponible para apostar, estadísticas diversas de pérdidas y ganancias, preferencias en el juego), para poder ofrecer un servicio adaptado al cliente.  Los datos de los clientes deberán gestionarse mediante cifrados para evitar la posible intrusión de personal no autorizado. La privacidad de los datos es un punto crítico, puesto que hay dinero de por medio.
 
- * *Gestión de promociones* que incluyan recompensas por ciertas acciones concretas, como premiar al usuario a partir de ciertas circunstancias.
+ * *Gestión de promociones* 
 
 Un sistema de administración técnica:
 
  * *Se añadirá un sistema de control del sistema* en el cual se pueda ver el sistema de carga, así como estadísticas que informen de posibles fallos y momentos críticos.
 
- * *Gestión de la base de datos* que conllevará futuras ampliaciones de está necesarias para la incursión de nuevos juegos
+ * *Gestión de la base de datos* permitirá ampliaciones de la gestión del casino y el desarrollo de nuevos juegos
 === 1.3 Definiciones, Acronimos y Abreviaturas ===
 ==== Definiciones ====
  * *Creditos:* elemento con el cual se hacen las transacciones, con el que se apuesta y que recoge tanto el dinero ingresado, como el invertido.
