@@ -8,7 +8,7 @@
 
 || _Autor_ || _Fecha_ || _Comentario_ ||
 || David Fernández y Alberto Fernández ||12/12/2008 ||Revision de Gonzalo ||
-|| Desconocido ||22/11/2008 ||Generación del documento inicial ||
+|| Todos los miembros del equipo ||22/11/2008 ||Generación del documento inicial ||
 
 
 == 1 Introducción ==
@@ -145,7 +145,7 @@ JUGADOR
 
 4. Login: cuando un jugador desee entrar a jugar en el casino, deberá introducir su usuario y contraseña. Premisas: el jugador esta dado de alta en el sistema. 
 
-5. Datos jugador: para cada jugador se guadará: nombre, apellidos, fecha de nacimiento, sexo, ciudad, correo electrónico, id usuario, contraseña, nick, saldo. 
+5. Registro del jugador: para cada jugador se guadará nombre, apellidos, fecha de nacimiento, sexo, ciudad, correo electrónico, id usuario, contraseña, nick, saldo. 
 
 6. Modificar datos: cada jugador podrá modificar los datos siguientes: ciudad, correo electrónico, contraseña, nombre para mostrar. 
 
@@ -153,9 +153,9 @@ JUGADOR
 
 8. Solicitar saldo: se podrá solicitar saldo siempre y cuando sea aprobada la transacción por el casino. Se insertará en la cuenta que el usuario tenga en el casino. 
 
-9. Consulta datos: cada jugador podrá consultar sus datos en cualquier momento. Además de su información personal y saldo, se mostrarán las estadísticas de juego y mensajes privados enviados por la administración.
+9. Consultar datos: cada jugador podrá consultar sus datos en cualquier momento. Además de su información personal y saldo, se mostrarán las estadísticas de juego y mensajes privados enviados por la administración.
 
-10. Las estadisiticas que puede observar el jugador, seran el dinero actual, dinero ganado, dinero perdido, dinero recargado, y estadisticas particulares de juegos (partidas ganadas, perdidas, dinero apostado)
+10. Consulta de estadisiticas: el jugador puede observar su saldo actual, dinero ganado, dinero perdido, dinero recargado, y estadisticas particulares de juegos (partidas ganadas, perdidas, dinero apostado).
 
 11. Chat: se podrán visualizar los jugadores que estén en el casino y se podrá chatear con ellos. 
 
@@ -193,15 +193,13 @@ ADMINISTRADOR DEL CASINO
 
 3. Crear mesa de juego: el administrador podrá crear tantas mesas para un juego como crea oportunas. Se configurarán todos los datos de la mesa. 
 
-5. Cerrar mesa de juego: El Administrador podrá cerrar una mesa en cualquier momento. 
+4. Expulsar jugador de mesa: el administrador podrá. Expulsar al jugador que estime oportuno con causas justificadas.
 
-6. Observar mesa juego: el administrador podrá observar en cualquier momento el estado de una mesa de cualquier juego.
+5. Observar mesa juego: el administrador podrá observar en cualquier momento el estado de una mesa de cualquier juego.
 
-7. Administrar mesa juego: El administradro ejecutar diversas acciones sobre las mesa de juego, como parar la ejecucion de un juego, expulsar jugadores, reiniciar mano. 
+6. Consultar estadísticas generales: el administrador podrá obtener un informe con los datos generales del casino, como son: dinero total recaudado en un determinado rango de fechas, usuarios activos del casino y estadisiticas personales de cada usuario. 
 
-8. Consultar estadísticas generales: el administrador podrá obtener un informe con los datos generales del casino, como son: dinero total recaudado en un determinado rango de fechas, usuarios activos del casino y estadisiticas personales de cada usuario. 
-
-9. Proporcionar saldo: el administrador podrá proporcionar mas saldo a un jugador. Para ello deberá haber una solicitud pendiente por parte del jugador. 
+7. Proporcionar saldo: el administrador podrá proporcionar mas saldo a un jugador. Para ello deberá haber una solicitud pendiente por parte del jugador. 
 
 
 === 3.3. Requisitos de Rendimiento ===
