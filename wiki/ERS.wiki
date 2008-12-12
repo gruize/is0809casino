@@ -119,7 +119,7 @@ La perspectiva del Casino es que sea un casino online similar a los que existen 
 
     
 === 2.5. Suposiciones y Dependencias ===
-El sístema debe correr sobre cualquier plataforma gracias a la máquina virtual de java(JVM). Se realizará la página virtual cumpliendo los estándares para permitir la visualización en al menos IE,Firefox,Opera y Safari.
+El sístema debe correr sobre cualquier plataforma gracias a la máquina virtual de java(JVM). Se realizará la página de registro y administración de usuarios cumpliendo los estándares para permitir la visualización en al menos IE,Firefox,Opera y Safari.
  
 === 2.6. Requisitos Futuros ===
  * Mejora de la interfaz Gráfica (Imágenes, animaciones 2d, 3d).
