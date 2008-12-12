@@ -6,7 +6,10 @@
 
 == IEEE Std. 830-1998 ==
 
-== 22 de Octubre de 2008 ==
+|| _Autor_ || _Fecha_ || _Comentario_ ||
+|| David Fernández y Alberto Fernández ||12/12/2008 ||Revision de Gonzalo ||
+|| Desconocido ||22/11/2008 ||Generación del documento inicial ||
+
 
 == 1 Introducción ==
 
