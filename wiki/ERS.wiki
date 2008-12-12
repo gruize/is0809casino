@@ -185,7 +185,7 @@ JUGADOR
  
 
 
-ADMINISTRADOR
+ADMINISTRADOR DEL CASINO
 
 1. Login administrador: para acceder al servidor del casino el administrador deberá logearse en la aplicación, introduciendo su nombre de usuario y contraseña. 
 
