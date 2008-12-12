@@ -139,7 +139,7 @@ JUGADOR
 
 1. Alta Usuario: se podrá solicitar vía web la entrada al casino. Para ello se registrará proporcionando sus datos personales: nombre y apellidos, fecha de nacimiento, sexo, ciudad, correo electrónico, id de usuario, contraseña y nombre para mostrar (nick).
 
-2. Baja Usuario: un jugador podrá solicitar la baja en el casino. Se eliminarán sus datos del sistema.
+2. Baja Usuario: un jugador podrá solicitar la baja en el casino. 
 
 3. Descargar Casino: Se podrá descargar la aplicación del casino via web. 
 
@@ -151,7 +151,7 @@ JUGADOR
 
 7. Recarga saldo automática: al darse de alta en el casino el jugador recibirá automáticamente 100 leuros. 
 
-8. Solicitar saldo: se podrá solicitar saldo si se poseen menos de 20 leuros. Se insertarán en la cuenta del jugador. 
+8. Solicitar saldo: se podrá solicitar saldo siempre y cuando sea aprobada la transacción por el casino. Se insertarán en la cuenta del jugador. 
 
 9. Consulta datos: cada jugador podrá consultar sus datos en cualquier momento. Además de su información personal y saldo, se mostrarán las estadísticas de juego y mensajes privados enviados por la administración.
 
@@ -210,7 +210,7 @@ No aplican
 
 6. Toda la información que se envie estará cifrada. 
 
-7. El sistema correrá tanto en plataformas Windows como en Linux.
+7. El sistema correrá en todas las plataformas que dispongan de la máquina virtual de Java.
 
 8. Las reglas de los juegos estan definidas en los apendices.
   
