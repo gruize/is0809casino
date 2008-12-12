@@ -203,7 +203,7 @@ ADMINISTRADOR DEL CASINO
 
 
 === 3.3. Requisitos de Rendimiento ===
-1. El casino soportará la conexión de varios jugadores simultáneamente, permitiento la interacción entre ellos para jugar. 
+1. El servidor que soporta el sistema del casino deberá ser capaz de dar servicio a multiples jugadores simultáneamente, permitiendo la interacción entre ellos para jugar de manera dinámica. 
 
 === 3.4. Restricciones de Diseño ===
 No aplican
