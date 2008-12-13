@@ -9,7 +9,7 @@
 ====IEEE Computer Society====
 
 || _Autor/es_ || _Fecha_ || _Comentario_ ||
-|| Alberto Milán ||13/12/2008 ||Desarrollo de los puntos 3,4 y 5.||
+|| Alberto Milán ||13/12/2008 ||Finalización de la Gestión de Configuración Inicial||
 || Alberto Milán ||11/12/2008 ||Finalización de la Introducción||
 || Alberto Milán y Santiago Zomeño ||04/12/2008 ||Generación del documento inicial ||
 
@@ -251,10 +251,3 @@ Si existiera algún problema, o algún comportamiento erróneo por parte de alg�
 Los cambios deberán ser realizados mediante actualizaciones al repositorio, en cuyo caso únicamente se solicitan dos requisitos:
   * La aplicación ha de ser funciona, tal y como era antes de la actualización, si el cambio no afecta de forma drástica al diseño.
   * La actualización ha de tener un comentario, tan breve y completo como se puedan conjugar ambos términos, añadido a la misma. Si no se realiza, es obligación por parte del desarrollador realizar una nueva actualización añadiendo a su nuevo comentario el comentario previo e informando que la actualización es de _Sincronización por falta de comentario_.
-
-
-=Planificación de GCS=
-
-=Recursos de GCS=
-
-=Plan de mantenimiento de GCS=
