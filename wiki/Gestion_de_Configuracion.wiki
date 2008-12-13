@@ -135,7 +135,17 @@ La designación de versiones será la siguiente:
   * Z contendrá la versión referente a la revisión del producto en el control de versiones. Es decir, almacenará la revisión que Subversion contenga almacenada para el código en proceso.
 
 • Identificación de productos software 
+
+El producto software final estará formado por dos aplicaciones:
+
+  * El Servidor-Casino Online, que funcionará de forma estática como servicio ofrecido por el donante del mismo. 
+
+  * El Cliente-Casino Online, que funcionará en cada uno de los equipos de los usuarios que deseen acceder al servicio ofrecido por el donante.
+
 • Identificación de documentación 
+
+
+
 • Identificación de medios y ficheros 
 • Proceso de liberación de documentos 
 • Proceso de liberación de productos software 
