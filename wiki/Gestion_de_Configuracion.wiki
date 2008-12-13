@@ -144,14 +144,29 @@ El producto software final estará formado por dos aplicaciones:
 
 • Identificación de documentación 
 
+Existen diversos documentos sobre los que se realiza GCS. En los mismos, se ha de identificar cada EC contenido en cada elemento mediante un convenio de identificación previo a su nombre. Véase:
 
+  * Gestión de Configuración Software: GCS_
+  * Especificación de Requisitos Software: ERS_
+  * Gestión de Riesgos: GR_
+  * Casos de Uso: CU_
+
+Esto significa que, por ejemplo, el caso de uso 0001 debe anteponer a su propio nombre, en su definición, el código CU_, siendo su resultado final CU_0001.
+
+Los nombres de los documentos, contenidos actualmente, han de ser los siguientes:
+  
+  * Gestión de Configuración: GCS - Gestión de Configuración Software
+  * Especificación de Requisitos Software: ERS - Especificación de Requisitos Software
+  * Gestión de Riesgos: GR - Gestión de Riesgos
+  * Casos de Uso: CU - Casos de Uso
+
+Todos los documentos se almacenan en formato Wiki, y se permite su edición mediante la herramienta que GoogleCode ofrece a los usuarios. Una vez finalizada su edición se ha de realizar una copia del documento a su carpeta final, que no será, en ningún caso, la ofrecida por GoogleCode, sino la que se describe en este documento (repositorio:/svn/doc/)
 
 • Identificación de medios y ficheros 
 • Proceso de liberación de documentos 
 • Proceso de liberación de productos software 
 • Procesamiento de informes de incidencias, solicitudes de 
 cambio, órdenes de cambio,... 
-• Estructura y forma de operación de los CCCs
 
 ==3.2.4 Gestión del Proceso GCS==
 
