@@ -18,6 +18,10 @@
 
 ==2.1 Definiciones==
 
+*Versiones*: Más comúnmente denominado revisión, dentro del ámbito de control de versiones. Marca el estado de evolución del proyecto 
+
+*Variantes*: Versión de producto alternativa, desarrollada para realizar alguna corrección o mejora de un modo paralelo, sin alterar la versión estable del producto.
+
 *Punto de control*: Punto en el que requisitos específicos son aplicados a los elementos de configuración desarrollados.
 
 *Release*: Versión particular de un elemento de configuración que está disponible para un fin específico. 
@@ -79,9 +83,16 @@ La gestión de GCS marca las responsabilidades y autoridades, tanto colectivamen
 
 La organización de la GCS viene marcada, de forma casi absoluta, por la organización del sistema de repositorio que se posee.
 
+Dicha organización y estructura del repositorio no es mantenida por una persona en concreto, sino que es el conjunto del grupo el que, basada su coordinación, ha de mantener la coherencia y ordenación de los datos.
 
+Esto significa que todos los componentes del grupo tienen acceso y permisos totales sobre cualquier EC, siendo la organización personal y la planificación de las tareas las que establezcan estos límites _virtuales_ sobre dichos elementos.
+
+Esta decisión está sometida a EC en sí misma, con lo que podría verse modificada a lo largo del desarrollo del proyecto.
 
 ==3.2.2 Responsabilidades==
+
+
+
 ==3.2.3 Políticas, Directivas y Procedimientos==
 ==3.2.4 Gestión del Proceso GCS==
 
