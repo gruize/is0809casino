@@ -244,7 +244,14 @@ Por decisión colectiva se ha determinado que no existe control establecido ni p
 
 Esto conlleva que todo componente del grupo tendrá derechos y acceso a realizar cualquier tarea que estime necesaria. Es decir, se asume una *confianza mutua* por parte de todos los componentes hacia el resto, haciendo que cualquiera pueda gestionar el contenido del proyecto sin la necesidad de esperas provocadas por los permisos pertinentes.
 
-Es obvio que este sistema no es óptimo y puede desajustar el equilibrio y seguridad del proyecto, pero estimamos más necesaria la rapidez de funcionamiento que el control de permisos. Todo esto está motivado más aún por el hecho 
+Es obvio que este sistema no es óptimo y puede desajustar el equilibrio y seguridad del proyecto, pero estimamos más necesaria la rapidez de funcionamiento que el control de permisos. Todo esto está motivado más aún por el hecho de que los componentes del grupo raramente coincidirán en el desarrollo y, por lo tanto, es inviable que unos dependan de otros en su evolución de desarrollo.
+
+Si existiera algún problema, o algún comportamiento erróneo por parte de algún componente del grupo, el mismo deberá corregirlo restaurando el estado previo del repositorio. Esa persona, y sólo esa persona, es responsable del problema, luego la ayuda de otros componentes está únicamente motivada por la ayuda personal al que generó el problema y, nunca, bajo obligación alguna.
+
+Los cambios deberán ser realizados mediante actualizaciones al repositorio, en cuyo caso únicamente se solicitan dos requisitos:
+  * La aplicación ha de ser funciona, tal y como era antes de la actualización, si el cambio no afecta de forma drástica al diseño.
+  * La actualización ha de tener un comentario, tan breve y completo como se puedan conjugar ambos términos, añadido a la misma. Si no se realiza, es obligación por parte del desarrollador realizar una nueva actualización añadiendo a su nuevo comentario el comentario previo e informando que la actualización es de _Sincronización por falta de comentario_.
+
 
 =Planificación de GCS=
 
