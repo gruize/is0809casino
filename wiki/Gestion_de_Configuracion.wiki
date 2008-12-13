@@ -87,13 +87,62 @@ Dicha organización y estructura del repositorio no es mantenida por una persona
 
 Esto significa que todos los componentes del grupo tienen acceso y permisos totales sobre cualquier EC, siendo la organización personal y la planificación de las tareas las que establezcan estos límites _virtuales_ sobre dichos elementos.
 
-Esta decisión está sometida a EC en sí misma, con lo que podría verse modificada a lo largo del desarrollo del proyecto.
+Esta decisión está sometida a GCS en sí misma, con lo que podría verse modificada a lo largo del desarrollo del proyecto.
 
 ==3.2.2 Responsabilidades==
 
+Como se ha definido en el contexto organizativo, las responsabilidades de la gestión de EC son individual de cada componente del grupo.
 
+Por el momento, se desconocen librería externas al proyecto en uso, así pues el rol de _bibliotecario_ no está definido. Al ser la organización de confianza mutua, se optará a que el usuario del módulo que requiera del uso de una librería documente dicho uso, mantenga la librería y ofrezca todas las facilidades al resto de componentes.
+
+Esta decisión también está sometida a GCS, según las necesidades y cambios que, probablemente, sucedan en el desarrollo del producto.
 
 ==3.2.3 Políticas, Directivas y Procedimientos==
+
+• Niveles del software en un árbol jerárquico 
+El producto Casino Online es, en sí, un _Sistema_ con el que se relacionan, inferiormente de forma jerárquica, dos _Subsistemas_: el Cliente-Casino Online y el Servidor-Casino Online.
+Dichos susbsistemas contendrán una ser de _Componentes_, que en el marco del desarrollo actual no están claramente definidos al encontrarse en desarrollo del prototipo del mismo.
+El Subsistema Servidor-Casino Online contendrá, al menos, los siguientes componentes:
+
+  * Comunicación
+  * Lógica de Negocio/Administración de eventos disparados por clientes
+  * Gestión de Persistencia de datos/Acceso y Gestión de BBDD
+
+El Subsistema Cliente-Casino Online contendrá, al menos, los siguientes componentes:
+
+  * Interfaz de usuario/Presentación
+  * Comunicación
+  * Lógica de Negocio/Gestión de eventos disparados por clientes
+ 
+Cada interfaz, clase y/o conjunto limitado de clases conformarán _Unidades_, con un significado y propósito atómico definido.
+
+*TODO* Realizar gráfico con los niveles jerárquicos definidos.
+
+• Nombrado de programas y módulos 
+
+Los programas que conformarán el proyecto final serán los definidos en los subsistemas previos y los módulos serán aquellos componentes con una finalidad diferenciada, que permita una organización/estructura lógica y clara del producto.
+
+Los nombrados finales, tanto de los programas, como de los módulos, quedan sujetos a la definición de los mismos por parte de los desarrolladores, al desconocerse, actualmente, dicha nomenclatura.
+
+• Designación de versiones 
+
+La designación de versiones será la siguiente:
+
+    X.Y.Z
+
+  * X contendrá la versión del producto en su forma más genérica. Esto significa que una versión final, o release, será aquella que tenga como versión en X el valor 1.
+  * Y contendrá la versión del producto en su forma más particular. Ello significa que se tendrá en cuenta el factor de estabilidad del sistema. Si la última versión estable obtuvo como versión en Y el valor 14, el siguiente desarrollo nombrará en Y el valor 15, hasta que se consiga una cierta estabilidad y robustez en la aplicación, que pasará a denominarse valor 16 en Y. Esto significa que un valor par en la versión Y denota una versión estable y un valor impar una versión posiblemente inestable, o en proceso de estabilizarse.
+  * Z contendrá la versión referente a la revisión del producto en el control de versiones. Es decir, almacenará la revisión que Subversion contenga almacenada para el código en proceso.
+
+• Identificación de productos software 
+• Identificación de documentación 
+• Identificación de medios y ficheros 
+• Proceso de liberación de documentos 
+• Proceso de liberación de productos software 
+• Procesamiento de informes de incidencias, solicitudes de 
+cambio, órdenes de cambio,... 
+• Estructura y forma de operación de los CCCs
+
 ==3.2.4 Gestión del Proceso GCS==
 
 =Actividades de GCS=
