@@ -9,7 +9,8 @@
 ====IEEE Computer Society====
 
 || _Autor/es_ || _Fecha_ || _Comentario_ ||
-|| Alberto Milán ||11/12/2008 ||Continuación de generación del documento inicial||
+|| Alberto Milán ||13/12/2008 ||Desarrollo de los puntos 3,4 y 5.||
+|| Alberto Milán ||11/12/2008 ||Finalización de la Introducción||
 || Alberto Milán y Santiago Zomeño ||04/12/2008 ||Generación del documento inicial ||
 
 
@@ -28,6 +29,7 @@ EC:  Elemento de Configuración
 
 GCS: Gestión de Configuración de Software
 
+SVN: Subversion. Herramienta de control y gestión de versiones.
 
 
 =3.1 Introducción=
@@ -35,6 +37,10 @@ GCS: Gestión de Configuración de Software
 ==Descripción==
 El plan de configuración de enmarca en el proyecto Casino Online, desarrollado como proyecto de la asignatura Ingeniería del Software.
 El objetivo de la aplicación es la implementación de dos herramientas: un cliente y un servidor. El servidor mantendrá información de los usuarios y organizará el desarrollo y sincronización de los juegos, y el cliente, por su parte, se limitará a notificar al servidor las opciones seleccionadas por el usuario y representar las acciones que el servidor le comunique, por parte de otros usuarios.
+
+Para el mantenimiento de los EC se ha elegido utilizar la herramienta Subversion. 
+Subversion es una herramienta de libre distribución que permite el control de versiones de elementos. Especialmente está orientado a elementos conformados por texto, sobre los que permite realizar un buen manejo, control y gestión de sus modificaciones.
+Dicha herramienta, en su modo servidor/repositorio, estará alojada en un servicio que Google ofrece, denominado GoogleCode. Se permite, por parte de Google, un tamaño de repositorio de 1 GB (1024 MB). 
 
 ==Identificación de EC==
 El plan de gestión de requisitos se aplicará, principalmente, a los dos contenidos básicos del proyecto: _código_ y _documentación_. Ambos se expondrán de forma más minuciosa en el apartado _3.6 Plan de Mantenimiento_. 
@@ -57,6 +63,9 @@ El control del acceso personal, quién puede tocar qué, no se marcará de forma
 ==Limitaciones que se aplican a la GCS==
 La principal limitación de la GCS es el espacio temporal que pudiera conllevar. No todos los elementos pueden, o deben, ser considerados EC, ya que ello podría acarrear una pérdida de tiempo desproporcionada.
 Por este motivo, se han seleccionado los EC que son susceptibles de someterse a cambios, subjetivamente considerables, y aquellos componentes que requieren cierto control de versiones, con el fin de mejorar la calidad final del producto.
+Otra limitación, a priori secundaria, podría ser el límite físico del tamaño de repositorio obtenido. 
+Al poseer 1024 MB de espacio para gestión de versiones, esta limitación se mitiga, pues no es objetivo el pensar que dicho espacio físico podría ser ocupado en un proyecto de esta duración.
+
 
 ==Posibles impactos en el coste, planificación o desarrollo de las actividades de la GCS==
 El uso inadecuado, por parte de algún desarrollador, componente del grupo y/o cliente, de los EC o el deterioro o pérdida de algún elemento puede conllevar un impacto grave en la planificación y el desarrollo.
@@ -67,6 +76,10 @@ Este tipo de impactos serán abordados desde la Gestión de Riesgos interna del 
 La gestión de GCS marca las responsabilidades y autoridades, tanto colectivamente como individualmente, que tendrán las actividades y su gestión.
 
 ==3.2.1 Organización==
+
+La organización de la GCS viene marcada, de forma casi absoluta, por la organización del sistema de repositorio que se posee.
+
+
 
 ==3.2.2 Responsabilidades==
 ==3.2.3 Políticas, Directivas y Procedimientos==
