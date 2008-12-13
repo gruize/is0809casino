@@ -217,15 +217,41 @@ Todos estos elementos se han seleccionado, vista la posibilidad del cambio en lo
 El repositorio de gestión de versiones contendrá el siguiente árbol (decorado) de carpetas:
 
 svn/
-   -Servidor/ 
-      -branches/  { Espacio de desarrollo de variantes/ramas de código de la aplicación Servidor }
-      -tags/           { Espacio de almacenado de versiones ejecutables *liberadas* de la aplicación Servidor }
-      -trunk/
-   -Cliente/
-   -doc/  { Espacio de guardado y control de documentación del proyecto }
-   -wiki/ { Espacio temporal de edición de documentación via web - GoogleCode}
+  * Servidor/ 
+    * branches/  { Espacio de desarrollo de variantes/ramas de código de la aplicación Servidor }
+    * tags/           { Espacio de almacenado de versiones ejecutables *liberadas* de la aplicación Servidor }
+    * trunk/        { Espacio de desarrollo principal de código de la aplicación Servidor }
+  * Cliente/
+    * branches/  { Espacio de desarrollo de variantes/ramas de código de la aplicación Cliente }
+    * tags/           { Espacio de almacenado de versiones ejecutables *liberadas* de la aplicación Cliente }
+    * trunk/        { Espacio de desarrollo principal de código de la aplicación Cliente }
+  * doc/  { Espacio de guardado y control de documentación del proyecto }
+  * wiki/ { Espacio temporal de edición de documentación via web - GoogleCode}
 
+Las lineas base serán las siguientes:
 
+Funcional Análisis de Requisitos 
+del Sistema 
+Definición Problema 
+Costes/tiempos 
+Requisitos Sistema 
+Distribución de 
+Funciones 
+Análisis de Requisitos 
+Software 
+ERS de cada componente software 
+Diseño 
+Preliminar 
+Diseño arquitectura Arquitectura 
+Plan de Pruebas 
+Diseño Diseño Detallado Diseño detallado 
+Plan de implementación 
+Diseño de las pruebas 
+Producto Pruebas Programas 
+Informes pruebas 
+Operación Implantación Manual usuario 
+Manual instalación 
+Manual operación
 =Planificación de GCS=
 
 =Recursos de GCS=
