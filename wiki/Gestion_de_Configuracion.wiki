@@ -100,6 +100,7 @@ Esta decisión también está sometida a GCS, según las necesidades y cambios q
 ==3.2.3 Políticas, Directivas y Procedimientos==
 
 • Niveles del software en un árbol jerárquico 
+
 El producto Casino Online es, en sí, un _Sistema_ con el que se relacionan, inferiormente de forma jerárquica, dos _Subsistemas_: el Cliente-Casino Online y el Servidor-Casino Online.
 Dichos susbsistemas contendrán una ser de _Componentes_, que en el marco del desarrollo actual no están claramente definidos al encontrarse en desarrollo del prototipo del mismo.
 El Subsistema Servidor-Casino Online contendrá, al menos, los siguientes componentes:
@@ -163,14 +164,67 @@ Los nombres de los documentos, contenidos actualmente, han de ser los siguientes
 Todos los documentos se almacenan en formato Wiki, y se permite su edición mediante la herramienta que GoogleCode ofrece a los usuarios. Una vez finalizada su edición se ha de realizar una copia del documento a su carpeta final, que no será, en ningún caso, la ofrecida por GoogleCode, sino la que se describe en este documento (repositorio:/svn/doc/)
 
 • Identificación de medios y ficheros 
+
+Todos los EC han de estar implementados/desarrollados en medios que permitan su gestión de configuración.
+
+Ello significa que no se permite otra configuración de fichero que no sea la de texto. Para mayor compatibilidad, se establece el siguiente formato de codificación de texto: *UTF-8* en todos los ficheros generados. Con este formato se intenta paliar las distintas configuraciones de guardado de texto que los distintos sistemas poseen (Windows, Linux y MACOS X, principalmente).
+
+Si un desarrollador o componente del grupo genera algún tipo de deficiencia para el resto de compañeros debido a la no-configuración de su sistema del modo aquí detallado se compromete a corregir dicha deficiencia para el buen uso del proyecto.
+
+Los ficheros de código también se atienen a la especificación aquí detallada, y la organización de los mismos en el repositorio se establece por consenso colectivo de los desarrolladores.
+
 • Proceso de liberación de documentos 
-• Proceso de liberación de productos software 
-• Procesamiento de informes de incidencias, solicitudes de 
-cambio, órdenes de cambio,... 
 
-==3.2.4 Gestión del Proceso GCS==
+Los documentos se liberarán y, por lo tanto, se los considerará en un estado estable y coherente al final de cada iteración. 
 
-=Actividades de GCS=
+Existe la posibilidad de que un documento no posea coherencia con el estado en código de la aplicación desarrollada, pues se permite la implementación previa a la documentación para evitar documentaciones _optimistas_, en el caso que pudieran existir. 
+
+En todo momento, y a excepción de decisiones consensuadas por componentes del grupo, cada componente ha de documentar los procesos por él mismo establecidos y de comunicar al resto de componentes dichos cambios para el conocimiento global del estado del proyecto.
+
+
+• Proceso de liberación de productos software
+
+Los productos software se liberarán siempre y cuando cumplan la condición inicial de encontrarse en su modo de versión Y, definida previamente, como estable.
+
+Una vez liberados se procederá a su instalación, tanto el subsistema servidor como el subsistema cliente en los diversos equipos que se poseen para pruebas. Tras la instalación se realizarán las pruebas pertinentes, que deberán durar un tiempo mínimo de 3 días, para determinar que dicha versión es candidata a liberar.
+
+ 
+• Procesamiento de informes de incidencias, solicitudes de cambio, órdenes de cambio,... 
+
+Los informes de incidencia serán emitidos dentro de la herramienta GoogleCode, en el apartado Issues. Todo usuario y desarrollador está obligado a emitir cualquier incidencia que encuentra, aunque no pertenezca al ámbito de su módulo/sección. Gracias a dicha herramienta se podrá realizar un seguimiento del estado de la incidencia, hasta su posible, y deseable, cierre.
+
+Las solicitudes de cambio, visto el modo organizativo del grupo, son inexistentes. Ello significa que cualquier desarrollador es libre de realizar un cambio, gracias a que es posible revertirlo, sin necesidad de emitir solicitud alguna.
+
+
+=3.3 Actividades de GCS=
+
+==3.3.1 Identificación de la Configuración==
+
+A continuación se detallarán los EC seleccionados para su gestión de configuración:
+
+  * Diseño del sistema Casino Online
+  * Código Fuente
+  * Código Ejecutable
+  * Documentación interna al proyecto y Documentación de Usuario
+  * Elementos relacionados:
+    * Java JDK 1.6
+    * Sistemas Operativos (Windows 2000/XP, Linux 2.6+ y MACOS X 10.4.1+)
+    * IDE de desarrollo Java: Eclipse 3.3+ y NetBeans 6.0+
+    * Gestor de versiones Subversion
+
+Todos estos elementos se han seleccionado, vista la posibilidad del cambio en los mismos durante el desarrollo, o vista la criticidad de los mismos en el desarrollo del software.
+
+El repositorio de gestión de versiones contendrá el siguiente árbol (decorado) de carpetas:
+
+svn/
+   -Servidor/ 
+      -branches/  { Espacio de desarrollo de variantes/ramas de código de la aplicación Servidor }
+      -tags/           { Espacio de almacenado de versiones ejecutables *liberadas* de la aplicación Servidor }
+      -trunk/
+   -Cliente/
+   -doc/  { Espacio de guardado y control de documentación del proyecto }
+   -wiki/ { Espacio temporal de edición de documentación via web - GoogleCode}
+
 
 =Planificación de GCS=
 
