@@ -39,7 +39,7 @@ SVN: Subversion. Herramienta de control y gestión de versiones.
 =3.1 Introducción=
 
 ==Descripción==
-El plan de configuración de enmarca en el proyecto Casino Online, desarrollado como proyecto de la asignatura Ingeniería del Software.
+El plan de configuración se enmarca en el proyecto Casino Online, desarrollado como proyecto de la asignatura Ingeniería del Software.
 El objetivo de la aplicación es la implementación de dos herramientas: un cliente y un servidor. El servidor mantendrá información de los usuarios y organizará el desarrollo y sincronización de los juegos, y el cliente, por su parte, se limitará a notificar al servidor las opciones seleccionadas por el usuario y representar las acciones que el servidor le comunique, por parte de otros usuarios.
 
 Para el mantenimiento de los EC se ha elegido utilizar la herramienta Subversion. 
@@ -47,7 +47,7 @@ Subversion es una herramienta de libre distribución que permite el control de v
 Dicha herramienta, en su modo servidor/repositorio, estará alojada en un servicio que Google ofrece, denominado GoogleCode. Se permite, por parte de Google, un tamaño de repositorio de 1 GB (1024 MB). 
 
 ==Identificación de EC==
-El plan de gestión de requisitos se aplicará, principalmente, a los dos contenidos básicos del proyecto: _código_ y _documentación_. Ambos se expondrán de forma más minuciosa en el apartado _3.6 Plan de Mantenimiento_. 
+El plan de Gestión de Configuración se aplicará, principalmente, a los dos contenidos básicos del proyecto: _código_ y _documentación_. Ambos se expondrán de forma más minuciosa en el apartado _3.6 Plan de Mantenimiento_. 
 Si se seleccionan nuevos elementos susceptibles de pertenecer al plan de gestión de configuración se añadirán tanto a este apartado, como al apartado antes mencionado.
 
 ==Identificación de software ajeno incluído como parte de la GCS==
@@ -68,7 +68,7 @@ El control del acceso personal, quién puede tocar qué, no se marcará de forma
 La principal limitación de la GCS es el espacio temporal que pudiera conllevar. No todos los elementos pueden, o deben, ser considerados EC, ya que ello podría acarrear una pérdida de tiempo desproporcionada.
 Por este motivo, se han seleccionado los EC que son susceptibles de someterse a cambios, subjetivamente considerables, y aquellos componentes que requieren cierto control de versiones, con el fin de mejorar la calidad final del producto.
 Otra limitación, a priori secundaria, podría ser el límite físico del tamaño de repositorio obtenido. 
-Al poseer 1024 MB de espacio para gestión de versiones, esta limitación se mitiga, pues no es objetivo el pensar que dicho espacio físico podría ser ocupado en un proyecto de esta duración.
+Al poseer 1024 MB de espacio para gestión de versiones, esta limitación se mitiga, pues no es objetivo el pensar que dicho espacio físico podría ser totalmente ocupado en un proyecto de esta duración.
 
 
 ==Posibles impactos en el coste, planificación o desarrollo de las actividades de la GCS==
