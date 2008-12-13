@@ -230,28 +230,22 @@ svn/
 
 Las lineas base serán las siguientes:
 
-Funcional Análisis de Requisitos 
-del Sistema 
-Definición Problema 
-Costes/tiempos 
-Requisitos Sistema 
-Distribución de 
-Funciones 
-Análisis de Requisitos 
-Software 
-ERS de cada componente software 
-Diseño 
-Preliminar 
-Diseño arquitectura Arquitectura 
-Plan de Pruebas 
-Diseño Diseño Detallado Diseño detallado 
-Plan de implementación 
-Diseño de las pruebas 
-Producto Pruebas Programas 
-Informes pruebas 
-Operación Implantación Manual usuario 
-Manual instalación 
-Manual operación
+|| Funcional || Análisis de Requisitos de la Aplicación || Definición final de la aplicación, requisitos finales y especificación de casos de uso ||
+|| Distribución de funciones || Análisis de Requisitos Software || ERS de la aplicación Servidor y de la aplicación Cliente ||
+|| Diseño || Diseño y Arquitectura Software || Implementación Arquitectura final y paso de pruebas establecido ||
+|| Producto || Pruebas || Programas binarios e informes por parte del usuario positivos ||
+|| Operación || Implantación del software || Desarrollo de la documentación de usuario: manual de usuario, manual de instalación y manual de operación ||
+
+Los repositorios a utilizar están situados en la herramienta GoogleCode, que proporciona de forma gratuita bajo la obligación de liberar dicho sistema software bajo licencia abierta. La estructura de los mismos ya ha sido definida y su estimación en tamaño es no-superior a la ofrecida por la herramienta utilizada.
+
+==3.3.2 Control de la Configuración==
+
+Por decisión colectiva se ha determinado que no existe control establecido ni puntual de la gestión de elementos de configuración.
+
+Esto conlleva que todo componente del grupo tendrá derechos y acceso a realizar cualquier tarea que estime necesaria. Es decir, se asume una *confianza mutua* por parte de todos los componentes hacia el resto, haciendo que cualquiera pueda gestionar el contenido del proyecto sin la necesidad de esperas provocadas por los permisos pertinentes.
+
+Es obvio que este sistema no es óptimo y puede desajustar el equilibrio y seguridad del proyecto, pero estimamos más necesaria la rapidez de funcionamiento que el control de permisos. Todo esto está motivado más aún por el hecho 
+
 =Planificación de GCS=
 
 =Recursos de GCS=
