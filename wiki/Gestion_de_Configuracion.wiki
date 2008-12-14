@@ -47,7 +47,7 @@ Subversion es una herramienta de libre distribución que permite el control de v
 Dicha herramienta, en su modo servidor/repositorio, estará alojada en un servicio que Google ofrece, denominado GoogleCode. Se permite, por parte de Google, un tamaño de repositorio de 1 GB (1024 MB). 
 
 ==Identificación de EC==
-El plan de Gestión de Configuración se aplicará, principalmente, a los dos contenidos básicos del proyecto: _código_ y _documentación_. Ambos se expondrán de forma más minuciosa en el apartado _3.6 Plan de Mantenimiento_. 
+El plan de Gestión de Configuración se aplicará, principalmente, a los dos contenidos básicos del proyecto: _código_ y _documentación_. Ambos se expondrán de forma más minuciosa en el apartado _3.3.1 Identificación de la Configuración_. 
 Si se seleccionan nuevos elementos susceptibles de pertenecer al plan de gestión de configuración se añadirán tanto a este apartado, como al apartado antes mencionado.
 
 ==Identificación de software ajeno incluído como parte de la GCS==
