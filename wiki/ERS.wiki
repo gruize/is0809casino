@@ -16,7 +16,7 @@
 === 1.1 Propósito ===
 Este documento ha sido redactado con el fin de marcar las pautas generales y las especificaciones que deberá seguir la aplicación a desarrollar, con el objetivo final de suplir las necesidades que el cliente ha planteado en las distintas reuniones realizadas hasta la fecha.
 
-Este documento está dirigido a todas las personas con alguna relación en el proyecto encargados de la codificación de la aplicación con el objetivo de que realicen las funciones de desarrollo a partir de las pautas marcadas en él y en los documentos realizados posteriormente.
+Este documento está dirigido a todas las personas con alguna relación en el proyecto con el objetivo de que realicen las funciones de desarrollo a partir de las pautas marcadas en él y en los documentos realizados posteriormente.
 
 Este documento servirá de canal de comunicación entre las distintas partes implicadas en el desarrollo de la aplicación y deberán tomar parte en su confección los miembros de cada una de estas partes. Esta especificación está sujeta a revisiones por las partes, especialmente por los potenciales usuarios, que se recogerán por medio de sucesivas revisiones del documento, hasta alcanzar su aprobación. Una vez aprobado servirá de base al equipo de desarrollo para la construcción del nuevo sistema.
 
