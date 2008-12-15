@@ -193,13 +193,13 @@ ADMINISTRADOR DEL CASINO
 
 3. Crear mesa de juego: el administrador podrá crear tantas mesas para un juego como crea oportunas. Se configurarán todos los datos de la mesa. 
 
-4. Expulsar jugador de mesa: el administrador podrá. Expulsar al jugador que estime oportuno con causas justificadas.
+4. Expulsar jugador de mesa: el administrador podrá expulsar al jugador que estime oportuno con causas justificadas, estas seran notificadas al usuario y estaran estipuladas en el manual del usuario.
 
-5. Observar mesa juego: el administrador podrá observar en cualquier momento el estado de una mesa de cualquier juego.
+5. Observar mesa juego: el administrador podrá observar en cualquier momento el estado de una mesa de cualquier juego. Esta funcionalidad se incluye por vigilancia del casino y para mayor seguridad en torneos.
 
 6. Consultar estadísticas generales: el administrador podrá obtener un informe con los datos generales del casino, como son: dinero total recaudado en un determinado rango de fechas, usuarios activos del casino y estadisiticas personales de cada usuario. 
 
-7. Proporcionar saldo: el administrador podrá proporcionar mas saldo a un jugador. Para ello deberá haber una solicitud pendiente por parte del jugador. 
+7. Proporcionar saldo: el administrador podrá proporcionar mas saldo a un jugador. Para ello deberá haber una solicitud pendiente por parte del jugador. El administrador decidira en función de las reglas estipuladas en el manual del usuario. 
 
 
 === 3.3. Requisitos de Rendimiento ===
