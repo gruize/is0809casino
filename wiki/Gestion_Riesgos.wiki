@@ -38,7 +38,7 @@ _Estrategias:_ Estudio detallado de los contenidos que han de ser cifrados y del
 
   * Es imposible encontrar uno o varios desarrolladores con las habilidades necesarias para la realización de una tarea concreta del proyecto.
 * Probabilidad:* Baja. *Efectos:* Catastrófico.
-_Estrategias:_ Obtener información y/o documentación por medio escrito u online. Solicitar que los desarrolladores adjudicados a la realización de esa tarea u otros más expertos, estudien dicha información y consigan adquirir en un tiempo minimamente aceptable los conocimientos para afrontarla.
+_Estrategias:_ Obtener información y/o documentación por medio escrito u online. Solicitar que los desarrolladores adjudicados a la realización de esa tarea u otros más expertos, estudien dicha información y consigan adquirir en un tiempo mínimamente aceptable los conocimientos para afrontarla.
 
   * Incapacidad del personal. Ello incluye la falta de personal por distintos motivos: enfermedad, época de estudios (exámenes), sobrecarga de trabajo ajeno al proyecto, motivos personales... 
 * Probabilidad:* Alta. *Efectos:* Serio.
@@ -46,7 +46,7 @@ _Estrategias:_ Estudiar y realizar un reajuste en la planificación ampliando lo
 
   * Nuevas incorporaciones en el equipo de diseño/desarrollo.
 * Probabilidad:* Moderada. *Efectos:* Tolerable.
-_Estrategias:_ Estructurar correctamente el trabajo y realizar una buena documentación para simplificar a las nuevas incorporaciones una integración rápida a la información ya desarrollada.Se puede incluir si es necesario un pequeño tiempo de adaptación a las tecnologías utilizadas.
+_Estrategias:_ Estructurar correctamente el trabajo y realizar una buena documentación para simplificar a las nuevas incorporaciones una integración rápida a la información ya desarrollada. Se puede incluir, si es necesario, un pequeño tiempo de adaptación a las tecnologías utilizadas.
 
 
 == Riesgos de Organización ==
