@@ -26,22 +26,24 @@ public class Ruleta extends javax.swing.JFrame {
     public Ruleta() {
         initComponents();
         this.setVisible(false);
-        lTotalApostado.setText("");
-        lTotalApostado.setVisible(true);
+        jLabel8.setText("");
+        jLabel8.setVisible(true);
         saldo.setText("");
-        idUsuario=1;
+        
 
     }
     /** Creates new form Ruleta */
     public Ruleta(int usuario,int saldoact) {
         initComponents();
         this.setVisible(false);
-        lTotalApostado.setText("");
-        lTotalApostado.setVisible(true);
+        jLabel8.setText("");
+        jLabel8.setVisible(true);
         saldo.setText("");
         idUsuario=usuario;
         saldoActual= saldoact;
         ponSaldo(saldoActual);
+        totalApostado=0;
+        this.actualizaTotalApostado(0);
 
     }
 
@@ -76,8 +78,9 @@ public class Ruleta extends javax.swing.JFrame {
         saldoActual=nuevoSaldo;
     }
 
-    public void actualizaTotalApostado() {
-        lTotalApostado.setText(Integer.toString(totalApostado));
+    public void actualizaTotalApostado(int cantidad) {
+        totalApostado+=cantidad;
+        jLabel8.setText(Integer.toString(totalApostado));
     }
 
     /** This method is called from within the constructor to
@@ -127,7 +130,6 @@ public class Ruleta extends javax.swing.JFrame {
         btn34 = new javax.swing.JButton();
         btn35 = new javax.swing.JButton();
         btn36 = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         panelMensaje = new javax.swing.JTextPane();
@@ -146,13 +148,23 @@ public class Ruleta extends javax.swing.JFrame {
         btn1Docena = new javax.swing.JButton();
         btn2Docena = new javax.swing.JButton();
         btn3Docena = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("CASINO ONLINE");
+        setBackground(new java.awt.Color(255, 255, 153));
+        setBounds(new java.awt.Rectangle(0, 0, 490, 535));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setForeground(new java.awt.Color(255, 255, 153));
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 3, 18));
         jLabel1.setText("APUESTAS");
 
-        btnLanzarBola.setFont(new java.awt.Font("Comic Sans MS", 1, 14));
+        btnLanzarBola.setFont(new java.awt.Font("Comic Sans MS", 1, 18));
         btnLanzarBola.setText("Lanzar Bola");
         btnLanzarBola.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -424,6 +436,8 @@ public class Ruleta extends javax.swing.JFrame {
         });
 
         fieldCantidad.setColumns(6);
+        fieldCantidad.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        fieldCantidad.setText("0");
 
         jLabel3.setText("Cantidad a Apostar:");
 
@@ -449,6 +463,7 @@ public class Ruleta extends javax.swing.JFrame {
 
         jLabel4.setText("Saldo:");
 
+        saldo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         saldo.setText("0");
 
         bola.setText("-");
@@ -484,81 +499,96 @@ public class Ruleta extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel7.setFont(new java.awt.Font("Garamond", 1, 48)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 51));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("CASINO ONLINE");
+
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 102));
+        jSeparator2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 204), 1, true));
+
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel8.setText("0");
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+            .add(layout.createSequentialGroup()
+                .add(488, 488, 488)
+                .add(lTotalApostado)
+                .addContainerGap())
+            .add(layout.createSequentialGroup()
+                .add(jSeparator2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(533, 533, 533))
+            .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(jSeparator2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
-                    .add(layout.createSequentialGroup()
-                        .add(32, 32, 32)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                        .add(layout.createSequentialGroup()
+                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                .add(layout.createSequentialGroup()
+                                    .add(10, 10, 10)
+                                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                        .add(COLOR, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 62, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .add(jLabel5))
+                                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED))
+                                .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                                    .add(bola, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 19, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(30, 30, 30)))
+                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                                .add(jLabel2)))
+                        .add(layout.createSequentialGroup()
+                            .add(btnLanzarBola, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 138, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 99, Short.MAX_VALUE)
+                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                    .add(jLabel4)
+                                    .add(jLabel3))
+                                .add(layout.createSequentialGroup()
+                                    .add(32, 32, 32)
+                                    .add(jLabel6)))
+                            .add(58, 58, 58)
+                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                .add(fieldCantidad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(jLabel8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .add(org.jdesktop.layout.GroupLayout.LEADING, saldo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 45, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createSequentialGroup()
-                                .add(btnLanzarBola, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 115, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 109, Short.MAX_VALUE)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(jLabel3)
-                                    .add(jLabel6))
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                                    .add(lTotalApostado, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .add(fieldCantidad)))
-                            .add(layout.createSequentialGroup()
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                        .add(layout.createSequentialGroup()
-                                            .add(jLabel5)
-                                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED))
-                                        .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                                            .add(COLOR, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 62, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)))
-                                    .add(layout.createSequentialGroup()
-                                        .add(18, 18, 18)
-                                        .add(bola, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 26, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                                .add(4, 4, 4)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                                        .add(jLabel2)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 133, Short.MAX_VALUE)
-                                        .add(jLabel4)
-                                        .add(41, 41, 41)
-                                        .add(saldo))
-                                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE))))
-                        .add(41, 41, 41))
-                    .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(btn2Docena)
-                            .add(btn1Docena)
-                            .add(jLabel1)
-                            .add(btn3Docena))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                                    .add(btn1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .add(btn7, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .add(btn13))
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                    .add(btn2Docena)
+                                    .add(btn1Docena)
+                                    .add(btn3Docena))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(layout.createSequentialGroup()
-                                        .add(btn14)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                        .add(btn15)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                        .add(btn16)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                        .add(btn17)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                        .add(btn18))
-                                    .add(layout.createSequentialGroup()
-                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                            .add(btn2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 47, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                            .add(btn8))
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                                            .add(btn1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .add(btn7, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .add(btn13))
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                             .add(layout.createSequentialGroup()
+                                                .add(btn14)
+                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                                .add(btn15)
+                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                                .add(btn16)
+                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                                .add(btn17)
+                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                                .add(btn18))
+                                            .add(layout.createSequentialGroup()
+                                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                                    .add(btn2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 47, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                                    .add(btn8))
+                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                                     .add(btn3)
                                                     .add(btn9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -576,51 +606,58 @@ public class Ruleta extends javax.swing.JFrame {
                                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                                         .add(btn5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                                        .add(btn6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 48, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
-                                            .add(layout.createSequentialGroup()
-                                                .add(12, 12, 12)
-                                                .add(btn0)
-                                                .add(18, 18, 18)
-                                                .add(btnRojo)
-                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                                .add(btnNegro))))))
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                                .add(btn19)
+                                                        .add(btn6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 48, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))))
+                                    .add(layout.createSequentialGroup()
+                                        .add(btn19)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(btn20)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(btn21)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(btn22)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(btn23)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(btn24))
+                                    .add(layout.createSequentialGroup()
+                                        .add(btn25)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(btn26)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(btn27)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(btn28)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(btn29)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(btn30))
+                                    .add(layout.createSequentialGroup()
+                                        .add(btn31)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(btn32)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(btn33)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(btn34)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(btn35)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(btn36))))
+                            .add(layout.createSequentialGroup()
+                                .add(9, 9, 9)
+                                .add(jLabel1)
+                                .add(28, 28, 28)
+                                .add(btnNegro)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(btn20)
+                                .add(btn0)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(btn21)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(btn22)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(btn23)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(btn24))
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                                .add(btn25)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(btn26)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(btn27)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(btn28)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(btn29)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(btn30))
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                                .add(btn31)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(btn32)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(btn33)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(btn34)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(btn35)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(btn36)))
-                        .add(20, 20, 20)))
+                                .add(btnRojo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 74, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(jLabel7))
+                        .add(13, 13, 13)))
+                .add(66, 66, 66))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -629,112 +666,130 @@ public class Ruleta extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
+                .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .add(13, 13, 13)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                        .add(jLabel7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 39, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(17, 17, 17)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(btn0)
+                            .add(btnNegro)
+                            .add(btnRojo)
+                            .add(jLabel1))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createSequentialGroup()
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                                    .add(btn1)
-                                    .add(btn2)
-                                    .add(btn3))
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                                    .add(btn7)
-                                    .add(btn8)
-                                    .add(btn9)))
+                                .add(11, 11, 11)
+                                .add(btn1Docena)
+                                .add(35, 35, 35)
+                                .add(btn2Docena)
+                                .add(31, 31, 31)
+                                .add(btn3Docena))
                             .add(layout.createSequentialGroup()
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                                    .add(btnRojo)
-                                    .add(btnNegro)
-                                    .add(btn0))
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                    .add(layout.createSequentialGroup()
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                            .add(btn1)
+                                            .add(btn2))
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                            .add(btn7)
+                                            .add(btn8)))
+                                    .add(layout.createSequentialGroup()
+                                        .add(btn3)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(btn9))
+                                    .add(layout.createSequentialGroup()
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                            .add(btn4)
+                                            .add(btn5)
+                                            .add(btn6))
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                            .add(btn10)
+                                            .add(btn11)
+                                            .add(btn12))))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                                    .add(btn4)
-                                    .add(btn5)
-                                    .add(btn6))
+                                    .add(btn13)
+                                    .add(btn14)
+                                    .add(btn15)
+                                    .add(btn16)
+                                    .add(btn17)
+                                    .add(btn18))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                                    .add(btn10)
-                                    .add(btn11)
-                                    .add(btn12))))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(btn13)
-                            .add(btn14)
-                            .add(btn15)
-                            .add(btn16)
-                            .add(btn17)
-                            .add(btn18))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(btn19)
-                            .add(btn20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(btn21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(btn22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(btn23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(btn24, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(btn25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(btn26, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(btn27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(btn28, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(btn29, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(btn30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(btn31, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(btn32, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(btn33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(btn34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(btn35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(btn36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                                    .add(btn19)
+                                    .add(btn20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(btn21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(btn22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(btn23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(btn24, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                    .add(btn25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(btn26, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(btn27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(btn28, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(btn29, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(btn30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                    .add(btn31, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(btn32, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(btn33, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(btn34, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(btn35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(btn36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))
+                    .add(jSeparator2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jSeparator1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(5, 5, 5)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
                         .add(6, 6, 6)
-                        .add(jLabel1)
-                        .add(29, 29, 29)
-                        .add(btn1Docena)
-                        .add(35, 35, 35)
-                        .add(btn2Docena)
-                        .add(31, 31, 31)
-                        .add(btn3Docena)))
-                .add(17, 17, 17)
-                .add(jSeparator2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(layout.createSequentialGroup()
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(layout.createSequentialGroup()
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                            .add(jLabel3)
+                                            .add(fieldCantidad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                            .add(jLabel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 19, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                            .add(saldo))
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                            .add(jLabel6)
+                                            .add(jLabel8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .add(30, 30, 30))
+                                    .add(layout.createSequentialGroup()
+                                        .add(btnLanzarBola, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 50, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)))
+                                .add(82, 82, 82))
+                            .add(layout.createSequentialGroup()
+                                .add(85, 85, 85)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(layout.createSequentialGroup()
+                                        .add(jLabel2)
+                                        .add(5, 5, 5)
+                                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 79, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                    .add(layout.createSequentialGroup()
+                                        .add(jLabel5)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(bola, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 29, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                        .add(COLOR, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))))
+                        .add(119, 119, 119))
                     .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(fieldCantidad, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel3))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel6)
-                            .add(lTotalApostado, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(btnLanzarBola, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                        .add(jLabel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 19, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(jLabel2))
-                    .add(saldo))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(jLabel5)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(bola, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(COLOR, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(89, 89, 89))
-                    .add(layout.createSequentialGroup()
-                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 109, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .add(288, 288, 288)
+                        .add(lTotalApostado, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
         );
 
         layout.linkSize(new java.awt.Component[] {btn1, btn10, btn11, btn12, btn13, btn14, btn15, btn16, btn17, btn18, btn19, btn2, btn20, btn21, btn22, btn23, btn24, btn25, btn26, btn27, btn28, btn29, btn3, btn30, btn31, btn32, btn33, btn34, btn35, btn36, btn4, btn5, btn6, btn7, btn8, btn9}, org.jdesktop.layout.GroupLayout.VERTICAL);
 
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
 private void btnLanzarBolaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLanzarBolaActionPerformed
@@ -759,7 +814,6 @@ private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:ev
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 2, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -778,7 +832,6 @@ private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:ev
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 1, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -794,7 +847,6 @@ private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:ev
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 3, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -810,7 +862,6 @@ private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:ev
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 4, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -826,7 +877,6 @@ private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:ev
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 5, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -842,7 +892,6 @@ private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:ev
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 6, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -858,7 +907,6 @@ private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:ev
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 7, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -874,7 +922,6 @@ private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:ev
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 8, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -890,7 +937,6 @@ private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:ev
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 9, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -906,7 +952,6 @@ private void btn10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 10, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -922,7 +967,6 @@ private void btn11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 11, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -938,7 +982,6 @@ private void btn12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 12, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -954,7 +997,6 @@ private void btn13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 13, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -971,7 +1013,6 @@ private void btn14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 14, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -988,7 +1029,6 @@ private void btn15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 15, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -1005,7 +1045,6 @@ private void btn16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 16, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -1022,7 +1061,6 @@ private void btn17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 17, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -1039,7 +1077,6 @@ private void btn18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 18, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -1056,7 +1093,6 @@ private void btn19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 19, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -1073,7 +1109,6 @@ private void btn20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 20, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -1090,7 +1125,6 @@ private void btn24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 24, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -1107,7 +1141,6 @@ private void btn21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 21, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -1123,7 +1156,6 @@ private void btn22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 22, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -1140,7 +1172,6 @@ private void btn23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 23, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -1157,7 +1188,6 @@ private void btn25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 25, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -1174,7 +1204,6 @@ private void btn26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 26, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -1191,7 +1220,6 @@ private void btn27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 27, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -1207,7 +1235,6 @@ private void btn28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 28, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -1223,7 +1250,6 @@ private void btn29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 29, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -1240,7 +1266,6 @@ private void btn30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 30, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -1257,7 +1282,6 @@ private void btn31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 31, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -1274,7 +1298,6 @@ private void btn32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 32, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -1291,7 +1314,6 @@ private void btn33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 33, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -1308,7 +1330,6 @@ private void btn34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 34, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -1325,7 +1346,6 @@ private void btn35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 35, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -1342,7 +1362,6 @@ private void btn36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 36, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -1358,7 +1377,6 @@ private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:ev
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"numero", 0, apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
@@ -1374,8 +1392,7 @@ private void btnRojoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
-            servidor.nuevaApuestaRuleta(idUsuario,"PARIMPAR", "ROJO", apuestaActual);
+            servidor.nuevaApuestaRuleta(idUsuario,"COLOR", "ROJO", apuestaActual);
         } else {
             incluirMensaje("Cantidad no valida");
         }
@@ -1390,8 +1407,7 @@ private void btnNegroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
-            servidor.nuevaApuestaRuleta(idUsuario,"PARIMPAR", "NEGRO", apuestaActual);
+            servidor.nuevaApuestaRuleta(idUsuario,"COLOR", "NEGRO", apuestaActual) ;
         } else {
             incluirMensaje("Cantidad no valida");
         }
@@ -1410,9 +1426,9 @@ private void btn3DocenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
-            servidor.nuevaApuestaRuleta(idUsuario,"3docena", apuestaActual);//el segundo parámetro no indica nada
-
+            
+            servidor.nuevaApuestaRuleta(idUsuario,"3docena", apuestaActual);
+                   
         } else {
             incluirMensaje("Cantidad no valida");
         }
@@ -1428,8 +1444,8 @@ private void btn1DocenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
-            servidor.nuevaApuestaRuleta(idUsuario,"1docena", apuestaActual);//el segundo parámetro no indica nada
+            
+           servidor.nuevaApuestaRuleta(idUsuario,"1docena", apuestaActual);
 
         } else {
             incluirMensaje("Cantidad no valida");
@@ -1446,7 +1462,6 @@ private void btn2DocenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         String cantidad = fieldCantidad.getText();
         int apuestaActual = Integer.parseInt(cantidad, 10);
         if (apuestaActual > 0) {
-            totalApostado += apuestaActual;
             servidor.nuevaApuestaRuleta(idUsuario,"2docena", apuestaActual);
 
         } else {
@@ -1523,7 +1538,10 @@ private void btn2DocenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lTotalApostado;
     private javax.swing.JTextPane panelMensaje;

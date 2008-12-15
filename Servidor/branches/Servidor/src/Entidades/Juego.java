@@ -2,8 +2,8 @@ package Entidades;
 
 /**
  * Clase Juego.
- * Clase que contiene los atributos y métodos que modelan a un juego.
- * @author Joaquín López Cabezas
+ * Clase que contiene los atributos y mÃ©todos que modelan a un juego.
+ * @author JoaquÃ­n LÃ³pez Cabezas
  * @version 1.0
  *
  */
@@ -20,7 +20,7 @@ public class Juego {
 	private String nombre;
 	
 	/**
-	 * Atributo de tipo int que almacena el número mínimo de jugadores del juego
+	 * Atributo de tipo int que almacena el nÃºmero mÃ­nimo de jugadores del juego
 	 */
 	private int jugadoresMin;
 	
@@ -40,7 +40,7 @@ public class Juego {
 	 * Constructor.
 	 * @param codigo Un int con el codigo del juego.
 	 * @param nombre Un String con el el nombre del juego.
-	 * @param jugadoresMin Un int con el número mínimo de jugadores del juego.
+	 * @param jugadoresMin Un int con el nÃºmero mÃ­nimo de jugadores del juego.
 	 * @param reglas Un String con las reglas del juego.
 	 *
 	 */
@@ -54,9 +54,9 @@ public class Juego {
 	}
 	
 	/**
-	 * Constructor sin codigo porque se lo asigna la base de datos automáticamente.
+	 * Constructor sin codigo porque se lo asigna la base de datos automÃ¡ticamente.
 	 * @param nombre Un String con el el nombre del juego.
-	 * @param jugadoresMin Un int con el número mínimo de jugadores del juego.
+	 * @param jugadoresMin Un int con el nÃºmero mÃ­nimo de jugadores del juego.
 	 * @param reglas Un String con las reglas del juego.
 	 *
 	 */
@@ -78,7 +78,7 @@ public class Juego {
 	
 	/**
 	 * Metodo que devuelve el valor del atributo jugadoresMin del juego.
-	 * @return Un int con el número mínimo de jugadores del juego
+	 * @return Un int con el nÃºmero mÃ­nimo de jugadores del juego
 	 */
 	public int getJugadoresMin() {
 		return jugadoresMin;

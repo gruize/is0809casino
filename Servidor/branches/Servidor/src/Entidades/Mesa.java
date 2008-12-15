@@ -3,8 +3,8 @@ package Entidades;
 
 /**
  * Clase Mesa.
- * Clase que contiene los atributos y métodos que modelan a una mesa.
- * @author Joaquín López Cabezas
+ * Clase que contiene los atributos y mÃ©todos que modelan a una mesa.
+ * @author JoaquÃ­n LÃ³pez Cabezas
  * @version 1.0
  *
  */
@@ -53,7 +53,7 @@ public class Mesa {
 	 * @param codigo Un int con el codigo de la mesa.
 	 * @param sala Un String con la sala de la mesa.
 	 * @param puestos Un String con el puesto de la mesa.
-	 * @param jugadores Un int con el número de jugadores de la mesa.
+	 * @param jugadores Un int con el nÃºmero de jugadores de la mesa.
 	 * @param apuestaMin Un Number con la apuesta minima.
 	 * @param apuestaMax Un Number con la apuesta maxima.
 	 *
@@ -72,7 +72,7 @@ public class Mesa {
 	 * Constructor.
 	 * @param sala Un String con la sala de la mesa.
 	 * @param puestos Un String con el puesto de la mesao.
-	 * @param jugadores Un int con el número de jugadores de la mesa.
+	 * @param jugadores Un int con el nÃºmero de jugadores de la mesa.
 	 * @param apuestaMin Un Number con la apuesta minima.
 	 * @param apuestaMax Un Number con la apuesta maxima.
 	 *

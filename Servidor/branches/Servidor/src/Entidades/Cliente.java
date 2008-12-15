@@ -4,8 +4,8 @@ import java.util.Date;
 
 /**
  * Clase Clientes.
- * Clase que contiene los atributos y mÈtodos que modelan a un cliente.
- * @author JoaquÌn LÛpez Cabezas
+ * Clase que contiene los atributos y m√©todos que modelan a un cliente.
+ * @author Joaqu√≠n L√≥pez Cabezas
  * @version 1.0
  *
  */
@@ -104,7 +104,7 @@ public class Cliente {
 	}
 	
 	/**
-	 * Constructor sin codigo porque se lo asigna la base de datos autom·ticamente.
+	 * Constructor sin codigo porque se lo asigna la base de datos autom√°ticamente.
 	 * @param nombre Un String con el nombre del cliente.
 	 * @param apellidos Un String con los apellidos del cliente.
 	 * @param dni Un String con el dni del cliente.

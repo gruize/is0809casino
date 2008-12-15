@@ -31,7 +31,7 @@ public class hiloConexion extends Thread{
 			{
 				if (this.esServidor)
 				{
-					// TODO deberíamos comprobar si el InetAddress esta repe?
+					// TODO deberÃ­amos comprobar si el InetAddress esta repe?
 					
 					String id;
 					do {
@@ -55,7 +55,7 @@ public class hiloConexion extends Thread{
 				{
 					Socket clientSocket = new Socket(msg.HOST_SERVER,msg.PUERTO);
 					ObjectOutputStream salidaDatos = new ObjectOutputStream (clientSocket.getOutputStream());
-					// FIXME ¿lo puedo reenviar tal cual?
+					// FIXME Â¿lo puedo reenviar tal cual?
 					
 					salidaDatos.writeObject(msg);
 					salidaDatos.close();
@@ -104,7 +104,7 @@ public class hiloConexion extends Thread{
 				// el ultimo paso es que este en tu lista, se lo dejas en la cola de mensajes
 				else
 				{
-					// TODO put message in the list of messages and send OK ¿siempre?
+					// TODO put message in the list of messages and send OK Â¿siempre?
 					Mensaje respuesta = new MensajeSistema();
 					respuesta.setTipo(respuesta.OK);
 					ObjectOutputStream salidaDatos = new ObjectOutputStream(this.canal.getOutputStream());

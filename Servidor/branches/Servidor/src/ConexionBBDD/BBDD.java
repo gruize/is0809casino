@@ -331,6 +331,11 @@ public class BBDD {
 		baseDatos.ejecutarDelete("RONDAS","RONDA = "+ronda);
 	}
 	*/
+        public void updateSaldoCliente(int cliente, int saldo) throws SQLException{
+		
+		String valores="SALDOACTUAL = '"+saldo+"'";
+		baseDatos.ejecutarUpdate("CLIENTES",valores,"CODIGO = "+cliente);
+	}
 	
 	public void updateJuego(Juego juego) throws SQLException{
 		String valores="NOMBRE = '"+juego.getNombre()+"', JUGADORESMIN = "+juego.getJugadoresMin()+", REGLAS = '"+juego.getReglas()+"'";

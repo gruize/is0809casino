@@ -20,7 +20,7 @@ class Demonio {
 		if (!esServidor){
 			tablaConectores.add(new Conectores("server","localhost"));
 		}
-		// TODO: puerto leido en configuración
+		// TODO: puerto leido en configuraciÃ³n
         int dato;
         // empezamos a escuchar
         try {

@@ -149,12 +149,12 @@ public class PartidaRuleta implements Partida {
      *
      */
     private int apuestaGanadora(ApuestaRuleta apuesta, Numero casillaBola) {
-        
+        if (casillaBola.getNumero()!=0){
         //apuesta a NÚMERO
         if ((apuesta.get_tipo().equals("numero")) && (apuesta.get_casilla() == casillaBola.getNumero())) {
             return apuesta.get_cantidad() * 36;
         //apuesta a COLOR
-        } else if ((apuesta.get_tipo().equals("PARIMPAR")) && (apuesta.get_color().equals(casillaBola.getColor()))) {
+        } else if ((apuesta.get_tipo().equals("COLOR")) && (apuesta.get_color().equals(casillaBola.getColor()))) {
             return apuesta.get_cantidad() * 2;
         //apuesta a 1ª DOCENA
         } else if (apuesta.get_tipo().equals("1docena") && casillaBola.getNumero() >= 1 && casillaBola.getNumero() <= 12) {
@@ -166,7 +166,12 @@ public class PartidaRuleta implements Partida {
         } else if (apuesta.get_tipo().equals("3docena") && casillaBola.getNumero() > 24 && casillaBola.getNumero() <= 36) {
             return apuesta.get_cantidad() * 3; 
 
+        }}
+        else {//la bola lanzada es CERO: si la apuesta es al color se devuelte la mitad.
+            if (apuesta.get_tipo().equals("COLOR")) return apuesta.get_cantidad()/2;
+            else if (apuesta.get_tipo().equals("numero")&& (apuesta.get_casilla() == casillaBola.getNumero())) return apuesta.get_cantidad()*36;
         }
+        
         return 0;
     }
 

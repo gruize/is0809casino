@@ -46,7 +46,7 @@ public class Servidor {
     		this.bbdd = new BBDD();
     	}
     	catch(Exception e) {
-    		//FALLO EN LA BBDD
+    		System.out.println("Error en la conexion con la BBDD");
     	}
         crearNuevoJugador();
 
@@ -120,23 +120,24 @@ public class Servidor {
      * @param casilla  numero de la casilla de la ruleta a la que se apuesta
      * @param cantidadApostada cantidad de dinero apostada
      */
-    public void nuevaApuestaRuleta(int idUsuario ,String tipoApuesta, int casilla, int cantidadApostada) {
+    public int nuevaApuestaRuleta(int idUsuario ,String tipoApuesta, int casilla, int cantidadApostada) {
 
         ApuestaRuleta apuesta = new ApuestaRuleta(tipoApuesta, casilla, cantidadApostada);
 
         Jugada jug = new Jugada(idUsuario, idPartidaRuleta, 1, apuesta);
         //procesar la jugada
         int resultado = casino.procesarJugada(jug);
-        if (resultado == 1) { //mensaje OK al cliente
+        if (resultado >-1) { //mensaje OK al cliente
 
             pantallaRuleta.incluirMensaje("Apuesta al " + casilla + " correcta");
-            pantallaRuleta.actualizaTotalApostado();
-            pantallaRuleta.actualizaSaldo(cantidadApostada);
+            pantallaRuleta.actualizaTotalApostado(cantidadApostada);
+            pantallaRuleta.actualizaSaldo(cantidadApostada);            
         } else if (resultado == -1) {
             pantallaRuleta.incluirMensaje("Apuesta al " + casilla + " NO VALIDA [FALTA SALDO]");
         } else if (resultado == -2) {
             pantallaRuleta.incluirMensaje("Apuesta al " + casilla + " NO VALIDA [MAX APUESTAS EXCEDIDO]");
         }
+        return resultado;
     }
 
     /**
@@ -145,23 +146,24 @@ public class Servidor {
      * @param color PAR o IMPAR , ROJO o NEGRO
      * @param cantidadApostada
      */
-    public void nuevaApuestaRuleta(int idUsuario,String tipoApuesta, String color, int cantidadApostada) {
+    public int nuevaApuestaRuleta(int idUsuario,String tipoApuesta, String color, int cantidadApostada) {
         
         ApuestaRuleta apuesta = new ApuestaRuleta(tipoApuesta, color, cantidadApostada);
 
         Jugada jug = new Jugada(idUsuario, idPartidaRuleta, 1, apuesta);
         //procesar la jugada
-        int j = casino.procesarJugada(jug);
-        if (j > -1) //La jugada ha sido aprobada
+        int resultado = casino.procesarJugada(jug);
+        if (resultado > -1) //La jugada ha sido aprobada
         {
             pantallaRuleta.incluirMensaje("Apuesta al " + color + " correcta");
-            pantallaRuleta.actualizaTotalApostado();
+            pantallaRuleta.actualizaTotalApostado(cantidadApostada);
             pantallaRuleta.actualizaSaldo(cantidadApostada);
-        } else if (j == -1) {
+        } else if (resultado == -1) {
             pantallaRuleta.incluirMensaje("Apuesta al " + color + " NO VALIDA [FALTA SALDO]");
         } else {
             pantallaRuleta.incluirMensaje("Numero Maximo de Apuestas  Exedido");
         }
+        return resultado;
     }
     
     /**
@@ -169,7 +171,7 @@ public class Servidor {
      * @param tipoApuesta 1docena, 2docena o 3docena
      * @param cantidadApostada cantidad que apuesta
      */
-    public void nuevaApuestaRuleta(int idUsuario,String tipoApuesta,int cantidadApostada) {
+    public int nuevaApuestaRuleta(int idUsuario,String tipoApuesta,int cantidadApostada) {
 
         ApuestaRuleta apuesta = new ApuestaRuleta(tipoApuesta, cantidadApostada);
         Jugada jug = new Jugada(idUsuario, idPartidaRuleta, 1, apuesta);
@@ -178,13 +180,14 @@ public class Servidor {
         if (resultado > -1) //mensaje OK al cliente
         {
             pantallaRuleta.incluirMensaje("Apuesta a la " + tipoApuesta + " correcta");
-            pantallaRuleta.actualizaTotalApostado();
+            pantallaRuleta.actualizaTotalApostado(cantidadApostada);
             pantallaRuleta.actualizaSaldo(cantidadApostada);
         } else if (resultado == -1) {
             pantallaRuleta.incluirMensaje("Apuesta a la " + tipoApuesta + " NO VALIDA [FALTA SALDO]");
         } else {
             pantallaRuleta.incluirMensaje("Numero Maximo de Apuestas  Exedido");
         }
+        return resultado;
     }
     
     
@@ -195,6 +198,10 @@ public class Servidor {
         int saldoActual = casino.procesarJugada(jugada);
         pantallaRuleta.incluirMensaje("Su saldo actual es de:  " + saldoActual + " Leuros");
         //TODO aqui habria que conectar con la base de datos y actualizar el saldo del cliente
+        try {bbdd.updateSaldoCliente(idUsuario,saldoActual);}
+        catch(Exception e) {
+    		System.out.println("Error al actualizar el saldo en  la BBDD");
+    	}
         return saldoActual;
     }
 

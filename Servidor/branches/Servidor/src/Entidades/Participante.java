@@ -3,8 +3,8 @@ package Entidades;
 
 /**
  * Clase Mesa.
- * Clase que contiene los atributos y métodos que modelan a un participante.
- * @author Joaquín López Cabezas
+ * Clase que contiene los atributos y mÃ©todos que modelan a un participante.
+ * @author JoaquÃ­n LÃ³pez Cabezas
  * @version 1.0
  *
  */

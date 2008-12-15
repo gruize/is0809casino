@@ -2,8 +2,8 @@ package Entidades;
 
 /**
  * Clase Mesa.
- * Clase que contiene los atributos y métodos que modelan a una partida.
- * @author Joaquín López Cabezas
+ * Clase que contiene los atributos y mÃ©todos que modelan a una partida.
+ * @author JoaquÃ­n LÃ³pez Cabezas
  * @version 1.0
  *
  */

@@ -1,7 +1,7 @@
 package servidorcasino;
 
 //Esta clase esta aqui implementada para cuando se tenga
-// que almacenar m·s de un jugador en la ruleta ya que
+// que almacenar m√°s de un jugador en la ruleta ya que
 // podran jugar varios.
 public class InformacionJugadores {
 
