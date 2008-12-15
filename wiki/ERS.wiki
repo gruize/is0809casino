@@ -139,19 +139,19 @@ JUGADOR
 
 1. Alta Usuario: se podrá solicitar vía web la entrada al casino. Para ello se registrará proporcionando sus datos personales: nombre y apellidos, fecha de nacimiento, sexo, ciudad, correo electrónico, id de usuario, contraseña y nombre para mostrar (nick).
 
-2. Baja Usuario: un jugador podrá solicitar la baja en el casino. 
+2. Baja Usuario: un jugador podrá solicitar la baja en el casino en cualquier momento y su petición de baja sera evaluada por el sistema comprobando que no esta conectado al casino y procederá a la baja y comunicación al usuario cuando esta se realice.
 
-3. Descargar Casino: Se podrá descargar la aplicación del casino via web. 
+3. Descargar Casino: Se podrá descargar la aplicación del casino via web en cualquier momento y lugar y cualquier persona, esta aplicación no tiene ningun valor sin login y password.
 
 4. Login: cuando un jugador desee entrar a jugar en el casino, deberá introducir su usuario y contraseña. Premisas: el jugador esta dado de alta en el sistema. 
 
-5. Registro del jugador: para cada jugador se guadará nombre, apellidos, fecha de nacimiento, sexo, ciudad, correo electrónico, id usuario, contraseña, nick, saldo. 
+5. Salir de la aplicación: el jugador podrá cerrar la aplicación cuando quiera, el sistema jugará por el usuario en las partidas pendientes de una forma pasiva(pasará y apostara lo minimo si es necesario en las rondas obligatorias para abandonar sin perjudicar al resto de usuarios).
 
-6. Modificar datos: cada jugador podrá modificar los datos siguientes: ciudad, correo electrónico, contraseña, nombre para mostrar. 
+6. Modificar datos: cada jugador podrá modificar los datos siguientes: ciudad, correo electrónico, contraseña, nombre para mostrar a traves de la pagina del casino. 
 
-7. Recarga saldo automática: al darse de alta en el casino el jugador recibirá automáticamente 100 leuros. 
+7. Recarga saldo automática: al darse de alta en el casino el jugador recibirá automáticamente 100 leuros que no tendran ninguna caducidad. 
 
-8. Solicitar saldo: se podrá solicitar saldo siempre y cuando sea aprobada la transacción por el casino. Se insertará en la cuenta que el usuario tenga en el casino. 
+8. Solicitar saldo: se podrá solicitar saldo siempre y cuando sea aprobada la transacción por el casino. Se insertará en la cuenta que el usuario tenga en el casino. En un principio el casino gestionara el saldo de los usuarios mas adelante seria directamente con el banco.
 
 9. Consultar datos: cada jugador podrá consultar sus datos en cualquier momento. Además de su información personal y saldo, se mostrarán las estadísticas de juego y mensajes privados enviados por la administración.
 
@@ -181,7 +181,7 @@ JUGADOR
 
 17. Seleccionar tipo de apuesta: en función del juego se podrá elegir cantidad apostada y propósito de la apuesta(ej. color, docenas, par, impar...).
 
-18. Salir de la aplicación: el jugador podrá cerrar la aplicación cuando quiera.
+
  
 
 
