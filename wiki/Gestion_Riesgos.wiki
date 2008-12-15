@@ -61,7 +61,7 @@ _Estrategias:_ No existe estrategia de resolución, al no existir presupuesto b�
 
   * Falta de coordinación entre los miembros del equipo.
 * Probabilidad:* Alta. *Efectos:* Serio.
-_Estrategias:_ Marcar objetivos temporales y realizables, controlando el desarrollo individual desequilibrado. Se realizara reuniones semanales en el laboratorio, y habra una comunicación constante a traves del google code y groups. Ademas de una distribucion en grupos, algunas personas se encargarán de la coordinación.
+_Estrategias:_ Marcar objetivos temporales y realizables, controlando el desarrollo individual desequilibrado. Se realizara reuniones semanales en el laboratorio, y habrá una comunicación constante a través del google code y groups. Además de una distribucion en grupos, algunas personas se encargarán de la coordinación.
 
 
 == Riesgos de Herramientas ==
