@@ -8,7 +8,7 @@
 
 || _Autor_ || _Fecha_ || _Comentario_ ||
 || David Fernández y Alberto Fernández ||12/12/2008 ||Revision de Gonzalo ||
-|| Todos los miembros del equipo ||22/11/2008 ||Generación del documento inicial ||
+|| Casinois0809 ||22/11/2008 ||Generación del documento inicial ||
 
 
 == 1 Introducción ==
