@@ -46,7 +46,7 @@ _Estrategias:_ Estudiar y realizar un reajuste en la planificación ampliando lo
 
   * Nuevas incorporaciones en el equipo de diseño/desarrollo.
 * Probabilidad:* Moderada. *Efectos:* Tolerable.
-_Estrategias:_ Estructurar correctamente el trabajo y realizar una buena documentación para simplificar a las nuevas incorporaciones una integración rápida a la información ya desarrollada.
+_Estrategias:_ Estructurar correctamente el trabajo y realizar una buena documentación para simplificar a las nuevas incorporaciones una integración rápida a la información ya desarrollada.Se puede incluir si es necesario un pequeño tiempo de adaptación a las tecnologías utilizadas.
 
 
 == Riesgos de Organización ==
@@ -57,7 +57,7 @@ _Estrategias:_ Realizar una consulta a los miembros del grupo y evaluar todas la
 
   * Problemas económicos. 
 * Probabilidad:* Baja. *Efectos:* Catastrófico.
-_Estrategias:_ No existe estrategia de resolución, al no existir presupuesto básico de proyecto. Se asumirán los costes o se abordarán desde alternativas asumibles. 
+_Estrategias:_ No existe estrategia de resolución, al no existir presupuesto básico de proyecto. Se asumirán los costes o se abordarán desde alternativas aceptables. 
 
   * Falta de coordinación entre los miembros del equipo.
 * Probabilidad:* Alta. *Efectos:* Serio.
@@ -72,13 +72,13 @@ _Estrategias:_ Realizar pruebas del código generado y probar nuevas herramienta
 
   * No se puede utilizar alguna herramienta que estaba pensada usar por problemas de integración con el resto del sistema.
 * Probabilidad:* Alta. *Efectos:* Tolerable.
-_Estrategias:_ Realizar un estudio sobre los posible problemas que puede presentar el uso de una herramienta antes de comenzar su desarrollo en la misma. Tener preparadas herramientas alternativas por si durante el desarrollo hubiera problemas con las seleccionadas. 
+_Estrategias:_ Realizar un estudio sobre los posibles problemas que puede presentar el uso de una herramienta antes de comenzar su desarrollo en la misma. Tener preparadas herramientas alternativas por si durante el desarrollo hubiera problemas con las seleccionadas. 
 
 == Riesgos de Requisitos ==
 
   * Cambios en los requisitos que requieren un rediseño de la aplicación grande.
 * Probabilidad:* Alta. *Efectos:* Serio.
-_Estrategias:_ Intentar definir de forma concreta todos los requisitos con la intención de realizar un diseño que sea capaz de afrontar cambios y minimizar el impacto.
+_Estrategias:_ Intentar definir de forma concreta todos los requisitos con la intención de realizar un diseño que sea capaz de afrontar cambios y minimizar el impacto. La modularización del código generado y la división del proyecto en varias partes puede ayudar al rediseño de una parte determinada sin que afecte a las demás.
 
   * El usuario o cliente cree que un cambio significa una pequeña modificación en los requisitos.
 * Probabilidad:* Alta. *Efectos:* Serio.
