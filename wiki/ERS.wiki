@@ -143,7 +143,7 @@ JUGADOR
 
 3. Descargar Casino: Se podrá descargar la aplicación del casino via web en cualquier momento y lugar y cualquier persona, esta aplicación no tiene ningun valor sin login y password.
 
-4. Login: cuando un jugador desee entrar a jugar en el casino, deberá introducir su usuario y contraseña. Premisas: el jugador esta dado de alta en el sistema. 
+4. Login: cuando un jugador desee entrar a jugar en el casino, deberá introducir su usuario y contraseña. Premisas: el jugador esta dado de alta en el sistema y conectado a internet. 
 
 5. Salir de la aplicación: el jugador podrá cerrar la aplicación cuando quiera, el sistema jugará por el usuario en las partidas pendientes de una forma pasiva(pasará y apostara lo minimo si es necesario en las rondas obligatorias para abandonar sin perjudicar al resto de usuarios).
 
@@ -151,7 +151,7 @@ JUGADOR
 
 7. Recarga saldo automática: al darse de alta en el casino el jugador recibirá automáticamente 100 leuros que no tendran ninguna caducidad. 
 
-8. Solicitar saldo: se podrá solicitar saldo siempre y cuando sea aprobada la transacción por el casino. Se insertará en la cuenta que el usuario tenga en el casino. En un principio el casino gestionara el saldo de los usuarios mas adelante seria directamente con el banco.
+8. Solicitar saldo: se podrá solicitar saldo siempre y cuando sea aprobada la transacción por el casino. Se insertará en la cuenta que el usuario tenga en el casino. En un principio el casino (administrador del casino) gestionara el saldo de los usuarios mas adelante seria directamente con el banco.
 
 9. Consultar datos: cada jugador podrá consultar sus datos en cualquier momento. Además de su información personal y saldo, se mostrarán las estadísticas de juego y mensajes privados enviados por la administración.
 
@@ -203,7 +203,7 @@ ADMINISTRADOR DEL CASINO
 
 
 === 3.3. Requisitos de Rendimiento ===
-1. El servidor que soporta el sistema del casino deberá ser capaz de dar servicio a multiples jugadores simultáneamente, permitiendo la interacción entre ellos para jugar de manera dinámica. 
+1. El servidor que soporta el sistema del casino deberá ser capaz de dar servicio a multiples jugadores simultáneamente, permitiendo la interacción entre ellos para jugar de una manera fluida y correcta. 
 
 === 3.4. Restricciones de Diseño ===
 No aplican
@@ -224,6 +224,8 @@ No aplican
 7. El sistema correrá en todas las plataformas que dispongan de la máquina virtual de Java.
 
 8. Las reglas de los juegos estan definidas en los apendices.
+
+9. El manual del casino estará en la página web y junto con la descarga de la aplicación y se recomendará la lectura del mismo previa ejecución de la aplicación.
   
 === 3.6. Otros Requisitos ===
 
