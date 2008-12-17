@@ -80,7 +80,7 @@ public class Ruleta extends javax.swing.JFrame {
      * Resta "cantidadApostada" al saldo que tenía el jugador
      * @param cantidadApostada : cantidad que se resta del saldo del jugador
      */
-    public void actualizaSaldo(int cantidadApostada) {
+    public void restaASaldo(int cantidadApostada) {
         int nuevosaldo=saldoActual-cantidadApostada;
         saldo.setText(Integer.toString(nuevosaldo));
         saldoActual=nuevosaldo;
