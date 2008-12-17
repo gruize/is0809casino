@@ -56,7 +56,7 @@ public class Conexion implements InterfazConexion{
 		//TODO: Establecer conexion con tu Demonio*/
 	}
 	
-	@Override
+	//@Override
 	public void crearConexion() {
 		if (!this.establecer())
 		{
@@ -98,7 +98,7 @@ public class Conexion implements InterfazConexion{
 			e.printStackTrace();
 		}
 	}
-	@Override
+	//@Override
 	public void eliminarConexion() {
 		if (this.creada == true)
 		{
@@ -108,19 +108,19 @@ public class Conexion implements InterfazConexion{
 		
 	}
 
-	@Override
+	//@Override
 	public void enviarMensaje(Mensaje message, String idDestino) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	//@Override
 	public int estadoConexion() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	//@Override
 	public String getId() {
 		return this.id;
 	}
@@ -131,7 +131,7 @@ public class Conexion implements InterfazConexion{
 	
 
 
-	@Override
+	//@Override
 	public Mensaje obtenerMensaje(String mascara) {
 		// TODO Auto-generated method stub
 		return null;

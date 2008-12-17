@@ -41,7 +41,7 @@ public class Ruleta extends javax.swing.JFrame {
         saldo.setText("");
         idUsuario=usuario;
         saldoActual= saldoact;
-        ponSaldo(saldoActual);
+        setSaldo(saldoActual);
         totalApostado=0;
         this.actualizaTotalApostado(0);
 
@@ -54,10 +54,18 @@ public class Ruleta extends javax.swing.JFrame {
         this.setVisible(true);
     }
 
+    /**
+     * 
+     * @param server
+     */
     public void registraServidor(Servidor server) {
         this.servidor = server;
     }
 
+    /**
+     * Inserta un mensaje en la pantalla de mensajes enviadas por el servidor
+     * @param msg mensaje del servidor que se va a mostrar
+     */
     public void incluirMensaje(String msg) {
         if (mensajes == "") {
             mensajes = msg;
@@ -68,18 +76,40 @@ public class Ruleta extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Resta "cantidadApostada" al saldo que tenía el jugador
+     * @param cantidadApostada : cantidad que se resta del saldo del jugador
+     */
     public void actualizaSaldo(int cantidadApostada) {
         int nuevosaldo=saldoActual-cantidadApostada;
         saldo.setText(Integer.toString(nuevosaldo));
         saldoActual=nuevosaldo;
     }
-    public void ponSaldo(int nuevoSaldo){
+    
+    /**
+     * Pone el saldo del jugador a "nuevoSaldo"
+     * @param nuevoSaldo
+     */
+    public void setSaldo(int nuevoSaldo){
         saldo.setText(Integer.toString(nuevoSaldo));
         saldoActual=nuevoSaldo;
     }
 
+    /**
+     * Suma "cantidad" al total apostado por el jugador en la actual ronda. 
+     * @param cantidad
+     */
     public void actualizaTotalApostado(int cantidad) {
         totalApostado+=cantidad;
+        jLabel8.setText(Integer.toString(totalApostado));
+    }
+    
+    /**
+     * Pone a "cantidad" el valor totalApostado
+     * @param cantidad
+     */
+    public void setTotalApostado(int cantidad){
+         totalApostado=cantidad;
         jLabel8.setText(Integer.toString(totalApostado));
     }
 
@@ -796,9 +826,11 @@ private void btnLanzarBolaActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     /*
      * Llama a la funcion para tirar la bola 
      */
-    int i = servidor.nuevaTiradaRuleta(idUsuario);
-    String saldoDevuelto = "" + i;
-    saldo.setText(saldoDevuelto);
+    int nuevoSaldo = servidor.nuevaTiradaRuleta(idUsuario);
+    //String saldoDevuelto = "" + nuevoSaldo;
+    //saldo.setText(saldoDevuelto);
+    this.setSaldo(nuevoSaldo);
+    this.setTotalApostado(0);//Nueva ronda, se empiezan apuestas desde 0
     Numero n = servidor.dameBola();
     String bolaLanzada = "" + n.getNumero();
     bola.setText(bolaLanzada);

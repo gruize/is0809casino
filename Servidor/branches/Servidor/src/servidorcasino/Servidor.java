@@ -131,7 +131,7 @@ public class Servidor {
 
             pantallaRuleta.incluirMensaje("Apuesta al " + casilla + " correcta");
             pantallaRuleta.actualizaTotalApostado(cantidadApostada);
-            pantallaRuleta.actualizaSaldo(cantidadApostada);            
+           //pantallaRuleta.actualizaSaldo(cantidadApostada);            
         } else if (resultado == -1) {
             pantallaRuleta.incluirMensaje("Apuesta al " + casilla + " NO VALIDA [FALTA SALDO]");
         } else if (resultado == -2) {
@@ -157,7 +157,7 @@ public class Servidor {
         {
             pantallaRuleta.incluirMensaje("Apuesta al " + color + " correcta");
             pantallaRuleta.actualizaTotalApostado(cantidadApostada);
-            pantallaRuleta.actualizaSaldo(cantidadApostada);
+            //pantallaRuleta.actualizaSaldo(cantidadApostada);
         } else if (resultado == -1) {
             pantallaRuleta.incluirMensaje("Apuesta al " + color + " NO VALIDA [FALTA SALDO]");
         } else {
@@ -181,7 +181,7 @@ public class Servidor {
         {
             pantallaRuleta.incluirMensaje("Apuesta a la " + tipoApuesta + " correcta");
             pantallaRuleta.actualizaTotalApostado(cantidadApostada);
-            pantallaRuleta.actualizaSaldo(cantidadApostada);
+          //  pantallaRuleta.actualizaSaldo(cantidadApostada);
         } else if (resultado == -1) {
             pantallaRuleta.incluirMensaje("Apuesta a la " + tipoApuesta + " NO VALIDA [FALTA SALDO]");
         } else {
@@ -198,7 +198,10 @@ public class Servidor {
         int saldoActual = casino.procesarJugada(jugada);
         pantallaRuleta.incluirMensaje("Su saldo actual es de:  " + saldoActual + " Leuros");
         //TODO aqui habria que conectar con la base de datos y actualizar el saldo del cliente
-        try {bbdd.updateSaldoCliente(idUsuario,saldoActual);}
+        try {
+            bbdd.updateSaldoCliente(idUsuario,saldoActual);
+           
+        }
         catch(Exception e) {
     		System.out.println("Error al actualizar el saldo en  la BBDD");
     	}
