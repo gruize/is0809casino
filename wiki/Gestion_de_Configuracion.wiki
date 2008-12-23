@@ -181,7 +181,7 @@ Existe la posibilidad de que un documento no posea coherencia con el estado en c
 
 En todo momento, y a excepción de decisiones consensuadas por componentes del grupo, cada componente ha de documentar los procesos por él mismo establecidos y de comunicar al resto de componentes dichos cambios para el conocimiento global del estado del proyecto.
 
-_NOTA:_ Es obligación, por parte del componente que realice un cambio, la inserción de una fila en la tabla inicial del documento. En la misma se especificará el auto del cambio, la fecha del mismo y una breve descripción del cambio o contenido añadido desarrollado. Si los cambios son referentes a correcciones mínimas o sin significado semántico, dentro del proyecto, se acepta la no inserción de dicho nuevo dato en la tabla.
+_NOTA:_ Es obligación, por parte del componente que realice un cambio, la inserción de una fila en la tabla inicial del documento. En la misma se especificará el autor del cambio, la fecha del mismo y una breve descripción del cambio o contenido añadido desarrollado. Si los cambios son referentes a correcciones mínimas o sin significado semántico, dentro del proyecto, se acepta la no inserción de dicho nuevo dato en la tabla.
 
 
 • Proceso de liberación de productos software
