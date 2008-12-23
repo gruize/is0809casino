@@ -181,6 +181,8 @@ Existe la posibilidad de que un documento no posea coherencia con el estado en c
 
 En todo momento, y a excepción de decisiones consensuadas por componentes del grupo, cada componente ha de documentar los procesos por él mismo establecidos y de comunicar al resto de componentes dichos cambios para el conocimiento global del estado del proyecto.
 
+_NOTA:_ Es obligación, por parte del componente que realice un cambio, la inserción de una fila en la tabla inicial del documento. En la misma se especificará el auto del cambio, la fecha del mismo y una breve descripción del cambio o contenido añadido desarrollado. Si los cambios son referentes a correcciones mínimas o sin significado semántico, dentro del proyecto, se acepta la no inserción de dicho nuevo dato en la tabla.
+
 
 • Proceso de liberación de productos software
 
@@ -233,8 +235,8 @@ Las lineas base serán las siguientes:
 || Funcional || Análisis de Requisitos de la Aplicación || Definición final de la aplicación, requisitos finales y especificación de casos de uso ||
 || Distribución de funciones || Análisis de Requisitos Software || ERS de la aplicación Servidor y de la aplicación Cliente ||
 || Diseño || Diseño y Arquitectura Software || Implementación Arquitectura final y paso de pruebas establecido ||
-|| Producto || Pruebas || Programas binarios e informes por parte del usuario positivos ||
-|| Operación || Implantación del software || Desarrollo de la documentación de usuario: manual de usuario, manual de instalación y manual de operación ||
+|| Producto || Pruebas || Programas binarios e informes por parte del usuario positivos ||
+|| Operación || Implantación del software || Desarrollo de la documentación de usuario: manual de usuario, manual de instalación y manual de operación ||
 
 Los repositorios a utilizar están situados en la herramienta GoogleCode, que proporciona de forma gratuita bajo la obligación de liberar dicho sistema software bajo licencia abierta. La estructura de los mismos ya ha sido definida y su estimación en tamaño es no-superior a la ofrecida por la herramienta utilizada.
 
