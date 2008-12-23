@@ -1,4 +1,4 @@
-#labels -,Fase-de-Requisitos
+#labels Entrega,Fase-de-Requisitos
 *Especificación de Requisitos según el estándar de IEEE 830 
 = Especificación de Requisitos según el estándar de IEEE 830 =
 
