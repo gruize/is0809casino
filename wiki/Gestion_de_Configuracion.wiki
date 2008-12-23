@@ -1,4 +1,5 @@
 #summary Gestion de Configuracion Software
+#labels Entrega
 
 =IEEE Std 828™-2005=
 ==(Revision of IEEE Std 828-1998)==
