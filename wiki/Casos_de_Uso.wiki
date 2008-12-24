@@ -1,0 +1,51 @@
+#labels Entrega
+#Casos de Uso
+
+= Casos de uso =
+
+|| _Autor_ || _Fecha_ || _Comentario_ ||
+|| David de la Fuente ||11/12/2008 ||Revisión de Gonzalo ||
+|| David de la Fuente ||13/11/2008 ||Generación del documento inicial ||
+
+= Introducción =
+
+Este documento pertenece a la documentación que se está realizando para el proyecto: Casino Online.
+
+En él, se describen la secuencia de acciones que el sistema puede llevar a cabo, interactuando con otros elementos, incluyendo alternativas dentro de la secuencia.
+
+La estructura que sigue es en la primera sección, una introducción y la definición de la estructura de los casos de uso. Y de la segunda sección en adelante la definición de los propios casos de uso.
+
+La estructura de cada caso de uso vendrá definida por:
+
+|| Identificador de Caso de Uso ||
+|| Nombre del Caso de Uso ||
+|| Actores ||
+|| Tipo ||
+|| Descripción ||
+|| Restricciones ||
+|| Objetivo ||
+|| Comentario ||
+
+= Casos de Uso =
+
+Los casos de uso para el proyecto de Casino online son los siguientes:
+
+|| *CdU:001* ||
+|| _Nombre:_ *Alta de Usuario en el Sistema* ||
+|| _Actores:_ CLiente (futuro Usuario del casino) ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ Para que un usuario pueda darse de alta en el sistema, este deberá conectar con el casino, introducir sus datos y se generará automáticamente su usuario y  password, con el cual podrá acceder al sistema.
+En el momento de la generación del usuario, el sistema le regalará 100 leuros ||
+|| _Restricciones:_ ||
+|| _Objetivo:_ ||
+|| _Comentario:_ ||
+
+|| *CdU:002* ||
+|| _Nombre:_ 
+   *Alta de Usuario en el Sistema* ||
+|| _Actores:_ ||
+|| _Tipo:_ ||
+|| _Descripción:_ ||
+|| _Restricciones:_ ||
+|| _Objetivo:_ ||
+|| _Comentario:_ ||
