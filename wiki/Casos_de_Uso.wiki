@@ -7,6 +7,7 @@
 || David de la Fuente ||11/12/2008 ||Revisión de Gonzalo ||
 || David de la Fuente ||13/11/2008 ||Generación del documento inicial ||
 
+
 = Introducción =
 
 Este documento pertenece a la documentación que se está realizando para el proyecto: Casino Online.
@@ -25,6 +26,7 @@ La estructura de cada caso de uso vendrá definida por:
 || Restricciones ||
 || Objetivo ||
 || Comentario ||
+
 
 = Casos de Uso =
 
