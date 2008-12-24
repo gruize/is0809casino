@@ -38,15 +38,283 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Tipo:_ Primario y esencial ||
 || _Descripción:_ Para que un usuario pueda darse de alta en el sistema, este deberá conectar con el casino, introducir sus datos y se generará automáticamente su usuario y password, con el cual podrá acceder al sistema.En el momento de la generación del usuario, el sistema le regalará 100 leuros ||
 || _Restricciones:_ ||
-|| _Objetivo:_ ||
+|| _Objetivo:_ Dar de alta al usuario en el sistema ||
 || _Comentario:_ ||
 
 
 || *CdU:002* ||
-|| _Nombre:_ *Alta de Usuario en el Sistema* ||
-|| _Actores:_ ||
-|| _Tipo:_ ||
-|| _Descripción:_ ||
+|| _Nombre:_ *Baja de Usuario en el Sistema* ||
+|| _Actores:_ Usuario del casino ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ Para dar de baja un usuario del sistema, este deberá conectar con el casino, introducir su usuario y contraseña. Si los datos son correctos, el sistema dará de baja al usuario de forma automática. ||
+|| _Restricciones:_ Para poder dar de baja a un usuario, debe estar dado de alta en el sistema. Ver CdU:(001) ||
+|| _Objetivo:_ Dar de baja al usuario en el sistema ||
+|| _Comentario:_ ||
+
+
+|| *CdU:003* ||
+|| _Nombre:_ *Modificación de Usuario en el Sistema* ||
+|| _Actores:_ Usuario del casino ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ Para modificar los datos de un usuario en el sistema, este deberá conectar con el casino, introducir su usuario y su password. Si los datos son correctos, se mostrará los datos al usuario y este podrá modificarlos. ||
+|| _Restricciones:_ Para poder modificar los datos de un usuario, debe estar dado de alta en el sistema. Ver CdU:(001) ||
+|| _Objetivo:_ Modificar los datos de un usuario en el sistema||
+|| _Comentario:_ ||
+
+
+
+|| *CdU:004* ||
+|| _Nombre:_ *Descargar la aplicación* ||
+|| _Actores:_ Usuario del casino ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ Para descargar la aplicación el usuario deberá conectar con el sistema, dentro de este podrá descargar el cliente pesado de la aplicación para que el usuario pueda jugar en el casino. ||
 || _Restricciones:_ ||
-|| _Objetivo:_ ||
+|| _Objetivo:_ Descargar el cliente pesado para poder jugar en el casino. ||
+|| _Comentario:_ ||
+
+
+
+|| *CdU:005* ||
+|| _Nombre:_ *Instalar la aplicación* ||
+|| _Actores:_ Usuario del casino ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El usuario instalará el cliente pesado de la aplicación en su PC. ||
+|| _Restricciones:_ Para poder instalar la aplicación, el usuario deberá haberse descargado la aplicación. Ver CdU:004 ||
+|| _Objetivo:_ Instalación del cliente pesado de la aplicación. ||
+|| _Comentario:_ ||
+
+
+
+|| *CdU:006* ||
+|| _Nombre:_ *Arranque de la aplicación* ||
+|| _Actores:_ Primario y esencial ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ Para el arranque de la aplicación, el usuario ejecutará el cliente de la misma, se identificará con su usuario y su clave. Si el usuario y su clave son correctos, la aplicación realizará una conexión con el servidor. ||
+|| _Restricciones:_ Para poder arrancar la aplicación, el usuario debe haberla instalado. Ver CdU:005 ||
+|| _Objetivo:_ Crear la conexión entre el cliente y el servidor. ||
+|| _Comentario:_ ||
+
+
+
+|| *CdU:007* ||
+|| _Nombre:_ *Administrador de créditos* ||
+|| _Actores:_ Usuario del casino ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ Para la administración de los créditos de cada jugador, el usuario deberá conectar con el casino, introducir su usuario y su clave. Si los datos son correctos, el sistema mostrará la opción de administrador de créditos al cliente. En él, se podrán aumentar o disminuir el número de créditos que dispone cada usuario. ||
+|| _Restricciones:_ Para administrar los créditos, deberá ser usuario del casino CdU:001 ||
+|| _Objetivo:_ Cada usuario pueda administrar sus créditos de juego ||
+|| _Comentario:_ ||
+
+
+
+|| *CdU:008* ||
+|| _Nombre:_ *Comunicación entre Usuarios* ||
+|| _Actores:_ Usuario del casino ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El sistema proporciona a los usuarios la posibilidad de comunicarse entre los jugadores de una mesa. El usuario seleccionará el usuario o usuarios con los que quiera comunicarse, e introducirá el mensaje a comunicar con los usuarios seleccionados anteriormente.  ||
+|| _Restricciones:_ Para poder comunicarse con otros usuarios, se debe estar dentro de una mesa XXXXX ||
+|| _Objetivo:_ Comunicación entre los jugadores de una mesa ||
+|| _Comentario:_ ||
+
+
+|| *CdU:009* ||
+|| _Nombre:_ *Consulta de Estadísticas de Jugador* ||
+|| _Actores:_ Usuario del casino ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ Para consultar las estadística de juego, el usuario deberá conectar con el casino, introducir su usuario y su clave. Si los datos son correctos, el sistema mostrará la opción de estadísticas al usuario. En él, se podrán consultar estadísticas del usuario. ||
+|| _Restricciones:_ Para administrar los créditos, deberá ser usuario del casino CdU:001 ||
+|| _Objetivo:_ Conocer las estadísticas de juego de un usuario. ||
+|| _Comentario:_ ||
+
+
+|| *CdU:010* ||
+|| _Nombre:_ *Entrar en una Sala de juego* ||
+|| _Actores:_ Usuario del casino ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El sistema presentará al usuario todas las salas de juego disponibles, y este seleccionará en la que quiere entrar. ||
+|| _Restricciones:_ El usuario tenga arrancada la partida (CdU:006) ||
+|| _Objetivo:_ Seleccionar la sala donde se quiere jugar ||
+|| _Comentario:_ ||
+
+
+|| *CdU:011* ||
+|| _Nombre:_ *Entrar en una Mesa de juego* ||
+|| _Actores:_ Usuario del casino ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El sistema presentará al usuario todas las mesas de juego disponibles, y este seleccionará en la que quiere entrar. ||
+|| _Restricciones:_ El usuario deberá estar dentro de una Sala de juego (CdU:010) ||
+|| _Objetivo:_ Seleccionar la mesa donde se quiere jugar o ver la partida que en ella se juega.||
+|| _Comentario:_ ||
+
+
+|| *CdU:012* ||
+|| _Nombre:_ *Entrar a jugar* ||
+|| _Actores:_ Usuario del casino ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El usuario accede a jugar en la mesa que ha seleccionado. El sistema mostrará doferentes acciones dependiendo del juego al que haya accedido. ||
+|| _Restricciones:_ El usuario deberña estar dentro de una Mesa de juego (CdU:009) ||
+|| _Objetivo:_ Entrar en una mesa como jugador. ||
+|| _Comentario:_ ||
+
+
+|| *CdU:013* ||
+|| _Nombre:_ *Entra a Ver una partida* ||
+|| _Actores:_ Usuario del casino ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El usuario accede a ver la partida que se está jugando en la mesa que ha seleccionado. El sistema mostrará diferentes acciones dependiendo del juego al que haya accedido ||
+|| _Restricciones:_ El usuario deberá estar dentro de una Mesa de juego (CdU:009) ||
+|| _Objetivo:_ Entrar en una mesa como invitado para poder ver la partida. ||
+|| _Comentario:_ ||
+
+
+
+|| *CdU:014* ||
+|| _Nombre:_ *Salir de una partida estando jugando en ella* ||
+|| _Actores:_ Usuario del casino ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El usuario abandona la partida en la que estaba jugando. ||
+|| _Restricciones:_ El usuario podrá abandonar la partida en la que estaba jugando, cuando haya terminado la ronda que se esté jugando en ese momento. El usuario debe estar jugando en una mesa de juego (CdU:012) ||
+|| _Objetivo:_ Abandonar una partida. ||
+|| _Comentario:_ ||
+
+
+|| *CdU:015* ||
+|| _Nombre:_ *Salir de una partida estando como invitado en ella* ||
+|| _Actores:_ Usuario del casino ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El usuario abandona la partida en la que estaba como invitado. ||
+|| _Restricciones:_ El usuario debe estar como invitado en una mesa de juego (CdU:013) ||
+|| _Objetivo:_ Abandonar una partida. ||
+|| _Comentario:_ ||
+
+
+|| *CdU:016* ||
+|| _Nombre:_ *Salir de una Mesa de Juego* ||
+|| _Actores:_ Usuario del casino ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El usuario abandonará la mesa de juego en la que estaba. ||
+|| _Restricciones:_ Un usuario podrá salir de una Mesa de juego, siempre y cuando esté dentro de una de ellas. Ver CdU:011. ||
+|| _Objetivo:_ Salir de una Mesa de juego. ||
+|| _Comentario:_ ||
+
+
+|| *CdU:017* ||
+|| _Nombre:_ *Salir de una Sala de Juego* ||
+|| _Actores:_ Usuario del casino ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El usuario abandonará la sala de juego en la que estaba. ||
+|| _Restricciones:_ Un usuario podrá salir de una Sala de juego, siempre y cuando esté dentro de una de ellas. Ver CdU:010. ||
+|| _Objetivo:_ Salir de una Sala de juego ||
+|| _Comentario:_ ||
+
+
+
+|| *CdU:018* ||
+|| _Nombre:_ *Cierre de la aplicación* ||
+|| _Actores:_ Usuario del casino ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El usuario podrá cerrar el cliente pesado de la aplicación. Si se realiza el cierre de la aplicación cuando el usuario esta en modo jugador en una partida, el sistema restaurará la cuenta de todos los jugadores de esa partida al final de la ultima ronda que se haya finalizado satisfactoriamente. ||
+|| _Restricciones:_ Un usuario podrá cerrar la aplicación, siempre y cuando esté dentro de ella. Ver CdU:006. ||
+|| _Objetivo:_ Cerrar la aplicación. ||
+|| _Comentario:_ ||
+
+
+
+|| *CdU:019* ||
+|| _Nombre:_ *Validación del usuario* ||
+|| _Actores:_ El sistema ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El sistema comprobará el usuario y la clave que ha recibido del usuario. ||
+|| _Restricciones:_ Para poder validar al usuario, éste antes haberse dado de alta en el sistema. Ver CdU:001 ||
+|| _Objetivo:_ Comprobar que el usuario esta dado de alta en el sistema. ||
+|| _Comentario:_ ||
+
+
+|| *CdU:020* ||
+|| _Nombre:_ *Arranque aplicación servidor* ||
+|| _Actores:_ El administrador del sistema ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ Se ejecutará la aplicación servidor, ésta debe comprobar, para un correcto arranque de la misma, la conexión con la Base de Datos y la conexión a Internet. ||
+|| _Restricciones:_ ||
+|| _Objetivo:_ Arrancar la aplicación Servidor. ||
+|| _Comentario:_ ||
+
+
+|| *CdU:021* ||
+|| _Nombre:_ *Creación de mesa de Juego* ||
+|| _Actores:_ El administrador del sistema ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará Crear mesa de juego, e introducirá el tipo de mesa de juego. ||
+|| _Restricciones:_ Para crear mesas de juego, debe estar arrancada la aplicación servidor. Ver CdU:020. ||
+|| _Objetivo:_ Creación de mesas de juego. ||
+|| _Comentario:_ ||
+
+
+|| *CdU:022* ||
+|| _Nombre:_ *Eliminar mesa de juego* ||
+|| _Actores:_ El administrador del sistema. ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará Eliminar mesa de juego, el sistema pedirá confirmación de la eliminación. ||
+|| _Restricciones:_ Para eliminar mesas de juego han de estar creadas. Ver CdU:021. ||
+|| _Objetivo:_ Eliminar mesas de juego. ||
+|| _Comentario:_ ||
+
+
+|| *CdU:023* ||
+|| _Nombre:_ *Modificar mesa de juego* ||
+|| _Actores:_ El administrador del sistema ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro, seleccionará Modificar mesa de juego e introducirá las modificaciones en la mesa de juego. ||
+|| _Restricciones:_ Para modificar mesas de juego han de estar creadas. Ver CdU: 021 ||
+|| _Objetivo:_ Modificar mesas de juego. ||
+|| _Comentario:_ ||
+
+
+|| *CdU:024* ||
+|| _Nombre:_ *Observar mesa de juego* ||
+|| _Actores:_ El administrador del sistema ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro, seleccionará Observar mesa de juego, el sistema mostrará las mesas de juego dadas de alta en ese momento y el administrador podrá observar la que seleccione. ||
+|| _Restricciones:_ Para observar las mesas de juego han de estar creadas. Ver CdU:019. ||
+|| _Objetivo:_ Controlar las mesas de juego del sistema. ||
+|| _Comentario:_ ||
+
+
+|| *CdU:025* ||
+|| _Nombre:_ *Dejar de Observar mesa de juego* ||
+|| _Actores:_ El administrador del sistema ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El sistema mostrará la posibilidad de dejar la observación de una mesa de juego, cuando el administrador seleccione esta opción abandonará el visionado de esta partida. ||
+|| _Restricciones:_ El administrador del sistema podrá dejar la observación de las mesas de juego, dependiendo de las necesidades del sistema. Para dejar de observar las mesas de juego, el administrador debe estar observando una de ellas. Ver CdU:024. ||
+|| _Objetivo:_ Dejar la observación de las mesas de juego. ||
+|| _Comentario:_ ||
+
+
+|| *CdU:026* ||
+|| _Nombre:_ *Consulta de Estadísticas del casino* ||
+|| _Actores:_ El administrador del casino ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará Consulta de estadísticas del casino, el sistema mostrará estadísticas del dinero total recaudado en un determinado rango de fechas, usuarios activos del casino y estadísticas personales de cada usuario. ||
+|| _Restricciones:_ ||
+|| _Objetivo:_ Consulta las estadísticas que genera el casino. ||
+|| _Comentario:_ ||
+
+
+|| *CdU:027* ||
+|| _Nombre:_ *Proporcionar Crédito al Jugador* ||
+|| _Actores:_ El sistema ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ Cuando el sistema detecte una petición de una solicitud de saldo de un usuario, éste comprobará si los datos del usuario son correctos y procederá a ingresar el saldo perdido en la cuenta del usuario. ||
+|| _Restricciones:_ Para que el sistema proporcione crédito a un jugador, este ha de haber solicitado el crédito. Ver CdU:007. ||
+|| _Objetivo:_ Descargar el cliente pesado para poder jugar en el casino. ||
+|| _Comentario:_ ||
+
+
+|| *CdU:028* ||
+|| _Nombre:_ *Expulsar Jugador* ||
+|| _Actores:_ El administrador del sistema ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará Expulsar jugador, el sistema mostrará los usuarios dados de alta en el sistema y el administrador seleccionará al usuario que desea expulsar. ||
+|| _Restricciones:_ Para poder expulsar a un jugador, este debe estar dado de alta en el sistema. Ver CdU:001 ||
+|| _Objetivo:_ Expulsar a un usuario del sistema. ||
 || _Comentario:_ ||
