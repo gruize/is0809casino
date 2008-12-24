@@ -5,32 +5,47 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Random;
 import java.util.Vector;
-
-import com.sun.org.apache.bcel.internal.generic.InstructionConstants.Clinit;
-
 import comunicaciones.conexion.*;
 
+/**
+ * Clase que extiende de Thread que gestiona una conexiÃ³n concreta
+ * @author Francisco Huertas y Gabriela Ruiz
+ * @version 0.1.228
+ */
 public class hiloConexion extends Thread{
+	
 	private Socket canal;
 	private boolean esServidor;
 	private TablaMensajes tablaMensajes;
 	
 	//FIXME
-	
+	/**
+	 * Semilla para el id
+	 */
 	static Long semilla = new Long(0);
-	
 	private Vector<Conectores> tablaConectores;
-	public hiloConexion(Socket canal, boolean esServidor, Vector<Conectores> vector, TablaMensajes tablaMensajes) {
+	
+	/**
+	 * Contructor parametrizado
+	 * @param canal canal por el cual se retrasmite
+	 * @param esServidor indica si se trabaja desde un cliente o un servidor
+	 * @param tablaConectores Tablad de conectores
+	 * @param tablaMensajes Tabla de mensajes
+	 */
+	public hiloConexion(Socket canal, boolean esServidor, Vector<Conectores> tablaConectores, TablaMensajes tablaMensajes) {
 		super();
 		this.canal = canal;
 		this.esServidor = esServidor;
-		this.tablaConectores = vector;
+		this.tablaConectores = tablaConectores;
 		this.tablaMensajes = tablaMensajes;
 	}
+	/**
+	 * Metodo que se inicia al ejecutar el thead y que gestiona una conexion
+	 */
 	public void run ()
 	{
 		try {
-			// FIXME close all sockets
+			// TODO close all sockets
 			
 			Mensaje msg = this.receive(null);
 			// FIXME corregir los procesos que envian al propio servidor
@@ -42,7 +57,7 @@ public class hiloConexion extends Thread{
 					do {
 						id = this.cadenaAleatoria(10);
 					}while (this.buscarConector(id) != null);
-					// FIXME quitar String cadena3 = canal.getInetAddress().toString();
+					
 					this.tablaConectores.add(new Conectores(id,canal.getInetAddress()));
 			
 					msg = new MensajeString();
@@ -58,18 +73,15 @@ public class hiloConexion extends Thread{
 				{
 					Socket clientSocket = new Socket(msg.HOST_SERVER,msg.PUERTO);
 					this.send(clientSocket,msg);
-					// FIXME ¿lo puedo reenviar tal cual?
+					// FIXME ï¿½lo puedo reenviar tal cual?
 					
 					
 					msg = this.receive(clientSocket);
 					
 					// obtenemos la respuesta con el id (posible mensaje de configuracion)
- 
+					// TODO: implementar OK_ANSWER
 					if (msg.getTipo() == msg.OK)
-					{
-						String cadena1 = this.canal.getLocalAddress().toString();
 						this.tablaConectores.add(new Conectores(((MensajeString)msg).getContenido(),this.canal.getLocalAddress()));
-					}
 						
 					else
 					{
@@ -150,8 +162,6 @@ public class hiloConexion extends Thread{
 			{
 				// si el mensaje me viene a mi
 				//FIXME
-				String cadena1 = destino.getHost().toString();
-				String cadena2 = InetAddress.getLocalHost().toString();
 				//if (destino.getHost().getAddress())
 				if (this.compareIp(destino.getHost().getAddress(), InetAddress.getLocalHost().getAddress()))
 				{	
@@ -199,6 +209,7 @@ public class hiloConexion extends Thread{
 
 		return;
 	}
+	
 	private Conectores buscarConector(String id)
 	{
 		for (int i = 0; i < this.tablaConectores.size();i++)
@@ -212,7 +223,7 @@ public class hiloConexion extends Thread{
 		return null;
 	}
 	
-	private static String cadenaAleatoria(int n)
+	private String cadenaAleatoria(int n)
 	{
 		semilla++;
 		Random rnd = new Random();
@@ -267,7 +278,8 @@ public class hiloConexion extends Thread{
 
 		return null;
 	}
-	public boolean compareIp(byte addr1[],byte addr2[])
+	
+	private boolean compareIp(byte addr1[],byte addr2[])
 	{
 		for (int i = 0;i<4;i++)
 			if (addr1[i] !=addr2[i])
