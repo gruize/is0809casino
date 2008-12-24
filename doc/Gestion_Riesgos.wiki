@@ -1,0 +1,93 @@
+#labels Entrega
+#Gestión de Riesgos
+
+= Gestión de Riesgos =
+
+|| _Autor_ || _Fecha_ || _Comentario_ ||
+|| David Fernández y Alberto Fernández ||11/12/2008 ||Revision de Gonzalo ||
+|| Alberto Milán,David Fernández y Alberto Fernández ||13/11/2008 ||Generación del documento inicial ||
+
+= Introducción =
+
+Se entiende por riesgo a cualquier dificultad o complicación que pudiera suceder a lo largo de la especificación,  diseño, implementación y/o desarrollo en general de un proyecto.
+
+Por cada riesgo considerado hay que tener en cuenta su probabilidad de aparición (Alta, Moderada, Baja) y efectos (Catastróficos, Serios, Tolerable, Insignificante) y posibles estrategias para evitar los riesgos en la medida de lo posible.
+
+== Riesgos Tecnológicos == 
+
+  * El servidor ha de tener un ancho de banda mínimo capaz de soportar una alta carga de usuarios. 
+* Probabilidad:* Moderada. *Efectos:* Tolerable.
+_Estrategias:_ Mejorar el protocolo de comunicación para minimizar el tráfico de la aplicación. Como último motivo, se podría solicitar más ancho de banda ó requerir mejor equipación hardware.
+
+  * La latencia ha de ser suficientemente baja como para ofrecer un buen servicio en tiempo real.
+* Probabilidad:* Baja. *Efectos:* Tolerable.
+_Estrategias:_ Compactar los posibles mensajes, reduciendo el número de comunicaciones por mensaje. Realizar un estudio del retardo de cada cliente al realizar login a la aplicación. Si el retardo es superior a un máximo establecido se le comunicará con un mensaje de _Imposibilidad de juego_. Como última solución, solicitar una mejora en la conexión.
+
+  * La base de datos usada en el sistema no puede procesar tantas peticiones por segundo como se había estimado.
+* Probabilidad:* Moderada. *Efectos:* Serio.
+_Estrategias:_ Establecer prioridades en las peticiones sobre el SGBD. Como última solución cabe solicitar una mejora de hardware en el equipo servidor y/o probar alternativas de SGBD.
+
+  * Privacidad en la comunicación cifrada entre servidor y cliente.
+* Probabilidad:* Alta. *Efectos:* Catastrófico.
+_Estrategias:_ Salvaguardar con copias incrementales el sistema de manera que sea facilmente recuperable, analizar posibles soluciones a fallos de seguridad, como seleccionar otro método de cifrado que no posea dichas vulnerabilidades (u otras).
+
+  * Falta de privacidad en ciertos contenidos de la Base de Datos susceptibles de contener información personal. Incumplimiento de la Ley de Protección de Datos.
+* Probabilidad:* Alta. *Efectos:* Catastrófico.
+_Estrategias:_ Estudio detallado de los contenidos que han de ser cifrados y del algoritmo de cifrado. Estudiar disociaciones entre los posibles datos contenidos. Además, puede añadirse la redacción de un documento Log escrito por el servidor que almacene todas las transacciones realizadas sobre la BBDD, para poder localizar en qué punto se ha infringido dicha ley.
+
+== Riesgos de Personal ==
+
+  * Es imposible encontrar uno o varios desarrolladores con las habilidades necesarias para la realización de una tarea concreta del proyecto.
+* Probabilidad:* Baja. *Efectos:* Catastrófico.
+_Estrategias:_ Obtener información y/o documentación por medio escrito u online. Solicitar que los desarrolladores adjudicados a la realización de esa tarea u otros más expertos, estudien dicha información y consigan adquirir en un tiempo mínimamente aceptable los conocimientos para afrontarla.
+
+  * Incapacidad del personal. Ello incluye la falta de personal por distintos motivos: enfermedad, época de estudios (exámenes), sobrecarga de trabajo ajeno al proyecto, motivos personales... 
+* Probabilidad:* Alta. *Efectos:* Serio.
+_Estrategias:_ Estudiar y realizar un reajuste en la planificación ampliando los plazos de entrega intermedios o en su defecto recuperando el tiempo perdido cuando el personal vaya reincorporandose al proyecto. Tambien se podría estudiar la opción de incrementar el trabajo del personal disponible para que realizasen su trabajo y el de los indispuestos.
+
+  * Nuevas incorporaciones en el equipo de diseño/desarrollo.
+* Probabilidad:* Moderada. *Efectos:* Tolerable.
+_Estrategias:_ Estructurar correctamente el trabajo y realizar una buena documentación para simplificar a las nuevas incorporaciones una integración rápida a la información ya desarrollada. Se puede incluir, si es necesario, un pequeño tiempo de adaptación a las tecnologías utilizadas.
+
+
+== Riesgos de Organización ==
+
+  * Falta de estructura jerárquica en el grupo del proyecto.
+* Probabilidad:* Moderada. *Efectos:* Serio.
+_Estrategias:_ Realizar una consulta a los miembros del grupo y evaluar todas las posibilidades de forma consensuada, guardando y documentando, en todo caso, todas las opciones recibidas.
+
+  * Problemas económicos. 
+* Probabilidad:* Baja. *Efectos:* Catastrófico.
+_Estrategias:_ No existe estrategia de resolución, al no existir presupuesto básico de proyecto. Se asumirán los costes o se abordarán desde alternativas aceptables. 
+
+  * Falta de coordinación entre los miembros del equipo.
+* Probabilidad:* Alta. *Efectos:* Serio.
+_Estrategias:_ Marcar objetivos temporales y realizables, controlando el desarrollo individual desequilibrado. Se realizara reuniones semanales en el laboratorio, y habrá una comunicación constante a través del google code y groups. Además de una distribucion en grupos, algunas personas se encargarán de la coordinación.
+
+
+== Riesgos de Herramientas ==
+
+  * La herramienta utilizada genera código ineficiente.
+* Probabilidad:* Moderada. *Efectos:* Tolerable.
+_Estrategias:_ Realizar pruebas del código generado y probar nuevas herramientas de desarrollo y/o compiladores.
+
+  * No se puede utilizar alguna herramienta que estaba pensada usar por problemas de integración con el resto del sistema.
+* Probabilidad:* Alta. *Efectos:* Tolerable.
+_Estrategias:_ Realizar un estudio sobre los posibles problemas que puede presentar el uso de una herramienta antes de comenzar su desarrollo en la misma. Tener preparadas herramientas alternativas por si durante el desarrollo hubiera problemas con las seleccionadas. 
+
+== Riesgos de Requisitos ==
+
+  * Cambios en los requisitos que requieren un rediseño de la aplicación grande.
+* Probabilidad:* Alta. *Efectos:* Serio.
+_Estrategias:_ Intentar definir de forma concreta todos los requisitos con la intención de realizar un diseño que sea capaz de afrontar cambios y minimizar el impacto. La modularización del código generado y la división del proyecto en varias partes puede ayudar al rediseño de una parte determinada sin que afecte a las demás.
+
+  * El usuario o cliente cree que un cambio significa una pequeña modificación en los requisitos.
+* Probabilidad:* Alta. *Efectos:* Serio.
+_Estrategias:_ Escribir un documento con los posibles cambios _a priori_ para informar al usuario de la envergadura de la modificación y poder estudiarlos llegado el caso de que interesen.
+
+
+== Riesgos de Estimación ==
+
+  * Se ha infravalorado el tiempo requerido para desarrollar el proyecto.
+* Probabilidad:* Moderada. *Efectos:* Catastróficos.
+_Estrategias:_ Adquirir partes del proyecto ya desarrolladas (componentes). 
