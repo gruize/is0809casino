@@ -4,12 +4,20 @@ package comunicaciones.conexion;
 import java.net.*;
 import java.io.*;
 
-
+/**
+ * Implemetnacion de InterfazConexion basada en sockets
+ * @author Francisco Huertas y Gabriela Ruiz
+ * @version 0.1.227
+ */
 public class Conexion implements InterfazConexion{
-
+	
 	private String id;
 	private Socket conexion;
 	//private boolean creada;
+	/**
+	 * Constructor de la clase conexion
+	 * @param esServidor Indica si es un servidor
+	 */
 	public Conexion(boolean esServidor)
 	{
         
@@ -37,7 +45,7 @@ public class Conexion implements InterfazConexion{
         // TODO tratamiento de errores del sistema
         if (msg.getTipo() == msg.OK)
         {
-        	// TODO mensaje de configuracion¿?
+        	// TODO mensaje de configuracionï¿½?
         	this.id = ((MensajeString)msg).getContenido();
         }
         else
@@ -69,6 +77,8 @@ public class Conexion implements InterfazConexion{
 		}
 		return true;
 	}
+
+
 	private void desconectar()
 	{
 		try {
@@ -78,13 +88,57 @@ public class Conexion implements InterfazConexion{
 			e.printStackTrace();
 		}
 	}
+
+	private void send(Socket canal, Mensaje msg)
+	{
+		
+		ObjectOutputStream salidaDatos;
+		try {
+			
+			if (canal == null)
+				canal = this.conexion;
+			salidaDatos = new ObjectOutputStream(canal.getOutputStream());
+			salidaDatos.writeObject(msg);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+
+		
+	}
+
+	private Mensaje receive (Socket canal)
+	{
+		ObjectInputStream entradaDatos;
+		
+		try {
+			if (canal == null)
+				canal = this.conexion;
+			entradaDatos = new ObjectInputStream(canal.getInputStream());
+			return (Mensaje)entradaDatos.readObject();
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
 	@Override
 	public void eliminarConexion() {
 
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 	@Override
 	public Mensaje enviarMensaje(Mensaje msg) {
 	
@@ -113,12 +167,6 @@ public class Conexion implements InterfazConexion{
 		return this.id;
 	}
 
-
-
-
-	
-
-
 	@Override
 	public Mensaje obtenerMensaje(boolean mascara) {
 		Mensaje msg = new MensajeSistema();
@@ -131,46 +179,11 @@ public class Conexion implements InterfazConexion{
 		return msg;
 
 	}
-	private void send(Socket canal, Mensaje msg)
-	{
-		
-		ObjectOutputStream salidaDatos;
-		try {
-			
-			if (canal == null)
-				canal = this.conexion;
-			salidaDatos = new ObjectOutputStream(canal.getOutputStream());
-			salidaDatos.writeObject(msg);
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
 
-		
-	}
-	private Mensaje receive (Socket canal)
-	{
-		ObjectInputStream entradaDatos;
-		
-		try {
-			if (canal == null)
-				canal = this.conexion;
-			entradaDatos = new ObjectInputStream(canal.getInputStream());
-			return (Mensaje)entradaDatos.readObject();
-			
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return null;
+	@Override
+	public Config getConfig() {
+		// TODO Auto-generated method stub
+		return new ConfigCasino();
 	}
 
 }
