@@ -36,15 +36,14 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Alta de Usuario en el Sistema* ||
 || _Actores:_ CLiente (futuro Usuario del casino) ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ Para que un usuario pueda darse de alta en el sistema, este deberá conectar con el casino, introducir sus datos y se generará automáticamente su usuario y  password, con el cual podrá acceder al sistema.En el momento de la generación del usuario, el sistema le regalará 100 leuros ||
+|| _Descripción:_ Para que un usuario pueda darse de alta en el sistema, este deberá conectar con el casino, introducir sus datos y se generará automáticamente su usuario y password, con el cual podrá acceder al sistema.En el momento de la generación del usuario, el sistema le regalará 100 leuros ||
 || _Restricciones:_ ||
 || _Objetivo:_ ||
 || _Comentario:_ ||
 
 
 || *CdU:002* ||
-|| _Nombre:_ 
-   *Alta de Usuario en el Sistema* ||
+|| _Nombre:_ *Alta de Usuario en el Sistema* ||
 || _Actores:_ ||
 || _Tipo:_ ||
 || _Descripción:_ ||
