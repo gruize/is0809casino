@@ -2,8 +2,9 @@ package comunicaciones.conexion;
 
 import java.io.Serializable;
 /**
- * Clase Mensaje abstracta que hace las funciones de interfaz
- * @author Francisco Huertas Y Gabriela Ruiz
+ * 
+ * Class Mensaje, abstract, which makes the inteface functions.
+ * @author Francisco Huertas and Gabriela Ruiz
  * @version 0.1.227
  */
 public abstract class Mensaje implements Serializable
@@ -28,32 +29,37 @@ public abstract class Mensaje implements Serializable
 	public final String HOST_SERVER = "147.96.82.202"; 
 
 	/**
-	 * tipo del mensaje (ver las constantes para los tipos predeterminados)
+	 * Message type (See the constants for the default types)
 	 */
 	private int tipo;
 	/**
-	 * ID del origen del mensaje
+	 * ID of the origin of the message
 	 */
 	private String origen;
 	/**
-	 * ID del destino del mensaje
+	 * ID of the destination of the message
 	 */
 	private String destino;
 	/**
-	 * Prioridad del mesane TODO:no implementada
+	 * Priority message
+	 * TODO:
+	 * (Not implemented)
 	 */
 	private int prioridad;
 	/**
-	 * mascara del mesane TODO:no implementado
+	 * Mask of the message
+	 * TODO:
+	 * (Not implemented)
 	 */
 	private boolean mascara;
-	// indica si el mensaje ha pasado por el servidor
-	// si el mensaje ha pasado por el servidor no tiene
-	// volver a el
-	// TODO put procesado how protected
+	/**
+	 * Indicates if the message had passed by the server
+	 * If the message had passed by the server,it doesn't have to pass again
+	 * TODO put procesado how protected
+	 */
 	public boolean procesado;
 	/**
-	 * Conctructor por defecto
+	 * Default constructor
 	 */
 	public Mensaje() {
 		this.procesado = false;
@@ -62,8 +68,8 @@ public abstract class Mensaje implements Serializable
 	}
 	
 	/**
-	 * Contructor del mensaje. Clona el mensaje pasado
-	 * @param otro Mensaje que va a clonar
+	 * Constructor's message. Clone the message passed.
+	 * @param otro Message to be cloned
 	 */
 	public Mensaje(Mensaje otro) {
 		this.tipo = otro.tipo;
@@ -75,89 +81,89 @@ public abstract class Mensaje implements Serializable
 	}
 
 	/**
-	 * Accedente de la mascara
-	 * @return la mascara del mensaje
+	 * Get the mask
+	 * @return The mask of the message
 	 */
 	public boolean getMascara() {
 		return mascara;
 	}
 	/**
-	 * Mutador de la mascara
-	 * @param mascara 
+	 * Set the mask
+	 * @param mascara Te mask of the message 
 	 */
 	public void setMascara(boolean mascara) {
 		this.mascara = mascara;
 	}
 	
 	/**
-	 * Accedente del tipo
-	 * @return el tipo del mensaje
+	 * Get the type of the message
+	 * @return The type of the message
 	 */
 	public int getTipo() {
 		return tipo;
 	}
 
 	/**
-	 * Accedente del origen
-	 * @return el origen a quien va a ser enviado el mesaje
+	 * Get the origin
+	 * @return The origin since where the message is sent
 	 */
 	public String getOrigen() {
 		return origen;
 	}
 	/**
-	 * Accedente del destino
-	 * @return destino del mensaje
+	 * Get the destination
+	 * @return Destination of the message
 	 */
 	public String getDestino() {
 		return destino;
 	}
 	
 	/**
-	 * Accedente de la prioridad
-	 * @return prioridad del mensaje
+	 * Get the priority
+	 * @return priority of the message
 	 */
 	public int getPrioridad() {
 		return prioridad;
 	}
 	
 	/**
-	 * Mutador del tipo
-	 * @param tipo
+	 * Set the type
+	 * @param Type
 	 */
 	public void setTipo(int tipo) {
 		this.tipo = tipo;
 	}
 
 	/**
-	 * Mutador del origen
-	 * @param origen
+	 * Set the origin
+	 * @param Origin
 	 */
 	public void setOrigen(String origen) {
 		this.origen = origen;
 	}
 	/**
-	 * Mutador del destino
-	 * @param destino
+	 * Set the destination
+	 * @param destino Destination
 	 */
 	public void setDestino(String destino) {
 		this.destino = destino;
 	}
 	/**
-	 * Mutador de la prioridad
+	 * Set the priority
 	 * @param prioridad
 	 */
 	public void setPrioridad(int prioridad) {
 		this.prioridad = prioridad;
 	}
 	/**
-	 * se clona a si mismo
-	 * @return el mensaje clonado
+	 * Generates a clone of himself
+	 * @return The message cloned
 	 */
 	public abstract Mensaje clon();
 	
 	/**
-	 * String del nombre de la clase
-	 * @return El nombre de la clase
+	 * Get the name of the class
+	 * @return The name of the class
 	 */
 	public abstract String getClassName();
 }

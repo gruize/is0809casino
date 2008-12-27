@@ -8,8 +8,8 @@ import java.util.Vector;
 import comunicaciones.conexion.*;
 
 /**
- * Clase que extiende de Thread que gestiona una conexión concreta
- * @author Francisco Huertas y Gabriela Ruiz
+ * Class that extends from Thread whose manages a specific connection
+ * @author Francisco Huertas and Gabriela Ruiz
  * @version 0.1.228
  */
 public class hiloConexion extends Thread{
@@ -26,11 +26,11 @@ public class hiloConexion extends Thread{
 	private Vector<Conectores> tablaConectores;
 	
 	/**
-	 * Contructor parametrizado
-	 * @param canal canal por el cual se retrasmite
-	 * @param esServidor indica si se trabaja desde un cliente o un servidor
-	 * @param tablaConectores Tablad de conectores
-	 * @param tablaMensajes Tabla de mensajes
+	 * Constructor Parameterized
+	 * @param canal Channel through which retransmitted
+	 * @param esServidor Indicates if is working from a client or a server
+	 * @param tablaConectores Table of connectors
+	 * @param tablaMensajes Table of messages
 	 */
 	public hiloConexion(Socket canal, boolean esServidor, Vector<Conectores> tablaConectores, TablaMensajes tablaMensajes) {
 		super();
@@ -40,7 +40,7 @@ public class hiloConexion extends Thread{
 		this.tablaMensajes = tablaMensajes;
 	}
 	/**
-	 * Metodo que se inicia al ejecutar el thead y que gestiona una conexion
+	 * Method that starts when the thread runs and manages a connection
 	 */
 	public void run ()
 	{
@@ -77,8 +77,9 @@ public class hiloConexion extends Thread{
 					
 					
 					msg = this.receive(clientSocket);
-					
-					// obtenemos la respuesta con el id (posible mensaje de configuracion)
+					/**
+					 * Get the answer with the id (possible message of configuration)
+					 */
 					// TODO: implementar OK_ANSWER
 					if (msg.getTipo() == msg.OK)
 						this.tablaConectores.add(new Conectores(((MensajeString)msg).getContenido(),this.canal.getLocalAddress()));
@@ -89,7 +90,9 @@ public class hiloConexion extends Thread{
 					}
 					
 					clientSocket.close();
-					//enviamos la respuesta al proceso
+					/**
+					 * Send the answer to the process
+					 */
 					this.send(null,msg);
 					// TODO cerrar subcanales
 					this.canal.close();
@@ -120,10 +123,11 @@ public class hiloConexion extends Thread{
 					
 				
 			}
-			// Mensaje de tipo NO CREATE CONNECTION
+			// Message type NO CREATE CONNECTION
 			Conectores destino = this.buscarConector(msg.getDestino());
-			// si esta procesado en el cliente, o en el servidor y no lo encuentra
-			// es que no existe
+			/**
+			 * If is processed in the client or in the server and don't find it, it doesn't exist
+			 */
 			if ((msg.procesado || this.esServidor) && destino == null)
 			{
 				Mensaje respuesta = new MensajeSistema ();
@@ -131,7 +135,9 @@ public class hiloConexion extends Thread{
 				this.send(null,respuesta);
 		
 			}
-			// estando en un cliente que no tiene el destino y no ha pasado por el servidor
+			/**
+			 * Being in a client which doesn't have destination, and hasn't passed by the server
+			 */
 			else if ((msg.procesado == false) && (destino == null))
 			{
 				Socket clientSocket = new Socket (msg.HOST_SERVER,msg.PUERTO);
@@ -157,10 +163,14 @@ public class hiloConexion extends Thread{
 				}
 				
 			}
-			// Si es servidor y existe destino
+			/**
+			 * If is a server and exist the destination
+			 */
 			else if ((this.esServidor) && (destino != null))
 			{
-				// si el mensaje me viene a mi
+				/**
+				 * If the message comes to me
+				 */
 				//FIXME
 				//if (destino.getHost().getAddress())
 				if (this.compareIp(destino.getHost().getAddress(), InetAddress.getLocalHost().getAddress()))
@@ -174,7 +184,9 @@ public class hiloConexion extends Thread{
 
 				else
 				{
-					// el mensaje la va pa otro
+					/**
+					 * If the message goes to another
+					 */
 					msg.procesado = true;
 					Socket socketServidor = new Socket(destino.getHost(),msg.PUERTO);
 
@@ -186,7 +198,9 @@ public class hiloConexion extends Thread{
 				}
 				
 			}
-			// el ultimo paso es que este en tu lista, se lo dejas en la cola de mensajes
+			/**
+			 * The last step is to be in your list, is left in the message queue
+			 */
 			else
 			{
 				this.tablaMensajes.altaMensaje(msg.clon());
@@ -236,7 +250,9 @@ public class hiloConexion extends Thread{
 		cadena = semilla.toString();
 		return cadena;
 	}
-	// Si es null utilizar el del objeto
+	/**
+	 * If is null, use the channel of the object
+	 */
 	private void send(Socket canal, Mensaje msg)
 	{
 		

@@ -3,37 +3,37 @@ package comunicaciones.conexion;
 import comunicaciones.demonio.*;
 
 /**
- * Extension de la Clase mensaje que envia la informacion de otra persona (ID y IP)
- * @author Francisco Huertas y Gabriela Ruiz
+ * Extension of the Class Mensaje which sends the other person information (ID and IP)  
+ * @author Francisco Huertas and Gabriela Ruiz
  * @version 0.1.227
  */
 public class MensajeConector extends Mensaje{
 	
 	private Conectores contenido;
 	/**
-	 * Contructor del mensaje predeterminado
+	 * Default Message Constructor 
 	 */
 	public MensajeConector() {
 		super();
 		this.contenido = null;
 	}
 	/**
-	 * Constructor de copia
-	 * @param msg mensaje desde donde copia
+	 * Copy constructor
+	 * @param msg Message from where copy
 	 */
 	public MensajeConector(MensajeConector msg) {
 		super(msg);
 		this.contenido = msg.contenido;
 	}
 	/**
-	 * Acedente del contenido
+	 * Get the content
 	 * @return
 	 */
 	public Conectores getContenido() {
 		return contenido;
 	}
 	/**
-	 * Mutador del contenido
+	 * Set the content
 	 * @param nuevoContenido
 	 */
 	public void setContenido(Conectores nuevoContenido) {

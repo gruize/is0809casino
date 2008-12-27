@@ -1,44 +1,47 @@
 package comunicaciones.conexion;
 /**
- * Clase que describe la interfaz de una conexión
- * @author Francisco Huertas y Gabriela Ruiz
+ * Class that describes the interface of a connection
+ * @author Francisco Huertas and Gabriela Ruiz
  * @version 0.1.227
  */
 public interface InterfazConexion {
 	//TODO: Crear clase conexion
 
+	/**
+	 * Remove the connection
+	 */
 	void eliminarConexion();
 	/**
-	 * Te devuelve el ID de una conexión
+	 * Return the id of the connection
 	 * @return el ID de la conexion
 	 */
 	public String getId();
 	
 	/**
-	 * Envia un mensaje 
-	 * @param message El mensaje que se envia
-	 * @return El mensaje de retorno null en caso de error
+	 * Send a message 
+	 * @param message The message that is sent
+	 * @return The message returned is null in error case
 	 */
 	public Mensaje enviarMensaje(Mensaje message);
 	
 	/**
-	 * Obtiene un mensaje que se encuentre en espera de ser leido
-	 * @param mascara Mascara para recibir el mensaje (no implementado)
-	 * @return
+	 * Gets a message that is waiting of being read
+	 * @param mascara Mask to recive the message (not implemented)
+	 * @return Message
 	 */
 	public Mensaje obtenerMensaje( boolean mascara);
 	
 	/**
-	 * obtiene el estado de la conexión con un entero representativo de la conexino
-	 * (no implementada)
-	 * @return El entero representativo del estado de la conexion
+	 * Gets the connection state with a integer representative of the connection
+	 * (not implemented)
+	 * @return The integer representativo of the state connection
 	 */
 	int estadoConexion();
 
 	/**
-	 * Obtiene los parametros de configuración de la red 
-	 * (no implementada)
-	 * @return Los parametros de configuración o null en caso de que halla error
+	 * Gets the configuration parameters of the network 
+	 * (not implemented)
+	 * @return The configuration parameters or null in error case
 	 */
 	public Config getConfig();
 }

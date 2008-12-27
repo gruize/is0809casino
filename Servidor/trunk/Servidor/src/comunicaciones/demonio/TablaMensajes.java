@@ -4,14 +4,14 @@ import java.util.Vector;
 import comunicaciones.conexion.*;
 
 /**
- * Estructura que almacena y gestiona los mensajes
- * @author Francisco Huertas y Gabriela Ruiz
+ * Structure that stores and manages the messages
+ * @author Francisco Huertas and Gabriela Ruiz
  * @version 0.1.228
  */
 public class TablaMensajes {
 	private Vector<Mensaje> tablaMensajes;
 	/**
-	 * Contructor por defecto
+	 * Default constructor
 	 */
 	public TablaMensajes ()
 	{
@@ -19,7 +19,7 @@ public class TablaMensajes {
 	}
 	
 	/**
-	 * Da de alta un mensaje en la estructura
+	 * A message is registered in the structure.
 	 * @param msg
 	 */
 	public void altaMensaje(Mensaje msg)
@@ -28,15 +28,17 @@ public class TablaMensajes {
 	}
 	
 	/**
-	 * Coje un mensaje de la tabla y lo elimina de la misma
-	 * @param id del destino 
-	 * @param tipo tipo de mensaje que se busca
-	 * @param mascara si esta a true, no se hace caso del tipo
+	 * Take a message from the table and it erases of the same
+	 * @param Destination ID 
+	 * @param tipo Message type searched
+	 * @param mascara If is true, the type is irrelevant
 	 * @return
 	 */
 	public Mensaje consultaMensaje(String id, int tipo, boolean mascara)
 	{
-		// true es una mascara para todos
+		/**
+		 * TRUE is a mask for everyone
+		 */
 		Mensaje msg;
 		for (int i = 0; i < this.tablaMensajes.size();i++)
 		{

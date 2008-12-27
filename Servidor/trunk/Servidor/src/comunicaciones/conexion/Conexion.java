@@ -5,8 +5,8 @@ import java.net.*;
 import java.io.*;
 
 /**
- * Implemetnacion de InterfazConexion basada en sockets
- * @author Francisco Huertas y Gabriela Ruiz
+ * Implementation of the InterfaceConnection based on sockets
+ * @author Francisco Huertas and Gabriela Ruiz
  * @version 0.1.227
  */
 public class Conexion implements InterfazConexion{
@@ -15,32 +15,32 @@ public class Conexion implements InterfazConexion{
 	private Socket conexion;
 	//private boolean creada;
 	/**
-	 * Constructor de la clase conexion
-	 * @param esServidor Indica si es un servidor
+	 * Constructor of the class Connection
+	 * @param esServidor indicates if is a server
 	 */
 	public Conexion(boolean esServidor)
 	{
         
-		// establecemos conexion
+		// Set connection
 		if (!this.establecer())
         {
-        	// TODO check wrong connection
+        	// TODO Check wrong connection
         }
 		Mensaje msg = new MensajeSistema();
         
 
         
-        // configuramos el mesanje de conxion
+        // Configure the message connection
 		
         msg.setTipo(msg.CREATE_CONNECTION);
         // FIXME esto no se sabe muy bien
-        // no hace falta extablecer xq no hay id
+        // It's not neccesary set connection because there is id
         //datos.setOrigen("");
        
-        // enviamos el mesnajes de conexion
+        // Send the message connection
 
         this.send(null,msg);
-        // recibimos las respuesta
+        // Recive the answer
         msg = this.receive(null);
         // TODO tratamiento de errores del sistema
         if (msg.getTipo() == msg.OK)
@@ -53,7 +53,7 @@ public class Conexion implements InterfazConexion{
         	// TODO tratamiento de errores
         }
         
-        // desconectamos
+        // Disconnect
         this.desconectar();
 		//TODO: Establecer conexion con tu Demonio*/
 	}

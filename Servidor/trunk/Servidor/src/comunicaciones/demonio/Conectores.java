@@ -3,8 +3,8 @@ package comunicaciones.demonio;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 /**
- * Clase que representa un conector es decir un proceso con un ID y su direccion (ip)
- * @author Francisco Huertas Ferrer y Gabriela Ruiz
+ * Class that represents a connector that is a proccess with an ID your address (IP)
+ * @author Francisco Huertas Ferrer and Gabriela Ruiz Escobar
  * @version 0.1.228
  */
 public class Conectores {
@@ -12,7 +12,7 @@ public class Conectores {
 	private String id;
 	private InetAddress host;	
 	/**
-	 * Contructor predeterminado
+	 * Default constructor
 	 */
 	public Conectores() {
 		super();
@@ -26,9 +26,9 @@ public class Conectores {
 	}
 	
 	/**
-	 * conctructor parametrizado, la direccion en formato InetAddress
-	 * @param id Id del identificado
-	 * @param host Dirección del indentificado
+	 * Parameterized constructor, the address format InetAddress
+	 * @param id ID identified
+	 * @param host Address identified
 	 */
 	public Conectores(String id, InetAddress host) {
 		super();
@@ -37,7 +37,7 @@ public class Conectores {
 	}
 
 	/**
-	 * Contructor parametrizado, la direccion en formato String ipv4 ej. "192.168.1.2"
+	 * Parameterized constructor, the address format String ipv4 ej. "192.168.1.2"
 	 * @param id 
 	 * @param host
 	 */
@@ -56,14 +56,14 @@ public class Conectores {
 
 
 	/**
-	 * Accedente del id
+	 * Get ID
 	 * @return
 	 */
 	public String getId() {
 		return this.id;
 	}
 	/**
-	 * mutador del id
+	 * Set ID
 	 * @param id
 	 */
 	public void setId(String id)    {
@@ -73,7 +73,7 @@ public class Conectores {
 		}
 	}
 	/**
-	 * Acccedente de la dirección
+	 * Get address
 	 * @return
 	 */
 	public InetAddress getHost() {
@@ -81,7 +81,7 @@ public class Conectores {
 	}
 	
 	/**
-	 * mutador de la dirección
+	 * Set Address
 	 * @param host
 	 */
 	public void setHost(InetAddress host) {

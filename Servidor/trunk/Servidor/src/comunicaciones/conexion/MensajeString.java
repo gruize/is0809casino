@@ -1,14 +1,14 @@
 package comunicaciones.conexion;
 /**
- * Mensaje cuyo contenido es un String
- * @author Francisco Huertas y Gabriela Ruiz
+ * Message whose content is a String
+ * @author Francisco Huertas and Gabriela Ruiz
  * @version 0.1.227
  */
 public class MensajeString extends Mensaje{
 	
 	private String contenido;
 	/**
-	 * Contructor por defecto del mensaje, el contenido por defecto es vacío
+	 * Default constructor of the message, the default content is empty.
 	 */
 	public MensajeString() {
 		super();
@@ -16,7 +16,7 @@ public class MensajeString extends Mensaje{
 	}
 	
 	/**
-	 * Contructor de copia del mensaje
+	 * Copy constructor
 	 * @param msg
 	 */
 	public MensajeString(MensajeString msg) {
@@ -24,14 +24,14 @@ public class MensajeString extends Mensaje{
 		this.contenido = msg.contenido;
 	}
 	/**
-	 * Accedente del contenido
-	 * @return el String contenido del mensaje
+	 * Get the content
+	 * @return el String Content of the mesage
 	 */
 	public String getContenido() {
 		return contenido;
 	}
 	/**
-	 * Mutador del contenido
+	 * Set the content
 	 * @param nuevoContenido
 	 */
 	public void setContenido(String nuevoContenido) {

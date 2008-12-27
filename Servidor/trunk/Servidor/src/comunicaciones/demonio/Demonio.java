@@ -8,28 +8,28 @@ import comunicaciones.conexion.*;
 
 // TODO: hacerla  hilo
 /**
- * Clase demonio ejecutable, que inicia un demonio
- * @author Francisco Huertas y Gabriela Ruiz
+ * Class Demonio executable, that starts a daemon
+ * @author Francisco Huertas and Gabriela Ruiz
  * @version 0.1.228
  */
 class Demonio {
 	// FIXME cuando creemos el demonio tenemos que ver si esServidor es true o false
 	/**
-	 * Indica si el demonio perteneece a un cliente o un servidor
+	 * Indicates if the daemon belongs to a client or a server
 	 */
 	private static boolean esServidor = true;
 	
 	/**
-	 * Tabla de mensajes almacenados del demonio
+	 * Table of messages stored of the daemon.
 	 */
 	private static TablaMensajes tablaMensajes;
 
 	/**
-	 * Tabla de conectores del demonio
+	 * Table of Connectors of the daemon
 	 */
 	private static Vector<Conectores> tablaConectores;
 	/**
-	 * Procedimiento principal del demonio
+	 * Principal procedure of the daemon
 	 * @param args
 	 */
 	public static void main( String args[] ) {
@@ -44,12 +44,15 @@ class Demonio {
 		}*/
 		// TODO: puerto leido en configuraci�n
 
-        // empezamos a escuchar
+        /**
+         * Starts listening
+         */
         try {
         	canal = new ServerSocket(msg.PUERTO);
             while (true) {
-                
-                //esperamos a que halla una conxion
+                /**
+                 * Waiting a connection
+                 */
                 conexion = canal.accept();
                 hiloConexion nuevaConexion = new hiloConexion(conexion,esServidor,tablaConectores,tablaMensajes);
                 nuevaConexion.start();

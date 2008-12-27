@@ -1,19 +1,19 @@
 package comunicaciones.conexion;
 /**
- * Mensaje sistema no tiene contenido
- * @author Francisco Huertas y Gabriela Ruiz
+ * Message Sistema, it doesn't have content
+ * @author Francisco Huertas and Gabriela Ruiz
  * @version 0.1.227
  */
 public class MensajeSistema extends Mensaje{
 		
 	/**
-	 * Constructor de un mensaje de tipo sistema
+	 * Constructor of a message-type system
 	 */
 	public MensajeSistema() {
 		super();
 	}
 	/**
-	 * Contructor de copia
+	 * Copy constructor
 	 * @param otro
 	 */
 	public MensajeSistema(MensajeSistema msg) {
