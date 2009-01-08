@@ -7,7 +7,7 @@ Asiganacion de tareas para la proxima entrega (2 Semanas y media)
          Conectarlos mediante sockets
          Pruebas multijugador
 
-      AND THE WINNER IS: PACO HUERTAS, GABI, JAIME, DAVID DE LAS FUENTES, Y EL QUE NO TENGA NADA QUE HACER.
+      AND THE WINNER IS: PACO HUERTAS, GABI, JAIME, DAVID DE LA FUENTE, Y EL QUE NO TENGA NADA QUE HACER.
 
 *  Interfaz Grafica Ruleta:*
         AND THE WINNER IS: SANTIAGO, DAVID FERNANDEZ( Y ALBERTO FERNANDEZ(APOYO)
