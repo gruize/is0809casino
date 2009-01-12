@@ -31,26 +31,26 @@ public class TablaMensajes {
 	 * Take a message from the table and it erases of the same
 	 * @param Destination ID 
 	 * @param tipo Message type searched
-	 * @param mascara If is true, the type is irrelevant
-	 * @return
+	 * @param mascara if mascara is negative then catch all message's type
+	 *   and if it's positive then catch the type whose has the same value than 
+	 *   mascara 
+	 * @return Message of the consult
 	 */
-	public Mensaje consultaMensaje(String id, int tipo, boolean mascara)
+	public Mensaje consultaMensaje(String id, int mascara)
 	{
 		/**
 		 * TRUE is a mask for everyone
 		 */
 		Mensaje msg;
-		for (int i = 0; i < this.tablaMensajes.size();i++)
-		{
+		for (int i = 0; i < this.tablaMensajes.size();i++) {
 			msg = this.tablaMensajes.elementAt(i);
-			if (msg.getDestino().compareTo(id) == 0)
-				if ((msg.getTipo() == tipo))
-				{
-					msg = this.tablaMensajes.get(i).clon();
-					this.tablaMensajes.remove(i);
-					return msg;
-					
-				}
+			if ((msg.getDestino().compareTo(id) == 0) && 
+				((msg.getMascara() == mascara) || 
+				(mascara < 0))){
+				msg = this.tablaMensajes.get(i).clon();
+				this.tablaMensajes.remove(i);
+				return msg;
+			}
 		}
 		return null;
 	}

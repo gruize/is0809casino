@@ -12,27 +12,28 @@ import comunicaciones.conexion.*;
  * @author Francisco Huertas and Gabriela Ruiz
  * @version 0.1.228
  */
-class Demonio {
+public class Demonio extends Thread{
 	// FIXME cuando creemos el demonio tenemos que ver si esServidor es true o false
 	/**
 	 * Indicates if the daemon belongs to a client or a server
 	 */
-	private static boolean esServidor = true;
+	private boolean servidor = false;
 	
 	/**
 	 * Table of messages stored of the daemon.
 	 */
-	private static TablaMensajes tablaMensajes;
+	private TablaMensajes tablaMensajes;
 
 	/**
 	 * Table of Connectors of the daemon
 	 */
-	private static Vector<Conectores> tablaConectores;
+	private Vector<Conectores> tablaConectores;
 	/**
 	 * Principal procedure of the daemon
 	 * @param args
 	 */
-	public static void main( String args[] ) {
+	
+	public void run() {
         tablaMensajes = new TablaMensajes();
         ServerSocket canal;
         Socket conexion;
@@ -42,11 +43,7 @@ class Demonio {
 			//FIXME comprobar que no hay que a�adirlo
 			tablaConectores.add(new Conectores("server","localhost"));
 		}*/
-		// TODO: puerto leido en configuraci�n
-
-        /**
-         * Starts listening
-         */
+		// TODO: Cuando parar
         try {
         	canal = new ServerSocket(msg.PUERTO);
             while (true) {
@@ -54,7 +51,7 @@ class Demonio {
                  * Waiting a connection
                  */
                 conexion = canal.accept();
-                hiloConexion nuevaConexion = new hiloConexion(conexion,esServidor,tablaConectores,tablaMensajes);
+                hiloConexion nuevaConexion = new hiloConexion(conexion,servidor,tablaConectores,tablaMensajes);
                 nuevaConexion.start();
                 
                 // TODO close "canal" when close process
@@ -67,5 +64,11 @@ class Demonio {
         }
         
     }
+	public boolean getServidor() {
+		return servidor;
+	}
+	public void setServidor(boolean servidor) {
+		this.servidor = servidor;
+	}
 }
 

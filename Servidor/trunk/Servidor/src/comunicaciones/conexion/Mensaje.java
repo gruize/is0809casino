@@ -1,9 +1,23 @@
 package comunicaciones.conexion;
 
 import java.io.Serializable;
+// TODO explicar constantes
 /**
  * 
  * Class Mensaje, abstract, which makes the inteface functions.
+ * The type of message is:
+ * <ul>
+ * <li>CREATE_CONNECTION</li>
+ * <li>OK</li>
+ * <li>CLIENT_NOT_FOUND</li>
+ * <li>SEND_MESSAGE</li>
+ * <li>READ_MESSAGE_NO_WAIT</li>
+ * <li>READ_MESSAGE_WAIT</li>
+ * <li>NOT_MESSAGE</li>
+ * <li></li>
+ * <li></li>
+ * <li></li>
+v * </ul>
  * @author Francisco Huertas and Gabriela Ruiz
  * @version 0.1.227
  */
@@ -26,7 +40,7 @@ public abstract class Mensaje implements Serializable
 	
 	// CONFIGURACION
 	public final int PUERTO = 40809;
-	public final String HOST_SERVER = "147.96.82.202"; 
+	public final String HOST_SERVER = "147.96.82.91"; 
 
 	/**
 	 * Message type (See the constants for the default types)
@@ -51,7 +65,7 @@ public abstract class Mensaje implements Serializable
 	 * TODO:
 	 * (Not implemented)
 	 */
-	private boolean mascara;
+	private int mascara;
 	/**
 	 * Indicates if the message had passed by the server
 	 * If the message had passed by the server,it doesn't have to pass again
@@ -84,14 +98,14 @@ public abstract class Mensaje implements Serializable
 	 * Get the mask
 	 * @return The mask of the message
 	 */
-	public boolean getMascara() {
+	public int getMascara() {
 		return mascara;
 	}
 	/**
 	 * Set the mask
 	 * @param mascara Te mask of the message 
 	 */
-	public void setMascara(boolean mascara) {
+	public void setMascara(int mascara) {
 		this.mascara = mascara;
 	}
 	

@@ -25,11 +25,17 @@ public interface InterfazConexion {
 	public Mensaje enviarMensaje(Mensaje message);
 	
 	/**
+	 * Call to obtenerMensaje with mascara = -1
+	 * @return Message
+	 */
+	public Mensaje obtenerMensaje();
+
+	/**
 	 * Gets a message that is waiting of being read
 	 * @param mascara Mask to recive the message (not implemented)
 	 * @return Message
 	 */
-	public Mensaje obtenerMensaje( boolean mascara);
+	public Mensaje obtenerMensaje(int mascara);
 	
 	/**
 	 * Gets the connection state with a integer representative of the connection

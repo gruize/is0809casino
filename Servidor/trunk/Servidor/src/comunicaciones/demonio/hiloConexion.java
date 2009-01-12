@@ -15,7 +15,7 @@ import comunicaciones.conexion.*;
 public class hiloConexion extends Thread{
 	
 	private Socket canal;
-	private boolean esServidor;
+	private boolean servidor;
 	private TablaMensajes tablaMensajes;
 	
 	//FIXME
@@ -32,10 +32,10 @@ public class hiloConexion extends Thread{
 	 * @param tablaConectores Table of connectors
 	 * @param tablaMensajes Table of messages
 	 */
-	public hiloConexion(Socket canal, boolean esServidor, Vector<Conectores> tablaConectores, TablaMensajes tablaMensajes) {
+	public hiloConexion(Socket canal, boolean servidor, Vector<Conectores> tablaConectores, TablaMensajes tablaMensajes) {
 		super();
 		this.canal = canal;
-		this.esServidor = esServidor;
+		this.servidor = servidor;
 		this.tablaConectores = tablaConectores;
 		this.tablaMensajes = tablaMensajes;
 	}
@@ -50,167 +50,102 @@ public class hiloConexion extends Thread{
 			Mensaje msg = this.receive(null);
 			// FIXME corregir los procesos que envian al propio servidor
 			if (msg.getTipo() == msg.CREATE_CONNECTION)
-			{
-				if (this.esServidor)
-				{
-					String id;
-					do {
-						id = this.cadenaAleatoria(10);
-					}while (this.buscarConector(id) != null);
-					
-					this.tablaConectores.add(new Conectores(id,canal.getInetAddress()));
+				this.CREATE_CONNECTION(msg);
+
+			else if (msg.getTipo() == msg.READ_MESSAGE_NO_WAIT)
+				this.READ_MESSAGE_NO_WAIT(msg);
 			
-					msg = new MensajeString();
-					msg.setTipo(msg.OK);
-					((MensajeString)msg).setContenido(id);
-					this.send(null, msg);
-					this.canal.close();
-					return;
-					
-				}
-				// CREATE_CONNECTION no servidor
-				else 
+			else if (msg.getTipo() == msg.READ_MESSAGE_WAIT)
+				this.READ_MESSAGE_WAIT(msg);
+			else {
+				// Message type NO CREATE CONNECTION
+				Conectores destino = this.buscarConector(msg.getDestino());
+				/*
+				 * If is processed in the client or in the server and don't find it, it doesn't exist
+				 */
+				if ((msg.procesado || this.servidor) && destino == null)
 				{
-					Socket clientSocket = new Socket(msg.HOST_SERVER,msg.PUERTO);
-					this.send(clientSocket,msg);
-					// FIXME �lo puedo reenviar tal cual?
+					Mensaje respuesta = new MensajeSistema ();
+					respuesta.setTipo(respuesta.CLIENT_NOT_FOUND);
+					this.send(null,respuesta);
+			
+				}
+				/*
+				 * Being in a client which doesn't have destination, and hasn't passed by the server
+				 */
+				else if ((msg.procesado == false) && (destino == null))
+				{
+					Socket clientSocket = new Socket (msg.HOST_SERVER,msg.PUERTO);
+					
+	
+					this.send(clientSocket, msg);
 					
 					
 					msg = this.receive(clientSocket);
-					/**
-					 * Get the answer with the id (possible message of configuration)
-					 */
-					// TODO: implementar OK_ANSWER
-					if (msg.getTipo() == msg.OK)
-						this.tablaConectores.add(new Conectores(((MensajeString)msg).getContenido(),this.canal.getLocalAddress()));
-						
-					else
+					if (msg.getTipo()== msg.OK)
 					{
-						//TODO tratamiento de errores
+						Conectores nuevo = new Conectores();
+						nuevo.setId(((MensajeString)msg).getContenido());
+						this.tablaConectores.add(nuevo);
+						this.send(null, msg);
 					}
 					
-					clientSocket.close();
-					/**
-					 * Send the answer to the process
-					 */
-					this.send(null,msg);
-					// TODO cerrar subcanales
-					this.canal.close();
-					return;
+					
+				
+					else 
+					{
+						// TODO tratamiento de errores
+					}
+					
 				}
-			}
-			if (msg.getTipo() == msg.READ_MESSAGE_NO_WAIT)
-			{
-				Mensaje respuesta = this.tablaMensajes.consultaMensaje(msg.getOrigen(), msg.getTipo(), msg.getMascara());
-				if (respuesta == null)
+				/**
+				 * If is a server and exist the destination
+				 */
+				else if ((this.servidor) && (destino != null))
 				{
-					msg.setTipo(msg.NOT_MESSAGE);
-					this.send(null, msg);
+					/**
+					 * If the message comes to me
+					 */
+					//FIXME
+					//if (destino.getHost().getAddress())
+					if (this.compareIp(destino.getHost().getAddress(), InetAddress.getLocalHost().getAddress()))
+					{	
+						this.tablaMensajes.altaMensaje(msg.clon());
+						msg.setTipo(msg.OK);
+						this.send(null, msg);
+					}
+					
+					// TODO espera de respueesta OK
+	
+					else
+					{
+						/**
+						 * If the message goes to another
+						 */
+						msg.procesado = true;
+						Socket socketServidor = new Socket(destino.getHost(),msg.PUERTO);
+	
+						this.send(socketServidor, msg);
+						msg = this.receive(socketServidor);
+						socketServidor.close();
+						if (msg.getTipo() == msg.OK)
+							this.send(null, msg);
+					}
+					
 				}
+				/**
+				 * The last step is to be in your list, is left in the message queue
+				 */
 				else
+				{
+					this.tablaMensajes.altaMensaje(msg.clon());
+					Mensaje respuesta = new MensajeSistema();
+					respuesta.setTipo(respuesta.OK);
+	
 					this.send(null, respuesta);
 					
-				
-			}
-			if (msg.getTipo() == msg.READ_MESSAGE_WAIT)
-			{
-				// TODO timeout
-				Mensaje respuesta;
-				do {
-					respuesta = this.tablaMensajes.consultaMensaje(msg.getOrigen(), msg.getTipo(), msg.getMascara());
-				} while (respuesta == null);
-				this.send(null, respuesta);
-					
-				
-			}
-			// Message type NO CREATE CONNECTION
-			Conectores destino = this.buscarConector(msg.getDestino());
-			/**
-			 * If is processed in the client or in the server and don't find it, it doesn't exist
-			 */
-			if ((msg.procesado || this.esServidor) && destino == null)
-			{
-				Mensaje respuesta = new MensajeSistema ();
-				respuesta.setTipo(respuesta.CLIENT_NOT_FOUND);
-				this.send(null,respuesta);
-		
-			}
-			/**
-			 * Being in a client which doesn't have destination, and hasn't passed by the server
-			 */
-			else if ((msg.procesado == false) && (destino == null))
-			{
-				Socket clientSocket = new Socket (msg.HOST_SERVER,msg.PUERTO);
-				
-
-				this.send(clientSocket, msg);
-				
-				
-				msg = this.receive(clientSocket);
-				if (msg.getTipo()== msg.OK)
-				{
-					Conectores nuevo = new Conectores();
-					nuevo.setId(((MensajeString)msg).getContenido());
-					this.tablaConectores.add(nuevo);
-					this.send(null, msg);
 				}
-				
-				
-			
-				else 
-				{
-					// TODO tratamiento de errores
-				}
-				
 			}
-			/**
-			 * If is a server and exist the destination
-			 */
-			else if ((this.esServidor) && (destino != null))
-			{
-				/**
-				 * If the message comes to me
-				 */
-				//FIXME
-				//if (destino.getHost().getAddress())
-				if (this.compareIp(destino.getHost().getAddress(), InetAddress.getLocalHost().getAddress()))
-				{	
-					this.tablaMensajes.altaMensaje(msg.clon());
-					msg.setTipo(msg.OK);
-					this.send(null, msg);
-				}
-				
-				// TODO espera de respueesta OK
-
-				else
-				{
-					/**
-					 * If the message goes to another
-					 */
-					msg.procesado = true;
-					Socket socketServidor = new Socket(destino.getHost(),msg.PUERTO);
-
-					this.send(socketServidor, msg);
-					msg = this.receive(socketServidor);
-					socketServidor.close();
-					if (msg.getTipo() == msg.OK)
-						this.send(null, msg);
-				}
-				
-			}
-			/**
-			 * The last step is to be in your list, is left in the message queue
-			 */
-			else
-			{
-				this.tablaMensajes.altaMensaje(msg.clon());
-				Mensaje respuesta = new MensajeSistema();
-				respuesta.setTipo(respuesta.OK);
-
-				this.send(null, respuesta);
-				
-			}
-
 			this.canal.close();
 			return; //FIXME hacer la correcta salida
 			
@@ -302,6 +237,82 @@ public class hiloConexion extends Thread{
 				return false;
 		return true;
 	}
+	
+	private void CREATE_CONNECTION (Mensaje msg) throws IOException {
+		if (this.servidor)
+		{
+			String id;
+			do {
+				id = this.cadenaAleatoria(10);
+			}while (this.buscarConector(id) != null);
+			
+			this.tablaConectores.add(new Conectores(id,canal.getInetAddress()));
+	
+			msg = new MensajeString();
+			msg.setTipo(msg.OK);
+			((MensajeString)msg).setContenido(id);
+			this.send(null, msg);
+			this.canal.close();
+			return;
+			
+		}
+		else 
+		{
+			Socket clientSocket = new Socket(msg.HOST_SERVER,msg.PUERTO);
+			this.send(clientSocket,msg);
+			// FIXME �lo puedo reenviar tal cual?
+			
+			
+			msg = this.receive(clientSocket);
+			/**
+			 * Get the answer with the id (possible message of configuration)
+			 */
+			// TODO: implementar OK_ANSWER
+			if (msg.getTipo() == msg.OK)
+				this.tablaConectores.add(new Conectores(((MensajeString)msg).getContenido(),this.canal.getLocalAddress()));
+				
+			else
+			{
+				//TODO tratamiento de errores
+			}
+			
+			clientSocket.close();
+			/**
+			 * Send the answer to the process
+			 */
+			this.send(null,msg);
+			// TODO cerrar subcanales
+			this.canal.close();
+			
+		}
+	}
+	private void READ_MESSAGE_NO_WAIT(Mensaje msg) throws IOException
+	{
+		Mensaje respuesta = this.tablaMensajes.consultaMensaje(msg.getOrigen(), msg.getMascara());
+		if (respuesta == null)
+		{
+			msg.setTipo(msg.NOT_MESSAGE);
+			this.send(null, msg);
+		}
+		else
+			this.send(null, respuesta);
+		
+		this.canal.close();
+		
+	}
+	private void READ_MESSAGE_WAIT(Mensaje msg) throws IOException
+	{
+		// TODO meter espera y timeout
+		Mensaje respuesta;
+		do {
+			respuesta = this.tablaMensajes.consultaMensaje(msg.getOrigen(), msg.getMascara());
+		} while (respuesta == null);
+		this.send(null, respuesta);
+			
+		this.canal.close();
+		
+	}
+
 
 }
 

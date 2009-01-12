@@ -168,10 +168,17 @@ public class Conexion implements InterfazConexion{
 	}
 
 	@Override
-	public Mensaje obtenerMensaje(boolean mascara) {
+	public Mensaje obtenerMensaje() {
+		return obtenerMensaje(-1);
+	}
+	
+	@Override
+	public Mensaje obtenerMensaje(int mascara) {
 		Mensaje msg = new MensajeSistema();
 		msg.setOrigen(this.getId());
+		msg.setDestino(this.getId());
 		msg.setTipo(msg.READ_MESSAGE_NO_WAIT);
+		msg.setMascara(mascara);
 		this.establecer();
 		this.send(null, msg);
 		msg = this.receive(null);
@@ -185,6 +192,9 @@ public class Conexion implements InterfazConexion{
 		// TODO Auto-generated method stub
 		return new ConfigCasino();
 	}
+
+
+
 
 }
 
