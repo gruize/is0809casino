@@ -64,6 +64,7 @@ public class Demonio extends Thread{
         }
         
     }
+	
 	public boolean getServidor() {
 		return servidor;
 	}

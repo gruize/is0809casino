@@ -145,18 +145,12 @@ public class hiloConexion extends Thread{
 					this.send(null, respuesta);
 					
 				}
+				this.canal.close();
 			}
-			this.canal.close();
-			return; //FIXME hacer la correcta salida
-			
-
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-
-		return;
 	}
 	
 	private Conectores buscarConector(String id)

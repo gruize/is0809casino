@@ -40,7 +40,7 @@ public abstract class Mensaje implements Serializable
 	
 	// CONFIGURACION
 	public final int PUERTO = 40809;
-	public final String HOST_SERVER = "147.96.82.91"; 
+	public final String HOST_SERVER = "147.96.82.147"; 
 
 	/**
 	 * Message type (See the constants for the default types)
