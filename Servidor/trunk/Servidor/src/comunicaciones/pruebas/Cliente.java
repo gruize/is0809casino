@@ -11,17 +11,17 @@ public class Cliente {
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 		int a = 0;
-		InterfazConexion conexion = new Conexion(false);
-		
+		InterfazConexion conexion1 = new Conexion(false);
+		InterfazConexion conexion2 = new Conexion(false);
 		Mensaje msg = new MensajeString();
 		((MensajeString)msg).setContenido("hola caracola");
 		while(true)
 		{
-			msg.setDestino("1");
+			msg.setDestino("2");
 			msg.setTipo(1);
-			msg = conexion.enviarMensaje(msg);	
+			msg = conexion1.enviarMensaje(msg);	
 			((MensajeString)msg).setContenido("adiooooos");
-			msg = conexion.obtenerMensaje();
+			msg = conexion2.obtenerMensaje();
 		
 		}
 		
