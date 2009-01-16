@@ -6,6 +6,7 @@
 || _Autor_ || _Fecha_ || _Comentario_ ||
 || David de la Fuente ||11/12/2008 ||Revisión de Gonzalo ||
 || David de la Fuente ||13/11/2008 ||Generación del documento inicial ||
+|| Alberto Fernández  ||28/1/2009  ||Ampliación y rectificación del documento ||
 
 
 = Introducción =
