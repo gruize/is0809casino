@@ -37,7 +37,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Alta de Usuario en el Sistema* ||
 || _Actores:_ Cliente (futuro Usuario del casino) ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ Para que un usuario pueda darse de alta en el sistema, este deberá entrar en la página web del casino, seleccionar la opción *alta* e introducir sus datos personales en el formulario, siendo el telefono opcional. Cuando pulse aceptar el usuario será generado si todos los datos son correctos y el sistema le regalará 1000 leuros con lo que podrá comenzar a jugar. ||
+|| _Descripción:_ Para que un usuario pueda darse de alta en el sistema, este deberá conectarse con la página web del casino, seleccionar la opción _alta_ e introducir sus datos personales en el formulario, siendo el teléfono opcional. Cuando pulse aceptar el usuario será generado si todos los datos son correctos y el sistema le regalará 1000 leuros con lo que podrá comenzar a jugar. ||
 || _Restricciones:_ ||
 || _Objetivo:_ Dar de alta al usuario en el sistema ||
 || _Comentario:_ ||
@@ -47,7 +47,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Baja de Usuario en el Sistema* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ Para dar de baja un usuario del sistema, este deberá conectar con el casino, introducir su usuario y contraseña. Si los datos son correctos, el sistema dará de baja al usuario de forma automática. ||
+|| _Descripción:_ Para dar de baja un usuario del sistema, este deberá conectarse con la página web del casino, introducir su usuario y contraseña. Si los datos son correctos, el sistema dará de baja al usuario de forma automática. ||
 || _Restricciones:_ Para poder dar de baja a un usuario, debe estar dado de alta en el sistema. Ver CdU:(001) ||
 || _Objetivo:_ Dar de baja al usuario en el sistema ||
 || _Comentario:_ ||
@@ -57,7 +57,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Modificación de Usuario en el Sistema* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ Para modificar los datos de un usuario en el sistema, este deberá conectar con el casino, introducir su usuario y su password. Si los datos son correctos, se mostrará los datos al usuario y este podrá modificarlos. ||
+|| _Descripción:_ Para modificar los datos de un usuario en el sistema, este deberá conectarse con la página web del casino, introducir su usuario y su password. Si los datos son correctos, se mostrará el formulario para que este pueda modificar los datos deseados. ||
 || _Restricciones:_ Para poder modificar los datos de un usuario, debe estar dado de alta en el sistema. Ver CdU:(001) ||
 || _Objetivo:_ Modificar los datos de un usuario en el sistema||
 || _Comentario:_ ||
@@ -90,13 +90,13 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Arranque de la aplicación* ||
 || _Actores:_ Primario y esencial ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ Para el arranque de la aplicación, el usuario ejecutará el cliente de la misma, se identificará con su usuario y su clave. Si el usuario y su clave son correctos, la aplicación realizará una conexión con el servidor. ||
+|| _Descripción:_ Para el arranque de la aplicación, el usuario ejecutará el cliente de la misma, se identificará con su usuario y su clave. Si el usuario y su clave son correctos, la aplicación realizará una conexión con el servidor. Se procederá a cargar la ventana principal de la aplicación cliente en donde aparecerán todas las salas de juego disponibles. ||
 || _Restricciones:_ Para poder arrancar la aplicación, el usuario debe haberla instalado. Ver CdU:005 ||
 || _Objetivo:_ Crear la conexión entre el cliente y el servidor. ||
 || _Comentario:_ ||
 
 
-
+*NO*
 || *CdU:007* ||
 || _Nombre:_ *Administrador de créditos* ||
 || _Actores:_ Usuario del casino ||
@@ -112,8 +112,8 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Comunicación entre Usuarios* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El sistema proporciona a los usuarios la posibilidad de comunicarse entre los jugadores de una mesa. El usuario seleccionará el usuario o usuarios con los que quiera comunicarse, e introducirá el mensaje a comunicar con los usuarios seleccionados anteriormente.  ||
-|| _Restricciones:_ Para poder comunicarse con otros usuarios, se debe estar dentro de una mesa XXXXX ||
+|| _Descripción:_ El sistema proporciona a los usuarios la posibilidad de comunicarse entre los jugadores de una mesa. Para hacerlo, estos deberán introducir el mensaje deseado en espacio indicado para ello y seleccionar enviar o en su defecto pulsar _ENTER_. El mensaje se mostrará a todos los jugadores de la mesa que tengan el chat activado.  ||
+|| _Restricciones:_ Para poder comunicarse con otros usuarios, se debe estar dentro de una mesa y tener activado el chat. ||
 || _Objetivo:_ Comunicación entre los jugadores de una mesa ||
 || _Comentario:_ ||
 
