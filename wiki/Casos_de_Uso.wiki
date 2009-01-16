@@ -6,7 +6,7 @@
 || _Autor_ || _Fecha_ || _Comentario_ ||
 || David de la Fuente ||11/12/2008 ||Revisión de Gonzalo ||
 || David de la Fuente ||13/11/2008 ||Generación del documento inicial ||
-|| Alberto Fernández  ||28/1/2009  ||Ampliación y rectificación del documento ||
+|| Alberto Fernández  ||28/01/2009  ||Ampliación y rectificación del documento ||
 
 
 = Introducción =
@@ -35,9 +35,9 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 
 || *CdU:001* ||
 || _Nombre:_ *Alta de Usuario en el Sistema* ||
-|| _Actores:_ CLiente (futuro Usuario del casino) ||
+|| _Actores:_ Cliente (futuro Usuario del casino) ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ Para que un usuario pueda darse de alta en el sistema, este deberá conectar con el casino, introducir sus datos y se generará automáticamente su usuario y password, con el cual podrá acceder al sistema.En el momento de la generación del usuario, el sistema le regalará 100 leuros ||
+|| _Descripción:_ Para que un usuario pueda darse de alta en el sistema, este deberá entrar en la página web del casino, seleccionar la opción *alta* e introducir sus datos personales en el formulario, siendo el telefono opcional. Cuando pulse aceptar el usuario será generado si todos los datos son correctos y el sistema le regalará 1000 leuros con lo que podrá comenzar a jugar. ||
 || _Restricciones:_ ||
 || _Objetivo:_ Dar de alta al usuario en el sistema ||
 || _Comentario:_ ||
