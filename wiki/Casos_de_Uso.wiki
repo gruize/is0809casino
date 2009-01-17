@@ -68,8 +68,8 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Descargar la aplicación* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ Para descargar la aplicación el usuario deberá conectar con el sistema, dentro de este podrá descargar el cliente pesado de la aplicación para que el usuario pueda jugar en el casino. ||
-|| _Restricciones:_ ||
+|| _Descripción:_ Para descargar la aplicación el usuario deberá conectar con la página web del casino, procediendo despues a introducir su usuario y password. Si estos son correctos, podrá descargar el cliente pesado de la aplicación para que pueda jugar en el casino. ||
+|| _Restricciones:_ Estar registrado en el casino ||
 || _Objetivo:_ Descargar el cliente pesado para poder jugar en el casino. ||
 || _Comentario:_ ||
 
@@ -79,7 +79,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Instalar la aplicación* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El usuario instalará el cliente pesado de la aplicación en su PC. ||
+|| _Descripción:_ El usuario instalará el cliente pesado de la aplicación en su PC. Se descargará un ejecutable, el cual tras seguir las instrucciones indicadas, creará un acceso directo al fichero jar. ||
 || _Restricciones:_ Para poder instalar la aplicación, el usuario deberá haberse descargado la aplicación. Ver CdU:004 ||
 || _Objetivo:_ Instalación del cliente pesado de la aplicación. ||
 || _Comentario:_ ||
@@ -122,8 +122,8 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Consulta de Estadísticas de Jugador* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ Para consultar las estadística de juego, el usuario deberá conectar con el casino, introducir su usuario y su clave. Si los datos son correctos, el sistema mostrará la opción de estadísticas al usuario. En él, se podrán consultar estadísticas del usuario. ||
-|| _Restricciones:_ Para administrar los créditos, deberá ser usuario del casino CdU:001 ||
+|| _Descripción:_ Para consultar las estadística de juego, el usuario deberá conectar con la página web del casino e introducir su usuario y su password. Si los datos son correctos, el sistema mostrará la opción de estadísticas al usuario. En ella, podrá consultar sus estadísticas como jugador del casino. ||
+|| _Restricciones:_ Estar registrado en el casino. ||
 || _Objetivo:_ Conocer las estadísticas de juego de un usuario. ||
 || _Comentario:_ ||
 
@@ -132,8 +132,8 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Entrar en una Sala de juego* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El sistema presentará al usuario todas las salas de juego disponibles, y este seleccionará en la que quiere entrar. ||
-|| _Restricciones:_ El usuario tenga arrancada la partida (CdU:006) ||
+|| _Descripción:_ El sistema presentará al usuario todas las salas de juego disponibles en la ventana principal, y este seleccionará en la que quiere entrar. La ventana principal cambiará su vista procediendo a mostrar las mesas disponibles en esa sala. ||
+|| _Restricciones:_ El usuario tenga arrancada la aplicación (CdU:006) ||
 || _Objetivo:_ Seleccionar la sala donde se quiere jugar ||
 || _Comentario:_ ||
 
@@ -142,9 +142,9 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Entrar en una Mesa de juego* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El sistema presentará al usuario todas las mesas de juego disponibles, y este seleccionará en la que quiere entrar. ||
-|| _Restricciones:_ El usuario deberá estar dentro de una Sala de juego (CdU:010) ||
-|| _Objetivo:_ Seleccionar la mesa donde se quiere jugar o ver la partida que en ella se juega.||
+|| _Descripción:_ El sistema presentará al usuario todas las mesas de juego disponibles con la cantidad apostada en cada una, y este seleccionará en la que quiere entrar pinchando sobre ella ||
+|| _Restricciones:_ El usuario deberá estar dentro de una Sala de juego. Debe tener saldo suficiente para afrontar las apuestas de la mesa. (CdU:010) ||
+|| _Objetivo:_ Seleccionar la mesa donde se quiere jugar.||
 || _Comentario:_ ||
 
 
@@ -152,12 +152,12 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Entrar a jugar* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El usuario accede a jugar en la mesa que ha seleccionado. El sistema mostrará doferentes acciones dependiendo del juego al que haya accedido. ||
+|| _Descripción:_ El usuario accede a jugar en la mesa que ha seleccionado. El sistema mostrará diferentes acciones dependiendo del juego al que haya accedido. Habrá un chat general de la mesa en donde podrá hablar con el resto de jugadores si lo desea. ||
 || _Restricciones:_ El usuario deberña estar dentro de una Mesa de juego (CdU:009) ||
 || _Objetivo:_ Entrar en una mesa como jugador. ||
 || _Comentario:_ ||
 
-
+*NO*
 || *CdU:013* ||
 || _Nombre:_ *Entra a Ver una partida* ||
 || _Actores:_ Usuario del casino ||
@@ -179,6 +179,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Comentario:_ ||
 
 
+*NO*
 || *CdU:015* ||
 || _Nombre:_ *Salir de una partida estando como invitado en ella* ||
 || _Actores:_ Usuario del casino ||
