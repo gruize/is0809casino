@@ -142,7 +142,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Entrar en una Mesa de juego* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El sistema presentará al usuario todas las mesas de juego disponibles con la cantidad apostada en cada una, y este seleccionará en la que quiere entrar pinchando sobre ella ||
+|| _Descripción:_ El sistema presentará al usuario todas las mesas de juego disponibles con la apuesta que se realiza en cada una, y este seleccionará en la que quiere entrar pinchando sobre ella ||
 || _Restricciones:_ El usuario deberá estar dentro de una Sala de juego. Debe tener saldo suficiente para afrontar las apuestas de la mesa. (CdU:010) ||
 || _Objetivo:_ Seleccionar la mesa donde se quiere jugar.||
 || _Comentario:_ ||
@@ -173,8 +173,8 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Salir de una partida estando jugando en ella* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El usuario abandona la partida en la que estaba jugando. ||
-|| _Restricciones:_ El usuario podrá abandonar la partida en la que estaba jugando, cuando haya terminado la ronda que se esté jugando en ese momento. El usuario debe estar jugando en una mesa de juego (CdU:012) ||
+|| _Descripción:_ El usuario abandona la partida en la que estaba jugando pulsando el botón abandonar mesa. Al terminar la ronda actual el usuario ganará ó perderá el dinero apostado dependiendo del resultado obtenido. Se le actualizará el saldo y se le eliminará de la mesa. ||
+|| _Restricciones:_ El usuario podrá abandonar la partida en la que estaba jugando, en cualquier momento. El usuario debe estar jugando en una mesa de juego (CdU:012) ||
 || _Objetivo:_ Abandonar una partida. ||
 || _Comentario:_ ||
 
@@ -194,7 +194,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Salir de una Mesa de Juego* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El usuario abandonará la mesa de juego en la que estaba. ||
+|| _Descripción:_ El usuario abandonará la mesa de juego en la que estaba pulsando el botón abandonar mesa. Si tiene la partida sin finalizar se trataran sus apuestas siguiendo CdU:014. Se mostrara en la ventana principal la vista con todas las mesas disponibles en la sala actual.  ||
 || _Restricciones:_ Un usuario podrá salir de una Mesa de juego, siempre y cuando esté dentro de una de ellas. Ver CdU:011. ||
 || _Objetivo:_ Salir de una Mesa de juego. ||
 || _Comentario:_ ||
@@ -204,7 +204,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Salir de una Sala de Juego* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El usuario abandonará la sala de juego en la que estaba. ||
+|| _Descripción:_ El usuario abandonará la sala de juego en la que estaba pulsando el botón abandonar sala. Se mostrara en la ventana principal la vista con todas las salas disponibles. ||
 || _Restricciones:_ Un usuario podrá salir de una Sala de juego, siempre y cuando esté dentro de una de ellas. Ver CdU:010. ||
 || _Objetivo:_ Salir de una Sala de juego ||
 || _Comentario:_ ||
@@ -215,7 +215,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Cierre de la aplicación* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El usuario podrá cerrar el cliente pesado de la aplicación. Si se realiza el cierre de la aplicación cuando el usuario esta en modo jugador en una partida, el sistema restaurará la cuenta de todos los jugadores de esa partida al final de la ultima ronda que se haya finalizado satisfactoriamente. ||
+|| _Descripción:_ El usuario podrá cerrar el cliente pesado de la aplicación. Si se realiza el cierre de la aplicación cuando el usuario esta en medio de una o varias partida este seguira jugando hasta final de ronda o final de partida según el juego del que se trate para despues realizar las acciones especificadas en  Cdu:014. ||
 || _Restricciones:_ Un usuario podrá cerrar la aplicación, siempre y cuando esté dentro de ella. Ver CdU:006. ||
 || _Objetivo:_ Cerrar la aplicación. ||
 || _Comentario:_ ||
@@ -246,7 +246,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Creación de mesa de Juego* ||
 || _Actores:_ El administrador del sistema ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará Crear mesa de juego, e introducirá el tipo de mesa de juego. ||
+|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará el botón Crear mesa de juego, e introducirá el tipo de mesa de juego que desee indicando la apuesta para ella. ||
 || _Restricciones:_ Para crear mesas de juego, debe estar arrancada la aplicación servidor. Ver CdU:020. ||
 || _Objetivo:_ Creación de mesas de juego. ||
 || _Comentario:_ ||
@@ -256,7 +256,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Eliminar mesa de juego* ||
 || _Actores:_ El administrador del sistema. ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará Eliminar mesa de juego, el sistema pedirá confirmación de la eliminación. ||
+|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará el botón Eliminar mesa de juego, el sistema pedirá confirmación de la eliminación. Habrá que tener especial cuidado en la eliminación de mesas activas, aunque esta responsabilidad recaera en el administrador. ||
 || _Restricciones:_ Para eliminar mesas de juego han de estar creadas. Ver CdU:021. ||
 || _Objetivo:_ Eliminar mesas de juego. ||
 || _Comentario:_ ||
@@ -266,7 +266,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Modificar mesa de juego* ||
 || _Actores:_ El administrador del sistema ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro, seleccionará Modificar mesa de juego e introducirá las modificaciones en la mesa de juego. ||
+|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro, seleccionará el botón Modificar mesa de juego e introducirá las modificaciones en la mesa de juego. Habrá que tener especial cuidado en la modificación de mesas activas, aunque esta responsabilidad recaera en el administrador. ||
 || _Restricciones:_ Para modificar mesas de juego han de estar creadas. Ver CdU: 021 ||
 || _Objetivo:_ Modificar mesas de juego. ||
 || _Comentario:_ ||
@@ -286,7 +286,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Dejar de Observar mesa de juego* ||
 || _Actores:_ El administrador del sistema ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El sistema mostrará la posibilidad de dejar la observación de una mesa de juego, cuando el administrador seleccione esta opción abandonará el visionado de esta partida. ||
+|| _Descripción:_ El sistema mostrará la posibilidad de dejar la observación de una mesa de juego, cuando el administrador seleccione el botón abandonar mesa, este abandonará el visionado de esta partida volviendo a la ventana principal del servidor. ||
 || _Restricciones:_ El administrador del sistema podrá dejar la observación de las mesas de juego, dependiendo de las necesidades del sistema. Para dejar de observar las mesas de juego, el administrador debe estar observando una de ellas. Ver CdU:024. ||
 || _Objetivo:_ Dejar la observación de las mesas de juego. ||
 || _Comentario:_ ||
@@ -296,7 +296,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Consulta de Estadísticas del casino* ||
 || _Actores:_ El administrador del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará Consulta de estadísticas del casino, el sistema mostrará estadísticas del dinero total recaudado en un determinado rango de fechas, usuarios activos del casino y estadísticas personales de cada usuario. ||
+|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará el botón Consulta de estadísticas del casino, el sistema mostrará estadísticas del dinero total recaudado, usuarios activos del casino y estadísticas personales de cada usuario en un rango de fechas indicado. ||
 || _Restricciones:_ ||
 || _Objetivo:_ Consulta las estadísticas que genera el casino. ||
 || _Comentario:_ ||
@@ -306,7 +306,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Proporcionar Crédito al Jugador* ||
 || _Actores:_ El sistema ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ Cuando el sistema detecte una petición de una solicitud de saldo de un usuario, éste comprobará si los datos del usuario son correctos y procederá a ingresar el saldo perdido en la cuenta del usuario. ||
+|| _Descripción:_ Cuando el sistema detecte una petición de una solicitud de saldo de un usuario, éste comprobará si los datos del usuario son correctos y procederá a ingresar el saldo de 1000 leuros en la cuenta del usuario, siempre y cuando no tenga dinero para realizar una apuesta mínima en alguna mesa. ||
 || _Restricciones:_ Para que el sistema proporcione crédito a un jugador, este ha de haber solicitado el crédito. Ver CdU:007. ||
 || _Objetivo:_ Descargar el cliente pesado para poder jugar en el casino. ||
 || _Comentario:_ ||
@@ -316,7 +316,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Expulsar Jugador* ||
 || _Actores:_ El administrador del sistema ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará Expulsar jugador, el sistema mostrará los usuarios dados de alta en el sistema y el administrador seleccionará al usuario que desea expulsar. ||
+|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará el botón Expulsar jugador , el sistema mostrará los usuarios dados de alta en el sistema y el administrador seleccionará al usuario que desea expulsar. Esta acción será responsabilidad del administrador y estará sujeta a criterios personales. ||
 || _Restricciones:_ Para poder expulsar a un jugador, este debe estar dado de alta en el sistema. Ver CdU:001 ||
 || _Objetivo:_ Expulsar a un usuario del sistema. ||
 || _Comentario:_ ||
