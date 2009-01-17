@@ -96,14 +96,14 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Comentario:_ ||
 
 
-*NO*
+
 || *CdU:007* ||
-|| _Nombre:_ *Administrador de créditos* ||
+|| _Nombre:_ *Desactivar el chat* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ Para la administración de los créditos de cada jugador, el usuario deberá conectar con el casino, introducir su usuario y su clave. Si los datos son correctos, el sistema mostrará la opción de administrador de créditos al cliente. En él, se podrán aumentar o disminuir el número de créditos que dispone cada usuario. ||
-|| _Restricciones:_ Para administrar los créditos, deberá ser usuario del casino CdU:001 ||
-|| _Objetivo:_ Cada usuario pueda administrar sus créditos de juego ||
+|| _Descripción:_ El usuario que este en una mesa de juego podrá pulsar el botón desactivar para no recibir mensajes de los demás jugadores de esa mesa. ||
+|| _Restricciones:_ Para poder desactivar el chat, se debe estar dentro de una mesa de juego y que este estuviese activado. ||
+|| _Objetivo:_ Desactivar las conversaciones con los demás jugadores. ||
 || _Comentario:_ ||
 
 
@@ -157,14 +157,14 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Objetivo:_ Entrar en una mesa como jugador. ||
 || _Comentario:_ ||
 
-*NO*
+
 || *CdU:013* ||
-|| _Nombre:_ *Entra a Ver una partida* ||
+|| _Nombre:_ *Activar el chat* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El usuario accede a ver la partida que se está jugando en la mesa que ha seleccionado. El sistema mostrará diferentes acciones dependiendo del juego al que haya accedido ||
-|| _Restricciones:_ El usuario deberá estar dentro de una Mesa de juego (CdU:009) ||
-|| _Objetivo:_ Entrar en una mesa como invitado para poder ver la partida. ||
+|| _Descripción:_ El chat podrá ser activado en cualquier momento, siempre que este estuviese desactivado con antelación, siendo la opción por defecto activado. Para este proposito se seleccionará el botón activar chat, con lo cual se volverá a reactivar el flujo de mensajes con los demás jugadores de la mesa. ||
+|| _Restricciones:_ El usuario deberá estar dentro de una Mesa de juego y tener el chat desactivado (CdU:009, CdU:007) ||
+|| _Objetivo:_ Volver a mantener una comunicación con el resto de jugadores de la mesa. ||
 || _Comentario:_ ||
 
 
@@ -179,14 +179,13 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Comentario:_ ||
 
 
-*NO*
 || *CdU:015* ||
-|| _Nombre:_ *Salir de una partida estando como invitado en ella* ||
-|| _Actores:_ Usuario del casino ||
+|| _Nombre:_ *Expulsar Jugador* ||
+|| _Actores:_ El administrador del sistema ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El usuario abandona la partida en la que estaba como invitado. ||
-|| _Restricciones:_ El usuario debe estar como invitado en una mesa de juego (CdU:013) ||
-|| _Objetivo:_ Abandonar una partida. ||
+|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará el botón Expulsar jugador , el sistema mostrará los usuarios dados de alta en el sistema y el administrador seleccionará al usuario que desea expulsar. Esta acción será responsabilidad del administrador y estará sujeta a criterios personales. ||
+|| _Restricciones:_ Para poder expulsar a un jugador, este debe estar dado de alta en el sistema. Ver CdU:001 ||
+|| _Objetivo:_ Expulsar a un usuario del sistema. ||
 || _Comentario:_ ||
 
 
@@ -311,12 +310,3 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Objetivo:_ Descargar el cliente pesado para poder jugar en el casino. ||
 || _Comentario:_ ||
 
-
-|| *CdU:028* ||
-|| _Nombre:_ *Expulsar Jugador* ||
-|| _Actores:_ El administrador del sistema ||
-|| _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará el botón Expulsar jugador , el sistema mostrará los usuarios dados de alta en el sistema y el administrador seleccionará al usuario que desea expulsar. Esta acción será responsabilidad del administrador y estará sujeta a criterios personales. ||
-|| _Restricciones:_ Para poder expulsar a un jugador, este debe estar dado de alta en el sistema. Ver CdU:001 ||
-|| _Objetivo:_ Expulsar a un usuario del sistema. ||
-|| _Comentario:_ ||
