@@ -57,7 +57,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Modificación de Usuario en el Sistema* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ Para modificar los datos de un usuario en el sistema, este deberá conectarse con la página web del casino, introducir su usuario y su password. Si los datos son correctos, se mostrará el formulario para que este pueda modificar los datos deseados. ||
+|| _Descripción:_ Para modificar los datos de un usuario en el sistema, este deberá conectarse con la página web del casino, introducir su usuario y su contraseña. Si los datos son correctos, se mostrará el formulario para que este pueda modificar los datos deseados. ||
 || _Restricciones:_ Para poder modificar los datos de un usuario, debe estar dado de alta en el sistema. Ver CdU:(001) ||
 || _Objetivo:_ Modificar los datos de un usuario en el sistema||
 || _Comentario:_ ||
@@ -68,7 +68,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Descargar la aplicación* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ Para descargar la aplicación el usuario deberá conectar con la página web del casino, procediendo despues a introducir su usuario y password. Si estos son correctos, podrá descargar el cliente pesado de la aplicación para que pueda jugar en el casino. ||
+|| _Descripción:_ Para descargar la aplicación el usuario deberá conectar con la página web del casino, procediendo despues a introducir su usuario y contraseña. Si estos son correctos, podrá descargar el cliente pesado de la aplicación para que pueda jugar en el casino. ||
 || _Restricciones:_ Estar registrado en el casino ||
 || _Objetivo:_ Descargar el cliente pesado para poder jugar en el casino. ||
 || _Comentario:_ ||
@@ -309,4 +309,3 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Restricciones:_ Para que el sistema proporcione crédito a un jugador, este ha de haber solicitado el crédito. Ver CdU:007. ||
 || _Objetivo:_ Descargar el cliente pesado para poder jugar en el casino. ||
 || _Comentario:_ ||
-
