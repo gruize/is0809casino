@@ -25,13 +25,11 @@ Se ha constatado la necesidad de un sistema informático que ofrezca la posibili
 
 La aplicación se encarga de gestionar todas las funciones relacionadas con el juego; gestión de los distintos juegos disponibles, mesas virtuales etc. y mantenimiento administración del sistema; gestión de usuarios y juegos, añadir nuevas funcionalidades etc. Esto quiere decir que se encargará de las siguientes funciones:
 
- * *Un sistema para probar el juego sin darse de alta* para que usuarios anónimos puedan probar el sistema sin compromiso. Este sistema debe garantizar que no producen ganancias ni perdidas para otros usuarios ni para el casino. Este sistema tendrá un tiempo de uso limitado en tiempo y opciones.
-
- * *Sistema de alta de clientes* en la que se requerirá una serie de condiciones como edad, país, método por el cual se ingresara dinero virtual en el juego, cuenta de destino del dinero virtual ganado etc. Sera imprescindible ser mayor de edad para poder darse de alta. Una vez dado de alta el usuario podrá acceder de forma total a los juegos.
+ * *Sistema de alta de clientes* se realizara a traves de la pagina web del casino, en la que se requerirá una serie de datos como nombre, apellidos, edad, país, e-mail de contacto, etc. Sera imprescindible ser mayor de edad para poder darse de alta. Una vez dado de alta el usuario podrá acceder de forma directa a la gestión de su cuenta a traves de la pagina y jugar a traves de la aplicación casino a las distintos juegos.
 
  * *Gestión de cuenta* donde un usuario pueda acceder a sus datos modificarlos, cancelar una cuenta y cualquier otra acción relacionada con la gestión de cuentas excluyendo la gestión monetaria.
 
- * *Administración monetaria de cara al usuario* el cual permita ingresar y sacar dinero de una cuenta virtual. Para la acción de sacar dinero se deberán poner ciertas restricciones.
+ * *Administración monetaria de cara al usuario* el usuario podra observar a través de la página web el estado actual de su cuenta y podra pedir más saldo.
 
 Añadido a la interacción del usuario con el sistema y con otros usuarios, es necesario un sistema que gestione los aspectos del casino: 
 
