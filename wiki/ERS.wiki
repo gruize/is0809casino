@@ -54,8 +54,6 @@ Un sistema de administración técnica:
 
  * *Transacción:* Acto ingresar o apartar dinero virtual de la cuenta.
 
- * *Invitado:* Persona que puede acceder al sistema y probarlo mediante una demo, sin jugar dinero.
-
  * *Jugador:* cliente registrado con cuenta de usuario. Que puede acceder a los distintos juegos disponibles en el sistema
 
  * *Juego:* sistema de apuestas en el casino on-line, incluirá desde juegos de cartas a apuestas on-line.
@@ -99,9 +97,9 @@ La perspectiva del Casino es que sea un casino online similar a los que existen 
  
     Las cantidades que se apuestan no se trata de dinero real.
  
-    Para recargar los leuros se realizará una acción aún por definir.
+    Para recargar los leuros se realizará una solicitud a traves de la pagina web una vez el jugador haya hecho login en la página web.
  
-    Los usuarios tendrán la posibilidad de charlar durante el funcionamiento del juego mediante un Chat definido por cada mesa.
+    Los usuarios tendrán la posibilidad de charlar durante el funcionamiento del juego mediante un Chat definido por cada mesa, ademas tendra la opcion de minimizarlo.
    
     Los jugadores podrán visualizar estadísticas de los juegos en los que han jugado.
  
@@ -109,7 +107,7 @@ La perspectiva del Casino es que sea un casino online similar a los que existen 
     Este casino esta pensado para mayores de edad, con un nivel cultural indiferente, y con poca experiencia en casinos online a ser posible. 
  
 === 2.4. Restricciones ===
- * Interfaz para conectar con una entidad bancaria, para la comprobación de las tarjetas de crédito.
+ 
  * Lenguajes y Tecnologías en uso: Java, ORACLE, XML, JSP, AJAX, JAVASCRIPT, HTML, FLASH/ACTIONSCRIPT, SWIFT3D.
  * Todas los mensajes entre el cliente y servidor deberán estar cifradas, para evitar las trampas.
  * Los Protocolos de Comunicación serán los definidos por los desarrolladores encargados.
@@ -123,7 +121,7 @@ El sístema debe correr sobre cualquier plataforma gracias a la máquina virtual
  * Mejora de la interfaz Gráfica (Imágenes, animaciones 2d, 3d).
  * Apuestas con dinero real.
  * Musica de ambiente.
- * Posibilidad de jugar desde una PDA
+ 
 
  
 == 3. Requisitos Especificos ==
@@ -147,7 +145,7 @@ JUGADOR
 
 6. Modificar datos: cada jugador podrá modificar los datos siguientes: ciudad, correo electrónico, contraseña, nombre para mostrar a traves de la pagina del casino. 
 
-7. Recarga saldo automática: al darse de alta en el casino el jugador recibirá automáticamente 100 leuros que no tendran ninguna caducidad. 
+7. Recarga saldo automática: al darse de alta en el casino el jugador recibirá automáticamente 1000 leuros que no tendran ninguna caducidad. 
 
 8. Solicitar saldo: se podrá solicitar saldo siempre y cuando sea aprobada la transacción por el casino. Se insertará en la cuenta que el usuario tenga en el casino. En un principio el casino (administrador del casino) gestionara el saldo de los usuarios mas adelante seria directamente con el banco.
 
@@ -196,8 +194,7 @@ ADMINISTRADOR DEL CASINO
 5. Observar mesa juego: el administrador podrá observar en cualquier momento el estado de una mesa de cualquier juego. Esta funcionalidad se incluye por vigilancia del casino y para mayor seguridad en torneos.
 
 6. Consultar estadísticas generales: el administrador podrá obtener un informe con los datos generales del casino, como son: dinero total recaudado en un determinado rango de fechas, usuarios activos del casino y estadisiticas personales de cada usuario. 
-
-7. Proporcionar saldo: el administrador podrá proporcionar mas saldo a un jugador. Para ello deberá haber una solicitud pendiente por parte del jugador. El administrador decidira en función de las reglas estipuladas en el manual del usuario. 
+ 
 
 
 === 3.3. Requisitos de Rendimiento ===
