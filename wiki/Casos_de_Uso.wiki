@@ -35,14 +35,16 @@ La estructura de cada caso de uso vendrá definida por:
 
 Los casos de uso para el proyecto de Casino online son los siguientes:
 
+
+
 === CLIENTE ===
 
 || *CdU:001* ||
 || _Nombre:_ *Alta de Usuario en el Sistema* ||
 || _Actores:_ Cliente (futuro Usuario del casino) ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ Para que un usuario pueda darse de alta en el sistema, este deberá conectarse con la página web del casino, seleccionar la opción _alta_ e introducir sus datos personales en el formulario, siendo el teléfono opcional. Cuando pulse aceptar el usuario será generado si todos los datos son correctos y el sistema le regalará 1000 leuros con lo que podrá comenzar a jugar. ||
-|| _Restricciones:_ ||
+|| _Descripción:_ Para que un usuario pueda darse de alta en el sistema, este deberá conectarse con la página web del casino, seleccionar la opción registro e introducir sus datos personales en el formulario, siendo el teléfono opcional. Cuando pulse aceptar el usuario será generado si todos los datos son correctos y el sistema le regalará 1000 leuros con lo que podrá comenzar a jugar. Estos leuros no contarán con una recarga solicitada. ||
+|| _Restricciones:_  N/A||
 || _Objetivo:_ Dar de alta al usuario en el sistema ||
 || _Comentario:_ ||
 
@@ -52,7 +54,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Baja de Usuario en el Sistema* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ Para dar de baja un usuario del sistema, este deberá conectarse con la página web del casino, introducir su usuario y contraseña. Si los datos son correctos, el sistema dará de baja al usuario de forma automática. ||
+|| _Descripción:_ Para dar de baja un usuario del sistema, este deberá conectarse con la página web del casino, pulsando login e introduciendo el usuario y la contraseña obtendrá una vista en la que habrá una opción para darse de baja. Si la elige y confirma su solicitud el sistema procederá a darle de baja en el casino. ||
 || _Restricciones:_ Para poder dar de baja a un usuario, debe estar dado de alta en el sistema. Ver CdU:(001) ||
 || _Objetivo:_ Dar de baja al usuario en el sistema ||
 || _Comentario:_ ||
@@ -63,7 +65,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Modificación de Usuario en el Sistema* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ Para modificar los datos de un usuario en el sistema, este deberá conectarse con la página web del casino, introducir su usuario y su contraseña. Si los datos son correctos, se mostrará el formulario para que este pueda modificar los datos deseados. ||
+|| _Descripción:_ Para modificar los datos de un usuario en el sistema, este deberá conectarse con la página web del casino, pulsando login e introduciendo el usuario y la contraseña obtendrá una vista en la que habrá una opción para modificar los datos. Si la elige se mostrará el formulario para que este pueda modificar los datos deseados. ||
 || _Restricciones:_ Para poder modificar los datos de un usuario, debe estar dado de alta en el sistema. Ver CdU:(001) ||
 || _Objetivo:_ Modificar los datos de un usuario en el sistema||
 || _Comentario:_ ||
@@ -74,58 +76,36 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Descargar la aplicación* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ Para descargar la aplicación el usuario deberá conectar con la página web del casino, procediendo despues a introducir su usuario y contraseña. Si estos son correctos, podrá descargar el cliente pesado de la aplicación para que pueda jugar en el casino. ||
-|| _Restricciones:_ Estar registrado en el casino ||
+|| _Descripción:_ Para descargar la aplicación el usuario deberá conectar con la página web del casino, seleccionando la opción descargar podrá obtener el cliente pesado de la aplicación para que pueda jugar en el casino. Si no esta registrado en el casino simplemente podrá instalarlo sin llegar a jugar.||
+|| _Restricciones:_ N/A||
 || _Objetivo:_ Descargar el cliente pesado para poder jugar en el casino. ||
 || _Comentario:_ ||
 
 
 
 || *CdU:005* ||
-|| _Nombre:_ *Instalar la aplicación* ||
+|| _Nombre:_ *Contactar con el administrador del casino* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El usuario instalará el cliente pesado de la aplicación en su PC. Se descargará un ejecutable, el cual tras seguir las instrucciones indicadas, creará un acceso directo al fichero jar. ||
-|| _Restricciones:_ Para poder instalar la aplicación, el usuario deberá haberse descargado la aplicación. Ver CdU:004 ||
-|| _Objetivo:_ Instalación del cliente pesado de la aplicación. ||
+|| _Descripción:_ Para contactar con el administrador tendre. ||
+|| _Restricciones:_ Para poder modificar los datos de un usuario, debe estar dado de alta en el sistema. Ver CdU:(001) ||
+|| _Objetivo:_ Modificar los datos de un usuario en el sistema ||
 || _Comentario:_ ||
 
 
 
 || *CdU:006* ||
-|| _Nombre:_ *Arranque de la aplicación* ||
-|| _Actores:_ Primario y esencial ||
+|| _Nombre:_ *Visualización de las capturas* ||
+|| _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ Para el arranque de la aplicación, el usuario ejecutará el cliente de la misma, se identificará con su usuario y su clave. Si el usuario y su clave son correctos, la aplicación realizará una conexión con el servidor. Se procederá a cargar la ventana principal de la aplicación cliente en donde aparecerán todas las salas de juego disponibles. ||
-|| _Restricciones:_ Para poder arrancar la aplicación, el usuario debe haberla instalado. Ver CdU:005 ||
-|| _Objetivo:_ Crear la conexión entre el cliente y el servidor. ||
+|| _Descripción:_ Para visualizar las capturas del casino cualquier visitante aunque no este registrado deberá seleccionar la opción de capturas y ahí se le mostrarán distintas imagenes del casino. ||
+|| _Restricciones:_ N/A||
+|| _Objetivo:_ Llamar la atención de posibles nuevos usuarios. ||
 || _Comentario:_ ||
 
 
 
 || *CdU:007* ||
-|| _Nombre:_ *Desactivar comunicación entre Usuarios* ||
-|| _Actores:_ Usuario del casino ||
-|| _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El usuario que este en una mesa de juego podrá pulsar el botón desactivar para no recibir mensajes de los demás jugadores de esa mesa. ||
-|| _Restricciones:_ Para poder desactivar el chat, se debe estar dentro de una mesa de juego y que este estuviese activado. ||
-|| _Objetivo:_ Desactivar las conversaciones con los demás jugadores. ||
-|| _Comentario:_ ||
-
-
-
-|| *CdU:008* ||
-|| _Nombre:_ *Comunicación entre Usuarios* ||
-|| _Actores:_ Usuario del casino ||
-|| _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El sistema proporciona a los usuarios la posibilidad de comunicarse entre los jugadores de una mesa. Para hacerlo, estos deberán introducir el mensaje deseado en espacio indicado para ello y seleccionar enviar o en su defecto pulsar _ENTER_. El mensaje se mostrará a todos los jugadores de la mesa que tengan el chat activado.  ||
-|| _Restricciones:_ Para poder comunicarse con otros usuarios, se debe estar dentro de una mesa y tener activado el chat. ||
-|| _Objetivo:_ Comunicación entre los jugadores de una mesa ||
-|| _Comentario:_ ||
-
-
-
-|| *CdU:009* ||
 || _Nombre:_ *Consulta de Estadísticas de Jugador* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
@@ -136,35 +116,57 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 
 
 
-|| *CdU:010* ||
-|| _Nombre:_ *Entrar en una Sala de juego* ||
+|| *CdU:008* ||
+|| _Nombre:_ *Solicitud de recarga de saldo* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El sistema presentará al usuario todas las salas de juego disponibles en la ventana principal, y este seleccionará en la que quiere entrar. La ventana principal cambiará su vista procediendo a mostrar las mesas disponibles en esa sala. ||
-|| _Restricciones:_ El usuario tenga arrancada la aplicación (CdU:006) ||
-|| _Objetivo:_ Seleccionar la sala donde se quiere jugar ||
+|| _Descripción:_ Para realizar una solicitud de saldo, el usuario deberá conectar con la página web del casino y pulsando login e introduciendo el usuario y la contraseña obtendrá una vista en la que habrá una opción para recargarlo. La recarga no se producirá si tiene saldo para realizar una apuesta mínima en alguna mesa o si ya recargó con anterioridad en un plazo de dos dias. ||
+|| _Restricciones:_ Estar registrado en el casino, no disponer de saldo suficiente y no haber solicitado más recargas en los dos dias anteriores. ||
+|| _Objetivo:_ Conocer las estadísticas de juego de un usuario. ||
+|| _Comentario:_ ||
+
+
+
+|| *CdU:009* ||
+|| _Nombre:_ *Instalar la aplicación* ||
+|| _Actores:_ Usuario del casino ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El usuario instalará el cliente pesado de la aplicación en su PC. Se descargará un ejecutable en el directorio que se solicite, el cual tras seguir las instrucciones indicadas, creará un acceso directo al fichero jar. ||
+|| _Restricciones:_ Para poder instalar la aplicación, el usuario deberá haberse descargado la aplicación. Ver CdU:004 ||
+|| _Objetivo:_ Instalación del cliente pesado de la aplicación. ||
+|| _Comentario:_ ||
+
+
+
+|| *CdU:010* ||
+|| _Nombre:_ *Arranque de la aplicación* ||
+|| _Actores:_ Primario y esencial ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ Para el arranque de la aplicación, el usuario ejecutará el cliente de la misma, se identificará con su usuario y su clave. Si el usuario y su clave son correctos, la aplicación realizará una conexión con el servidor. Se procederá a cargar la ventana principal de la aplicación cliente en donde aparecerán todas las salas de juego disponibles. ||
+|| _Restricciones:_ Para poder arrancar la aplicación, el usuario debe haberla instalado. Ver CdU:005 ||
+|| _Objetivo:_ Crear la conexión entre el cliente y el servidor. ||
 || _Comentario:_ ||
 
 
 
 || *CdU:011* ||
-|| _Nombre:_ *Entrar en una Mesa de juego* ||
+|| _Nombre:_ *Comunicación entre Usuarios* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El sistema presentará al usuario todas las mesas de juego disponibles con la apuesta que se realiza en cada una, y este seleccionará en la que quiere entrar pinchando sobre ella ||
-|| _Restricciones:_ El usuario deberá estar dentro de una Sala de juego. Debe tener saldo suficiente para afrontar las apuestas de la mesa. (CdU:010) ||
-|| _Objetivo:_ Seleccionar la mesa donde se quiere jugar.||
+|| _Descripción:_ El sistema proporciona a los usuarios la posibilidad de comunicarse entre los jugadores de una mesa. Para hacerlo, estos deberán introducir el mensaje deseado en espacio indicado para ello y seleccionar enviar o en su defecto pulsar _ENTER_. El mensaje se mostrará a todos los jugadores de la mesa que tengan el chat activado.  ||
+|| _Restricciones:_ Para poder comunicarse con otros usuarios, se debe estar dentro de una mesa y tener activado el chat. ||
+|| _Objetivo:_ Comunicación entre los jugadores de una mesa ||
 || _Comentario:_ ||
 
 
 
 || *CdU:012* ||
-|| _Nombre:_ *Entrar a jugar* ||
+|| _Nombre:_ *Desactivar comunicación entre Usuarios* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El usuario accede a jugar en la mesa que ha seleccionado. El sistema mostrará diferentes acciones dependiendo del juego al que haya accedido. Habrá un chat general de la mesa en donde podrá hablar con el resto de jugadores si lo desea. ||
-|| _Restricciones:_ El usuario deberña estar dentro de una Mesa de juego (CdU:009) ||
-|| _Objetivo:_ Entrar en una mesa como jugador. ||
+|| _Descripción:_ El usuario que este en una mesa de juego podrá pulsar el botón desactivar para no recibir mensajes de los demás jugadores de esa mesa. ||
+|| _Restricciones:_ Para poder desactivar el chat, se debe estar dentro de una mesa de juego y que este estuviese activado. ||
+|| _Objetivo:_ Desactivar las conversaciones con los demás jugadores. ||
 || _Comentario:_ ||
 
 
@@ -180,7 +182,41 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 
 
 
+
 || *CdU:014* ||
+|| _Nombre:_ *Entrar en una Sala de juego* ||
+|| _Actores:_ Usuario del casino ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El sistema presentará al usuario todas las salas de juego disponibles en la ventana principal, y este seleccionará en la que quiere entrar. La ventana principal cambiará su vista procediendo a mostrar las mesas disponibles en esa sala. ||
+|| _Restricciones:_ El usuario tenga arrancada la aplicación (CdU:006) ||
+|| _Objetivo:_ Seleccionar la sala donde se quiere jugar ||
+|| _Comentario:_ ||
+
+
+
+|| *CdU:015* ||
+|| _Nombre:_ *Entrar en una Mesa de juego* ||
+|| _Actores:_ Usuario del casino ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El sistema presentará al usuario todas las mesas de juego disponibles con la apuesta que se realiza en cada una, y este seleccionará en la que quiere entrar pinchando sobre ella ||
+|| _Restricciones:_ El usuario deberá estar dentro de una Sala de juego. Debe tener saldo suficiente para afrontar las apuestas de la mesa. (CdU:010) ||
+|| _Objetivo:_ Seleccionar la mesa donde se quiere jugar.||
+|| _Comentario:_ ||
+
+
+
+|| *CdU:016* ||
+|| _Nombre:_ *Entrar a jugar* ||
+|| _Actores:_ Usuario del casino ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El usuario accede a jugar en la mesa que ha seleccionado. El sistema mostrará diferentes acciones dependiendo del juego al que haya accedido. Habrá un chat general de la mesa en donde podrá hablar con el resto de jugadores si lo desea. ||
+|| _Restricciones:_ El usuario deberña estar dentro de una Mesa de juego (CdU:009) ||
+|| _Objetivo:_ Entrar en una mesa como jugador. ||
+|| _Comentario:_ ||
+
+
+
+|| *CdU:017* ||
 || _Nombre:_ *Salir de una partida estando jugando en ella* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
@@ -191,7 +227,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 
 
 
-|| *CdU:015* ||
+|| *CdU:018* ||
 || _Nombre:_ *Salir de una Mesa de Juego* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
@@ -202,7 +238,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 
 
 
-|| *CdU:016* ||
+|| *CdU:019* ||
 || _Nombre:_ *Salir de una Sala de Juego* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
@@ -213,7 +249,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 
 
 
-|| *CdU:017* ||
+|| *CdU:020* ||
 || _Nombre:_ *Cierre de la aplicación* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
@@ -222,11 +258,13 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Objetivo:_ Cerrar la aplicación. ||
 || _Comentario:_ ||
 
+
+
 === SERVIDOR ===
 
 || *CdU:001* ||
 || _Nombre:_ *Expulsar Jugador* ||
-|| _Actores:_ El administrador del sistema ||
+|| _Actores:_ El administrador del casino ||
 || _Tipo:_ Primario y esencial ||
 || _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará el botón Expulsar jugador , el sistema mostrará los usuarios dados de alta en el sistema y el administrador seleccionará al usuario que desea expulsar. Esta acción será responsabilidad del administrador y estará sujeta a criterios personales. ||
 || _Restricciones:_ Para poder expulsar a un jugador, este debe estar dado de alta en el sistema. Ver CdU:001 ||
@@ -248,7 +286,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 
 || *CdU:003* ||
 || _Nombre:_ *Arranque aplicación servidor* ||
-|| _Actores:_ El administrador del sistema ||
+|| _Actores:_ El administrador del casino ||
 || _Tipo:_ Primario y esencial ||
 || _Descripción:_ Se ejecutará la aplicación servidor, ésta debe comprobar, para un correcto arranque de la misma, la conexión con la Base de Datos y la conexión a Internet. ||
 || _Restricciones:_ ||
@@ -259,7 +297,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 
 || *CdU:004* ||
 || _Nombre:_ *Creación de mesa de Juego* ||
-|| _Actores:_ El administrador del sistema ||
+|| _Actores:_ El administrador del casino ||
 || _Tipo:_ Primario y esencial ||
 || _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará el botón Crear mesa de juego, e introducirá el tipo de mesa de juego que desee indicando la apuesta para ella. ||
 || _Restricciones:_ Para crear mesas de juego, debe estar arrancada la aplicación servidor. Ver CdU:020. ||
@@ -270,7 +308,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 
 || *CdU:005* ||
 || _Nombre:_ *Eliminar mesa de juego* ||
-|| _Actores:_ El administrador del sistema. ||
+|| _Actores:_ El administrador del casino. ||
 || _Tipo:_ Primario y esencial ||
 || _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará el botón Eliminar mesa de juego, el sistema pedirá confirmación de la eliminación. Habrá que tener especial cuidado en la eliminación de mesas activas, aunque esta responsabilidad recaera en el administrador. ||
 || _Restricciones:_ Para eliminar mesas de juego han de estar creadas. Ver CdU:021. ||
@@ -281,7 +319,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 
 || *CdU:006* ||
 || _Nombre:_ *Modificar mesa de juego* ||
-|| _Actores:_ El administrador del sistema ||
+|| _Actores:_ El administrador del casino ||
 || _Tipo:_ Primario y esencial ||
 || _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro, seleccionará el botón Modificar mesa de juego e introducirá las modificaciones en la mesa de juego. Habrá que tener especial cuidado en la modificación de mesas activas, aunque esta responsabilidad recaera en el administrador. ||
 || _Restricciones:_ Para modificar mesas de juego han de estar creadas. Ver CdU: 021 ||
@@ -292,7 +330,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 
 || *CdU:007* ||
 || _Nombre:_ *Observar mesa de juego* ||
-|| _Actores:_ El administrador del sistema ||
+|| _Actores:_ El administrador del casino ||
 || _Tipo:_ Primario y esencial ||
 || _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro, seleccionará Observar mesa de juego, el sistema mostrará las mesas de juego dadas de alta en ese momento y el administrador podrá observar la que seleccione. ||
 || _Restricciones:_ Para observar las mesas de juego han de estar creadas. Ver CdU:019. ||
@@ -303,7 +341,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 
 || *CdU:008* ||
 || _Nombre:_ *Dejar de Observar mesa de juego* ||
-|| _Actores:_ El administrador del sistema ||
+|| _Actores:_ El administrador del casino||
 || _Tipo:_ Primario y esencial ||
 || _Descripción:_ El sistema mostrará la posibilidad de dejar la observación de una mesa de juego, cuando el administrador seleccione el botón abandonar mesa, este abandonará el visionado de esta partida volviendo a la ventana principal del servidor. ||
 || _Restricciones:_ El administrador del sistema podrá dejar la observación de las mesas de juego, dependiendo de las necesidades del sistema. Para dejar de observar las mesas de juego, el administrador debe estar observando una de ellas. Ver CdU:024. ||
@@ -327,7 +365,18 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Proporcionar Crédito al Jugador* ||
 || _Actores:_ El sistema ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ Cuando el sistema detecte una petición de una solicitud de saldo de un usuario, éste comprobará si los datos del usuario son correctos y procederá a ingresar el saldo de 1000 leuros en la cuenta del usuario, siempre y cuando no tenga dinero para realizar una apuesta mínima en alguna mesa. ||
+|| _Descripción:_ Cuando el sistema detecte una petición de una solicitud de saldo de un usuario, éste comprobará si los datos del usuario son correctos y procederá a ingresar el saldo de 1000 leuros en la cuenta del usuario, siempre y cuando, este no tenga dinero para realizar una apuesta mínima en alguna mesa y no hubiese solicitado otra recarga antes de dos dias atras. ||
+|| _Restricciones:_ Para que el sistema proporcione crédito a un jugador, este ha de haber solicitado el crédito. Ver CdU:007. ||
+|| _Objetivo:_ Descargar el cliente pesado para poder jugar en el casino. ||
+|| _Comentario:_ ||
+
+
+
+|| *CdU:011* ||
+|| _Nombre:_ *Cierre del servidor* ||
+|| _Actores:_ El administrador del casino ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El servidor podrá ser cerrado en cualquier momento en que el administrador lo desee. Todas las partidas que estuviesen en ese momento activas deberán de salvar el estado. Esta acción estará bajo responsabilidad del administrador. ||
 || _Restricciones:_ Para que el sistema proporcione crédito a un jugador, este ha de haber solicitado el crédito. Ver CdU:007. ||
 || _Objetivo:_ Descargar el cliente pesado para poder jugar en el casino. ||
 || _Comentario:_ ||
