@@ -35,7 +35,7 @@ La estructura de cada caso de uso vendrá definida por:
 
 Los casos de uso para el proyecto de Casino online son los siguientes:
 
-*CLIENTE*
+== *CLIENTE* ==
 
 || *CdU:001* ||
 || _Nombre:_ *Alta de Usuario en el Sistema* ||
@@ -47,6 +47,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Comentario:_ ||
 
 
+
 || *CdU:002* ||
 || _Nombre:_ *Baja de Usuario en el Sistema* ||
 || _Actores:_ Usuario del casino ||
@@ -55,6 +56,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Restricciones:_ Para poder dar de baja a un usuario, debe estar dado de alta en el sistema. Ver CdU:(001) ||
 || _Objetivo:_ Dar de baja al usuario en el sistema ||
 || _Comentario:_ ||
+
 
 
 || *CdU:003* ||
@@ -102,7 +104,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 
 
 || *CdU:007* ||
-|| _Nombre:_ *Desactivar el chat* ||
+|| _Nombre:_ *Desactivar comunicación entre Usuarios* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
 || _Descripción:_ El usuario que este en una mesa de juego podrá pulsar el botón desactivar para no recibir mensajes de los demás jugadores de esa mesa. ||
@@ -122,6 +124,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Comentario:_ ||
 
 
+
 || *CdU:009* ||
 || _Nombre:_ *Consulta de Estadísticas de Jugador* ||
 || _Actores:_ Usuario del casino ||
@@ -130,6 +133,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Restricciones:_ Estar registrado en el casino. ||
 || _Objetivo:_ Conocer las estadísticas de juego de un usuario. ||
 || _Comentario:_ ||
+
 
 
 || *CdU:010* ||
@@ -142,6 +146,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Comentario:_ ||
 
 
+
 || *CdU:011* ||
 || _Nombre:_ *Entrar en una Mesa de juego* ||
 || _Actores:_ Usuario del casino ||
@@ -150,6 +155,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Restricciones:_ El usuario deberá estar dentro de una Sala de juego. Debe tener saldo suficiente para afrontar las apuestas de la mesa. (CdU:010) ||
 || _Objetivo:_ Seleccionar la mesa donde se quiere jugar.||
 || _Comentario:_ ||
+
 
 
 || *CdU:012* ||
@@ -162,8 +168,9 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Comentario:_ ||
 
 
+
 || *CdU:013* ||
-|| _Nombre:_ *Activar el chat* ||
+|| _Nombre:_ *Activar comunicación entre Usuarios* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
 || _Descripción:_ El chat podrá ser activado en cualquier momento, siempre que este estuviese desactivado con antelación, siendo la opción por defecto activado. Para este proposito se seleccionará el botón activar chat, con lo cual se volverá a reactivar el flujo de mensajes con los demás jugadores de la mesa. ||
@@ -183,17 +190,8 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Comentario:_ ||
 
 
+
 || *CdU:015* ||
-|| _Nombre:_ *Expulsar Jugador* ||
-|| _Actores:_ El administrador del sistema ||
-|| _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará el botón Expulsar jugador , el sistema mostrará los usuarios dados de alta en el sistema y el administrador seleccionará al usuario que desea expulsar. Esta acción será responsabilidad del administrador y estará sujeta a criterios personales. ||
-|| _Restricciones:_ Para poder expulsar a un jugador, este debe estar dado de alta en el sistema. Ver CdU:001 ||
-|| _Objetivo:_ Expulsar a un usuario del sistema. ||
-|| _Comentario:_ ||
-
-
-|| *CdU:016* ||
 || _Nombre:_ *Salir de una Mesa de Juego* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
@@ -203,7 +201,8 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Comentario:_ ||
 
 
-|| *CdU:017* ||
+
+|| *CdU:016* ||
 || _Nombre:_ *Salir de una Sala de Juego* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
@@ -214,7 +213,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 
 
 
-|| *CdU:018* ||
+|| *CdU:017* ||
 || _Nombre:_ *Cierre de la aplicación* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
@@ -223,9 +222,20 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Objetivo:_ Cerrar la aplicación. ||
 || _Comentario:_ ||
 
+== *SERVIDOR* ==
+
+|| *CdU:001* ||
+|| _Nombre:_ *Expulsar Jugador* ||
+|| _Actores:_ El administrador del sistema ||
+|| _Tipo:_ Primario y esencial ||
+|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará el botón Expulsar jugador , el sistema mostrará los usuarios dados de alta en el sistema y el administrador seleccionará al usuario que desea expulsar. Esta acción será responsabilidad del administrador y estará sujeta a criterios personales. ||
+|| _Restricciones:_ Para poder expulsar a un jugador, este debe estar dado de alta en el sistema. Ver CdU:001 ||
+|| _Objetivo:_ Expulsar a un usuario del sistema. ||
+|| _Comentario:_ ||
 
 
-|| *CdU:019* ||
+
+|| *CdU:002* ||
 || _Nombre:_ *Validación del usuario* ||
 || _Actores:_ El sistema ||
 || _Tipo:_ Primario y esencial ||
@@ -235,7 +245,8 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Comentario:_ ||
 
 
-|| *CdU:020* ||
+
+|| *CdU:003* ||
 || _Nombre:_ *Arranque aplicación servidor* ||
 || _Actores:_ El administrador del sistema ||
 || _Tipo:_ Primario y esencial ||
@@ -245,7 +256,8 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Comentario:_ ||
 
 
-|| *CdU:021* ||
+
+|| *CdU:004* ||
 || _Nombre:_ *Creación de mesa de Juego* ||
 || _Actores:_ El administrador del sistema ||
 || _Tipo:_ Primario y esencial ||
@@ -255,7 +267,8 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Comentario:_ ||
 
 
-|| *CdU:022* ||
+
+|| *CdU:005* ||
 || _Nombre:_ *Eliminar mesa de juego* ||
 || _Actores:_ El administrador del sistema. ||
 || _Tipo:_ Primario y esencial ||
@@ -265,7 +278,8 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Comentario:_ ||
 
 
-|| *CdU:023* ||
+
+|| *CdU:006* ||
 || _Nombre:_ *Modificar mesa de juego* ||
 || _Actores:_ El administrador del sistema ||
 || _Tipo:_ Primario y esencial ||
@@ -275,7 +289,8 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Comentario:_ ||
 
 
-|| *CdU:024* ||
+
+|| *CdU:007* ||
 || _Nombre:_ *Observar mesa de juego* ||
 || _Actores:_ El administrador del sistema ||
 || _Tipo:_ Primario y esencial ||
@@ -285,7 +300,8 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Comentario:_ ||
 
 
-|| *CdU:025* ||
+
+|| *CdU:008* ||
 || _Nombre:_ *Dejar de Observar mesa de juego* ||
 || _Actores:_ El administrador del sistema ||
 || _Tipo:_ Primario y esencial ||
@@ -295,7 +311,8 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Comentario:_ ||
 
 
-|| *CdU:026* ||
+
+|| *CdU:009* ||
 || _Nombre:_ *Consulta de Estadísticas del casino* ||
 || _Actores:_ El administrador del casino ||
 || _Tipo:_ Primario y esencial ||
@@ -305,7 +322,8 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Comentario:_ ||
 
 
-|| *CdU:027* ||
+
+|| *CdU:010* ||
 || _Nombre:_ *Proporcionar Crédito al Jugador* ||
 || _Actores:_ El sistema ||
 || _Tipo:_ Primario y esencial ||
