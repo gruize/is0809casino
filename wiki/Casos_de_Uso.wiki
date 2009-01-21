@@ -35,7 +35,7 @@ La estructura de cada caso de uso vendrá definida por:
 
 Los casos de uso para el proyecto de Casino online son los siguientes:
 
-== *CLIENTE* ==
+=== CLIENTE ===
 
 || *CdU:001* ||
 || _Nombre:_ *Alta de Usuario en el Sistema* ||
@@ -222,7 +222,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Objetivo:_ Cerrar la aplicación. ||
 || _Comentario:_ ||
 
-== *SERVIDOR* ==
+=== SERVIDOR ===
 
 || *CdU:001* ||
 || _Nombre:_ *Expulsar Jugador* ||
