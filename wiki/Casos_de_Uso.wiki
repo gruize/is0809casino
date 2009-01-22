@@ -87,9 +87,9 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Contactar con el administrador del casino* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ Para contactar con el administrador tendre. ||
-|| _Restricciones:_ Para poder modificar los datos de un usuario, debe estar dado de alta en el sistema. Ver CdU:(001) ||
-|| _Objetivo:_ Modificar los datos de un usuario en el sistema ||
+|| _Descripción:_ Para contactar con el administrador, el usuario o cualquier visitante deberá conectar con la página web del casino, seleccionando la opción contactar y podrá enviar un correo al administrador. Esta opción aparece tanto cuando se esta registrado cuando cuando no.  ||
+|| _Restricciones:_  N/A ||
+|| _Objetivo:_ Solicitar dudas al administrador. ||
 || _Comentario:_ ||
 
 
@@ -98,8 +98,8 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Visualización de las capturas* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ Para visualizar las capturas del casino cualquier visitante aunque no este registrado deberá seleccionar la opción de capturas y ahí se le mostrarán distintas imagenes del casino. ||
-|| _Restricciones:_ N/A||
+|| _Descripción:_ Para visualizar las capturas, el usuario o cualquier visitante deberá conectar con la página web del casino, seleccionando la opción capturas y ahí podrá ver las distintas capturas.
+|| _Restricciones:_ N/A ||
 || _Objetivo:_ Llamar la atención de posibles nuevos usuarios. ||
 || _Comentario:_ ||
 
