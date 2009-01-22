@@ -377,6 +377,6 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Actores:_ El administrador del casino ||
 || _Tipo:_ Primario y esencial ||
 || _Descripción:_ El servidor podrá ser cerrado en cualquier momento en que el administrador lo desee. Todas las partidas que estuviesen en ese momento activas deberán de salvar el estado. Esta acción estará bajo responsabilidad del administrador. ||
-|| _Restricciones:_ Para que el sistema proporcione crédito a un jugador, este ha de haber solicitado el crédito. Ver CdU:007. ||
-|| _Objetivo:_ Descargar el cliente pesado para poder jugar en el casino. ||
+|| _Restricciones:_ Para cerrar el servidor este debe de haber sido arrancado anteriormente. Ver CdU:003 ||
+|| _Objetivo:_ Apagar el servidor. ||
 || _Comentario:_ ||
