@@ -266,7 +266,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Expulsar Jugador* ||
 || _Actores:_ El administrador del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará el botón Expulsar jugador , el sistema mostrará los usuarios dados de alta en el sistema y el administrador seleccionará al usuario que desea expulsar. Esta acción será responsabilidad del administrador y estará sujeta a criterios personales. ||
+|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará el botón expulsar jugador, el sistema mostrará los usuarios dados de alta en el sistema y el administrador seleccionará al usuario que desea expulsar. Esta acción será responsabilidad del administrador y estará sujeta a criterios personales. ||
 || _Restricciones:_ Para poder expulsar a un jugador, este debe estar dado de alta en el sistema. Ver Cliente CdU:001 ||
 || _Objetivo:_ Expulsar a un usuario del sistema. ||
 || _Comentario:_ ||
@@ -288,7 +288,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Arranque aplicación servidor* ||
 || _Actores:_ El administrador del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ Se ejecutará la aplicación servidor, ésta debe comprobar, para un correcto arranque de la misma, la conexión con la Base de Datos y la conexión a Internet. ||
+|| _Descripción:_ Se ejecutará la aplicación servidor, esta debe comprobar, para un correcto arranque de la misma, la conexión con la Base de Datos y la conexión a Internet. ||
 || _Restricciones:_ ||
 || _Objetivo:_ Arrancar la aplicación Servidor. ||
 || _Comentario:_ ||
@@ -299,7 +299,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Creación de mesa de Juego* ||
 || _Actores:_ El administrador del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará el botón Crear mesa de juego, e introducirá el tipo de mesa de juego que desee indicando la apuesta para ella. ||
+|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará el botón crear mesa de juego, e introducirá el tipo de mesa de juego que desee indicando la apuesta para ella. ||
 || _Restricciones:_ Para crear mesas de juego, debe estar arrancada la aplicación servidor. Ver CdU:003. ||
 || _Objetivo:_ Creación de mesas de juego. ||
 || _Comentario:_ ||
@@ -310,7 +310,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Eliminar mesa de juego* ||
 || _Actores:_ El administrador del casino. ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará el botón Eliminar mesa de juego, el sistema pedirá confirmación de la eliminación. Habrá que tener especial cuidado en la eliminación de mesas activas, aunque esta responsabilidad recaera en el administrador. ||
+|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará el botón eliminar mesa de juego, el sistema pedirá confirmación de la eliminación. Habrá que tener especial cuidado en la eliminación de mesas activas, aunque esta responsabilidad recaerá en el administrador. ||
 || _Restricciones:_ Para eliminar mesas de juego han de estar creadas. Ver CdU:004. ||
 || _Objetivo:_ Eliminar mesas de juego. ||
 || _Comentario:_ ||
@@ -321,7 +321,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Modificar mesa de juego* ||
 || _Actores:_ El administrador del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro, seleccionará el botón Modificar mesa de juego e introducirá las modificaciones en la mesa de juego. Habrá que tener especial cuidado en la modificación de mesas activas, aunque esta responsabilidad recaera en el administrador. ||
+|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro, seleccionará el botón modificar mesa de juego e introducirá las modificaciones en la mesa de juego. Habrá que tener especial cuidado en la modificación de mesas activas, aunque esta responsabilidad recaerá en el administrador. ||
 || _Restricciones:_ Para modificar mesas de juego han de estar creadas. Ver CdU: 004 ||
 || _Objetivo:_ Modificar mesas de juego. ||
 || _Comentario:_ ||
@@ -332,7 +332,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Observar mesa de juego* ||
 || _Actores:_ El administrador del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro, seleccionará Observar mesa de juego, el sistema mostrará las mesas de juego dadas de alta en ese momento y el administrador podrá observar la que seleccione. ||
+|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará  el botón observar mesa de juego, el sistema mostrará las mesas de juego dadas de alta en ese momento y el administrador podrá observar la que seleccione. ||
 || _Restricciones:_ Para observar las mesas de juego han de estar creadas. Ver CdU:004. ||
 || _Objetivo:_ Controlar las mesas de juego del sistema. ||
 || _Comentario:_ ||
@@ -343,7 +343,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Dejar de Observar mesa de juego* ||
 || _Actores:_ El administrador del casino||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El sistema mostrará la posibilidad de dejar la observación de una mesa de juego, cuando el administrador seleccione el botón abandonar mesa, este abandonará el visionado de esta partida volviendo a la ventana principal del servidor. ||
+|| _Descripción:_ El sistema mostrará la posibilidad de dejar la observación de una mesa de juego, cuando el administrador seleccione el botón abandonar mesa este abandonará el visionado de esta partida volviendo a la ventana principal del servidor. ||
 || _Restricciones:_ El administrador del sistema podrá dejar la observación de las mesas de juego, dependiendo de las necesidades del sistema. Para dejar de observar las mesas de juego, el administrador debe estar observando una de ellas. Ver CdU:007. ||
 || _Objetivo:_ Dejar la observación de las mesas de juego. ||
 || _Comentario:_ ||
@@ -354,7 +354,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Consulta de Estadísticas del casino* ||
 || _Actores:_ El administrador del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará el botón Consulta de estadísticas del casino, el sistema mostrará estadísticas del dinero total recaudado, usuarios activos del casino y estadísticas personales de cada usuario en un rango de fechas indicado. ||
+|| _Descripción:_ El administrador accederá a la aplicación servidor. Una vez dentro seleccionará el botón consulta de estadísticas del casino, el sistema mostrará estadísticas del dinero total recaudado, usuarios activos del casino y estadísticas personales de cada usuario en un rango de fechas indicado. ||
 || _Restricciones:_ ||
 || _Objetivo:_ Consulta las estadísticas que genera el casino. ||
 || _Comentario:_ ||
@@ -376,7 +376,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Cierre del servidor* ||
 || _Actores:_ El administrador del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El servidor podrá ser cerrado en cualquier momento en que el administrador lo desee. Todas las partidas que estuviesen en ese momento activas deberán de salvar el estado. Esta acción estará bajo responsabilidad del administrador. ||
+|| _Descripción:_ El servidor podrá ser cerrado en cualquier momento en que el administrador lo deseé. Todas las partidas que estuviesen en ese momento activas deberán de salvar el estado. Esta acción estará bajo responsabilidad del administrador. ||
 || _Restricciones:_ Para cerrar el servidor este debe de haber sido arrancado anteriormente. Ver CdU:003 ||
 || _Objetivo:_ Apagar el servidor. ||
 || _Comentario:_ ||
