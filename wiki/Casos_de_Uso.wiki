@@ -96,7 +96,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 
 || *CdU:006* ||
 || _Nombre:_ *Visualización de las capturas* ||
-|| _Actores:_ Usuario del casino ||
+|| _Actores:_ Usuario del casino ó futuros clientes ||
 || _Tipo:_ Primario y esencial ||
 || _Descripción:_ Para visualizar las capturas, el usuario o cualquier visitante deberá conectar con la página web del casino, seleccionando la opción capturas y ahí podrá ver las distintas capturas. ||
 || _Restricciones:_ N/A ||
@@ -122,7 +122,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Tipo:_ Primario y esencial ||
 || _Descripción:_ Para realizar una solicitud de saldo, el usuario deberá conectar con la página web del casino y pulsando login e introduciendo el usuario y la contraseña obtendrá una vista en la que habrá una opción para recargarlo. La recarga no se producirá si tiene saldo para realizar una apuesta mínima en alguna mesa o si ya recargó con anterioridad en un plazo de dos dias. ||
 || _Restricciones:_ Estar registrado en el casino, no disponer de saldo suficiente y no haber solicitado más recargas en los dos dias anteriores. Ver CdU:(001) ||
-|| _Objetivo:_ Conocer las estadísticas de juego de un usuario. ||
+|| _Objetivo:_ Solicitar más dinero al casino con el cual apostar. ||
 || _Comentario:_ ||
 
 
@@ -142,7 +142,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Arranque de la aplicación* ||
 || _Actores:_ Primario y esencial ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ Para el arranque de la aplicación, el usuario ejecutará el cliente de la misma, se identificará con su usuario y su clave. Si el usuario y su clave son correctos, la aplicación realizará una conexión con el servidor. Se procederá a cargar la ventana principal de la aplicación cliente en donde aparecerán todas las salas de juego disponibles. ||
+|| _Descripción:_ Para el arranque de la aplicación, el usuario ejecutará el cliente de la misma, se identificará con su usuario y su contraseña. Si el usuario y su contraseña son correctos, la aplicación realizará una conexión con el servidor. Se procederá a cargar la ventana principal de la aplicación cliente en donde aparecerán todas las salas de juego disponibles. ||
 || _Restricciones:_ Para poder arrancar la aplicación, el usuario debe haberla instalado. Ver CdU:009 ||
 || _Objetivo:_ Crear la conexión entre el cliente y el servidor. ||
 || _Comentario:_ ||
@@ -155,7 +155,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Tipo:_ Primario y esencial ||
 || _Descripción:_ El sistema proporciona a los usuarios la posibilidad de comunicarse entre los jugadores de una mesa. Para hacerlo, estos deberán introducir el mensaje deseado en espacio indicado para ello y seleccionar enviar o en su defecto pulsar _ENTER_. El mensaje se mostrará a todos los jugadores de la mesa que tengan el chat activado.  ||
 || _Restricciones:_ Para poder comunicarse con otros usuarios, se debe estar dentro de una mesa y tener activado el chat. Ver Cdu:013, CdU:014||
-|| _Objetivo:_ Comunicación entre los jugadores de una mesa ||
+|| _Objetivo:_ Comunicación entre los jugadores de una mesa. ||
 || _Comentario:_ ||
 
 
@@ -189,7 +189,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Tipo:_ Primario y esencial ||
 || _Descripción:_ El sistema presentará al usuario todas las salas de juego disponibles en la ventana principal, y este seleccionará en la que quiere entrar. La ventana principal cambiará su vista procediendo a mostrar las mesas disponibles en esa sala. ||
 || _Restricciones:_ El usuario tenga arrancada la aplicación. Ver CdU:010 ||
-|| _Objetivo:_ Seleccionar la sala donde se quiere jugar ||
+|| _Objetivo:_ Seleccionar la sala donde se quiere jugar. ||
 || _Comentario:_ ||
 
 
@@ -221,7 +221,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
 || _Descripción:_ El usuario abandona la partida en la que estaba jugando pulsando el botón abandonar mesa. Al terminar la ronda actual el usuario ganará ó perderá el dinero apostado dependiendo del resultado obtenido. Se le actualizará el saldo y se le eliminará de la mesa. ||
-|| _Restricciones:_ El usuario podrá abandonar la partida en la que estaba jugando, en cualquier momento. El usuario debe estar jugando en una mesa de juego. Ver CdU:016 ||
+|| _Restricciones:_ El usuario podrá abandonar la partida en la que estaba jugando en cualquier momento. El usuario debe estar jugando en una mesa de juego. Ver CdU:016 ||
 || _Objetivo:_ Abandonar una partida. ||
 || _Comentario:_ ||
 
@@ -231,7 +231,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Salir de una Mesa de Juego* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El usuario abandonará la mesa de juego en la que estaba pulsando el botón abandonar mesa. Si tiene la partida sin finalizar se trataran sus apuestas siguiendo CdU:014. Se mostrara en la ventana principal la vista con todas las mesas disponibles en la sala actual.  ||
+|| _Descripción:_ El usuario abandonará la mesa de juego en la que estaba pulsando el botón abandonar mesa. Si tuviese la partida sin finalizar se tratarán sus apuestas siguiendo CdU:014. Se mostrará en la ventana principal la vista con todas las mesas disponibles en la sala actual.  ||
 || _Restricciones:_ Un usuario podrá salir de una Mesa de juego, siempre y cuando esté dentro de una de ellas. Ver CdU:015. ||
 || _Objetivo:_ Salir de una Mesa de juego. ||
 || _Comentario:_ ||
