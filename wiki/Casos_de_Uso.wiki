@@ -242,7 +242,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Salir de una Sala de Juego* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El usuario abandonará la sala de juego en la que estaba pulsando el botón abandonar sala. Se mostrara en la ventana principal la vista con todas las salas disponibles. ||
+|| _Descripción:_ El usuario abandonará la sala de juego en la que estaba pulsando el botón abandonar sala. Se mostrará en la ventana principal la vista con todas las salas disponibles. ||
 || _Restricciones:_ Un usuario podrá salir de una Sala de juego, siempre y cuando esté dentro de una de ellas. Ver CdU:014. ||
 || _Objetivo:_ Salir de una Sala de juego ||
 || _Comentario:_ ||
@@ -253,7 +253,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Cierre de la aplicación* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ El usuario podrá cerrar el cliente pesado de la aplicación. Si se realiza el cierre de la aplicación cuando el usuario esta en medio de una o varias partida este seguira jugando hasta final de ronda o final de partida según el juego del que se trate para despues realizar las acciones especificadas en  Cdu:014. ||
+|| _Descripción:_ El usuario podrá cerrar el cliente pesado de la aplicación. Si se realiza el cierre de la aplicación cuando el usuario esta en medio de una o varias partida este seguirá jugando hasta final de ronda o final de partida según el juego del que se trate para despues realizar las acciones especificadas en  Cdu:014. ||
 || _Restricciones:_ Un usuario podrá cerrar la aplicación, siempre y cuando esté dentro de ella. Ver CdU:010. ||
 || _Objetivo:_ Cerrar la aplicación. ||
 || _Comentario:_ ||
