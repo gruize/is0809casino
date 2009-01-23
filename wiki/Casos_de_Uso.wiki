@@ -98,7 +98,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Visualización de las capturas* ||
 || _Actores:_ Usuario del casino ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ Para visualizar las capturas, el usuario o cualquier visitante deberá conectar con la página web del casino, seleccionando la opción capturas y ahí podrá ver las distintas capturas.
+|| _Descripción:_ Para visualizar las capturas, el usuario o cualquier visitante deberá conectar con la página web del casino, seleccionando la opción capturas y ahí podrá ver las distintas capturas. ||
 || _Restricciones:_ N/A ||
 || _Objetivo:_ Llamar la atención de posibles nuevos usuarios. ||
 || _Comentario:_ ||
