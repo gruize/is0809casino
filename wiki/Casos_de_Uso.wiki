@@ -43,7 +43,7 @@ Los casos de uso para el proyecto de Casino online son los siguientes:
 || _Nombre:_ *Alta de Usuario en el Sistema* ||
 || _Actores:_ Cliente (futuro Usuario del casino) ||
 || _Tipo:_ Primario y esencial ||
-|| _Descripción:_ Para que un usuario pueda darse de alta en el sistema, este deberá conectarse con la página web del casino, seleccionar la opción registro e introducir sus datos personales en el formulario, siendo el teléfono opcional. Cuando pulse aceptar el usuario será generado si todos los datos son correctos y el sistema le regalará 1000 leuros con lo que podrá comenzar a jugar. Estos leuros no contarán con una recarga solicitada. ||
+|| _Descripción:_ Para que un usuario pueda darse de alta en el sistema, este deberá conectarse con la página web del casino, seleccionar la opción registro e introducir sus datos personales en el formulario, siendo el teléfono opcional. Cuando pulse aceptar, el usuario será generado si todos los datos son correctos y el sistema le regalará 1000 leuros con lo que podrá comenzar a jugar. Estos leuros no contarán como una recarga solicitada. ||
 || _Restricciones:_  N/A||
 || _Objetivo:_ Dar de alta al usuario en el sistema ||
 || _Comentario:_ ||
