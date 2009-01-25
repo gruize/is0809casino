@@ -119,9 +119,8 @@ Se tuvo una incorporación de última hora en el primer cuatrimestre, la cual no
 
 == Nuevos riesgos ==
 
-  * Hibernate en la base de datos:
+  * Hibernate en la base de datos: Nuevo riesgo surgido debido al deseo del equipo de desarrollo.
 
-Nuevo riesgo surgido debido al deseo del equipo de desarrollo.
 * Probabilidad:* Baja. *Efectos:* Tolerable.
 _Estrategias:_ Se intentará realizar gracias a los conocimientos de varios miembros del equipo de desarrollo en este campo. En caso de no ser realizable posiblemente la estrategia que se adoptaría sería la de abandonar la idea, aunque es poco probable que esto se produzca.
  
