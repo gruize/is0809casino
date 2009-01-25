@@ -1,4 +1,3 @@
-#labels Entrega
 #Gestión de Riesgos
 
 = Gestión de Riesgos =
@@ -12,6 +11,8 @@
 Se entiende por riesgo a cualquier dificultad o complicación que pudiera suceder a lo largo de la especificación,  diseño, implementación y/o desarrollo en general de un proyecto.
 
 Por cada riesgo considerado hay que tener en cuenta su probabilidad de aparición (Alta, Moderada, Baja) y efectos (Catastróficos, Serios, Tolerable, Insignificante) y posibles estrategias para evitar los riesgos en la medida de lo posible.
+
+= Identificación, análisis y planificación =
 
 == Riesgos Tecnológicos == 
 
@@ -90,4 +91,34 @@ _Estrategias:_ Escribir un documento con los posibles cambios _a priori_ para in
 
   * Se ha infravalorado el tiempo requerido para desarrollar el proyecto.
 * Probabilidad:* Moderada. *Efectos:* Catastróficos.
-_Estrategias:_ Adquirir partes del proyecto ya desarrolladas (componentes). 
+_Estrategias:_ Adquirir partes del proyecto ya desarrolladas (componentes).
+
+= Seguimiento =
+
+== Riesgos superados == 
+
+  * Incapacidad del personal: 
+Todos los miembros del equipo de desarrollo han demostrado su valía en los distintos campos asignados. Aún a falta de realizar las implementaciones de los distintos módulos de los que constará el casino podemos afirmar que el grupo es organizado y competitivo en todos los aspectos habiendo un entendimiento más que aceptable entre sus componentes.
+
+  * Conexión entre cliente y servidor:
+Este riesgo tecnologico ha aparecido cuando no se pensaba que pudiese ocasionarse. Ha sido correctamente solucionado y superado.
+
+  * Conexión con la base de datos:
+La base de datos diseñada, aunque sigue expuesta a alguna modificación mínima, ha demostrado su fiabilidad en las conexiones y su funcionamiento correcto.
+
+  * Estructura del equipo de desarrollo:
+Se ha conseguido que una estructura lineal en la que las decisiones se toman de manera medianamente consensuada y se realizan votaciones funcione correctamente sin ocasionar ningún problema hasta el momento.
+
+  * Herramientas usadas:
+Las herramientas software utilizadas han mostrado una perfecta solvencia en la realización del propotipo. El espacio de almacenamiento del proyecto _subversion_ está a la altura de las espectativas y realiza el trabajo deseado de manera eficaz.
+
+  * Incorporaciones de nuevos miembros:
+Se tuvo una incorporación de última hora en el primer cuatrimestre, la cual no resulto problema alguno. El nuevo miembro se adaptó perfectamente a la filosofia de trabajo y demostró motivación y disponibilidad por ayudar. Pueden surgir nuevas incorporaciones en el segundo cuatrimestre, las cuales se esperan solventar de la misma manera.
+
+
+== Nuevos riesgos ==
+
+* Realización de hibernate en la base de datos:
+
+Este nuevo riesgo que nos ha surgido por la motivación de querer 
+ 
