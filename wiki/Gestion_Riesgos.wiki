@@ -3,6 +3,7 @@
 = Gestión de Riesgos =
 
 || _Autor_ || _Fecha_ || _Comentario_ ||
+|| Alberto Fernández ||28/01/2009 || Revisión y seguimiento ||
 || David Fernández y Alberto Fernández ||11/12/2008 ||Revision de Gonzalo ||
 || Alberto Milán,David Fernández y Alberto Fernández ||13/11/2008 ||Generación del documento inicial ||
 
