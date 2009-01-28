@@ -11,6 +11,7 @@ public class ClienteRecibe {
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 		InterfazConexion conexion = new Conexion(false);
+		System.out.println("Tu ID de conexion es: "+conexion.getId());
 		Mensaje msg = new MensajeString();
 		((MensajeString)msg).setContenido("hola caracola");
 		while(true)
