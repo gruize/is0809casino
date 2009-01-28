@@ -15,17 +15,18 @@ public class ClienteEnvia {
 		// TODO Auto-generated method stub
 		InterfazConexion conexion = new Conexion(false);
 		Mensaje msg = new MensajeString();
-		((MensajeString)msg).setContenido("hola caracola");
 		while(true)
 		{
             try {
     			BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
                 System.out.println("Escribe el ID del proceso al que deseas enviar el mensaje: ");
-				String destino = in.readLine();
-				msg.setDestino(destino);
+				String cadena = in.readLine();
+				msg.setDestino(cadena);
+				System.out.println("Escribe el texto que quieres enviar");
+				((MensajeString)msg).setContenido(cadena);
 				msg.setTipo(1);
 				msg = conexion.enviarMensaje(msg);	
-				System.out.println("El mensaje a sido enviado con el siguiente resultado: \n\t"+msg.getTipo());
+				System.out.println("El mensaje a sido enviado con el siguiente codigo de resultado: \n\t"+msg.getTipo());
 			} catch (NumberFormatException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

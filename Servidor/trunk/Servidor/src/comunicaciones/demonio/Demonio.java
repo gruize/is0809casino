@@ -13,6 +13,7 @@ import comunicaciones.conexion.*;
  * @version 0.1.228
  */
 public class Demonio extends Thread{
+	static final public boolean DEBUG = false;
 	// FIXME cuando creemos el demonio tenemos que ver si esServidor es true o false
 	/**
 	 * Indicates if the daemon belongs to a client or a server
@@ -51,7 +52,9 @@ public class Demonio extends Thread{
                  * Waiting a connection
                  */
                 conexion = canal.accept();
-                System.out.println(conexion.getInetAddress());
+                
+                if (DEBUG)
+                	System.out.println(conexion.getInetAddress());
                 hiloConexion nuevaConexion = new hiloConexion(conexion,servidor,tablaConectores,tablaMensajes);
                 nuevaConexion.start();
                 
