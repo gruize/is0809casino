@@ -5,7 +5,7 @@ import comunicaciones.demonio.*;
 /**
  * Extension of the Class Mensaje which sends the other person information (ID and IP)  
  * @author Francisco Huertas and Gabriela Ruiz
- * @version 0.1.227
+ * @version 0.2.269
  */
 public class MensajeConector extends Mensaje{
 	

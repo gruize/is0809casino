@@ -10,7 +10,7 @@ import comunicaciones.conexion.*;
 /**
  * Class that extends from Thread whose manages a specific connection
  * @author Francisco Huertas and Gabriela Ruiz
- * @version 0.1.228
+ * @version 0.2.269
  */
 public class hiloConexion extends Thread{
 	

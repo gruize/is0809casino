@@ -7,7 +7,7 @@ import java.io.*;
 /**
  * Implementation of the InterfaceConnection based on sockets
  * @author Francisco Huertas and Gabriela Ruiz
- * @version 0.1.227
+ * @version 0.2.269
  */
 public class Conexion implements InterfazConexion{
 	

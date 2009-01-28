@@ -6,7 +6,7 @@ import comunicaciones.conexion.*;
 /**
  * Structure that stores and manages the messages
  * @author Francisco Huertas and Gabriela Ruiz
- * @version 0.1.228
+ * @version 0.2.269
  */
 public class TablaMensajes {
 	private Vector<Mensaje> tablaMensajes;

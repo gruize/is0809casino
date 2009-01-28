@@ -17,9 +17,9 @@ import java.io.Serializable;
  * <li></li>
  * <li></li>
  * <li></li>
-v * </ul>
+ * </ul>
  * @author Francisco Huertas and Gabriela Ruiz
- * @version 0.1.227
+ * @version 0.2.269
  */
 public abstract class Mensaje implements Serializable
 {

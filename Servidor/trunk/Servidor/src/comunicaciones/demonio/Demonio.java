@@ -10,7 +10,7 @@ import comunicaciones.conexion.*;
 /**
  * Class Demonio executable, that starts a daemon
  * @author Francisco Huertas and Gabriela Ruiz
- * @version 0.1.228
+ * @version 0.2.269
  */
 public class Demonio extends Thread{
 	static final public boolean DEBUG = false;

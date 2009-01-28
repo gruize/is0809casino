@@ -1,5 +1,7 @@
 package comunicaciones.pruebas;
-
+/**
+ * @version 0.2.269
+ */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -23,6 +25,7 @@ public class ClienteEnvia {
 				String cadena = in.readLine();
 				msg.setDestino(cadena);
 				System.out.println("Escribe el texto que quieres enviar");
+				cadena = in.readLine();
 				((MensajeString)msg).setContenido(cadena);
 				msg.setTipo(1);
 				msg = conexion.enviarMensaje(msg);	

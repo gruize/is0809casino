@@ -5,7 +5,7 @@ import java.net.UnknownHostException;
 /**
  * Class that represents a connector that is a proccess with an ID your address (IP)
  * @author Francisco Huertas Ferrer and Gabriela Ruiz Escobar
- * @version 0.1.228
+ * @version 0.2.269
  */
 public class Conectores {
 	
