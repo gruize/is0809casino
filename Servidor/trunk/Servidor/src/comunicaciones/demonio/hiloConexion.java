@@ -108,20 +108,20 @@ public class hiloConexion extends Thread{
 					 */
 					//FIXME
 					//if (destino.getHost().getAddress())
-					if (this.compareIp(destino.getHost().getAddress(), InetAddress.getLocalHost().getAddress()))
+					//if (this.compareIp(destino.getHost().getAddress(), InetAddress.getLocalHost().getAddress()))
 					{	
 						this.tablaMensajes.altaMensaje(msg.clon());
 						msg.setTipo(msg.OK);
 						this.send(null, msg);
 					}
 					
-					// TODO espera de respueesta OK
-	
-					else
+					// 
+						// XXX esto es pa cuando el demonio este en todos
+					/*else
 					{
-						/**
-						 * If the message goes to another
-						 */
+						
+						// * If the message goes to another
+
 						msg.procesado = true;
 						Socket socketServidor = new Socket(destino.getHost(),msg.PUERTO);
 	
@@ -130,7 +130,7 @@ public class hiloConexion extends Thread{
 						socketServidor.close();
 						if (msg.getTipo() == msg.OK)
 							this.send(null, msg);
-					}
+					}*/
 					
 				}
 				/**
@@ -299,6 +299,12 @@ public class hiloConexion extends Thread{
 		// TODO meter espera y timeout
 		Mensaje respuesta;
 		do {
+			try {
+				Thread.sleep(25L);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			respuesta = this.tablaMensajes.consultaMensaje(msg.getOrigen(), msg.getMascara());
 		} while (respuesta == null);
 		this.send(null, respuesta);

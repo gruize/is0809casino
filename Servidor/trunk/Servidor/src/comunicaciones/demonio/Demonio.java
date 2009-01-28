@@ -51,6 +51,7 @@ public class Demonio extends Thread{
                  * Waiting a connection
                  */
                 conexion = canal.accept();
+                System.out.println(conexion.getInetAddress());
                 hiloConexion nuevaConexion = new hiloConexion(conexion,servidor,tablaConectores,tablaMensajes);
                 nuevaConexion.start();
                 

@@ -26,16 +26,20 @@ public interface InterfazConexion {
 	
 	/**
 	 * Call to obtenerMensaje with mascara = -1
+	 * @param espera Indica si a la hora de obtener el mensaje tiene que esperar <br>
+	 * 			a que exista un mensaje en la cola de espera
 	 * @return Message
 	 */
-	public Mensaje obtenerMensaje();
+	public Mensaje obtenerMensaje(boolean espera);
 
 	/**
 	 * Gets a message that is waiting of being read
+	 * @param espera Indica si a la hora de obtener el mensaje tiene que esperar <br>
+	 * 			a que exista un mensaje en la cola de espera
 	 * @param mascara Mask to recive the message (not implemented)
 	 * @return Message
 	 */
-	public Mensaje obtenerMensaje(int mascara);
+	public Mensaje obtenerMensaje(int mascara, boolean espera);
 	
 	/**
 	 * Gets the connection state with a integer representative of the connection

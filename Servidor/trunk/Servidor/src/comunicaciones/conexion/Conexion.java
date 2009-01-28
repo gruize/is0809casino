@@ -168,16 +168,19 @@ public class Conexion implements InterfazConexion{
 	}
 
 	@Override
-	public Mensaje obtenerMensaje() {
-		return obtenerMensaje(-1);
+	public Mensaje obtenerMensaje(boolean espera) {
+		return obtenerMensaje(-1, espera);
 	}
 	
 	@Override
-	public Mensaje obtenerMensaje(int mascara) {
+	public Mensaje obtenerMensaje(int mascara, boolean espera) {
 		Mensaje msg = new MensajeSistema();
 		msg.setOrigen(this.getId());
 		msg.setDestino(this.getId());
-		msg.setTipo(msg.READ_MESSAGE_NO_WAIT);
+		if (espera)
+			msg.setTipo(msg.READ_MESSAGE_WAIT);
+		else 
+			msg.setTipo(msg.READ_MESSAGE_NO_WAIT);
 		msg.setMascara(mascara);
 		this.establecer();
 		this.send(null, msg);
