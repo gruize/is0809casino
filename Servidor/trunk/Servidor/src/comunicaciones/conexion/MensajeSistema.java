@@ -7,6 +7,10 @@ package comunicaciones.conexion;
 public class MensajeSistema extends Mensaje{
 		
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4458722895040865845L;
+	/**
 	 * Constructor of a message-type system
 	 */
 	public MensajeSistema() {

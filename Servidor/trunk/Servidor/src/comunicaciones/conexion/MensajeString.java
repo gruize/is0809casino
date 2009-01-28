@@ -6,6 +6,10 @@ package comunicaciones.conexion;
  */
 public class MensajeString extends Mensaje{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4646770899219647512L;
 	private String contenido;
 	/**
 	 * Default constructor of the message, the default content is empty.

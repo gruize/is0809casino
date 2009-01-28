@@ -9,6 +9,10 @@ import comunicaciones.demonio.*;
  */
 public class MensajeConector extends Mensaje{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9178479348520555992L;
 	private Conectores contenido;
 	/**
 	 * Default Message Constructor 
