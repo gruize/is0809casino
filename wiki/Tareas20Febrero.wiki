@@ -27,7 +27,7 @@ Gabriela
 
 = Gestion de configuracion =
 
-Alberto *TODO HECHO*
+Alberto ==*TODO HECHO*==
 
   * Indice numerado
   * Diagrama del sistema. Hay dos servidores.
