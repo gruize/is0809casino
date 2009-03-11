@@ -174,10 +174,5 @@ public abstract class Mensaje implements Serializable
 	 * @return The message cloned
 	 */
 	public abstract Mensaje clon();
-	
-	/**
-	 * Get the name of the class
-	 * @return The name of the class
-	 */
-	public abstract String getClassName();
+
 }

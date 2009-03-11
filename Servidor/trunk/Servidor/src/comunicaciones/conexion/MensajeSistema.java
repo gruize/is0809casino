@@ -27,8 +27,5 @@ public class MensajeSistema extends Mensaje{
 	public Mensaje clon() {
 		return new MensajeSistema(this);
 	}
-	@Override
-	public String getClassName() {
-		return "MensajeSistema";
-	}
+
 }

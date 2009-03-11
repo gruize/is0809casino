@@ -48,9 +48,4 @@ public class MensajeConector extends Mensaje{
 	public Mensaje clon() {
 		return new MensajeConector (this);
 	}
-	
-	@Override
-	public String getClassName() {
-		return "MensajeConector";
-	}
 }

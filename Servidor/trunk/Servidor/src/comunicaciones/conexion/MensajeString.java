@@ -46,10 +46,6 @@ public class MensajeString extends Mensaje{
 		return new MensajeString(this);
 	}
 	
-	@Override
-	public String getClassName() {
-		return "MensajeString";
-	}
 }
 
 
