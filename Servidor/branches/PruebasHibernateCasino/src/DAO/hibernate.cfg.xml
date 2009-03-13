@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory name="CasinoSF">
+        
+        <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect </property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@serv.fis.ucm.es:1521:xe</property>
+        <property name="hibernate.connection.username">SYSTEM</property>
+        <property name="hibernate.connection.password">casinois0809ñ</property>
+        
+        <!-- TODO quitar, es solo para pruebas-->
+        <property name="show_sql">true</property>
+    
+        <!-- Enable Hibernate's automatic session context management -->
+        <property name="current_session_context_class">thread</property>
+
+
+        <!-- MAPPINGS -->
+        <mapping resource="Beans/Salas.hbm.xml"/>
+        <mapping resource="Beans/Clientes.hbm.xml"/>
+        <mapping resource="Beans/Partidas.hbm.xml"/>
+        <mapping resource="Beans/Juegos.hbm.xml"/>
+        <mapping resource="Beans/Mesas.hbm.xml"/>
+        <mapping resource="Beans/Participantes.hbm.xml"/>
+        
+    </session-factory>
+</hibernate-configuration>

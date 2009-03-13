@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-mar-2009 10:54:47 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="Beans.Mesas" schema="SYSTEM" table="MESAS">
+    <id name="codigo" type="big_decimal">
+      <column name="CODIGO" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="Beans.Salas" fetch="select" name="salas">
+      <column name="SALA" not-null="true" precision="22" scale="0"/>
+    </many-to-one>
+    <property name="puestos" type="big_decimal">
+      <column name="PUESTOS" not-null="true" precision="22" scale="0"/>
+    </property>
+    <property name="jugadores" type="big_decimal">
+      <column name="JUGADORES" not-null="true" precision="22" scale="0"/>
+    </property>
+    <property name="apuestamin" type="big_decimal">
+      <column name="APUESTAMIN" not-null="true" precision="5"/>
+    </property>
+    <property name="apuestamax" type="big_decimal">
+      <column name="APUESTAMAX" not-null="true" precision="5"/>
+    </property>
+    <set inverse="true" name="partidases">
+      <key>
+        <column name="MESA" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="Beans.Partidas"/>
+    </set>
+  </class>
+</hibernate-mapping>
