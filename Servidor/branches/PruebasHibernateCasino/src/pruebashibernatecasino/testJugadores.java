@@ -39,6 +39,7 @@ public class testJugadores {
         jugador.setNumerocuenta("012893872223879236");
         jugador.setDireccion("Madrid");
         jugador.setTelefono("SantiSabe");
+        jugador.setRecargas(10);
 
         //insertar en BBDD
         DAOClientes dao = new DAOClientes();

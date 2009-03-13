@@ -13,7 +13,7 @@ import java.util.Set;
 public class Clientes  implements java.io.Serializable {
 
 
-     private BigDecimal codigo;
+     private int codigo;
      private String nombre;
      private String apellidos;
      private String dni;
@@ -22,7 +22,7 @@ public class Clientes  implements java.io.Serializable {
      private String direccion;
      private Date fechaingreso;
      private String numerocuenta;
-     private BigDecimal recargas;
+     private int recargas;
      private String telefono;
      private Set partidases = new HashSet(0);
 
@@ -30,7 +30,7 @@ public class Clientes  implements java.io.Serializable {
     }
 
 	
-    public Clientes(BigDecimal codigo, String nombre, String apellidos, String dni, String usuario, String password, String direccion, Date fechaingreso, String numerocuenta, BigDecimal recargas) {
+    public Clientes(int codigo, String nombre, String apellidos, String dni, String usuario, String password, String direccion, Date fechaingreso, String numerocuenta, int recargas) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -42,7 +42,7 @@ public class Clientes  implements java.io.Serializable {
         this.numerocuenta = numerocuenta;
         this.recargas = recargas;
     }
-    public Clientes(BigDecimal codigo, String nombre, String apellidos, String dni, String usuario, String password, String direccion, Date fechaingreso, String numerocuenta, BigDecimal recargas, String telefono, Set partidases) {
+    public Clientes(int codigo, String nombre, String apellidos, String dni, String usuario, String password, String direccion, Date fechaingreso, String numerocuenta, int recargas, String telefono, Set partidases) {
        this.codigo = codigo;
        this.nombre = nombre;
        this.apellidos = apellidos;
@@ -57,11 +57,11 @@ public class Clientes  implements java.io.Serializable {
        this.partidases = partidases;
     }
    
-    public BigDecimal getCodigo() {
+    public int getCodigo() {
         return this.codigo;
     }
     
-    public void setCodigo(BigDecimal codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
     public String getNombre() {
@@ -120,11 +120,11 @@ public class Clientes  implements java.io.Serializable {
     public void setNumerocuenta(String numerocuenta) {
         this.numerocuenta = numerocuenta;
     }
-    public BigDecimal getRecargas() {
+    public int getRecargas() {
         return this.recargas;
     }
     
-    public void setRecargas(BigDecimal recargas) {
+    public void setRecargas(int recargas) {
         this.recargas = recargas;
     }
     public String getTelefono() {

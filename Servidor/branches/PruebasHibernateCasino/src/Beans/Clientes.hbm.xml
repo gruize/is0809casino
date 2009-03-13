@@ -4,9 +4,9 @@
 <hibernate-mapping>
   <class name="Beans.Clientes" schema="SYSTEM" table="CLIENTES">
       
-    <id name="codigo" type="big_decimal">
+    <id name="codigo" type="int">
       <column name="CODIGO" precision="22" scale="0"/>
-      <generator class="assigned"/>
+      <generator class="increment"/>
     </id>    
    
     <property name="nombre" type="string">
@@ -33,7 +33,7 @@
     <property name="numerocuenta" type="string">
       <column length="20" name="NUMEROCUENTA" not-null="true"/>
     </property>
-    <property name="recargas" type="big_decimal">
+    <property name="recargas" type="java.lang.Integer">
       <column name="RECARGAS" not-null="true" precision="22" scale="0"/>
     </property>
     <property name="telefono" type="string">
