@@ -3,12 +3,10 @@
 <!-- Generated 09-mar-2009 10:54:47 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
   <class name="Beans.Clientes" schema="SYSTEM" table="CLIENTES">
-      
     <id name="codigo" type="int">
       <column name="CODIGO" precision="22" scale="0"/>
       <generator class="increment"/>
-    </id>    
-   
+    </id>
     <property name="nombre" type="string">
       <column length="30" name="NOMBRE" not-null="true"/>
     </property>

@@ -10,7 +10,7 @@
         <property name="hibernate.connection.password">casinois0809ñ</property>
         
         <!-- TODO quitar, es solo para pruebas-->
-        <property name="show_sql">true</property>
+        <!--<property name="show_sql">true</property>-->
     
         <!-- Enable Hibernate's automatic session context management -->
         <property name="current_session_context_class">thread</property>

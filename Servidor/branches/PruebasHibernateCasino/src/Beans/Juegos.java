@@ -2,7 +2,6 @@ package Beans;
 // Generated 09-mar-2009 10:54:47 by Hibernate Tools 3.2.1.GA
 
 
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,9 +11,9 @@ import java.util.Set;
 public class Juegos  implements java.io.Serializable {
 
 
-     private BigDecimal codigo;
+     private int codigo;
      private String nombre;
-     private BigDecimal jugadoresmin;
+     private int jugadoresmin;
      private String reglas;
      private Set salases = new HashSet(0);
 
@@ -22,12 +21,12 @@ public class Juegos  implements java.io.Serializable {
     }
 
 	
-    public Juegos(BigDecimal codigo, String nombre, BigDecimal jugadoresmin) {
+    public Juegos(int codigo, String nombre, int jugadoresmin) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.jugadoresmin = jugadoresmin;
     }
-    public Juegos(BigDecimal codigo, String nombre, BigDecimal jugadoresmin, String reglas, Set salases) {
+    public Juegos(int codigo, String nombre, int jugadoresmin, String reglas, Set salases) {
        this.codigo = codigo;
        this.nombre = nombre;
        this.jugadoresmin = jugadoresmin;
@@ -35,11 +34,11 @@ public class Juegos  implements java.io.Serializable {
        this.salases = salases;
     }
    
-    public BigDecimal getCodigo() {
+    public int getCodigo() {
         return this.codigo;
     }
     
-    public void setCodigo(BigDecimal codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
     public String getNombre() {
@@ -49,11 +48,11 @@ public class Juegos  implements java.io.Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public BigDecimal getJugadoresmin() {
+    public int getJugadoresmin() {
         return this.jugadoresmin;
     }
     
-    public void setJugadoresmin(BigDecimal jugadoresmin) {
+    public void setJugadoresmin(int jugadoresmin) {
         this.jugadoresmin = jugadoresmin;
     }
     public String getReglas() {
