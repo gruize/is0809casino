@@ -21,6 +21,11 @@ public class testJugadores {
     public static void main(String[] args) {
         // TODO code application logic here
 
+
+//        DAOClientes c=new DAOClientes();
+//        ArrayList lista=c.getClientes();
+//        mostrarDatos(lista);
+
         crearJugador();
 
 
@@ -30,16 +35,16 @@ public class testJugadores {
         Clientes jugador = new Clientes();
         
        // jugador.setCodigo(new BigDecimal(1));
-        jugador.setNombre("Ambrín");
-        jugador.setApellidos("Chaudhary Tabassam");
-        jugador.setDni("12345678Z");
-        jugador.setUsuario("ambrin");        
-        jugador.setPassword("ambrin");
+        jugador.setNombre("Joaquin");
+        jugador.setApellidos("Lopez Cabezas");
+        jugador.setDni("9876543Y");
+        jugador.setUsuario("juss");
+        jugador.setPassword("juss");
         jugador.setFechaingreso(new java.util.Date());
-        jugador.setNumerocuenta("012893872223879236");
-        jugador.setDireccion("Madrid");
-        jugador.setTelefono("SantiSabe");
-        jugador.setRecargas(10);
+        jugador.setNumerocuenta("123456789012345678");
+        jugador.setDireccion("Toledo");
+        jugador.setTelefono("666666666");
+        jugador.setRecargas(2);
 
         //insertar en BBDD
         DAOClientes dao = new DAOClientes();
