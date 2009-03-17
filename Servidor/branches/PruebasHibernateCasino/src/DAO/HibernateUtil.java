@@ -11,6 +11,10 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 
+/**
+ *
+ * @author Ambrin Chaudhary y Joaquin Lopez
+ */
 public class HibernateUtil {
 
     

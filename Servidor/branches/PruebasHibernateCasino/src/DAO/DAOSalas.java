@@ -5,30 +5,29 @@
 
 package DAO;
 
-import Beans.Mesas;
+import Beans.Salas;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-
 /**
  *
  * @author Ambrin Chaudhary y Joaquin Lopez
  */
-public class DAOMesas {
+public class DAOSalas {
 
     static Logger log = Logger.getLogger(DAOClientes.class);
 
     /**
-     * Inserta una nueva mesa
-     * @param mesa
+     * Inserta una nueva sala
+     * @param sala
      * @return resultado de la operacion
      */
-    public boolean insertarNuevaMesa(Mesas mesa) {
+    public boolean insertarNuevaSala(Salas sala) {
 
-        String metodo="insertarNuevaMesa";
+        String metodo="insertarNuevaSala";
         boolean res = false;
 
         Session session = null;
@@ -39,39 +38,39 @@ public class DAOMesas {
             tx = session.beginTransaction();
 
             //guardamos
-            session.save(mesa);
+            session.save(sala);
             
             session.flush();
             tx.commit();
 
-            log.info("DAOMesas: "+metodo+": Mesa " + mesa.getCodigo() + " INSERTADA OK");
+            log.info("DAOSalas: "+metodo+": Sala " + sala.getCodigo() + " INSERTADA OK");
             res = true;
 
         } catch (org.hibernate.HibernateException he) {
             tx.rollback();
-            log.error("DAOMesas: "+metodo+": Error de Hibernate: " + he.getMessage());
+            log.error("DAOSalas: "+metodo+": Error de Hibernate: " + he.getMessage());
         } catch (SQLException sqle) {
             tx.rollback();
-            log.error("DAOMesas: "+metodo+": Error SQLException: " + sqle.getMessage());
+            log.error("DAOSalas: "+metodo+": Error SQLException: " + sqle.getMessage());
         } catch (Exception e) {
             tx.rollback();
-            log.error("DAOMesas: "+metodo+": Error Exception: " + e.getMessage());
+            log.error("DAOSalas: "+metodo+": Error Exception: " + e.getMessage());
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOMesas: "+ metodo+": Sesion liberada. Finished");
+            log.info("DAOSalas: "+metodo+": Sesion liberada. Finished");
         }
 
         return res;
     }
 
     /**
-     * Devuelve todas las mesas que hay registrados en el casino
+     * Devuelve todos las salas que hay registradas en el casino
      * @return
      */
-    public ArrayList getMesas() {
+    public ArrayList getSalas() {
 
-        String metodo="getMesas";
+        String metodo="getSalas";
         ArrayList lista = new ArrayList();
         Session session = null;
         Transaction tx = null;
@@ -80,41 +79,41 @@ public class DAOMesas {
             session = HibernateUtil.currentSession();
             tx = session.beginTransaction();
             
-            lista = (ArrayList)session.createQuery("from Mesas").list();
+            lista = (ArrayList)session.createQuery("from Salas").list();
             
             session.flush();
             tx.commit();
 
-            log.info("DAOMesas: "+metodo+": Se obtienen " + lista.size() + " mesas");
+            log.info("DAOSalas: "+metodo+": Se obtienen " + lista.size() + " salas");
 
         } catch (org.hibernate.HibernateException he) {
             tx.rollback();
-            log.error("DAOMesas: "+metodo+": Error de Hibernate: " + he.getMessage());
+            log.error("DAOSalas: "+metodo+": Error de Hibernate: " + he.getMessage());
         } catch (SQLException sqle) {
             tx.rollback();
-            log.error("DAOMesas: "+metodo+": Error SQLException: " + sqle.getMessage());
+            log.error("DAOSalas: "+metodo+": Error SQLException: " + sqle.getMessage());
         } catch (Exception e) {
             tx.rollback();
-            log.error("DAOMesas: "+metodo+": Error Exception: " + e.getMessage());
+            log.error("DAOSalas: "+metodo+": Error Exception: " + e.getMessage());
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOMesas: "+metodo+": Sesion liberada. Finished");
+            log.info("DAOSalas: "+metodo+": Sesion liberada. Finished");
         }
 
         return lista;
     }
 
     /**
-     * Busca una mesa en la BBDD por codigo.
-     * @param codigo de la mesa
-     * @return objeto Mesas
+     * Busca una sala en la BBDD por codigo.
+     * @param codigo de la sala
+     * @return objeto Salas
      */
-    public Mesas getMesaPorCodigo(int codigo) {
+    public Salas getSalaPorCodigo(int codigo) {
 
-        String metodo = "getMesaPorCodigo";
+        String metodo = "getSalaPorCodigo";
 
-        Mesas mesa = null;
+        Salas sala = null;
         Session session = null;
         Transaction tx = null;
         
@@ -122,39 +121,39 @@ public class DAOMesas {
             session = HibernateUtil.currentSession();
             tx = session.beginTransaction();
 
-            mesa = (Mesas) session.createQuery("from Mesas m where m.codigo= ?").setString(0, ""+codigo).uniqueResult();
+            sala = (Salas) session.createQuery("from Salas s where s.codigo= ?").setString(0, ""+codigo).uniqueResult();
 
             session.flush();
             tx.commit();
 
-            log.info("DAOMesas: " + metodo + ": Mesa obtenida con CODIGO: " + mesa.getCodigo());
+            log.info("DAOSalas: " + metodo + ": Sala obtenida con CODIGO: " + sala.getCodigo());
 
         } catch (org.hibernate.HibernateException he) {
             tx.rollback();
-            log.error("DAOMesas: " + metodo + ": Error de Hibernate: " + he.getMessage());
+            log.error("DAOSalas: " + metodo + ": Error de Hibernate: " + he.getMessage());
         } catch (SQLException sqle) {
             tx.rollback();
-            log.error("DAOMesas: " + metodo + ": Error SQLException: " + sqle.getMessage());
+            log.error("DAOSalas: " + metodo + ": Error SQLException: " + sqle.getMessage());
         } catch (Exception e) {
             tx.rollback();
-            log.error("DAOMesas: " + metodo + ": Error Exception: " + e.getMessage());
+            log.error("DAOSalas: " + metodo + ": Error Exception: " + e.getMessage());
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOMesas: " + metodo + ": Sesion liberada. Finished");
+            log.info("DAOSalas: " + metodo + ": Sesion liberada. Finished");
         }
 
-        return mesa;
+        return sala;
     }
 
     /**
-     * Borra una mesa
-     * @param mesa mesa que se quiere borrar
+     * Borra una sala
+     * @param sala sala que se quiere borrar
      * @return resultado de la operación
      */
-    public void borrarMesa(Mesas mesa) {
+    public void borrarSala(Salas sala) {
 
-        String metodo = "borrarMesa";
+        String metodo = "borrarSala";
 
         Session session = null;
         Transaction tx = null;
@@ -163,38 +162,38 @@ public class DAOMesas {
             session = HibernateUtil.currentSession();
             tx = session.beginTransaction();
 
-            session.delete(mesa);
+            session.delete(sala);
 
             session.flush();
             tx.commit();
 
-            log.info("DAOMesas: " + metodo + ": Mesa con codigo" + mesa.getCodigo() + " BORRADA");
+            log.info("DAOSalas: " + metodo + ": Sala con codigo" + sala.getCodigo() + " BORRADA");
 
         } catch (org.hibernate.HibernateException he) {
             tx.rollback();
-            log.error("DAOMesas: " + metodo + ": Error de Hibernate: " + he.getMessage());
+            log.error("DAOSalas: " + metodo + ": Error de Hibernate: " + he.getMessage());
         } catch (SQLException sqle) {
             tx.rollback();
-            log.error("DAOMesas: " + metodo + ": Error SQLException: " + sqle.getMessage());
+            log.error("DAOSalas: " + metodo + ": Error SQLException: " + sqle.getMessage());
         } catch (Exception e) {
             tx.rollback();
-            log.error("DAOMesas: " + metodo + ": Error Exception: " + e.getMessage());
+            log.error("DAOSalas: " + metodo + ": Error Exception: " + e.getMessage());
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOMesas: "+metodo+": Sesion liberada. Finished");
+            log.info("DAOSalas: "+metodo+": Sesion liberada. Finished");
         }
 
     }
 
     /**
-     * Modifica una mesa
+     * Modifica una sala
      * 
-     * @param mesa objeto ya modificada localmente
+     * @param sala objeto ya modificado localmente
      */
-    public void modificarMesa(Mesas mesa) {
+    public void modificarSala(Salas sala) {
 
-        String metodo = "modificarMesa";
+        String metodo = "modificarSala";
 
         Session session = null;
         Transaction tx = null;
@@ -203,26 +202,26 @@ public class DAOMesas {
             session = HibernateUtil.currentSession();
             tx = session.beginTransaction();
 
-            session.update(mesa);
+            session.update(sala);
 
             session.flush();
             tx.commit();
 
-            log.info("DAOMesas: " + metodo + ": Mesa con codigo " + mesa.getCodigo() + " MODIFICADA");
+            log.info("DAOSalas: " + metodo + ": Sala con codigo" + sala.getCodigo() + " MODIFICADA");
 
         } catch (org.hibernate.HibernateException he) {
             tx.rollback();
-            log.error("DAOMesas: " + metodo + ": Error de Hibernate: " + he.getMessage());
+            log.error("DAOSalas: " + metodo + ": Error de Hibernate: " + he.getMessage());
         } catch (SQLException sqle) {
             tx.rollback();
-            log.error("DAOMesas: " + metodo + ": Error SQLException: " + sqle.getMessage());
+            log.error("DAOSalas: " + metodo + ": Error SQLException: " + sqle.getMessage());
         } catch (Exception e) {
             tx.rollback();
-            log.error("DAOMesas: " + metodo + ": Error Exception: " + e.getMessage());
+            log.error("DAOSalas: " + metodo + ": Error Exception: " + e.getMessage());
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOMesas: "+metodo+": Sesion liberada. Finished");
+            log.info("DAOSalas: "+metodo+": Sesion liberada. Finished");
         }
 
     }

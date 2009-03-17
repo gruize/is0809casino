@@ -13,7 +13,7 @@ import org.hibernate.Transaction;
 
 /**
  *
- * @author Chaudhary
+ * @author Ambrin Chaudhary y Joaquin Lopez
  */
 public class DAOJuegos {
 
@@ -22,6 +22,51 @@ public class DAOJuegos {
 
     /** Contructora por defecto */
     public DAOJuegos() {
+    }
+
+
+    /**
+     * Inserta un nuevo juego
+     * @param juego
+     * @return resultado de la operacion
+     */
+    public boolean insertarNuevoJuego(Juegos juego) {
+
+        String metodo="insertarNuevoJuego";
+        boolean res = false;
+
+        Session session = null;
+        Transaction tx = null;
+
+        try {
+            session = HibernateUtil.currentSession();
+            tx = session.beginTransaction();
+
+            //guardamos
+            session.save(juego);
+
+            session.flush();
+            tx.commit();
+
+            log.info("DAOJuegos: "+metodo+": Juego " + juego.getNombre() + " INSERTADO OK");
+            res = true;
+
+        } catch (org.hibernate.HibernateException he) {
+            tx.rollback();
+            log.error("DAOJuegos: "+metodo+": Error de Hibernate: " + he.getMessage());
+        } catch (SQLException sqle) {
+            tx.rollback();
+            log.error("DAOJuegos: "+metodo+": Error SQLException: " + sqle.getMessage());
+        } catch (Exception e) {
+            tx.rollback();
+            log.error("DAOJuegos: "+metodo+": Error Exception: " + e.getMessage());
+        } finally {
+            // Liberamos sesión
+            HibernateUtil.closeSession();
+            log.info("DAOJuegos: "+metodo+": Sesion liberada. Finished");
+        }
+
+        return res;
     }
 
     /**
@@ -44,34 +89,36 @@ public class DAOJuegos {
             session.flush();
             tx.commit();
 
-            log.info("DAOJuegos:" + metodo + ": Se obtienen " + lista.size() + " juegos");
+            log.info("DAOJuegos: " + metodo + ": Se obtienen " + lista.size() + " juegos");
 
         } catch (org.hibernate.HibernateException he) {
             tx.rollback();
-            log.error("DAOJuegos:" + metodo + ": Error de Hibernate: " + he.getMessage());
+            log.error("DAOJuegos: " + metodo + ": Error de Hibernate: " + he.getMessage());
         } catch (SQLException sqle) {
             tx.rollback();
-            log.error("DAOJuegos:" + metodo + ":Error SQLException: " + sqle.getMessage());
+            log.error("DAOJuegos: " + metodo + ": Error SQLException: " + sqle.getMessage());
         } catch (Exception e) {
             tx.rollback();
-            log.error("DAOJuegos:" + metodo + ":Error Exception: " + e.getMessage());
+            log.error("DAOJuegos: " + metodo + ": Error Exception: " + e.getMessage());
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOJuegos:" + metodo + ":Sesion liberada. Finished");
+            log.info("DAOJuegos: " + metodo + ": Sesion liberada. Finished");
         }
 
         return lista;
     }
 
     /**
-     * Obtiene todas las salas donde de está jugando al JUEGO
-     * @param lista de salas donde se está jugando el juego
-     *//*
-    public ArrayList getSalasconJuego() {
-        String metodo = "getSalasconJuego";
-        ArrayList lista = new ArrayList();
+     * Busca un juego en la BBDD por codigo.
+     * @param codigo codigo del juego
+     * @return objeto Juegos
+     */
+    public Juegos getJuegoPorCodigo(int codigo) {
 
+        String metodo = "getJuegoPorCodigo";
+
+        Juegos juego = null;
         Session session = null;
         Transaction tx = null;
 
@@ -79,39 +126,41 @@ public class DAOJuegos {
             session = HibernateUtil.currentSession();
             tx = session.beginTransaction();
 
-            //TODO crear la query
-           // lista = (ArrayList) session.createQuery("from Juegos").list();
+            juego = (Juegos) session.createQuery("from Juegos j where j.codigo= ?").setString(0, ""+codigo).uniqueResult();
 
             session.flush();
             tx.commit();
 
-            log.info("DAOJuegos:" + metodo + ": Se obtienen " + lista.size() + " juegos");
+            log.info("DAOJuegos: " + metodo + ": Juego obtenido con CODIGO: " + juego.getCodigo());
 
         } catch (org.hibernate.HibernateException he) {
             tx.rollback();
-            log.error("DAOJuegos:" + metodo + ": Error de Hibernate: " + he.getMessage());
+            log.error("DAOJuegos: " + metodo + ": Error de Hibernate: " + he.getMessage());
         } catch (SQLException sqle) {
             tx.rollback();
-            log.error("DAOJuegos:" + metodo + ":Error SQLException: " + sqle.getMessage());
+            log.error("DAOJuegos: " + metodo + ": Error SQLException: " + sqle.getMessage());
         } catch (Exception e) {
             tx.rollback();
-            log.error("DAOJuegos:" + metodo + ":Error Exception: " + e.getMessage());
+            log.error("DAOJuegos: " + metodo + ": Error Exception: " + e.getMessage());
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOJuegos:" + metodo + ":Sesion liberada. Finished");
+            log.info("DAOJuegos: " + metodo + ": Sesion liberada. Finished");
         }
 
-        return lista;
-    }*/
+        return juego;
+    }
 
     /**
-     * Inserta un nuevo Juego en BBDD
-     * @param juego Juego a insertar
+     * Busca un juego en la BBDD por nombre.
+     * @param nombre nombre del juego
+     * @return objeto Juegos
      */
-    public void insertarJuego(Juegos juego) {
+    public Juegos getJuegoPorNombre(String nombre) {
 
-        String metodo = "insertarJuego";
+        String metodo = "getJuegoPorNombre";
+
+        Juegos juego = null;
         Session session = null;
         Transaction tx = null;
 
@@ -119,27 +168,29 @@ public class DAOJuegos {
             session = HibernateUtil.currentSession();
             tx = session.beginTransaction();
 
-            session.save(juego);
+            juego = (Juegos) session.createQuery("from Juegos j where j.nombre= ?").setString(0, nombre).uniqueResult();
 
             session.flush();
             tx.commit();
 
-            log.info("DAOJuegos:" + metodo + ": Juego " + juego.getNombre() + " INSERTADO");
+            log.info("DAOJuegos: " + metodo + ": Jugador obtenido con NOMBRE: " + juego.getNombre());
 
         } catch (org.hibernate.HibernateException he) {
             tx.rollback();
-            log.error("DAOJuegos:" + metodo + ": Error de Hibernate: " + he.getMessage());
+            log.error("DAOJuegos: " + metodo + ": Error de Hibernate: " + he.getMessage());
         } catch (SQLException sqle) {
             tx.rollback();
-            log.error("DAOJuegos:" + metodo + ": Error SQLException: " + sqle.getMessage());
+            log.error("DAOJuegos: " + metodo + ": Error SQLException: " + sqle.getMessage());
         } catch (Exception e) {
             tx.rollback();
-            log.error("DAOJuegos:" + metodo + ": Error Exception: " + e.getMessage());
+            log.error("DAOJuegos: " + metodo + ": Error Exception: " + e.getMessage());
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOJuegos:" + metodo + ":Sesion liberada. Finished");
+            log.info("DAOJuegos: " + metodo + ": Sesion liberada. Finished");
         }
+
+        return juego;
     }
 
     /**
@@ -161,21 +212,21 @@ public class DAOJuegos {
             session.flush();
             tx.commit();
 
-            log.info("DAOJuegos:" + metodo + ": Juego " + juego.getNombre() + " MODIFICADO");
+            log.info("DAOJuegos: " + metodo + ": Juego " + juego.getNombre() + " MODIFICADO");
 
         } catch (org.hibernate.HibernateException he) {
             tx.rollback();
-            log.error("DAOJuegos:" + metodo + ": Error de Hibernate: " + he.getMessage());
+            log.error("DAOJuegos: " + metodo + ": Error de Hibernate: " + he.getMessage());
         } catch (SQLException sqle) {
             tx.rollback();
-            log.error("DAOJuegos:" + metodo + ": Error SQLException: " + sqle.getMessage());
+            log.error("DAOJuegos: " + metodo + ": Error SQLException: " + sqle.getMessage());
         } catch (Exception e) {
             tx.rollback();
-            log.error("DAOJuegos:" + metodo + ": Error Exception: " + e.getMessage());
+            log.error("DAOJuegos: " + metodo + ": Error Exception: " + e.getMessage());
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOJuegos:" + metodo + ":Sesion liberada. Finished");
+            log.info("DAOJuegos: " + metodo + ": Sesion liberada. Finished");
         }
     }
 
@@ -198,21 +249,21 @@ public class DAOJuegos {
             session.flush();
             tx.commit();
 
-            log.info("DAOJuegos:" + metodo + ": Juego " + juego.getNombre() + " BORRADO");
+            log.info("DAOJuegos: " + metodo + ": Juego " + juego.getNombre() + " BORRADO");
 
         } catch (org.hibernate.HibernateException he) {
             tx.rollback();
-            log.error("DAOJuegos:" + metodo + ": Error de Hibernate: " + he.getMessage());
+            log.error("DAOJuegos: " + metodo + ": Error de Hibernate: " + he.getMessage());
         } catch (SQLException sqle) {
             tx.rollback();
-            log.error("DAOJuegos:" + metodo + ": Error SQLException: " + sqle.getMessage());
+            log.error("DAOJuegos: " + metodo + ": Error SQLException: " + sqle.getMessage());
         } catch (Exception e) {
             tx.rollback();
-            log.error("DAOJuegos:" + metodo + ": Error Exception: " + e.getMessage());
+            log.error("DAOJuegos: " + metodo + ": Error Exception: " + e.getMessage());
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOJuegos:" + metodo + ":Sesion liberada. Finished");
+            log.info("DAOJuegos: " + metodo + ": Sesion liberada. Finished");
         }
     }
 }
