@@ -3,11 +3,11 @@
 <!-- Generated 09-mar-2009 10:24:16 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
   <class name="Beans.Participantes" schema="SYSTEM" table="PARTICIPANTES">
-    <composite-id class="Beans.ParticipantesId" name="id">
-      <key-property name="partida" type="big_decimal">
+    <composite-id class="Beans.Participantes" name="id">
+      <key-property name="partida" type="integer">
         <column name="PARTIDA" precision="22" scale="0"/>
       </key-property>
-      <key-property name="jugador" type="big_decimal">
+      <key-property name="jugador" type="integer">
         <column name="JUGADOR" precision="22" scale="0"/>
       </key-property>
     </composite-id>

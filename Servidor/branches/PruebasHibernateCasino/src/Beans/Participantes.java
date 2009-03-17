@@ -8,24 +8,31 @@ package Beans;
  */
 public class Participantes  implements java.io.Serializable {
 
-
-     private ParticipantesId id;
+     private int partida;
+     private int jugador;
 
     public Participantes() {
     }
 
-    public Participantes(ParticipantesId id) {
-       this.id = id;
+    public Participantes(int partida, int jugador) {
+       this.partida = partida;
+       this.jugador = jugador;
     }
    
-    public ParticipantesId getId() {
-        return this.id;
+    public int getPartida() {
+        return this.partida;
     }
     
-    public void setId(ParticipantesId id) {
-        this.id = id;
+    public void setPartida(int partida) {
+        this.partida = partida;
     }
-
+    public int getJugador() {
+        return this.jugador;
+    }
+    
+    public void setJugador(int jugador) {
+        this.jugador = jugador;
+    }
 
 
 
