@@ -2,7 +2,7 @@ package Beans;
 // Generated 09-mar-2009 10:54:47 by Hibernate Tools 3.2.1.GA
 
 
-import java.math.BigDecimal;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,7 +12,7 @@ import java.util.Set;
 public class Salas  implements java.io.Serializable {
 
 
-     private BigDecimal codigo;
+     private int codigo;
      private Juegos juegos;
      private String nombre;
      private Set mesases = new HashSet(0);
@@ -21,23 +21,23 @@ public class Salas  implements java.io.Serializable {
     }
 
 	
-    public Salas(BigDecimal codigo, Juegos juegos, String nombre) {
+    public Salas(int codigo, Juegos juegos, String nombre) {
         this.codigo = codigo;
         this.juegos = juegos;
         this.nombre = nombre;
     }
-    public Salas(BigDecimal codigo, Juegos juegos, String nombre, Set mesases) {
+    public Salas(int codigo, Juegos juegos, String nombre, Set mesases) {
        this.codigo = codigo;
        this.juegos = juegos;
        this.nombre = nombre;
        this.mesases = mesases;
     }
    
-    public BigDecimal getCodigo() {
+    public int getCodigo() {
         return this.codigo;
     }
     
-    public void setCodigo(BigDecimal codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
     public Juegos getJuegos() {

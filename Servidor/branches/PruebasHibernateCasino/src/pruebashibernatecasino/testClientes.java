@@ -20,7 +20,7 @@ public class testClientes {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        borrarJugador();
+        obtenerTodosLosJugadores();
 
     }
 
