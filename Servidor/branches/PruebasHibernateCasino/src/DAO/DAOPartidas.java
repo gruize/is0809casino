@@ -121,7 +121,7 @@ public class DAOPartidas {
             session = HibernateUtil.currentSession();
             tx = session.beginTransaction();
 
-            partida = (Partidas) session.createQuery("from Partida p where p.codigo= ?").setString(0, ""+codigo).uniqueResult();
+            partida = (Partidas) session.createQuery("from Partidas p where p.codigo= ?").setString(0, ""+codigo).uniqueResult();
 
             session.flush();
             tx.commit();

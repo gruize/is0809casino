@@ -3,17 +3,17 @@
 <!-- Generated 09-mar-2009 10:54:47 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
   <class name="Beans.Partidas" schema="SYSTEM" table="PARTIDAS">
-    <id name="codigo" type="big_decimal">
+    <id name="codigo" type="java.lang.Integer">
       <column name="CODIGO" precision="22" scale="0"/>
       <generator class="assigned"/>
     </id>
     <many-to-one class="Beans.Mesas" fetch="select" name="mesas">
       <column name="MESA" not-null="true" precision="22" scale="0"/>
     </many-to-one>
-    <property name="numjugadores" type="big_decimal">
+    <property name="numjugadores" type="java.lang.Integer">
       <column name="NUMJUGADORES" not-null="true" precision="22" scale="0"/>
     </property>
-    <property name="ganador" type="big_decimal">
+    <property name="ganador" type="java.lang.Integer">
       <column name="GANADOR" not-null="true" precision="22" scale="0"/>
     </property>
     <set inverse="false" name="clienteses" table="PARTICIPANTES">

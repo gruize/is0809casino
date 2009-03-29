@@ -8,18 +8,25 @@ import Beans.Clientes;
 import DAO.DAOClientes;
 import java.util.ArrayList;
 
+import GestorBBDD.GestorBBDDImp;
+import GestorBBDD.InterfazBBDD;
+
 /**
  *
- * @author Chaudhary
+ * @author Ambrin Chaudhary y Joaquin Lopez
  */
 public class testClientes {
+
+    static InterfazBBDD bbdd = null;
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
 
+        bbdd = new GestorBBDDImp();
+       
+        
         obtenerTodosLosJugadores();
 
     }
@@ -29,8 +36,7 @@ public class testClientes {
      */
     private static void crearJugador() {
         Clientes jugador = new Clientes();
-
-        // jugador.setCodigo(new BigDecimal(1));
+        
         jugador.setNombre("Prueba");
         jugador.setApellidos("sin apellidos");
         jugador.setDni("12345678Z");
@@ -43,18 +49,20 @@ public class testClientes {
         jugador.setRecargas(150);
 
         //insertar en BBDD
-        DAOClientes dao = new DAOClientes();
-        dao.insertarNuevoCliente(jugador);
+        bbdd.insertarCliente(jugador);
+        //DAOClientes dao = new DAOClientes();
+       // dao.insertarNuevoCliente(jugador);
 
-        //consultar todos los jugadores
-        mostrarDatos(dao.getClientes());
+
 
     }
 
+    /**
+     * muestra todos los clientes dados de alta en el casino
+     */
     private static void obtenerTodosLosJugadores() {
 
-        DAOClientes dao = new DAOClientes();
-        mostrarDatos(dao.getClientes());
+        mostrarDatos(bbdd.getClientes());
     }
 
     /**
@@ -68,14 +76,22 @@ public class testClientes {
         mostrarDatos(l);
     }
 
+    /**
+     * modifica un jugador
+     */
     private static void modificarJugador() {
 
         //obtener jugador que se quiere modificar
-        DAOClientes dao = new DAOClientes();
+        /*DAOClientes dao = new DAOClientes();
         Clientes cliente = dao.getClientePorUsuario("ambrin");
         cliente.setTelefono("916733370");
         dao.modificarCliente(cliente);
-        mostrarDatos(dao.getClientes());
+        mostrarDatos(dao.getClientes());*/
+        
+        Clientes cliente = bbdd.getClientePorUsuario("ambrin");
+        cliente.setTelefono("916733370");
+        bbdd.modificarCliente(cliente);
+       
 
     }
 
@@ -83,14 +99,16 @@ public class testClientes {
      * borra un jugador identificandole por su nomrbe de usuario
      */
     private static void borrarJugador() {
-       
-        DAOClientes dao = new DAOClientes();
-        
-         //obtener jugador que se quiere borrar
-        Clientes c=dao.getClientePorUsuario("pp");
+
+       /*DAOClientes dao = new DAOClientes();
+
+        //obtener jugador que se quiere borrar
+        Clientes c = dao.getClientePorUsuario("pp");
         //borrarlo
         dao.borrarCliente(c);
-        mostrarDatos(dao.getClientes());
+        mostrarDatos(dao.getClientes());*/
+        
+        bbdd.borrarCliente(bbdd.getClientePorUsuario("pp"));
     }
 
     private static void mostrarDatos(ArrayList lista) {

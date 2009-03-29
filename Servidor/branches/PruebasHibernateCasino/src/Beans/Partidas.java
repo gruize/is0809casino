@@ -2,7 +2,6 @@ package Beans;
 // Generated 09-mar-2009 10:54:47 by Hibernate Tools 3.2.1.GA
 
 
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,23 +11,23 @@ import java.util.Set;
 public class Partidas  implements java.io.Serializable {
 
 
-     private BigDecimal codigo;
+     private int codigo;
      private Mesas mesas;
-     private BigDecimal numjugadores;
-     private BigDecimal ganador;
+     private int numjugadores;
+     private int ganador;
      private Set clienteses = new HashSet(0);
 
     public Partidas() {
     }
 
 	
-    public Partidas(BigDecimal codigo, Mesas mesas, BigDecimal numjugadores, BigDecimal ganador) {
+    public Partidas(int codigo, Mesas mesas, int numjugadores, int ganador) {
         this.codigo = codigo;
         this.mesas = mesas;
         this.numjugadores = numjugadores;
         this.ganador = ganador;
     }
-    public Partidas(BigDecimal codigo, Mesas mesas, BigDecimal numjugadores, BigDecimal ganador, Set clienteses) {
+    public Partidas(int codigo, Mesas mesas, int numjugadores, int ganador, Set clienteses) {
        this.codigo = codigo;
        this.mesas = mesas;
        this.numjugadores = numjugadores;
@@ -36,11 +35,11 @@ public class Partidas  implements java.io.Serializable {
        this.clienteses = clienteses;
     }
    
-    public BigDecimal getCodigo() {
+    public int getCodigo() {
         return this.codigo;
     }
     
-    public void setCodigo(BigDecimal codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
     public Mesas getMesas() {
@@ -50,18 +49,18 @@ public class Partidas  implements java.io.Serializable {
     public void setMesas(Mesas mesas) {
         this.mesas = mesas;
     }
-    public BigDecimal getNumjugadores() {
+    public int getNumjugadores() {
         return this.numjugadores;
     }
     
-    public void setNumjugadores(BigDecimal numjugadores) {
+    public void setNumjugadores(int numjugadores) {
         this.numjugadores = numjugadores;
     }
-    public BigDecimal getGanador() {
+    public int getGanador() {
         return this.ganador;
     }
     
-    public void setGanador(BigDecimal ganador) {
+    public void setGanador(int ganador) {
         this.ganador = ganador;
     }
     public Set getClienteses() {

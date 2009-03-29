@@ -121,7 +121,7 @@ public class DAOSalas {
             session = HibernateUtil.currentSession();
             tx = session.beginTransaction();
 
-            sala = (Salas) session.createQuery("from Salas s where s.codigo= ?").setString(0, ""+codigo).uniqueResult();
+            sala = (Salas) session.createQuery("from Salas s where s.codigo= ?").setInteger(0, codigo).uniqueResult();
 
             session.flush();
             tx.commit();

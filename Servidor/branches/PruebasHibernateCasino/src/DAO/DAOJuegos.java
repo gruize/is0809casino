@@ -19,9 +19,11 @@ public class DAOJuegos {
 
     //log4j
     static Logger log = Logger.getLogger(DAOClientes.class);
+   
 
     /** Contructora por defecto */
     public DAOJuegos() {
+      
     }
 
 

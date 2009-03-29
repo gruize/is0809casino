@@ -7,7 +7,7 @@
             <key-property name="partida" type="java.lang.Integer">
                 <column name="PARTIDA" precision="22" scale="0" />
             </key-property>
-            <key-property name="jugador" type="big_decimal">
+            <key-property name="jugador" type="java.lang.Integer">
                 <column name="JUGADOR" precision="22" scale="0" />
             </key-property>
         </composite-id>

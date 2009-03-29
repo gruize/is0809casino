@@ -18,7 +18,8 @@ import Beans.Participantes;
  */
 public class DAOParticipantes {
 
-    
+
+    public DAOParticipantes(){}
     //log4j
     static Logger log = Logger.getLogger(DAOParticipantes.class);
 
@@ -45,7 +46,7 @@ public class DAOParticipantes {
             session.flush();
             tx.commit();
 
-            log.info("DAOParticipantes: "+metodo+": Participante con código " + participante.getJugador() + " INSERTADO OK");
+            log.info("DAOParticipantes: "+metodo+": Participante con código " + participante.getId().getJugador() + " INSERTADO OK");
             res = true;
 
         } catch (org.hibernate.HibernateException he) {
@@ -67,12 +68,54 @@ public class DAOParticipantes {
     }
 
     /**
+     * Devuelve el participante con codigo de cliente idJug que está jugando en la partida idPartida  
+     * @param idJug
+     * @param idPartida
+     * @return
+     */
+    public Participantes getParticipante(int idJug, int idPartida) {
+
+        String metodo="getParticipantePorCodigo";
+        Participantes p=null;
+        Session session = null;
+        Transaction tx = null;
+
+        try {
+            session = HibernateUtil.currentSession();
+            tx = session.beginTransaction();
+            
+            p = (Participantes) session.createQuery("from Participantes p where p.id.jugador=? and p.id.partida=?").setInteger(0, idJug).setInteger(1, idPartida).uniqueResult();
+            
+            session.flush();
+            tx.commit();
+
+            log.info("DAOParticipantes: "+metodo+":  Participante " + p.getId().getJugador() + " obtenido");
+
+        } catch (org.hibernate.HibernateException he) {
+            tx.rollback();
+            log.error("DAOParticipantes: "+metodo+": Error de Hibernate: " + he.getMessage());
+        } catch (SQLException sqle) {
+            tx.rollback();
+            log.error("DAOParticipantes: "+metodo+": Error SQLException: " + sqle.getMessage());
+        } catch (Exception e) {
+            tx.rollback();
+            log.error("DAOParticipantes: "+metodo+": Error Exception: " + e.getMessage());
+        } finally {
+            // Liberamos sesión
+            HibernateUtil.closeSession();
+            log.info("DAOParticipantes: "+metodo+": Sesion liberada. Finished");
+        }
+
+        return p;
+    }
+    
+    /**
      * Devuelve todos los jugadores que están participando en alguna partida
      * @return
      */
     public ArrayList getParticipantes() {
 
-        String metodo="getClientes";
+        String metodo="getParticipantes";
         ArrayList lista = new ArrayList();
         Session session = null;
         Transaction tx = null;
@@ -106,7 +149,6 @@ public class DAOParticipantes {
         return lista;
     }
     
-    
     /**
      * Devuelve todas las partidas en la que está participando un jugador
      * 
@@ -124,7 +166,7 @@ public class DAOParticipantes {
             session = HibernateUtil.currentSession();
             tx = session.beginTransaction();
             
-            lista = (ArrayList)session.createQuery("from Participantes p where p.jugador=?").setInteger(0,idJugador).list();
+            lista = (ArrayList)session.createQuery("from Participantes p where p.id.jugador=?").setInteger(0,idJugador).list();
             
             session.flush();
             tx.commit();
@@ -166,7 +208,7 @@ public class DAOParticipantes {
             session = HibernateUtil.currentSession();
             tx = session.beginTransaction();
             
-            lista = (ArrayList)session.createQuery("from Participantes p where p.partida=?").setInteger(0,idPartida).list();
+            lista = (ArrayList)session.createQuery("from Participantes p where p.id.partida=?").setInteger(0,idPartida).list();
             
             session.flush();
             tx.commit();
@@ -213,7 +255,7 @@ public class DAOParticipantes {
             session.flush();
             tx.commit();
 
-            log.info("DAOParticipantes: " + metodo + ": Participante con idJugador " + participante.getJugador() + " e idPartida "+participante.getPartida()+" BORRADO");
+            log.info("DAOParticipantes: " + metodo + ": Participante con idJugador " + participante.getId().getJugador() + " e idPartida "+participante.getId().getPartida()+" BORRADO");
 
         } catch (org.hibernate.HibernateException he) {
             tx.rollback();
@@ -253,7 +295,7 @@ public class DAOParticipantes {
             session.flush();
             tx.commit();
 
-            log.info("DAOParticipantes: " + metodo + ":Cliente  con idJugador " + participante.getJugador() + " e idPartida "+participante.getPartida()+ " MODIFICADO");
+            log.info("DAOParticipantes: " + metodo + ":Cliente  con idJugador " + participante.getId().getJugador() + " e idPartida "+participante.getId().getPartida()+ " MODIFICADO");
 
         } catch (org.hibernate.HibernateException he) {
             tx.rollback();
@@ -271,5 +313,6 @@ public class DAOParticipantes {
         }
 
     }
+
 
 }

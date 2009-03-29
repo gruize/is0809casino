@@ -1,8 +1,5 @@
 package Beans;
-// Generated 09-mar-2009 10:54:47 by Hibernate Tools 3.2.1.GA
 
-
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
