@@ -1,7 +1,9 @@
 package comunicaciones;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -9,7 +11,7 @@ import java.net.Socket;
 // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
 // #[regen=yes,id=DCE.438D7310-870E-C8E9-FF3D-3CD2DEFA8B39]
 // </editor-fold> 
-public class Comunicador {
+public class Comunicador implements Runnable{
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.FF7C10FD-AA6A-4CE9-A9C7-A2480EB96931]
@@ -31,6 +33,8 @@ public class Comunicador {
     // </editor-fold> 
     private Socket escucha;
 
+    private String nombre;
+
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.BB11C2DF-5446-A2B1-D32E-B437FE09BD3E]
     // </editor-fold> 
@@ -50,20 +54,18 @@ public class Comunicador {
     // #[regen=yes,id=DCE.4ADC3F63-4027-2EDC-8ACC-A7C704C03630]
     // </editor-fold> 
     public Comunicador () {
-    }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.91681810-5A6D-3221-69D7-303F969B8160]
-    // </editor-fold> 
-    public AlmacenCliente getAlmacen () {
-        return almacen;
-    }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.96520FB0-AC74-69F4-6B2A-6F48FA8D8662]
-    // </editor-fold> 
-    public void setAlmacen (AlmacenCliente val) {
-        this.almacen = val;
+        try {
+            almacen = new AlmacenCliente();
+            servidor = new ServerSocket(puerto);
+            conectado = true;
+            System.out.println("El servidor esta corriendo en la direccion " + servidor.getInetAddress());
+            System.out.println("El servidor esta corriendo en el puerto " + puerto);
+            System.out.println();
+        } catch (IOException ex) {
+            System.out.println("El puerto esta ocupado por otro programa.");
+            System.out.println("Este programa se cerrara ...");
+            conectado = false;
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
@@ -81,30 +83,34 @@ public class Comunicador {
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.ECBDFE3E-1860-3843-218A-0C8F9756655F]
-    // </editor-fold> 
-    public void setPuerto (int val) {
-        this.puerto = val;
-    }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.AD3EE3C7-A87D-A948-F884-4E0E14D996A6]
-    // </editor-fold> 
-    public ServerSocket getServidor () {
-        return servidor;
-    }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.E366AF8F-FAEC-95D0-ADE3-78BF776F86E7]
-    // </editor-fold> 
-    public void setServidor (ServerSocket val) {
-        this.servidor = val;
-    }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.FCF379B0-4E2D-BDD0-1EA8-E7892D27CA1B]
     // </editor-fold> 
     public void run () {
+        while(true){
+                try {
+                    escucha = servidor.accept();
+                } catch (IOException ex) {
+                    System.out.println("Ha ocurrido un error recibiendo la conexion con el cliente.");
+                    System.out.println("Este programa se cerrara ...");
+                    finalize();
+                }
+                try {
+                    entrada = new ObjectInputStream(escucha.getInputStream());
+                    salida = new ObjectOutputStream(escucha.getOutputStream());
+                    conectado = true;
+                } catch (IOException ex) {
+                    conectado = false;
+                }
+
+                if(conectado){
+                    ManejadorCliente manejador = new ManejadorCliente(escucha, entrada, salida);
+                    manejador.setNombre(nombre);
+                    almacen.addManejadorCliente(1,manejador);
+                    manejador.setAlmacen(almacen);
+                    manejador.start();
+                    System.out.println("El cliente " + nombre + " se ha conectado.");
+                }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
@@ -116,7 +122,11 @@ public class Comunicador {
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.97FBE478-D715-4168-6263-9F0496035FF6]
     // </editor-fold> 
-    public void enviarMensaje (MensajeComunicaciones mensaje) {
+    public void enviarMensaje (int identificador, Serializable mensaje) {
+        ManejadorCliente destino = almacen.getManejadorCliente(identificador);
+        if (destino != null){
+            destino.enviarMensaje(mensaje);
+        }
     }
 
 }

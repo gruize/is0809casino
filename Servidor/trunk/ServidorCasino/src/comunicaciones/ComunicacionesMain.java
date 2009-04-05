@@ -12,6 +12,7 @@ package comunicaciones;
 public class ComunicacionesMain {
 
     public static void main(String[] args) {
-        Comunicador c = new Comunicador();
+       Comunicador c = new Comunicador();
+       c.enviarMensaje(1, new String("Hola"));
     }
 }

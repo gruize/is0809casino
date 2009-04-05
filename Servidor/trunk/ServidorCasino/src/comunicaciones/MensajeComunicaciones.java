@@ -6,7 +6,12 @@ import java.io.Serializable;
 // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
 // #[regen=yes,id=DCE.15C7BD5C-857E-7150-C933-5981CF17CF51]
 // </editor-fold> 
-public class MensajeComunicaciones {
+public class MensajeComunicaciones implements Serializable{
+
+     // <editor-fold defaultstate="collapsed" desc=" UML Marker ">
+    // #[regen=yes,id=DCE.B2DC9E88-B194-F3BC-8B57-7DD1ADA7D3D7]
+    // </editor-fold>
+    private int destino;
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.E0E12A89-8815-8963-8B10-46EBA1F69410]
@@ -24,14 +29,9 @@ public class MensajeComunicaciones {
     private Serializable mensaje;
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.B2DC9E88-B194-F3BC-8B57-7DD1ADA7D3D7]
-    // </editor-fold> 
-    private int destino;
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.59C805A8-3AE2-9FCD-870E-CCB10D19CB11]
     // </editor-fold> 
-    public MensajeComunicaciones (int remitente, int destino, Serializable mensaje) {
+    public MensajeComunicaciones () {
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
@@ -74,13 +74,6 @@ public class MensajeComunicaciones {
     // </editor-fold> 
     public void setTipo (int val) {
         this.tipo = val;
-    }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.57C14B10-7BA9-B2E6-6FE0-86674D4D5FE6]
-    // </editor-fold> 
-    public int compareTo () {
-        return 0;
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 

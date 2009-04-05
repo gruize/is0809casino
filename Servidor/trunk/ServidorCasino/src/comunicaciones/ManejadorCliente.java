@@ -1,14 +1,18 @@
 package comunicaciones;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.Socket;
 
 
 // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
 // #[regen=yes,id=DCE.651C51D0-93D7-2EE0-554F-77DB57D4E63A]
 // </editor-fold> 
-public class ManejadorCliente {
+public class ManejadorCliente implements Runnable {
+
+    private int Identificador;
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.9571CF2A-135D-6627-02A4-085DCDC43BF1]
@@ -49,6 +53,15 @@ public class ManejadorCliente {
     // #[regen=yes,id=DCE.8440B2D2-F51F-9082-E074-F4509625D958]
     // </editor-fold> 
     public ManejadorCliente () {
+    }
+
+    // <editor-fold defaultstate="collapsed" desc=" UML Marker ">
+    // #[regen=yes,id=DCE.8440B2D2-F51F-9082-E074-F4509625D958]
+    // </editor-fold>
+    public ManejadorCliente (Socket cliente, ObjectInputStream in, ObjectOutputStream out) {
+        this.cliente = cliente;
+        this.entrada = in;
+        this.salida = out;
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
@@ -114,22 +127,81 @@ public class ManejadorCliente {
         this.salida = val;
     }
 
+    public void setIdentificador(int Identificador) {
+        this.Identificador = Identificador;
+    }
+
+    public int getIdentificador() {
+        return Identificador;
+    }
+
+
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.EB9E3F4F-309A-14DA-D58C-B240BCAE50C6]
     // </editor-fold> 
-    public void enviarMensaje (MensajeComunicaciones mensaje) {
+    public synchronized void enviarMensaje (Serializable mensaje) {
+        //aqui sincronizo el acceso a este metodo
+        while(!disponible){
+            try {
+                wait();
+            } catch (InterruptedException ex) {
+                System.out.println("Sistema interrumpido");
+            }
+        }
+
+        //defino el metodo como ocupado y notifico a todos los sub procesos
+        disponible = false;
+        notify();
+
+        try {
+            //aqui envio el mensaje al cliente
+            salida.writeObject(mensaje);
+            salida.flush();
+        } catch (IOException ex) {
+            System.out.println("Ha ocurrido un error al enviar el mensaje.");
+            System.out.println("El mensaje se descartara.");
+        }
+
+        //defino el metodo como desocupado y notifico a todos los subprocesos
+        disponible = true;
+        notify();
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.EE74722E-A1AB-1FE2-85D2-157B237896AF]
     // </editor-fold> 
     public void start () {
+        hilo = new Thread(this);
+        hilo.start();
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.73E381F7-B245-72DE-00A4-6911AC7D4BA2]
     // </editor-fold> 
+    @Override
     public void finalize () {
+        hilo = null;
+    }
+
+    public void run() {
+        //aqui comienza la escucha de mensajes
+        while(true){
+            try {
+                //aqui obtengo el mensaje y su contenidp
+                MensajeComunicaciones mensaje = (MensajeComunicaciones) entrada.readObject();
+                //aqui gestiono el mensaje
+                EventoMensajeRecibido nuevo = new EventoMensajeRecibido(mensaje);
+            } catch (IOException ex) {
+                finalize();
+                break;
+            } catch (NullPointerException ex) {
+                finalize();
+                break;
+            } catch (ClassNotFoundException ex) {
+                finalize();
+                break;
+            }
+        }
     }
 
 }

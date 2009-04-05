@@ -3,7 +3,7 @@ package comunicaciones;
 // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
 // #[regen=yes,id=DCE.41685546-2104-282C-AFF1-C3B0E5B38C43]
 // </editor-fold> 
-class EventoMensajeRecibido {
+class EventoMensajeRecibido extends Thread{
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.9FAD60B9-D473-38B4-CB64-E4DD0E350D88]
@@ -40,7 +40,10 @@ class EventoMensajeRecibido {
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.6A5D20D8-7646-B3B3-83E5-E0D770557136]
     // </editor-fold> 
-    public void start () {
+    @Override
+    public void run () {
+        //TODO Aquí va la llamada al controlador central
+        System.out.println("Mensaje recibido:" + mensaje.toString());
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
