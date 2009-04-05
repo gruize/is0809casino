@@ -11,7 +11,7 @@ import java.net.Socket;
 // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
 // #[regen=yes,id=DCE.438D7310-870E-C8E9-FF3D-3CD2DEFA8B39]
 // </editor-fold> 
-public class Comunicador implements Runnable{
+public class Comunicador extends Thread{
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.FF7C10FD-AA6A-4CE9-A9C7-A2480EB96931]
@@ -58,12 +58,11 @@ public class Comunicador implements Runnable{
             almacen = new AlmacenCliente();
             servidor = new ServerSocket(puerto);
             conectado = true;
-            System.out.println("El servidor esta corriendo en la direccion " + servidor.getInetAddress());
-            System.out.println("El servidor esta corriendo en el puerto " + puerto);
-            System.out.println();
+            System.out.println("Comunicaciones::El servidor esta corriendo en la direccion " + servidor.getInetAddress() +
+                               " Puerto: " + puerto);
         } catch (IOException ex) {
-            System.out.println("El puerto esta ocupado por otro programa.");
-            System.out.println("Este programa se cerrara ...");
+            System.out.println("Comunicaciones::El puerto esta ocupado por otro programa.");
+            System.out.println("Comunicaciones::Este programa se cerrara ...");
             conectado = false;
         }
     }
@@ -90,8 +89,8 @@ public class Comunicador implements Runnable{
                 try {
                     escucha = servidor.accept();
                 } catch (IOException ex) {
-                    System.out.println("Ha ocurrido un error recibiendo la conexion con el cliente.");
-                    System.out.println("Este programa se cerrara ...");
+                    System.out.println("Comunicaciones::Ha ocurrido un error recibiendo la conexion con el cliente.");
+                    System.out.println("Comunicaciones::Este programa se cerrara ...");
                     finalize();
                 }
                 try {
