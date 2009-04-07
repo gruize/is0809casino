@@ -38,6 +38,7 @@ public class Prueba {
                 ModeloCliente modelo = new ModeloCliente();
                 ControladorCliente controlador = new ControladorCliente(modelo);
 				VistaCliente vista = new VistaCliente(controlador);
+                new Thread1("Recojo mensajes de comunicaciones").start();
 			}
 		});
 	}
