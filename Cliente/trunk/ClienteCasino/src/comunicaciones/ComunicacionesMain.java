@@ -13,6 +13,6 @@ public class ComunicacionesMain {
 
     public static void main(String[] args) {
        Comunicador c = new Comunicador();
-       c.enviarMensaje(1, new String("Hola"));
+       c.enviarMensaje(0, new String("Hola"));
     }
 }

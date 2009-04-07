@@ -12,7 +12,7 @@ public class Comunicador {
     
     ManejadorCliente cliente;
 
-    private String direccion = "localhost";
+    private String direccion = "192.168.1.2";
     
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.2385BD79-AFF1-6FBA-6249-512873ED0DEE]
