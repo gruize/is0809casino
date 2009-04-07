@@ -13,7 +13,5 @@ public class ComunicacionesMain {
 
     public static void main(String[] args) {
        Comunicador c = new Comunicador();
-       c.start();
-       c.enviarMensaje(1, new String("Hola"));
     }
 }

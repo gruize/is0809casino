@@ -60,6 +60,7 @@ public class Comunicador extends Thread{
             conectado = true;
             System.out.println("Comunicaciones::El servidor esta corriendo en la direccion " + servidor.getInetAddress() +
                                " Puerto: " + puerto);
+            this.start();
         } catch (IOException ex) {
             System.out.println("Comunicaciones::El puerto esta ocupado por otro programa.");
             System.out.println("Comunicaciones::Este programa se cerrara ...");
@@ -103,11 +104,11 @@ public class Comunicador extends Thread{
 
                 if(conectado){
                     ManejadorCliente manejador = new ManejadorCliente(escucha, entrada, salida);
-                    manejador.setNombre(nombre);
+                    manejador.setIdentificador(1);
                     almacen.addManejadorCliente(1,manejador);
                     manejador.setAlmacen(almacen);
                     manejador.start();
-                    System.out.println("El cliente " + nombre + " se ha conectado.");
+                    System.out.println("El cliente " + "1" + " se ha conectado.");
                 }
         }
     }

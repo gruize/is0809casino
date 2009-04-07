@@ -21,6 +21,7 @@ class EventoMensajeRecibido extends Thread{
     // </editor-fold> 
     public EventoMensajeRecibido (/*Casino casino,*/ MensajeComunicaciones mensaje) {
         this.mensaje = mensaje;
+        this.start();
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
@@ -43,7 +44,7 @@ class EventoMensajeRecibido extends Thread{
     @Override
     public void run () {
         //TODO Aquí va la llamada al controlador central
-        System.out.println("Mensaje recibido:" + mensaje.toString());
+        System.out.println("Mensaje recibido:" + mensaje.getMensaje().toString());
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
