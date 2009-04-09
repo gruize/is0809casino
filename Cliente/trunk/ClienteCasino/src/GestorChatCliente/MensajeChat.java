@@ -1,6 +1,8 @@
 package GestorChatCliente;
 
-public class MensajeChat {
+import java.io.Serializable;
+
+public class MensajeChat implements Serializable {
 
 	private int _tio;
 	private String _men;

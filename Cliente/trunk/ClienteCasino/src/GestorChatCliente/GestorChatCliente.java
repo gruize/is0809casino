@@ -29,18 +29,17 @@ public class GestorChatCliente extends Thread {
         return instance;
     }
 
-    public void dejamensajeCliente(MensajeChat m) {
-        colaSalida.add(m);
+    public void recibeMensaje(MensajeChat m) {
+        colaEntrada.add(m);
     }
 
-    public void dejamensajeComucinaciones(MensajeChat m) {
-        colaEntrada.add(m);
+    public void enviaMensaje(MensajeChat m) {
+        colaSalida.add(m);
     }
 
     public void run() {
         try {
             MensajeChat recibido, enviar;
-
             while (true) {
                 if (!colaEntrada.isEmpty()) {
                     recibido = new MensajeChat(colaEntrada.firstElement());
