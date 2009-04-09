@@ -3,13 +3,15 @@
  * and open the template in the editor.
  */
 
-package interfaz;
+package vista;
 
+import controlador.ControladorServidor;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -31,10 +33,12 @@ public class PanelLog extends JPanel {
     private JPanel jPanel4;
     private JButton jExpulsar;
 	private JButton jVerEstadisticas;
+    private ControladorServidor controlador;
 
-    public PanelLog() {
+    public PanelLog(ControladorServidor control) {
        setLayout(new GridLayout(1,3));
-       jConectados = new PanelConectados();
+       controlador = control;
+       jConectados = new PanelConectados(controlador);
        jPanel2 = new JPanel();
        jPanel3 = new JPanel();
        jPanel4 = new JPanel();
@@ -48,6 +52,7 @@ public class PanelLog extends JPanel {
        jLog.setLineWrap(true);
        jLog.setWrapStyleWord(true);
        jLog.setEditable(false);
+       jLog.setBorder(BorderFactory.createEtchedBorder());
        jScroll = new JScrollPane(jLog);
        jScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
        jScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -75,5 +80,15 @@ public class PanelLog extends JPanel {
         return jScroll;
     }
 
+    public JButton getVerEstadisticas() {
+        return jVerEstadisticas;
+    }
 
+    public JButton getExpulsar() {
+        return jExpulsar;
+    }
+
+    public PanelConectados getConectados() {
+        return jConectados;
+    }
 }

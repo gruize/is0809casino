@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package interfaz;
+package vista;
 
 import java.awt.*;
 import java.awt.event.ActionListener;

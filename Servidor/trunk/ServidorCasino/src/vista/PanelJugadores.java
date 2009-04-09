@@ -3,14 +3,15 @@
  * and open the template in the editor.
  */
 
-package interfaz;
+package vista;
 
+import controlador.ControladorServidor;
 import java.awt.BorderLayout;
 import java.awt.Font;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 
 /**
  *
@@ -19,29 +20,29 @@ import javax.swing.JTextArea;
 public class PanelJugadores extends JPanel {
 
     private JLabel jLabelJugadores;
-    private JTextArea jJugadores;
-    private JScrollPane jScroll;
+    private JList jJugadores;
 	private JPanel jPanel1;
     private JPanel jPanel2;
+    private ControladorServidor controlador;
 
     
-    public PanelJugadores() {
+    public PanelJugadores(ControladorServidor control) {
        setLayout(new BorderLayout());
+       controlador = control;
        jPanel1 = new JPanel();
        jPanel2 = new JPanel();
        jLabelJugadores = new JLabel("     Jugadores en mesa:");
-       jJugadores = new JTextArea();
+       jJugadores = new JList(controlador.getListaJugadores());
        jJugadores.setFont(new Font("Serif", Font.ITALIC, 12));
-       jJugadores.setLineWrap(true);
-       jJugadores.setWrapStyleWord(true);
-       jJugadores.setEditable(false);
-       jScroll = new JScrollPane(jJugadores);
-       jScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-       jScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+       jJugadores.setBorder(BorderFactory.createEtchedBorder());
+       jJugadores.setToolTipText("Jugadores");
        add(jLabelJugadores,BorderLayout.NORTH);
        add(jJugadores,BorderLayout.CENTER);
        add(jPanel1,BorderLayout.EAST);
        add(jPanel2,BorderLayout.WEST);
     }
 
+    public JList getJugadores() {
+        return jJugadores;
+    }
 }

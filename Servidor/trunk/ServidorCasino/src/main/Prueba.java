@@ -5,11 +5,13 @@
 
 package main;
 
-import interfaz.InterfazGraficaServidor;
-import interfaz.SplashScreen;
+import controlador.ControladorServidor;
+import vista.VistaServidor;
+import vista.SplashScreen;
 import java.io.File;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import modelo.ModeloServidor;
 
 /**
  *
@@ -33,7 +35,9 @@ public class Prueba {
 
         SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				InterfazGraficaServidor.getInstancia();
+                ModeloServidor modelo = new ModeloServidor();
+                ControladorServidor controlador = new ControladorServidor(modelo);
+				VistaServidor vista = new VistaServidor(controlador);
 			}
 		});
 	}
