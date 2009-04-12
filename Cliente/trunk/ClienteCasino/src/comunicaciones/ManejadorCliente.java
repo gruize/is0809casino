@@ -3,133 +3,149 @@ package comunicaciones;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-
-// <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-// #[regen=yes,id=DCE.651C51D0-93D7-2EE0-554F-77DB57D4E63A]
-// </editor-fold> 
+/**
+ * Clase que maneja la conexión particular del cliente
+ * @author Alberto Milán
+ */
 public class ManejadorCliente implements Runnable {
 
-    private int Identificador;
+    private int _identificador;
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.9571CF2A-135D-6627-02A4-085DCDC43BF1]
-    // </editor-fold> 
-    private Socket cliente;
+    private Socket _cliente;
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.1F493420-DE3B-013B-F790-3C62421CC8C0]
-    // </editor-fold> 
-    private ObjectInputStream entrada;
+    private ObjectInputStream _entrada;
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.2FF58A07-C8C7-E154-205D-1CB08AE382E1]
-    // </editor-fold> 
-    private ObjectOutputStream salida;
+    private ObjectOutputStream _salida;
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.4D72BB13-867E-2B3F-4983-636246909485]
-    // </editor-fold> 
-    private boolean conectado;
+    private boolean _conectado;
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.E3FC8A3C-4EB5-02A1-05D0-5E178B65A273]
-    // </editor-fold> 
-    private Thread hilo;
+    private Thread _hilo;
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.8440B2D2-F51F-9082-E074-F4509625D958]
-    // </editor-fold> 
+    /**
+     * Constructor por defecto de la clase
+     */
     public ManejadorCliente () {
     }
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker ">
-    // #[regen=yes,id=DCE.8440B2D2-F51F-9082-E074-F4509625D958]
-    // </editor-fold>
-    public ManejadorCliente (Socket cliente, ObjectInputStream in, ObjectOutputStream out) {
-        this.cliente = cliente;
-        this.entrada = in;
-        this.salida = out;
+    /**
+     * Constructor parametrizado 
+     * @param cliente Socket de apertura de conexión
+     * @param in Stream de datos de entrada de conexión
+     * @param out Stream de datos de salida de conexión
+     */
+    public ManejadorCliente (Socket cliente, ObjectInputStream in, ObjectOutputStream out,
+            String usuario, String password) {
+        this._cliente = cliente;
+        this._entrada = in;
+        this._salida = out;
+        // Lanza el hilo de escucha
         this.start();
+        MensajeComunicaciones data = new MensajeComunicaciones();
+        try {
+            _salida.writeUTF(usuario);
+            _salida.writeUTF(password);
+            String identificador = _entrada.readUTF();
+            _identificador = Integer.valueOf(identificador);
+        } catch (IOException ex) {
+            System.out.println("Comunicaciones::Error en el envío de usuario y contraseña");
+        }
     }
 
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.5BBFB033-6FA6-DA5B-85B6-CB88C78F2A50]
-    // </editor-fold> 
-    public boolean getConectado () {
-        return conectado;
+    /**
+     * Pregunta el estado de la conexión
+     * @return true si la conexión es correcta
+     */
+    public boolean isConectado () {
+        return _conectado;
     }
 
-    public void setIdentificador(int Identificador) {
-        this.Identificador = Identificador;
-    }
-
+    /**
+     * Accesor del identificador del usuario
+     * @return Número que identifica al usuario
+     */
     public int getIdentificador() {
-        return Identificador;
+        return _identificador;
     }
     
+    /**
+     * Desconecta al usuario del servidor
+     */
     public void desconectar() {
         try {
-            entrada.close();
-            salida.close();
-            cliente.close();
+            _entrada.close();
+            _salida.close();
+            _cliente.close();
         } catch (IOException ex) {
-            entrada = null;
-            salida = null;
-            cliente = null;
+            _entrada = null;
+            _salida = null;
+            _cliente = null;
         }
-        conectado = false;
-        hilo = null;
+        _identificador = -1;
+        _conectado = false;
+        _hilo = null;
     }
 
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.EB9E3F4F-309A-14DA-D58C-B240BCAE50C6]
-    // </editor-fold> 
-    public synchronized void enviarMensaje (Serializable mensaje) {
+    /**
+     * Envía el mensaje al destino (thread-safe)
+     * @param mensaje Mensaje a enviar
+     */
+    public synchronized boolean enviarMensaje (MensajeComunicaciones mensaje) {
         try {
-            // Se envía el mensaje al cliente
-            salida.writeObject(mensaje);
-            salida.flush();
+            // Si se está conectado
+            if (_conectado){
+                // Se envía el mensaje al servidor
+                _salida.writeObject(mensaje);
+                _salida.flush();
+            } else {
+                return false;
+            }
         } catch (IOException ex) {
             System.out.println("Comunicaciones::Ha ocurrido un error al enviar el mensaje.");
-            System.out.println("Comunicaciones::El mensaje se descartara.");
+            System.out.println("Comunicaciones::El mensaje se descartará.");
+            return false;
         }
+        return true;
     }
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.EE74722E-A1AB-1FE2-85D2-157B237896AF]
-    // </editor-fold> 
+    /**
+     * Lanza el hilo de escucha de la conexión
+     */
     public void start () {
-        hilo = new Thread(this);
-        hilo.start();
+        _hilo = new Thread(this);
+        _hilo.start();
     }
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.73E381F7-B245-72DE-00A4-6911AC7D4BA2]
-    // </editor-fold> 
+    /**
+     * Finaliza la ejecución del hilo de escucha
+     */
     @Override
     public void finalize () {
-        hilo = null;
+        _hilo = null;
     }
 
+    /**
+     * Función concurrente que escucha mensajes de la conexión.
+     * El objetivo es que no sea bloqueante con respecto al 
+     * programa principal.
+     */
     public void run() {
         while(true){
             try {
-                MensajeComunicaciones mensaje = (MensajeComunicaciones)entrada.readObject();
+                MensajeComunicaciones mensaje = (MensajeComunicaciones)_entrada.readObject();
                 EventoMensajeRecibido nuevoMensaje = new EventoMensajeRecibido(mensaje);
                 nuevoMensaje.start();
             } catch (IOException ex) {
                 System.out.println("Comunicaciones::Error en la entrada/salida de la conexión");
-                conectado = false;
-                break;
-                
+                _conectado = false;
+                break;             
             } catch (ClassNotFoundException ex) {
                 System.out.println("Comunicaciones::Error en la recepción de datos. Datos incorrectos");
-                conectado = false;
+                _conectado = false;
                 break;
             }
         }

@@ -7,43 +7,39 @@ import java.io.Serializable;
 import java.net.Socket; 
 import java.net.UnknownHostException;
 
-
+/**
+ * Clase que abstrae la comunicación a cualquier módulo superior
+ * @author Alberto Milán
+ */
 public class Comunicador {
     
-    ManejadorCliente cliente;
+    private ManejadorCliente _cliente;
 
-    private String direccion = "192.168.1.2";
+    private String _direccion = "192.168.1.2";
+        
+    private int _puerto = 10000;
     
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.2385BD79-AFF1-6FBA-6249-512873ED0DEE]
-    // </editor-fold> 
-    private int puerto = 10000;
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.BB11C2DF-5446-A2B1-D32E-B437FE09BD3E]
-    // </editor-fold> 
-    private ObjectInputStream entrada;
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.3570D5B9-D050-F1BA-9EAA-1D023DB0A025]
-    // </editor-fold> 
-    private ObjectOutputStream salida;
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.D3D63504-AF24-6D9B-55B2-76855907149C]
-    // </editor-fold> 
-    private boolean conectado = false;
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.4ADC3F63-4027-2EDC-8ACC-A7C704C03630]
-    // </editor-fold> 
+    private int _identificador;
+     
+    /**
+     * Constructor público
+     */
     public Comunicador () {
+    }
+    
+    /**
+     * Abre la conexión con el servidor
+     * @return true si la conexión ha sido realizada
+     */
+    public boolean abreConexion (String usuario, String password){
+        boolean conectado;
         Socket conexion;
         try {
-            conexion = new Socket(direccion, puerto);
-            salida = new ObjectOutputStream(conexion.getOutputStream());
-            entrada = new ObjectInputStream(conexion.getInputStream());
-            cliente = new ManejadorCliente(conexion, entrada, salida);
+            conexion = new Socket(_direccion, _puerto);
+            ObjectOutputStream salida = new ObjectOutputStream(conexion.getOutputStream());
+            ObjectInputStream entrada = new ObjectInputStream(conexion.getInputStream());
+            _cliente = new ManejadorCliente(conexion, entrada, salida, usuario, password);
+            _identificador = _cliente.getIdentificador();
             conectado = true;
         } catch (UnknownHostException ex) {
             System.out.println("Comunicaciones::El servidor no existe o no se puede establecer conexión");
@@ -52,35 +48,56 @@ public class Comunicador {
             System.out.println("Comunicaciones::Error en el establecimiento de la conexión con el servidor");
             conectado = false;
         }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.494D2001-F057-E1E6-4CF7-588C323DF2D3]
-    // </editor-fold> 
-    public boolean getConectado () {
         return conectado;
     }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.10CD5316-3C4C-54EB-A787-A439F254027E]
-    // </editor-fold> 
-    public int getPuerto () {
-        return puerto;
+    
+    /**
+     * Cierra la conexión con el servidor
+     */
+    public void cierraConexion() {
+        _cliente.desconectar();
+        _cliente = null;
     }
     
+    /**
+     * Accesor de la dirección del servidor
+     * @return Dirección del servidor
+     */
+    public String getDireccion () {
+        return _direccion;
+    }
+    
+    /**
+     * Accesor del puerto de conexión
+     * @return Número de puerto
+     */
+    public int getPuerto () {
+        return _puerto;
+    }
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.97FBE478-D715-4168-6263-9F0496035FF6]
-    // </editor-fold> 
-    public void enviarMensaje (int identificador, Serializable mensaje) {
-        MensajeComunicaciones internMessage = new MensajeComunicaciones();
-        internMessage.setRemitente(identificador);
-        internMessage.setDestino(0);
-        internMessage.setTipo(1);
-        internMessage.setMensaje(mensaje);
-        if (cliente != null){
-            cliente.enviarMensaje(internMessage);
+    /**
+     * Accesor del estado de la conexión
+     * @return true si la conexión está en funcionamiento
+     */
+    public boolean getConectado () {
+        return _cliente.isConectado();
+    }
+    
+    /**
+     * Envía un mensaje al servidor
+     * @param tipo Módulo destino del mensaje
+     * @param mensaje Dato serializable a enviar
+     */
+    public boolean enviarMensaje (int tipo, Serializable mensaje) {
+        MensajeComunicaciones temp = new MensajeComunicaciones();
+        temp.setRemitente(_identificador);
+        temp.setDestino(0); // El servidor posee identificador 0
+        temp.setTipo(tipo);
+        temp.setMensaje(mensaje);
+        if (_cliente.isConectado()){
+            return _cliente.enviarMensaje(temp);
         }
+        else return false;
     }
 
 }
