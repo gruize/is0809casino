@@ -42,17 +42,19 @@ public class ManejadorCliente implements Runnable {
         this._cliente = cliente;
         this._entrada = in;
         this._salida = out;
-        // Lanza el hilo de escucha
-        this.start();
-        MensajeComunicaciones data = new MensajeComunicaciones();
         try {
+            _salida.flush();
             _salida.writeUTF(usuario);
+            _salida.flush();
             _salida.writeUTF(password);
+            _salida.flush();
             String identificador = _entrada.readUTF();
             _identificador = Integer.valueOf(identificador);
         } catch (IOException ex) {
             System.out.println("Comunicaciones::Error en el envío de usuario y contraseña");
         }
+        // Lanza el hilo de escucha
+        this.start();
     }
 
     /**
