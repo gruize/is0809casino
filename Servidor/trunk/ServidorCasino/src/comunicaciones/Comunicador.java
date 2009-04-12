@@ -86,6 +86,7 @@ public class Comunicador extends Thread{
     // #[regen=yes,id=DCE.FCF379B0-4E2D-BDD0-1EA8-E7892D27CA1B]
     // </editor-fold> 
     public void run () {
+        int identificador = -1;
         while(true){
                 try {
                     escucha = servidor.accept();
@@ -97,6 +98,10 @@ public class Comunicador extends Thread{
                 try {
                     entrada = new ObjectInputStream(escucha.getInputStream());
                     salida = new ObjectOutputStream(escucha.getOutputStream());
+                    String usuario = entrada.readUTF();
+                    String password = entrada.readUTF();
+                    identificador = 1; // Aquí se solicitará el número identificador de usuario
+                    salida.writeUTF(Integer.toString(identificador));
                     conectado = true;
                 } catch (IOException ex) {
                     conectado = false;
@@ -104,11 +109,11 @@ public class Comunicador extends Thread{
 
                 if(conectado){
                     ManejadorCliente manejador = new ManejadorCliente(escucha, entrada, salida);
-                    manejador.setIdentificador(1);
-                    almacen.addManejadorCliente(1,manejador);
+                    manejador.setIdentificador(identificador);
+                    almacen.addManejadorCliente(identificador,manejador);
                     manejador.setAlmacen(almacen);
                     manejador.start();
-                    System.out.println("El cliente " + "1" + " se ha conectado.");
+                    System.out.println("El cliente " + identificador + " se ha conectado.");
                 }
         }
     }
