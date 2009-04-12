@@ -100,8 +100,11 @@ public class Comunicador extends Thread{
                     salida = new ObjectOutputStream(escucha.getOutputStream());
                     String usuario = entrada.readUTF();
                     String password = entrada.readUTF();
+                    System.out.println("Usuario: " + usuario + " Password: " + password);
                     identificador = 1; // Aquí se solicitará el número identificador de usuario
+                    salida.flush();
                     salida.writeUTF(Integer.toString(identificador));
+                    salida.flush();
                     conectado = true;
                 } catch (IOException ex) {
                     conectado = false;
@@ -115,6 +118,8 @@ public class Comunicador extends Thread{
                     manejador.start();
                     System.out.println("El cliente " + identificador + " se ha conectado.");
                 }
+                
+                identificador = -1;
         }
     }
 
