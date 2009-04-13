@@ -24,7 +24,7 @@ public class Prueba {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-        SplashScreen sp = new SplashScreen("./recursos/casino.jpg");
+        SplashScreen sp = new SplashScreen("/recursos/casino.jpg");
         sp.open(1500);
         try {
         	UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");

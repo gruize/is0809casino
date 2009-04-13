@@ -41,15 +41,14 @@ public class ModeloServidor extends Observable {
     }
 
     public DefaultListModel getListaMesas() {
-      DefaultListModel lista = new DefaultListModel();
-        lista.addElement("PEPE2");
-        return lista;
+        GestorJuegos g=GestorJuegos.getInstancia();
+        return g.getMesas();
+
     }
 
     public DefaultListModel getListaSalas() {
-        DefaultListModel lista = new DefaultListModel();
-        lista.addElement("PEPE3");
-        return lista;
+        GestorJuegos g=GestorJuegos.getInstancia();
+        return g.getSalas();
     }
 
     public void mostrarJugadoresAsociados(String mesa) {
