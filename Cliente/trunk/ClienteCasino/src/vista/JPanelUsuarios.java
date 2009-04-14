@@ -7,11 +7,16 @@ package vista;
 
 import controlador.ControladorCliente;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 /**
  *
  * @author david
  */
 public class JPanelUsuarios extends JPanel{
+
+    public JScrollPane getJScrollPanelListaUsers() {
+        return jScrollPanelListaUsers;
+    }
 
     private javax.swing.JScrollPane jScrollPanelListaUsers;
     private javax.swing.JList listaUsuarios;
@@ -40,5 +45,10 @@ public class JPanelUsuarios extends JPanel{
                 .addComponent(jScrollPanelListaUsers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE))
         );
 
+        
+    }
+
+    public javax.swing.JList getUsuarios() {
+        return listaUsuarios;
     }
 }

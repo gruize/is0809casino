@@ -38,4 +38,9 @@ public class Apuesta {
         this.valor = valor;
     }
 
+    public void imprimir(){
+        System.out.println("Cantidad apostada: " + this.getCantidadApostada());
+        System.out.println("Valor al que se apuesta: " + this.getValor());
+    }
+
 }

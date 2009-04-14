@@ -5,13 +5,41 @@
 
 package vista;
 
+import javax.swing.JButton;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import controlador.ControladorCliente;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 /**
  *
  * @author david
  */
 public class JPanelChat extends JPanel{
+
+    public JButton getBotonBloquear() {
+        return botonBloquear;
+    }
+
+    public JButton getBotonEnviar() {
+        return botonEnviar;
+    }
+
+    public JList getListaUsuarios() {
+        return listaUsuarios;
+    }
+
+    public JTextArea getAreaTextoChat() {
+        return areaTextoChat;
+    }
+
+    public JPanelChat(JTextField textfieldFrase) {
+        this.textfieldFrase = textfieldFrase;
+    }
+
+    public JTextField getTextfieldFrase() {
+        return textfieldFrase;
+    }
 
     private javax.swing.JTextArea areaTextoChat;
     private javax.swing.JButton botonBloquear;

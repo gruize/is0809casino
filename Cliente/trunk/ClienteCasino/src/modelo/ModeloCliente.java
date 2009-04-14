@@ -6,6 +6,7 @@
 package modelo;
 
 
+import java.io.IOException;
 import java.util.Observable;
 
 
@@ -17,6 +18,27 @@ public class ModeloCliente extends Observable {
     
     public ModeloCliente() {
         
+    }
+
+    public boolean desconectar() {
+        //TODO:
+        return true;
+    }
+
+    public void desconectarCliente() throws IOException{
+        //TODO: desconectarCliente;
+    }
+
+    public void enviarMensajeChat(String mensaje) {
+        
+        //TODO: enviarMensaje
+        System.out.println(mensaje);
+    }
+
+    public void realizarApuesta(int totalApostado, String valor) {
+        Apuesta apuestaRealizada = new Apuesta(totalApostado,valor);
+        //TODO:Enviar la apuesta al servidor
+        apuestaRealizada.imprimir();
     }
 
 

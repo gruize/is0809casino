@@ -6,6 +6,9 @@
 package vista;
 
 import controlador.ControladorCliente;
+import java.awt.Button;
+import java.awt.Choice;
+import java.awt.Label;
 import javax.swing.JPanel;
 
 /**
@@ -13,6 +16,222 @@ import javax.swing.JPanel;
  * @author david
  */
 public class JPanelApuestas extends JPanel{
+
+    public Button getButton0() {
+        return button0;
+    }
+
+    public Button getButton1() {
+        return button1;
+    }
+
+    public Button getButton10() {
+        return button10;
+    }
+
+    public Button getButton11() {
+        return button11;
+    }
+
+    public Button getButton12() {
+        return button12;
+    }
+
+    public Button getButton13() {
+        return button13;
+    }
+
+    public Button getButton14() {
+        return button14;
+    }
+
+    public Button getButton15() {
+        return button15;
+    }
+
+    public Button getButton16() {
+        return button16;
+    }
+
+    public Button getButton17() {
+        return button17;
+    }
+
+    public Button getButton18() {
+        return button18;
+    }
+
+    public Button getButton19() {
+        return button19;
+    }
+
+    public Button getButton19a36() {
+        return button19a36;
+    }
+
+    public Button getButton1a18() {
+        return button1a18;
+    }
+
+    public Button getButton1ero12() {
+        return button1ero12;
+    }
+
+    public Button getButton2() {
+        return button2;
+    }
+
+    public Button getButton20() {
+        return button20;
+    }
+
+    public Button getButton21() {
+        return button21;
+    }
+
+    public Button getButton22() {
+        return button22;
+    }
+
+    public Button getButton23() {
+        return button23;
+    }
+
+    public Button getButton24() {
+        return button24;
+    }
+
+    public Button getButton25() {
+        return button25;
+    }
+
+    public Button getButton26() {
+        return button26;
+    }
+
+    public Button getButton27() {
+        return button27;
+    }
+
+    public Button getButton28() {
+        return button28;
+    }
+
+    public Button getButton29() {
+        return button29;
+    }
+
+    public Button getButton2a1Fila1() {
+        return button2a1Fila1;
+    }
+
+    public Button getButton2a1Fila2() {
+        return button2a1Fila2;
+    }
+
+    public Button getButton2a1Fila3() {
+        return button2a1Fila3;
+    }
+
+    public Button getButton2do12() {
+        return button2do12;
+    }
+
+    public Button getButton3() {
+        return button3;
+    }
+
+    public Button getButton30() {
+        return button30;
+    }
+
+    public Button getButton31() {
+        return button31;
+    }
+
+    public Button getButton32() {
+        return button32;
+    }
+
+    public Button getButton33() {
+        return button33;
+    }
+
+    public Button getButton34() {
+        return button34;
+    }
+
+    public Button getButton35() {
+        return button35;
+    }
+
+    public Button getButton36() {
+        return button36;
+    }
+
+    public Button getButton3ro12() {
+        return button3ro12;
+    }
+
+    public Button getButton4() {
+        return button4;
+    }
+
+    public Button getButton5() {
+        return button5;
+    }
+
+    public Button getButton6() {
+        return button6;
+    }
+
+    public Button getButton7() {
+        return button7;
+    }
+
+    public Button getButton8() {
+        return button8;
+    }
+
+    public Button getButton9() {
+        return button9;
+    }
+
+    public Button getButtonImpar() {
+        return buttonImpar;
+    }
+
+    public Button getButtonNegro() {
+        return buttonNegro;
+    }
+
+    public Button getButtonPares() {
+        return buttonPares;
+    }
+
+    public Button getButtonRojo() {
+        return buttonRojo;
+    }
+
+    public Choice getChoiceCantidad() {
+        return choiceCantidad;
+    }
+
+    public Choice getChoiceValor() {
+        return choiceValor;
+    }
+
+    public Button getBotonApostar() {
+        return botonApostar;
+    }
+
+    public Label getLabelTotalApostado() {
+        return labelTotalApostado;
+    }
+
+    public Label getLabelValor() {
+        return labelValor;
+    }
 
     private ControladorCliente controlador;
     private java.awt.Button botonApostar;
@@ -77,8 +296,8 @@ public class JPanelApuestas extends JPanel{
 
      public JPanelApuestas(ControladorCliente control) {
 
-       controlador = control;
-       botonApostar = new java.awt.Button();
+        controlador = control;
+        botonApostar = new java.awt.Button();
         labelTotalApostado = new java.awt.Label();
         button1 = new java.awt.Button();
         button2 = new java.awt.Button();
@@ -140,6 +359,25 @@ public class JPanelApuestas extends JPanel{
 
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        //Inicializacion de cantidades que se pueden apostar
+        choiceCantidad.addItem("0");
+        choiceCantidad.addItem("1");
+        choiceCantidad.addItem("2");
+        choiceCantidad.addItem("3");
+        choiceCantidad.addItem("4");
+        choiceCantidad.addItem("5");
+        choiceCantidad.addItem("6");
+        choiceCantidad.addItem("7");
+        choiceCantidad.addItem("8");
+        choiceCantidad.addItem("9");
+        choiceCantidad.addItem("10");
+
+        //Inicializacion de valores de las fichas
+        choiceValor.addItem("0");
+        choiceValor.addItem("5");
+        choiceValor.addItem("25");
+        choiceValor.addItem("100");
+
         botonApostar.setActionCommand("Apostar");
         botonApostar.setFont(new java.awt.Font("Dialog", 1, 10));
         botonApostar.setLabel("APOSTAR");
@@ -151,165 +389,166 @@ public class JPanelApuestas extends JPanel{
         labelTotalApostado.setName("labeltotalApostado"); // NOI18N
         labelTotalApostado.setText("000");
 
+        button1.setActionCommand("button1");
         button1.setFont(new java.awt.Font("Dialog", 0, 10));
         button1.setLabel("1");
 
-
+        button2.setActionCommand("button2");
         button2.setFont(new java.awt.Font("Dialog", 0, 10));
         button2.setLabel("2");
 
-
+        button3.setActionCommand("button3");
         button3.setFont(new java.awt.Font("Dialog", 0, 10));
         button3.setLabel("3");
 
-
+        button4.setActionCommand("button4");
         button4.setFont(new java.awt.Font("Dialog", 0, 10));
         button4.setLabel("4");
 
-
+        button5.setActionCommand("button5");
         button5.setFont(new java.awt.Font("Dialog", 0, 10));
         button5.setLabel("5");
 
-
+        button6.setActionCommand("button6");
         button6.setFont(new java.awt.Font("Dialog", 0, 10));
         button6.setLabel("6");
 
-
+        button7.setActionCommand("button7");
         button7.setFont(new java.awt.Font("Dialog", 0, 10));
         button7.setLabel("7");
 
-
+        button8.setActionCommand("button8");
         button8.setFont(new java.awt.Font("Dialog", 0, 10));
         button8.setLabel("8");
 
-
+        button9.setActionCommand("button9");
         button9.setFont(new java.awt.Font("Dialog", 0, 10));
         button9.setLabel("9");
 
-
+        button10.setActionCommand("button10");
         button10.setFont(new java.awt.Font("Dialog", 0, 10));
         button10.setLabel("10");
 
-
+        button11.setActionCommand("button11");
         button11.setFont(new java.awt.Font("Dialog", 0, 10));
         button11.setLabel("11");
 
-
+        button12.setActionCommand("button12");
         button12.setFont(new java.awt.Font("Dialog", 0, 10));
         button12.setLabel("12");
 
-
+        button13.setActionCommand("button13");
         button13.setFont(new java.awt.Font("Dialog", 0, 10));
         button13.setLabel("13");
 
-
+        button14.setActionCommand("button14");
         button14.setFont(new java.awt.Font("Dialog", 0, 10));
         button14.setLabel("14");
 
-
+        button15.setActionCommand("button15");
         button15.setFont(new java.awt.Font("Dialog", 0, 10));
         button15.setLabel("15");
 
-
+        button16.setActionCommand("button16");
         button16.setFont(new java.awt.Font("Dialog", 0, 10));
         button16.setLabel("16");
 
-
+        button17.setActionCommand("button17");
         button17.setFont(new java.awt.Font("Dialog", 0, 10));
         button17.setLabel("17");
 
-
+        button18.setActionCommand("button18");
         button18.setFont(new java.awt.Font("Dialog", 0, 10));
         button18.setLabel("18");
 
-
+        button19.setActionCommand("button19");
         button19.setFont(new java.awt.Font("Dialog", 0, 10));
         button19.setLabel("19");
 
-
+        button20.setActionCommand("button20");
         button20.setFont(new java.awt.Font("Dialog", 0, 10));
         button20.setLabel("20");
 
-
+        button21.setActionCommand("button21");
         button21.setFont(new java.awt.Font("Dialog", 0, 10));
         button21.setLabel("21");
 
-
+        button22.setActionCommand("button22");
         button22.setFont(new java.awt.Font("Dialog", 0, 10));
         button22.setLabel("22");
 
-
+        button23.setActionCommand("button23");
         button23.setFont(new java.awt.Font("Dialog", 0, 10));
         button23.setLabel("23");
 
-
+        button24.setActionCommand("button24");
         button24.setFont(new java.awt.Font("Dialog", 0, 10));
         button24.setLabel("24");
 
-
+        button25.setActionCommand("button25");
         button25.setFont(new java.awt.Font("Dialog", 0, 10));
         button25.setLabel("25");
 
-
+        button26.setActionCommand("button26");
         button26.setFont(new java.awt.Font("Dialog", 0, 10));
         button26.setLabel("26");
 
-
+        button27.setActionCommand("button27");
         button27.setFont(new java.awt.Font("Dialog", 0, 10));
         button27.setLabel("27");
 
-
+        button28.setActionCommand("button28");
         button28.setFont(new java.awt.Font("Dialog", 0, 10));
         button28.setLabel("28");
 
-
+        button29.setActionCommand("button29");
         button29.setFont(new java.awt.Font("Dialog", 0, 10));
         button29.setLabel("29");
 
-
+        button30.setActionCommand("button30");
         button30.setFont(new java.awt.Font("Dialog", 0, 10));
         button30.setLabel("30");
 
-
+        button31.setActionCommand("button31");
         button31.setFont(new java.awt.Font("Dialog", 0, 10));
         button31.setLabel("31");
 
-
+        button32.setActionCommand("button32");
         button32.setFont(new java.awt.Font("Dialog", 0, 10));
         button32.setLabel("32");
 
-
+        button33.setActionCommand("button33");
         button33.setFont(new java.awt.Font("Dialog", 0, 10));
         button33.setLabel("33");
 
-
+        button34.setActionCommand("button34");
         button34.setFont(new java.awt.Font("Dialog", 0, 10));
         button34.setLabel("34");
 
-
+        button35.setActionCommand("button35");
         button35.setFont(new java.awt.Font("Dialog", 0, 10));
         button35.setLabel("35");
 
-
+        button36.setActionCommand("button36");
         button36.setFont(new java.awt.Font("Dialog", 0, 10));
         button36.setLabel("36");
 
 
         button2a1Fila1.setActionCommand("button1fila");
         button2a1Fila1.setFont(new java.awt.Font("Dialog", 0, 10));
-        button2a1Fila1.setLabel("2a1");
+        button2a1Fila1.setLabel("2a1 1era fila");
         button2a1Fila1.setName("button1fila"); // NOI18N
 
 
         button2a1Fila2.setActionCommand("button2fila");
         button2a1Fila2.setFont(new java.awt.Font("Dialog", 0, 10));
-        button2a1Fila2.setLabel("2a1");
+        button2a1Fila2.setLabel("2a1 2da fila");
         button2a1Fila2.setName("button2fila"); // NOI18N
 
 
         button2a1Fila3.setActionCommand("button3fila");
         button2a1Fila3.setFont(new java.awt.Font("Dialog", 0, 10));
-        button2a1Fila3.setLabel("2a1");
+        button2a1Fila3.setLabel("2a1 3era fila");
         button2a1Fila3.setName("button3fila"); // NOI18N
 
 
@@ -386,6 +625,7 @@ public class JPanelApuestas extends JPanel{
         labelValor.setBackground(new java.awt.Color(236, 233, 216));
         labelValor.setName("labeltotalApostado"); // NOI18N
         labelValor.setText("---");
+        labelValor.setFont(new java.awt.Font("Dialog", 0, 10));
 
         javax.swing.GroupLayout jPanelApuestasLayout = new javax.swing.GroupLayout(this);
         setLayout(jPanelApuestasLayout);
