@@ -1,21 +1,28 @@
 package comunicaciones;
 
+import controlador.ControladorCliente;
+
 /**
  * Clase que lanza el evento provocado por la recepción de un mensaje
  * @author Alberto Milán
  */
 class EventoMensajeRecibido extends Thread{
+    
+    private int _tipo;
  
     private MensajeComunicaciones _mensaje;
  
-    //private Casino casino;
+    private ControladorCliente _controlador;
  
     /**
      * Constructor de la clase
      * @param mensaje
      */
-    public EventoMensajeRecibido (/*Casino casino,*/ MensajeComunicaciones mensaje) {
+    public EventoMensajeRecibido (ControladorCliente controlador, int tipo, MensajeComunicaciones mensaje) {
+        this._controlador = controlador;
+        this._tipo = tipo;
         this._mensaje = mensaje;
+        this.start();
     }
     
     /**
@@ -23,8 +30,8 @@ class EventoMensajeRecibido extends Thread{
      */
     @Override
     public void run () {
-        //TODO Aquí va la llamada al controlador central
         System.out.println("Mensaje recibido:" + _mensaje.getMensaje().toString());
+        _controlador.mensajeRecibido(_tipo, _mensaje.getMensaje());
     }
 }
 

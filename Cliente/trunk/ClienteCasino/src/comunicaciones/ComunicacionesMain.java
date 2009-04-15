@@ -5,6 +5,9 @@
 
 package comunicaciones;
 
+import controlador.ControladorCliente;
+import modelo.ModeloCliente;
+
 /**
  *
  * @author alkaitz
@@ -12,8 +15,9 @@ package comunicaciones;
 public class ComunicacionesMain {
 
     public static void main(String[] args) {
-       Comunicador c = new Comunicador();
+       Comunicador c = new Comunicador(new ControladorCliente(new ModeloCliente()));
        c.abreConexion("alberto", "prueba");
        c.enviarMensaje(0,new String("Hola"));
+       System.out.println("Se acabó...");
     }
 }

@@ -5,8 +5,8 @@
 
 package controlador;
 
-import java.awt.Label;
 import java.io.IOException;
+import java.io.Serializable;
 import modelo.ModeloCliente;
 /**
  *
@@ -34,6 +34,10 @@ public class ControladorCliente {
 
     public void realizarApuesta(int totalApostado, String valor) {
         modelo.realizarApuesta(totalApostado,valor);
+    }
+    
+    public void mensajeRecibido(int tipo, Serializable mensaje){
+        //TODO Este método se invoca cuando se recibe un mensaje
     }
 
 }

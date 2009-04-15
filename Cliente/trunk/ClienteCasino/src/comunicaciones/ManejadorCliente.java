@@ -1,11 +1,10 @@
 package comunicaciones;
 
+import controlador.ControladorCliente;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Clase que maneja la conexión particular del cliente
@@ -23,6 +22,8 @@ public class ManejadorCliente implements Runnable {
 
     private boolean _conectado;
 
+    private ControladorCliente _controlador;
+    
     private Thread _hilo;
 
     /**
@@ -37,8 +38,10 @@ public class ManejadorCliente implements Runnable {
      * @param in Stream de datos de entrada de conexión
      * @param out Stream de datos de salida de conexión
      */
-    public ManejadorCliente (Socket cliente, ObjectInputStream in, ObjectOutputStream out,
+    public ManejadorCliente (ControladorCliente controlador, Socket cliente,
+            ObjectInputStream in, ObjectOutputStream out,
             String usuario, String password) {
+        this._controlador = controlador;
         this._cliente = cliente;
         this._entrada = in;
         this._salida = out;
@@ -50,11 +53,15 @@ public class ManejadorCliente implements Runnable {
             _salida.flush();
             String identificador = _entrada.readUTF();
             _identificador = Integer.valueOf(identificador);
+            _conectado = true;
+            // Lanza el hilo de escucha
+            this.start();
+            System.out.println("Conexión establecida. Identificador = " + _identificador);
         } catch (IOException ex) {
             System.out.println("Comunicaciones::Error en el envío de usuario y contraseña");
+            _conectado = false;
+            return;
         }
-        // Lanza el hilo de escucha
-        this.start();
     }
 
     /**
@@ -101,6 +108,7 @@ public class ManejadorCliente implements Runnable {
             // Si se está conectado
             if (_conectado){
                 // Se envía el mensaje al servidor
+                _salida.flush();
                 _salida.writeObject(mensaje);
                 _salida.flush();
             } else {
@@ -139,8 +147,7 @@ public class ManejadorCliente implements Runnable {
         while(true){
             try {
                 MensajeComunicaciones mensaje = (MensajeComunicaciones)_entrada.readObject();
-                EventoMensajeRecibido nuevoMensaje = new EventoMensajeRecibido(mensaje);
-                nuevoMensaje.start();
+                EventoMensajeRecibido nuevoMensaje = new EventoMensajeRecibido(_controlador, mensaje.getTipo(), mensaje);
             } catch (IOException ex) {
                 System.out.println("Comunicaciones::Error en la entrada/salida de la conexión");
                 _conectado = false;

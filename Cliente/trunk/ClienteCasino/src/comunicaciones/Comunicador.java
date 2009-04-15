@@ -1,5 +1,6 @@
 package comunicaciones;
 
+import controlador.ControladorCliente;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -20,11 +21,14 @@ public class Comunicador {
     private int _puerto = 10000;
     
     private int _identificador;
+    
+    private ControladorCliente _controlador;
      
     /**
      * Constructor público
      */
-    public Comunicador () {
+    public Comunicador (ControladorCliente controlador) {
+        _controlador = controlador;
     }
     
     /**
@@ -38,7 +42,7 @@ public class Comunicador {
             conexion = new Socket(_direccion, _puerto);
             ObjectOutputStream salida = new ObjectOutputStream(conexion.getOutputStream());
             ObjectInputStream entrada = new ObjectInputStream(conexion.getInputStream());
-            _cliente = new ManejadorCliente(conexion, entrada, salida, usuario, password);
+            _cliente = new ManejadorCliente(_controlador, conexion, entrada, salida, usuario, password);
             _identificador = _cliente.getIdentificador();
             conectado = true;
         } catch (UnknownHostException ex) {
@@ -57,6 +61,7 @@ public class Comunicador {
     public void cierraConexion() {
         _cliente.desconectar();
         _cliente = null;
+        _identificador = -1;
     }
     
     /**
@@ -79,7 +84,7 @@ public class Comunicador {
      * Accesor del estado de la conexión
      * @return true si la conexión está en funcionamiento
      */
-    public boolean getConectado () {
+    public boolean isConectado () {
         return _cliente.isConectado();
     }
     
@@ -94,7 +99,7 @@ public class Comunicador {
         temp.setDestino(0); // El servidor posee identificador 0
         temp.setTipo(tipo);
         temp.setMensaje(mensaje);
-        if (_cliente.isConectado()){
+        if (_cliente != null && _cliente.isConectado()){
             return _cliente.enviarMensaje(temp);
         }
         else return false;
