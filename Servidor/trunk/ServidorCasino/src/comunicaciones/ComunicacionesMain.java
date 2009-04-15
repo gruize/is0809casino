@@ -5,6 +5,9 @@
 
 package comunicaciones;
 
+import controlador.ControladorServidor;
+import modelo.ModeloServidor;
+
 /**
  *
  * @author alkaitz
@@ -12,6 +15,6 @@ package comunicaciones;
 public class ComunicacionesMain {
 
     public static void main(String[] args) {
-       Comunicador c = new Comunicador();
+       Comunicador c = new Comunicador(new ControladorServidor(new ModeloServidor()));
     }
 }

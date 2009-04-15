@@ -1,5 +1,6 @@
 package comunicaciones;
 
+import controlador.ControladorServidor;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -8,135 +9,104 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 
-// <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-// #[regen=yes,id=DCE.438D7310-870E-C8E9-FF3D-3CD2DEFA8B39]
-// </editor-fold> 
 public class Comunicador extends Thread{
+    
+    private ControladorServidor _controlador;
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.FF7C10FD-AA6A-4CE9-A9C7-A2480EB96931]
-    // </editor-fold> 
-    private AlmacenCliente almacen;
+    private AlmacenCliente _almacen;
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.5010AB07-1288-9BA6-5053-32035B60D816]
-    // </editor-fold> 
-    private ServerSocket servidor;
+    private ServerSocket _servidor;
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.2385BD79-AFF1-6FBA-6249-512873ED0DEE]
-    // </editor-fold> 
-    private int puerto = 10000;
+    private int _puerto = 10000;
+ 
+    private Socket _escucha;
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.80BD15BE-F586-9C2D-0F29-A5B1FBA0EC4D]
-    // </editor-fold> 
-    private Socket escucha;
+    private String _nombre;
 
-    private String nombre;
+    private ObjectInputStream _entrada;
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.BB11C2DF-5446-A2B1-D32E-B437FE09BD3E]
-    // </editor-fold> 
-    private ObjectInputStream entrada;
+    private ObjectOutputStream _salida;
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.3570D5B9-D050-F1BA-9EAA-1D023DB0A025]
-    // </editor-fold> 
-    private ObjectOutputStream salida;
+    private boolean _conectado = false;
+    
+    //TODO Eliminar. Variable temporal
+    private int identificador;
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.D3D63504-AF24-6D9B-55B2-76855907149C]
-    // </editor-fold> 
-    private boolean conectado = false;
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.4ADC3F63-4027-2EDC-8ACC-A7C704C03630]
-    // </editor-fold> 
-    public Comunicador () {
+    public Comunicador (ControladorServidor controlador) {
+        this._controlador = controlador;
         try {
-            almacen = new AlmacenCliente();
-            servidor = new ServerSocket(puerto);
-            conectado = true;
-            System.out.println("Comunicaciones::El servidor esta corriendo en la direccion " + servidor.getInetAddress() +
-                               " Puerto: " + puerto);
+            _almacen = new AlmacenCliente();
+            _servidor = new ServerSocket(_puerto);
+            _conectado = true;
+            System.out.println("Comunicaciones::El servidor esta corriendo en la direccion " + _servidor.getInetAddress() +
+                               " Puerto: " + _puerto);
             this.start();
         } catch (IOException ex) {
             System.out.println("Comunicaciones::El puerto esta ocupado por otro programa.");
             System.out.println("Comunicaciones::Este programa se cerrara ...");
-            conectado = false;
+            _conectado = false;
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.494D2001-F057-E1E6-4CF7-588C323DF2D3]
-    // </editor-fold> 
+
     public boolean getConectado () {
-        return conectado;
+        return _conectado;
     }
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.10CD5316-3C4C-54EB-A787-A439F254027E]
-    // </editor-fold> 
     public int getPuerto () {
-        return puerto;
+        return _puerto;
     }
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.FCF379B0-4E2D-BDD0-1EA8-E7892D27CA1B]
-    // </editor-fold> 
+    @Override
     public void run () {
-        int identificador = -1;
+        identificador = 0;
         while(true){
                 try {
-                    escucha = servidor.accept();
+                    _escucha = _servidor.accept();
                 } catch (IOException ex) {
                     System.out.println("Comunicaciones::Ha ocurrido un error recibiendo la conexion con el cliente.");
-                    System.out.println("Comunicaciones::Este programa se cerrara ...");
-                    finalize();
+                    System.out.println("Comunicaciones::Este módulo se cerrara ...");
+                    this._conectado = false;
+                    return;
                 }
                 try {
-                    entrada = new ObjectInputStream(escucha.getInputStream());
-                    salida = new ObjectOutputStream(escucha.getOutputStream());
-                    String usuario = entrada.readUTF();
-                    String password = entrada.readUTF();
+                    _entrada = new ObjectInputStream(_escucha.getInputStream());
+                    _salida = new ObjectOutputStream(_escucha.getOutputStream());
+                    String usuario = _entrada.readUTF();
+                    String password = _entrada.readUTF();
                     System.out.println("Usuario: " + usuario + " Password: " + password);
-                    identificador = 1; // Aquí se solicitará el número identificador de usuario
-                    salida.flush();
-                    salida.writeUTF(Integer.toString(identificador));
-                    salida.flush();
-                    conectado = true;
+                    identificador++; // Aquí se solicitará el número identificador de usuario
+                    _salida.flush();
+                    _salida.writeUTF(Integer.toString(identificador));
+                    _salida.flush();
+                    _conectado = true;
                 } catch (IOException ex) {
-                    conectado = false;
+                    _conectado = false;
                 }
 
-                if(conectado){
-                    ManejadorCliente manejador = new ManejadorCliente(escucha, entrada, salida);
+                if(_conectado){
+                    ManejadorCliente manejador = new ManejadorCliente(_controlador, _escucha, _entrada, _salida);
                     manejador.setIdentificador(identificador);
-                    almacen.addManejadorCliente(identificador,manejador);
-                    manejador.setAlmacen(almacen);
-                    manejador.start();
+                    _almacen.addManejadorCliente(identificador,manejador);
+                    manejador.setAlmacen(_almacen);
                     System.out.println("El cliente " + identificador + " se ha conectado.");
                 }
-                
-                identificador = -1;
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.F78C2FA6-A636-1E9B-8A0C-0B11908B0F2F]
-    // </editor-fold> 
-    public void finalize () {
-    }
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.97FBE478-D715-4168-6263-9F0496035FF6]
-    // </editor-fold> 
-    public void enviarMensaje (int identificador, Serializable mensaje) {
-        ManejadorCliente destino = almacen.getManejadorCliente(identificador);
-        if (destino != null){
-            destino.enviarMensaje(mensaje);
+    public boolean enviarMensaje (int identificador, Serializable mensaje) {
+        ManejadorCliente destino = _almacen.getManejadorCliente(identificador);
+        MensajeComunicaciones temp = new MensajeComunicaciones();
+        temp.setRemitente(0);
+        temp.setDestino(identificador); 
+        temp.setTipo(0);
+        temp.setMensaje(mensaje);
+        if (destino != null && destino.isConectado()){
+            return destino.enviarMensaje(temp);
         }
+        else return false;
     }
 
 }

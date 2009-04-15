@@ -6,6 +6,7 @@
 package controlador;
 
 import java.io.IOException;
+import java.io.Serializable;
 import javax.swing.DefaultListModel;
 import modelo.ModeloServidor;
 
@@ -59,6 +60,10 @@ public class ControladorServidor {
 
     public void verEstadisticas(String usuario) {
         modelo.verEstadisticas(usuario);
+    }
+    
+    public void mensajeRecibido(int tipo, Serializable mensaje){
+        //TODO Este método se invoca cuando se recibe un mensaje
     }
 
 }
