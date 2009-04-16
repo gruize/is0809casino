@@ -21,8 +21,6 @@ public class Comunicador extends Thread{
  
     private Socket _escucha;
 
-    private String _nombre;
-
     private ObjectInputStream _entrada;
 
     private ObjectOutputStream _salida;
@@ -91,6 +89,7 @@ public class Comunicador extends Thread{
                     _almacen.addManejadorCliente(identificador,manejador);
                     manejador.setAlmacen(_almacen);
                     System.out.println("El cliente " + identificador + " se ha conectado.");
+                    manejador.start();
                 }
         }
     }

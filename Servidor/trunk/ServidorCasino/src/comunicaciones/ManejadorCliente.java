@@ -35,7 +35,6 @@ public class ManejadorCliente implements Runnable {
         this._cliente = cliente;
         this._entrada = in;
         this._salida = out;
-        this.start();
     }
 
  
@@ -95,14 +94,30 @@ public class ManejadorCliente implements Runnable {
     @Override
     public void finalize () {
         _hilo = null;
+        try {
+            //aqui elimina el manejador de clientes de la tabla
+            _almacen.removeManejadorCliente(_identificador);
+            if (_cliente.isConnected()) {
+                _cliente.close();
+            }
+            
+            _entrada = null;
+            _salida = null;
+            
+            System.out.println("El cliente con ID " + _identificador + " se ha desconectado.");
+            
+        } catch (IOException ex) {
+            System.out.println("El cliente con ID " + _identificador + " se ha desconectado.");
+        }
     }
 
+    @Override
     public void run() {
         //aqui comienza la escucha de mensajes
         while(true){
             try {
                 MensajeComunicaciones mensaje = (MensajeComunicaciones) _entrada.readObject();
-                EventoMensajeRecibido nuevo = new EventoMensajeRecibido(_controlador, mensaje.getTipo(), mensaje);
+                new EventoMensajeRecibido(_controlador, mensaje.getTipo(), mensaje);
             } catch (IOException ex) {
                 System.out.println("Comunicaciones::Error en la entrada/salida de la conexión");
                 _conectado = false;
