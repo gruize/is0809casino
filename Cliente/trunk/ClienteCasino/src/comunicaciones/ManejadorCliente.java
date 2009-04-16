@@ -84,15 +84,6 @@ public class ManejadorCliente implements Runnable {
      * Desconecta al usuario del servidor
      */
     public void desconectar() {
-        try {
-            _entrada.close();
-            _salida.close();
-            _cliente.close();
-        } catch (IOException ex) {
-            _entrada = null;
-            _salida = null;
-            _cliente = null;
-        }
         _identificador = -1;
         _conectado = false;
         _hilo = null;
@@ -119,6 +110,7 @@ public class ManejadorCliente implements Runnable {
             System.out.println("Comunicaciones::El mensaje se descartará.");
             return false;
         }
+        System.out.println("Mensaje " + mensaje.getMensaje().toString() + " enviado.");
         return true;
     }
 
@@ -143,11 +135,12 @@ public class ManejadorCliente implements Runnable {
      * El objetivo es que no sea bloqueante con respecto al 
      * programa principal.
      */
+    @Override
     public void run() {
         while(true){
             try {
                 MensajeComunicaciones mensaje = (MensajeComunicaciones)_entrada.readObject();
-                EventoMensajeRecibido nuevoMensaje = new EventoMensajeRecibido(_controlador, mensaje.getTipo(), mensaje);
+                new EventoMensajeRecibido(_controlador, mensaje.getTipo(), mensaje);
             } catch (IOException ex) {
                 System.out.println("Comunicaciones::Error en la entrada/salida de la conexión");
                 _conectado = false;
