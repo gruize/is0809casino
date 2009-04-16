@@ -5,6 +5,7 @@
 
 package controlador;
 
+import comunicaciones.Comunicador;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.swing.DefaultListModel;
@@ -17,9 +18,11 @@ import modelo.ModeloServidor;
 public class ControladorServidor {
 
     private ModeloServidor modelo;
-    
+    private Comunicador comunicador;
+
     public ControladorServidor(ModeloServidor modeloServidor) {
         modelo = modeloServidor;
+        comunicador = new Comunicador(this);
     }
 
     public void cerrarConexion() throws IOException {

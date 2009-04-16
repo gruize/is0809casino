@@ -7,7 +7,7 @@ public class GestorChatServidor extends Thread {
     private Vector<MensajeChat> cola;
     private static GestorChatServidor instance = null;
 
-    public GestorChatServidor() {
+    private GestorChatServidor() {
         cola = new Vector<MensajeChat>();
    }
 
@@ -20,7 +20,6 @@ public class GestorChatServidor extends Thread {
 
     public void dejamensaje(MensajeChat m) {
         cola.add(m);
-
     }
 
     public void run() {
