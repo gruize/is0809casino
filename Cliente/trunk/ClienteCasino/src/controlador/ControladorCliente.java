@@ -20,6 +20,11 @@ public class ControladorCliente {
         modelo = modelocliente;
     }
 
+    public boolean conectar(String usuario,String password) {
+        return modelo.conectar(usuario,password);
+
+    }
+
     public boolean desconectar() {
         return modelo.desconectar();
     }

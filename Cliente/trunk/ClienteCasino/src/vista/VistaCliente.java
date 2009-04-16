@@ -67,7 +67,7 @@ public class VistaCliente extends JFrame implements Observer  {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setExtendedState(MAXIMIZED_BOTH);
         setSize(1024,768);
-		setVisible(true);
+		setVisible(false);
         setResizable(false);
      }
      private void inicializar() {
@@ -118,7 +118,7 @@ public class VistaCliente extends JFrame implements Observer  {
      }
      
      private void ponerOyentes() {
-       bloquearChat = new OyenteBloquearChat();
+       //bloquearChat = new OyenteBloquearChat();
        apostar = new OyenteApostar();
        enviarMensajeChat = new OyenteEnviarMensajeChat();
        listaJugadores = new OyenteListaJugadores();

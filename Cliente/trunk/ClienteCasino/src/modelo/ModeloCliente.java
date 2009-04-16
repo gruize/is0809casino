@@ -8,21 +8,31 @@ package modelo;
 
 import java.io.IOException;
 import java.util.Observable;
-
+import comunicaciones.*;
 
 /**
  *
  * @author Fiutten
  */
 public class ModeloCliente extends Observable {
-    
-    public ModeloCliente() {
-        
+    private Comunicador comunicador;
+    public ModeloCliente(Comunicador c) {
+        comunicador=c;
     }
+    public ModeloCliente() {
 
+    }
     public boolean desconectar() {
         //TODO:
         return true;
+    }
+
+    public boolean conectar(String usuario,String password) {
+        if (comunicador!=null){
+            comunicador.abreConexion(usuario, password);
+            return true;
+        }
+        return false;
     }
 
     public void desconectarCliente() throws IOException{
@@ -41,5 +51,9 @@ public class ModeloCliente extends Observable {
         apuestaRealizada.imprimir();
     }
 
+    public void setComunicaciones(Comunicador c){
+
+        comunicador=c;
+    }
 
 }
