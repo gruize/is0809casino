@@ -50,6 +50,7 @@ public class VistaCliente extends JFrame implements Observer  {
         private JPanelApuestas PanelApuestas;
         private JPanelUsuarios PanelUsuarios;
         private JPanelRuleta PanelRuleta;
+        private JPanelCjtoApuestas PanelCjtoApuestas;
         private OyenteBloquearChat bloquearChat;
         private OyenteApostar apostar;
         private OyenteEnviarMensajeChat enviarMensajeChat;
@@ -76,18 +77,25 @@ public class VistaCliente extends JFrame implements Observer  {
          PanelRuleta = new JPanelRuleta(controlador);
          PanelApuestas = new JPanelApuestas(controlador);
          PanelChat = new JPanelChat(controlador);
+         PanelCjtoApuestas = new JPanelCjtoApuestas(controlador);
      
-         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(PanelChat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PanelUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(PanelChat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)                    
+
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(PanelUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(PanelCjtoApuestas)
+                        .addContainerGap()))
+
+                    
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(PanelApuestas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
@@ -105,6 +113,7 @@ public class VistaCliente extends JFrame implements Observer  {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PanelUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PanelCjtoApuestas,javax.swing.GroupLayout.DEFAULT_SIZE,javax.swing.GroupLayout.DEFAULT_SIZE,javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PanelApuestas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -114,11 +123,12 @@ public class VistaCliente extends JFrame implements Observer  {
      add(PanelChat);
      add(PanelRuleta);
      add(PanelUsuarios);
+     add(PanelCjtoApuestas);
 
      }
      
      private void ponerOyentes() {
-       //bloquearChat = new OyenteBloquearChat();
+       bloquearChat = new OyenteBloquearChat();
        apostar = new OyenteApostar();
        enviarMensajeChat = new OyenteEnviarMensajeChat();
        listaJugadores = new OyenteListaJugadores();
@@ -226,7 +236,8 @@ public class VistaCliente extends JFrame implements Observer  {
               if(PanelApuestas.getLabelValor().getText().equals("---")){
                   JOptionPane.showMessageDialog(PanelApuestas,"Debe elegir algun valor.","Fallo al apostar",JOptionPane.ERROR_MESSAGE);
               }else{
-                if(JOptionPane.showConfirmDialog(PanelApuestas, "Confirme la conformidad de su apuesta\nValor: " + PanelApuestas.getLabelValor().getText() + "\nCantidad: " + PanelApuestas.getLabelTotalApostado().getText(), "Confirmacion de la apuesta", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                  if(JOptionPane.showConfirmDialog(PanelApuestas, "Confirme la conformidad de su apuesta\nValor: " + PanelApuestas.getLabelValor().getText() + "\nCantidad: " + PanelApuestas.getLabelTotalApostado().getText(), "Confirmacion de la apuesta", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                    PanelCjtoApuestas.getListaApuestas().setText(PanelCjtoApuestas.getListaApuestas().getText() + "\nApuesta a: " + PanelApuestas.getLabelValor().getText() + "\nun total del: " + PanelApuestas.getLabelTotalApostado().getText() + "\n" );
                     controlador.realizarApuesta(Integer.parseInt(PanelApuestas.getLabelTotalApostado().getText()),PanelApuestas.getLabelValor().getText());
                     reinicializarValores();
                 }
