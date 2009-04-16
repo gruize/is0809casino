@@ -1,19 +1,27 @@
 package GestorChatServidor;
 
+import controlador.ControladorServidor;
+import java.util.ArrayList;
 import java.util.Vector;
+import modelo.GestorUsuarios;
 
 public class GestorChatServidor extends Thread {
 
     private Vector<MensajeChat> cola;
+    private ControladorServidor controlador;
+    private GestorUsuarios usuarios;
     private static GestorChatServidor instance = null;
+   
 
-    private GestorChatServidor() {
+
+    public GestorChatServidor(ControladorServidor c) {
         cola = new Vector<MensajeChat>();
+        controlador = c;
    }
 
-    public static GestorChatServidor getInstance() {
+    public static GestorChatServidor getInstance(ControladorServidor c) {
         if (instance == null) {
-            instance = new GestorChatServidor();
+            instance = new GestorChatServidor(c);
         }
         return instance;
     }
@@ -24,19 +32,19 @@ public class GestorChatServidor extends Thread {
 
     public void run() {
         try {
-            MensajeChat recibido, enviar;
-            Vector<Integer> tios = new Vector<Integer>();
-            //gestorClientes = gestorClientes.getinstance();
-            //comunicaciones = comunicaciones.getinstnace();
+            MensajeChat recibido, enviar, aux;
+            ArrayList<Integer> tios = new ArrayList<Integer>();
+            usuarios = GestorUsuarios.getInstancia();
+            int mesa = 0;
             while (true) {
                 if (!cola.isEmpty()) {
                     recibido = new MensajeChat(cola.firstElement());
                     cola.remove(0);
-                    //mesa = gestorClientes.ObtenerMesa(recibido.get_tio());
-                    //tios = gestorClientes.obtenerTios(mesa);
+                    mesa = usuarios.getMesa(recibido.get_tio());
+                    tios = usuarios.getUsuarios(mesa);
                     for (int i = 0; i < tios.size(); i++) {
-                        enviar = new MensajeChat(tios.elementAt(i),recibido.get_mesa(), recibido.get_men());
-                        //comunicaciones.enviarMensaje(enviar);
+                        enviar = new MensajeChat(tios.get(i),recibido.get_mesa(), recibido.get_men());
+                        //controlador.enviarMensaje(enviar);  O comunicaciones.enviarMensaje(enviar);
                     }
                 } else {
                     Thread.sleep(5);
