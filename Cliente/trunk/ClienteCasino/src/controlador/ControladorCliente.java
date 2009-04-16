@@ -8,6 +8,8 @@ package controlador;
 import java.io.IOException;
 import java.io.Serializable;
 import modelo.ModeloCliente;
+import vista.VistaCliente;
+import vista.VistaLogin;
 /**
  *
  * @author david
@@ -15,14 +17,22 @@ import modelo.ModeloCliente;
 public class ControladorCliente {
 
     private ModeloCliente modelo;
+    private VistaLogin vistalogin;
+    private VistaCliente vistajugar;
 
     public ControladorCliente(ModeloCliente modelocliente){
         modelo = modelocliente;
+        vistalogin =new VistaLogin(this);
+        
     }
 
     public boolean conectar(String usuario,String password) {
-        return modelo.conectar(usuario,password);
-
+        if(modelo.conectar(usuario,password)){
+            vistalogin.dispose();
+            vistajugar = new VistaCliente(this);
+            return true;
+        }
+        return false;
     }
 
     public boolean desconectar() {

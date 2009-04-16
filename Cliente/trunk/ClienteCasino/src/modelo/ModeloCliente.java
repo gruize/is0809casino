@@ -29,8 +29,9 @@ public class ModeloCliente extends Observable {
 
     public boolean conectar(String usuario,String password) {
         if (comunicador!=null){
-            comunicador.abreConexion(usuario, password);
-            return true;
+            if(comunicador.abreConexion(usuario, password)){
+             return true;
+            }
         }
         return false;
     }

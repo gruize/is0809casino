@@ -67,7 +67,7 @@ public class VistaCliente extends JFrame implements Observer  {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setExtendedState(MAXIMIZED_BOTH);
         setSize(1024,768);
-		setVisible(false);
+		setVisible(true);
         setResizable(false);
      }
      private void inicializar() {

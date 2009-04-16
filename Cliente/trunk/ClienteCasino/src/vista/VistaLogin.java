@@ -50,8 +50,10 @@ public class VistaLogin extends JFrame implements Observer  {
 
         public void actionPerformed(ActionEvent e) {
          
-           if (controlador.conectar(PanelLogin.getUsuario(), PanelLogin.getPassword()));
+           if (controlador.conectar(PanelLogin.getUsuario(), PanelLogin.getPassword())){
               System.out.println("conectado");
+
+           }
         }
 
     }

@@ -42,8 +42,8 @@ public class Prueba {
                 ControladorCliente controlador = new ControladorCliente(modelo);
                 Comunicador c = new Comunicador(controlador);
 				modelo.setComunicaciones(c);
-                VistaLogin vistalogin =new VistaLogin(controlador);
-                VistaCliente vistajugar = new VistaCliente(controlador);
+                //VistaLogin vistalogin =new VistaLogin(controlador);
+                //VistaCliente vistajugar = new VistaCliente(controlador);
                 //new Thread1("Recojo mensajes de comunicaciones").start();
                
                 //Comunicador c = new Comunicador(new ControladorCliente(new ModeloCliente()));
