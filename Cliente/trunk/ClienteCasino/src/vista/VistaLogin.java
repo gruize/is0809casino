@@ -52,7 +52,11 @@ public class VistaLogin extends JFrame implements Observer  {
          
            if (controlador.conectar(PanelLogin.getUsuario(), PanelLogin.getPassword())){
               System.out.println("conectado");
-
+              dispose();
+              VistaCliente vistajugar = new VistaCliente(controlador);
+           }
+           else{
+               //borrar campos
            }
         }
 

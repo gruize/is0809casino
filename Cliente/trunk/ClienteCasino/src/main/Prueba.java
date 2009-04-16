@@ -6,14 +6,10 @@
 package main;
 
 import controlador.ControladorCliente;
-import vista.VistaCliente;
-import vista.VistaLogin;
 import vista.SplashScreen;
-import java.io.File;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import modelo.ModeloCliente;
-import comunicaciones.*;
+import vista.VistaLogin;
 
 /**
  *
@@ -38,11 +34,9 @@ public class Prueba {
         SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 
-                ModeloCliente modelo = new ModeloCliente();
-                ControladorCliente controlador = new ControladorCliente(modelo);
-                Comunicador c = new Comunicador(controlador);
-				modelo.setComunicaciones(c);
-                //VistaLogin vistalogin =new VistaLogin(controlador);
+                
+                ControladorCliente controlador = new ControladorCliente();
+                VistaLogin vistalogin =new VistaLogin(controlador);
                 //VistaCliente vistajugar = new VistaCliente(controlador);
                 //new Thread1("Recojo mensajes de comunicaciones").start();
                

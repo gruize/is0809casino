@@ -6,7 +6,7 @@
 package comunicaciones;
 
 import controlador.ControladorCliente;
-import modelo.ModeloCliente;
+
 
 /**
  *
@@ -15,14 +15,14 @@ import modelo.ModeloCliente;
 public class ComunicacionesMain {
 
     public static void main(String[] args) {
-       Comunicador c = new Comunicador(new ControladorCliente(new ModeloCliente()));
+       /*Comunicador c = new Comunicador(new ControladorCliente(new ModeloCliente()));
        c.abreConexion("alberto", "prueba");
        c.enviarMensaje(0,new String("Hola"));
        c.enviarMensaje(1,new String("Mundo"));
        c.enviarMensaje(2,new Double(3.14));
        c.enviarMensaje(3,new Integer(100));
        c.enviarMensaje(4,new String("%"));
-       c.cierraConexion();
+       c.cierraConexion();*/
        System.out.println("Se acabó...");
     }
 }
