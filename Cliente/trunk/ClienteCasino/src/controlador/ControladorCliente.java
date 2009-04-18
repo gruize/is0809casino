@@ -8,6 +8,7 @@ package controlador;
 import java.io.IOException;
 import java.io.Serializable;
 import comunicaciones.*;
+import modelo.*;
 /**
  *
  * @author david
@@ -17,13 +18,19 @@ public class ControladorCliente {
 
     private Comunicador comunicador;
 
+    private Jugador jugador;
+
     public ControladorCliente(){        
-        comunicador = new Comunicador(this);        
+        comunicador = new Comunicador(this); 
     }
 
     public boolean conectar(String usuario,String password) {
          if (comunicador!=null){
             if(comunicador.abreConexion(usuario, password)){
+                jugador= new Jugador();
+                jugador.setId(comunicador.getIdentificador());
+                jugador.setMes(1);
+                jugador.setSala(1);
              return true;
             }
         }
@@ -40,9 +47,11 @@ public class ControladorCliente {
         //modelo.desconectarCliente();
     }
 
-    public void enviarMensajeChat(String mensaje) {
-        //modelo.enviarMensajeChat(mensaje);
+   public void enviarMensajeChat(String mensaje) {
+        MensajeChat mensajeChat = new MensajeChat(jugador.getId(),1,mensaje);
+        comunicador.enviarMensaje(1,mensajeChat);
     }
+
 
     public int getNumeroMesas(int sala) {
         //TODO:
