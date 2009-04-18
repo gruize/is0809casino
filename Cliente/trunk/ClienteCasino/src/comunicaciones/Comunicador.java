@@ -71,7 +71,13 @@ public class Comunicador {
     public String getDireccion () {
         return _direccion;
     }
-    
+    /**
+     * Accesor del identificador
+     * @return Número de puerto
+     */
+    public int getIdentificador () {
+        return _identificador;
+    }
     /**
      * Accesor del puerto de conexión
      * @return Número de puerto
