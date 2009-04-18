@@ -33,8 +33,6 @@ public class Prueba {
 
         SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-
-                
                 ControladorCliente controlador = new ControladorCliente();
                 VistaLogin vistalogin =new VistaLogin(controlador);
                 //VistaCliente vistajugar = new VistaCliente(controlador);

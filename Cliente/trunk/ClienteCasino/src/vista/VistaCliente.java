@@ -9,36 +9,20 @@ package vista;
  *
  * @author david
  */
-import java.awt.Choice;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Insets;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.awt.event.InputMethodEvent;
+
 import java.awt.event.ItemEvent;
-import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
 
-import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.ListModel;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.Border;
+
 
 import java.util.Observer;
 import java.util.Observable;
 import controlador.ControladorCliente;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.InputMethodListener;
 import java.awt.event.ItemListener;
 import java.io.IOException;
-import java.util.StringTokenizer;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;

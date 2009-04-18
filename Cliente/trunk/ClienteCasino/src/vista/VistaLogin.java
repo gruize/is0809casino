@@ -5,8 +5,6 @@
 
 package vista;
 
-import java.util.Observer;
-import java.util.Observable;
 import controlador.ControladorCliente;
 import javax.swing.*;
 import java.awt.event.*;
@@ -14,7 +12,7 @@ import java.awt.event.*;
  *
  * @author david
  */
-public class VistaLogin extends JFrame implements Observer  {
+public class VistaLogin extends JFrame {
 
     private ControladorCliente controlador;
     private JPanelLogin PanelLogin;
@@ -28,33 +26,26 @@ public class VistaLogin extends JFrame implements Observer  {
         ponerOyentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(332,174);
+        setLocation(400,300);
 		setVisible(true);
-        setResizable(false);
-        
-     }
-    private void inicializar() {
+        setResizable(false); 
+    }
 
+    private void inicializar() {
         PanelLogin = new JPanelLogin(controlador);
         add(PanelLogin);
     }
     private void ponerOyentes() {
-
        enviarMensajeLogin = new OyenteEnviarMensajeLogin();
        PanelLogin.getBotonAceptar().addActionListener(enviarMensajeLogin);
        cancelarLogin = new OyenteCancelarLogin();
        PanelLogin.getBotonCancelar().addActionListener(cancelarLogin);
-
     }
-    public void update(Observable o, Object arg) {
-        //if(obj instanceof
-        //Hacer lo que sea.
-    }
+    
     class OyenteEnviarMensajeLogin implements ActionListener{
-
         public void actionPerformed(ActionEvent e) {
            //TODO: Quitar el comentario y revisar el metodo.
-            if (//controlador.conectar(PanelLogin.getUsuario(), PanelLogin.getPassword())){
-              true){
+            if (controlador.conectar(PanelLogin.getUsuario(), PanelLogin.getPassword())) {
               System.out.println("conectado");
               dispose();
               /**
