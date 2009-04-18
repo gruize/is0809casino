@@ -1,4 +1,4 @@
-package GestorChatServidor;
+package modelo;
 
 import java.io.Serializable;
 

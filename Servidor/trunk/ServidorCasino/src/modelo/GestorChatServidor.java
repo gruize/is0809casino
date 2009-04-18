@@ -1,9 +1,8 @@
-package GestorChatServidor;
+package modelo;
 
 import controlador.ControladorServidor;
 import java.util.ArrayList;
 import java.util.Vector;
-import modelo.GestorUsuarios;
 
 public class GestorChatServidor extends Thread {
 

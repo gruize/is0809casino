@@ -5,12 +5,12 @@
 
 package controlador;
 
-import GestorChatServidor.MensajeChat;
 import comunicaciones.Comunicador;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.swing.DefaultListModel;
-import modelo.ModeloServidor;
+import modelo.MensajeChat;
+import modelo.ModeloServidor; 
 
 /**
  *
@@ -69,8 +69,8 @@ public class ControladorServidor {
     public void mensajeRecibido(int tipo, Serializable mensaje){
         //TODO Este método se invoca cuando se recibe un mensaje
         if (tipo==1){
-            MensajeChat m=((MensajeChat)mensaje);
-            System.out.println(m.get_men());
+            MensajeChat mensajeChat = ((MensajeChat)mensaje);
+            System.out.println(mensajeChat.get_men());
         }
     }
 
