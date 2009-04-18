@@ -27,8 +27,8 @@ public class JPanelLogin extends JPanel{
 
      public JPanelLogin(ControladorCliente control){
 
-          controlador = control;
-          jTextField1 = new javax.swing.JTextField();
+        controlador = control;
+        jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -95,5 +95,17 @@ public class JPanelLogin extends JPanel{
      }
      public String getPassword(){
          return jTextField2.getText();
+     }
+
+     public JTextField getCampoUsuario(){
+         return jTextField1;
+     }
+
+     public JTextField getCampoPassword(){
+         return jTextField2;
+     }
+
+     public JButton getBotonCancelar() {
+         return jButton2;
      }
 }

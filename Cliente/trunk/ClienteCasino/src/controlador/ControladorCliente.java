@@ -17,10 +17,8 @@ public class ControladorCliente {
 
     private Comunicador comunicador;
 
-    public ControladorCliente(){
-        
-        comunicador = new Comunicador(this);
-        
+    public ControladorCliente(){        
+        comunicador = new Comunicador(this);        
     }
 
     public boolean conectar(String usuario,String password) {
@@ -44,6 +42,20 @@ public class ControladorCliente {
 
     public void enviarMensajeChat(String mensaje) {
         //modelo.enviarMensajeChat(mensaje);
+    }
+
+    public int getNumeroMesas(int sala) {
+        //TODO:
+        /**
+         * Devuelve el numero de mesas existentes en una sala determinada.
+         */
+        int numeroMesas = 10;
+        return numeroMesas;
+    }
+
+    public int getNumeroSalas() {
+        //Obtiene el  numero de salas existentes en el casino
+        return 0;
     }
 
     public void realizarApuesta(int totalApostado, String valor) {

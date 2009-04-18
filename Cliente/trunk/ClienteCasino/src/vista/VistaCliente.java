@@ -45,6 +45,7 @@ import javax.swing.event.ListSelectionListener;
 
 public class VistaCliente extends JFrame implements Observer  {
 
+        private String idSalaMesa;
         private ControladorCliente controlador;
         private JPanelChat PanelChat;
         private JPanelApuestas PanelApuestas;
@@ -60,15 +61,15 @@ public class VistaCliente extends JFrame implements Observer  {
         private OyenteValoresApuesta valoresApuesta;
         private OyenteCantidadApuesta cantidadApuesta;
 
-     public VistaCliente(ControladorCliente control) {
+     public VistaCliente(ControladorCliente control,String salamesa) {
         super("Cliente Casino");
         controlador = control;
+        idSalaMesa = salamesa;
         inicializar();
         ponerOyentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setExtendedState(MAXIMIZED_BOTH);
-        setSize(1024,768);
-		setVisible(true);
+        setSize(1024,768);		
         setResizable(false);
      }
      private void inicializar() {
