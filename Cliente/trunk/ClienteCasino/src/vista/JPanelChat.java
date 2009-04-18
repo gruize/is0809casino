@@ -8,7 +8,6 @@ package vista;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import controlador.ControladorCliente;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 /**
@@ -41,6 +40,14 @@ public class JPanelChat extends JPanel{
         return textfieldFrase;
     }
 
+    public void setTextfieldFrase(String text) {
+        this.textfieldFrase.setText(text);
+    }
+
+    public void setAreaTextoChat(String text) {
+        this.areaTextoChat.setText(text);
+    }
+
     private javax.swing.JTextArea areaTextoChat;
     private javax.swing.JButton botonBloquear;
     private javax.swing.JButton botonEnviar;
@@ -49,12 +56,10 @@ public class JPanelChat extends JPanel{
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JList listaUsuarios;
     private javax.swing.JTextField textfieldFrase;
-    private ControladorCliente controlador;
 
-    public JPanelChat(ControladorCliente control){
-
-        controlador = control;
-         textfieldFrase = new javax.swing.JTextField();
+    public JPanelChat(){
+        
+        textfieldFrase = new javax.swing.JTextField();
         botonEnviar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();

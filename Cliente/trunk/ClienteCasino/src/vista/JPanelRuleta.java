@@ -7,19 +7,16 @@ package vista;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import controlador.ControladorCliente;
 /**
  *
  * @author david
  */
 public class JPanelRuleta extends JPanel{
 
-    private ControladorCliente controlador;
     private JLabel jLabel2;
 
-    public JPanelRuleta(ControladorCliente control) {
+    public JPanelRuleta() {
        
-       controlador = control;
        jLabel2 = new javax.swing.JLabel();
 
        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));

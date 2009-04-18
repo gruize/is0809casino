@@ -48,17 +48,11 @@ public class VistaLogin extends JFrame {
             if (controlador.conectar(PanelLogin.getUsuario(), PanelLogin.getPassword())) {
               System.out.println("conectado");
               dispose();
-              /**
-               * Muestra la vista de las salas, donde el usuario debe seleccionar la sala
-               * donde desea jugar.
-               */
               VistaSalas vistaSala = new VistaSalas(controlador);
               vistaSala.setVisible(true);
            }
            else{
-               /**
-                * Se borra el contenido de los campos.
-                */
+               JOptionPane.showMessageDialog(null,"Usuario incorrecto","Error de usuario",JOptionPane.ERROR_MESSAGE);
                PanelLogin.getCampoUsuario().setText("");
                PanelLogin.getCampoPassword().setText("");
            }

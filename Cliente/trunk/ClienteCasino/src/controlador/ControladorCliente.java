@@ -5,10 +5,11 @@
 
 package controlador;
 
+import comunicaciones.Comunicador;
 import java.io.IOException;
 import java.io.Serializable;
-import comunicaciones.*;
-import modelo.*;
+import modelo.Jugador;
+import modelo.MensajeChat;
 /**
  *
  * @author david
@@ -17,20 +18,17 @@ public class ControladorCliente {
 
 
     private Comunicador comunicador;
-
     private Jugador jugador;
 
     public ControladorCliente(){        
-        comunicador = new Comunicador(this); 
+        comunicador = new Comunicador(this);
+        jugador = new Jugador();
     }
 
     public boolean conectar(String usuario,String password) {
          if (comunicador!=null){
             if(comunicador.abreConexion(usuario, password)){
-                jugador= new Jugador();
-                jugador.setId(comunicador.getIdentificador());
-                jugador.setMes(1);
-                jugador.setSala(1);
+             jugador.setId(comunicador.getIdentificador());
              return true;
             }
         }
@@ -47,11 +45,10 @@ public class ControladorCliente {
         //modelo.desconectarCliente();
     }
 
-   public void enviarMensajeChat(String mensaje) {
+    public void enviarMensajeChat(String mensaje) {
         MensajeChat mensajeChat = new MensajeChat(jugador.getId(),1,mensaje);
         comunicador.enviarMensaje(1,mensajeChat);
     }
-
 
     public int getNumeroMesas(int sala) {
         //TODO:

@@ -52,16 +52,15 @@ public class VistaCliente extends JFrame implements Observer  {
         inicializar();
         ponerOyentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//setExtendedState(MAXIMIZED_BOTH);
         setSize(1024,768);		
         setResizable(false);
      }
      private void inicializar() {
 
          PanelUsuarios = new JPanelUsuarios(controlador);
-         PanelRuleta = new JPanelRuleta(controlador);
+         PanelRuleta = new JPanelRuleta();
          PanelApuestas = new JPanelApuestas(controlador);
-         PanelChat = new JPanelChat(controlador);
+         PanelChat = new JPanelChat();
          PanelCjtoApuestas = new JPanelCjtoApuestas(controlador);
      
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -205,7 +204,8 @@ public class VistaCliente extends JFrame implements Observer  {
 
         public void actionPerformed(ActionEvent e) {
             if(JOptionPane.showConfirmDialog(PanelChat, "Confirme que desea bloquear el chat", "Bloqueo del Chat", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION){
-                PanelChat.setVisible(false);
+                //PanelChat.setVisible(false);
+                //IMPLEMENTAR OTRA SOLUCION!!!!
                 //TODO: Añadir un boton de Desbloqueo para el chat.
             }
         }
@@ -235,12 +235,13 @@ public class VistaCliente extends JFrame implements Observer  {
     class OyenteEnviarMensajeChat implements ActionListener{
 
         public void actionPerformed(ActionEvent e) {
-            if(PanelChat.getTextfieldFrase().getText().equals("")){
-                JOptionPane.showMessageDialog(PanelChat,"Debe escribir un mensaje","Error en el envio",JOptionPane.ERROR_MESSAGE);
-            }else{
-                String mensaje = PanelChat.getTextfieldFrase().getText();
-                controlador.enviarMensajeChat(mensaje);
+            if(!PanelChat.getTextfieldFrase().getText().equals("")){
+               String mensaje = PanelChat.getTextfieldFrase().getText();
+               controlador.enviarMensajeChat(mensaje);
+               PanelChat.setTextfieldFrase("");
             }
+            else
+                 JOptionPane.showMessageDialog(PanelChat,"Debe escribir un mensaje","Error en el envio",JOptionPane.ERROR_MESSAGE);
         }
 
     }
