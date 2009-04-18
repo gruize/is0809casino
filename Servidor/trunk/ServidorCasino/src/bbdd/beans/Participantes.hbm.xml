@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-mar-2009 10:24:16 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping default-cascade="none" default-access="property" default-lazy="true" auto-import="true">
+    <class name="bbdd.beans.Participantes" schema="SYSTEM" table="PARTICIPANTES">
+           <composite-id class="bbdd.beans.ParticipantesId" name="id" mapped="false" unsaved-value="undefined">
+            <key-property name="partida" type="java.lang.Integer">
+                <column name="PARTIDA" precision="22" scale="0" />
+            </key-property>
+            <key-property name="jugador" type="java.lang.Integer">
+                <column name="JUGADOR" precision="22" scale="0" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>
+
+
