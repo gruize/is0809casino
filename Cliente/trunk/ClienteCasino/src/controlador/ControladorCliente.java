@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import modelo.Jugador;
 import modelo.MensajeChat;
+import modelo.Modelo;
 /**
  *
  * @author david
@@ -19,16 +20,26 @@ public class ControladorCliente {
 
     private Comunicador comunicador;
     private Jugador jugador;
+    private Modelo modelo;
 
     public ControladorCliente(){        
         comunicador = new Comunicador(this);
         jugador = new Jugador();
+        modelo = new Modelo();
+    }
+
+    public Modelo getModelo(){
+        return modelo;
+    }
+    public Jugador getJugador(){
+        return jugador;
     }
 
     public boolean conectar(String usuario,String password) {
          if (comunicador!=null){
             if(comunicador.abreConexion(usuario, password)){
              jugador.setId(comunicador.getIdentificador());
+             modelo.setUsuario(usuario);
              return true;
             }
         }
@@ -71,8 +82,12 @@ public class ControladorCliente {
         //apuestaRealizada.imprimir();
     }
     
-    public void mensajeRecibido(int tipo, Serializable mensaje){
+    public synchronized void mensajeRecibido(int tipo, Serializable mensaje){
         //TODO Este método se invoca cuando se recibe un mensaje
+        if (tipo>=0){
+            MensajeChat m=(MensajeChat)mensaje;
+            modelo.addmensajechat(m.get_men());
+        }
     }
 
 }

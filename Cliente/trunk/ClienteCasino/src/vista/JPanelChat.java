@@ -18,6 +18,7 @@ public class JPanelChat extends JPanel{
 
     static String BLOQUEO = "BloqueoChat";
     static String DESBLOQUEO = "DesbloqueoChat";
+    String Texto ="";
 
     public JButton getBotonBloquear() {
         return botonBloquear;
@@ -48,7 +49,9 @@ public class JPanelChat extends JPanel{
     }
 
     public void setAreaTextoChat(String text) {
-        this.areaTextoChat.setText(text);
+         Texto=Texto+text;
+        this.areaTextoChat.setText(Texto);
+        //this.areaTextoChat.setText(text);
     }
 
     private javax.swing.JTextArea areaTextoChat;

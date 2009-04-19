@@ -56,6 +56,8 @@ public class VistaCliente extends JFrame implements Observer  {
         setSize(1024,768);		
         setResizable(false);
         getContentPane().setBackground(new Color(18,113,4));
+        //Añadimos los observables
+        controlador.getModelo().addObserver(this);
      }
      
      private void inicializar() {
@@ -207,6 +209,11 @@ public class VistaCliente extends JFrame implements Observer  {
      public void update(Observable o, Object arg) {
         //if(obj instanceof
         //Hacer lo que sea.
+         //Actualizamos el chat si llega algun mensaje,
+         String mensaje="Escrito por el usuario: "+controlador.getModelo().getUsuario()+" con id: "+ controlador.getJugador().getId()+ "\n"+
+                            controlador.getModelo().getmensajechat()+"\n";
+         PanelChat.setAreaTextoChat(mensaje);
+
     }
 
     class OyenteCantidadApuesta implements ItemListener{
@@ -241,7 +248,7 @@ public class VistaCliente extends JFrame implements Observer  {
         PanelChat.getBotonEnviar().setVisible(false);
         PanelChat.getTextfieldFrase().setVisible(false);
         PanelChat.getListaUsuarios().setVisible(false);
-        controlador.inhabilitarChat();
+        //controlador.inhabilitarChat();
     }
 
     private void desbloqueoChat(){
@@ -251,7 +258,7 @@ public class VistaCliente extends JFrame implements Observer  {
         PanelChat.getBotonEnviar().setVisible(true);
         PanelChat.getTextfieldFrase().setVisible(true);
         PanelChat.getListaUsuarios().setVisible(true);
-        controlador.habilitarChat();
+        //controlador.habilitarChat();
 
     }
     class OyenteApostar implements ActionListener{
@@ -327,13 +334,13 @@ public class VistaCliente extends JFrame implements Observer  {
     private void salir() {
         if (JOptionPane.showConfirmDialog(this,"¿Desea abandonar el juego?",
                 "Cierre del juego",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION){
-            //try{
+            try{
 				if(controlador.desconectar())
-					controlador.desconectarCliente();/**
+					controlador.desconectarCliente();
 			}
             catch (IOException e1) {
                 e1.printStackTrace();
-			}*/
+			}
             System.exit(0);
         }
     }

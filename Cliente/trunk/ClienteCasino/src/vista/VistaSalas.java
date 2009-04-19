@@ -102,6 +102,7 @@ public class VistaSalas  extends JFrame implements Observer{
             nuevaSala.setPreferredSize(new Dimension(114,86));            
             nuevaSala.setName("Sala"+i);
             jSalas.add(nuevaSala);
+            nuevaSala.addActionListener(new OyenteSalas());
         }
 
     }
@@ -132,7 +133,7 @@ public class VistaSalas  extends JFrame implements Observer{
                 "Cierre del juego",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
             //try {
 				if(controlador.desconectar()){
-					controlador.desconectarCliente();
+					//controlador.desconectarCliente();
                     System.exit(0);
                 }/**
 			}

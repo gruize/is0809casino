@@ -45,8 +45,7 @@ public class VistaLogin extends JFrame {
     class OyenteEnviarMensajeLogin implements ActionListener{
         public void actionPerformed(ActionEvent e) {
            //TODO: Quitar el comentario y revisar el metodo.
-            if (//controlador.conectar(PanelLogin.getUsuario(), PanelLogin.getPassword())) {
-                    true){
+            if (controlador.conectar(PanelLogin.getUsuario(), PanelLogin.getPassword())){
               System.out.println("conectado");
               dispose();
               VistaSalas vistaSala = new VistaSalas(controlador);
