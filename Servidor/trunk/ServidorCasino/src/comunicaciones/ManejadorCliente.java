@@ -69,6 +69,7 @@ public class ManejadorCliente implements Runnable {
     public synchronized boolean enviarMensaje (MensajeComunicaciones mensaje) {
         try {
             // Si se está conectado
+            _conectado=true;
             if (_conectado){
                 // Se envía el mensaje
                 _salida.flush();
