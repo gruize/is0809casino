@@ -9,6 +9,7 @@ import comunicaciones.Comunicador;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.swing.DefaultListModel;
+import modelo.GestorChatServidor;
 import modelo.MensajeChat;
 import modelo.ModeloServidor; 
 
@@ -24,6 +25,8 @@ public class ControladorServidor {
     public ControladorServidor(ModeloServidor modeloServidor) {
         modelo = modeloServidor;
         comunicador = new Comunicador(this);
+        GestorChatServidor chat = new GestorChatServidor(this);
+        chat.run();
     }
 
     public void cerrarConexion() throws IOException {
@@ -65,12 +68,19 @@ public class ControladorServidor {
     public void verEstadisticas(String usuario) {
         modelo.verEstadisticas(usuario);
     }
-    
+     public void enviarMensajeChat(int id,MensajeChat mensaje) {
+        comunicador.enviarMensaje(id,mensaje);
+    }
+
     public void mensajeRecibido(int tipo, Serializable mensaje){
         //TODO Este método se invoca cuando se recibe un mensaje
         if (tipo==1){
             MensajeChat mensajeChat = ((MensajeChat)mensaje);
+            GestorChatServidor.getInstance(this).dejamensaje(mensajeChat);
             System.out.println(mensajeChat.get_men());
+            if(comunicador.enviarMensaje(mensajeChat.get_tio(), mensaje)){
+                System.out.println("y devuelto al emisor");
+            }
         }
     }
 

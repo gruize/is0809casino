@@ -102,7 +102,7 @@ public class Comunicador extends Thread{
         temp.setDestino(identificador); 
         temp.setTipo(0);
         temp.setMensaje(mensaje);
-        if (destino != null && destino.isConectado()){
+        if (destino != null /*&& destino.isConectado()*/){
             return destino.enviarMensaje(temp);
         }
         else return false;
