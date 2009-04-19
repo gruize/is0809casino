@@ -25,7 +25,7 @@ public class VistaLogin extends JFrame {
         inicializar();
         ponerOyentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(332,174);
+        setSize(332,194);
         setLocation(400,300);
 		setVisible(true);
         setResizable(false); 
@@ -45,7 +45,8 @@ public class VistaLogin extends JFrame {
     class OyenteEnviarMensajeLogin implements ActionListener{
         public void actionPerformed(ActionEvent e) {
            //TODO: Quitar el comentario y revisar el metodo.
-            if (controlador.conectar(PanelLogin.getUsuario(), PanelLogin.getPassword())) {
+            if (//controlador.conectar(PanelLogin.getUsuario(), PanelLogin.getPassword())) {
+                    true){
               System.out.println("conectado");
               dispose();
               VistaSalas vistaSala = new VistaSalas(controlador);

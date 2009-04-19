@@ -10,6 +10,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -20,6 +21,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneLayout;
 
 /**
  *
@@ -34,6 +37,7 @@ public class VistaSalas  extends JFrame implements Observer{
     private OyenteRefrescar oyenteRefrescar;
     private OyenteSalir oyenteSalir;
     private ControladorCliente controlador;
+    private JScrollPane scroll;
 
     public VistaSalas(ControladorCliente control) {
         super("Salas disponibles en el casino");
@@ -41,24 +45,35 @@ public class VistaSalas  extends JFrame implements Observer{
         inicializar();
         agregarOyentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1024,768);
+        setLocation(300,200);
+        setSize(500,500);
 		setVisible(true);
         setResizable(false);
     }
 
     public void inicializar() {
+         Color colorCasino = new Color(18,113,4);
          setLayout(new BorderLayout());
          jBotones = new JPanel();
+         jBotones.setBackground(colorCasino);
          jSalas = new JPanel();
          jRefrescar = new JButton("Actualizar");
          jSalir = new JButton("Salir");
          jBotones.add(jRefrescar);
          jBotones.add(jSalir);
-         jSalas.setBackground(Color.BLACK);
-         jSalas.setLayout(new FlowLayout(FlowLayout.LEFT));
+         jSalas.setBackground(Color.BLACK);         
          add(jBotones,BorderLayout.NORTH);
          add(jSalas,BorderLayout.CENTER);
-         rellenarSalas();
+         jSalas.setBackground(Color.BLACK);
+         jSalas.setSize(100,100);
+         jSalas.setPreferredSize(new Dimension(100,100));
+         scroll = new JScrollPane();
+         scroll.setBackground(Color.PINK);
+         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+         scroll.getViewport().setView(jSalas);
+         add(scroll,BorderLayout.CENTER);
+         rellenarSalas(50);
     }
 
     public void agregarOyentes() {
@@ -68,7 +83,7 @@ public class VistaSalas  extends JFrame implements Observer{
         jSalir.addActionListener(oyenteSalir);
     }
 
-    public void rellenarSalas() {
+    public void rellenarSalas(int numeroSalas) {
         //Preguntar al controlador por el numero de salas que hay
         //El controlador manda un mensaje al servidor
         //El servidor le comunica los datos de las salas
@@ -77,17 +92,16 @@ public class VistaSalas  extends JFrame implements Observer{
         /**
          * Eliminar todas las salas existentes y visibles
          */
-        jSalas.removeAll();
+         jSalas.removeAll();
         /**
          * Generar todas las nuevas salas.
          */
         //int numeroSalas = controlador.getNumeroSalas();
-        int numeroSalas = 10;
         for(int i=0; i < numeroSalas; i++) {
             JButton nuevaSala = new JButton(new ImageIcon("./recursos/ruletaSala.jpg"));
-            nuevaSala.setPreferredSize(new Dimension(114,86));
+            nuevaSala.setPreferredSize(new Dimension(114,86));            
+            nuevaSala.setName("Sala"+i);
             jSalas.add(nuevaSala);
-            nuevaSala.addActionListener(new OyenteSalas());
         }
 
     }
@@ -101,7 +115,7 @@ public class VistaSalas  extends JFrame implements Observer{
              * El servidor le comunica los datos de las salas
              * Se recibe el mensaje y se cambiaria el estado de la vista
              */
-            rellenarSalas();
+            rellenarSalas(3);
         }
     }
 
@@ -116,15 +130,15 @@ public class VistaSalas  extends JFrame implements Observer{
     private void salir() {
         if (JOptionPane.showConfirmDialog(this,"¿Desea abandonar el juego?",
                 "Cierre del juego",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
-            try {
+            //try {
 				if(controlador.desconectar()){
 					controlador.desconectarCliente();
                     System.exit(0);
-                }
+                }/**
 			}
             catch (IOException e1) {
                 e1.printStackTrace();
-			}
+			}*/
             
 
     }
@@ -135,6 +149,7 @@ public class VistaSalas  extends JFrame implements Observer{
            System.out.println("OK oyente");
            dispose();
            VistaMesas vistaMesas = new VistaMesas(controlador);
+
         }
 
     }

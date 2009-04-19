@@ -16,6 +16,9 @@ import javax.swing.JTextField;
  */
 public class JPanelChat extends JPanel{
 
+    static String BLOQUEO = "BloqueoChat";
+    static String DESBLOQUEO = "DesbloqueoChat";
+
     public JButton getBotonBloquear() {
         return botonBloquear;
     }
@@ -58,7 +61,7 @@ public class JPanelChat extends JPanel{
     private javax.swing.JTextField textfieldFrase;
 
     public JPanelChat(){
-        
+
         textfieldFrase = new javax.swing.JTextField();
         botonEnviar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -66,8 +69,10 @@ public class JPanelChat extends JPanel{
         areaTextoChat = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         listaUsuarios = new javax.swing.JList();
-        botonBloquear = new javax.swing.JButton();
 
+        botonBloquear = new javax.swing.JButton();
+        botonBloquear.setText("Bloquear");
+        botonBloquear.setActionCommand(BLOQUEO);
 
         botonEnviar.setText("Enviar");
 
@@ -78,7 +83,7 @@ public class JPanelChat extends JPanel{
 
         jScrollPane2.setViewportView(listaUsuarios);
 
-        botonBloquear.setText("Bloquear");
+
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

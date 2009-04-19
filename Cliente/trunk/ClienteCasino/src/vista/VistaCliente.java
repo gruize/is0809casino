@@ -19,6 +19,7 @@ import java.awt.event.WindowEvent;
 import java.util.Observer;
 import java.util.Observable;
 import controlador.ControladorCliente;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
@@ -54,14 +55,27 @@ public class VistaCliente extends JFrame implements Observer  {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1024,768);		
         setResizable(false);
+        getContentPane().setBackground(new Color(18,113,4));
      }
+     
      private void inicializar() {
 
+         Color colorCasino = new Color(18,113,4);
          PanelUsuarios = new JPanelUsuarios(controlador);
+         PanelUsuarios.setBackground(colorCasino);
+
          PanelRuleta = new JPanelRuleta();
+
          PanelApuestas = new JPanelApuestas(controlador);
+         PanelApuestas.setBackground(colorCasino);
+
          PanelChat = new JPanelChat();
+         PanelChat.setBackground(colorCasino);
+
          PanelCjtoApuestas = new JPanelCjtoApuestas(controlador);
+         PanelCjtoApuestas.setBackground(colorCasino);
+
+
      
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,19 +126,13 @@ public class VistaCliente extends JFrame implements Observer  {
      }
      
      private void ponerOyentes() {
-       bloquearChat = new OyenteBloquearChat();
-       apostar = new OyenteApostar();
-       enviarMensajeChat = new OyenteEnviarMensajeChat();
-       listaJugadores = new OyenteListaJugadores();
-       mensajesChat = new OyenteChat();
+
+       ponerOyentesChat();
+       apostar = new OyenteApostar();      
        cerrarVentana = new OyenteCerrarVentana();
        valoresApuesta = new OyenteValoresApuesta();
        cantidadApuesta = new OyenteCantidadApuesta();
-
-       PanelChat.getBotonBloquear().addActionListener(bloquearChat);
-       PanelChat.getBotonEnviar().addActionListener(enviarMensajeChat);
-       //TODO: Elegir una de las dos lista de jugadores, ya que se repitan es inncecesario y antiestetico.
-       PanelChat.getListaUsuarios().addListSelectionListener(listaJugadores);
+       
        PanelUsuarios.getUsuarios().addListSelectionListener(listaJugadores);
        PanelApuestas.getBotonApostar().addActionListener(apostar);
 
@@ -184,7 +192,17 @@ public class VistaCliente extends JFrame implements Observer  {
        addWindowListener(cerrarVentana);
      }
         
+     private void ponerOyentesChat(){
+        bloquearChat = new OyenteBloquearChat();
+        enviarMensajeChat = new OyenteEnviarMensajeChat();
+        mensajesChat = new OyenteChat();
+        listaJugadores = new OyenteListaJugadores();
 
+        PanelChat.getBotonBloquear().addActionListener(bloquearChat);
+        PanelChat.getBotonEnviar().addActionListener(enviarMensajeChat);
+        //TODO: Elegir una de las dos lista de jugadores, ya que se repitan es inncecesario y antiestetico.
+        PanelChat.getListaUsuarios().addListSelectionListener(listaJugadores);
+     }
 
      public void update(Observable o, Object arg) {
         //if(obj instanceof
@@ -203,15 +221,39 @@ public class VistaCliente extends JFrame implements Observer  {
     class OyenteBloquearChat implements ActionListener{
 
         public void actionPerformed(ActionEvent e) {
-            if(JOptionPane.showConfirmDialog(PanelChat, "Confirme que desea bloquear el chat", "Bloqueo del Chat", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION){
-                //PanelChat.setVisible(false);
-                //IMPLEMENTAR OTRA SOLUCION!!!!
-                //TODO: Añadir un boton de Desbloqueo para el chat.
+            if(e.getActionCommand().equals(PanelChat.BLOQUEO)){
+                if(JOptionPane.showConfirmDialog(PanelChat, "Confirme que desea bloquear el chat", "Bloqueo del Chat", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION){
+                    bloqueoChat();
+                }
+            }else{
+                if(JOptionPane.showConfirmDialog(PanelChat, "Confirme que desea desbloquear el chat", "Desbloqueo del Chat", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION){
+                    desbloqueoChat();
+                }
             }
         }
 
     }
 
+    private void bloqueoChat(){
+        PanelChat.getBotonBloquear().setActionCommand(PanelChat.DESBLOQUEO);
+        PanelChat.getBotonBloquear().setText("Desbloquear");
+        PanelChat.getAreaTextoChat().setVisible(false);
+        PanelChat.getBotonEnviar().setVisible(false);
+        PanelChat.getTextfieldFrase().setVisible(false);
+        PanelChat.getListaUsuarios().setVisible(false);
+        controlador.inhabilitarChat();
+    }
+
+    private void desbloqueoChat(){
+        PanelChat.getBotonBloquear().setActionCommand(PanelChat.BLOQUEO);
+        PanelChat.getBotonBloquear().setText("Bloquear");
+        PanelChat.getAreaTextoChat().setVisible(true);
+        PanelChat.getBotonEnviar().setVisible(true);
+        PanelChat.getTextfieldFrase().setVisible(true);
+        PanelChat.getListaUsuarios().setVisible(true);
+        controlador.habilitarChat();
+
+    }
     class OyenteApostar implements ActionListener{
 
         public void actionPerformed(ActionEvent e) {
@@ -284,16 +326,16 @@ public class VistaCliente extends JFrame implements Observer  {
 
     private void salir() {
         if (JOptionPane.showConfirmDialog(this,"¿Desea abandonar el juego?",
-                "Cierre del juego",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
-            try {
+                "Cierre del juego",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION){
+            //try{
 				if(controlador.desconectar())
-					controlador.desconectarCliente();
+					controlador.desconectarCliente();/**
 			}
             catch (IOException e1) {
                 e1.printStackTrace();
-			}
+			}*/
             System.exit(0);
-
+        }
     }
 
     private void reinicializarValores() {
