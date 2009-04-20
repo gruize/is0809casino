@@ -40,8 +40,7 @@ public class Prueba {
                 ModeloServidor modelo = new ModeloServidor();
                 ControladorServidor controlador = new ControladorServidor(modelo);
 				VistaServidor vista = new VistaServidor(controlador);
-                controlador.mensajeRecibido(2, new MensajeJugada(1,1,new Jugada(1,1,"numero",1,1)));
-			}
+                }
 		});
 
 	}
