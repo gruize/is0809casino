@@ -7,6 +7,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Vector;
 
 
 public class Comunicador extends Thread{
@@ -71,9 +72,13 @@ public class Comunicador extends Thread{
                 try {
                     _entrada = new ObjectInputStream(_escucha.getInputStream());
                     _salida = new ObjectOutputStream(_escucha.getOutputStream());
+                    Vector<String> datos = new Vector<String>();
                     String usuario = _entrada.readUTF();
                     String password = _entrada.readUTF();
                     System.out.println("Usuario: " + usuario + " Password: " + password);
+                    datos.add(usuario);
+                    datos.add(password);
+                    _controlador.mensajeRecibido(69,datos);
                     identificador++; // Aquí se solicitará el número identificador de usuario
                     _salida.flush();
                     _salida.writeUTF(Integer.toString(identificador));
@@ -109,4 +114,5 @@ public class Comunicador extends Thread{
     }
 
 }
+
 

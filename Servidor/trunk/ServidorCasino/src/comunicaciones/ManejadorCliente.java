@@ -35,6 +35,7 @@ public class ManejadorCliente implements Runnable {
         this._cliente = cliente;
         this._entrada = in;
         this._salida = out;
+        this._conectado = true;
     }
 
  
@@ -69,7 +70,6 @@ public class ManejadorCliente implements Runnable {
     public synchronized boolean enviarMensaje (MensajeComunicaciones mensaje) {
         try {
             // Si se está conectado
-            _conectado=true;
             if (_conectado){
                 // Se envía el mensaje
                 _salida.flush();
