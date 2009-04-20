@@ -63,10 +63,10 @@ public class GestorUsuarios {
     
     public boolean agregarJugador(int jugador) {
         boolean correcto = true;
-        if (!jugadorMesa.containsKey(jugador))
+        /*if (!jugadorMesa.containsKey(jugador))
             jugadorMesa.put(jugador,null);
         else
-            correcto = false;
+            correcto = false;*/
         return correcto;
     }
 
@@ -87,11 +87,12 @@ public class GestorUsuarios {
         //cosulta a la base de datos comprobando usuario y password y
         //obteniendo la clave autonumerica del usuario.
         //Sino existe el usuario => resultado = -1
-        int id = 0; //Asignar la clave autonumerica obtenida en consulta anterior
-
+        int id = 1; //Asignar la clave autonumerica obtenida en consulta anterior
+        //hasta que me ponga con la bbdd el identificador es aleatorio
+        int aleatorio = (int)(Math.random()*100);
         //Si el jugador ya esta conectado devuelve resultado = 0
         if (jugadorMesa.containsKey(id))
-            resultado = 0;
-        return resultado;
+            resultado = -1;
+        return aleatorio;
     }
 }
