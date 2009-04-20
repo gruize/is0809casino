@@ -102,13 +102,13 @@ public class VistaMesas extends JFrame implements Observer{
             if (i < 10){
                 nuevaMesa = new JButtonMesa("Mesa0"+i,1,1,1);
                 nuevaMesa.setActionCommand("Mesa0"+i);
-                nuevaMesa.setSize(118, 114);
                 nuevaMesa.setIcon(new ImageIcon("./recursos/mesas.jpg"));
+                nuevaMesa.setBorder(null);
             }else{
                 nuevaMesa = new JButtonMesa("Mesa"+i,1,1,1);
                 nuevaMesa.setActionCommand("Mesa"+i);
-                nuevaMesa.setSize(118, 114);
                 nuevaMesa.setIcon(new ImageIcon("./recursos/mesas.jpg"));
+                nuevaMesa.setBorder(null);                
             }
             jMesas.add(nuevaMesa);
             nuevaMesa.addActionListener(new OyenteMesas());

@@ -68,8 +68,7 @@ public class VistaSalas  extends JFrame implements Observer{
 
          jSalas = new JPanel();
          jSalas.setLayout(new GridLayout(0, 8));
-         jSalas.setBackground(Color.BLACK);
-         jSalas.setPreferredSize(new Dimension(114,86));
+         jSalas.setBackground(Color.BLACK);         
          jSalas.setBackground(Color.BLACK);
          scroll = new JScrollPane();
          scroll.setBackground(Color.PINK);
@@ -115,23 +114,25 @@ public class VistaSalas  extends JFrame implements Observer{
          */
         //int numeroSalasRuleta = controlador.getNumeroSalasRuleta();
         //int numeroSalasDados = controlador.getNumeroSalasDados();
-        int numeroSalasRuleta = 6;
+        int numeroSalasRuleta = 16;
         int numeroSalasDados = 1;
         for(int i=0; i < numeroSalasRuleta; i++) {
             JButton nuevaSala = new JButton(new ImageIcon("./recursos/ruletaSala.jpg"));
             nuevaSala.setPreferredSize(new Dimension(114,86));            
             nuevaSala.setName("SalaRuleta"+i);
             nuevaSala.setActionCommand("SalaRuleta"+i);
-            jSalas.add(nuevaSala);
             nuevaSala.addActionListener(new OyenteSalas());
+            nuevaSala.setBorder(null);
+            jSalas.add(nuevaSala);            
         }        
         for(int i=0; i < numeroSalasDados; i++) {
             JButton nuevaSala = new JButton(new ImageIcon("./recursos/dadosSala.jpg"));
             nuevaSala.setPreferredSize(new Dimension(114,86));
             nuevaSala.setName("SalaDados"+i);
             nuevaSala.setActionCommand("SalaDados"+i);
-            jSalas.add(nuevaSala);
             nuevaSala.addActionListener(new OyenteSalas());
+            nuevaSala.setBorder(null);
+            jSalas.add(nuevaSala);
         }
 
     }

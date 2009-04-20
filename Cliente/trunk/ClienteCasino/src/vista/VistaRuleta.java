@@ -32,7 +32,6 @@ import javax.swing.event.ListSelectionListener;
 
 public class VistaRuleta extends JFrame implements Observer  {
 
-        private JLabel tapete;
         private ControladorCliente controlador;
         private JPanelChat PanelChat;
         private JPanelApuestas PanelApuestas;
@@ -46,7 +45,7 @@ public class VistaRuleta extends JFrame implements Observer  {
         private OyenteChat mensajesChat;
         private OyenteCerrarVentana cerrarVentana;
         private OyenteValoresApuesta valoresApuesta;
-        private OyenteCantidadApuesta cantidadApuesta;
+        private OyenteCantidadApuesta cantidadApuesta;       
 
      public VistaRuleta(ControladorCliente control) {
         super("Cliente Casino");
@@ -55,19 +54,15 @@ public class VistaRuleta extends JFrame implements Observer  {
         ponerOyentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1024,768);		
-        setResizable(false);
-        ImageIcon imagen = new ImageIcon("./recursos/TapeteCasinoAzul.jpg");
-        tapete = new JLabel();
-        tapete.setSize(1080,800);
-        tapete.setLocation(0,0);
-        add(tapete);
+        setResizable(false);      
         //Añadimos los observables
         //controlador.getModelo().addObserver(this);
      }
-     
+
      private void inicializar() {
 
          Color colorCasino = new Color(0,0,0);
+                  
 
          PanelUsuarios = new JPanelUsuarios(controlador);
          PanelUsuarios.setBackground(colorCasino);
@@ -83,7 +78,7 @@ public class VistaRuleta extends JFrame implements Observer  {
          PanelCjtoApuestas = new JPanelCjtoApuestas(controlador);
          PanelCjtoApuestas.setBackground(colorCasino);
 
-
+         
      
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,6 +120,7 @@ public class VistaRuleta extends JFrame implements Observer  {
         );
 
      pack();
+
      add(PanelApuestas);
      add(PanelChat);
      add(PanelRuleta);
