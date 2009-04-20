@@ -10,6 +10,8 @@ package vista;
  * @author david
  */
 
+import java.awt.Component;
+import java.awt.Graphics;
 import java.awt.event.ItemEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -28,9 +30,9 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-public class VistaCliente extends JFrame implements Observer  {
+public class VistaRuleta extends JFrame implements Observer  {
 
-        private String idSalaMesa;
+        private JLabel tapete;
         private ControladorCliente controlador;
         private JPanelChat PanelChat;
         private JPanelApuestas PanelApuestas;
@@ -46,23 +48,27 @@ public class VistaCliente extends JFrame implements Observer  {
         private OyenteValoresApuesta valoresApuesta;
         private OyenteCantidadApuesta cantidadApuesta;
 
-     public VistaCliente(ControladorCliente control,String salamesa) {
+     public VistaRuleta(ControladorCliente control) {
         super("Cliente Casino");
         controlador = control;
-        idSalaMesa = salamesa;
         inicializar();
         ponerOyentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1024,768);		
         setResizable(false);
-        getContentPane().setBackground(new Color(18,113,4));
+        ImageIcon imagen = new ImageIcon("./recursos/TapeteCasinoAzul.jpg");
+        tapete = new JLabel();
+        tapete.setSize(1080,800);
+        tapete.setLocation(0,0);
+        add(tapete);
         //Añadimos los observables
-        controlador.getModelo().addObserver(this);
+        //controlador.getModelo().addObserver(this);
      }
      
      private void inicializar() {
 
-         Color colorCasino = new Color(18,113,4);
+         Color colorCasino = new Color(0,0,0);
+
          PanelUsuarios = new JPanelUsuarios(controlador);
          PanelUsuarios.setBackground(colorCasino);
 

@@ -9,6 +9,7 @@ import controlador.ControladorCliente;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -16,10 +17,12 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -27,13 +30,17 @@ import javax.swing.JPanel;
  */
 public class VistaMesas extends JFrame implements Observer{
 
-    private int sala;
     private JPanel jBotones;
     private JPanel jMesas;
+    private JPanel jEntrada;
     private JButton jRefrescar;
     private JButton jSalir;
+    private JButton jEntrar;
+    private JTextArea jUsuarios;
+    private JTextArea jApuestaMin;
     private OyenteRefrescar oyenteRefrescar;
     private OyenteSalir oyenteSalir;
+    private OyenteEntrar oyenteEntrar;
     private ControladorCliente controlador;
 
     public VistaMesas(ControladorCliente control) {
@@ -50,23 +57,37 @@ public class VistaMesas extends JFrame implements Observer{
       public void inicializar() {
          setLayout(new BorderLayout());
          jBotones = new JPanel();
-         jMesas = new JPanel();
          jRefrescar = new JButton("Actualizar");
          jSalir = new JButton("Salir");
          jBotones.add(jRefrescar);
          jBotones.add(jSalir);
-         jMesas.setBackground(Color.BLACK);
-         jMesas.setLayout(new FlowLayout(FlowLayout.LEFT));
          add(jBotones,BorderLayout.NORTH);
+
+         jMesas = new JPanel();
+         jMesas.setBackground(Color.BLACK);
+         jMesas.setLayout(new GridLayout(0, 8));
          add(jMesas,BorderLayout.CENTER);
+
+         jEntrada = new JPanel();
+         jUsuarios = new JTextArea("Usuarios conectados");
+         jApuestaMin = new JTextArea("Apuesta minima");
+         jEntrar = new JButton("Entrar");
+         jEntrar.setEnabled(false);
+         jEntrada.add(jUsuarios);
+         jEntrada.add(jApuestaMin);
+         jEntrada.add(jEntrar);
+         add(jEntrada,BorderLayout.SOUTH);
+
          rellenarMesas();
     }
 
     public void agregarOyentes() {
         oyenteRefrescar = new OyenteRefrescar();
         oyenteSalir = new OyenteSalir();
+        oyenteEntrar = new OyenteEntrar();
         jRefrescar.addActionListener(oyenteRefrescar);
         jSalir.addActionListener(oyenteSalir);
+        jEntrar.addActionListener(oyenteEntrar);
     }
 
     public void rellenarMesas() {
@@ -74,15 +95,20 @@ public class VistaMesas extends JFrame implements Observer{
          * Mismo proceso que con las salas
          */
         jMesas.removeAll();
-        int mesas = controlador.getNumeroMesas(sala);
+        //int mesas = controlador.getNumeroMesas(sala);
+        int mesas = 10;
         for(int i=0;i<mesas;i++) {
             JButtonMesa nuevaMesa;
             if (i < 10){
                 nuevaMesa = new JButtonMesa("Mesa0"+i,1,1,1);
-                nuevaMesa.setActionCommand("Sala"+sala+"Mesa0"+i);
+                nuevaMesa.setActionCommand("Mesa0"+i);
+                nuevaMesa.setSize(118, 114);
+                nuevaMesa.setIcon(new ImageIcon("./recursos/mesas.jpg"));
             }else{
                 nuevaMesa = new JButtonMesa("Mesa"+i,1,1,1);
-                nuevaMesa.setActionCommand("Sala"+sala+"Mesa"+i);
+                nuevaMesa.setActionCommand("Mesa"+i);
+                nuevaMesa.setSize(118, 114);
+                nuevaMesa.setIcon(new ImageIcon("./recursos/mesas.jpg"));
             }
             jMesas.add(nuevaMesa);
             nuevaMesa.addActionListener(new OyenteMesas());
@@ -128,14 +154,22 @@ public class VistaMesas extends JFrame implements Observer{
     class OyenteMesas implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            dispose();
-            String idsalamesa = e.getActionCommand();
-            VistaCliente vistaCliente = new VistaCliente(controlador,idsalamesa);
-            vistaCliente.setVisible(true);
+            jUsuarios.setText("Usuarios conectados en la" + e.getActionCommand());
+            jApuestaMin.setText("Apuesta minima necesaria en la " + e.getActionCommand());
+            jEntrar.setEnabled(true);
         }
 
     }
 
+    class OyenteEntrar implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+            VistaRuleta vistaRuleta = new VistaRuleta(controlador);
+            vistaRuleta.setVisible(true);
+        }
+
+    }
     public void update(Observable o, Object arg) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
