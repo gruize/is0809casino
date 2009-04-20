@@ -13,7 +13,9 @@ import modelo.GestorChatServidor;
 import modelo.MensajeChat;
 import modelo.ModeloServidor; 
 import modelo.GestorJuegosServidor;
+import modelo.GestorUsuarios;
 import modelo.MensajeJugada;
+import java.util.Vector;
 /**
  *
  * @author Fiutten
@@ -72,7 +74,14 @@ public class ControladorServidor {
      public void enviarMensajeChat(int id,MensajeChat mensaje) {
         comunicador.enviarMensaje(id,mensaje);
     }
-
+    public int Login(Serializable mensaje){
+        Vector<String> datos=(Vector<String>)mensaje;
+        int id = GestorUsuarios.getInstancia().hacerLogin(datos.firstElement(), datos.lastElement());
+        if(id!=-1){
+                GestorUsuarios.getInstancia().agregarJugador(id);
+        }
+        return id;
+    }
     public void mensajeRecibido(int tipo, Serializable mensaje){
         //TODO Este método se invoca cuando se recibe un mensaje
         if (tipo==1){
