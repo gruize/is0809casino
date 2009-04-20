@@ -78,8 +78,7 @@ public class Comunicador extends Thread{
                     System.out.println("Usuario: " + usuario + " Password: " + password);
                     datos.add(usuario);
                     datos.add(password);
-                    _controlador.mensajeRecibido(69,datos);
-                    identificador++; // Aquí se solicitará el número identificador de usuario
+                    identificador=_controlador.Login(datos);
                     _salida.flush();
                     _salida.writeUTF(Integer.toString(identificador));
                     _salida.flush();
