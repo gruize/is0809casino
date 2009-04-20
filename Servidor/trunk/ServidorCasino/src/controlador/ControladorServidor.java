@@ -29,7 +29,8 @@ public class ControladorServidor {
         modelo = modeloServidor;
         comunicador = new Comunicador(this);
         GestorChatServidor chat = new GestorChatServidor(this);
-        chat.run();
+        chat.start();
+        GestorJuegosServidor.getInstance(this).start();
     }
 
     public void cerrarConexion() throws IOException {
@@ -74,6 +75,9 @@ public class ControladorServidor {
      public void enviarMensajeChat(int id,MensajeChat mensaje) {
         comunicador.enviarMensaje(id,mensaje);
     }
+     public void enviarMensajeJugada(int id,MensajeJugada mensaje){
+       comunicador.enviarMensaje(id,mensaje);
+        }
     public int Login(Serializable mensaje){
         Vector<String> datos=(Vector<String>)mensaje;
         int id = GestorUsuarios.getInstancia().hacerLogin(datos.firstElement(), datos.lastElement());
@@ -90,14 +94,13 @@ public class ControladorServidor {
             System.out.println(mensajeChat.get_men());
             if(comunicador.enviarMensaje(mensajeChat.get_tio(), mensaje)){
                 System.out.println("y devuelto al emisor");
-            }
+            }}
             else if (tipo==2){
                 MensajeJugada  mensajeJugada=((MensajeJugada )mensaje);
                 GestorJuegosServidor.getInstance(this).dejamensaje(mensajeJugada);
-                System.out.println(mensajeChat.get_men());
                 //TODO Devolver la confirmacion de la jugada
             }
         }
-    }
+    
 
 }

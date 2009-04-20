@@ -5,6 +5,7 @@
 
 package modelo;
 
+import modelo.GestorJuegosServidor;
 import java.io.IOException;
 import java.util.Observable;
 import javax.swing.DefaultListModel;
@@ -41,14 +42,16 @@ public class ModeloServidor extends Observable {
     }
 
     public DefaultListModel getListaMesas() {
-        GestorJuegos g=GestorJuegos.getInstancia();
-        return g.getMesas();
+        DefaultListModel lista = new DefaultListModel();
+        lista.addElement("MESA 1");
+        return lista;
 
     }
 
     public DefaultListModel getListaSalas() {
-        GestorJuegos g=GestorJuegos.getInstancia();
-        return g.getSalas();
+       DefaultListModel lista = new DefaultListModel();
+        lista.addElement("Sala Ruleta");
+        return lista;
     }
 
     public void mostrarJugadoresAsociados(String mesa) {

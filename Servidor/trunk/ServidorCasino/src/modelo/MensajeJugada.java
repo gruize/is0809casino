@@ -5,7 +5,6 @@
 
 package modelo;
 import java.io.Serializable;
-import modelo.LogicaJuegos.Jugada;
 /**
  *
  * @author Administrador
@@ -14,8 +13,11 @@ public class MensajeJugada implements Serializable{
     private int usuario;
     private int mesa;
     private Jugada jugada;
-    MensajeJugada(MensajeJugada firstElement) {
-       
+
+    MensajeJugada(MensajeJugada j) {
+       this.usuario = j.usuario;
+        this.mesa = j.mesa;
+        this.jugada = j.jugada;
     }
 
     public MensajeJugada(int usuario, int mesa, Jugada jugada) {

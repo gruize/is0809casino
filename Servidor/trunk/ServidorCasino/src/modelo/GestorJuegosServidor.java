@@ -41,10 +41,7 @@ public class GestorJuegosServidor extends Thread {
 
     public void run() {
         try {
-            MensajeJugada recibido, enviar, aux;
-            ArrayList<Integer> tios = new ArrayList<Integer>();
-            usuarios = GestorUsuarios.getInstancia();
-            int mesa = 0;
+            MensajeJugada recibido;
             while (true) {
                 if (!cola.isEmpty()) {
                     recibido = new MensajeJugada(cola.firstElement());
@@ -58,8 +55,8 @@ public class GestorJuegosServidor extends Thread {
         }
     }
 
-    public DefaultListModel getMesas() {
-        return gestorSalas.getListaMesas();
+    public DefaultListModel getMesas(int i) {
+        return gestorSalas.getListaMesas(i);
     }
 
     public DefaultListModel getSalas() {

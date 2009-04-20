@@ -5,6 +5,8 @@
 
 package modelo.LogicaJuegos;
 
+import modelo.Jugada;
+
 /**
  *
  * @author Jaime Guimera
