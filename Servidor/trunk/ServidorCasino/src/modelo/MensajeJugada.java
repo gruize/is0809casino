@@ -1,0 +1,53 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package modelo;
+import java.io.Serializable;
+import modelo.LogicaJuegos.Jugada;
+/**
+ *
+ * @author Administrador
+ */
+public class MensajeJugada implements Serializable{
+    private int usuario;
+    private int mesa;
+    private Jugada jugada;
+    MensajeJugada(MensajeJugada firstElement) {
+       
+    }
+
+    public MensajeJugada(int usuario, int mesa, Jugada jugada) {
+        this.usuario = usuario;
+        this.mesa = mesa;
+        this.jugada = jugada;
+    }
+
+    public Jugada getJugada() {
+        return jugada;
+    }
+
+    public void setJugada(Jugada jugada) {
+        this.jugada = jugada;
+    }
+
+    public int getMesa() {
+        return mesa;
+    }
+
+    public void setMesa(int mesa) {
+        this.mesa = mesa;
+    }
+
+    public int getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(int usuario) {
+        this.usuario = usuario;
+    }
+
+}
+
+

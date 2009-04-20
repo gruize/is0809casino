@@ -12,7 +12,8 @@ import javax.swing.DefaultListModel;
 import modelo.GestorChatServidor;
 import modelo.MensajeChat;
 import modelo.ModeloServidor; 
-
+import modelo.GestorJuegosServidor;
+import modelo.MensajeJugada;
 /**
  *
  * @author Fiutten
@@ -80,6 +81,12 @@ public class ControladorServidor {
             System.out.println(mensajeChat.get_men());
             if(comunicador.enviarMensaje(mensajeChat.get_tio(), mensaje)){
                 System.out.println("y devuelto al emisor");
+            }
+            else if (tipo==2){
+                MensajeJugada  mensajeJugada=((MensajeJugada )mensaje);
+                GestorJuegosServidor.getInstance(this).dejamensaje(mensajeJugada);
+                System.out.println(mensajeChat.get_men());
+                //TODO Devolver la confirmacion de la jugada
             }
         }
     }

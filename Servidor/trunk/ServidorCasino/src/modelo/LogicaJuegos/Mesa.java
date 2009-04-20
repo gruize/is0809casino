@@ -7,8 +7,9 @@ package modelo.LogicaJuegos;
 
 /**
  *
- * @author Jaime GuimeraP
+ * @author Jaime Guimera
  */
 public interface Mesa {
+    boolean procesaJugada(Jugada j);
 
 }
