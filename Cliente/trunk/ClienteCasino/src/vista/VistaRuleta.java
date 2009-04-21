@@ -56,7 +56,7 @@ public class VistaRuleta extends JFrame implements Observer  {
         setSize(1024,768);		
         setResizable(false);      
         //Añadimos los observables
-        //controlador.getModelo().addObserver(this);
+        controlador.getModelo().addObserver(this);
      }
 
      private void inicializar() {
