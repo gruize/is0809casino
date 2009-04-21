@@ -23,9 +23,9 @@ public class ControladorCliente {
     private Modelo modelo;
 
     public ControladorCliente(){        
-        //comunicador = new Comunicador(this);
-        //jugador = new Jugador();
-        //modelo = new Modelo();
+        comunicador = new Comunicador(this);
+        jugador = new Jugador();
+        modelo = new Modelo();
     }
 
     public Modelo getModelo(){
