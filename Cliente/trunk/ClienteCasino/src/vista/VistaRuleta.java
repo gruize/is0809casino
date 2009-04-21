@@ -212,8 +212,8 @@ public class VistaRuleta extends JFrame implements Observer  {
         //if(obj instanceof
         //Hacer lo que sea.
          //Actualizamos el chat si llega algun mensaje,
-         String mensaje="Escrito por el usuario: "+controlador.getModelo().getUsuario()+" con id: "+ controlador.getJugador().getId()+ "\n"+
-                            controlador.getModelo().getmensajechat()+"\n";
+         String mensaje="Escrito por el usuario: "+controlador.getModelo().getmensajechat().get_tio()+ "\n"+
+                            controlador.getModelo().getmensajechat().get_men()+"\n";
          PanelChat.setAreaTextoChat(mensaje);
 
     }

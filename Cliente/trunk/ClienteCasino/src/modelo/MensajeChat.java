@@ -7,12 +7,22 @@ public class MensajeChat implements Serializable {
 	private int _tio;
 	private String _men;
     private int _mesa;
+    private String _usuario;
 
-   	public MensajeChat(int _tio,int _mesa, String _men) {
+    public String get_usuario() {
+        return _usuario;
+    }
+
+    public void set_usuario(String _usuario) {
+        this._usuario = _usuario;
+    }
+
+   	public MensajeChat(int _tio,int _mesa, String _men, String _usuario) {
 		super();
         this._mesa = _mesa;
 		this._tio = _tio;
 		this._men = _men;
+        this._usuario = _usuario;
 	}
 	public MensajeChat(MensajeChat m) {
         this._mesa = m.get_mesa();
