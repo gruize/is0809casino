@@ -14,8 +14,8 @@ import java.util.Hashtable;
  */
 public class GestorUsuarios {
 
-    private Hashtable<Integer,Integer> jugadorMesa;
-    private Hashtable<Integer,ArrayList<Integer>> mesaJugadores;
+    private static Hashtable<Integer,Integer> jugadorMesa;
+    private static Hashtable<Integer,ArrayList<Integer>> mesaJugadores;
     private static GestorUsuarios instancia;
 
     public static GestorUsuarios getInstancia() {

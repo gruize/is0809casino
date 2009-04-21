@@ -48,7 +48,7 @@ public class GestorJuegosServidor extends Thread {
                     cola.remove(0);
                     gestorSalas.procesaMensaje(recibido.getJugada());
                 } else {
-                    Thread.sleep(5);
+                    Thread.sleep(50);
                 }
             }
         } catch (InterruptedException e) {

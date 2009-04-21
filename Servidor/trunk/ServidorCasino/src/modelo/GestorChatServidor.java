@@ -6,7 +6,7 @@ import java.util.Vector;
 
 public class GestorChatServidor extends Thread {
 
-    private Vector<MensajeChat> cola;
+    private static Vector<MensajeChat> cola;
     private ControladorServidor controlador;
     private GestorUsuarios usuarios;
     private static GestorChatServidor instance = null;
@@ -36,16 +36,16 @@ public class GestorChatServidor extends Thread {
             usuarios = GestorUsuarios.getInstancia();
             int mesa = 0;
             while (true) {
-                if (!cola.isEmpty()) {
+               if (cola.size() != 0){
                     recibido = new MensajeChat(cola.firstElement());
                     cola.remove(0);
                     mesa = usuarios.getMesa(recibido.get_tio());
                     tios = usuarios.getUsuarios(mesa);
                     for (int i = 0; i < tios.size(); i++) {
-                        enviar = new MensajeChat(tios.get(i),recibido.get_mesa(), recibido.get_men());
-                        MensajeChat mensajeChat = new MensajeChat(tios.get(i),recibido.get_mesa(),recibido.get_men());
+                        MensajeChat mensajeChat = new MensajeChat(recibido.get_tio(),recibido.get_mesa(),recibido.get_men(),recibido.get_usuario());
                         controlador.enviarMensajeChat(tios.get(i),mensajeChat);
                     }
+                     System.out.println("mensaje tratado");
                 } else {
                     Thread.sleep(500);
                 }

@@ -91,15 +91,12 @@ public class ControladorServidor {
         }
         return id;
     }
-    public void mensajeRecibido(int tipo, Serializable mensaje){
+    public synchronized void mensajeRecibido(int tipo, Serializable mensaje){
         //TODO Este método se invoca cuando se recibe un mensaje
         if (tipo==1){
             MensajeChat mensajeChat = ((MensajeChat)mensaje);
             GestorChatServidor.getInstance(this).dejamensaje(mensajeChat);
-            System.out.println(mensajeChat.get_men());
-            if(comunicador.enviarMensaje(mensajeChat.get_tio(), mensaje)){
-                System.out.println("y devuelto al emisor");
-            }}
+        }
             else if (tipo==2){
                 MensajeJugada  mensajeJugada=((MensajeJugada )mensaje);
                 GestorJuegosServidor.getInstance(this).dejamensaje(mensajeJugada);
