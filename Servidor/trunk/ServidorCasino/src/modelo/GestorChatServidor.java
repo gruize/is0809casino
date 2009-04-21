@@ -43,11 +43,11 @@ public class GestorChatServidor extends Thread {
                     tios = usuarios.getUsuarios(mesa);
                     for (int i = 0; i < tios.size(); i++) {
                         enviar = new MensajeChat(tios.get(i),recibido.get_mesa(), recibido.get_men());
-                        MensajeChat mensajeChat = new MensajeChat(tios.get(i),1,recibido.get_men());
+                        MensajeChat mensajeChat = new MensajeChat(tios.get(i),recibido.get_mesa(),recibido.get_men());
                         controlador.enviarMensajeChat(tios.get(i),mensajeChat);
                     }
                 } else {
-                    Thread.sleep(5);
+                    Thread.sleep(500);
                 }
             }
         } catch (InterruptedException e) {

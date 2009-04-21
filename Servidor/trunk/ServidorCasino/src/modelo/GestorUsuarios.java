@@ -52,10 +52,14 @@ public class GestorUsuarios {
             jugadorMesa.remove(jugador);
             jugadorMesa.put(jugador,mesa);
         }
-        else
+        else{
             correcto = false;
-        if (!mesaJugadores.get(mesa).contains(jugador))
-            mesaJugadores.get(mesa).add(jugador);
+            }
+        if (mesaJugadores.get(mesa)!=null){
+            if (!mesaJugadores.get(mesa).contains(jugador)){
+                 mesaJugadores.get(mesa).add(jugador);
+            }
+        }
         else
             correcto = false;
         return correcto;
@@ -63,10 +67,11 @@ public class GestorUsuarios {
     
     public boolean agregarJugador(int jugador) {
         boolean correcto = true;
-        /*if (!jugadorMesa.containsKey(jugador))
-            jugadorMesa.put(jugador,null);
+        if (!jugadorMesa.containsKey(jugador))
+            //por defecto van a la mesa inexistente 0 segun hacen login
+            jugadorMesa.put(jugador,0);
         else
-            correcto = false;*/
+            correcto = false;
         return correcto;
     }
 

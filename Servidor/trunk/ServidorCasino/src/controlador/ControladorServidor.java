@@ -30,6 +30,9 @@ public class ControladorServidor {
         comunicador = new Comunicador(this);
         GestorChatServidor chat = new GestorChatServidor(this);
         chat.start();
+        GestorUsuarios usuarios = new GestorUsuarios();
+        //Creamos de momento una mesa 1 por defecto
+        usuarios.agregarMesa(1);
         GestorJuegosServidor.getInstance(this).start();
     }
 
@@ -83,6 +86,8 @@ public class ControladorServidor {
         int id = GestorUsuarios.getInstancia().hacerLogin(datos.firstElement(), datos.lastElement());
         if(id!=-1){
                 GestorUsuarios.getInstancia().agregarJugador(id);
+                //temporal hasta que haya mensajes de seleccion de mesa van a la mesa 1
+                GestorUsuarios.getInstancia().colocarJugador(id, 1);
         }
         return id;
     }
