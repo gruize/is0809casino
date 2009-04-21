@@ -16,6 +16,7 @@ import modelo.GestorJuegosServidor;
 import modelo.GestorUsuarios;
 import modelo.MensajeJugada;
 import java.util.Vector;
+import modelo.LogicaJuegos.logicaRuleta.GestorSalas;
 /**
  *
  * @author Fiutten
@@ -92,7 +93,11 @@ public class ControladorServidor {
         return id;
     }
     public synchronized void mensajeRecibido(int tipo, Serializable mensaje){
-        //TODO Este método se invoca cuando se recibe un mensaje
+        /*Tipos de mensajes:
+         *  1- Mensaje de Char
+         *  2- Mensaje de Jugada o Informacion de Salas y mesas
+         *  3- Mensaje de Entrada o salida de mesa
+         * */
         if (tipo==1){
             MensajeChat mensajeChat = ((MensajeChat)mensaje);
             GestorChatServidor.getInstance(this).dejamensaje(mensajeChat);
@@ -101,6 +106,12 @@ public class ControladorServidor {
                 MensajeJugada  mensajeJugada=((MensajeJugada )mensaje);
                 GestorJuegosServidor.getInstance(this).dejamensaje(mensajeJugada);
                 //TODO Devolver la confirmacion de la jugada
+            }
+            else if (tipo==3){
+                MensajeJugada mensaje2= (MensajeJugada)mensaje;
+                int saldo=100;
+                //TODO Sacar el saldo de la base de DAtos.Y obtener la sala
+                GestorSalas.getInstance(this).addJugador(1, mensaje2.getMesa(),mensaje2.getUsuario(),saldo);
             }
         }
     

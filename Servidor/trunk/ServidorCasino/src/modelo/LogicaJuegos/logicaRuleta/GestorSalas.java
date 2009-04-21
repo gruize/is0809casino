@@ -26,6 +26,7 @@ public class GestorSalas {
     public GestorSalas(ControladorServidor c) {
         this.c=c;
         salaRuleta=new Hashtable();
+        salaRuleta.put(1, new MesaRuleta(c));
     }
 
     public static GestorSalas getInstance(ControladorServidor c) {
@@ -70,5 +71,9 @@ public class GestorSalas {
 
     private void devuelveSalas() {
         //Manda la informacion de las salas
+    }
+    public boolean addJugador(int sala,int mesa, int id,int saldo){
+        if (sala==1) return salaRuleta.get(mesa).addJugador(new Jugador(id,saldo));
+        return false;
     }
 }
