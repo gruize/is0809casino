@@ -8,7 +8,7 @@ public class GestorChatServidor extends Thread {
 
     private static Vector<MensajeChat> cola;
     private ControladorServidor controlador;
-    private GestorUsuarios usuarios;
+    private static GestorUsuarios usuarios;
     private static GestorChatServidor instance = null;
    
 

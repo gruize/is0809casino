@@ -51,13 +51,19 @@ public class GestorUsuarios {
         if (jugadorMesa.containsKey(jugador)) {
             jugadorMesa.remove(jugador);
             jugadorMesa.put(jugador,mesa);
+            System.out.println("El jugador con id: "+jugador+" se coloca en la mesa "+mesa+" jugador-mesa");
         }
         else{
             correcto = false;
+            System.out.println("El jugador con id: "+jugador+" no esta en la lista de usuarios");
             }
         if (mesaJugadores.get(mesa)!=null){
             if (!mesaJugadores.get(mesa).contains(jugador)){
                  mesaJugadores.get(mesa).add(jugador);
+                 System.out.println("El jugador con id: "+jugador+" se coloca en la mesa "+mesa+" mesa-listajugadores");
+            }
+            else{
+            System.out.println("El jugador con id: "+jugador+" ya estaba en la mesa "+mesa);
             }
         }
         else

@@ -86,6 +86,9 @@ public class ControladorServidor {
         Vector<String> datos=(Vector<String>)mensaje;
         int id = GestorUsuarios.getInstancia().hacerLogin(datos.firstElement(), datos.lastElement());
         if(id!=-1){
+                //Temporal agrego yo la mesa cuando alguien se loguea
+                GestorUsuarios.getInstancia().agregarMesa(1);
+                System.out.println("Se crea la mesa 1");
                 GestorUsuarios.getInstancia().agregarJugador(id);
                 //temporal hasta que haya mensajes de seleccion de mesa van a la mesa 1
                 GestorUsuarios.getInstancia().colocarJugador(id, 1);
