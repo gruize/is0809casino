@@ -8,8 +8,11 @@ package main;
 import controlador.ControladorServidor;
 import vista.VistaServidor;
 import vista.SplashScreen;
+import java.io.File;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import modelo.Jugada;
+import modelo.MensajeJugada;
 import modelo.ModeloServidor;
 
 /**
@@ -37,8 +40,13 @@ public class Prueba {
                 ModeloServidor modelo = new ModeloServidor();
                 ControladorServidor controlador = new ControladorServidor(modelo);
 				VistaServidor vista = new VistaServidor(controlador);
-                modelo.addObserver(vista);
-            }
+				modelo.addObserver(vista);
+                /*controlador.mensajeRecibido(3, new MensajeJugada(1,1,null));
+                controlador.mensajeRecibido(2, new MensajeJugada(1,1,new Jugada(1,1,"NUMERO",1,1)));
+                controlador.mensajeRecibido(2, new MensajeJugada(1,1,new Jugada(1,1,"DOCENA",1,1)));
+                controlador.mensajeRecibido(2, new MensajeJugada(1,1,new Jugada(1,1,"tiraBola",1,1)));
+                */
+                }
 		});
 
 	}
