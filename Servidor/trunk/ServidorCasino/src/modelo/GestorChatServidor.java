@@ -31,13 +31,13 @@ public class GestorChatServidor extends Thread {
 
     public void run() {
         try {
-            MensajeChat recibido, enviar, aux;
+            MensajeChat recibido;
             ArrayList<Integer> tios = new ArrayList<Integer>();
             usuarios = GestorUsuarios.getInstancia();
             int mesa = 0;
             while (true) {
                if (cola.size() != 0){
-                    recibido = new MensajeChat(cola.firstElement());
+                    recibido = cola.firstElement();
                     cola.remove(0);
                     mesa = usuarios.getMesa(recibido.get_tio());
                     tios = usuarios.getUsuarios(mesa);
@@ -51,6 +51,7 @@ public class GestorChatServidor extends Thread {
                 }
             }
         } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

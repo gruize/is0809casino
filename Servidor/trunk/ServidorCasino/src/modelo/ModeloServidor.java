@@ -5,7 +5,6 @@
 
 package modelo;
 
-import modelo.GestorJuegosServidor;
 import java.io.IOException;
 import java.util.Observable;
 import javax.swing.DefaultListModel;
@@ -15,10 +14,28 @@ import javax.swing.DefaultListModel;
  * @author Fiutten
  */
 public class ModeloServidor extends Observable {
-    
+
+
+    private DefaultListModel listaConectados;
+    private DefaultListModel listaJugadores;
+    private DefaultListModel listaSalas;
+    private DefaultListModel listaMesas;
+
     public ModeloServidor() {
-        
+        listaConectados = new DefaultListModel();
+        listaJugadores = new DefaultListModel();
+        listaSalas = new DefaultListModel();
+        listaMesas = new DefaultListModel();
     }
+
+    public void login(String usuario, String password) {
+        listaConectados.addElement(usuario);
+        MensajeLog mensaje = new MensajeLog(usuario,password);
+        setChanged();
+        notifyObservers(mensaje);
+    }
+
+    
 
     public void cerrarConexion() throws IOException {
         
@@ -29,29 +46,20 @@ public class ModeloServidor extends Observable {
     }
 
     public DefaultListModel getListaConectados() {
-        DefaultListModel lista = new DefaultListModel();
-        lista.addElement("PEPE");
-        lista.addElement("PEPON");
-        return lista;
+        return listaConectados;
     }
 
     public DefaultListModel getListaJugadores() {
-       DefaultListModel lista = new DefaultListModel();
-        lista.addElement("PEPE1");
-        return lista;
+        return listaJugadores;
     }
 
     public DefaultListModel getListaMesas() {
-        DefaultListModel lista = new DefaultListModel();
-        lista.addElement("MESA 1");
-        return lista;
-
+        return listaMesas;
     }
 
     public DefaultListModel getListaSalas() {
-       DefaultListModel lista = new DefaultListModel();
-        lista.addElement("Sala Ruleta");
-        return lista;
+      
+        return listaSalas;
     }
 
     public void mostrarJugadoresAsociados(String mesa) {

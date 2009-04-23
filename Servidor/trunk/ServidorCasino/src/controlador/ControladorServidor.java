@@ -25,13 +25,15 @@ public class ControladorServidor {
 
     private ModeloServidor modelo;
     private Comunicador comunicador;
+    private GestorUsuarios usuarios;
+    private GestorChatServidor chat;
 
     public ControladorServidor(ModeloServidor modeloServidor) {
         modelo = modeloServidor;
         comunicador = new Comunicador(this);
-        GestorChatServidor chat = new GestorChatServidor(this);
+        chat = new GestorChatServidor(this);
         chat.start();
-        GestorUsuarios usuarios = new GestorUsuarios();
+        usuarios = new GestorUsuarios();
         //Creamos de momento una mesa 1 por defecto
         usuarios.agregarMesa(1);
         GestorJuegosServidor.getInstance(this).start();
@@ -76,13 +78,16 @@ public class ControladorServidor {
     public void verEstadisticas(String usuario) {
         modelo.verEstadisticas(usuario);
     }
-     public void enviarMensajeChat(int id,MensajeChat mensaje) {
+
+    public void enviarMensajeChat(int id,MensajeChat mensaje) {
         comunicador.enviarMensaje(id,mensaje);
     }
-     public void enviarMensajeJugada(int id,MensajeJugada mensaje){
-       comunicador.enviarMensaje(id,mensaje);
-        }
-    public int Login(Serializable mensaje){
+
+    public void enviarMensajeJugada(int id,MensajeJugada mensaje){
+        comunicador.enviarMensaje(id,mensaje);
+    }
+
+    public int login(Serializable mensaje){
         Vector<String> datos=(Vector<String>)mensaje;
         int id = GestorUsuarios.getInstancia().hacerLogin(datos.firstElement(), datos.lastElement());
         if(id!=-1){
@@ -93,16 +98,18 @@ public class ControladorServidor {
                 //temporal hasta que haya mensajes de seleccion de mesa van a la mesa 1
                 GestorUsuarios.getInstancia().colocarJugador(id, 1);
         }
+        modelo.login(datos.firstElement(),datos.lastElement());
         return id;
     }
     public synchronized void mensajeRecibido(int tipo, Serializable mensaje){
         /*Tipos de mensajes:
-         *  1- Mensaje de Char
+         *  1- Mensaje de Chat
          *  2- Mensaje de Jugada o Informacion de Salas y mesas
          *  3- Mensaje de Entrada o salida de mesa
          * */
         if (tipo==1){
             MensajeChat mensajeChat = ((MensajeChat)mensaje);
+            System.out.println("server"+mensajeChat.get_usuario());
             GestorChatServidor.getInstance(this).dejamensaje(mensajeChat);
         }
             else if (tipo==2){

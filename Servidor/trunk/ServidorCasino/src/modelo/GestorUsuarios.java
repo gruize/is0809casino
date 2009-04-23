@@ -104,6 +104,7 @@ public class GestorUsuarios {
         //Si el jugador ya esta conectado devuelve resultado = 0
         if (jugadorMesa.containsKey(id))
             resultado = -1;
+        //Indico en el log un nuevo usuario
         return aleatorio;
     }
 }

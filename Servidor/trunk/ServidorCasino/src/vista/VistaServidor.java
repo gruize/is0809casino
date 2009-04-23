@@ -19,12 +19,17 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Observer;
+import javax.swing.JFileChooser;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import modelo.MensajeLog;
 
 public class VistaServidor extends JFrame implements Observer  {
 
@@ -47,7 +52,7 @@ public class VistaServidor extends JFrame implements Observer  {
         inicializar();
         ponerOyentes();
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setExtendedState(MAXIMIZED_BOTH);
+	    setSize(1024,768);		
 		setVisible(true);
         setResizable(false);
     }
@@ -83,7 +88,22 @@ public class VistaServidor extends JFrame implements Observer  {
 
     private void salir() {
         if (JOptionPane.showConfirmDialog(this,"¿Desea abandonar el servidor?",
-                "Cierre del servidor",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
+                "Cierre del servidor",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
+           //Guarda el log en un archivo. Comentado para mayor comodidad.
+            /* String Texto = jPanelLog.getLog().getText();
+            try{
+                        JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));
+                        chooser.showSaveDialog(this); //Muestra el diálogo
+                        File guardar = chooser.getSelectedFile();
+                        guardar.setWritable(false);
+                        if(guardar !=null){
+                            FileWriter  guardx=new FileWriter(guardar);
+                            guardx.write(Texto);
+                            guardx.close(); //Cierra el fichero
+                        }
+        } catch(IOException ioe){
+            System.out.println(ioe); //Muestra por consola los errores
+        }*/
             try {
 				if(controlador.servidorConectado())
 					controlador.cerrarConexion();
@@ -92,12 +112,19 @@ public class VistaServidor extends JFrame implements Observer  {
                 e1.printStackTrace();
 			}
             System.exit(0);
+        }
         
     }
 
     public void update(Observable o, Object arg) {
-        //if(obj instanceof
-        //Hacer lo que sea.
+      if(arg instanceof MensajeLog) {
+            MensajeLog mensaje = (MensajeLog)arg;
+            String texto = jPanelLog.getLog().getText();
+            String nuevo = "Nuevo usuario: "+mensaje.getUsuario()+" con password: "+
+                    mensaje.getPassword()+" conectado. \n";
+            jPanelLog.getLog().setText(texto+nuevo);
+      }
+
     }
 
     class OyenteCerrarVentana extends WindowAdapter{
