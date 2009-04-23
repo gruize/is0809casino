@@ -6,7 +6,6 @@ package modelo.LogicaJuegos.logicaRuleta;
 
 import modelo.Jugada;
 import modelo.LogicaJuegos.*;
-import modelo.LogicaJuegos.logicaRuleta.MesaRuleta;
 import modelo.MensajeJugada;
 import controlador.ControladorServidor;
 import java.util.ArrayList;

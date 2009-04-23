@@ -5,6 +5,8 @@
 package modelo.LogicaJuegos.logicaRuleta;
 
 import controlador.ControladorServidor;
+import java.util.Timer;
+import java.util.TimerTask;
 import modelo.Jugada;
 import modelo.LogicaJuegos.*;
 import java.util.Vector;
@@ -25,6 +27,9 @@ public class MesaRuleta implements Mesa {
     ControladorServidor controlador;
     CreaRuleta ruleta;
     boolean flag=true; //Si Flag=true se admiten apuestas si Flag = false no se admiten apuestas
+    
+    //********** reloj**************
+    Timer timer=null;
 
     public MesaRuleta(ControladorServidor c) {
         controlador = c;
@@ -32,6 +37,23 @@ public class MesaRuleta implements Mesa {
         jugadoresMesa = new Vector();
         ruleta = new CreaRuleta();
         ruleta.InicializarRuleta();
+        
+        
+        //cargar e iniciar ele reloj
+                // Clase en la que estÃ¡ el cÃ³digo a ejecutar
+     TimerTask timerTask = new TimerTask(){
+         public void run() 
+         {
+             // AquÃ­ el cÃ³digo que queremos ejecutar.
+             lanzaBola();
+         }
+     }; 
+            // AquÃ­ se pone en marcha el timer cada segundo.
+     timer = new Timer();
+     // Dentro de 1min ejecÃºtate cada 1min
+     timer.scheduleAtFixedRate(timerTask, 1000*60, 1000*60); 
+     
+
     }
 
     public boolean procesaJugada(Jugada j) {
@@ -84,12 +106,14 @@ public class MesaRuleta implements Mesa {
     //Lanza una bola y comprueba todas las apuestas de los jugadores.
 
     public void lanzaBola() {
+        
+        System.out.println("****** BOLA LANZADA ********");
         flag=false;
         ultimaBola =(int) Math.round((Math.random() * 36));
         comprobarApuestas(ultimaBola);
         flag=true;
         }
-    //Añade un Jugadora la mesa
+    //Aï¿½ade un Jugadora la mesa
 
     public boolean addJugador(Jugador j) {
         //TODO Comprobar que no este ya en la mesa
@@ -99,7 +123,7 @@ public class MesaRuleta implements Mesa {
 
     /**
      * Recorre todas las apuestas de la mesa, y comprueba si han resultado premiadas
-     * @param bolaLanzada número de la ruleta donde ha caído la bola
+     * @param bolaLanzada nï¿½mero de la ruleta donde ha caï¿½do la bola
      * @return
      */
     private void comprobarApuestas(int bolaLanzada) {
@@ -130,20 +154,20 @@ public class MesaRuleta implements Mesa {
     private int apuestaGanadora(Jugada apuesta, Numero casillaBola) {
         String tipo = apuesta.getTipo();
         if (casillaBola.getNumero() != 0) {
-            //apuesta a NÚMERO
+            //apuesta a Nï¿½MERO
             if ((tipo.equals("numero")) && (apuesta.getCasilla() == casillaBola.getNumero())) {
                 return apuesta.getCantidad() * 36;
             //apuesta a COLOR (0=>Negro, 1 =>ROJO
             } else if (tipo.equalsIgnoreCase("COLOR")) {
                if ((apuesta.getCasilla()==1)&&casillaBola.getColor().equalsIgnoreCase("ROJO")) return apuesta.getCantidad() * 2;
                else if ((apuesta.getCasilla()==0)&&casillaBola.getColor().equalsIgnoreCase("NEGRO"))return apuesta.getCantidad() * 2;
-            //apuesta a 1ª DOCENA
+            //apuesta a 1ï¿½ DOCENA
             } else  if (tipo.equals("1docena") && casillaBola.getNumero() >= 1 && casillaBola.getNumero() <= 12) {
             return apuesta.getCantidad() * 3;
-        //apeusta a 2ª DOCENA
+        //apeusta a 2ï¿½ DOCENA
         } else if (tipo.equals("2docena") && casillaBola.getNumero() > 12 && casillaBola.getNumero() <= 24) {
             return apuesta.getCantidad() * 3;
-        //apuesta a 3ª DOCENA
+        //apuesta a 3ï¿½ DOCENA
         } else if (tipo.equals("3docena") && casillaBola.getNumero() > 24 && casillaBola.getNumero() <= 36) {
             return apuesta.getCantidad() * 3;
 
