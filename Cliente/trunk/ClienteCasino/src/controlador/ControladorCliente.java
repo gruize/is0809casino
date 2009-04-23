@@ -18,11 +18,11 @@ public class ControladorCliente {
 
 
     private Comunicador comunicador;
-   private ModeloCliente modelo;
+    private ModeloCliente modelo;
 
-    public ControladorCliente(){        
+    public ControladorCliente(ModeloCliente model){
         comunicador = new Comunicador(this);
-        modelo = new ModeloCliente();
+        modelo = model;
     }
 
     public ModeloCliente getModelo(){
@@ -33,7 +33,6 @@ public class ControladorCliente {
          if (comunicador!=null){
             if(comunicador.abreConexion(usuario, password)){
              modelo.setId(comunicador.getIdentificador());
-             modelo.setUsuario(usuario);
              modelo.setUsuario(usuario);
              return true;
             }
@@ -79,7 +78,7 @@ public class ControladorCliente {
     
     public synchronized void mensajeRecibido(int tipo, Serializable mensaje){
         //TODO Este método se invoca cuando se recibe un mensaje
-        if (tipo>=0){
+        if (tipo >=0){
             MensajeChat m=(MensajeChat)mensaje;
             modelo.addmensajechat(m);
         }

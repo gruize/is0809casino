@@ -60,7 +60,7 @@ public class ModeloCliente extends Observable{
     public void addmensajechat(MensajeChat mensaje){
         chat = mensaje;
         setChanged();
-        notifyObservers();
+        notifyObservers(chat);
     }
 
     public MensajeChat getmensajechat(){

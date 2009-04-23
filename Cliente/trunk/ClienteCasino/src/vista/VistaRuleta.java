@@ -10,8 +10,6 @@ package vista;
  * @author david
  */
 
-import java.awt.Component;
-import java.awt.Graphics;
 import java.awt.event.ItemEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -29,6 +27,7 @@ import java.io.IOException;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import modelo.MensajeChat;
 
 public class VistaRuleta extends JFrame implements Observer  {
 
@@ -50,13 +49,13 @@ public class VistaRuleta extends JFrame implements Observer  {
      public VistaRuleta(ControladorCliente control) {
         super("Cliente Casino");
         controlador = control;
+        controlador.getModelo().addObserver(this);
         inicializar();
         ponerOyentes();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1024,768);		
         setResizable(false);      
-        //Añadimos los observables
-        controlador.getModelo().addObserver(this);
+        
      }
 
      private void inicializar() {
@@ -209,12 +208,10 @@ public class VistaRuleta extends JFrame implements Observer  {
      }
 
      public void update(Observable o, Object arg) {
-        //if(obj instanceof
-        //Hacer lo que sea.
-         //Actualizamos el chat si llega algun mensaje,
-         String mensaje="Escrito por el usuario: "+controlador.getModelo().getmensajechat().get_tio()+ "\n"+
-                            controlador.getModelo().getmensajechat().get_men()+"\n";
-         PanelChat.setAreaTextoChat(mensaje);
+         if (arg instanceof MensajeChat) {
+                MensajeChat mensaje = (MensajeChat)arg;
+               PanelChat.setAreaTextoChat(mensaje.get_usuario()+" dice: "+mensaje.get_men()+"\n");
+         }
 
     }
 
