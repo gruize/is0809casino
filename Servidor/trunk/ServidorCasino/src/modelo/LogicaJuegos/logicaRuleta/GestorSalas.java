@@ -43,7 +43,8 @@ public class GestorSalas {
         } else if (jugada.getTipo().equalsIgnoreCase("infoMESA")) {
             devuelveMesa(jugada.getMesa());
         } else {
-            salaRuleta.get(jugada.getMesa()).procesaJugada(jugada);
+            if (jugada.getTipo().equalsIgnoreCase("tiraBola")) salaRuleta.get(jugada.getMesa()).lanzaBola();
+            else salaRuleta.get(jugada.getMesa()).procesaJugada(jugada);
         }
     }
 
