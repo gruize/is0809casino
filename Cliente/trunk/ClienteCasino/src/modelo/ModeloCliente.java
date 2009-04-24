@@ -17,6 +17,15 @@ public class ModeloCliente extends Observable{
     private int id;
     private int sala;
     private int mesa;
+    private int saldo;
+
+    public int getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(int saldo) {
+        this.saldo = saldo;
+    }
 
     public void modelo(){
         chat = null;

@@ -78,10 +78,14 @@ public class ControladorCliente {
     
     public synchronized void mensajeRecibido(int tipo, Serializable mensaje){
         //TODO Este método se invoca cuando se recibe un mensaje
-        if (tipo >=0){
+       if (tipo == 1){
             MensajeChat m=(MensajeChat)mensaje;
             modelo.addmensajechat(m);
         }
+        else if (tipo == 2) {
+           //MensajeJugada
+        }
+
     }
 
 }

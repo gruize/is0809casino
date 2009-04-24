@@ -261,7 +261,7 @@ public class VistaSalasTemporal extends javax.swing.JFrame implements Observer{
         public void actionPerformed(ActionEvent e) {
            dispose();
            VistaMesas vistaMesas = new VistaMesas(controlador);
-           vistaMesas.setJuego(juego);
+           //vistaMesas.setJuego(juego);
            vistaMesas.setVisible(true);
         }
 
