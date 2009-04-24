@@ -3,8 +3,11 @@ package vista;
 import controlador.ControladorCliente;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,6 +17,8 @@ import javax.swing.JScrollPane;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
@@ -44,6 +49,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
     private OyenteRefrescar oyenteRefrescar;
     private OyenteSalir oyenteSalir;
     private OyenteEntrada oyenteEntrada;
+    private OyenteVolver oyenteVolver;
     // End of variables declaration
 
     /** Creates new form VistaTemporal */
@@ -52,7 +58,12 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
         controlador = control;
         inicializar();
         agregarOyentes();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter(){
+            public void windowClosing(WindowEvent e) {
+                salir();
+            }
+        });
 		setVisible(true);
         setResizable(false);
         juego = null;
@@ -70,9 +81,11 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
         oyenteRefrescar = new OyenteRefrescar();
         oyenteSalir = new OyenteSalir();
         oyenteEntrada = new OyenteEntrada();
+        oyenteVolver = new OyenteVolver();
         jButtonRefresh.addActionListener(oyenteRefrescar);
         jButtonSalir.addActionListener(oyenteSalir);
         jButtonNext.addActionListener(oyenteEntrada);
+        jButtonBack.addActionListener(oyenteVolver);
     }
 
     private void inicializar() {
@@ -259,7 +272,6 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
             nuevaSala.add(textoNuevaSala);
             jContenedor.add(nuevaSala);
         }
-
     }
 
     class OyenteSalas implements ActionListener {
@@ -307,6 +319,18 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
            VistaMesas vistaMesas = new VistaMesas(controlador);
            vistaMesas.setJuego(juego);
            vistaMesas.setVisible(true);
+        }
+
+    }
+
+    class OyenteVolver implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+           if(controlador.desconectar()){
+                dispose();
+                VistaLogin vistalogin =new VistaLogin(controlador);
+                vistalogin.setVisible(true);
+           }
         }
 
     }

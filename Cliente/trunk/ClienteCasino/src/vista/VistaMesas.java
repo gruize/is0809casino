@@ -14,6 +14,8 @@ import javax.swing.JScrollPane;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
@@ -44,6 +46,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
     private OyenteRefrescar oyenteRefrescar;
     private OyenteSalir oyenteSalir;
     private OyenteEntrada oyenteEntrada;
+    private OyenteVolver oyenteVolver;
     // End of variables declaration
 
     /** Creates new form VistaTemporal */
@@ -52,7 +55,12 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         controlador = control;
         inicializar();
         agregarOyentes();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter(){
+            public void windowClosing(WindowEvent e) {
+                salir();
+            }
+        });
 		setVisible(true);
         setResizable(false);
         juego = null;
@@ -70,9 +78,11 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         oyenteRefrescar = new OyenteRefrescar();
         oyenteSalir = new OyenteSalir();
         oyenteEntrada = new OyenteEntrada();
+        oyenteVolver = new OyenteVolver();
         jButtonRefresh.addActionListener(oyenteRefrescar);
         jButtonSalir.addActionListener(oyenteSalir);
         jButtonNext.addActionListener(oyenteEntrada);
+        jButtonBack.addActionListener(oyenteVolver);
     }
 
     private void inicializar() {
@@ -274,11 +284,11 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                 case RULETA: {                    
                     VistaRuleta vistaJuego = new VistaRuleta(controlador);
                     vistaJuego.setVisible(true);
-                }
+                }break;
                 case DADOS: {
                     VistaDados vistaJuego = new VistaDados(controlador);
                     vistaJuego.setVisible(true);
-                }
+                }break;
                 default: {
                     System.out.println("Fallo Juego en mesa = null");
                 }
@@ -286,7 +296,19 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         }
 
     }
+
+    class OyenteVolver implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+            VistaSalas vista = new VistaSalas(controlador);
+            vista.setVisible(true);
+        }
+
+    }
+
     private void salir() {
+        System.out.println("OK");
         if (JOptionPane.showConfirmDialog(this,"¿Desea abandonar el juego?",
                 "Cierre del juego",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
             //try {

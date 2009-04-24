@@ -30,7 +30,7 @@ import javax.swing.event.ListSelectionListener;
 import modelo.MensajeChat;
 
 public class VistaRuleta extends JFrame implements Observer  {
-
+        
         private ControladorCliente controlador;
         private JPanelChat PanelChat;
         private JPanelApuestas PanelApuestas;
@@ -52,10 +52,14 @@ public class VistaRuleta extends JFrame implements Observer  {
         controlador.getModelo().addObserver(this);
         inicializar();
         ponerOyentes();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowAdapter(){
+            public void windowClosing(WindowEvent e) {
+                salir();
+            }
+        });
         setSize(1024,768);		
-        setResizable(false);      
-        
+        setResizable(false);        
      }
 
      private void inicializar() {
@@ -271,7 +275,7 @@ public class VistaRuleta extends JFrame implements Observer  {
               }else{
                   if(JOptionPane.showConfirmDialog(PanelApuestas, "Confirme la conformidad de su apuesta\nValor: " + PanelApuestas.getLabelValor().getText() + "\nCantidad: " + PanelApuestas.getLabelTotalApostado().getText(), "Confirmacion de la apuesta", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
                     PanelCjtoApuestas.getListaApuestas().setText(PanelCjtoApuestas.getListaApuestas().getText() + "\nApuesta a: " + PanelApuestas.getLabelValor().getText() + "\nun total del: " + PanelApuestas.getLabelTotalApostado().getText() + "\n" );
-                    controlador.realizarApuesta(Integer.parseInt(PanelApuestas.getLabelTotalApostado().getText()),PanelApuestas.getLabelValor().getText());
+                    controlador.realizarApuesta(Integer.parseInt(PanelApuestas.getLabelTotalApostado().getText()),PanelApuestas.getLabelValor().getText(),"TipoApuesta");
                     reinicializarValores();
                 }
              }
