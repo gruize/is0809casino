@@ -3,6 +3,7 @@ package modelo;
 import controlador.ControladorServidor;
 import java.util.ArrayList;
 import java.util.Vector;
+import modelo.LogicaJuegos.Jugador;
 
 public class GestorChatServidor extends Thread {
 
@@ -32,7 +33,7 @@ public class GestorChatServidor extends Thread {
     public void run() {
         try {
             MensajeChat recibido;
-            ArrayList<Integer> tios = new ArrayList<Integer>();
+            ArrayList<Jugador> tios = new ArrayList<Jugador>();
             usuarios = GestorUsuarios.getInstancia();
             int mesa = 0;
             while (true) {
@@ -43,7 +44,7 @@ public class GestorChatServidor extends Thread {
                     tios = usuarios.getUsuarios(mesa);
                     for (int i = 0; i < tios.size(); i++) {
                         MensajeChat mensajeChat = new MensajeChat(recibido.get_tio(),recibido.get_mesa(),recibido.get_men(),recibido.get_usuario());
-                        controlador.enviarMensajeChat(tios.get(i),mensajeChat);
+                        controlador.enviarMensajeChat(tios.get(i).getId(),mensajeChat);
                     }
                      System.out.println("mensaje tratado");
                 } else {

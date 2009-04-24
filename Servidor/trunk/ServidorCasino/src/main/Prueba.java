@@ -8,7 +8,7 @@ package main;
 import controlador.ControladorServidor;
 import vista.VistaServidor;
 import vista.SplashScreen;
-import java.io.File;
+import java.util.Vector;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import modelo.Jugada;
@@ -41,11 +41,15 @@ public class Prueba {
                 ControladorServidor controlador = new ControladorServidor(modelo);
 				VistaServidor vista = new VistaServidor(controlador);
 				modelo.addObserver(vista);
-                /*controlador.mensajeRecibido(3, new MensajeJugada(1,1,null));
+                Vector<String> datos=new Vector();
+                datos.add(0, "Pepito");
+                datos.add(1, "pass");
+                controlador.login(datos);
+                controlador.mensajeRecibido(3, new MensajeJugada(1,1,null));
                 controlador.mensajeRecibido(2, new MensajeJugada(1,1,new Jugada(1,1,"NUMERO",1,1)));
                 controlador.mensajeRecibido(2, new MensajeJugada(1,1,new Jugada(1,1,"DOCENA",1,1)));
-                controlador.mensajeRecibido(2, new MensajeJugada(1,1,new Jugada(1,1,"tiraBola",1,1)));
-                */
+                controlador.mensajeRecibido(4, new MensajeJugada(1,1,new Jugada(1,1,"DOCENA",1,1)));
+                
                 }
 		});
 

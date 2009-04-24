@@ -10,6 +10,7 @@ import java.util.TimerTask;
 import modelo.Jugada;
 import modelo.LogicaJuegos.*;
 import java.util.Vector;
+import modelo.GestorUsuarios;
 
 /**
  *
@@ -17,12 +18,10 @@ import java.util.Vector;
  */
 public class MesaRuleta implements Mesa {
 
-    int id = 0;
+    int id =0;
     int nJugadores = 0;
     Vector<Jugada> apuestas = null; //lista de apuestas de la mesa
     int nApuestas = 0;
-    Vector<Jugador> jugadoresMesa = null; //lista de jugadores de la mesa
-    Vector numeros = null;
     int ultimaBola = 0;
     ControladorServidor controlador;
     CreaRuleta ruleta;
@@ -31,10 +30,10 @@ public class MesaRuleta implements Mesa {
     //********** reloj**************
     Timer timer=null;
 
-    public MesaRuleta(ControladorServidor c) {
+    public MesaRuleta(ControladorServidor c,int id) {
+        this.id=id;
         controlador = c;
         apuestas = new Vector();
-        jugadoresMesa = new Vector();
         ruleta = new CreaRuleta();
         ruleta.InicializarRuleta();
         
@@ -57,8 +56,8 @@ public class MesaRuleta implements Mesa {
     }
 
     public boolean procesaJugada(Jugada j) {
-        System.out.println("Mensaje procesado por la Mesa");
         if (this.colocarApuesta(j) == 1) {
+             System.out.println("///////// Apuesta Aceptada \\\\\\\\");
             return true;
         } else {
             return false;
@@ -72,13 +71,13 @@ public class MesaRuleta implements Mesa {
      * @return 1 si la apuesta es correcta, -1 si no le queda saldo al jugador
      */
     private int colocarApuesta(Jugada jugada) {
-        int posicionJugador = posicionJugador(jugada.getUsuario());
-        int saldoJugador = jugadoresMesa.get(posicionJugador).getSaldo();
+        
+        
+        int saldoJugador = GestorUsuarios.getInstancia().getSaldoJugador(jugada.getUsuario(),getId());
         if ((jugada.getCantidad()) <= saldoJugador) {
             apuestas.add(jugada);
             nApuestas++;
-            jugadoresMesa.get(posicionJugador).setSaldo(saldoJugador - jugada.getCantidad());
-
+            GestorUsuarios.getInstancia().setSaldoJugador(jugada.getUsuario(),getId(),saldoJugador - jugada.getCantidad());
             return 1;
         } else {
             return -1;
@@ -86,23 +85,7 @@ public class MesaRuleta implements Mesa {
 
     }
 
-    /**
-     * Devuelve el índice del jugador de entre todos los
-     * jugadores activos de la partida de la ruleta.
-     * @param idJugador valor que identifica al jugador
-     * @return índice del array de jugadores donde se encuentra el jugador
-     */
-    private int posicionJugador(int idJugador) {
-        boolean encontrado = false;
-        int index = 0;
-        while ((!encontrado) && (index < jugadoresMesa.size())) {
-            encontrado = jugadoresMesa.get(index).getId() == idJugador;
-            index++;
-        }
-        return index - 1;
 
-
-    }
     //Lanza una bola y comprueba todas las apuestas de los jugadores.
 
     public void lanzaBola() {
@@ -113,14 +96,6 @@ public class MesaRuleta implements Mesa {
         comprobarApuestas(ultimaBola);
         flag=true;
         }
-    //A�ade un Jugadora la mesa
-
-    public boolean addJugador(Jugador j) {
-        //TODO Comprobar que no este ya en la mesa
-        jugadoresMesa.add(j);
-        return true;
-    }
-
     /**
      * Recorre todas las apuestas de la mesa, y comprueba si han resultado premiadas
      * @param bolaLanzada n�mero de la ruleta donde ha ca�do la bola
@@ -132,10 +107,9 @@ public class MesaRuleta implements Mesa {
         int saldo;
         for (int i = 0; i < apuestas.size(); i++) {
             Jugada apuesta=apuestas.get(i);
-            int posicion=posicionJugador(apuesta.getUsuario());
-            saldo = jugadoresMesa.get(posicion).getSaldo();
+            saldo = GestorUsuarios.getInstancia().getSaldoJugador(apuesta.getUsuario(),getId());
             saldo = saldo+apuestaGanadora(apuesta, bola);
-            jugadoresMesa.get(posicion).setSaldo(saldo);
+            GestorUsuarios.getInstancia().setSaldoJugador(apuesta.getUsuario(),getId(),saldo);
 
         }
         apuestas.removeAllElements();
@@ -185,5 +159,8 @@ public class MesaRuleta implements Mesa {
     return 0;
     }
     //Envia los saldos nuevos a los jugadores de la mesa
-    void enviarSaldos(){}
+    public void enviarSaldos(){}
+
+    private int getId(){
+        return this.id;}
 }

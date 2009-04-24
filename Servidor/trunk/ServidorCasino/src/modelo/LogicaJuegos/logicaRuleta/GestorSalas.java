@@ -5,10 +5,8 @@
 package modelo.LogicaJuegos.logicaRuleta;
 
 import modelo.Jugada;
-import modelo.LogicaJuegos.*;
 import modelo.MensajeJugada;
 import controlador.ControladorServidor;
-import java.util.ArrayList;
 import java.util.Hashtable;
 import javax.swing.DefaultListModel;
 
@@ -25,7 +23,8 @@ public class GestorSalas {
     public GestorSalas(ControladorServidor c) {
         this.c=c;
         salaRuleta=new Hashtable();
-        salaRuleta.put(1, new MesaRuleta(c));
+        //Aqui se crea la mesa, pero es temporal
+        salaRuleta.put(1, new MesaRuleta(c,1));
     }
 
     public static GestorSalas getInstance(ControladorServidor c) {
@@ -38,7 +37,7 @@ public class GestorSalas {
     public void procesaMensaje(Jugada jugada) {
         //TODO Identificar la sala segun el mensaje
         if (jugada.getTipo().equalsIgnoreCase("infoSALAS")) {
-            devuelveSalas();
+           // devuelveSalas();
         } else if (jugada.getTipo().equalsIgnoreCase("infoMESA")) {
             devuelveMesa(jugada.getMesa());
         } else {
@@ -69,11 +68,6 @@ public class GestorSalas {
         System.out.println("Mensaje Info recibido");
     }
 
-    private void devuelveSalas() {
-        //Manda la informacion de las salas
-    }
-    public boolean addJugador(int sala,int mesa, int id,int saldo){
-        if (sala==1) return salaRuleta.get(mesa).addJugador(new Jugador(id,saldo));
-        return false;
-    }
+    
+   
 }

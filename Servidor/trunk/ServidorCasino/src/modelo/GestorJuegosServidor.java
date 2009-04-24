@@ -15,7 +15,7 @@ import modelo.LogicaJuegos.logicaRuleta.GestorSalas;
  */
 public class GestorJuegosServidor extends Thread {
 
-    private Vector<MensajeJugada> cola;
+    private static  Vector<MensajeJugada> cola;
     private ControladorServidor controlador;
     private GestorUsuarios usuarios;
     private static GestorJuegosServidor instance = null;
@@ -47,7 +47,7 @@ public class GestorJuegosServidor extends Thread {
                     cola.remove(0);
                     gestorSalas.procesaMensaje(recibido.getJugada());
                 } else {
-                    Thread.sleep(50);
+                    Thread.sleep(500);
                 }
             }
         } catch (InterruptedException e) {

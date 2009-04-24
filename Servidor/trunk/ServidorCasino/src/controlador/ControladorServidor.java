@@ -16,7 +16,6 @@ import modelo.GestorJuegosServidor;
 import modelo.GestorUsuarios;
 import modelo.MensajeJugada;
 import java.util.Vector;
-import modelo.LogicaJuegos.logicaRuleta.GestorSalas;
 /**
  *
  * @author Fiutten
@@ -105,7 +104,8 @@ public class ControladorServidor {
         /*Tipos de mensajes:
          *  1- Mensaje de Chat
          *  2- Mensaje de Jugada o Informacion de Salas y mesas
-         *  3- Mensaje de Entrada o salida de mesa
+         *  3- Mensaje de Entrada en mesa
+         *  4- Mensaje de Salida de Mesa
          * */
         if (tipo==1){
             MensajeChat mensajeChat = ((MensajeChat)mensaje);
@@ -119,10 +119,15 @@ public class ControladorServidor {
             }
             else if (tipo==3){
                 MensajeJugada mensaje2= (MensajeJugada)mensaje;
-                int saldo=100;
-                //TODO Sacar el saldo de la base de DAtos.Y obtener la sala
-                GestorSalas.getInstance(this).addJugador(1, mensaje2.getMesa(),mensaje2.getUsuario(),saldo);
-            }
+                if (GestorUsuarios.getInstancia().colocarJugador(mensaje2.getUsuario(),mensaje2.getMesa()))
+                        //Envio mensaje de  confimacion de la entrada en la mesa
+                        enviarMensajeJugada(3,null);
+                }
+                else if (tipo==4){
+                MensajeJugada mensaje2= (MensajeJugada)mensaje;
+                GestorUsuarios.getInstancia().eliminarJugador(mensaje2.getUsuario());
+                        
+                }
         }
     
 
