@@ -20,6 +20,7 @@ public class Clientes  implements java.io.Serializable {
      private Date fechaingreso;
      private String numerocuenta;
      private int recargas;
+     private int saldo;
      private String telefono;
      private Set partidases = new HashSet(0);
 
@@ -137,6 +138,20 @@ public class Clientes  implements java.io.Serializable {
     
     public void setPartidases(Set partidases) {
         this.partidases = partidases;
+    }
+
+    /**
+     * @return the saldo
+     */
+    public int getSaldo() {
+        return saldo;
+    }
+
+    /**
+     * @param saldo the saldo to set
+     */
+    public void setSaldo(int saldo) {
+        this.saldo = saldo;
     }
 
 

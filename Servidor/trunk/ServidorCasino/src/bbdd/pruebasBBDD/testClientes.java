@@ -126,6 +126,7 @@ public class testClientes {
             System.out.print("Fecha Ingreso:" + jugador.getFechaingreso() + s);
             System.out.print("Nº Cuenta:" + jugador.getNumerocuenta() + s);
             System.out.print("Recargas: " + jugador.getRecargas() + s);
+            System.out.print("Saldo: " + jugador.getSaldo() + s);
             System.out.println("Telefono:" + jugador.getTelefono() + s);
         }
     }

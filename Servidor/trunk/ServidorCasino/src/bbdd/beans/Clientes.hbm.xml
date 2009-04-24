@@ -34,6 +34,9 @@
     <property name="recargas" type="java.lang.Integer">
       <column name="RECARGAS" not-null="true" precision="22" scale="0"/>
     </property>
+    <property name="saldo" type="java.lang.Integer">
+      <column name="SALDO" not-null="true" precision="22" scale="0"/>
+    </property>
     <property name="telefono" type="string">
       <column length="9" name="TELEFONO"/>
     </property>
