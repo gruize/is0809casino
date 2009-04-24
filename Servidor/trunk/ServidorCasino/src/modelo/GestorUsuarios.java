@@ -7,6 +7,7 @@ package modelo;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import bbdd.gestorBBDD.GestorBBDDImp;
 import modelo.LogicaJuegos.Jugador;
 
 /**
@@ -18,6 +19,7 @@ public class GestorUsuarios {
     private static Hashtable<Integer,Integer> jugadorMesa;
     private static Hashtable<Integer,ArrayList<Jugador>> mesaJugadores;
     private static GestorUsuarios instancia;
+    private GestorBBDDImp bbdd;
 
     public static GestorUsuarios getInstancia() {
         if (instancia == null)
@@ -28,6 +30,7 @@ public class GestorUsuarios {
     public GestorUsuarios() {
         jugadorMesa = new Hashtable<Integer,Integer>();
         mesaJugadores = new Hashtable<Integer,ArrayList<Jugador>>();
+         //bbdd = new GestorBBDDImp();
     }
 
     public int getMesa(int usuario) {
@@ -114,6 +117,7 @@ public class GestorUsuarios {
         //Sino existe el usuario => resultado = -1
         int id = 1; //Asignar la clave autonumerica obtenida en consulta anterior
         //hasta que me ponga con la bbdd el identificador es aleatorio
+        //bbdd.comprobarUsuario(usuario, password);
         //int aleatorio = (int)(Math.random()*100);
         //Si el jugador ya esta conectado devuelve resultado = 0
         if (jugadorMesa.containsKey(id))
