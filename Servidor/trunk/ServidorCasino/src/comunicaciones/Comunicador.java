@@ -8,6 +8,8 @@ import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Vector;
+import modelo.MensajeChat;
+import modelo.MensajeJugada;
 
 
 public class Comunicador extends Thread{
@@ -104,7 +106,10 @@ public class Comunicador extends Thread{
         MensajeComunicaciones temp = new MensajeComunicaciones();
         temp.setRemitente(0);
         temp.setDestino(identificador); 
-        temp.setTipo(0);
+        if (mensaje instanceof MensajeChat)
+            temp.setTipo(1);
+        else if (mensaje instanceof MensajeJugada)
+            temp.setTipo(2);
         temp.setMensaje(mensaje);
         if (destino != null /*&& destino.isConectado()*/){
             return destino.enviarMensaje(temp);
