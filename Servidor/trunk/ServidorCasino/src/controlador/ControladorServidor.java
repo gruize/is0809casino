@@ -121,7 +121,7 @@ public class ControladorServidor {
                 MensajeJugada mensaje2= (MensajeJugada)mensaje;
                 if (GestorUsuarios.getInstancia().colocarJugador(mensaje2.getUsuario(),mensaje2.getMesa()))
                         //Envio mensaje de  confimacion de la entrada en la mesa
-                        enviarMensajeJugada(3,null);
+                        enviarMensajeJugada(3,mensaje2);//Ambrin: necesito saber en qué mesa se ha insertado el cliente. Quito null y envio mensaje de vuelta
                 }
                 else if (tipo==4){
                 MensajeJugada mensaje2= (MensajeJugada)mensaje;
