@@ -86,7 +86,7 @@ public class ControladorCliente {
      * @param totalApostado  lo que lleva apostado en la ronda ????  
      * @param valor lo que se acaba de apostar en una casilla ????
      */
-    public void realizarApuesta(int totalApostado, String valor) {
+    public void realizarApuesta(int totalApostado, String valor, String tipo) {
         //modelo.realizarApuesta(totalApostado,valor);
         //Apuesta apuestaRealizada = new Apuesta(totalApostado,valor);
         //TODO:Enviar la apuesta al servidor
@@ -94,7 +94,7 @@ public class ControladorCliente {
         
         int idUsuario=modelo.getId();
         int idMesa=modelo.getMesa();
-        String tipoApuesta="NUMERO"; //TODO cómo obtengo tipoApuesta?? valores: Numero,Color,ParImpar, Docena, Linea,FaltaPasa....
+        String tipoApuesta=tipo; //TODO cómo obtengo tipoApuesta?? valores: Numero,Color,ParImpar, Docena, Linea,FaltaPasa....
         int casilla=1; //TODO casilla a la q se apuesta: al 21, al Rojo , a la 2º Docena,Falta, Par ...
         int cantidadApostada=totalApostado; //TODO es totalApostado??? 
         
