@@ -42,6 +42,8 @@ public class Comunicador {
         try {
             sslfact = (SSLSocketFactory)SSLSocketFactory.getDefault();
             conexion = (SSLSocket)sslfact.createSocket(_direccion, _puerto);
+            final String[] enabledCipherSuites = { "SSL_DH_anon_WITH_RC4_128_MD5" };
+            conexion.setEnabledCipherSuites(enabledCipherSuites);
             ObjectOutputStream salida = new ObjectOutputStream(conexion.getOutputStream());
             ObjectInputStream entrada = new ObjectInputStream(conexion.getInputStream());
             _cliente = new ManejadorCliente(_controlador, conexion, entrada, salida, usuario, password);
