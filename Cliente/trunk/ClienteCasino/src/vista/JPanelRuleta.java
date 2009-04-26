@@ -21,7 +21,8 @@ public class JPanelRuleta extends JPanel{
 
        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/ruleta.gif"))); // NOI18N
+        //jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("vista/ruleta.gif"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("./recursos/ruleta.gif"));
 
         javax.swing.GroupLayout jPanelRuletaLayout = new javax.swing.GroupLayout(this);
         setLayout(jPanelRuletaLayout);
