@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.net.Socket; 
 import java.net.UnknownHostException;
+import javax.net.ssl.*;
 
 /**
  * Clase que abstrae la comunicación a cualquier módulo superior
@@ -37,9 +37,11 @@ public class Comunicador {
      */
     public boolean abreConexion (String usuario, String password){
         boolean conectado;
-        Socket conexion;
+        SSLSocketFactory sslfact;
+        SSLSocket conexion;
         try {
-            conexion = new Socket(_direccion, _puerto);
+            sslfact = (SSLSocketFactory)SSLSocketFactory.getDefault();
+            conexion = (SSLSocket)sslfact.createSocket(_direccion, _puerto);
             ObjectOutputStream salida = new ObjectOutputStream(conexion.getOutputStream());
             ObjectInputStream entrada = new ObjectInputStream(conexion.getInputStream());
             _cliente = new ManejadorCliente(_controlador, conexion, entrada, salida, usuario, password);

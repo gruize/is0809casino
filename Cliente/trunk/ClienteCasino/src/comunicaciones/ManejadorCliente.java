@@ -4,7 +4,7 @@ import controlador.ControladorCliente;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.Socket;
+import javax.net.ssl.SSLSocket;
 
 /**
  * Clase que maneja la conexión particular del cliente
@@ -14,7 +14,7 @@ public class ManejadorCliente implements Runnable {
 
     private int _identificador;
 
-    private Socket _cliente;
+    private SSLSocket _cliente;
 
     private ObjectInputStream _entrada;
 
@@ -38,7 +38,7 @@ public class ManejadorCliente implements Runnable {
      * @param in Stream de datos de entrada de conexión
      * @param out Stream de datos de salida de conexión
      */
-    public ManejadorCliente (ControladorCliente controlador, Socket cliente,
+    public ManejadorCliente (ControladorCliente controlador, SSLSocket cliente,
             ObjectInputStream in, ObjectOutputStream out,
             String usuario, String password) {
         this._controlador = controlador;
