@@ -18,10 +18,11 @@ import bbdd.beans.Participantes;
  */
 public class DAOParticipantes {
 
+    //log4j
+    private static Logger log = Logger.getLogger(DAOParticipantes.class);
 
     public DAOParticipantes(){}
-    //log4j
-    static Logger log = Logger.getLogger(DAOParticipantes.class);
+    
 
     /**
      * Inserta un nuevo participante

@@ -5,7 +5,7 @@
 package modelo.LogicaJuegos.logicaRuleta;
 
 import modelo.Jugada;
-import modelo.MensajeJugada;
+import modelo.mensajes.MensajeJugada;
 import controlador.ControladorServidor;
 import java.util.Hashtable;
 import javax.swing.DefaultListModel;

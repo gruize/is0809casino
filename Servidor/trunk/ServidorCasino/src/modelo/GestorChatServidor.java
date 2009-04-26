@@ -1,5 +1,6 @@
 package modelo;
 
+import modelo.mensajes.MensajeChat;
 import controlador.ControladorServidor;
 import java.util.ArrayList;
 import java.util.Vector;

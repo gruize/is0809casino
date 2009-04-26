@@ -18,7 +18,7 @@ import org.hibernate.Transaction;
  */
 public class DAOSalas {
 
-    static Logger log = Logger.getLogger(DAOClientes.class);
+    private static Logger log = Logger.getLogger(DAOClientes.class);
 
     /**
      * Inserta una nueva sala

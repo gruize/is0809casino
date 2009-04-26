@@ -13,12 +13,12 @@ import org.hibernate.Transaction;
 
 /**
  *
- * @author Ambrin Chaudhary y Joaquin Lopez
+ * @author Ambrin Chaudhary
  */
 public class DAOClientes {
 
     //log4j
-    static Logger log = Logger.getLogger(DAOClientes.class);
+    private static Logger log = Logger.getLogger(DAOClientes.class);
 
     /**
      * Inserta un nuevo cliente

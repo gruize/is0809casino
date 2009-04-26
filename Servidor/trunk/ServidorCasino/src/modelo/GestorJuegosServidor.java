@@ -4,6 +4,7 @@
  */
 package modelo;
 
+import modelo.mensajes.MensajeJugada;
 import controlador.ControladorServidor;
 import java.util.Vector;
 import javax.swing.DefaultListModel;

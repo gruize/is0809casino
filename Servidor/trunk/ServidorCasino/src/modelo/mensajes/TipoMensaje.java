@@ -2,7 +2,7 @@
  * Tipos de mensajes que se envían al servidor
  */
 
-package modelo;
+package modelo.mensajes;
 
 /**
  *
@@ -11,17 +11,23 @@ package modelo;
 public class TipoMensaje {
 
     /**mensaje de chat*/
-    public static int MENSAJE_CHAT=1;
+    public static final int MENSAJE_CHAT=1;
     
     /** mensaje de jugada(de ruleta, dados, ...)*/
-    public static int MENSAJE_JUGADA=2;
+    public static final int MENSAJE_JUGADA=2;
     
     /** mensaje de entrada en la mesa. Tanto de solicitud del cliente, como de confirmacion del servidor */
-    public static int ENTRADA_MESA=3;
+    public static final int ENTRADA_MESA=3;
     
     /** salida de la mesa. Lo solicita el cliente, pero no recibe confirmación del servidor*/
-    public static int SALIDA_MESA=4;
+    public static final int SALIDA_MESA=4;
 
     /** Cierre de conexión */
-    public static int CERRAR_CONEXION=5;
+    public static final int CERRAR_CONEXION=5;
+
+    /** Entrada en una sala por parte del cliente */
+    public static final int ENTRADA_SALA=6;
+
+    /** Salida de una sala */
+    public static final int SALIDA_SALA=7;
 }

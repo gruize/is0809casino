@@ -8,8 +8,8 @@ import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Vector;
-import modelo.MensajeChat;
-import modelo.MensajeJugada;
+import modelo.mensajes.MensajeChat;
+import modelo.mensajes.MensajeJugada;
 
 
 public class Comunicador extends Thread{

@@ -1,4 +1,4 @@
-package modelo;
+package modelo.mensajes;
 
 import java.io.Serializable;
 

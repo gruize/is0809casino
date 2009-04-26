@@ -12,14 +12,14 @@ import java.util.Vector;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import modelo.Jugada;
-import modelo.MensajeJugada;
+import modelo.mensajes.MensajeJugada;
 import modelo.ModeloServidor;
 
 /**
  *
  * @author Fiutten
  */
-public class Prueba {
+public class PruebaServidor {
 
 	/**
 	 * @param args
@@ -41,7 +41,7 @@ public class Prueba {
                 ControladorServidor controlador = new ControladorServidor(modelo);
 				VistaServidor vista = new VistaServidor(controlador);
 				modelo.addObserver(vista);
-                Vector<String> datos=new Vector();
+               /* Vector<String> datos=new Vector();
                 datos.add(0, "Pepito");
                 datos.add(1, "pass");
                 controlador.login(datos);
@@ -49,7 +49,7 @@ public class Prueba {
                 controlador.mensajeRecibido(2, new MensajeJugada(1,1,new Jugada(1,1,"NUMERO",1,1)));
                 controlador.mensajeRecibido(2, new MensajeJugada(1,1,new Jugada(1,1,"DOCENA",1,1)));
                 controlador.mensajeRecibido(4, new MensajeJugada(1,1,new Jugada(1,1,"DOCENA",1,1)));
-                
+                */
                 }
 		});
 

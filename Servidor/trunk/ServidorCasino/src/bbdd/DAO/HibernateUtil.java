@@ -19,7 +19,7 @@ public class HibernateUtil {
 
     
         //log4j
-    static Logger loggerLog = Logger.getLogger(HibernateUtil.class);
+    private static Logger loggerLog = Logger.getLogger(HibernateUtil.class);
 
     
     /**

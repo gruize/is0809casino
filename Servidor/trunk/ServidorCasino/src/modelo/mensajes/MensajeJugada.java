@@ -3,7 +3,8 @@
  * and open the template in the editor.
  */
 
-package modelo;
+package modelo.mensajes;
+import modelo.*;
 import java.io.Serializable;
 /**
  *
@@ -14,7 +15,7 @@ public class MensajeJugada implements Serializable{
     private int mesa;
     private Jugada jugada;
 
-    MensajeJugada(MensajeJugada j) {
+    public MensajeJugada(MensajeJugada j) {
        this.usuario = j.usuario;
         this.mesa = j.mesa;
         this.jugada = j.jugada;

@@ -19,7 +19,7 @@ import org.hibernate.Transaction;
  */
 public class DAOMesas {
 
-    static Logger log = Logger.getLogger(DAOMesas.class);
+    private static Logger log = Logger.getLogger(DAOMesas.class);
 
     /**
      * Inserta una nueva mesa

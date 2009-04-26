@@ -8,7 +8,13 @@ package modelo;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import bbdd.gestorBBDD.GestorBBDDImp;
+import bbdd.gestorBBDD.InterfazBBDD;
 import modelo.LogicaJuegos.Jugador;
+
+import bbdd.beans.Clientes;
+import bbdd.beans.Mesas;
+import bbdd.beans.Salas;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -16,10 +22,30 @@ import modelo.LogicaJuegos.Jugador;
  */
 public class GestorUsuarios {
 
+    //--------------------------------------------------------------------------
+    //          ATRIBUTOS
+    //--------------------------------------------------------------------------
+
     private static Hashtable<Integer,Integer> jugadorMesa;
-    private static Hashtable<Integer,ArrayList<Jugador>> mesaJugadores;
+    private static Hashtable<Integer,ArrayList<Jugador>> mesaJugadores; 
     private static GestorUsuarios instancia;
-    private GestorBBDDImp bbdd;
+    private InterfazBBDD bbdd;
+
+     //log4j
+    private static Logger log = Logger.getLogger(GestorUsuarios.class);
+
+
+    //***********  Ambrín (en realidad no sé cómo hacerlo)  **********
+
+    //Tabla de salas. Cada sala tiene mesas
+    private static Hashtable<Salas,ArrayList<Mesas>> salas;
+
+    //Tabla de mesas. Cada mesa tiene un array de jugadores
+    private static Hashtable<Mesas,ArrayList<Clientes>> mesas;
+
+    //--------------------------------------------------------------------------
+    //          METODOS
+    //--------------------------------------------------------------------------
 
     public static GestorUsuarios getInstancia() {
         if (instancia == null)
@@ -30,26 +56,53 @@ public class GestorUsuarios {
     public GestorUsuarios() {
         jugadorMesa = new Hashtable<Integer,Integer>();
         mesaJugadores = new Hashtable<Integer,ArrayList<Jugador>>();
-         //bbdd = new GestorBBDDImp();
+        bbdd = new GestorBBDDImp();
+
+        //***************************
+        salas= new Hashtable<Salas,ArrayList<Mesas>>();
+        mesas=new Hashtable<Mesas,ArrayList<Clientes>> ();
     }
 
+    /**
+     * Devuelve la mesa en la que se encuentra un usuario
+     * @param usuario 
+     * @return indice de la mesa
+     */
     public int getMesa(int usuario) {
         if (jugadorMesa.containsKey(usuario)) {
             return jugadorMesa.get(usuario);
         }
         return -1;
     }
-    //Devuelve el saldo de un jugador en concreto
+
+    /**
+     * Devuelve el saldo de un jugador en concreto
+     * @param usuario nombre de usuario
+     * @param mesa mesa en la que se encuentra
+     */
     public int getSaldoJugador(int usuario, int mesa) {
         int posicion = posicionJugador(usuario,getUsuarios(mesa));
         return  this.getUsuarios(mesa).get(posicion).getSaldo();
     }
-      //Actualiza el saldo de un jugador en concreto
+
+    /**
+     * Actualiza el saldo de un jugador en concreto
+     * @param usuario
+     * @param mesa
+     * @param saldo
+     */
     public void setSaldoJugador(int usuario, int mesa,int saldo) {
         int posicion = posicionJugador(usuario,getUsuarios(mesa));
         this.getUsuarios(mesa).get(posicion).setSaldo(saldo);
+
+        log.info("GestorUsuarios : setSaldoJugador : usuario="+usuario+" en mesa="+mesa+" con saldo="+saldo);
     }
 
+    /**
+     * Devuelve todos los usuarios de una mesa
+     * @param mesa
+     * @return lista de Jugadores de la mesa
+     */
     public ArrayList<Jugador> getUsuarios(int mesa) {
         ArrayList<Jugador> jugadores = null;
         if (mesaJugadores.containsKey(mesa)) {
@@ -61,6 +114,9 @@ public class GestorUsuarios {
     //Permite que un jugador este en mas de una mesa pero solo
     //una vez por mesa.
     public boolean colocarJugador(int idJugador,int mesa) {
+
+        String claseMetodo="GestorUsuarios : colocarJugador : ";
+
         boolean correcto = true;
          //TODO Buscar el saldo del Jugador en la BBDD
         int saldo=100;
@@ -69,18 +125,26 @@ public class GestorUsuarios {
             jugadorMesa.remove(idJugador);
             jugadorMesa.put(idJugador,mesa);
             System.out.println("El jugador con id: "+jugador+" se coloca en la mesa "+mesa+" jugador-mesa");
+
+            log.debug(claseMetodo+"El jugador con id: "+jugador+" se coloca en la mesa "+mesa+" jugador-mesa");
         }
         else{
             correcto = false;
             System.out.println("El jugador con id: "+jugador+" no esta en la lista de usuarios");
+
+            log.debug(claseMetodo+"El jugador con id: "+jugador+" no esta en la lista de usuarios");
             }
         if (mesaJugadores.get(mesa)!=null){
             if (!mesaJugadores.get(mesa).contains(jugador)){
                  mesaJugadores.get(mesa).add(jugador);
                  System.out.println("El jugador con id: "+jugador+" se coloca en la mesa "+mesa+" mesa-listajugadores");
+
+                 log.debug(claseMetodo+"El jugador con id: "+jugador+" se coloca en la mesa "+mesa+" mesa-listajugadores");
             }
             else{
             System.out.println("El jugador con id: "+jugador+" ya estaba en la mesa "+mesa);
+
+            log.info(claseMetodo+"El jugador con id: "+jugador+" ya estaba en la mesa "+mesa);
             }
         }
         else
@@ -110,26 +174,38 @@ public class GestorUsuarios {
         return correcto;
     }
 
+    /**
+     * Comprueba el login de un usuario
+     * @param usuario nombre de usuario
+     * @param password contraseña
+     * @return identificador del usuario si los datos son correctos, y no estaba ya en la mesa, -1 e.o.c
+     */
     public int hacerLogin(String usuario,String password) {
-        int resultado = 1;
+        int id = 0;
         //cosulta a la base de datos comprobando usuario y password y
         //obteniendo la clave autonumerica del usuario.
-        //Sino existe el usuario => resultado = -1
-        int id = 1; //Asignar la clave autonumerica obtenida en consulta anterior
-        //hasta que me ponga con la bbdd el identificador es aleatorio
-        //bbdd.comprobarUsuario(usuario, password);
-        //int aleatorio = (int)(Math.random()*100);
-        //Si el jugador ya esta conectado devuelve resultado = 0
+        //Sino existe el usuario => resultado = -1       
+       
+        id=bbdd.comprobarUsuario(usuario, password);
+
+        //Si el jugador ya esta conectado devuelve resultado = -1
         if (jugadorMesa.containsKey(id))
-            resultado = -1;
-        //Indico en el log un nuevo usuario
-        return 1;
+            id = -1;
+        
+        return id;
     }
+
+    /**
+     * Elimina al jugador de la mesa en la que se encontraba.
+     * @param jugador
+     * @return
+     */
     public boolean eliminarJugador(int jugador){
        int mesa = this.getMesa(jugador);
        int posicion = posicionJugador(jugador,getUsuarios(mesa));
        this.getUsuarios(mesa).remove(posicion);
        System.out.println("****** Usuario Eliminado de la mesa ********");
+       log.info("GestorUsuarios: eliminarJugador : ****** Usuario Eliminado de la mesa ********");
        jugadorMesa.get(jugador);
 
         return true;

@@ -18,7 +18,7 @@ import org.hibernate.Transaction;
  */
 public class DAOPartidas {
 
-    static Logger log = Logger.getLogger(DAOPartidas.class);
+    private static Logger log = Logger.getLogger(DAOPartidas.class);
 
     /**
      * Inserta una nueva partida
