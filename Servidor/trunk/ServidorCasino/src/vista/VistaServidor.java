@@ -28,7 +28,6 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import modelo.MensajeLog;
 
 public class VistaServidor extends JFrame implements Observer  {

@@ -16,6 +16,7 @@ import modelo.GestorJuegosServidor;
 import modelo.GestorUsuarios;
 import modelo.MensajeJugada;
 import java.util.Vector;
+import modelo.TipoMensaje;
 /**
  *
  * @author Fiutten
@@ -106,27 +107,30 @@ public class ControladorServidor {
          *  2- Mensaje de Jugada o Informacion de Salas y mesas
          *  3- Mensaje de Entrada en mesa
          *  4- Mensaje de Salida de Mesa
+         *  5- Cierre de conexión
          * */
-        if (tipo==1){
+        if (tipo==TipoMensaje.MENSAJE_CHAT){
             MensajeChat mensajeChat = ((MensajeChat)mensaje);
             System.out.println("server"+mensajeChat.get_usuario());
             GestorChatServidor.getInstance(this).dejamensaje(mensajeChat);
         }
-            else if (tipo==2){
+            else if (tipo==TipoMensaje.MENSAJE_JUGADA){
                 MensajeJugada  mensajeJugada=((MensajeJugada )mensaje);
                 GestorJuegosServidor.getInstance(this).dejamensaje(mensajeJugada);
                 //TODO Devolver la confirmacion de la jugada
             }
-            else if (tipo==3){
+            else if (tipo==TipoMensaje.ENTRADA_MESA){
                 MensajeJugada mensaje2= (MensajeJugada)mensaje;
                 if (GestorUsuarios.getInstancia().colocarJugador(mensaje2.getUsuario(),mensaje2.getMesa()))
                         //Envio mensaje de  confimacion de la entrada en la mesa
                         enviarMensajeJugada(3,mensaje2);//Ambrin: necesito saber en qué mesa se ha insertado el cliente. Quito null y envio mensaje de vuelta
                 }
-                else if (tipo==4){
+                else if (tipo==TipoMensaje.SALIDA_MESA){
                 MensajeJugada mensaje2= (MensajeJugada)mensaje;
                 GestorUsuarios.getInstancia().eliminarJugador(mensaje2.getUsuario());
                         
+                }else if (tipo==TipoMensaje.CERRAR_CONEXION){
+
                 }
         }
     
