@@ -27,7 +27,8 @@ import java.io.IOException;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import modelo.MensajeChat;
+import modelo.mensajes.MensajeChat;
+import modelo.mensajes.MensajeJugada;
 
 public class VistaRuleta extends JFrame implements Observer  {
         
@@ -215,6 +216,21 @@ public class VistaRuleta extends JFrame implements Observer  {
          if (arg instanceof MensajeChat) {
                 MensajeChat mensaje = (MensajeChat)arg;
                PanelChat.setAreaTextoChat(mensaje.get_usuario()+" dice: "+mensaje.get_men()+"\n");
+         }else if (arg instanceof MensajeJugada){
+             //TODO descomponer el mensaje
+
+
+             /*
+             * Puedo obtener...
+             *              *
+             * Para la ruleta:
+             *  - mensaje diciendo que ya no se puede apostar más porque se va a lanzar la bola
+             *  - mensaje de actualizacion de saldo, tras el lanzamiento de la bola
+             *
+             * Para los dados:
+             *  - ...
+             */
+
          }
 
     }
@@ -275,7 +291,7 @@ public class VistaRuleta extends JFrame implements Observer  {
               }else{
                   if(JOptionPane.showConfirmDialog(PanelApuestas, "Confirme la conformidad de su apuesta\nValor: " + PanelApuestas.getLabelValor().getText() + "\nCantidad: " + PanelApuestas.getLabelTotalApostado().getText(), "Confirmacion de la apuesta", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
                     PanelCjtoApuestas.getListaApuestas().setText(PanelCjtoApuestas.getListaApuestas().getText() + "\nApuesta a: " + PanelApuestas.getLabelValor().getText() + "\nun total del: " + PanelApuestas.getLabelTotalApostado().getText() + "\n" );
-                    controlador.realizarApuesta(Integer.parseInt(PanelApuestas.getLabelTotalApostado().getText()),PanelApuestas.getLabelValor().getText(),"TipoApuesta");
+                    controlador.realizarApuesta(Integer.parseInt(PanelApuestas.getLabelTotalApostado().getText()),PanelApuestas.getLabelValor().getText(),"NUMERO"); //TODO definir los tipos de apuestas
                     reinicializarValores();
                 }
              }

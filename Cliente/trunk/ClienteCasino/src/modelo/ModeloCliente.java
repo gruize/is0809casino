@@ -5,6 +5,8 @@
 
 package modelo;
 
+import modelo.mensajes.MensajeChat;
+import modelo.mensajes.MensajeJugada;
 import java.util.Observable;
 /**
  *
@@ -70,6 +72,16 @@ public class ModeloCliente extends Observable{
         chat = mensaje;
         setChanged();
         notifyObservers(chat);
+    }
+
+    /**
+     * Nuevo MensajeJugada para notificar a los clientes del cambio
+     * @param mensaje
+     */
+    public void addMensajeJugada(MensajeJugada mensaje){
+        
+        setChanged();
+        notifyObservers(mensaje);
     }
 
     public MensajeChat getmensajechat(){
