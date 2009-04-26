@@ -16,7 +16,7 @@ import vista.VistaLogin;
  *
  * @author Fiutten
  */
-public class Prueba {
+public class PruebaCliente {
 
 	/**
 	 * @param args
