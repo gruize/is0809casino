@@ -21,4 +21,7 @@ public class TipoMensaje {
     
     /** salida de la mesa. Lo solicita el cliente, pero no recibe confirmación del servidor*/
     public static int SALIDA_MESA=4;
+
+    /** Cierre de conexión */
+    public static int CERRAR_CONEXION=5;
 }

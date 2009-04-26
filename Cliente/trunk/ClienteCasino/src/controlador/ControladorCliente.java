@@ -51,8 +51,7 @@ public class ControladorCliente {
 
     public void enviarMensajeChat(String mensaje) {
         MensajeChat mensajeChat = new MensajeChat(modelo.getId(),1,mensaje,modelo.getUsuario());
-        comunicador.enviarMensaje(1,mensajeChat);
-        //TODO poner TipoMensaje.MENSAJE_CHAT en lugar de 1
+        comunicador.enviarMensaje(TipoMensaje.MENSAJE_CHAT,mensajeChat);
     }
     
     /**
@@ -83,20 +82,21 @@ public class ControladorCliente {
 
     /**
      * 
-     * @param totalApostado  lo que lleva apostado en la ronda ????  
-     * @param valor lo que se acaba de apostar en una casilla ????
+     * @param cantidadApostada  cantidad de dinero apostada en la casilla
+     * @param valor nombre de la casilla sobre la que ha apostado
      */
-    public void realizarApuesta(int totalApostado, String valor, String tipo) {
-        //modelo.realizarApuesta(totalApostado,valor);
-        //Apuesta apuestaRealizada = new Apuesta(totalApostado,valor);
-        //TODO:Enviar la apuesta al servidor
-        //apuestaRealizada.imprimir();
-        
+    public void realizarApuesta(int cantidadApostada, String valor, String tipo) {
+   
         int idUsuario=modelo.getId();
         int idMesa=modelo.getMesa();
-        String tipoApuesta=tipo; //TODO cómo obtengo tipoApuesta?? valores: Numero,Color,ParImpar, Docena, Linea,FaltaPasa....
-        int casilla=1; //TODO casilla a la q se apuesta: al 21, al Rojo , a la 2º Docena,Falta, Par ...
-        int cantidadApostada=totalApostado; //TODO es totalApostado??? 
+        String tipoApuesta=tipo; //valores posibles (definirlos en la vista ruleta): Numero,Color,ParImpar, Docena, Linea,FaltaPasa....
+        int casilla=0;//casilla a la q se apuesta: al 21, al Rojo , a la 2º Docena,Falta, Par ...
+        try{ //TODO hacerlo bien
+            casilla=Integer.parseInt(valor);
+        } catch (ClassCastException e){
+            casilla=1;
+        }
+   
         
         //crear el objeto Jugada 
         Jugada jugada=new Jugada(idUsuario, idMesa, tipoApuesta,casilla,cantidadApostada);
@@ -169,6 +169,8 @@ public class ControladorCliente {
              * Para los dados: 
              * 
              */
+
+            //TODO notificar a la vista. método update (patron observador)
         }else if (tipo==TipoMensaje.ENTRADA_MESA){      
             
            //El servidor me confirma la entrada en la mesa
