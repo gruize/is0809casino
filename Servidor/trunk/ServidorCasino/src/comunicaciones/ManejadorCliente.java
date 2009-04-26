@@ -4,8 +4,7 @@ import controlador.ControladorServidor;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.Socket;
-
+import javax.net.ssl.SSLSocket;
 
 public class ManejadorCliente implements Runnable {
 
@@ -13,7 +12,7 @@ public class ManejadorCliente implements Runnable {
     
     private ControladorServidor _controlador;
 
-    private Socket _cliente;
+    private SSLSocket _cliente;
 
     private ObjectInputStream _entrada;
 
@@ -30,7 +29,7 @@ public class ManejadorCliente implements Runnable {
     }
 
     
-    public ManejadorCliente (ControladorServidor controlador, Socket cliente, ObjectInputStream in, ObjectOutputStream out) {
+    public ManejadorCliente (ControladorServidor controlador, SSLSocket cliente, ObjectInputStream in, ObjectOutputStream out) {
         this._controlador = controlador;
         this._cliente = cliente;
         this._entrada = in;

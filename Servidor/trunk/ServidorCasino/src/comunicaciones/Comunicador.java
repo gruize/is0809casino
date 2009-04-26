@@ -5,11 +5,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.Vector;
-import modelo.mensajes.MensajeChat;
-import modelo.mensajes.MensajeJugada;
+import javax.net.ssl.*;
+
 
 
 public class Comunicador extends Thread{
@@ -18,11 +16,11 @@ public class Comunicador extends Thread{
 
     private AlmacenCliente _almacen;
 
-    private ServerSocket _servidor;
+    private SSLServerSocket _servidor;
 
     private int _puerto = 10000;
  
-    private Socket _escucha;
+    private SSLSocket _escucha;
 
     private ObjectInputStream _entrada;
 
@@ -38,7 +36,8 @@ public class Comunicador extends Thread{
         this._controlador = controlador;
         try {
             _almacen = new AlmacenCliente();
-            _servidor = new ServerSocket(_puerto);
+            SSLServerSocketFactory sslSrvFact = (SSLServerSocketFactory)SSLServerSocketFactory.getDefault();
+            _servidor =(SSLServerSocket)sslSrvFact.createServerSocket(_puerto);
             _conectado = true;
             System.out.println("Comunicaciones::El servidor esta corriendo en la direccion " + _servidor.getInetAddress() +
                                " Puerto: " + _puerto);
@@ -64,7 +63,7 @@ public class Comunicador extends Thread{
         identificador = 0;
         while(true){
                 try {
-                    _escucha = _servidor.accept();
+                    _escucha = (SSLSocket) _servidor.accept();
                 } catch (IOException ex) {
                     System.out.println("Comunicaciones::Ha ocurrido un error recibiendo la conexion con el cliente.");
                     System.out.println("Comunicaciones::Este módulo se cerrara ...");
@@ -101,15 +100,16 @@ public class Comunicador extends Thread{
     }
 
 
-    public boolean enviarMensaje (int identificador, Serializable mensaje) {
+    public boolean enviarMensaje (int identificadorUsuario, int tipo, Serializable mensaje) {
         ManejadorCliente destino = _almacen.getManejadorCliente(identificador);
         MensajeComunicaciones temp = new MensajeComunicaciones();
         temp.setRemitente(0);
         temp.setDestino(identificador); 
-        if (mensaje instanceof MensajeChat)
+        temp.setTipo(tipo);
+        /*if (mensaje instanceof MensajeChat)
             temp.setTipo(1);
         else if (mensaje instanceof MensajeJugada)
-            temp.setTipo(2);
+            temp.setTipo(2);*/
         temp.setMensaje(mensaje);
         if (destino != null /*&& destino.isConectado()*/){
             return destino.enviarMensaje(temp);

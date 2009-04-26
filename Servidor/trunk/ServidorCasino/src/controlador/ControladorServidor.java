@@ -84,8 +84,8 @@ public class ControladorServidor {
         modelo.verEstadisticas(usuario);
     }
 
-    public void enviarMensajeChat(int id, MensajeChat mensaje) {
-        comunicador.enviarMensaje(id, mensaje);
+    public void enviarMensajeChat(int id,MensajeChat mensaje) {
+        comunicador.enviarMensaje(id,1,mensaje);
     }
 
     /**
@@ -93,8 +93,8 @@ public class ControladorServidor {
      * @param id =2
      * @param mensaje objeto MensajeJugada
      */
-    public void enviarMensajeJugada(int id, MensajeJugada mensaje) {
-        comunicador.enviarMensaje(id, mensaje);
+    public void enviarMensajeJugada(int id,MensajeJugada mensaje){
+        comunicador.enviarMensaje(id,2, mensaje);
     }
 
     /**
@@ -103,7 +103,7 @@ public class ControladorServidor {
      * @param mensaje objeto MensajeMesa
      */
     public void enviarMensajeMesa(int id, MensajeMesa mensaje) {
-        comunicador.enviarMensaje(id, mensaje);
+        comunicador.enviarMensaje(id,3, mensaje);
     }
 
     /**
