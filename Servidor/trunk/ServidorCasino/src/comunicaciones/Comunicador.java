@@ -38,6 +38,9 @@ public class Comunicador extends Thread{
             _almacen = new AlmacenCliente();
             SSLServerSocketFactory sslSrvFact = (SSLServerSocketFactory)SSLServerSocketFactory.getDefault();
             _servidor =(SSLServerSocket)sslSrvFact.createServerSocket(_puerto);
+            final String[] enabledCipherSuites = { "SSL_DH_anon_WITH_RC4_128_MD5" };
+            _servidor.setEnabledCipherSuites(enabledCipherSuites);
+
             _conectado = true;
             System.out.println("Comunicaciones::El servidor esta corriendo en la direccion " + _servidor.getInetAddress() +
                                " Puerto: " + _puerto);
@@ -64,6 +67,8 @@ public class Comunicador extends Thread{
         while(true){
                 try {
                     _escucha = (SSLSocket) _servidor.accept();
+                } catch (SSLException ex){
+                    ex.printStackTrace();
                 } catch (IOException ex) {
                     System.out.println("Comunicaciones::Ha ocurrido un error recibiendo la conexion con el cliente.");
                     System.out.println("Comunicaciones::Este módulo se cerrara ...");
@@ -79,7 +84,7 @@ public class Comunicador extends Thread{
                     System.out.println("Usuario: " + usuario + " Password: " + password);
                     datos.add(usuario);
                     datos.add(password);
-                    identificador=_controlador.login(datos);
+                    identificador = _controlador.login(datos);
                     _salida.flush();
                     _salida.writeUTF(Integer.toString(identificador));
                     _salida.flush();
