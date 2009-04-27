@@ -65,17 +65,28 @@ public class ControladorCliente {
      * @param mensaje
      */
     public void enviarMensajeJugada(int tipo, MensajeJugada mensaje) {
-        comunicador.enviarMensaje(tipo, mensaje);
+       comunicador.enviarMensaje(tipo, mensaje);
     }
 
     /**
      * Envía un mensaje de entrada o salida de mesa hacia el servidor
      * @param tipo:
      *   *  3- Mensaje de Entrada en mesa
-     *  4- Mensaje de Salida de Mesa
+     *   *  4- Mensaje de Salida de Mesa
      * @param mensaje objeto MensajeJugada
      */
-    public void enviarMensajeMesa(int tipo, MensajeMesa mensaje) {
+    private void enviarMensajeMesa(int tipo, MensajeMesa mensaje) {
+        comunicador.enviarMensaje(tipo, mensaje);
+    }
+
+    /**
+     *
+     * @param tipo:
+     *   *  3- Mensaje de Entrada en Sala
+     *   *  4- Mensaje de Salida de Sala
+     * @param mensaje
+     */
+    private void enviarMensajeSala(int tipo, MensajeSala mensaje){
         comunicador.enviarMensaje(tipo, mensaje);
     }
 
@@ -113,7 +124,7 @@ public class ControladorCliente {
 
         //crear el objeto Jugada 
         Jugada jugada = new Jugada(idUsuario, idMesa, tipoApuesta, casilla, cantidadApostada);
-        System.out.println("CLIENTE: jugada ruleta: usuario:" + idUsuario + " mesa:" + idMesa + " tipoApuesta:" + tipoApuesta + " casilla:" + casilla + " cantidadApostada:" + cantidadApostada);
+        System.out.println("Jugada RULETA: usuario=" + idUsuario + " mesa=" + idMesa + " tipoApuesta=" + tipoApuesta + " casilla:" + casilla + " cantidadApostada:" + cantidadApostada);
 
         //crear el objeto MensajeJugada 
         MensajeJugada mensajeJugada = new MensajeJugada(idUsuario, idMesa, jugada);
@@ -137,6 +148,14 @@ public class ControladorCliente {
         enviarMensajeMesa(TipoMensaje.ENTRADA_MESA, mensajeMesa);
     }
 
+    public void solicitudEntrarSala(int idSala){
+
+        //crear el objeto MensajeSala(idUsuario, isSala)
+        MensajeSala mensajeSala=new MensajeSala(modelo.getId(),idSala);
+
+        //enviar el mensaje al servidor
+        enviarMensajeSala(TipoMensaje.ENTRADA_SALA, mensajeSala);
+    }
     /**
      * El usuario selecciona salir de Mesa
      */
@@ -156,6 +175,7 @@ public class ControladorCliente {
      */
     public synchronized void mensajeRecibido(int tipo, Serializable mensaje) {
 
+        System.out.println("ControladorCliente : mensajeRecibido : tipo="+tipo+" mensaje="+mensaje.toString());
         if (tipo == TipoMensaje.MENSAJE_CHAT) {
             MensajeChat m = (MensajeChat) mensaje;
             modelo.addmensajechat(m);

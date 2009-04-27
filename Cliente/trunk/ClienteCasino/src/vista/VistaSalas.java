@@ -316,6 +316,10 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
 
         public void actionPerformed(ActionEvent e) {
            dispose();
+
+           //TODO obtener el id de la sala seleccionada.
+           controlador.solicitudEntrarSala(3);
+
            VistaMesas vistaMesas = new VistaMesas(controlador);
            vistaMesas.setJuego(juego);
            vistaMesas.setVisible(true);

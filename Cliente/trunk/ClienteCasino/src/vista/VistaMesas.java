@@ -281,7 +281,12 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         public void actionPerformed(ActionEvent e) {
             dispose();
             switch(juego){
-                case RULETA: {                    
+                case RULETA: {
+
+                    //TODO obtener el id de la mesa
+                    controlador.solicitudEntrarEnMesa(1);
+
+
                     VistaRuleta vistaJuego = new VistaRuleta(controlador);
                     vistaJuego.setVisible(true);
                 }break;
