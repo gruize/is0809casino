@@ -84,17 +84,26 @@ public class ControladorServidor {
         modelo.verEstadisticas(usuario);
     }
 
-    public void enviarMensajeChat(int id,MensajeChat mensaje) {
-        comunicador.enviarMensaje(id,1,mensaje);
+
+    /**
+     *
+     * @param id identificador del usuario
+     * @param mensaje objeto MensajeChat
+     */
+    public void enviarMensajeChat(int id, MensajeChat mensaje) {
+        comunicador.enviarMensaje(id,TipoMensaje.MENSAJE_CHAT ,mensaje);
+
     }
 
     /**
      * Envia al cliente un mensaje de Jugada
-     * @param id =2
+     * @param id identificador del usuario
      * @param mensaje objeto MensajeJugada
      */
-    public void enviarMensajeJugada(int id,MensajeJugada mensaje){
-        comunicador.enviarMensaje(id,2, mensaje);
+
+    public void enviarMensajeJugada(int id, MensajeJugada mensaje) {
+        comunicador.enviarMensaje(id, TipoMensaje.MENSAJE_JUGADA, mensaje);
+
     }
 
     /**
@@ -103,7 +112,13 @@ public class ControladorServidor {
      * @param mensaje objeto MensajeMesa
      */
     public void enviarMensajeMesa(int id, MensajeMesa mensaje) {
-        comunicador.enviarMensaje(id,3, mensaje);
+        comunicador.enviarMensaje(id,TipoMensaje.ENTRADA_MESA, mensaje);
+        //no se enviaran las salidas de mesa
+    }
+
+    public void enviarMensajeSala(int id, MensajeSala mensaje){
+        comunicador.enviarMensaje(id,TipoMensaje.ENTRADA_SALA, mensaje);
+        //no se enviaran las salidas de sala
     }
 
     /**
@@ -116,7 +131,7 @@ public class ControladorServidor {
         Vector<String> datos = (Vector<String>) mensaje;
         int id = GestorUsuarios.getInstancia().hacerLogin(datos.firstElement(), datos.lastElement());
 
-        log.info("ControladorServidor:login: usuario=" + datos.firstElement() + " password=" + datos.lastElement() + " -->id=" + id);
+        log.info("ControladorServidor : login : usuario=" + datos.firstElement() + " password=" + datos.lastElement() + " -->id=" + id);
 
         if (id != -1) {
             //Temporal agrego yo la mesa cuando alguien se loguea
@@ -131,6 +146,9 @@ public class ControladorServidor {
     }
 
     public synchronized void mensajeRecibido(int tipo, Serializable mensaje) {
+
+        System.out.println("ControladorServidor : mensajeRecibido : tipo="+tipo+" mensaje="+mensaje);
+        log.info("ControladorServidor : mensajeRecibido : tipo="+tipo+" mensaje="+mensaje);
         /*Tipos de mensajes:
          *  1- Mensaje de Chat
          *  2- Mensaje de Jugada o Informacion de Salas y mesas
@@ -142,7 +160,7 @@ public class ControladorServidor {
          */
         if (tipo == TipoMensaje.MENSAJE_CHAT) {
             MensajeChat mensajeChat = ((MensajeChat) mensaje);
-            System.out.println("server" + mensajeChat.get_usuario());
+            System.out.println("server " + mensajeChat.get_usuario());
             GestorChatServidor.getInstance(this).dejamensaje(mensajeChat);
 
         } else if (tipo == TipoMensaje.MENSAJE_JUGADA) {
@@ -159,8 +177,8 @@ public class ControladorServidor {
 
             MensajeMesa m=(MensajeMesa)mensaje;
             if (GestorUsuarios.getInstancia().colocarJugador(m.getUsuario(), m.getMesa())) //Envio mensaje de  confimacion de la entrada en la mesa
-               enviarMensajeMesa(3, m);//Ambrin: necesito saber en qué mesa se ha insertado el cliente. Quito null y envio mensaje de vuelta
-
+               enviarMensajeMesa(m.getUsuario(), m);//Ambrin: necesito saber en qué mesa se ha insertado el cliente. Quito null y envio mensaje de vuelta
+            else enviarMensajeMesa(m.getUsuario(), m);//TODO mirar porque devuelve false
 
         } else if (tipo == TipoMensaje.SALIDA_MESA) {
             /*MensajeJugada mensaje2 = (MensajeJugada) mensaje;
@@ -171,9 +189,12 @@ public class ControladorServidor {
         } else if (tipo == TipoMensaje.CERRAR_CONEXION) {
             //TODO cierre de conexion
         } else if (tipo == TipoMensaje.ENTRADA_SALA) {
-            //TODO gestion de entrada en sala
-
             MensajeSala m=(MensajeSala)mensaje;
+
+            //Todo realizar la gestion de sala
+
+            //envío mensaje de vuelta para confirmarle al usuario que ha entrado en la sala
+            enviarMensajeSala(m.getUsuario(), m);
 
         } else if (tipo == TipoMensaje.SALIDA_SALA) {
             //TODO gestion de salida de sala

@@ -124,9 +124,9 @@ public class GestorUsuarios {
         if (jugadorMesa.containsKey(idJugador)) {
             jugadorMesa.remove(idJugador);
             jugadorMesa.put(idJugador,mesa);
-            System.out.println("El jugador con id: "+jugador+" se coloca en la mesa "+mesa+" jugador-mesa");
+            System.out.println("El jugador con id: "+jugador.getId()+" se coloca en la mesa "+mesa+" jugador-mesa");
 
-            log.debug(claseMetodo+"El jugador con id: "+jugador+" se coloca en la mesa "+mesa+" jugador-mesa");
+            log.debug(claseMetodo+"El jugador con id: "+jugador.getId()+" se coloca en la mesa "+mesa+" jugador-mesa");
         }
         else{
             correcto = false;
