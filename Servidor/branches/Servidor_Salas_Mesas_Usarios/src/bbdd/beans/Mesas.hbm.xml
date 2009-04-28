@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-mar-2009 10:54:47 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="bbdd.beans.Mesas" schema="SYSTEM" table="MESAS">
+    <id name="codigo" type="java.lang.Integer">
+      <column name="CODIGO" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="bbdd.beans.Salas" fetch="select" name="salas">
+      <column name="SALA" not-null="true" precision="22" scale="0"/>
+    </many-to-one>
+    <property name="puestos" type="java.lang.Integer">
+      <column name="PUESTOS" not-null="true" precision="22" scale="0"/>
+    </property>
+    <property name="jugadores" type="java.lang.Integer">
+      <column name="JUGADORES" not-null="true" precision="22" scale="0"/>
+    </property>
+    <property name="apuestamin" type="double">
+      <column name="APUESTAMIN" not-null="true" precision="5"/>
+    </property>
+    <property name="apuestamax" type="double">
+      <column name="APUESTAMAX" not-null="true" precision="5"/>
+    </property>
+    <set inverse="true" name="partidases">
+      <key>
+        <column name="MESA" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="bbdd.beans.Partidas"/>
+    </set>
+  </class>
+</hibernate-mapping>
