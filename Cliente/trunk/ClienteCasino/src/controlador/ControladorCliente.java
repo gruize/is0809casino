@@ -43,14 +43,9 @@ public class ControladorCliente {
         return false;
     }
 
-    public boolean desconectar() {
-
-        //return modelo.desconectar();
+    public boolean cerrarConexion() {
+        //return modelo.cerrarConexion();
         return true;
-    }
-
-    public void desconectarCliente() throws IOException {
-        //modelo.desconectarCliente();
     }
 
     public void enviarMensajeChat(String mensaje) {

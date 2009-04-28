@@ -3,11 +3,8 @@ package vista;
 import controlador.ControladorCliente;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
-import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -50,6 +47,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
     private OyenteSalir oyenteSalir;
     private OyenteEntrada oyenteEntrada;
     private OyenteVolver oyenteVolver;
+    private int salonEntrar;
     // End of variables declaration
 
     /** Creates new form VistaTemporal */
@@ -67,6 +65,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
 		setVisible(true);
         setResizable(false);
         juego = null;
+        salonEntrar = 0; //Por defecto
     }
 
     public Juegos getJuego() {
@@ -226,7 +225,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
         //int numeroSalasDados = controlador.getNumeroSalasDados();
         int numeroSalasRuleta = 16;
         int numeroSalasDados = 1;
-        for(int i=0; i < numeroSalasRuleta; i++) {
+        for(int i=1; i <= numeroSalasRuleta; i++) {
             JPanel nuevaSala = new JPanel();
             nuevaSala.setBackground(Color.BLACK);
             nuevaSala.setOpaque(true);
@@ -246,7 +245,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
             nuevaSala.add(textoNuevaSala);
             jContenedor.add(nuevaSala);
         }
-        for(int i=0; i < numeroSalasDados; i++) {
+        for(int i=numeroSalasRuleta + 1; i <= numeroSalasDados + numeroSalasRuleta; i++) {
             // Crea un icono que referencie a la imagen en disco
             ImageIcon iconoOriginal = new ImageIcon("./recursos/dadosSala.jpg");
             // ancho en pixeles que tendra el icono escalado
@@ -280,9 +279,11 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
             jButtonNext.setVisible(true);
             if(e.getActionCommand().contains("SalaRuleta")){
                 juego = Juegos.RULETA;
+                salonEntrar = Integer.parseInt((e.getActionCommand()).substring(10));
             }else{
                 if(e.getActionCommand().contains("SalaDados")){
                     juego = Juegos.DADOS;
+                    salonEntrar = Integer.parseInt((e.getActionCommand()).substring(9));
                 }else{
                     juego = null;
                 }
@@ -316,10 +317,8 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
 
         public void actionPerformed(ActionEvent e) {
            dispose();
-
            //TODO obtener el id de la sala seleccionada.
-           controlador.solicitudEntrarSala(3);
-
+           controlador.solicitudEntrarSala(salonEntrar);
            VistaMesas vistaMesas = new VistaMesas(controlador);
            vistaMesas.setJuego(juego);
            vistaMesas.setVisible(true);
@@ -330,7 +329,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
     class OyenteVolver implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-           if(controlador.desconectar()){
+           if(controlador.cerrarConexion()){
                 dispose();
                 VistaLogin vistalogin =new VistaLogin(controlador);
                 vistalogin.setVisible(true);
@@ -341,15 +340,9 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
     private void salir() {
         if (JOptionPane.showConfirmDialog(this,"¿Desea abandonar el juego?",
                 "Cierre del juego",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
-            //try {
-				if(controlador.desconectar()){
-					//controlador.desconectarCliente();
+				if(controlador.cerrarConexion()){
                     System.exit(0);
-                }/**
-			}
-            catch (IOException e1) {
-                e1.printStackTrace();
-			}*/
+                }
 
 
     }

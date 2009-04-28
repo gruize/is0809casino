@@ -24,7 +24,7 @@ public class VistaDados extends JFrame implements Observer{
 
     private ControladorCliente controlador;    
 
-    VistaDados(ControladorCliente control) {
+    public VistaDados(ControladorCliente control) {
         super("Cliente Casino");
         controlador = control;
         controlador.getModelo().addObserver(this);
@@ -59,14 +59,8 @@ public class VistaDados extends JFrame implements Observer{
     private void salir() throws IOException {
         if (JOptionPane.showConfirmDialog(this,"¿Desea abandonar el juego?",
                 "Cierre del juego",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION){
-            try{
-				if(controlador.desconectar())
-					controlador.desconectarCliente();
-			}
-            catch (IOException e1) {
-                e1.printStackTrace();
-			}
-            System.exit(0);
+				if(controlador.cerrarConexion())
+                    System.exit(0);
         }
     }
 

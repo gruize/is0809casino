@@ -352,15 +352,9 @@ public class VistaRuleta extends JFrame implements Observer  {
 
     private void salir() {
         if (JOptionPane.showConfirmDialog(this,"¿Desea abandonar el juego?",
-                "Cierre del juego",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION){
-            try{
-				if(controlador.desconectar())
-					controlador.desconectarCliente();
-			}
-            catch (IOException e1) {
-                e1.printStackTrace();
-			}
-            System.exit(0);
+                "Cierre del juego",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION){           
+				if(controlador.cerrarConexion())
+					System.exit(0);
         }
     }
 

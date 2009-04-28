@@ -47,6 +47,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
     private OyenteSalir oyenteSalir;
     private OyenteEntrada oyenteEntrada;
     private OyenteVolver oyenteVolver;
+    private int mesaEntrar;
     // End of variables declaration
 
     /** Creates new form VistaTemporal */
@@ -64,6 +65,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
 		setVisible(true);
         setResizable(false);
         juego = null;
+        mesaEntrar = 0;
     }
 
     public Juegos getJuego() {
@@ -219,10 +221,9 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         /**
          * Generar todas las nuevas salas.
          */
-        //int numeroSalasRuleta = controlador.getNumeroSalasRuleta();
-        //int numeroSalasDados = controlador.getNumeroSalasDados();
+        //int numeroMesas = controlador.getNumeroMesas();
         int numeroMesas = 16;
-        for(int i=0; i < numeroMesas; i++) {
+        for(int i=1; i <= numeroMesas; i++) {
             JPanel nuevaMesa = new JPanel();
             nuevaMesa.setBackground(Color.BLACK);
             nuevaMesa.setOpaque(true);
@@ -233,8 +234,8 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
             JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
             botonNuevaSala.setPreferredSize(new Dimension(114,86));
             botonNuevaSala.setName("BotonMesa"+i);
-            botonNuevaSala.setActionCommand("Mesa"+i);
-            botonNuevaSala.addActionListener(new OyenteSalas());
+            botonNuevaSala.setActionCommand(Integer.toString(i));
+            botonNuevaSala.addActionListener(new OyenteMesas());
             botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
             nuevaMesa.add(botonNuevaSala);
             JTextArea textoNuevaMesa = new JTextArea("Usuarios: \n"+//controlador.getNumeroMesas(i)
@@ -245,12 +246,13 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         }
     }
 
-    class OyenteSalas implements ActionListener {
+    class OyenteMesas implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
             //TODO:
             jButtonNext.setVisible(true);
-            System.out.println(e.getActionCommand());
+            mesaEntrar = Integer.parseInt(e.getActionCommand());
+            System.out.println("MESA SELECCIONADA" + mesaEntrar);
         }
 
     }
@@ -280,13 +282,10 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
 
         public void actionPerformed(ActionEvent e) {
             dispose();
+            //Obtener el id de la mesa
+            controlador.solicitudEntrarEnMesa(mesaEntrar);
             switch(juego){
                 case RULETA: {
-
-                    //TODO obtener el id de la mesa
-                    controlador.solicitudEntrarEnMesa(1);
-
-
                     VistaRuleta vistaJuego = new VistaRuleta(controlador);
                     vistaJuego.setVisible(true);
                 }break;
@@ -316,16 +315,9 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         System.out.println("OK");
         if (JOptionPane.showConfirmDialog(this,"¿Desea abandonar el juego?",
                 "Cierre del juego",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
-            //try {
-				if(controlador.desconectar()){
-					//controlador.desconectarCliente();
+				if(controlador.cerrarConexion()){
                     System.exit(0);
-                }/**
-			}
-            catch (IOException e1) {
-                e1.printStackTrace();
-			}*/
-
+                }
 
     }
 }
