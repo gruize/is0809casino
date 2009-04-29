@@ -26,7 +26,8 @@ public class MesaRuleta implements Mesa {
     ControladorServidor controlador;
     CreaRuleta ruleta;
     boolean flag=true; //Si Flag=true se admiten apuestas si Flag = false no se admiten apuestas
-    
+
+
     //********** reloj**************
     Timer timer=null;
 
