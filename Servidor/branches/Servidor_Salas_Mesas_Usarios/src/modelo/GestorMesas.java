@@ -95,7 +95,119 @@ public class GestorMesas {
         mesa_bbdd.setApuestamin(mesa_juego.apuestaMin);
         mesa_bbdd.setPuestos(mesa_juego.puestosMax);
 
+        if (bbdd.insertarMesa(mesa_bbdd)){
+            log.info("GestorMesas : crearMesa : Mesa con id="+idMesa+" guardada en BBDD");
+
+            //guardo en el vector de mesas
+            mesas_bbdd.add(mesa_bbdd);
+            
+            //sin jugadores
+            jugadores_mesa.put(idMesa, null);
+            log.info("GestorMesas : crearMesa : Mesa con id="+idMesa+" guardada en el Gestor de Mesas");
+        }
 
         return true;
     }
+
+
+    /**
+     * Borra todas las mesas que hay activas en el casino. Este paso se ejecuta cuando se quieran
+     * borrar todas las salas, ya que el servidor se cierra.
+     */
+    public void borrarMesas(){
+
+        //eliminar la tabla de mesas-jugadores
+        jugadores_mesa.clear();
+        jugadores_mesa=null;
+
+        //eliminar todas las mesas de BBDD
+        for (int i=0;i<mesas_bbdd.size();i++){
+            //borrar en bbdd
+            bbdd.borrarMesa(mesas_bbdd.get(i));
+        }
+
+        mesas_bbdd.removeAllElements();
+        mesas_bbdd=null;
+
+        //eliminar las mesas de los juegos
+        mesas_juegos.removeAllElements();
+        mesas_juegos=null;
+    }
+
+
+    /**
+     * Busca la mesa en el vector de Mesas del casino
+     * @param idMesa
+     * @return mesa si la ha encontrado. Null en otro caso. 
+     */
+    public Mesas getMesa(int idMesa){
+
+        Mesas mesa=null;
+        int i=0;
+        boolean enc=mesas_bbdd.get(i).getCodigo()==idMesa;
+        while(!enc && i<mesas_bbdd.size()){
+            i++;
+            enc=mesas_bbdd.get(i).getCodigo()==idMesa;
+        }
+
+        if (enc)
+            mesa=mesas_bbdd.get(i);
+
+        return mesa;
+    }
+    /**
+     * Comprueba si un jugador ya está en la mesa
+     * @param idMesa
+     * @param idJugador
+     * @return
+     */
+    public boolean existeJugadorEnMesa(int idMesa,int idJugador){
+
+        Vector<Integer> jugadores=jugadores_mesa.get(idMesa);
+        int i=0;
+        boolean enc=jugadores.get(i)==idJugador;
+        while (!enc && i<jugadores.size()){
+            i++;
+            enc=jugadores.get(i)==idJugador;
+        }
+        return enc;
+    }
+
+    
+    /**
+     * Devuelve la lista de jugadores que están en una mesa
+     * @param idMesa
+     * @return
+     */
+    public Vector<Integer> getJugadores_Mesa(int idMesa){
+        return jugadores_mesa.get(idMesa);
+    }
+    /**
+     *
+     * @param idMesa  mesa en la que se coloca el jugador
+     * @param idJugador identificador del jugador
+     * @return resultado de la operación.
+     *          False si el jugador ya se encontraba en la mesa.
+     */
+    public boolean colocarJugadorEnMesa(int idMesa, int idJugador){
+
+        if (existeJugadorEnMesa(idMesa, idJugador))
+            return false;
+        else{
+            //obtengo los jugadores que ya están en la mesa
+            Vector<Integer> jugadores=getJugadores_Mesa(idMesa);
+            if (jugadores==null)
+                jugadores=new Vector<Integer>();
+
+            //añado el jugador, y actualizo la mesa
+            jugadores.add(idJugador);
+            jugadores_mesa.put(idMesa, jugadores);
+        }
+
+        return true;
+    }
+
+
 }
+
+ 
