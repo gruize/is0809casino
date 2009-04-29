@@ -7,7 +7,7 @@ package modelo;
 import java.io.Serializable;
 
 /**
- * De momento representa una jugada de Ruleta. Debería ser una clase abstracta...
+ *
  * @author Administrador
  */
 public class Jugada implements Serializable{

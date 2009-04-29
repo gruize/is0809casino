@@ -7,8 +7,7 @@ package modelo.mensajes;
 import modelo.*;
 import java.io.Serializable;
 /**
- * Mensaje que se genera tanto para jugadas como para entrar o salir de una mesa o sala
- * 
+ *
  * @author Administrador
  */
 public class MensajeJugada implements Serializable{
@@ -16,7 +15,7 @@ public class MensajeJugada implements Serializable{
     private int mesa;
     private Jugada jugada;
 
-    MensajeJugada(MensajeJugada j) {
+    public MensajeJugada(MensajeJugada j) {
        this.usuario = j.usuario;
         this.mesa = j.mesa;
         this.jugada = j.jugada;
