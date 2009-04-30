@@ -7,7 +7,7 @@ package vista;
 
 /**
  *
- * @author david
+ * @author gabi
  */
 
 import java.awt.event.ItemEvent;
@@ -20,6 +20,7 @@ import java.util.Observer;
 import java.util.Observable;
 import controlador.ControladorCliente;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
@@ -78,6 +79,7 @@ public class VistaRuleta extends JFrame implements Observer  {
 
          PanelChat = new JPanelChat();
          PanelChat.setBackground(colorCasino);
+         PanelChat.setPreferredSize(new Dimension(357,180));
 
          PanelCjtoApuestas = new JPanelCjtoApuestas(controlador);
          PanelCjtoApuestas.setBackground(colorCasino);
@@ -130,6 +132,7 @@ public class VistaRuleta extends JFrame implements Observer  {
      add(PanelRuleta);
      add(PanelUsuarios);
      add(PanelCjtoApuestas);
+     PanelChat.setSize(357,180);
 
      }
      
@@ -208,18 +211,15 @@ public class VistaRuleta extends JFrame implements Observer  {
 
         PanelChat.getBotonBloquear().addActionListener(bloquearChat);
         PanelChat.getBotonEnviar().addActionListener(enviarMensajeChat);
-        //TODO: Elegir una de las dos lista de jugadores, ya que se repitan es inncecesario y antiestetico.
-        PanelChat.getListaUsuarios().addListSelectionListener(listaJugadores);
      }
 
      public void update(Observable o, Object arg) {
          if (arg instanceof MensajeChat) {
-                MensajeChat mensaje = (MensajeChat)arg;
-               PanelChat.setAreaTextoChat(mensaje.get_usuario()+" dice: "+mensaje.get_men()+"\n");
+               MensajeChat mensaje = (MensajeChat)arg;
+               String textoadd = PanelChat.getAreaTextoChat().getText() + "\n" + mensaje.get_usuario() + ": " + mensaje.get_men();
+               PanelChat.getAreaTextoChat().setText(textoadd);
          }else if (arg instanceof MensajeJugada){
              //TODO descomponer el mensaje
-
-
              /*
              * Puedo obtener...
              *              *
@@ -266,7 +266,6 @@ public class VistaRuleta extends JFrame implements Observer  {
         PanelChat.getAreaTextoChat().setVisible(false);
         PanelChat.getBotonEnviar().setVisible(false);
         PanelChat.getTextfieldFrase().setVisible(false);
-        PanelChat.getListaUsuarios().setVisible(false);
         //controlador.inhabilitarChat();
     }
 
@@ -276,7 +275,6 @@ public class VistaRuleta extends JFrame implements Observer  {
         PanelChat.getAreaTextoChat().setVisible(true);
         PanelChat.getBotonEnviar().setVisible(true);
         PanelChat.getTextfieldFrase().setVisible(true);
-        PanelChat.getListaUsuarios().setVisible(true);
         //controlador.habilitarChat();
 
     }

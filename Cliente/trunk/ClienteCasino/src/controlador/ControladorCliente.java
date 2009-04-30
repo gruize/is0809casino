@@ -63,6 +63,14 @@ public class ControladorCliente {
        comunicador.enviarMensaje(tipo, mensaje);
     }
 
+    public int obtenerSaldo() {
+        return modelo.getSaldo();
+    }
+
+    public String obtenerUsuario() {
+        return modelo.getUsuario();
+    }
+
     /**
      * Envía un mensaje de entrada o salida de mesa hacia el servidor
      * @param tipo:

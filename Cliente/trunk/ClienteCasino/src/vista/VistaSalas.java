@@ -68,12 +68,36 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
         salonEntrar = 0; //Por defecto
     }
 
+    public int getSalonEntrar() {
+        return salonEntrar;
+    }
+
+    public void setSalonEntrar(int salonEntrar) {
+        this.salonEntrar = salonEntrar;
+    }
+
     public Juegos getJuego() {
         return juego;
     }
 
     public void setJuego(Juegos juego) {
         this.juego = juego;
+    }
+
+    public JLabel getJLabelSaldo() {
+        return jLabelSaldo;
+    }
+
+    public void setJLabelSaldo(JLabel jLabelSaldo) {
+        this.jLabelSaldo = jLabelSaldo;
+    }
+
+    public JLabel getJLabelUser() {
+        return jLabelUser;
+    }
+
+    public void setJLabelUser(JLabel jLabelUser) {
+        this.jLabelUser = jLabelUser;
     }
 
     private void agregarOyentes() {
@@ -151,27 +175,25 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Usuario: ");
         jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jLabel1.setBounds(540, 20, 50, 20);
+        jLabel1.setBounds(540, 20, 80, 20);
         jLayeredPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabelUser.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jLabelUser.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelUser.setText("jLabel2");
-        jLabelUser.setBounds(600, 10, 110, 30);
+        jLabelUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);             
+        jLabelUser.setBounds(600, 20, 110, 30);
         jLayeredPane1.add(jLabelUser, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Saldo actual: ");
         jLabel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jLabel2.setBounds(760, 20, 70, 20);
+        jLabel2.setBounds(720, 20, 90, 20);
         jLayeredPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabelSaldo.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jLabelSaldo.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelSaldo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelSaldo.setText("jLabel2");
-        jLabelSaldo.setBounds(840, 10, 110, 30);
+        jLabelSaldo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);       
+        jLabelSaldo.setBounds(810, 20, 110, 30);
         jLayeredPane1.add(jLabelSaldo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jContenedor = new JPanel();
@@ -208,12 +230,19 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    private void rellenarDatos() {
+        jLabelUser.setText(controlador.obtenerUsuario());
+        jLabelSaldo.setText(Integer.toString(controlador.obtenerSaldo()));
+        
+    }
+
     private void rellenarSalas() {
         //Preguntar al controlador por el numero de salas que hay
         //El controlador manda un mensaje al servidor
         //El servidor le comunica los datos de las salas
         //Se recibe el mensaje y se cambiaria el estado de la vista
         //En el metodo update se trataria el mensaje y se dibujarian las salas
+        rellenarDatos();
         /**
          * Eliminar todas las salas existentes y visibles
          */
@@ -273,19 +302,20 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
         }
     }
 
+    private void modificarEntrada(Juegos nuevo, int salon){
+        setJuego(nuevo);
+        setSalonEntrar(salon);
+    }
+    
     class OyenteSalas implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
             jButtonNext.setVisible(true);
             if(e.getActionCommand().contains("SalaRuleta")){
-                juego = Juegos.RULETA;
-                salonEntrar = Integer.parseInt((e.getActionCommand()).substring(10));
+                modificarEntrada(Juegos.RULETA,Integer.parseInt((e.getActionCommand()).substring(10)));
             }else{
                 if(e.getActionCommand().contains("SalaDados")){
-                    juego = Juegos.DADOS;
-                    salonEntrar = Integer.parseInt((e.getActionCommand()).substring(9));
-                }else{
-                    juego = null;
+                    modificarEntrada(Juegos.DADOS,Integer.parseInt((e.getActionCommand()).substring(9)));
                 }
             }
         }
@@ -346,4 +376,5 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
 
 
     }
+    
 }

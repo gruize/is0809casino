@@ -42,6 +42,7 @@ public class VistaDados extends JFrame implements Observer{
         });
         setSize(1024,768);
         setResizable(false);
+        setVisible(true);
     }
 
     public void update(Observable o, Object arg) {
