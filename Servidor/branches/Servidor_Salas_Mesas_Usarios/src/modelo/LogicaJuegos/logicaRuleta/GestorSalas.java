@@ -64,7 +64,7 @@ public class GestorSalas {
     private void devuelveMesa(int mesa) {
         //Manda la informacion de la mesa solicitada
         //TODO obtener bien los datos de la mesa y rellenar el mensaje en base a esos datos
-        c.enviarMensajeJugada(0, new MensajeJugada(1,1,new Jugada(1,1,"infoMesa",4,5)));
+        c.enviarMensajeJugada(0, new MensajeJugada(1,1,new Jugada(1,1,1,"infoMesa",4,5)));
         System.out.println("Mensaje Info recibido");
     }
 

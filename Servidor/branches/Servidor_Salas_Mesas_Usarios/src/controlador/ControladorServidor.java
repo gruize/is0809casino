@@ -15,6 +15,7 @@ import modelo.GestorJuegosServidor;
 import modelo.GestorUsuarios;
 import modelo.mensajes.MensajeJugada;
 import java.util.Vector;
+import modelo.GestorSalas;
 import modelo.mensajes.TipoMensaje;
 import modelo.mensajes.MensajeMesa;
 import modelo.mensajes.MensajeSala;
@@ -29,6 +30,7 @@ public class ControladorServidor {
     private ModeloServidor modelo;
     private Comunicador comunicador;
     private GestorUsuarios usuarios;
+    private GestorSalas salas;
     private GestorChatServidor chat;
     //log4j
     private static Logger log = Logger.getLogger(ControladorServidor.class);
@@ -39,6 +41,15 @@ public class ControladorServidor {
         chat = new GestorChatServidor(this);
         chat.start();
         usuarios = new GestorUsuarios();
+
+        salas=new GestorSalas(this);
+        //TODO crear todas las salas del casino.
+        salas.crearSala(1, "Ruleta 1");
+        salas.crearSala(2, "Ruleta 2");
+        salas.crearSala(3, "Ruleta 3");
+        salas.crearSala(4, "Dados 1");
+
+
         //Creamos de momento una mesa 1 por defecto
         usuarios.agregarMesa(1);
         GestorJuegosServidor.getInstance(this).start();

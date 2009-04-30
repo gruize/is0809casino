@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package modelo;
 
 import bbdd.beans.Salas;
@@ -20,43 +19,42 @@ import org.apache.log4j.Logger;
 public class GestorSalas {
 
     private static Vector<Salas> salas;
-    private static Hashtable<Integer,Vector<Integer>> mesas_sala;//<idSala, vector<idMesa>>
+    private static Hashtable<Integer, GestorMesas> mesas_sala;//<idSala, GestorMesas>
     private ControladorServidor controlador; //TODO ¿realmente necesito el controlador?
 
-       //log4j
+    //log4j
     private static Logger log = Logger.getLogger(GestorSalas.class);
 
     //singleton
-    private static GestorSalas instance=null;
+    private static GestorSalas instance = null;
 
     //para sincronizar con bbdd
-    InterfazBBDD bbdd=null;
+    InterfazBBDD bbdd = null;
 
 
     //=====================================================================
     //
     //=====================================================================
-
     /**
      * Constructora por defecto
      */
-    public GestorSalas(ControladorServidor c){
+    public GestorSalas(ControladorServidor c) {
 
         log.debug("GestorSalas : constructora : init");
-        this.controlador=c;
-        salas=new Vector<Salas> ();
-        mesas_sala=new Hashtable<Integer, Vector<Integer>>();
+        this.controlador = c;
+        salas = new Vector<Salas>();
+        mesas_sala = new Hashtable<Integer, GestorMesas>();
 
-        bbdd=new GestorBBDDImp();
+        bbdd = new GestorBBDDImp();
 
     }
-    
+
     /**
      * Patron Singleton. Devuelve la instancia de la clase
      * @param c controlador del servidor
      * @return
      */
-    public static GestorSalas getInstance(ControladorServidor c){
+    public static GestorSalas getInstance(ControladorServidor c) {
         if (instance == null) {
             instance = new GestorSalas(c);
             log.info("GestorSalas : getInstance : instancia creada por primera vez");
@@ -69,62 +67,61 @@ public class GestorSalas {
      * @param codigoSala
      * @param nombre
      */
-    public void crearSala(int codigoSala, String nombre){
+    public void crearSala(int codigoSala, String nombreSala) {
 
-        Salas sala=new Salas();
+        Salas sala = new Salas();
         sala.setCodigo(codigoSala);
-        sala.setNombre(nombre);
+        sala.setNombre(nombreSala);
         sala.setJuegos(null);//TODO puedo introducir valores nulos en BBDD??
 
         //Guardo en bbdd (si no existía ya)
-        if (bbdd.insertarSala(sala)){
-            log.info("GestorSalas : crearSala : Sala con id="+codigoSala+" guardada en BBDD");
+        if (bbdd.insertarSala(sala)) {
+            log.info("GestorSalas : crearSala : Sala con id=" + codigoSala + " guardada en BBDD");
             //guardo en mi vector de salas
             salas.add(sala);
-            mesas_sala.put(codigoSala, null);//de momento no tengo mesas
-            log.info("GestorSalas : crearSala : Sala con id="+codigoSala+" guardada en el Gestor de Salas. Aún no tiene mesas abiertas");
+            mesas_sala.put(codigoSala, new GestorMesas(controlador, codigoSala, nombreSala));//de momento no tengo mesas
+            log.info("GestorSalas : crearSala : Sala con id=" + codigoSala + " guardada en el Gestor de Salas. Aún no tiene mesas abiertas");
         }
     }
-
 
     /**
      * Busca la sala en el vector de salas del casino
      * @param idSala identificador de la sala
      * @return objeto Salas si está en el vector, null en otro caso
      */
-    public Salas getSala(int idSala){
+    public Salas getSala(int idSala) {
 
-        Salas sala=null;
-        int i=0;
-        boolean enc=salas.get(i).getCodigo()==idSala;
-        while (!enc && i<salas.size()){
+        Salas sala = null;
+        int i = 0;
+        boolean enc = salas.get(i).getCodigo() == idSala;
+        while (!enc && i < salas.size()) {
             i++;
-            enc=salas.get(i).getCodigo()==idSala;
+            enc = salas.get(i).getCodigo() == idSala;
         }
 
-        if (enc)
-            sala=salas.get(i);
+        if (enc) {
+            sala = salas.get(i);
+        }
 
 
         return sala;
     }
 
-
     /**
      * Borra todas las salas del casino, y todas sus mesas asociadas (tambien de la BBDD). Se  invocará cuando se cierre el servidor
      */
-    public void borrarSalas(){
+    public void borrarSalas() {
 
-        //TODO Borrar todas las mesas de BBDD --> invocar al GestorMesas
-
+        //Borrar todas las mesas de BBDD --> invocar al GestorMesas
+        for (int i = 0; i < mesas_sala.size(); i++) {
+            mesas_sala.get(i).borrarMesas();
+        }
 
         //borro la tabla hash de salas
         mesas_sala.clear();
-        mesas_sala=null;
-
 
         //borro todas las salas de BBDD
-        for (int i=0;i<salas.size();i++){
+        for (int i = 0; i < salas.size(); i++) {
             bbdd.borrarSala(salas.get(i));
         }
 
@@ -138,8 +135,8 @@ public class GestorSalas {
      *
      * @param idSala id de la sala cuyas mesas se quieren obtener
      */
-    public Vector<Integer> getMesas_Sala(int idSala){
-        return mesas_sala.get(idSala);
+    public Vector<Integer> getMesas_Sala(int idSala) {
+        return mesas_sala.get(idSala).getIndiceMesas();
     }
 
     /**
@@ -149,16 +146,10 @@ public class GestorSalas {
      * @return true si la mesa está ya asociada a una sala
      *         false en otro caso
      */
-    public boolean estaMesaEnSala(int idSala, int idMesa){
-        Vector<Integer> mesas=getMesas_Sala(idSala);
-        int i=0;
-        boolean enc=mesas.get(i)==idMesa;
-        while (!enc && i<mesas.size()){
-            i++;
-            enc=mesas.get(i)==idMesa;
-        }
+    private boolean estaMesaEnSala(int idSala, int idMesa) {
 
-        return enc;
+        return mesas_sala.get(idSala).existeMesa(idMesa);
+
     }
 
     /**
@@ -168,58 +159,46 @@ public class GestorSalas {
      * @return true si se inserta correctamente,
      *         false si la mesa ya estaba en la sala
      */
-    public boolean añadirMesaEnSala(int idSala, int idMesa){
+    public boolean añadirMesaEnSala(int idSala, int idMesa, int idJugador) {
 
         //compruebo si ya está insertada
-        if (estaMesaEnSala(idSala, idMesa))
+        if (estaMesaEnSala(idSala, idMesa)) {
             return false;
-        else{
-            //obtengo las mesas que ya habían en la sala
+        } else {
+            /*//obtengo las mesas que ya habían en la sala
             Vector<Integer> mesas=getMesas_Sala(idSala);
             if (mesas==null)
-                mesas=new Vector<Integer>();
+            mesas=new Vector<Integer>();
 
             //incluyo la mesa
             mesas.add(idMesa);
 
             //actualizo la tabla hash
-            mesas_sala.put(idSala, mesas);
+            mesas_sala.put(idSala, mesas);*/
 
             //No inserto la sala en BBDD, de eso se encarga el GestorMesas
 
 
+            mesas_sala.get(idSala).colocarJugadorEnMesa(idMesa, idJugador);
         }
 
         return true;
     }
 
-
-
-
     //==========================================================================
-
     /**
      * Recibe una jugada, y la redirige a la mesa correspondiente
      * @param jugada
      */
     public void procesaMensaje(Jugada jugada) {
-        //TODO Identificar la sala segun el mensaje
-        /*if (jugada.getTipo().equalsIgnoreCase("infoSALAS")) {
-           // devuelveSalas();
-        } else if (jugada.getTipo().equalsIgnoreCase("infoMESA")) {
-            devuelveMesa(jugada.getMesa());
-        } else {
-            if (jugada.getTipo().equalsIgnoreCase("tiraBola")) salaRuleta.get(jugada.getMesa()).lanzaBola();
-            else salaRuleta.get(jugada.getMesa()).procesaJugada(jugada);
-        }*/
 
-        int idSala=jugada.getSala();
-        int idMesa=jugada.getMesa();
+        int idSala = jugada.getSala();
+        int idMesa = jugada.getMesa();
 
         //compruebo que la mesa está en la sala. Solo por seguridad...
-        if (estaMesaEnSala(idSala, idMesa)){
-        //TODO Enviarselo al GestorMesas
+        if (estaMesaEnSala(idSala, idMesa)) {
+            //enviarselo al GestorMesas
+            mesas_sala.get(idSala).procesarMensajeJugada(jugada);
         }
     }
-
 }

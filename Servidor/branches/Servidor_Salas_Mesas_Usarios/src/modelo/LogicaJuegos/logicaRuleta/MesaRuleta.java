@@ -4,6 +4,7 @@
  */
 package modelo.LogicaJuegos.logicaRuleta;
 
+import bbdd.beans.Mesas;
 import controlador.ControladorServidor;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -18,51 +19,44 @@ import modelo.GestorUsuarios;
  */
 public class MesaRuleta implements Mesa {
 
-    int id =0;
+    // atributos específicos para una la mesa de ruleta. ¿estaticos? O cada mesa de ruleta tiene su maximo y min?
+    public static double apuestaMin = 1.00;
+    public static double apuestaMax = 500;
+    public static int puestosMax = 100; //nº maximo de personas que pueden estar jugando en una mesa
+
+    // TODO su homólogo en BBDD
+
     int nJugadores = 0;
     Vector<Jugada> apuestas = null; //lista de apuestas de la mesa
-    int nApuestas = 0;
     int ultimaBola = 0;
     ControladorServidor controlador;
     CreaRuleta ruleta;
-    boolean flag=true; //Si Flag=true se admiten apuestas si Flag = false no se admiten apuestas
-
-
+    boolean flag = true; //Si Flag=true se admiten apuestas si Flag = false no se admiten apuestas
     //********** reloj**************
-    Timer timer=null;
+    Timer timer = null;
 
-    public MesaRuleta(ControladorServidor c,int id) {
-        this.id=id;
-        controlador = c;
+    public MesaRuleta(ControladorServidor c, int id) {
+         controlador = c;
         apuestas = new Vector();
         ruleta = new CreaRuleta();
         ruleta.InicializarRuleta();
-        
-        
+
+
         //cargar e iniciar ele reloj
-                // Clase en la que está el código a ejecutar
-     TimerTask timerTask = new TimerTask(){
-         public void run() 
-         {
-             // Aquí el código que queremos ejecutar.
-             lanzaBola();
-         }
-     }; 
-            // Aquí se pone en marcha el timer cada segundo.
-     timer = new Timer();
-     // Dentro de 1min ejecútate cada 1min
-     timer.scheduleAtFixedRate(timerTask, 1000*60, 1000*60); 
-     
+        // Clase en la que está el código a ejecutar
+        TimerTask timerTask = new TimerTask() {
 
-    }
+            public void run() {
+                // Aquí el código que queremos ejecutar.
+                lanzaBola();
+            }
+        };
+        // Aquí se pone en marcha el timer cada segundo.
+        timer = new Timer();
+        // Dentro de 1min ejecútate cada 1min
+        timer.scheduleAtFixedRate(timerTask, 1000 * 60, 1000 * 60);
 
-    public boolean procesaJugada(Jugada j) {
-        if (this.colocarApuesta(j) == 1) {
-             System.out.println("///////// Apuesta Aceptada \\\\\\\\");
-            return true;
-        } else {
-            return false;
-        }
+
     }
 
     /**
@@ -72,13 +66,13 @@ public class MesaRuleta implements Mesa {
      * @return 1 si la apuesta es correcta, -1 si no le queda saldo al jugador
      */
     private int colocarApuesta(Jugada jugada) {
-        
-        
-        int saldoJugador = GestorUsuarios.getInstancia().getSaldoJugador(jugada.getUsuario(),getId());
+
+
+        int saldoJugador = GestorUsuarios.getInstancia().getJugadorConectado(jugada.getUsuario()).getSaldoJugador();
         if ((jugada.getCantidad()) <= saldoJugador) {
             apuestas.add(jugada);
-            nApuestas++;
-            GestorUsuarios.getInstancia().setSaldoJugador(jugada.getUsuario(),getId(),saldoJugador - jugada.getCantidad());
+            
+            GestorUsuarios.getInstancia().actualizaSaldoJugador(jugada.getUsuario(),saldoJugador - jugada.getCantidad());
             return 1;
         } else {
             return -1;
@@ -88,15 +82,15 @@ public class MesaRuleta implements Mesa {
 
 
     //Lanza una bola y comprueba todas las apuestas de los jugadores.
-
     public void lanzaBola() {
-        
+
         System.out.println("****** BOLA LANZADA ********");
-        flag=false;
-        ultimaBola =(int) Math.round((Math.random() * 36));
+        flag = false;
+        ultimaBola = (int) Math.round((Math.random() * 36));
         comprobarApuestas(ultimaBola);
-        flag=true;
-        }
+        flag = true;
+    }
+
     /**
      * Recorre todas las apuestas de la mesa, y comprueba si han resultado premiadas
      * @param bolaLanzada n�mero de la ruleta donde ha ca�do la bola
@@ -107,15 +101,15 @@ public class MesaRuleta implements Mesa {
         Numero bola = ruleta.getNumero(bolaLanzada);
         int saldo;
         for (int i = 0; i < apuestas.size(); i++) {
-            Jugada apuesta=apuestas.get(i);
-            saldo = GestorUsuarios.getInstancia().getSaldoJugador(apuesta.getUsuario(),getId());
-            saldo = saldo+apuestaGanadora(apuesta, bola);
-            GestorUsuarios.getInstancia().setSaldoJugador(apuesta.getUsuario(),getId(),saldo);
+            Jugada apuesta = apuestas.get(i);
+            saldo = GestorUsuarios.getInstancia().getJugadorConectado(apuesta.getUsuario()).getSaldoJugador();
+            saldo = saldo + apuestaGanadora(apuesta, bola);
+            GestorUsuarios.getInstancia().actualizaSaldoJugador(apuesta.getUsuario(), saldo);
 
         }
         apuestas.removeAllElements();
         enviarSaldos();
-        
+
     }
 
     /**
@@ -134,34 +128,62 @@ public class MesaRuleta implements Mesa {
                 return apuesta.getCantidad() * 36;
             //apuesta a COLOR (0=>Negro, 1 =>ROJO
             } else if (tipo.equalsIgnoreCase("COLOR")) {
-               if ((apuesta.getCasilla()==1)&&casillaBola.getColor().equalsIgnoreCase("ROJO")) return apuesta.getCantidad() * 2;
-               else if ((apuesta.getCasilla()==0)&&casillaBola.getColor().equalsIgnoreCase("NEGRO"))return apuesta.getCantidad() * 2;
+                if ((apuesta.getCasilla() == 1) && casillaBola.getColor().equalsIgnoreCase("ROJO")) {
+                    return apuesta.getCantidad() * 2;
+                } else if ((apuesta.getCasilla() == 0) && casillaBola.getColor().equalsIgnoreCase("NEGRO")) {
+                    return apuesta.getCantidad() * 2;
+                }
             //apuesta a 1� DOCENA
-            } else  if (tipo.equals("1docena") && casillaBola.getNumero() >= 1 && casillaBola.getNumero() <= 12) {
-            return apuesta.getCantidad() * 3;
-        //apeusta a 2� DOCENA
-        } else if (tipo.equals("2docena") && casillaBola.getNumero() > 12 && casillaBola.getNumero() <= 24) {
-            return apuesta.getCantidad() * 3;
-        //apuesta a 3� DOCENA
-        } else if (tipo.equals("3docena") && casillaBola.getNumero() > 24 && casillaBola.getNumero() <= 36) {
-            return apuesta.getCantidad() * 3;
+            } else if (tipo.equals("1docena") && casillaBola.getNumero() >= 1 && casillaBola.getNumero() <= 12) {
+                return apuesta.getCantidad() * 3;
+            //apeusta a 2� DOCENA
+            } else if (tipo.equals("2docena") && casillaBola.getNumero() > 12 && casillaBola.getNumero() <= 24) {
+                return apuesta.getCantidad() * 3;
+            //apuesta a 3� DOCENA
+            } else if (tipo.equals("3docena") && casillaBola.getNumero() > 24 && casillaBola.getNumero() <= 36) {
+                return apuesta.getCantidad() * 3;
 
+            }
+        } else {//la bola lanzada es CERO: si la apuesta es al color se devuelte la mitad.
+            if (apuesta.getTipo().equals("COLOR")) {
+                return apuesta.getCantidad() / 2;
+            } else if (apuesta.getTipo().equals("numero") && (apuesta.getCasilla() == casillaBola.getNumero())) {
+                return apuesta.getCantidad() * 36;
+            }
         }
-    }
-    else
-
-    {//la bola lanzada es CERO: si la apuesta es al color se devuelte la mitad.
-        if (apuesta.getTipo().equals("COLOR")) {
-            return apuesta.getCantidad() / 2;
-        } else if (apuesta.getTipo().equals("numero") && (apuesta.getCasilla() == casillaBola.getNumero())) {
-            return apuesta.getCantidad() * 36;
-        }
-    }
-    return 0;
+        return 0;
     }
     //Envia los saldos nuevos a los jugadores de la mesa
-    public void enviarSaldos(){}
 
-    private int getId(){
-        return this.id;}
+    public void enviarSaldos() {
+    }
+
+  
+    // ======================================================================
+    //              METODOS DE LA INTERFAZ
+    // ======================================================================
+    public boolean procesaJugada(Jugada j) {
+        if (this.colocarApuesta(j) == 1) {
+            System.out.println("///////// Apuesta Aceptada \\\\\\\\");
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Mesas getMesaBBDD() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public double getApuestaMin() {
+        return apuestaMin;
+    }
+
+    public double getApuestaMax() {
+        return apuestaMin;
+    }
+
+    public int getPuestosMax() {
+        return puestosMax;
+    }
 }

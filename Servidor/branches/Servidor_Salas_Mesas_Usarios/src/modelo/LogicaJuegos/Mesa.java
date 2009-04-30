@@ -5,6 +5,7 @@
 
 package modelo.LogicaJuegos;
 
+import bbdd.beans.Mesas;
 import modelo.Jugada;
 
 /**
@@ -14,10 +15,17 @@ import modelo.Jugada;
 public interface Mesa {
     boolean procesaJugada(Jugada j);
 
-    // atributos específicos para una la mesa de ruleta
-    public static double apuestaMin=1.00;
-    public static double apuestaMax=500;
-    public static int puestosMax=100; //nº maximo de personas que pueden estar jugando en una mesa
+   //cada mesa de juego guardará su homologo de bbdd
+    public Mesas getMesaBBDD();
+
+    //Apuesta mínima de cada mesa
+    public double getApuestaMin();
+
+    //Apuesta máxima de cada mesa
+    public double getApuestaMax();
+
+    //Nº de puestos máximos de la mesa
+    public int getPuestosMax();
 
 
 }
