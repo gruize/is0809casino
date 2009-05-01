@@ -21,7 +21,7 @@ public class Apuesta {
 
     //Indica el valor al que se apuesta. Casilla 1, 2, ..., 36, 0, Par, Impar,
     //Rojo, Negro, Fila1, ... Docena1, ... Mitad1...
-    private casillaAp casilla;
+    private String casilla;
     //Tipo de casilla a la que se apuesta. Numero, docena, fila, color, par_impar, mitad
     private tipoAp tipo;
     private proporcionAp proporcion;
@@ -29,18 +29,29 @@ public class Apuesta {
     private int valorApostado;
 
     public Apuesta(casillaAp casilla, tipoAp tipo, proporcionAp proporcion, int valorApostado) {
-        this.casilla = casilla;
+        this.casilla = casilla.toString();
         this.tipo = tipo;
         this.proporcion = proporcion;
         this.valorApostado = valorApostado;
     }
 
-    public casillaAp getCasilla() {
+        public Apuesta(int casilla, tipoAp tipo, proporcionAp proporcion, int valorApostado) {
+        this.casilla = Integer.toString(casilla);
+        this.tipo = tipo;
+        this.proporcion = proporcion;
+        this.valorApostado = valorApostado;
+    }
+
+    public String getCasilla() {
         return casilla;
     }
 
     public void setCasilla(casillaAp casilla) {
-        this.casilla = casilla;
+        this.casilla = casilla.toString();
+    }
+
+    public void setCasilla(int casilla) {
+        this.casilla = Integer.toString(casilla);
     }
 
     public proporcionAp getProporcion() {
