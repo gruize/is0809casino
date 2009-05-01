@@ -1,5 +1,6 @@
 package vista;
 
+import modelo.Juegos;
 import controlador.ControladorCliente;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -256,6 +257,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
             nuevaMesa.add(textoNuevaMesa);
             jContenedor.add(nuevaMesa);
         }
+        jSalas.getViewport().setView(jContenedor);
     }
 
     private void modificarEntrada(int mesa){

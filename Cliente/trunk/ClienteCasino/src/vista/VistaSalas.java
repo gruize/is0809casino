@@ -1,5 +1,6 @@
 package vista;
 
+import modelo.Juegos;
 import controlador.ControladorCliente;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -27,7 +28,7 @@ import javax.swing.border.SoftBevelBorder;
  * @author GabiPC
  */
 public class VistaSalas extends javax.swing.JFrame implements Observer{
-
+     
     // Variables declaration - do not modify
     private JButton jButtonNext;
     private JButton jButtonBack;
@@ -300,6 +301,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
             nuevaSala.add(textoNuevaSala);
             jContenedor.add(nuevaSala);
         }
+        jSalas.getViewport().setView(jContenedor);
     }
 
     private void modificarEntrada(Juegos nuevo, int salon){
@@ -349,6 +351,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
            dispose();
            //TODO obtener el id de la sala seleccionada.
            controlador.solicitudEntrarSala(salonEntrar);
+
            VistaMesas vistaMesas = new VistaMesas(controlador);
            vistaMesas.setJuego(juego);
            vistaMesas.setVisible(true);

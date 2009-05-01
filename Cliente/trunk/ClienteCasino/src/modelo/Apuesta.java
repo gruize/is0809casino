@@ -5,42 +5,66 @@
 
 package modelo;
 
+
 /**
  *
  * @author GabiPC
  */
 public class Apuesta {
 
-    private int cantidadApostada;
-    private String valor;
+    public enum proporcionAp {SIMPLE, DOBLE, CUADRUPLE}
 
-    public Apuesta() {
+    public enum tipoAp {NUMERO, COLOR, DOCENA, FILA, PARIDAD, MITAD}
+
+    public enum casillaAp {PAR, IMPAR, ROJO, NEGRO, FILA1, FILA2, FILA3, DOCENA1,
+                           DOCENA2, DOCENA3, MITAD1, MITAD2}
+
+    //Indica el valor al que se apuesta. Casilla 1, 2, ..., 36, 0, Par, Impar,
+    //Rojo, Negro, Fila1, ... Docena1, ... Mitad1...
+    private casillaAp casilla;
+    //Tipo de casilla a la que se apuesta. Numero, docena, fila, color, par_impar, mitad
+    private tipoAp tipo;
+    private proporcionAp proporcion;
+    //Dinero apostado
+    private int valorApostado;
+
+    public Apuesta(casillaAp casilla, tipoAp tipo, proporcionAp proporcion, int valorApostado) {
+        this.casilla = casilla;
+        this.tipo = tipo;
+        this.proporcion = proporcion;
+        this.valorApostado = valorApostado;
     }
 
-    public Apuesta(int cantidad, String valor) {
-        this.cantidadApostada = cantidad;
-        this.valor = valor;
+    public casillaAp getCasilla() {
+        return casilla;
     }
 
-    public int getCantidadApostada() {
-        return cantidadApostada;
+    public void setCasilla(casillaAp casilla) {
+        this.casilla = casilla;
     }
 
-    public void setCantidadApostada(int cantidadApostada) {
-        this.cantidadApostada = cantidadApostada;
-    }
-    
-    public String getValor() {
-        return valor;
+    public proporcionAp getProporcion() {
+        return proporcion;
     }
 
-    public void setValor(String valor) {
-        this.valor = valor;
+    public void setProporcion(proporcionAp proporcion) {
+        this.proporcion = proporcion;
     }
 
-    public void imprimir(){
-        System.out.println("Cantidad apostada: " + this.getCantidadApostada());
-        System.out.println("Valor al que se apuesta: " + this.getValor());
+    public tipoAp getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(tipoAp tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getValorApostado() {
+        return valorApostado;
+    }
+
+    public void setValorApostado(int valorApostado) {
+        this.valorApostado = valorApostado;
     }
 
 }
