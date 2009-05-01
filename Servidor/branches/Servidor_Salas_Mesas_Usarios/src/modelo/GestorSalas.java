@@ -4,6 +4,7 @@
  */
 package modelo;
 
+import modelo.LogicaJuegos.Jugada;
 import bbdd.beans.Salas;
 import bbdd.gestorBBDD.GestorBBDDImp;
 import bbdd.gestorBBDD.InterfazBBDD;
@@ -79,7 +80,7 @@ public class GestorSalas {
             log.info("GestorSalas : crearSala : Sala con id=" + codigoSala + " guardada en BBDD");
             //guardo en mi vector de salas
             salas.add(sala);
-            mesas_sala.put(codigoSala, new GestorMesas(controlador, codigoSala, nombreSala));//de momento no tengo mesas
+            mesas_sala.put(codigoSala, new GestorMesas(controlador, sala));//se creará una mesa
             log.info("GestorSalas : crearSala : Sala con id=" + codigoSala + " guardada en el Gestor de Salas. Aún no tiene mesas abiertas");
         }
     }
@@ -165,27 +166,42 @@ public class GestorSalas {
         if (estaMesaEnSala(idSala, idMesa)) {
             return false;
         } else {
-            /*//obtengo las mesas que ya habían en la sala
-            Vector<Integer> mesas=getMesas_Sala(idSala);
-            if (mesas==null)
-            mesas=new Vector<Integer>();
-
-            //incluyo la mesa
-            mesas.add(idMesa);
-
-            //actualizo la tabla hash
-            mesas_sala.put(idSala, mesas);*/
 
             //No inserto la sala en BBDD, de eso se encarga el GestorMesas
 
-
-            mesas_sala.get(idSala).colocarJugadorEnMesa(idMesa, idJugador);
+            mesas_sala.get(idSala).crearMesa(idMesa);
         }
 
         return true;
     }
 
+    /**
+     * Inserta un jugador en la mesa correspondiente
+     * @param idSala
+     * @param idMesa
+     * @param idJugador
+     * @return resultado de la operación
+     */
+    public boolean insertarJugadorEnMesa(int idSala, int idMesa, int idJugador) {
+        return mesas_sala.get(idSala).colocarJugadorEnMesa(idMesa, idJugador);
+    }
+
+    /**
+     * Elimina un jugador de la mesa en la que se hayaba jugando
+     * @param idSala
+     * @param idMesa
+     * @param idJugador
+     * @return
+     */
+    public boolean eliminarJugadorDeMesa(int idSala, int idMesa, int idJugador) {
+        return mesas_sala.get(idSala).eliminarJugadorDeMesa(idMesa, idJugador);
+    }
+
+    public GestorMesas getMesas(int idSala) {
+        return mesas_sala.get(idSala);
+    }
     //==========================================================================
+
     /**
      * Recibe una jugada, y la redirige a la mesa correspondiente
      * @param jugada

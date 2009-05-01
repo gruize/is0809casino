@@ -11,7 +11,7 @@ import vista.SplashScreen;
 import java.util.Vector;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import modelo.Jugada;
+import modelo.LogicaJuegos.Jugada;
 import modelo.mensajes.MensajeJugada;
 import modelo.ModeloServidor;
 

@@ -5,8 +5,10 @@
 
 package modelo.LogicaJuegos;
 
+import bbdd.beans.Clientes;
 import bbdd.beans.Mesas;
-import modelo.Jugada;
+import java.util.Vector;
+import modelo.LogicaJuegos.Jugada;
 
 /**
  *
@@ -26,6 +28,20 @@ public interface Mesa {
 
     //Nº de puestos máximos de la mesa
     public int getPuestosMax();
+
+    public int getCodigoMesa();
+
+    public boolean colocarJugador(Clientes idJugador);
+
+    public boolean eliminarJugador(int idJugador);
+
+    /**
+     * Devuelve una lista de los jugadores que están en la mesa
+     * @return
+     */
+    public Vector<Clientes> getJugadores_Mesa();
+
+    public boolean existeJugadorEnMesa(int idJugador);
 
 
 }

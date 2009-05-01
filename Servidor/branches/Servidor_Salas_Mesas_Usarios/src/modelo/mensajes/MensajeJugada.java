@@ -4,6 +4,7 @@
  */
 
 package modelo.mensajes;
+import modelo.LogicaJuegos.Jugada;
 import modelo.*;
 import java.io.Serializable;
 /**

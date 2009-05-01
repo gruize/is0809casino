@@ -40,9 +40,9 @@ public class ControladorServidor {
         comunicador = new Comunicador(this);
         chat = new GestorChatServidor(this);
         chat.start();
-        usuarios = new GestorUsuarios();
+        usuarios = new GestorUsuarios(this);
 
-        salas=new GestorSalas(this);
+        salas=GestorSalas.getInstance(this);
         //TODO crear todas las salas del casino.
         salas.crearSala(1, "Ruleta 1");
         salas.crearSala(2, "Ruleta 2");
@@ -50,8 +50,6 @@ public class ControladorServidor {
         salas.crearSala(4, "Dados 1");
 
 
-        //Creamos de momento una mesa 1 por defecto
-        usuarios.agregarMesa(1);
         GestorJuegosServidor.getInstance(this).start();
     }
 
@@ -140,17 +138,18 @@ public class ControladorServidor {
     public int login(Serializable mensaje) {
 
         Vector<String> datos = (Vector<String>) mensaje;
-        int id = GestorUsuarios.getInstancia().hacerLogin(datos.firstElement(), datos.lastElement());
+        int id = GestorUsuarios.getInstancia(this).hacerLogin(datos.firstElement(), datos.lastElement());
 
         log.info("ControladorServidor : login : usuario=" + datos.firstElement() + " password=" + datos.lastElement() + " -->id=" + id);
 
         if (id != -1) {
+           /*
             //Temporal agrego yo la mesa cuando alguien se loguea
             GestorUsuarios.getInstancia().agregarMesa(1);
             System.out.println("Se crea la mesa 1");
             GestorUsuarios.getInstancia().agregarJugador(id);
             //temporal hasta que haya mensajes de seleccion de mesa van a la mesa 1
-            GestorUsuarios.getInstancia().colocarJugador(id, 1);
+            GestorUsuarios.getInstancia().colocarJugador(id, 1);*/
         }
         modelo.login(datos.firstElement(), datos.lastElement());
         return id;
@@ -180,36 +179,30 @@ public class ControladorServidor {
             //TODO Devolver la confirmacion de la jugada
 
         } else if (tipo == TipoMensaje.ENTRADA_MESA) {
-            /*MensajeJugada mensaje2 = (MensajeJugada) mensaje;
-            if (GestorUsuarios.getInstancia().colocarJugador(mensaje2.getUsuario(), mensaje2.getMesa())) //Envio mensaje de  confimacion de la entrada en la mesa
-            {
-                enviarMensajeJugada(3, mensaje2);//Ambrin: necesito saber en qué mesa se ha insertado el cliente. Quito null y envio mensaje de vuelta
-            }*/
-
+  
             MensajeMesa m=(MensajeMesa)mensaje;
-            if (GestorUsuarios.getInstancia().colocarJugador(m.getUsuario(), m.getMesa())) //Envio mensaje de  confimacion de la entrada en la mesa
-               enviarMensajeMesa(m.getUsuario(), m);//Ambrin: necesito saber en qué mesa se ha insertado el cliente. Quito null y envio mensaje de vuelta
+            if (GestorUsuarios.getInstancia(this).insertarJugadorEnMesa(m.getUsuario(), m.getMesa())) //Envio mensaje de  confimacion de la entrada en la mesa
+               enviarMensajeMesa(m.getUsuario(), m);//necesito saber en qué mesa se ha insertado el cliente. Quito null y envio mensaje de vuelta
             else enviarMensajeMesa(m.getUsuario(), m);//TODO mirar porque devuelve false
 
         } else if (tipo == TipoMensaje.SALIDA_MESA) {
-            /*MensajeJugada mensaje2 = (MensajeJugada) mensaje;
-            GestorUsuarios.getInstancia().eliminarJugador(mensaje2.getUsuario());*/
+
             MensajeMesa m = (MensajeMesa) mensaje;
-            GestorUsuarios.getInstancia().eliminarJugador(m.getUsuario());
+            GestorUsuarios.getInstancia(this).eliminarJugadorEnMesa(m.getUsuario());
 
         } else if (tipo == TipoMensaje.CERRAR_CONEXION) {
             //TODO cierre de conexion
         } else if (tipo == TipoMensaje.ENTRADA_SALA) {
             MensajeSala m=(MensajeSala)mensaje;
-
-            //Todo realizar la gestion de sala
+            GestorUsuarios.getInstancia(this).insertarJugadorEnSala(m.getUsuario(), m.getSala());
 
             //envío mensaje de vuelta para confirmarle al usuario que ha entrado en la sala
             enviarMensajeSala(m.getUsuario(), m);
 
         } else if (tipo == TipoMensaje.SALIDA_SALA) {
-            //TODO gestion de salida de sala
+            
             MensajeSala m=(MensajeSala)mensaje;
+            GestorUsuarios.getInstancia(this).eliminarJugadorEnSala(m.getUsuario());
         }
 
 
