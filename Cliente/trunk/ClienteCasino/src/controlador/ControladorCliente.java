@@ -116,6 +116,7 @@ public class ControladorCliente {
 
         int idUsuario = modelo.getId();
         int idMesa = modelo.getMesa();
+        int idSala=modelo.getSala();
         String tipoApuesta = tipo; //valores posibles (definirlos en la vista ruleta): Numero,Color,ParImpar, Docena, Linea,FaltaPasa....
         int casilla = 0;//casilla a la q se apuesta: al 21, al Rojo , a la 2º Docena,Falta, Par ...
         try { //TODO hacerlo bien
@@ -126,7 +127,7 @@ public class ControladorCliente {
 
 
         //crear el objeto Jugada 
-        Jugada jugada = new Jugada(idUsuario, idMesa, tipoApuesta, casilla, cantidadApostada);
+        Jugada jugada = new Jugada(idUsuario, idSala, idMesa, tipoApuesta, casilla, cantidadApostada);
         System.out.println("Jugada RULETA: usuario=" + idUsuario + " mesa=" + idMesa + " tipoApuesta=" + tipoApuesta + " casilla:" + casilla + " cantidadApostada:" + cantidadApostada);
 
         //crear el objeto MensajeJugada 
@@ -202,6 +203,12 @@ public class ControladorCliente {
             //actualizar el modelo
             modelo.setSala(mensajeSala.getSala());
 
+        } else if (tipo== TipoMensaje.INFO_SALAS){           
+            // TODO Gabi: pinta las salas a partir de este mensaje
+
+        }else if (tipo==TipoMensaje.INFO_MESAS){
+            // TODO Gabi: pinta las mesas a partir de este mensaje
+            
         } else {
             System.err.println("No sé que tipo de mensaje me envía!! " + tipo);
         }

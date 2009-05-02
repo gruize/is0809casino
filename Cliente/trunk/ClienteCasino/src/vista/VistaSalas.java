@@ -1,6 +1,6 @@
 package vista;
 
-import modelo.Juegos;
+import modelo.NombreJuegos;
 import controlador.ControladorCliente;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -43,7 +43,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
     private JLabel jLabel2;
     private JLabel jLabelSaldo;
     private ControladorCliente controlador;
-    private Juegos juego;
+    private NombreJuegos juego;
     private OyenteRefrescar oyenteRefrescar;
     private OyenteSalir oyenteSalir;
     private OyenteEntrada oyenteEntrada;
@@ -77,11 +77,11 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
         this.salonEntrar = salonEntrar;
     }
 
-    public Juegos getJuego() {
+    public NombreJuegos getJuego() {
         return juego;
     }
 
-    public void setJuego(Juegos juego) {
+    public void setJuego(NombreJuegos juego) {
         this.juego = juego;
     }
 
@@ -304,7 +304,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
         jSalas.getViewport().setView(jContenedor);
     }
 
-    private void modificarEntrada(Juegos nuevo, int salon){
+    private void modificarEntrada(NombreJuegos nuevo, int salon){
         setJuego(nuevo);
         setSalonEntrar(salon);
     }
@@ -314,10 +314,10 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
         public void actionPerformed(ActionEvent e) {
             jButtonNext.setVisible(true);
             if(e.getActionCommand().contains("SalaRuleta")){
-                modificarEntrada(Juegos.RULETA,Integer.parseInt((e.getActionCommand()).substring(10)));
+                modificarEntrada(NombreJuegos.RULETA,Integer.parseInt((e.getActionCommand()).substring(10)));
             }else{
                 if(e.getActionCommand().contains("SalaDados")){
-                    modificarEntrada(Juegos.DADOS,Integer.parseInt((e.getActionCommand()).substring(9)));
+                    modificarEntrada(NombreJuegos.DADOS,Integer.parseInt((e.getActionCommand()).substring(9)));
                 }
             }
         }

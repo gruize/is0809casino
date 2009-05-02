@@ -14,7 +14,7 @@ public class MensajeMesa implements Serializable {
     private int usuario;//id del usuario que entra/sale de la mesa
     private int mesa;//id de la mesa en
     private int sala;//id de la sala a la que pertenece la mesa
-
+  
     public MensajeMesa(int usuario, int mesa, int sala) {
         this.usuario = usuario;
         this.mesa = mesa;

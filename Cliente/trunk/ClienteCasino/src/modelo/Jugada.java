@@ -13,6 +13,7 @@ import java.io.Serializable;
 public class Jugada implements Serializable{
 
     private int usuario;
+    private int sala;
     private int mesa;
     //tipo de apuesta:Numero,Color,ParImpar, Docena, Linea,FaltaPasa....
     private String tipo;
@@ -21,8 +22,9 @@ public class Jugada implements Serializable{
     //Cantidad a postada
     private int cantidad;
 
-    public Jugada(int usuario, int mesa, String tipo, int casilla, int cantidad) {
+    public Jugada(int usuario, int sala,int mesa, String tipo, int casilla, int cantidad) {
         this.usuario = usuario;
+        this.sala=sala;
         this.mesa = mesa;
         this.tipo = tipo;
         this.casilla = casilla;
@@ -67,6 +69,15 @@ public class Jugada implements Serializable{
 
     public void setUsuario(int usuario) {
         this.usuario = usuario;
+    }
+
+
+    public int getSala() {
+        return sala;
+    }
+
+    public void setSala(int sala) {
+        this.sala = sala;
     }
 
 

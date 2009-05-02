@@ -30,4 +30,10 @@ public class TipoMensaje {
 
     /** Salida de una sala */
     public static final int SALIDA_SALA=7;
+
+    /** El servidor envía al cliente la información de todas las salas abiertas del casino */
+    public static final int INFO_SALAS=8;
+
+    /** El servidor envía al cliente la información de todas las mesas abiertas en una sala */
+    public static final int INFO_MESAS=9;
 }

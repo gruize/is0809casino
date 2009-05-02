@@ -3,20 +3,23 @@
  * and open the template in the editor.
  */
 
-package modelo;
+package modelo.mensajes.objetos;
+
+import java.io.Serializable;
+import modelo.NombreJuegos;
 
 /**
  *
  * @author GabiPC
  */
-public class PeticionSala {
+public class PeticionSala implements Serializable {
 
 
     private int idSala;
-    private Juegos juego;
+    private NombreJuegos juego;
     private int numMesas;
 
-    public PeticionSala(int idSala, Juegos juego, int numMesas) {
+    public PeticionSala(int idSala, NombreJuegos juego, int numMesas) {
         this.idSala = idSala;
         this.juego = juego;
         this.numMesas = numMesas;
@@ -30,11 +33,11 @@ public class PeticionSala {
         this.idSala = idSala;
     }
 
-    public Juegos getJuego() {
+    public NombreJuegos getJuego() {
         return juego;
     }
 
-    public void setJuego(Juegos juego) {
+    public void setJuego(NombreJuegos juego) {
         this.juego = juego;
     }
 
@@ -46,5 +49,5 @@ public class PeticionSala {
         this.numMesas = numMesas;
     }
 
-    
+
 }

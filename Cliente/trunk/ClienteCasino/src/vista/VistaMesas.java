@@ -1,6 +1,6 @@
 package vista;
 
-import modelo.Juegos;
+import modelo.NombreJuegos;
 import controlador.ControladorCliente;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -43,7 +43,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
     private JLabel jLabel2;
     private JLabel jLabelSaldo;
     private ControladorCliente controlador;
-    private Juegos juego;
+    private NombreJuegos juego;
     private OyenteRefrescar oyenteRefrescar;
     private OyenteSalir oyenteSalir;
     private OyenteEntrada oyenteEntrada;
@@ -69,11 +69,11 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         mesaEntrar = 0;
     }
 
-    public Juegos getJuego() {
+    public NombreJuegos getJuego() {
         return juego;
     }
 
-    public void setJuego(Juegos juego) {
+    public void setJuego(NombreJuegos juego) {
         this.juego = juego;
     }
 

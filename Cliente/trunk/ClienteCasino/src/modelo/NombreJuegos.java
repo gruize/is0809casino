@@ -9,4 +9,4 @@ package modelo;
  *
  * @author GabiPC
  */
-public enum Juegos {RULETA,DADOS}
+public enum NombreJuegos {RULETA,DADOS}
