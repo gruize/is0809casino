@@ -55,6 +55,7 @@ public class MesaRuleta implements Mesa {
      */
     public MesaRuleta(int idMesa, Salas sala) {
 
+        this.bbdd=new GestorBBDDImp();
 
         crearMesaBBDD(idMesa, sala);
 

@@ -25,7 +25,6 @@ public class testJuegos {
         
         bbdd = new GestorBBDDImp();
 
-        borrarJuego();
         getJuegos();
 
     }
@@ -36,11 +35,16 @@ public class testJuegos {
     private static void insertarJuego() {
        // DAOJuegos dao = new DAOJuegos();
 
+       /* Juegos juego = new Juegos();
+        juego.setCodigo(11);
+        juego.setNombre("Juego Ruleta");
+        juego.setJugadoresmin(1);
+        juego.setReglas("No hay reglas para el juego de la ruleta");*/
         Juegos juego = new Juegos();
-        juego.setCodigo(81);
-        juego.setNombre("Juego Prueba");
-        juego.setJugadoresmin(2);
-        juego.setReglas("No hay reglas");
+        juego.setCodigo(12);
+        juego.setNombre("Juego Dados");
+        juego.setJugadoresmin(1);
+        juego.setReglas("No hay reglas para el juego de los dados");
         
         bbdd.insertarJuego(juego);
 

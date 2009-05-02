@@ -11,9 +11,12 @@ import bbdd.gestorBBDD.GestorBBDDImp;
 import bbdd.gestorBBDD.InterfazBBDD;
 import controlador.ControladorServidor;
 import java.util.Hashtable;
+import java.util.Stack;
 import java.util.Vector;
 import modelo.LogicaJuegos.Mesa;
+import modelo.NombreJuegos;
 import modelo.LogicaJuegos.logicaRuleta.MesaRuleta;
+import modelo.mensajes.objetos.PeticionMesa;
 import org.apache.log4j.Logger;
 
 /**
@@ -54,13 +57,15 @@ public class GestorMesas {
         log.debug("GestorMesas : constructora : init");
         this.controlador = c;
         this.sala = sala;
+        this.mesas = new Vector<Mesa>();
         this.nombreJuego = sala.getNombre();
 
         this.bbdd = new GestorBBDDImp();
 
         //Abrir la primera mesa
-        crearMesa(codigoMesa);
         codigoMesa++;
+        crearMesa(codigoMesa);
+
 
     }
 
@@ -85,16 +90,10 @@ public class GestorMesas {
             mesa_juego = new MesaRuleta(idMesa, this.sala);
         }
 
+        mesas.add(mesa_juego);
+        log.info("GestorMesas : crearMesa : Mesa con id=" + idMesa + " creada y guardada en BBDD");
 
-        //guardo en bbdd --> lo hace directamente la mesa
-       // if (bbdd.insertarMesa(mesa_juego.getMesaBBDD())) {
-            mesas.add(mesa_juego);
-            log.info("GestorMesas : crearMesa : Mesa con id=" + idMesa + " creada y guardada en BBDD");
-
-            return true;
-       // } else {
-         //   return false;
-        //}
+        return true;
 
 
     }
@@ -207,6 +206,32 @@ public class GestorMesas {
 
         //mandarselo a la mesa de juego correspondiente
         getMesaJuego(idMesa).procesaJugada(jugada);
+    }
+
+    //==========================================================
+    /**
+     * Cuando al cliente hay que enviarle la informacion de las mesas de una sala
+     * @return
+     */
+    public Vector<PeticionMesa> getInfoMesas() {
+
+        Vector<PeticionMesa> infoMesas = new Vector<PeticionMesa>();
+        for (int i = 0; i < mesas.size(); i++) {
+            int idMesa = mesas.get(i).getCodigoMesa();
+            double apuestaMin = mesas.get(i).getApuestaMin();
+            int nJugadores = mesas.get(i).getJugadores_Mesa().size();
+            NombreJuegos nombreJuegoMesa;
+            if (sala.getNombre().toUpperCase().contains(NombreJuegos.RULETA.toString())) {
+                nombreJuegoMesa = NombreJuegos.RULETA;
+            } else {
+                nombreJuegoMesa = NombreJuegos.DADOS;
+            }
+
+            infoMesas.add(new PeticionMesa(idMesa, nombreJuegoMesa, apuestaMin, nJugadores));
+
+        }
+
+        return infoMesas;
     }
 }
 

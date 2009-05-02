@@ -4,6 +4,7 @@
  */
 package modelo;
 
+import bbdd.beans.Juegos;
 import modelo.LogicaJuegos.Jugada;
 import bbdd.beans.Salas;
 import bbdd.gestorBBDD.GestorBBDDImp;
@@ -11,6 +12,8 @@ import bbdd.gestorBBDD.InterfazBBDD;
 import controlador.ControladorServidor;
 import java.util.Hashtable;
 import java.util.Vector;
+import modelo.NombreJuegos;
+import modelo.mensajes.objetos.PeticionSala;
 import org.apache.log4j.Logger;
 
 /**
@@ -73,7 +76,7 @@ public class GestorSalas {
         Salas sala = new Salas();
         sala.setCodigo(codigoSala);
         sala.setNombre(nombreSala);
-        sala.setJuegos(null);//TODO puedo introducir valores nulos en BBDD??
+        sala.setJuegos(dameJuegoAsociado(nombreSala));// NO puedo introducir valores nulos en BBDD??
 
         //Guardo en bbdd (si no existía ya)
         if (bbdd.insertarSala(sala)) {
@@ -83,6 +86,55 @@ public class GestorSalas {
             mesas_sala.put(codigoSala, new GestorMesas(controlador, sala));//se creará una mesa
             log.info("GestorSalas : crearSala : Sala con id=" + codigoSala + " guardada en el Gestor de Salas. Aún no tiene mesas abiertas");
         }
+    }
+
+    private Juegos dameJuegoAsociado(String nombreSala) {
+        //TODO el resto de juegos. Comprobar el nombre por una clase que subió Gabi
+        if (nombreSala.contains("Ruleta")) {
+            log.debug("GestorSalas : dameJuegoAsociado : Juego de la RULETA, para la sala " + nombreSala);
+            return dameJuegoRuleta();
+        } else if (nombreSala.contains("Dados")) {
+            log.debug("GestorSalas : dameJuegoAsociado : Juego de los DADOS, para la sala " + nombreSala);
+            return dameJuegoDados();
+        } else {
+            return null;
+        }
+
+    }
+
+    private Juegos dameJuegoRuleta() {
+        Juegos j = bbdd.getJuegoPorNombre("Juego Ruleta");
+        if (j == null) {
+            //el juego no existe, lo creamos
+            Juegos nuevoJuego = new Juegos();
+            nuevoJuego.setCodigo(11);
+            nuevoJuego.setNombre("Juego Ruleta");
+            nuevoJuego.setJugadoresmin(1);
+            nuevoJuego.setReglas("No tendo reglas para el juego de  la ruleta");
+            bbdd.insertarJuego(nuevoJuego);
+
+            j = nuevoJuego;
+        }
+
+        return j;
+
+    }
+
+    private Juegos dameJuegoDados() {
+        Juegos j = bbdd.getJuegoPorNombre("Juego Dados");
+        if (j == null) {
+            //el juego no existe, lo creamos
+            Juegos nuevoJuego = new Juegos();
+            nuevoJuego.setCodigo(12);
+            nuevoJuego.setNombre("Juego Dados");
+            nuevoJuego.setJugadoresmin(1);
+            nuevoJuego.setReglas("No tengo reglas para el juego de los dados");
+            bbdd.insertarJuego(nuevoJuego);
+
+            j = nuevoJuego;
+        }
+
+        return j;
     }
 
     /**
@@ -148,9 +200,14 @@ public class GestorSalas {
      *         false en otro caso
      */
     private boolean estaMesaEnSala(int idSala, int idMesa) {
+        try {
+            return mesas_sala.get(idSala).existeMesa(idMesa);
+        } catch (Exception e) {
 
-        return mesas_sala.get(idSala).existeMesa(idMesa);
-
+            //saltará un nullpointer cuando la sala no esté abierta
+            log.error("GestorSalas : estaMesaEnSala : error al buscar sala="+idSala+" y mesa="+idMesa+" -->"+e.getMessage());
+            return false;
+        }
     }
 
     /**
@@ -211,10 +268,40 @@ public class GestorSalas {
         int idSala = jugada.getSala();
         int idMesa = jugada.getMesa();
 
+        // TODO los de la interfaz me lo estan mandando al reves!!! 
+        log.debug("GestorSalas : procesaMensaje : jugada de la sala " + idSala + " en la mesa " + idMesa);
         //compruebo que la mesa está en la sala. Solo por seguridad...
         if (estaMesaEnSala(idSala, idMesa)) {
             //enviarselo al GestorMesas
             mesas_sala.get(idSala).procesarMensajeJugada(jugada);
         }
+    }
+
+    //==========================================================================
+
+    /**
+     * Para cuando haya que mandarle al cliente la info de todas las salas del casino
+     * @return
+     */
+    public Vector<PeticionSala> getInfoSalas(){
+        Vector<PeticionSala> infoSalas= new Vector<PeticionSala>();
+        for (int i=0; i<salas.size(); i++){
+
+            int idSala=salas.get(i).getCodigo();
+            String nombreSala=salas.get(i).getNombre();
+            NombreJuegos nombreJuego;
+            if (nombreSala.toUpperCase().contains(NombreJuegos.RULETA.toString()))
+                nombreJuego=NombreJuegos.RULETA;
+            else
+                nombreJuego=NombreJuegos.DADOS;
+            int nMesas=getMesas_Sala(idSala).size();
+
+            //añado al vector
+            infoSalas.add(new PeticionSala(idSala, nombreJuego, nMesas));
+
+        }
+
+        return infoSalas;
+
     }
 }

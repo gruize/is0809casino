@@ -126,7 +126,7 @@ public class GestorUsuarios {
         //Enviarselo al gestorSalas, y que llame a su gestorMesas y lo incluya en la mesa correspondiente
         return GestorSalas.getInstance(controlador).añadirMesaEnSala(idMesa, getJugadorConectado(idJugador).getIdSala(), idJugador);
 
-         }
+    }
 
     /**
      * Cuando en las mesas se resuelve la partida, se mandan actualizar todos los saldos de los jugadores.
@@ -146,7 +146,7 @@ public class GestorUsuarios {
         this.jugadores.add(posJugador, jugador);
 
         log.info("GestorUsuarios : actualizaSaldoJugador : jugador=" + idJugador + " en mesa=" + jugador.getIdMesa() + " se actualiza con saldo=" + nuevoSaldo);
-*/
+         */
     }
 
 
@@ -160,17 +160,21 @@ public class GestorUsuarios {
      */
     public int getIndiceJugador(int idJugador) {
 
-        int i = 0;
-        boolean enc = this.jugadores.get(i).getIdJugador() == idJugador;
-        while (!enc && i < jugadores.size()) {
-            i++;
-            enc = this.jugadores.get(i).getIdJugador() == idJugador;
-        }
+        if (this.jugadores != null && this.jugadores.size() > 0) {
+            int i = 0;
+            boolean enc = this.jugadores.get(i).getIdJugador() == idJugador;
+            while (!enc && i < jugadores.size()) {
+                i++;
+                enc = this.jugadores.get(i).getIdJugador() == idJugador;
+            }
 
-        if (enc) {
-            return i;
-        } else {
-            return -1; //Error, el usuario no se ha insertado bien previamente, cuando se ha logeado.
+            if (enc) {
+                return i;
+            } else {
+                return -1; //Error, el usuario no se ha insertado bien previamente, cuando se ha logeado.
+            }
+        } else {//es el primer jugador del casino
+            return 0;
         }
     }
 
@@ -236,15 +240,12 @@ public class GestorUsuarios {
         return true;
     }
 
-
     /**
      * Para el módulo de chat. Se necesitan conocer todos los jugadores que están en una mesa
      *
      *
      */
-    public Vector<Clientes> getJugadoresMesa(int idSala, int idMesa){
+    public Vector<Clientes> getJugadoresMesa(int idSala, int idMesa) {
         return GestorSalas.getInstance(controlador).getMesas(idSala).getJugadores_Mesa(idMesa);
     }
-
-    
 }

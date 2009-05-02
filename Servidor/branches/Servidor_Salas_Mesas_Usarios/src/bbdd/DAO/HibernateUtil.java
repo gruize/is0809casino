@@ -61,7 +61,7 @@ public class HibernateUtil {
     public static Session currentSession() throws Exception {
        
 
-        System.out.println( "Hibernate Util: init");
+       
        loggerLog.info("Hibernate Util: init");
 
         Session session = (Session) threadLocal.get();
@@ -85,7 +85,7 @@ public class HibernateUtil {
                 threadLocal.set(session);
             }
 
-            System.out.println("Hibernate Util: retornamos la session");
+           
             return session;
         } catch (HibernateException e) {
             System.err.println("Hibernate Exception: " + e.getMessage() + "ocurrida en currentSession");

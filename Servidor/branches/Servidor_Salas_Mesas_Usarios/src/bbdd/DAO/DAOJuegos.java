@@ -170,12 +170,12 @@ public class DAOJuegos {
             session = HibernateUtil.currentSession();
             tx = session.beginTransaction();
 
-            juego = (Juegos) session.createQuery("from Juegos j where j.nombre= ?").setString(0, nombre).uniqueResult();
+            juego = (Juegos) session.createQuery("from Juegos j where j.nombre= ?").setString(0, ""+nombre).uniqueResult();
 
             session.flush();
             tx.commit();
 
-            log.info("DAOJuegos: " + metodo + ": Jugador obtenido con NOMBRE: " + juego.getNombre());
+            log.info("DAOJuegos: " + metodo + ": Juego obtenido con NOMBRE: " + juego.getNombre());
 
         } catch (org.hibernate.HibernateException he) {
             tx.rollback();
