@@ -22,16 +22,19 @@ public class testSalas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
         bbdd = new GestorBBDDImp();
-        
-        //borrarSala();
+
+       //borrarSala();
         getSalas();
 
     }
 
     private static void borrarSala() {
-        bbdd.borrarSala(bbdd.getSalaPorCodigo(18));
+        bbdd.borrarSala(bbdd.getSalaPorCodigo(1));
+        bbdd.borrarSala(bbdd.getSalaPorCodigo(2));
+        bbdd.borrarSala(bbdd.getSalaPorCodigo(3));
+        bbdd.borrarSala(bbdd.getSalaPorCodigo(4));
     }
 
     private static void getSalas() {

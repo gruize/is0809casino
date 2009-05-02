@@ -39,7 +39,7 @@ public class DAOClientes {
 
             //guardamos
             session.save(cliente);
-            
+
             session.flush();
             tx.commit();
 
@@ -78,9 +78,9 @@ public class DAOClientes {
         try {
             session = HibernateUtil.currentSession();
             tx = session.beginTransaction();
-            
+
             lista = (ArrayList)session.createQuery("from Clientes").list();
-            
+
             session.flush();
             tx.commit();
 
@@ -105,7 +105,7 @@ public class DAOClientes {
     }
 
     /**
-     * Busca un cliente en la BBDD por usuario. 
+     * Busca un cliente en la BBDD por usuario.
      * @param usuario nombre de usuario (login)
      * @return objeto Clientes
      */
@@ -230,7 +230,7 @@ public class DAOClientes {
 
     /**
      * Modifica un cliente
-     * 
+     *
      * @param cliente objeto ya modificado localmente
      */
     public void modificarCliente(Clientes cliente) {

@@ -7,8 +7,6 @@ package modelo;
 import modelo.mensajes.MensajeJugada;
 import controlador.ControladorServidor;
 import java.util.Vector;
-import javax.swing.DefaultListModel;
-import modelo.LogicaJuegos.logicaRuleta.GestorSalas;
 
 /**
  *
@@ -55,11 +53,4 @@ public class GestorJuegosServidor extends Thread {
         }
     }
 
-    public DefaultListModel getMesas(int i) {
-        return gestorSalas.getListaMesas(i);
-    }
-
-    public DefaultListModel getSalas() {
-        return gestorSalas.getListaSalas();
-    }
 }

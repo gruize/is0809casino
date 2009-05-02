@@ -31,12 +31,12 @@ public class testMesas {
     }
 
     private static void borrarMesa() {
-        
+
         bbdd.borrarMesa(bbdd.getMesa(100));
     }
 
     private static void getMesas() {
-        
+
         mostrarDatos(bbdd.getMesas());
 
     }
@@ -53,11 +53,11 @@ public class testMesas {
         mesa.setApuestamax(20.55);
 
         bbdd.insertarMesa(mesa);
-        
+
     }
 
     private static void modificarMesa() {
-        
+
 
         Mesas mesa = bbdd.getMesa(100);
         mesa.setApuestamin(100.00); //TODO cómo controlamos que la apuesta min < apuesta max?

@@ -12,7 +12,7 @@ public class GestorChatServidor extends Thread {
     private ControladorServidor controlador;
     private static GestorUsuarios usuarios;
     private static GestorChatServidor instance = null;
-   
+
 
 
     public GestorChatServidor(ControladorServidor c) {
@@ -35,14 +35,16 @@ public class GestorChatServidor extends Thread {
         try {
             MensajeChat recibido;
             ArrayList<Jugador> tios = new ArrayList<Jugador>();
-            usuarios = GestorUsuarios.getInstancia();
+            usuarios = GestorUsuarios.getInstancia(this.controlador);
             int mesa = 0;
             while (true) {
                if (cola.size() != 0){
                     recibido = cola.firstElement();
                     cola.remove(0);
-                    mesa = usuarios.getMesa(recibido.get_tio());
-                    tios = usuarios.getUsuarios(mesa);
+                    //mesa = usuarios.getMesa(recibido.get_tio());
+                    mesa=recibido.get_mesa();
+                    //tios = usuarios.getUsuarios(mesa);
+                    tios= usuarios.getJugadoresMesa(recibido.get_sala(),mesa);
                     for (int i = 0; i < tios.size(); i++) {
                         MensajeChat mensajeChat = new MensajeChat(recibido.get_tio(),recibido.get_mesa(),recibido.get_men(),recibido.get_usuario());
                         controlador.enviarMensajeChat(tios.get(i).getId(),mensajeChat);

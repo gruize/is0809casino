@@ -44,6 +44,6 @@ public class MensajeMesa implements Serializable {
     public void setUsuario(int usuario) {
         this.usuario = usuario;
     }
-    
+
 
 }

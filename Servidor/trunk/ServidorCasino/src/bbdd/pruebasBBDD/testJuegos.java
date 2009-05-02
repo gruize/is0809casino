@@ -22,10 +22,9 @@ public class testJuegos {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
         bbdd = new GestorBBDDImp();
 
-        borrarJuego();
         getJuegos();
 
     }
@@ -36,30 +35,35 @@ public class testJuegos {
     private static void insertarJuego() {
        // DAOJuegos dao = new DAOJuegos();
 
+       /* Juegos juego = new Juegos();
+        juego.setCodigo(11);
+        juego.setNombre("Juego Ruleta");
+        juego.setJugadoresmin(1);
+        juego.setReglas("No hay reglas para el juego de la ruleta");*/
         Juegos juego = new Juegos();
-        juego.setCodigo(81);
-        juego.setNombre("Juego Prueba");
-        juego.setJugadoresmin(2);
-        juego.setReglas("No hay reglas");
-        
+        juego.setCodigo(12);
+        juego.setNombre("Juego Dados");
+        juego.setJugadoresmin(1);
+        juego.setReglas("No hay reglas para el juego de los dados");
+
         bbdd.insertarJuego(juego);
 
-       
+
     }
 
     private static void modificarJuego() {
-       
+
         Juegos j=bbdd.getJuegoPorCodigo(81);
-        //j.setCodigo(10); el código nunca se puede modificar. No da errores, por lo que no avisa. 
+        //j.setCodigo(10); el código nunca se puede modificar. No da errores, por lo que no avisa.
         j.setJugadoresmin(0);
         j.setReglas("Quito reglas");
-        
+
         bbdd.modificarJuego(j);
-        
+
     }
 
     private static void borrarJuego() {
-               
+
         bbdd.borrarJuego(bbdd.getJuegoPorCodigo(81));
     }
 
@@ -67,12 +71,12 @@ public class testJuegos {
      * Obtiene todos los juegos activos del casino
      */
     private static void getJuegos() {
-       
+
         mostrarDatos(bbdd.getJuegos());
     }
 
-  
-    
+
+
     private static void mostrarDatos(ArrayList lista) {
         String s = "  ";
         System.out.println("**************  JUEGOS **************");
@@ -84,7 +88,7 @@ public class testJuegos {
             System.out.print("Nombre:" + juego.getNombre() + s);
             System.out.print("Jugadores Min:" + juego.getJugadoresmin() + s);
             System.out.println("Reglas:" + juego.getReglas() + s);
-  
+
         }
     }
 }

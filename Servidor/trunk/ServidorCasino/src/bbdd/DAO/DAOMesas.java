@@ -40,7 +40,7 @@ public class DAOMesas {
 
             //guardamos
             session.save(mesa);
-            
+
             session.flush();
             tx.commit();
 
@@ -79,9 +79,9 @@ public class DAOMesas {
         try {
             session = HibernateUtil.currentSession();
             tx = session.beginTransaction();
-            
+
             lista = (ArrayList)session.createQuery("from Mesas").list();
-            
+
             session.flush();
             tx.commit();
 
@@ -117,7 +117,7 @@ public class DAOMesas {
         Mesas mesa = null;
         Session session = null;
         Transaction tx = null;
-        
+
         try {
             session = HibernateUtil.currentSession();
             tx = session.beginTransaction();
@@ -189,7 +189,7 @@ public class DAOMesas {
 
     /**
      * Modifica una mesa
-     * 
+     *
      * @param mesa objeto ya modificada localmente
      */
     public void modificarMesa(Mesas mesa) {

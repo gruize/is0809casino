@@ -17,11 +17,11 @@ import org.hibernate.cfg.Configuration;
  */
 public class HibernateUtil {
 
-    
+
         //log4j
     private static Logger loggerLog = Logger.getLogger(HibernateUtil.class);
 
-    
+
     /**
      * Location of hibernate.cfg.xml file.
      * NOTICE: Location should be on the classpath as Hibernate uses
@@ -49,7 +49,7 @@ public class HibernateUtil {
      * The single instance of hibernate SessionFactory
      */
     private static org.hibernate.SessionFactory sessionFactory;
-    
+
     /**
      * Returns the ThreadLocal Session instance.  Lazy initialize
      * the <code>SessionFactory</code> if needed.
@@ -59,9 +59,9 @@ public class HibernateUtil {
      */
 
     public static Session currentSession() throws Exception {
-       
 
-        System.out.println( "Hibernate Util: init");
+
+
        loggerLog.info("Hibernate Util: init");
 
         Session session = (Session) threadLocal.get();
@@ -85,7 +85,7 @@ public class HibernateUtil {
                 threadLocal.set(session);
             }
 
-            System.out.println("Hibernate Util: retornamos la session");
+
             return session;
         } catch (HibernateException e) {
             System.err.println("Hibernate Exception: " + e.getMessage() + "ocurrida en currentSession");
