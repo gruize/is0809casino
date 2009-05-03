@@ -13,6 +13,8 @@ import java.io.Serializable;
 import modelo.*;
 import modelo.mensajes.MensajeMesa;
 import modelo.mensajes.MensajeSala;
+import modelo.mensajes.objetos.PeticionMesa;
+import modelo.mensajes.objetos.PeticionSala;
 
 /**
  *
@@ -93,18 +95,29 @@ public class ControladorCliente {
         comunicador.enviarMensaje(tipo, mensaje);
     }
 
-    public int getNumeroMesas(int sala) {
+    public PeticionMesa[] getNumeroMesas() {
         //TODO:
         /**
          * Devuelve el numero de mesas existentes en una sala determinada.
          */
-        int numeroMesas = 10;
-        return numeroMesas;
+        PeticionMesa[] mesa = new PeticionMesa[5];
+        for(int i = 0; i < mesa.length; i++){
+            mesa[i] = new PeticionMesa(i,NombreJuegos.RULETA,i*10.4,(i*43)%7);
+        }
+        return mesa;
     }
 
-    public int getNumeroSalas() {
+    public PeticionSala[] getNumeroSalas() {
         //Obtiene el  numero de salas existentes en el casino
-        return 0;
+        PeticionSala[] sala = new PeticionSala[5];
+        for(int i = 0; i < sala.length; i++ ){
+            sala[i] = new PeticionSala(i,NombreJuegos.DADOS,i*2);
+            if(i % 2 == 0)
+                sala[i].setJuego(NombreJuegos.RULETA);
+            else
+                sala[i].setJuego(NombreJuegos.DADOS);
+        }
+        return sala;
     }
 
     /**

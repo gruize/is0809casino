@@ -2,6 +2,7 @@ package vista;
 
 import modelo.NombreJuegos;
 import controlador.ControladorCliente;
+import java.awt.Choice;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.util.Observable;
@@ -15,6 +16,8 @@ import javax.swing.JScrollPane;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
@@ -22,6 +25,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
+import modelo.mensajes.objetos.PeticionMesa;
 
 /**
  *
@@ -42,13 +46,16 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
     private JLabel jLabelUser;
     private JLabel jLabel2;
     private JLabel jLabelSaldo;
+    private Choice jOrden;
     private ControladorCliente controlador;
     private NombreJuegos juego;
     private OyenteRefrescar oyenteRefrescar;
     private OyenteSalir oyenteSalir;
     private OyenteEntrada oyenteEntrada;
     private OyenteVolver oyenteVolver;
+    private OyenteSeleccion oyenteSeleccion;
     private int mesaEntrar;
+    private int orden;
     // End of variables declaration
 
     /** Creates new form VistaTemporal */
@@ -56,6 +63,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         super("Mesas disponibles");
         controlador = control;
         inicializar();
+        rellenarOrdenes();
         agregarOyentes();
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter(){
@@ -85,15 +93,25 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         this.mesaEntrar = mesaEntrar;
     }
 
+    public int getOrden() {
+        return orden;
+    }
+
+    public void setOrden(int orden) {
+        this.orden = orden;
+    }
+
     private void agregarOyentes() {
         oyenteRefrescar = new OyenteRefrescar();
         oyenteSalir = new OyenteSalir();
         oyenteEntrada = new OyenteEntrada();
         oyenteVolver = new OyenteVolver();
+        oyenteSeleccion = new OyenteSeleccion();
         jButtonRefresh.addActionListener(oyenteRefrescar);
         jButtonSalir.addActionListener(oyenteSalir);
         jButtonNext.addActionListener(oyenteEntrada);
         jButtonBack.addActionListener(oyenteVolver);
+        jOrden.addItemListener(oyenteSeleccion);
     }
 
     private void inicializar() {
@@ -108,12 +126,17 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         jLabelUser = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabelSaldo = new javax.swing.JLabel();
+        jOrden = new java.awt.Choice();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
 
         jLayeredPane1.setBackground(new java.awt.Color(0, 0, 0));
         jLayeredPane1.setOpaque(true);
+
+        jOrden.setBounds(360, 100, 300, 20);
+        jLayeredPane1.moveToFront(jOrden);
+        jLayeredPane1.add(jOrden,javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTapete.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jTapete.setIcon(new javax.swing.ImageIcon("./recursos/mesaVaciaPaint.PNG")); // NOI18N
@@ -184,12 +207,12 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         jContenedor = new JPanel();
         jContenedor.setLayout(new GridLayout(0,3));
         jContenedor.setBackground(Color.BLACK);
-        jContenedor.setBounds(80, 100, 860, 480);
+        jContenedor.setBounds(80, 140, 860, 480);
         jContenedor.setOpaque(true);
         jSalas = new JScrollPane();
         jSalas.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         jSalas.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        jSalas.setBounds(80, 100, 860, 480);
+        jSalas.setBounds(80, 140, 860, 480);
         jSalas.getViewport().setView(jContenedor);
         jLayeredPane1.add(jSalas,javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.moveToFront(jSalas);
@@ -209,6 +232,19 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         pack();
 
         rellenarMesas();
+    }
+
+    private void rellenarOrdenes() {
+        //orden = 0;
+        jOrden.add("---Elija un orden---");
+        //orden = 1;
+        jOrden.add("Nº de jugadores.Creciente");
+        //orden = 2;
+        jOrden.add("Nº de jugadores.Decreciente");
+        //orden = 3;
+        jOrden.add("Apuesta mínima.Creciente");
+        //orden = 4;
+        jOrden.add("Apuesta mínima.Decreciente");
     }
 
     private void rellenarDatos() {
@@ -234,28 +270,49 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         /**
          * Generar todas las nuevas salas.
          */
-        //int numeroMesas = controlador.getNumeroMesas();
-        int numeroMesas = 16;
-        for(int i=1; i <= numeroMesas; i++) {
-            JPanel nuevaMesa = new JPanel();
-            nuevaMesa.setBackground(Color.BLACK);
-            nuevaMesa.setOpaque(true);
-            nuevaMesa.setPreferredSize(new Dimension(250,120));
-            nuevaMesa.setSize(new Dimension(250,120));
-            nuevaMesa.setName("Mesa"+i);
-            nuevaMesa.setBorder(null);
-            JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
-            botonNuevaSala.setPreferredSize(new Dimension(114,86));
-            botonNuevaSala.setName("BotonMesa"+i);
-            botonNuevaSala.setActionCommand(Integer.toString(i));
-            botonNuevaSala.addActionListener(new OyenteMesas());
-            botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
-            nuevaMesa.add(botonNuevaSala);
-            JTextArea textoNuevaMesa = new JTextArea("Usuarios: \n"+//controlador.getNumeroMesas(i)
-                    "Los dice el controlador\nApuestaMinima: \nLa dice el controlador");
-            textoNuevaMesa.setPreferredSize(new Dimension(114,86));
-            nuevaMesa.add(textoNuevaMesa);
-            jContenedor.add(nuevaMesa);
+
+        PeticionMesa[] peticionMesa = controlador.getNumeroMesas();
+        switch(orden){
+            //Ningun orden
+            case 0: {
+                for (int i = 0; i < peticionMesa.length; i++){
+                    JPanel nuevaMesa = new JPanel();
+                    nuevaMesa.setBackground(Color.BLACK);
+                    nuevaMesa.setOpaque(true);
+                    nuevaMesa.setPreferredSize(new Dimension(250,120));
+                    nuevaMesa.setSize(new Dimension(250,120));
+                    nuevaMesa.setName("Mesa"+i);
+                    nuevaMesa.setBorder(null);
+                    JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
+                    botonNuevaSala.setPreferredSize(new Dimension(114,86));
+                    botonNuevaSala.setName("BotonMesa"+i);
+                    botonNuevaSala.setActionCommand(Integer.toString(i));
+                    botonNuevaSala.addActionListener(new OyenteMesas());
+                    botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
+                    nuevaMesa.add(botonNuevaSala);
+                    JTextArea textoNuevaMesa = new JTextArea("Usuarios: \n"+peticionMesa[i].getNumJugadores()+
+                            "\nApuestaMinima: \n"+peticionMesa[i].getApuestaMin());
+                    textoNuevaMesa.setPreferredSize(new Dimension(114,86));
+                    nuevaMesa.add(textoNuevaMesa);
+                    jContenedor.add(nuevaMesa);
+                }
+            }break;
+            //Nº Jugadores. Creciente
+            case 1: {
+                System.out.println("Nº Jugadores. Creciente");
+            }break;
+            //Nº Jugadores. Decreciente
+            case 2: {
+                System.out.println("Nº Jugadores. Decreciente");
+            }break;
+            //Apuesta minima. Creciente
+            case 3: {
+                System.out.println("Apuesta minima. Creciente");
+            }break;
+            //Apuesta minima. Decreciente
+            case 4: {
+                System.out.println("Apuesta minima. Decreciente");
+            }break;
         }
         jSalas.getViewport().setView(jContenedor);
     }
@@ -266,7 +323,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
 
     class OyenteMesas implements ActionListener {
 
-        public void actionPerformed(ActionEvent e) {            
+        public void actionPerformed(ActionEvent e) {
             jButtonNext.setVisible(true);
             modificarEntrada(Integer.parseInt(e.getActionCommand()));
         }
@@ -320,10 +377,42 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
     class OyenteVolver implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            dispose();            
+            dispose();
             VistaSalas vista = new VistaSalas(controlador);
             vista.setVisible(true);
         }
+
+    }
+
+    class OyenteSeleccion implements ItemListener {
+
+        public void itemStateChanged(ItemEvent e) {
+            if(e.getSource() == jOrden)
+                switch(jOrden.getSelectedIndex()){
+                    //Ninguno
+                    case 0:{
+                        setOrden(0);
+                    }break;
+                    //Nº de jugadores.Creciente
+                    case 1:{
+                        setOrden(1);
+                    }break;
+                    //Nº de jugadores.Decreciente
+                    case 2:{
+                        setOrden(2);
+                    }break;
+                    //ApuestaMinima.Creciente
+                    case 3:{
+                        setOrden(3);
+                    }break;
+                    //ApuestaMinima.Decreciente
+                    case 4:{
+                        setOrden(4);
+                    }break;
+                }
+            rellenarMesas();
+
+            }
 
     }
 
