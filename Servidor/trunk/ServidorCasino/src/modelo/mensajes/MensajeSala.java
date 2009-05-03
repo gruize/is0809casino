@@ -5,7 +5,6 @@
 package modelo.mensajes;
 
 import java.io.Serializable;
-import modelo.mensajes.objetos.PeticionSala;
 
 /**
  *
@@ -15,7 +14,6 @@ public class MensajeSala implements Serializable{
 
     private int usuario;//id del usuario
     private int sala;//id de la sala
-    private PeticionSala peticionSala; //solo lo recibirá cuando el servidor le mande todas las salas que hay
 
 
     public MensajeSala(int usuario, int sala) {
@@ -23,11 +21,7 @@ public class MensajeSala implements Serializable{
         this.sala = sala;
     }
 
-        public MensajeSala(int usuario, int sala, PeticionSala p) {
-        this.usuario = usuario;
-        this.sala = sala;
-        this.peticionSala=p;
-    }
+
     public int getSala() {
         return sala;
     }
@@ -44,12 +38,6 @@ public class MensajeSala implements Serializable{
         this.usuario = usuario;
     }
 
-        public PeticionSala getPeticionSala() {
-        return peticionSala;
-    }
 
-    public void setPeticionSala(PeticionSala peticionSala) {
-        this.peticionSala = peticionSala;
-    }
 
 }

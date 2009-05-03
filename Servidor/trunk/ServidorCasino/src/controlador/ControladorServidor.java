@@ -17,6 +17,8 @@ import modelo.mensajes.MensajeJugada;
 import java.util.Vector;
 import modelo.GestorSalas;
 import modelo.NombreJuegos;
+import modelo.mensajes.MensajeEstadoRuleta;
+import modelo.mensajes.MensajeInfoCliente;
 import modelo.mensajes.MensajeInfoMesas;
 import modelo.mensajes.MensajeInfoSalas;
 import modelo.mensajes.TipoMensaje;
@@ -47,13 +49,14 @@ public class ControladorServidor {
         chat.start();
         usuarios = new GestorUsuarios(this);
 
+        
         salas = GestorSalas.getInstance(this);
         //crear todas las salas del casino.
 
         salas.crearSala(1, "Ruleta 1");
         salas.crearSala(2, "Ruleta 2");
         salas.crearSala(3, "Ruleta 3");
-        salas.crearSala(4, "Dados 1");
+        salas.crearSala(4, "Dados 1"); 
 
         log.info("ControladorServidor : constructora : se  han creado 4 salas");
         GestorJuegosServidor.getInstance(this).start();
@@ -122,6 +125,7 @@ public class ControladorServidor {
         Vector<PeticionMesa> mesas = GestorSalas.getInstance(this).getMesas(idSala).getInfoMesas();
         MensajeInfoMesas mensaje = new MensajeInfoMesas(mesas);
         enviarMensajeInfoMesas(idUsuario, mensaje);
+        log.info("ControladorServidor : enviarMesasDeUnaSala : info de mesas de la sala="+idSala+" enviado al cliente "+idUsuario+". Total mesas abiertas "+mesas.size());
     }
     //==================================================================================
     //          ENVIO DE MENSAJES A LOS CLIENTES
@@ -170,6 +174,26 @@ public class ControladorServidor {
         
     }
 
+    /**
+     * Parar y arrancar la ruleta
+     * @param idUsuario
+     * @param mensaje
+     */
+    public void enviarMensajeEstadoRuleta(int idUsuario, MensajeEstadoRuleta mensaje){
+
+        comunicador.enviarMensaje(idUsuario, TipoMensaje.ESTADO_RULETA, mensaje);
+    }
+
+    /**
+     * Cuando hay que enviarle al cliente su propia informacion:
+     * - Al principio, cuando se logea, para tener su login y saldo
+     * - Siempre que se actualicen saldos tras una partida
+     * @param idUsuario
+     * @param mensaje
+     */
+    public void enviarMensajeInfoCliente(int idUsuario, MensajeInfoCliente mensaje){
+        comunicador.enviarMensaje(idUsuario, TipoMensaje.INFO_CLIENTE, mensaje);
+    }
     /**
      * Envia al cliente un mensaje con la informacion de todas las mesas abiertas en una sala
      * @param idUsuario identificador de usuario a quien va dirigido el mensaje

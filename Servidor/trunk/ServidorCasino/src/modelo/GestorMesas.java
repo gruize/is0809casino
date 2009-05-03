@@ -28,8 +28,7 @@ public class GestorMesas {
     private String nombreJuego = ""; //juegos que se jugarán en las mesas: Ruleta, Datos, ..
     private Salas sala; //sala a la que pertenecen estas mesas
     private Vector<Mesa> mesas;//cada mesa del casino. Contrendrá la lógica del juego
-    //private Hashtable<Integer, Vector<Integer>> jugadores_mesa;//<idMesa, vector<idCliente>> TODO que lo guarde cada mesa
-    private ControladorServidor controlador; //TODO ¿realmente necesito el controlador?
+    private ControladorServidor controlador; 
 
     //log4j
     private static Logger log = Logger.getLogger(GestorMesas.class);
@@ -40,7 +39,11 @@ public class GestorMesas {
     //contador para identificar de forma única todas las mesas
     private static int codigoMesa;
 
-    //=======================================================================
+    //contador para identificar de forma única todas las partidas que se vayan creando en las mesas
+    private static int codigoPartida=0;
+
+
+     //=======================================================================
     // métodos de la clase
     //=======================================================================
     /**
@@ -78,12 +81,12 @@ public class GestorMesas {
         //miro que tipo de mesa es, a partir del nombre
         //TODO mirar Juegos.java que iba a hacer gabi
         if (this.nombreJuego.contains("ruleta") || this.nombreJuego.contains("Ruleta")) {
-            mesa_juego = new MesaRuleta(idMesa, this.sala);
+            mesa_juego = new MesaRuleta(idMesa, this.sala,this.controlador);
         } else {
             //TODO comprobar y crear el resto de mesas
 
             //TODO quitar, esto es temporal, para no tener valores nulos
-            mesa_juego = new MesaRuleta(idMesa, this.sala);
+            mesa_juego = new MesaRuleta(idMesa, this.sala, this.controlador);
         }
 
         mesas.add(mesa_juego);

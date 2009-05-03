@@ -36,4 +36,10 @@ public class TipoMensaje {
 
     /** El servidor envía al cliente la información de todas las mesas abiertas en una sala */
     public static final int INFO_MESAS=9;
+
+    /** Cuando la ruleta para o inicia el juego */
+    public static final int ESTADO_RULETA=10;
+
+    /** Para enviar los nuevos saldos, o la info del cliente */
+    public static final int INFO_CLIENTE=11;
 }

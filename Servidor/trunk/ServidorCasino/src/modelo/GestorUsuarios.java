@@ -4,7 +4,6 @@
  */
 package modelo;
 
-
 import bbdd.gestorBBDD.GestorBBDDImp;
 import bbdd.gestorBBDD.InterfazBBDD;
 
@@ -64,11 +63,11 @@ public class GestorUsuarios {
         int id = -1;
 
         id = bbdd.comprobarUsuario(usuario, password);
-        //Si el jugador ya esta conectado devuelve resultado = -1
-        if (getIndiceJugador(id) != -1) {
+        //Si el jugador aun no está conectado devuelve resultado = -1
+        if (getIndiceJugador(id) == -1) {
             insertarJugador(bbdd.getClientePorCodigo(id));
             log.info("GestorUsuarios : hacerLogin : Jugador con id=" + id + " logeado en el casino");
-        } else {
+        } else { //ya está conectado, devuelvo -1 hacia el comunicador
             id = -1;
         }
 
@@ -85,7 +84,7 @@ public class GestorUsuarios {
         JugadorConectado jugador = new JugadorConectado(c);
         this.jugadores.add(jugador);
 
-    //aún no se inserta nada en BBDD, no se considera Participante porque aún no ha entrado en sala ni mesa
+        //aún no se inserta nada en BBDD, no se considera Participante porque aún no ha entrado en sala ni mesa
     }
 
     /**
@@ -101,7 +100,7 @@ public class GestorUsuarios {
         jugador.setIdSala(idSala);
         this.jugadores.add(posJugador, jugador);
 
-    
+
         log.info("GestorUsuarios : insertarJugadorEnSala : Jugador=" + idJugador + " insertado en sala=" + idSala);
     }
 
@@ -121,28 +120,6 @@ public class GestorUsuarios {
 
     }
 
-    /**
-     * Cuando en las mesas se resuelve la partida, se mandan actualizar todos los saldos de los jugadores.
-     * @param idJugador
-     * @param nuevoSaldo
-     */
-    public void actualizaSaldoJugador(int idJugador, int nuevoSaldo) {
-        /*
-        int posJugador = getIndiceJugador(idJugador);
-        JugadorConectado jugador = this.jugadores.get(posJugador);
-        jugador.actualizaSaldo(nuevoSaldo);
-
-        //actualizar en BBDD
-        bbdd.modificarCliente(jugador.getJugador());
-
-        //volver a actualizar el vector de jugadores
-        this.jugadores.add(posJugador, jugador);
-
-        log.info("GestorUsuarios : actualizaSaldoJugador : jugador=" + idJugador + " en mesa=" + jugador.getIdMesa() + " se actualiza con saldo=" + nuevoSaldo);
-         */
-    }
-
-
     //=======================================================================
     //              getters
     //=======================================================================
@@ -153,21 +130,28 @@ public class GestorUsuarios {
      */
     public int getIndiceJugador(int idJugador) {
 
-        if (this.jugadores != null && this.jugadores.size() > 0) {
-            int i = 0;
-            boolean enc = this.jugadores.get(i).getIdJugador() == idJugador;
-            while (!enc && i < jugadores.size()) {
-                i++;
-                enc = this.jugadores.get(i).getIdJugador() == idJugador;
+        try {
+            if (this.jugadores != null && this.jugadores.size() > 0) {
+
+                int i = 0;
+                boolean enc = false;
+                while (!enc && i < jugadores.size()) {
+                    enc = this.jugadores.get(i).getIdJugador() == idJugador;
+                    i++;
+                }
+
+                if (enc) {
+                    return i-1;
+                } else {
+                    return -1; //el usuario aún no está registrado
+                }
+            } else {//es el primer jugador del casino, tampoco se ha insertado aún
+                return -1;
             }
 
-            if (enc) {
-                return i;
-            } else {
-                return -1; //Error, el usuario no se ha insertado bien previamente, cuando se ha logeado.
-            }
-        } else {//es el primer jugador del casino
-            return 0;
+        } catch (Exception e) {
+            log.error("GestorUsuarios : getIndiceJugador : error al buscar jugador. " + e.getMessage());
+            return -1;
         }
     }
 

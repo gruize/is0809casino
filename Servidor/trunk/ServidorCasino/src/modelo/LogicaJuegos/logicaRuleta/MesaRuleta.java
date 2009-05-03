@@ -6,15 +6,20 @@ package modelo.LogicaJuegos.logicaRuleta;
 
 import bbdd.beans.Clientes;
 import bbdd.beans.Mesas;
+import bbdd.beans.Participantes;
+import bbdd.beans.ParticipantesId;
+import bbdd.beans.Partidas;
 import bbdd.beans.Salas;
 import bbdd.gestorBBDD.*;
+import controlador.ControladorServidor;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import modelo.Jugada;
 import modelo.LogicaJuegos.*;
 import java.util.Vector;
-import modelo.GestorUsuarios;
+import modelo.mensajes.MensajeEstadoRuleta;
+import modelo.mensajes.MensajeInfoCliente;
 import org.apache.log4j.Logger;
 
 /**
@@ -27,16 +32,25 @@ public class MesaRuleta implements Mesa {
     public static double apuestaMin = 1.00;
     public static double apuestaMax = 500;
     public static int puestosMax = 100; //nº maximo de personas que pueden estar jugando en una mesa
+
+    //para enviar los mensajes hacia los clientes por el controlador
+    private ControladorServidor controlador;//TODO otra forma de hablar con el controlador
     // su homólogo en BBDD
     private Mesas mesa_bbdd;
+
+    //identificador de la partida actual
+    private int idPartidaActual;
 
     //para guardar los cambios en bbdd
     InterfazBBDD bbdd;
 
-    //lista de jugadores
+    //lista de jugadores que están en la mesa
     private Vector<Clientes> jugadores = null;
-    private Vector<Jugada> apuestas = null; //lista de apuestas de la mesa
+    //nº de participantes de cada partida
+    private int numParticipantes = 0;
+    private Vector<Jugada> apuestas = null; //lista de apuestas de cada partida!!! tras lanzar la bola se vaciará
     private int ultimaBola = 0;
+    private int idGanador = -1; //Id del jugador que gana cada partida
     private CreaRuleta ruleta;
 
     //********** reloj**************
@@ -44,6 +58,8 @@ public class MesaRuleta implements Mesa {
 
     //log4j
     private static Logger log = Logger.getLogger(MesaRuleta.class);
+    //TODO pensar como obtener este valor
+    private static int codigoPartida = 1;
 
     //============================================================================
     //          MÉTODOS DE LA CLASE
@@ -53,9 +69,10 @@ public class MesaRuleta implements Mesa {
      * @param idMesa identificador de la mesa
      * @param sala objeto Sala que se guarda en BBDD, para asociarla a la mesa
      */
-    public MesaRuleta(int idMesa, Salas sala) {
+    public MesaRuleta(int idMesa, Salas sala, ControladorServidor c) {
 
-        this.bbdd=new GestorBBDDImp();
+        this.controlador = c;
+        this.bbdd = new GestorBBDDImp();
 
         crearMesaBBDD(idMesa, sala);
 
@@ -64,10 +81,6 @@ public class MesaRuleta implements Mesa {
         this.ruleta = new CreaRuleta();
         this.ruleta.InicializarRuleta();
 
-
-        //cargar e iniciar el reloj, que lanzará la bola
-        activarReloj();
-    //TODO hacerlo cuando entre el primer jugador, o se haga la 1ª apuesta
 
 
     }
@@ -81,11 +94,26 @@ public class MesaRuleta implements Mesa {
             public void run() {
                 // Aquí el código que queremos ejecutar.
 
-                lanzaBola();
-                enviarSaldos();
+                //TODO enviar mensaje al cliente para que pare su ruleta
+                enviarPararRuleta();
+                lanzaBola();//lanza bola, comprueba resultados y busca ganador
+                enviarSaldos(); //envía a cada cliente su nuevo saldo
+                modificarPartida(); //actualiza la partida en BBDD
                 try {
-                   //paro 20s,para q de tiempo de enviar los nuevos saldos
+
+                    //paro 20s,para q de tiempo de enviar los nuevos saldos
+
+                    reiniciar();
+
                     Thread.sleep(100000);
+
+                    //nuevo ronda: volver a crear una partida
+
+                    crearPartida();
+
+                    //TODO enviar mensaje al cliente para que reanude su ruleta
+
+                    enviarReiniciarRuleta();
                 } catch (InterruptedException ex) {
                     java.util.logging.Logger.getLogger(MesaRuleta.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -97,6 +125,45 @@ public class MesaRuleta implements Mesa {
         this.timer.scheduleAtFixedRate(timerTask, 1000 * 60, 1000 * 60);
     }
 
+
+    //==================================================================
+    //      mensajes hacia los jugadores
+    //==================================================================
+    /**
+     * 
+     * Envia los saldos nuevos a los jugadores de la mesa
+     */
+    public void enviarSaldos() {
+
+
+        //recorro todos los jugadores y envío su saldo... (no se lo envio sólo a quienes se le haya modificado)
+        for (int i = 0; i < jugadores.size(); i++) {
+            MensajeInfoCliente mensaje = new MensajeInfoCliente();
+            mensaje.setIdUsuario(jugadores.get(i).getCodigo());
+            mensaje.setSaldo(jugadores.get(i).getSaldo());
+            controlador.enviarMensajeInfoCliente(jugadores.get(i).getCodigo(), mensaje);
+        }
+    }
+
+    private void enviarPararRuleta() {
+
+        MensajeEstadoRuleta mensaje = new MensajeEstadoRuleta();
+        mensaje.setParado(true);
+        //recorro todos los jugadores y envío un mensaje para que paren la ruleta)
+        for (int i = 0; i < jugadores.size(); i++) {
+            controlador.enviarMensajeEstadoRuleta(jugadores.get(i).getCodigo(), mensaje);
+        }
+    }
+
+    private void enviarReiniciarRuleta() {
+        MensajeEstadoRuleta mensaje = new MensajeEstadoRuleta();
+        mensaje.setParado(false);
+        //recorro todos los jugadores y envío un mensaje para que reanuden la ruleta
+        for (int i = 0; i < jugadores.size(); i++) {
+            controlador.enviarMensajeEstadoRuleta(jugadores.get(i).getCodigo(), mensaje);
+        }
+    }
+
     /**
      * Si la apuesta es válida para el jugador (si este tiene saldo suficiente), se le guarda en
      * el array de apuestas
@@ -106,10 +173,15 @@ public class MesaRuleta implements Mesa {
     private int colocarApuesta(Jugada jugada) {
 
 
-        int saldoJugador =getJugador(jugada.getUsuario()).getSaldo();
+        int saldoJugador = getJugador(jugada.getUsuario()).getSaldo();
         if ((jugada.getCantidad()) <= saldoJugador) {
             apuestas.add(jugada);
             actualizaSaldoJugador(jugada.getUsuario(), saldoJugador - jugada.getCantidad());
+            //TODO crear participante si era su 1ª apuesta
+            if (primeraApuestaDeParticipante(jugada.getUsuario())) {
+                log.debug("MesaRuleta : colocarApuesta : 1ª apuesta del jugador " + jugada.getUsuario() + ". se crea el participante");
+                crearParticipante(idPartidaActual, jugada.getUsuario());
+            }
             return 1;
         } else {
             return -1;
@@ -117,18 +189,16 @@ public class MesaRuleta implements Mesa {
 
     }
 
-   /**
-    * Actualiza el saldo de un jugador y lo guarda en BBDD
-    * @param idJugador
-    */
-    private void actualizaSaldoJugador(int idJugador, int nuevoSaldo){
+    /**
+     * Actualiza el saldo de un jugador y lo guarda en BBDD
+     * @param idJugador
+     */
+    private void actualizaSaldoJugador(int idJugador, int nuevoSaldo) {
 
         getJugador(idJugador).setSaldo(nuevoSaldo);
         bbdd.modificarCliente(getJugador(idJugador));
 
     }
-
-
 
     /**
      * Lanza una bola y comprueba todas las apuestas de los jugadores.
@@ -158,11 +228,15 @@ public class MesaRuleta implements Mesa {
             actualizaSaldoJugador(apuesta.getUsuario(), saldo);
         }
         apuestas.removeAllElements();
-        enviarSaldos();
+
 
     }
 
     /**
+     * TODO completar con el resto de jugadas posibles de la ruleta
+     *
+     *
+     * 
      * Comprueba si la apuesta que hizo el jugador ha resultado premiada o no, a partir de la
      * bola de la ruleta
      * @param apuesta del jugador
@@ -206,15 +280,101 @@ public class MesaRuleta implements Mesa {
     //Envia los saldos nuevos a los jugadores de la mesa
 
     /**
-     * TODO implementar
-     * Envia los saldos nuevos a los jugadores de la mesa
+     * Comprueba si es la primera apuesta que realiza un jugador en la partida.
+     * Para ello comprueba si ya esta insertado en BBDD como un participante de la partida
+     * @param usuario
+     * @return
      */
-    public void enviarSaldos() {
+    private boolean primeraApuestaDeParticipante(int usuario) {
 
-        //recorro todos los jugadores y envío su saldo... (no se lo envio sólo a quienes se le haya modificado)
-        for (int i=0; i<jugadores.size(); i++){
+        try {
+            if (bbdd.getParticipante(usuario, idPartidaActual) != null) {
+                return false;
+            } else {
+                return true;
+            }
 
+        } catch (Exception e) {
+            log.error("MesaRuleta : primeraApuestaDeParticipante : usuario =" + usuario + ". Mensaje de error: " + e.getMessage());
+            return true;
         }
+    }
+
+    /**
+     * Cuando empieza una nueva partida, se borra todo lo de la anterior
+     */
+    private void reiniciar() {
+        this.apuestas = new Vector<Jugada>();
+        this.numParticipantes = 0;
+        this.idGanador = -1;
+        this.idPartidaActual = -1;
+    }
+    //======================================================================
+    //              Partida y participantes (RONDAS)
+    //======================================================================
+
+    /**
+     * Crea la partida. Se guarda en bbdd y se lanza la bola (activa el timer)
+     * La partida se crea tras recibir el primer jugador de la mesa
+     */
+    public void crearPartida() {
+
+        this.numParticipantes = 0; //al crear la partida siempre será 0
+
+        Partidas p = new Partidas();
+        p.setCodigo(codigoPartida);
+        p.setMesas(mesa_bbdd);
+        p.setNumjugadores(numParticipantes);
+        p.setGanador(-1); //al crear la partida, aún no hay ganador
+
+        //insertar en BBDD
+        bbdd.insertarPartida(p);
+
+
+
+        this.idPartidaActual = codigoPartida;
+        codigoPartida++;
+
+    }
+
+    /**
+     * Modifica la partida actual y la actualiza en BBDD.
+     * Se hará cuando se lance la bola, para incluir el nº de participantes finales, y el ganador
+     */
+    private void modificarPartida() {
+
+        Partidas partidaActual = bbdd.getPartida(idPartidaActual);
+        partidaActual.setNumjugadores(numParticipantes);
+        partidaActual.setGanador(this.idGanador);
+
+        bbdd.modificarPartida(partidaActual);
+
+        log.info("MesaRuleta : modificarPartida : partida guardada en BBDD. Ganador=" + idGanador + " y numParticipantes=" + numParticipantes);
+    }
+
+    /**
+     * Inserta un nuevo participante en la partida actual.
+     * Se considera participante si ha realizado una apuesta.
+     *
+     * TODO un partipante puede hacer varias apuesta..antes de insertar, comprobar que no está ya (solo en la 1ª apuesta)
+     *
+     * NOTA: puede ser jugador y estar en la mesa, pero no haber participado en la ronda (no ha apostado)
+     * @param idPartida
+     * @param idJugador
+     */
+    public void crearParticipante(int idPartida, int idJugador) {
+
+        ParticipantesId pId = new ParticipantesId();
+        pId.setPartida(idPartida);
+        pId.setJugador(idJugador);
+
+        Participantes p = new Participantes();
+        p.setId(pId);
+
+        bbdd.insertarParticipante(p);
+
+
+        this.numParticipantes++;
     }
 
     // ======================================================================
@@ -258,9 +418,11 @@ public class MesaRuleta implements Mesa {
         mesa_bbdd.setPuestos(puestosMax);
         mesa_bbdd.setSalas(sala);
 
-        if (bbdd.insertarMesa(mesa_bbdd))
-            log.info("MesaRuleta : crearMesaBBDD : mesa "+idMesa+" guardada en BBDD");
-        else log.error("MesaRuleta : crearMesaBBDD : No se ha podido guardar la mesa "+idMesa+" en BBDD");
+        if (bbdd.insertarMesa(mesa_bbdd)) {
+            log.info("MesaRuleta : crearMesaBBDD : mesa " + idMesa + " guardada en BBDD");
+        } else {
+            log.error("MesaRuleta : crearMesaBBDD : No se ha podido guardar la mesa " + idMesa + " en BBDD");
+        }
 
     }
 
@@ -272,23 +434,24 @@ public class MesaRuleta implements Mesa {
         return this.mesa_bbdd.getCodigo();
     }
 
-
     /**
      * Devuelve la posicion que ocupa en jugador en el vector de jugadores de la mesa
      * @param idJugador
      * @return pos si lo encuentra, -1 si no
      */
-    private int getPosicionJugador(int idJugador){
+    private int getPosicionJugador(int idJugador) {
 
-        int pos=0;
-        boolean enc=this.jugadores.get(pos).getCodigo()==idJugador;
-        while (!enc && pos<this.jugadores.size()){
+        int pos = 0;
+        boolean enc = false;
+        while (!enc && pos < this.jugadores.size()) {
+            enc = this.jugadores.get(pos).getCodigo() == idJugador;
             pos++;
-            enc=this.jugadores.get(pos).getCodigo()==idJugador;
         }
-        if (enc)
+        if (enc) {
             return pos;
-        else return -1;
+        } else {
+            return -1;
+        }
     }
 
     /**
@@ -296,7 +459,7 @@ public class MesaRuleta implements Mesa {
      * @param idJugador
      * @return objeto Clientes
      */
-    private Clientes getJugador(int idJugador){
+    private Clientes getJugador(int idJugador) {
         return this.jugadores.get(getPosicionJugador(idJugador));
     }
 
@@ -307,17 +470,25 @@ public class MesaRuleta implements Mesa {
      */
     public boolean colocarJugador(Clientes jugador) {
 
+        boolean primerJugador = false;
         if (existeJugadorEnMesa(jugador.getCodigo())) {
             log.error("MesaRuleta : colocarJugador : El jugador " + jugador.getCodigo() + " ya estaba en la mesa " + getCodigoMesa());
             return false;
         } else {
-            if (this.jugadores == null) {
-                this.jugadores = new Vector<Clientes>();
-            }
 
+            if (jugadores.size() == 0) {
+                primerJugador = true;
+            }
             //añado el jugador
             jugadores.add(jugador);
             log.info("MesaRuleta : colocarJugador : Jugador " + jugador.getCodigo() + " colocado en la mesa " + getCodigoMesa());
+
+            //Si era el primer jugador... activo el timer para crear una nueva
+
+            if (primerJugador) {
+                crearPartida();
+                activarReloj();
+            }
 
             return true;
         }
@@ -334,9 +505,9 @@ public class MesaRuleta implements Mesa {
     public boolean eliminarJugador(int idJugador) {
 
         //por seguridad, compruebo si realmente está en la mesa
-        if (existeJugadorEnMesa(idJugador)){
+        if (existeJugadorEnMesa(idJugador)) {
             return jugadores.remove(getJugador(idJugador));
-        }else{
+        } else {
             log.info("MesaRuleta : eliminarJugador : El jugador " + idJugador + " NO estaba en la mesa " + getCodigoMesa());
             return false;
         }
@@ -348,13 +519,6 @@ public class MesaRuleta implements Mesa {
      */
     public Vector<Clientes> getJugadores_Mesa() {
 
-        /*Vector<Integer> listaJugadores = new Vector<Integer>();
-        for (int i = 0; i < jugadores.size(); i++) {
-            listaJugadores.add(jugadores.get(i).getCodigo());
-        }
-
-        return listaJugadores;*/
-
         return this.jugadores;
     }
 
@@ -365,12 +529,13 @@ public class MesaRuleta implements Mesa {
      */
     public boolean existeJugadorEnMesa(int idJugador) {
 
-        int i = 0;
-        boolean enc = jugadores.get(i).getCodigo() == idJugador;
-        while (!enc && i < jugadores.size()) {
-            i++;
-            enc = jugadores.get(i).getCodigo() == idJugador;
-        }
-        return enc;
+        return (getPosicionJugador(idJugador) != -1);
+    /*int i = 0;
+    boolean enc = jugadores.get(i).getCodigo() == idJugador;
+    while (!enc && i < jugadores.size()) {
+    i++;
+    enc = jugadores.get(i).getCodigo() == idJugador;
+    }
+    return enc;^*/
     }
 }
