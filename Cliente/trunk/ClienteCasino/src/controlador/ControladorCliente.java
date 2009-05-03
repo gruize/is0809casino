@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.Vector;
 import modelo.*;
+import modelo.mensajes.MensajeEstadoRuleta;
+import modelo.mensajes.MensajeInfoCliente;
 import modelo.mensajes.MensajeInfoMesas;
 import modelo.mensajes.MensajeInfoSalas;
 import modelo.mensajes.MensajeMesa;
@@ -220,7 +222,25 @@ public class ControladorCliente {
         }else if (tipo==TipoMensaje.INFO_MESAS){
             MensajeInfoMesas mensajeIM = (MensajeInfoMesas) mensaje;
             setPeticionMesas(mensajeIM.getMesas());
-        } else {
+
+        } else if (tipo==TipoMensaje.INFO_CLIENTE){
+            
+            //TODO interfaz: os mandaré la info del propio cliente: os interesa el saldo
+            MensajeInfoCliente mensajeIC=(MensajeInfoCliente)mensaje;
+
+
+
+
+        }else if (tipo==TipoMensaje.ESTADO_RULETA){
+            
+            //TODO interfaz os mandaré el estado de la ruleta, para que paréis y arranquéis.
+
+            MensajeEstadoRuleta m=(MensajeEstadoRuleta)mensaje;
+        }
+
+
+
+        else {
             System.err.println("No sé que tipo de mensaje me envía!! " + tipo);
         }
 

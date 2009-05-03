@@ -14,7 +14,6 @@ import modelo.NombreJuegos;
  */
 public class PeticionSala implements Serializable {
 
-
     private int idSala;
     private NombreJuegos juego;
     private int numMesas;

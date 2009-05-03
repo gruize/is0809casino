@@ -5,7 +5,6 @@
 package modelo.mensajes;
 
 import java.io.Serializable;
-import modelo.mensajes.objetos.PeticionSala;
 
 /**
  *
