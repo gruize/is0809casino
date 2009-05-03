@@ -20,12 +20,14 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 import modelo.mensajes.objetos.PeticionMesa;
+import modelo.mensajes.objetos.PeticionSala;
 
 /**
  *
@@ -63,6 +65,8 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         super("Mesas disponibles");
         controlador = control;
         inicializar();
+        juego = null;
+        mesaEntrar = 0;
         rellenarOrdenes();
         agregarOyentes();
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -73,8 +77,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         });
         setVisible(true);
         setResizable(false);
-        juego = null;
-        mesaEntrar = 0;
+
     }
 
     public NombreJuegos getJuego() {
@@ -271,11 +274,11 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
          * Generar todas las nuevas salas.
          */
 
-        PeticionMesa[] peticionMesa = controlador.getNumeroMesas();
+        Vector<PeticionMesa> peticionMesa = controlador.getPeticionMesas();
         switch(orden){
             //Ningun orden
             case 0: {
-                for (int i = 0; i < peticionMesa.length; i++){
+                for (int i = 0; i < peticionMesa.size(); i++){
                     JPanel nuevaMesa = new JPanel();
                     nuevaMesa.setBackground(Color.BLACK);
                     nuevaMesa.setOpaque(true);
@@ -290,8 +293,8 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     botonNuevaSala.addActionListener(new OyenteMesas());
                     botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
                     nuevaMesa.add(botonNuevaSala);
-                    JTextArea textoNuevaMesa = new JTextArea("Usuarios: \n"+peticionMesa[i].getNumJugadores()+
-                            "\nApuestaMinima: \n"+peticionMesa[i].getApuestaMin());
+                    JTextArea textoNuevaMesa = new JTextArea("Usuarios: \n"+peticionMesa.get(i).getNumJugadores()+
+                            "\nApuestaMinima: \n"+peticionMesa.get(i).getApuestaMin());
                     textoNuevaMesa.setPreferredSize(new Dimension(114,86));
                     nuevaMesa.add(textoNuevaMesa);
                     jContenedor.add(nuevaMesa);

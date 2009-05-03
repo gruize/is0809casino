@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
@@ -269,11 +270,11 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
          jContenedor.removeAll();
         //Generar todas las nuevas salas.
 
-        PeticionSala[] peticionSala = controlador.getNumeroSalas();
+        Vector<PeticionSala> peticionSala = controlador.getPeticionSala();
 
         switch(juego){
             case TODOS: {
-                for(int i = 0; i < peticionSala.length; i++){
+                for(int i = 0; i < peticionSala.size(); i++){
                     JPanel nuevaSala = new JPanel();
                     nuevaSala.setBackground(Color.BLACK);
                     nuevaSala.setOpaque(true);
@@ -281,7 +282,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
                     nuevaSala.setSize(new Dimension(250,120));
                     nuevaSala.setBorder(null);
 
-                    switch(peticionSala[i].getJuego()){
+                    switch(peticionSala.get(i).getJuego()){
                         case RULETA: {
                             nuevaSala.setName("SalaRuleta"+i);
                             JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/ruletaSala.jpg"));
@@ -291,7 +292,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
                             botonNuevaSala.addActionListener(new OyenteSalas());
                             botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
                             nuevaSala.add(botonNuevaSala);
-                            JTextArea textoNuevaSala = new JTextArea("Mesas disponibles\n"+peticionSala[i].getNumMesas());
+                            JTextArea textoNuevaSala = new JTextArea("Mesas disponibles\n"+peticionSala.get(i).getNumMesas());
                             textoNuevaSala.setPreferredSize(new Dimension(114,86));
                             nuevaSala.add(textoNuevaSala);
                             jContenedor.add(nuevaSala);
@@ -312,7 +313,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
                             botonNuevaSala.addActionListener(new OyenteSalas());
                             botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
                             nuevaSala.add(botonNuevaSala);
-                            JTextArea textoNuevaSala = new JTextArea("Mesas disponibles\n"+peticionSala[i].getNumMesas());
+                            JTextArea textoNuevaSala = new JTextArea("Mesas disponibles\n"+peticionSala.get(i).getNumMesas());
                             textoNuevaSala.setPreferredSize(new Dimension(114,86));
                             nuevaSala.add(textoNuevaSala);
                             jContenedor.add(nuevaSala);
@@ -322,8 +323,8 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
                 jSalas.getViewport().setView(jContenedor);
             }break;
             case RULETA: {
-                for(int i = 0; i < peticionSala.length; i++){
-                    if(peticionSala[i].getJuego().equals(NombreJuegos.RULETA)){
+                for(int i = 0; i < peticionSala.size(); i++){
+                    if(peticionSala.get(i).getJuego().equals(NombreJuegos.RULETA)){
                         JPanel nuevaSala = new JPanel();
                         nuevaSala.setBackground(Color.BLACK);
                         nuevaSala.setOpaque(true);
@@ -338,7 +339,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
                         botonNuevaSala.addActionListener(new OyenteSalas());
                         botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
                         nuevaSala.add(botonNuevaSala);
-                        JTextArea textoNuevaSala = new JTextArea("Mesas disponibles\n"+peticionSala[i].getNumMesas());
+                        JTextArea textoNuevaSala = new JTextArea("Mesas disponibles\n"+peticionSala.get(i).getNumMesas());
                         textoNuevaSala.setPreferredSize(new Dimension(114,86));
                         nuevaSala.add(textoNuevaSala);
                         jContenedor.add(nuevaSala);
@@ -347,8 +348,8 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
                 jSalas.getViewport().setView(jContenedor);
             }break;
             case DADOS: {
-                for(int i = 0; i < peticionSala.length; i++){
-                    if(peticionSala[i].getJuego().equals(NombreJuegos.DADOS)){
+                for(int i = 0; i < peticionSala.size(); i++){
+                    if(peticionSala.get(i).getJuego().equals(NombreJuegos.DADOS)){
                         // Crea un icono que referencie a la imagen en disco
                         ImageIcon icono = new ImageIcon("./recursos/dadosSala.jpg");
                         // ancho en pixeles que tendra el icono escalado
@@ -369,7 +370,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
                         botonNuevaSala.addActionListener(new OyenteSalas());
                         botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
                         nuevaSala.add(botonNuevaSala);
-                        JTextArea textoNuevaSala = new JTextArea("Mesas disponibles\n"+ peticionSala[i].getNumMesas());
+                        JTextArea textoNuevaSala = new JTextArea("Mesas disponibles\n"+ peticionSala.get(i).getNumMesas());
                         textoNuevaSala.setPreferredSize(new Dimension(114,86));
                         nuevaSala.add(textoNuevaSala);
                         jContenedor.add(nuevaSala);

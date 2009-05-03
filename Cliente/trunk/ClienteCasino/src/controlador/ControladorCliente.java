@@ -10,7 +10,10 @@ import modelo.mensajes.MensajeJugada;
 import comunicaciones.Comunicador;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Vector;
 import modelo.*;
+import modelo.mensajes.MensajeInfoMesas;
+import modelo.mensajes.MensajeInfoSalas;
 import modelo.mensajes.MensajeMesa;
 import modelo.mensajes.MensajeSala;
 import modelo.mensajes.objetos.PeticionMesa;
@@ -24,6 +27,8 @@ public class ControladorCliente {
 
     private Comunicador comunicador;
     private ModeloCliente modelo;
+    private Vector<PeticionSala> peticionSala;
+    private Vector<PeticionMesa> peticionMesas;
 
     public ControladorCliente(ModeloCliente model) {
         comunicador = new Comunicador(this);
@@ -95,30 +100,23 @@ public class ControladorCliente {
         comunicador.enviarMensaje(tipo, mensaje);
     }
 
-    public PeticionMesa[] getNumeroMesas() {
-        //TODO:
-        /**
-         * Devuelve el numero de mesas existentes en una sala determinada.
-         */
-        PeticionMesa[] mesa = new PeticionMesa[5];
-        for(int i = 0; i < mesa.length; i++){
-            mesa[i] = new PeticionMesa(i,NombreJuegos.RULETA,i*10.4,(i*43)%7);
-        }
-        return mesa;
+    public Vector<PeticionMesa> getPeticionMesas() {
+        return peticionMesas;
     }
 
-    public PeticionSala[] getNumeroSalas() {
-        //Obtiene el  numero de salas existentes en el casino
-        PeticionSala[] sala = new PeticionSala[5];
-        for(int i = 0; i < sala.length; i++ ){
-            sala[i] = new PeticionSala(i,NombreJuegos.DADOS,i*2);
-            if(i % 2 == 0)
-                sala[i].setJuego(NombreJuegos.RULETA);
-            else
-                sala[i].setJuego(NombreJuegos.DADOS);
-        }
-        return sala;
+    public void setPeticionMesas(Vector<PeticionMesa> peticionMesas) {
+        this.peticionMesas = peticionMesas;
     }
+
+    public Vector<PeticionSala> getPeticionSala() {
+        return peticionSala;
+    }
+
+    public void setPeticionSala(Vector<PeticionSala> peticionSala) {
+        this.peticionSala = peticionSala;
+    }
+
+
 
     /**
      * 
@@ -217,11 +215,11 @@ public class ControladorCliente {
             modelo.setSala(mensajeSala.getSala());
 
         } else if (tipo== TipoMensaje.INFO_SALAS){           
-            // TODO Gabi: pinta las salas a partir de este mensaje
-
+            MensajeInfoSalas mensajeIS = (MensajeInfoSalas) mensaje;
+            setPeticionSala(mensajeIS.getSalas());
         }else if (tipo==TipoMensaje.INFO_MESAS){
-            // TODO Gabi: pinta las mesas a partir de este mensaje
-            
+            MensajeInfoMesas mensajeIM = (MensajeInfoMesas) mensaje;
+            setPeticionMesas(mensajeIM.getMesas());
         } else {
             System.err.println("No sé que tipo de mensaje me envía!! " + tipo);
         }
