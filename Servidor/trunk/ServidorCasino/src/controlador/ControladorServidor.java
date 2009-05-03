@@ -108,6 +108,7 @@ public class ControladorServidor {
         Vector<PeticionSala> salasCasino = GestorSalas.getInstance(this).getInfoSalas();
         MensajeInfoSalas mensaje = new MensajeInfoSalas(salasCasino);
         enviarMensajeInfoSalas(idUsuario, mensaje);
+        log.info("ControladorServidor : enviarSalasCasino : info de salas enviado al cliente "+idUsuario+". Total salas abiertas "+salasCasino.size());
     }
 
     /**
@@ -166,7 +167,7 @@ public class ControladorServidor {
      */
     public void enviarMensajeInfoSalas(int idUsuario, MensajeInfoSalas mensaje) {
         comunicador.enviarMensaje(idUsuario, TipoMensaje.INFO_SALAS, mensaje);
-        System.out.println("ControladorServidor: info de salas enviado");
+        
     }
 
     /**

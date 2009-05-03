@@ -25,7 +25,7 @@ public class testSalas {
 
         bbdd = new GestorBBDDImp();
 
-       //borrarSala();
+       borrarSala();
         getSalas();
 
     }
