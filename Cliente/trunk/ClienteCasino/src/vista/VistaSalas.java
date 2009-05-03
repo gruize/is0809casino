@@ -1,7 +1,9 @@
 package vista;
 
+import java.awt.event.ItemEvent;
 import modelo.NombreJuegos;
 import controlador.ControladorCliente;
+import java.awt.Choice;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.util.Observable;
@@ -15,6 +17,7 @@ import javax.swing.JScrollPane;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
@@ -22,6 +25,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
+import modelo.mensajes.objetos.PeticionSala;
 
 /**
  *
@@ -42,12 +46,14 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
     private JLabel jLabelUser;
     private JLabel jLabel2;
     private JLabel jLabelSaldo;
+    private Choice jJuegos;
     private ControladorCliente controlador;
     private NombreJuegos juego;
     private OyenteRefrescar oyenteRefrescar;
     private OyenteSalir oyenteSalir;
     private OyenteEntrada oyenteEntrada;
     private OyenteVolver oyenteVolver;
+    private OyenteSeleccion oyenteSeleccion;
     private int salonEntrar;
     // End of variables declaration
 
@@ -55,7 +61,10 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
     public VistaSalas(ControladorCliente control) {
         super("Salas disponibles en el casino");
         controlador = control;
+        juego = NombreJuegos.TODOS;
+        salonEntrar = 0; //Por defecto
         inicializar();
+        rellenarJuegos();
         agregarOyentes();
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter(){
@@ -65,8 +74,6 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
         });
 		setVisible(true);
         setResizable(false);
-        juego = null;
-        salonEntrar = 0; //Por defecto
     }
 
     public int getSalonEntrar() {
@@ -106,13 +113,15 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
         oyenteSalir = new OyenteSalir();
         oyenteEntrada = new OyenteEntrada();
         oyenteVolver = new OyenteVolver();
+        oyenteSeleccion = new OyenteSeleccion();
         jButtonRefresh.addActionListener(oyenteRefrescar);
         jButtonSalir.addActionListener(oyenteSalir);
         jButtonNext.addActionListener(oyenteEntrada);
         jButtonBack.addActionListener(oyenteVolver);
+        jJuegos.addItemListener(oyenteSeleccion);
     }
 
-    private void inicializar() {
+    private void inicializar(){
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jTapete = new javax.swing.JLabel();
@@ -124,12 +133,17 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
         jLabelUser = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabelSaldo = new javax.swing.JLabel();
+        jJuegos = new java.awt.Choice();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
 
         jLayeredPane1.setBackground(new java.awt.Color(0, 0, 0));
         jLayeredPane1.setOpaque(true);
+
+        jJuegos.setBounds(360, 100, 300, 20);
+        jLayeredPane1.moveToFront(jJuegos);
+        jLayeredPane1.add(jJuegos,javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTapete.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jTapete.setIcon(new javax.swing.ImageIcon("./recursos/mesaVaciaPaint.PNG")); // NOI18N
@@ -181,7 +195,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
 
         jLabelUser.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jLabelUser.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);             
+        jLabelUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelUser.setBounds(600, 20, 110, 30);
         jLayeredPane1.add(jLabelUser, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -193,19 +207,19 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
 
         jLabelSaldo.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jLabelSaldo.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelSaldo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);       
+        jLabelSaldo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelSaldo.setBounds(810, 20, 110, 30);
         jLayeredPane1.add(jLabelSaldo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jContenedor = new JPanel();
         jContenedor.setLayout(new GridLayout(0,3));
         jContenedor.setBackground(Color.BLACK);
-        jContenedor.setBounds(80, 100, 860, 480);
+        jContenedor.setBounds(80, 140, 860, 480);
         jContenedor.setOpaque(true);
         jSalas = new JScrollPane();
         jSalas.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         jSalas.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        jSalas.setBounds(80, 100, 860, 480);
+        jSalas.setBounds(80, 140, 860, 480);
         jSalas.getViewport().setView(jContenedor);
         jLayeredPane1.add(jSalas,javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.moveToFront(jSalas);
@@ -237,71 +251,133 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
         
     }
 
+    private void rellenarJuegos() {
+        jJuegos.add("---Elija un juego---");
+        jJuegos.add(NombreJuegos.DADOS.toString());
+        jJuegos.add(NombreJuegos.RULETA.toString());
+    }
+
     private void rellenarSalas() {
+
         //Preguntar al controlador por el numero de salas que hay
         //El controlador manda un mensaje al servidor
         //El servidor le comunica los datos de las salas
         //Se recibe el mensaje y se cambiaria el estado de la vista
         //En el metodo update se trataria el mensaje y se dibujarian las salas
         rellenarDatos();
-        /**
-         * Eliminar todas las salas existentes y visibles
-         */
+        //Eliminar todas las salas existentes y visibles
          jContenedor.removeAll();
-        /**
-         * Generar todas las nuevas salas.
-         */
-        //int numeroSalasRuleta = controlador.getNumeroSalasRuleta();
-        //int numeroSalasDados = controlador.getNumeroSalasDados();
-        int numeroSalasRuleta = 16;
-        int numeroSalasDados = 1;
-        for(int i=1; i <= numeroSalasRuleta; i++) {
-            JPanel nuevaSala = new JPanel();
-            nuevaSala.setBackground(Color.BLACK);
-            nuevaSala.setOpaque(true);
-            nuevaSala.setPreferredSize(new Dimension(250,120));
-            nuevaSala.setSize(new Dimension(250,120));
-            nuevaSala.setName("SalaRuleta"+i);
-            nuevaSala.setBorder(null);
-            JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/ruletaSala.jpg"));
-            botonNuevaSala.setPreferredSize(new Dimension(114,86));
-            botonNuevaSala.setName("BotonSalaRuleta"+i);
-            botonNuevaSala.setActionCommand("SalaRuleta"+i);
-            botonNuevaSala.addActionListener(new OyenteSalas());
-            botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
-            nuevaSala.add(botonNuevaSala);
-            JTextArea textoNuevaSala = new JTextArea("Mesas disponibles\n"+controlador.getNumeroMesas(i));
-            textoNuevaSala.setPreferredSize(new Dimension(114,86));
-            nuevaSala.add(textoNuevaSala);
-            jContenedor.add(nuevaSala);
+        //Generar todas las nuevas salas.
+
+        PeticionSala[] peticionSala = controlador.getNumeroSalas();
+
+        switch(juego){
+            case TODOS: {
+                for(int i = 0; i < peticionSala.length; i++){
+                    JPanel nuevaSala = new JPanel();
+                    nuevaSala.setBackground(Color.BLACK);
+                    nuevaSala.setOpaque(true);
+                    nuevaSala.setPreferredSize(new Dimension(250,120));
+                    nuevaSala.setSize(new Dimension(250,120));
+                    nuevaSala.setBorder(null);
+
+                    switch(peticionSala[i].getJuego()){
+                        case RULETA: {
+                            nuevaSala.setName("SalaRuleta"+i);
+                            JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/ruletaSala.jpg"));
+                            botonNuevaSala.setPreferredSize(new Dimension(114,86));
+                            botonNuevaSala.setName("BotonSalaRuleta"+i);
+                            botonNuevaSala.setActionCommand("SalaRuleta"+i);
+                            botonNuevaSala.addActionListener(new OyenteSalas());
+                            botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
+                            nuevaSala.add(botonNuevaSala);
+                            JTextArea textoNuevaSala = new JTextArea("Mesas disponibles\n"+peticionSala[i].getNumMesas());
+                            textoNuevaSala.setPreferredSize(new Dimension(114,86));
+                            nuevaSala.add(textoNuevaSala);
+                            jContenedor.add(nuevaSala);
+                        }break;
+                        case DADOS: {
+                            // Crea un icono que referencie a la imagen en disco
+                            ImageIcon iconoOriginal = new ImageIcon("./recursos/dadosSala.jpg");
+                            // ancho en pixeles que tendra el icono escalado
+                            int ancho = 114;
+                            // alto (para que conserve la proporcion pasamos -1)
+                            int alto = 86;
+                            nuevaSala.setName("SalaDados"+i);
+                                                                // Obtiene un icono en escala con las dimensiones especificadas
+                            JButton botonNuevaSala = new JButton(new ImageIcon(iconoOriginal.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
+                            botonNuevaSala.setPreferredSize(new Dimension(114,86));
+                            botonNuevaSala.setName("BotonSalaDaddos"+i);
+                            botonNuevaSala.setActionCommand("SalaDados"+i);
+                            botonNuevaSala.addActionListener(new OyenteSalas());
+                            botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
+                            nuevaSala.add(botonNuevaSala);
+                            JTextArea textoNuevaSala = new JTextArea("Mesas disponibles\n"+peticionSala[i].getNumMesas());
+                            textoNuevaSala.setPreferredSize(new Dimension(114,86));
+                            nuevaSala.add(textoNuevaSala);
+                            jContenedor.add(nuevaSala);
+                        }
+                    }
+                }
+                jSalas.getViewport().setView(jContenedor);
+            }break;
+            case RULETA: {
+                for(int i = 0; i < peticionSala.length; i++){
+                    if(peticionSala[i].getJuego().equals(NombreJuegos.RULETA)){
+                        JPanel nuevaSala = new JPanel();
+                        nuevaSala.setBackground(Color.BLACK);
+                        nuevaSala.setOpaque(true);
+                        nuevaSala.setPreferredSize(new Dimension(250,120));
+                        nuevaSala.setSize(new Dimension(250,120));
+                        nuevaSala.setBorder(null);
+                        nuevaSala.setName("SalaRuleta"+i);
+                        JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/ruletaSala.jpg"));
+                        botonNuevaSala.setPreferredSize(new Dimension(114,86));
+                        botonNuevaSala.setName("BotonSalaRuleta"+i);
+                        botonNuevaSala.setActionCommand("SalaRuleta"+i);
+                        botonNuevaSala.addActionListener(new OyenteSalas());
+                        botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
+                        nuevaSala.add(botonNuevaSala);
+                        JTextArea textoNuevaSala = new JTextArea("Mesas disponibles\n"+peticionSala[i].getNumMesas());
+                        textoNuevaSala.setPreferredSize(new Dimension(114,86));
+                        nuevaSala.add(textoNuevaSala);
+                        jContenedor.add(nuevaSala);
+                    }
+                }
+                jSalas.getViewport().setView(jContenedor);
+            }break;
+            case DADOS: {
+                for(int i = 0; i < peticionSala.length; i++){
+                    if(peticionSala[i].getJuego().equals(NombreJuegos.DADOS)){
+                        // Crea un icono que referencie a la imagen en disco
+                        ImageIcon icono = new ImageIcon("./recursos/dadosSala.jpg");
+                        // ancho en pixeles que tendra el icono escalado
+                        int ancho = 114;
+                        // alto (para que conserve la proporcion pasamos -1)
+                        int alto = 86;
+                        JPanel nuevaSala = new JPanel();
+                        nuevaSala.setBackground(Color.BLACK);
+                        nuevaSala.setOpaque(true);
+                        nuevaSala.setPreferredSize(new Dimension(250,120));
+                        nuevaSala.setSize(new Dimension(250,120));
+                        nuevaSala.setName("SalaDados"+i);
+                        nuevaSala.setBorder(null);                                                             // Obtiene un icono en escala con las dimensiones especificadas
+                        JButton botonNuevaSala = new JButton(new ImageIcon(icono.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
+                        botonNuevaSala.setPreferredSize(new Dimension(114,86));
+                        botonNuevaSala.setName("BotonSalaDaddos"+i);
+                        botonNuevaSala.setActionCommand("SalaDados"+i);
+                        botonNuevaSala.addActionListener(new OyenteSalas());
+                        botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
+                        nuevaSala.add(botonNuevaSala);
+                        JTextArea textoNuevaSala = new JTextArea("Mesas disponibles\n"+ peticionSala[i].getNumMesas());
+                        textoNuevaSala.setPreferredSize(new Dimension(114,86));
+                        nuevaSala.add(textoNuevaSala);
+                        jContenedor.add(nuevaSala);
+                }
+                }
+                jSalas.getViewport().setView(jContenedor);
+            }break;
         }
-        for(int i=numeroSalasRuleta + 1; i <= numeroSalasDados + numeroSalasRuleta; i++) {
-            // Crea un icono que referencie a la imagen en disco
-            ImageIcon iconoOriginal = new ImageIcon("./recursos/dadosSala.jpg");
-            // ancho en pixeles que tendra el icono escalado
-            int ancho = 114;
-            // alto (para que conserve la proporcion pasamos -1)
-            int alto = 86;
-            JPanel nuevaSala = new JPanel();
-            nuevaSala.setBackground(Color.BLACK);
-            nuevaSala.setOpaque(true);
-            nuevaSala.setPreferredSize(new Dimension(250,120));
-            nuevaSala.setSize(new Dimension(250,120));
-            nuevaSala.setName("SalaDados"+i);
-            nuevaSala.setBorder(null);                                                             // Obtiene un icono en escala con las dimensiones especificadas
-            JButton botonNuevaSala = new JButton(new ImageIcon(iconoOriginal.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
-            botonNuevaSala.setPreferredSize(new Dimension(114,86));
-            botonNuevaSala.setName("BotonSalaDaddos"+i);
-            botonNuevaSala.setActionCommand("SalaDados"+i);
-            botonNuevaSala.addActionListener(new OyenteSalas());
-            botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
-            nuevaSala.add(botonNuevaSala);
-            JTextArea textoNuevaSala = new JTextArea("Mesas disponibles\n"+controlador.getNumeroMesas(i));
-            textoNuevaSala.setPreferredSize(new Dimension(114,86));
-            nuevaSala.add(textoNuevaSala);
-            jContenedor.add(nuevaSala);
-        }
-        jSalas.getViewport().setView(jContenedor);
     }
 
     private void modificarEntrada(NombreJuegos nuevo, int salon){
@@ -370,6 +446,24 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
         }
 
     }
+
+    class OyenteSeleccion implements ItemListener {
+
+        public void itemStateChanged(ItemEvent e) {
+            if(e.getSource() == jJuegos)
+                switch(jJuegos.getSelectedIndex()){
+                    case 0: setJuego(NombreJuegos.TODOS);
+                    break;
+                    case 1: setJuego(NombreJuegos.DADOS);
+                    break;
+                    case 2: setJuego(NombreJuegos.RULETA);
+                    break;
+                }
+            rellenarSalas();
+        }
+
+    }
+
     private void salir() {
         if (JOptionPane.showConfirmDialog(this,"¿Desea abandonar el juego?",
                 "Cierre del juego",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
