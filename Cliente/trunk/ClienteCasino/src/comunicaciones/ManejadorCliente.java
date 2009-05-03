@@ -128,6 +128,7 @@ public class ManejadorCliente implements Runnable {
     @Override
     public void finalize () {
         _hilo = null;
+        _conectado = false;
     }
 
     /**
@@ -143,11 +144,11 @@ public class ManejadorCliente implements Runnable {
                 new EventoMensajeRecibido(_controlador, mensaje.getTipo(), mensaje);
             } catch (IOException ex) {
                 System.out.println("Comunicaciones::Error en la entrada/salida de la conexión");
-                _conectado = false;
+                finalize();
                 break;             
             } catch (ClassNotFoundException ex) {
                 System.out.println("Comunicaciones::Error en la recepción de datos. Datos incorrectos");
-                _conectado = false;
+                finalize();
                 break;
             }
         }
