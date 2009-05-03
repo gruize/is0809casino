@@ -42,8 +42,8 @@ public class Comunicador extends Thread{
             _servidor.setEnabledCipherSuites(enabledCipherSuites);
 
             _conectado = true;
-            System.out.println("Comunicaciones::El servidor esta corriendo en la direccion " + _servidor.getInetAddress() +
-                               " Puerto: " + _puerto);
+            System.out.println("Comunicaciones::El servidor esta corriendo" +
+                               " en el puerto: " + _puerto);
             this.start();
         } catch (IOException ex) {
             System.out.println("Comunicaciones::El puerto esta ocupado por otro programa.");

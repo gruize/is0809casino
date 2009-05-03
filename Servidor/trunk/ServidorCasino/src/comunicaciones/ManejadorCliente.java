@@ -101,8 +101,10 @@ public class ManejadorCliente implements Runnable {
                 _cliente.close();
             }
             
+            _conectado = false;
             _entrada = null;
             _salida = null;
+           
             
             System.out.println("El cliente con ID " + _identificador + " se ha desconectado.");
             
@@ -119,12 +121,11 @@ public class ManejadorCliente implements Runnable {
                 MensajeComunicaciones mensaje = (MensajeComunicaciones) _entrada.readObject();
                 new EventoMensajeRecibido(_controlador, mensaje.getTipo(), mensaje);
             } catch (IOException ex) {
-                System.out.println("Comunicaciones::Error en la entrada/salida de la conexión");
-                _conectado = false;
+                finalize();             
                 break;             
             } catch (ClassNotFoundException ex) {
                 System.out.println("Comunicaciones::Error en la recepción de datos. Datos incorrectos");
-                _conectado = false;
+                finalize();
                 break;
             }
         }
