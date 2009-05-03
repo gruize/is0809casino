@@ -9,4 +9,5 @@ package modelo;
  *
  * @author GabiPC
  */
-public enum NombreJuegos {TODOS,RULETA,DADOS}
+public enum NombreJuegos implements java.io.Serializable
+    {TODOS,RULETA,DADOS}
