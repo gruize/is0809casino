@@ -20,6 +20,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -414,7 +416,9 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         PanelChat.getBotonBloquear().addActionListener(bloquearChat);
         PanelChat.getBotonEnviar().addActionListener(enviarMensajeChat);
         getJButtonSalir().addActionListener(exit);
-        getJButtonFinish().addActionListener(terminarApuestas);                
+        getJButtonFinish().addActionListener(terminarApuestas);
+        getJButtonFinish().addActionListener(oyenteApuestas);
+        getJButtonFinish().addActionListener(oyenteUsuarios);
         getJButtonBack().addActionListener(oyenteVolver);
     }
 
@@ -478,24 +482,28 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
 
     class OyenteTerminarApuestas implements ActionListener{
 
-        public void actionPerformed(ActionEvent e) {
-                bloquearApuestas();                
+        public void actionPerformed(ActionEvent e) {            
+            try {
+                bloquearApuestas();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(VistaRuleta.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }
 
-    private void bloquearApuestas(){
-        //TODO: X hacer bien
-        /**
+    private void bloquearApuestas() throws InterruptedException{
+        /** Para pruebas
         Apuesta[] apuesta = new Apuesta[5];
         for(int i = 0; i < 5; i++){
             apuesta[i] = new Apuesta(i, tipoAp.NUMERO,proporcionAp.SIMPLE, 10 * i);
         }
         */
-        Apuesta[] apuesta = mesa.terminarYdameListaApuestas();
-        controlador.realizarApuesta(apuesta,mesa.dameNumApuestas());
-        girarRuleta(3);
-        getJButtonFinish().addActionListener(oyenteUsuarios);
+        if (JOptionPane.showConfirmDialog(this,"No podra realizar mas apuestas","Cierre de apuestas",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION){
+            Apuesta[] apuesta = mesa.terminarYdameListaApuestas();
+            controlador.realizarApuesta(apuesta,mesa.dameNumApuestas());
+            girarRuleta(3);
+        }
     }
 
     class OyenteEnviarMensajeChat implements ActionListener{
