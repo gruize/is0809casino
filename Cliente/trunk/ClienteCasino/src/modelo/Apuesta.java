@@ -78,4 +78,10 @@ public class Apuesta {
         this.valorApostado = valorApostado;
     }
 
+    public void imprimir(){
+    	System.out.println("casilla=  "+casilla);
+    	System.out.println("tipo=  "+tipo.toString());
+    	System.out.println("prop=  "+this.proporcion.toString());
+    	System.out.println("dinero=  "+Integer.toString(this.valorApostado));
+    }
 }

@@ -1,44 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package vista;
 
-
-import java.awt.BorderLayout;
-
 import java.awt.Dimension;
-
-import javax.swing.WindowConstants;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 import modelo.Apuesta;
 
-
-
-
-
-
-/**
-* This code was edited or generated using CloudGarden's Jigloo
-* SWT/Swing GUI Builder, which is free for non-commercial
-* use. If Jigloo is being used commercially (ie, by a corporation,
-* company or business for any purpose whatever) then you
-* should purchase a license for each developer using Jigloo.
-* Please visit www.cloudgarden.com for details.
-* Use of Jigloo implies acceptance of these licensing terms.
-* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
-* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
-* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
-*/
 public class TapizPanel extends javax.swing.JPanel {
 
 	private ImageIcon imgFondo;
@@ -206,7 +175,6 @@ public class TapizPanel extends javax.swing.JPanel {
     private JLabel jLabel2;
     private JLabel jLabel1;
     private JLabel apuesta3_2;
-    private JLabel apuesta0_0;
 	/**
 	* Auto-generated main method to display this
 	* JPanel inside a new JFrame.
@@ -235,18 +203,7 @@ public class TapizPanel extends javax.swing.JPanel {
 		try {
 
 			this.setLayout(null);
-			setPreferredSize(new Dimension(ancho,alto));
-			{
-				apuesta0_0 = new JLabel();
-				this.add(apuesta0_0);
-				apuesta0_0.setIcon(new ImageIcon("./recursos/trasparente.png"));
-				apuesta0_0.setBounds(46, 57, 17, 19);
-				apuesta0_0.addMouseListener(new MouseAdapter() {
-					public void mouseClicked(MouseEvent evt) {
-						apuesta0_0MouseClicked(evt);
-					}
-				});
-			}
+			setPreferredSize(new Dimension(ancho,alto));			
 			{
 				apuesta3_2 = new JLabel();
 				this.add(apuesta3_2);
@@ -2023,14 +1980,6 @@ public class TapizPanel extends javax.swing.JPanel {
 		}
 	}
 
-	//APUESTA 00
-	private void apuesta0_0MouseClicked(MouseEvent evt) {
-		System.out.println("apuesta0_0.mouseClicked, event="+evt);
-		//TODO add your code for apuesta0_0.mouseClicked
-		apuesta0_0.setIcon(new ImageIcon("ficha.png"));
-
-
-	}
 	//APUESTA 3-2
 	private void apuesta3_2MouseClicked(MouseEvent evt) {
 		System.out.println("apuesta3_6.mouseClicked, event="+evt);
@@ -3024,8 +2973,6 @@ public class TapizPanel extends javax.swing.JPanel {
 				}
 
 				mesa.casillaPulsada(Apuesta.casillaAp.PAR,Apuesta.tipoAp.PARIDAD,Apuesta.proporcionAp.SIMPLE);
-                //Prueba de funcionamiento
-                System.out.println("Casilla pulsada par");
 			}
 		}
 	}

@@ -1,36 +1,17 @@
 package vista;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.WindowConstants;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import modelo.Apuesta;
 
-/**
-* This code was edited or generated using CloudGarden's Jigloo
-* SWT/Swing GUI Builder, which is free for non-commercial
-* use. If Jigloo is being used commercially (ie, by a corporation,
-* company or business for any purpose whatever) then you
-* should purchase a license for each developer using Jigloo.
-* Please visit www.cloudgarden.com for details.
-* Use of Jigloo implies acceptance of these licensing terms.
-* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
-* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
-* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
-*/
 public class MesaPanel extends javax.swing.JPanel {
 	//bloquea el tapiz
 	private boolean terminar=true;
@@ -45,14 +26,8 @@ public class MesaPanel extends javax.swing.JPanel {
     private JTextField casilla;
     private JLabel labelCasilla;
     private JLabel ficha_roja;
-    private JLabel jLabel4;
-    private JLabel jLabel3;
-    private JLabel jLabel2;
-    private JLabel jLabel1;
     private JLabel ficha_selecionada;
     private JTextField totalTextField;
-    private JLabel casillaLabel;
-    private JLabel totalLabel;
     private JLabel saldoLabel;
     private JLabel fichaNegra;
     private JLabel ficha_blanca;
@@ -76,6 +51,16 @@ public class MesaPanel extends javax.swing.JPanel {
 		listaApuestas=new Apuesta[160];
 		numApuestas=0;
 	}
+
+    public JLabel getSaldoLabel() {
+        return saldoLabel;
+    }
+
+    public void setSaldoLabel(JLabel saldoLabel) {
+        this.saldoLabel = saldoLabel;
+    }
+
+    
 	public void nuevaApuesta(){
 		numApuestas++;
 	}
@@ -88,25 +73,28 @@ public class MesaPanel extends javax.swing.JPanel {
 			{
 				tapiz = new TapizPanel(this);
 				this.add(tapiz);
-				tapiz.setBounds(26, 450, 377, 244);
+                //tapiz.setBounds(26, 450, 377, 244);
+				tapiz.setBounds(26, 439, 377, 244);
 			}
 			{
 				totalTextField = new JTextField();
 				this.add(totalTextField);
-				totalTextField.setBounds(258, 342, 46, 21);
+				//totalTextField.setBounds(258, 342, 46, 21);
+                totalTextField.setBounds(258, 308, 46, 21);
 				totalTextField.setEditable(false);
 			}
 			{
 				apuestaTextField = new JTextField();
 				this.add(getApuestaTextField());
-				apuestaTextField.setBounds(258, 375, 46, 21);
+				//apuestaTextField.setBounds(258, 375, 46, 21);
+                apuestaTextField.setBounds(258, 368, 46, 21);
 				apuestaTextField.setEditable(false);
 			}
 			{
 				quitar = new JCheckBox();
-				this.add(getQuitar());
-				quitar.setText("Quitar");
-				quitar.setBounds(313, 718, 75, 18);
+				this.add(getQuitar());				
+				//quitar.setBounds(313, 718, 75, 18);
+                quitar.setBounds(270, 725, 20, 20);
 				quitar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						quitarActionPerformed(evt);
@@ -116,9 +104,9 @@ public class MesaPanel extends javax.swing.JPanel {
 			}
 			{
 				apostar = new JCheckBox();
-				this.add(getApostar());
-				apostar.setText("Apostar");
-				apostar.setBounds(313, 739, 75, 18);
+				this.add(getApostar());				
+				//apostar.setBounds(313, 739, 75, 18);
+                apostar.setBounds(270, 746, 20, 20);
 				apostar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						apostarActionPerformed(evt);
@@ -129,7 +117,8 @@ public class MesaPanel extends javax.swing.JPanel {
 			{
 				fichaNegra = new JLabel();
 				this.add(fichaNegra);
-				fichaNegra.setBounds(158, 729, 21, 23);
+				//fichaNegra.setBounds(158, 729, 21, 23);
+                fichaNegra.setBounds(157, 724, 21, 23);
 				fichaNegra.setIcon(new ImageIcon("./recursos/ficha.png"));
 				fichaNegra.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -141,7 +130,8 @@ public class MesaPanel extends javax.swing.JPanel {
 				ficha_azul = new JLabel();
 				this.add(ficha_azul);
 				ficha_azul.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
-				ficha_azul.setBounds(203, 729, 21, 23);
+				//ficha_azul.setBounds(203, 729, 21, 23);
+                ficha_azul.setBounds(220, 724, 21, 23);
 				ficha_azul.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
 						ficha_azulMouseClicked(evt);
@@ -152,7 +142,8 @@ public class MesaPanel extends javax.swing.JPanel {
 				ficha_blanca = new JLabel();
 				this.add(ficha_blanca);
 				ficha_blanca.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
-				ficha_blanca.setBounds(113, 729, 21, 23);
+				//ficha_blanca.setBounds(113, 729, 21, 23);
+                ficha_blanca.setBounds(94, 724, 21, 23);
 				ficha_blanca.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
 						ficha_blancaMouseClicked(evt);
@@ -163,7 +154,8 @@ public class MesaPanel extends javax.swing.JPanel {
 				ficha_roja = new JLabel();
 				this.add(ficha_roja);
 				ficha_roja.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
-				ficha_roja.setBounds(68, 729, 21, 23);
+				//ficha_roja.setBounds(68, 729, 21, 23);
+                ficha_roja.setBounds(38, 724, 21, 23);
 				ficha_roja.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
 						ficha_rojaMouseClicked(evt);
@@ -174,56 +166,17 @@ public class MesaPanel extends javax.swing.JPanel {
 				ficha_selecionada = new JLabel();
 				this.add(ficha_selecionada);
 				ficha_selecionada.setIcon(new ImageIcon("./recursos/trasparente.png"));
-				ficha_selecionada.setBounds(45, 417, 23, 17);
-			}
-			{
-				jLabel1 = new JLabel();
-				this.add(jLabel1);
-				jLabel1.setText("10");
-				jLabel1.setBounds(68, 758, 17, 17);
-				jLabel1.setBackground(new java.awt.Color(255,255,255));
-			}
-			{
-				jLabel2 = new JLabel();
-				this.add(jLabel2);
-				jLabel2.setText("20");
-				jLabel2.setBounds(113, 758, 16, 16);
-				jLabel2.setBackground(new java.awt.Color(255,255,255));
-			}
-			{
-				jLabel3 = new JLabel();
-				this.add(jLabel3);
-				jLabel3.setText("50");
-				jLabel3.setBounds(158, 759, 16, 15);
-				jLabel3.setBackground(new java.awt.Color(255,255,255));
-			}
-			{
-				jLabel4 = new JLabel();
-				this.add(jLabel4);
-				jLabel4.setText("100");
-				jLabel4.setBounds(203, 759, 21, 14);
-				jLabel4.setBackground(new java.awt.Color(255,255,255));
+				//ficha_selecionada.setBounds(45, 417, 23, 17);
+                ficha_selecionada.setBounds(170, 419, 23, 17);
 			}
 			{
 				saldoLabel = new JLabel();
 				this.add(saldoLabel);
-				saldoLabel.setBounds(73, 704, 135, 19);
-				saldoLabel.setBackground(new java.awt.Color(255,255,255));
-				saldoLabel.setText("SALDO: "+ Integer.toString(saldoUsuario));
-			}
-			{
-				totalLabel = new JLabel();
-				this.add(totalLabel);
-				totalLabel.setText("Total");
-				totalLabel.setBounds(150, 345, 53, 14);
-				totalLabel.setBackground(new java.awt.Color(255,255,255));
-			}
-			{
-				casillaLabel = new JLabel();
-				this.add(casillaLabel);
-				casillaLabel.setText("Casilla");
-				casillaLabel.setBounds(150, 378, 42, 14);
-				casillaLabel.setBackground(new java.awt.Color(255,255,255));
+				//saldoLabel.setBounds(73, 704, 135, 19);
+				//saldoLabel.setBackground(new java.awt.Color(255,255,255));
+                saldoLabel.setBounds(85, 685, 135, 19);
+				saldoLabel.setBackground(new java.awt.Color(0,0,0));
+				saldoLabel.setText(Integer.toString(saldoUsuario));
 			}
 				this.totalTextField.setText(Integer.toString(apuestaTotal));
 				this.apuestaTextField.setText(Integer.toString(apuestaCasilla));
@@ -352,7 +305,7 @@ public class MesaPanel extends javax.swing.JPanel {
 	    	listaApuestas[num]=apuesta;
 	    	this.totalTextField.setText(Integer.toString(apuestaTotal));
 	    	this.apuestaTextField.setText(Integer.toString(apuestaCasilla));
-	    	this.saldoLabel.setText("SALDO: "+ Integer.toString(saldoUsuario));
+	    	this.saldoLabel.setText(Integer.toString(saldoUsuario));
     }
  public void casillaPulsada(Apuesta.casillaAp casilla,Apuesta.tipoAp tipo,Apuesta.proporcionAp prop){
     	
@@ -428,7 +381,7 @@ public class MesaPanel extends javax.swing.JPanel {
 	    	listaApuestas[num]=apuesta;
 	    	this.totalTextField.setText(Integer.toString(apuestaTotal));
 	    	this.apuestaTextField.setText(Integer.toString(apuestaCasilla));
-	    	this.saldoLabel.setText("SALDO: "+ Integer.toString(saldoUsuario));
+	    	this.saldoLabel.setText(Integer.toString(saldoUsuario));
     }
     //si el usuario ha termiando de apostar
     public boolean aTerminado(){
@@ -485,7 +438,7 @@ public class MesaPanel extends javax.swing.JPanel {
     public void empezar( int saldo){
     	this.terminar=false;
     	this.saldoUsuario=saldo;
-    	this.saldoLabel.setText("SALDO: "+ Integer.toString(saldoUsuario));
+    	this.saldoLabel.setText(Integer.toString(saldoUsuario));
     	this.totalTextField.setText("0");
     	this.apuestaTextField.setText("0");
     }
@@ -497,8 +450,11 @@ public class MesaPanel extends javax.swing.JPanel {
     }
     public void limpiarTapete(){
     	this.remove(tapiz);
+        {
     	tapiz = new TapizPanel(this);
 		this.add(tapiz);
-		tapiz.setBounds(26, 450, 377, 244);
+		//tapiz.setBounds(26, 450, 377, 244);
+        tapiz.setBounds(26, 439, 377, 244);
+        }
     }
 }

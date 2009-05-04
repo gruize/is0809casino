@@ -83,6 +83,10 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         });
         setResizable(false);
         setLocation(200, 0);
+
+        //Temporal
+        mesa.limpiarTapete();
+		mesa.empezar(10000);
     }
 
     public JPanelCjtoApuestasTemp getJPanelCjtoApuestasTemp1() {
@@ -233,7 +237,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         jButtonFinish.setText("Terminar");
         jButtonFinish.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonFinish.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        jButtonFinish.setBounds(400, 335, 80, 80);
+        jButtonFinish.setBounds(700, 305, 80, 80);
         jButtonFinish.setContentAreaFilled(false);
         jLayeredPane1.add(jButtonFinish, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.moveToFront(jButtonFinish);
@@ -483,26 +487,31 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
     class OyenteTerminarApuestas implements ActionListener{
 
         public void actionPerformed(ActionEvent e) {            
-            try {
-                bloquearApuestas();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(VistaRuleta.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            System.out.println("jButton2.mouseClicked, event="+e);
+            bloquearApuestas();
         }
 
     }
 
-    private void bloquearApuestas() throws InterruptedException{
+    private void bloquearApuestas(){
         /** Para pruebas
         Apuesta[] apuesta = new Apuesta[5];
         for(int i = 0; i < 5; i++){
             apuesta[i] = new Apuesta(i, tipoAp.NUMERO,proporcionAp.SIMPLE, 10 * i);
         }
         */
-        if (JOptionPane.showConfirmDialog(this,"No podra realizar mas apuestas","Cierre de apuestas",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION){
-            Apuesta[] apuesta = mesa.terminarYdameListaApuestas();
-            controlador.realizarApuesta(apuesta,mesa.dameNumApuestas());
+        if (JOptionPane.showConfirmDialog(this,"No podra realizar mas apuestas","Cierre de apuestas",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION){            		                
+            int num=mesa.dameNumApuestas();
+            Apuesta aux;
+            Apuesta[] lista;
+            lista=mesa.dameApuestas();
+            for(int i=0;i<num;i++){
+                aux=lista[i];
+                aux.imprimir();
+            }
             girarRuleta(3);
+            mesa.limpiarTapete();
+            mesa.empezar(Integer.parseInt(mesa.getSaldoLabel().getText()));
         }
     }
 
