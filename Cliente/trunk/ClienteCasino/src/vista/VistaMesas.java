@@ -319,12 +319,10 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
     }
 
     class OyenteMesas implements ActionListener {
-
         public void actionPerformed(ActionEvent e) {
             jButtonNext.setVisible(true);
             modificarEntrada(Integer.parseInt(e.getActionCommand()));
         }
-
     }
 
     class OyenteRefrescar implements ActionListener {
