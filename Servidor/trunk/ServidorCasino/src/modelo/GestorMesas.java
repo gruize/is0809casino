@@ -141,6 +141,10 @@ public class GestorMesas {
      * @return
      */
     public boolean existeMesa(int idMesa) {
+        System.out.println("GESTORMESAS: idSala="+sala.getCodigo()+" busco mesa="+idMesa);
+        System.out.println("GESTORMESAS: las mesas que hay abiertas son");
+        for (int i=0;i<mesas.size();i++)
+            System.out.println(" mesa "+mesas.get(i).getCodigoMesa());
         return getMesaJuego(idMesa) != null;
     }
 

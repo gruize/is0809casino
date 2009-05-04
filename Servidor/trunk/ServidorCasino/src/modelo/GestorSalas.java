@@ -200,6 +200,7 @@ public class GestorSalas {
      */
     private boolean estaMesaEnSala(int idSala, int idMesa) {
         try {
+            System.err.println("estaMEsaEnSala : sala="+idSala+" mesa="+idMesa );
             return mesas_sala.get(idSala).existeMesa(idMesa);
         } catch (Exception e) {
 
@@ -273,6 +274,10 @@ public class GestorSalas {
         if (estaMesaEnSala(idSala, idMesa)) {
             //enviarselo al GestorMesas
             mesas_sala.get(idSala).procesarMensajeJugada(jugada);
+        }
+        else {
+           log.error("GestorSalas : procesaMensaje : jugada de la sala " + idSala + " en la mesa " + idMesa+" la mesa no está en la sala!!!");
+
         }
     }
 
