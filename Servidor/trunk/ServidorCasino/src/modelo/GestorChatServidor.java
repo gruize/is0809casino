@@ -1,10 +1,9 @@
 package modelo;
 
+import bbdd.beans.Clientes;
 import modelo.mensajes.MensajeChat;
 import controlador.ControladorServidor;
-import java.util.ArrayList;
 import java.util.Vector;
-import modelo.LogicaJuegos.Jugador;
 
 public class GestorChatServidor extends Thread {
 
@@ -34,20 +33,18 @@ public class GestorChatServidor extends Thread {
     public void run() {
         try {
             MensajeChat recibido;
-            ArrayList<Jugador> tios = new ArrayList<Jugador>();
+            Vector<Clientes> tios;
             usuarios = GestorUsuarios.getInstancia(this.controlador);
             int mesa = 0;
+            int sala = 0;
             while (true) {
                if (cola.size() != 0){
                     recibido = cola.firstElement();
                     cola.remove(0);
-                    //mesa = usuarios.getMesa(recibido.get_tio());
-                    mesa=recibido.get_mesa();
-                    //tios = usuarios.getUsuarios(mesa);
-                    tios= usuarios.getJugadoresMesa(recibido.get_sala(),mesa);
+                    tios= usuarios.getJugadoresMesa(recibido.get_sala(), recibido.get_mesa());
                     for (int i = 0; i < tios.size(); i++) {
-                        MensajeChat mensajeChat = new MensajeChat(recibido.get_tio(),recibido.get_mesa(),recibido.get_men(),recibido.get_usuario());
-                        controlador.enviarMensajeChat(tios.get(i).getId(),mensajeChat);
+                        MensajeChat mensajeChat = new MensajeChat(recibido.get_tio(),recibido.get_sala(),recibido.get_mesa(),recibido.get_men(),recibido.get_usuario());
+                        controlador.enviarMensajeChat(tios.get(i).getCodigo(),mensajeChat);
                     }
                      System.out.println("mensaje tratado");
                 } else {

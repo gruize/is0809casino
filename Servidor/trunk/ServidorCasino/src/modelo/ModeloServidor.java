@@ -35,14 +35,14 @@ public class ModeloServidor extends Observable {
         notifyObservers(mensaje);
     }
 
-    
+
 
     public void cerrarConexion() throws IOException {
-        
+
     }
 
     public void expulsarJugador(String jugador) {
-        
+
     }
 
     public DefaultListModel getListaConectados() {
@@ -58,7 +58,7 @@ public class ModeloServidor extends Observable {
     }
 
     public DefaultListModel getListaSalas() {
-      
+
         return listaSalas;
     }
 
@@ -75,7 +75,7 @@ public class ModeloServidor extends Observable {
     }
 
     public void verEstadisticas(String usuario) {
-        
+
     }
 
 }

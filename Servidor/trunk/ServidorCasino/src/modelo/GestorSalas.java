@@ -22,7 +22,7 @@ public class GestorSalas {
 
     private static Vector<Salas> salas;
     private static Hashtable<Integer, GestorMesas> mesas_sala;//<idSala, GestorMesas>
-    private ControladorServidor controlador; //TODO ¿realmente necesito el controlador?
+    private ControladorServidor controlador; //TODO Â¿realmente necesito el controlador?
 
     //log4j
     private static Logger log = Logger.getLogger(GestorSalas.class);
@@ -75,19 +75,20 @@ public class GestorSalas {
         sala.setCodigo(codigoSala);
         sala.setNombre(nombreSala);
         sala.setJuegos(dameJuegoAsociado(nombreSala));// NO puedo introducir valores nulos en BBDD??
-
-        //Guardo en bbdd (si no existía ya)
+        System.out.println("creando sala");
+        //Guardo en bbdd (si no existÃ­a ya)
         if (bbdd.insertarSala(sala)) {
+            System.out.println("valeee  creando sala");
             log.info("GestorSalas : crearSala : Sala con id=" + codigoSala + " guardada en BBDD");
             //guardo en mi vector de salas
             salas.add(sala);
-            mesas_sala.put(codigoSala, new GestorMesas(controlador, sala));//se creará una mesa
-            log.info("GestorSalas : crearSala : Sala con id=" + codigoSala + " guardada en el Gestor de Salas. Aún no tiene mesas abiertas");
+            mesas_sala.put(codigoSala, new GestorMesas(controlador, sala));//se crearÃ¡ una mesa
+            log.info("GestorSalas : crearSala : Sala con id=" + codigoSala + " guardada en el Gestor de Salas. AÃºn no tiene mesas abiertas");
         }
     }
 
     private Juegos dameJuegoAsociado(String nombreSala) {
-        //TODO el resto de juegos. Comprobar el nombre por una clase que subió Gabi
+        //TODO el resto de juegos. Comprobar el nombre por una clase que subiÃ³ Gabi
         if (nombreSala.contains("Ruleta")) {
             log.debug("GestorSalas : dameJuegoAsociado : Juego de la RULETA, para la sala " + nombreSala);
             return dameJuegoRuleta();
@@ -138,7 +139,7 @@ public class GestorSalas {
     /**
      * Busca la sala en el vector de salas del casino
      * @param idSala identificador de la sala
-     * @return objeto Salas si está en el vector, null en otro caso
+     * @return objeto Salas si estÃ¡ en el vector, null en otro caso
      */
     public Salas getSala(int idSala) {
 
@@ -159,14 +160,14 @@ public class GestorSalas {
     }
 
     /**
-     * Borra todas las salas del casino, y todas sus mesas asociadas (tambien de la BBDD). Se  invocará cuando se cierre el servidor
+     * Borra todas las salas del casino, y todas sus mesas asociadas (tambien de la BBDD). Se  invocarÃ¡ cuando se cierre el servidor
      */
     public void borrarSalas() {
 
         //Borrar todas las mesas de BBDD --> invocar al GestorMesas
-        for (int i = 0; i < mesas_sala.size(); i++) {
+       /* for (int i = 0; i < mesas_sala.size(); i++) {
             mesas_sala.get(i).borrarMesas();
-        }
+        }*/
 
         //borro la tabla hash de salas
         mesas_sala.clear();
@@ -182,7 +183,7 @@ public class GestorSalas {
     }
 
     /**
-     * Devuelve un listado con los id de las mesas que están en una sala en concreto
+     * Devuelve un listado con los id de las mesas que estÃ¡n en una sala en concreto
      *
      * @param idSala id de la sala cuyas mesas se quieren obtener
      */
@@ -191,10 +192,10 @@ public class GestorSalas {
     }
 
     /**
-     * Comprueba si la mesa está ya en una sala
+     * Comprueba si la mesa estÃ¡ ya en una sala
      * @param idSala
      * @param idMesa
-     * @return true si la mesa está ya asociada a una sala
+     * @return true si la mesa estÃ¡ ya asociada a una sala
      *         false en otro caso
      */
     private boolean estaMesaEnSala(int idSala, int idMesa) {
@@ -202,14 +203,14 @@ public class GestorSalas {
             return mesas_sala.get(idSala).existeMesa(idMesa);
         } catch (Exception e) {
 
-            //saltará un nullpointer cuando la sala no esté abierta
+            //saltarÃ¡ un nullpointer cuando la sala no estÃ© abierta
             log.error("GestorSalas : estaMesaEnSala : error al buscar sala="+idSala+" y mesa="+idMesa+" -->"+e.getMessage());
             return false;
         }
     }
 
     /**
-     * Añade una mesa en una sala
+     * AÃ±ade una mesa en una sala
      * @param idSala
      * @param idMesa
      * @return true si se inserta correctamente,
@@ -217,7 +218,7 @@ public class GestorSalas {
      */
     public boolean añadirMesaEnSala(int idSala, int idMesa, int idJugador) {
 
-        //compruebo si ya está insertada
+        //compruebo si ya estÃ¡ insertada
         if (estaMesaEnSala(idSala, idMesa)) {
             return false;
         } else {
@@ -235,7 +236,7 @@ public class GestorSalas {
      * @param idSala
      * @param idMesa
      * @param idJugador
-     * @return resultado de la operación
+     * @return resultado de la operaciÃ³n
      */
     public boolean insertarJugadorEnMesa(int idSala, int idMesa, int idJugador) {
         return mesas_sala.get(idSala).colocarJugadorEnMesa(idMesa, idJugador);
@@ -268,7 +269,7 @@ public class GestorSalas {
 
         // TODO los de la interfaz me lo estan mandando al reves!!!
         log.debug("GestorSalas : procesaMensaje : jugada de la sala " + idSala + " en la mesa " + idMesa);
-        //compruebo que la mesa está en la sala. Solo por seguridad...
+        //compruebo que la mesa estÃ¡ en la sala. Solo por seguridad...
         if (estaMesaEnSala(idSala, idMesa)) {
             //enviarselo al GestorMesas
             mesas_sala.get(idSala).procesarMensajeJugada(jugada);
@@ -284,7 +285,7 @@ public class GestorSalas {
     public Vector<PeticionSala> getInfoSalas(){
         Vector<PeticionSala> infoSalas= new Vector<PeticionSala>();
         for (int i=0; i<salas.size(); i++){
-
+            System.out.println("ok sala"+i);
             int idSala=salas.get(i).getCodigo();
             String nombreSala=salas.get(i).getNombre();
             NombreJuegos nombreJuego;
@@ -294,7 +295,7 @@ public class GestorSalas {
                 nombreJuego=NombreJuegos.DADOS;
             int nMesas=getMesas_Sala(idSala).size();
 
-            //añado al vector
+            //aÃ±ado al vector
             infoSalas.add(new PeticionSala(idSala, nombreJuego, nMesas));
 
         }

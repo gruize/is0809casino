@@ -25,10 +25,10 @@ public class GestorMesas {
     //=======================================================================
     // atributos de la clase
     //=======================================================================
-    private String nombreJuego = ""; //juegos que se jugarán en las mesas: Ruleta, Datos, ..
+    private String nombreJuego = ""; //juegos que se jugarÃ¡n en las mesas: Ruleta, Datos, ..
     private Salas sala; //sala a la que pertenecen estas mesas
-    private Vector<Mesa> mesas;//cada mesa del casino. Contrendrá la lógica del juego
-    private ControladorServidor controlador; 
+    private Vector<Mesa> mesas;//cada mesa del casino. ContrendrÃ¡ la lÃ³gica del juego
+    private ControladorServidor controlador;
 
     //log4j
     private static Logger log = Logger.getLogger(GestorMesas.class);
@@ -36,20 +36,20 @@ public class GestorMesas {
     //para sincronizar con bbdd
     InterfazBBDD bbdd = null;
 
-    //contador para identificar de forma única todas las mesas
+    //contador para identificar de forma Ãºnica todas las mesas
     private static int codigoMesa;
 
-    //contador para identificar de forma única todas las partidas que se vayan creando en las mesas
+    //contador para identificar de forma Ãºnica todas las partidas que se vayan creando en las mesas
     private static int codigoPartida=0;
 
 
      //=======================================================================
-    // métodos de la clase
+    // mÃ©todos de la clase
     //=======================================================================
     /**
      * Constructora
      * @param c controlador del servidor
-     * @param nSala nombre de los juegos que se jugarán en todas estas mesas, correspondientes a una sala
+     * @param nSala nombre de los juegos que se jugarÃ¡n en todas estas mesas, correspondientes a una sala
      */
     public GestorMesas(ControladorServidor c, Salas sala) {
 
@@ -69,7 +69,7 @@ public class GestorMesas {
     }
 
     /**
-     * Crea una nueva mesa, si aún no existe. La insertará en BBDD, y lo guardará en el propio gestor.
+     * Crea una nueva mesa, si aÃºn no existe. La insertarÃ¡ en BBDD, y lo guardarÃ¡ en el propio gestor.
      *
      * @param idMesa
      * @return
@@ -123,21 +123,21 @@ public class GestorMesas {
 
         Mesa mesa_juego = null;
         int i = 0;
-        boolean enc = mesas.get(i).getCodigoMesa() == idMesa;
-        while (!enc && i < mesas.size()) {
-            i++;
+        boolean enc = false;
+        while (!enc && i < mesas.size()) {            
             enc = mesas.get(i).getCodigoMesa() == idMesa;
+            i++;
         }
 
         if (enc) {
-            mesa_juego = mesas.get(i);
+            mesa_juego = mesas.get(i-1);
         }
 
         return mesa_juego;
     }
 
     /**
-     * Comprueba si la mesa ya existe, es decir, ya está abierta en el casino
+     * Comprueba si la mesa ya existe, es decir, ya estÃ¡ abierta en el casino
      * @return
      */
     public boolean existeMesa(int idMesa) {
@@ -148,7 +148,7 @@ public class GestorMesas {
     //              JUGADORES DE LAS MESAS
     //========================================================================
     /**
-     * Comprueba si un jugador ya está en la mesa
+     * Comprueba si un jugador ya estÃ¡ en la mesa
      * @param idMesa
      * @param idJugador
      * @return
@@ -158,7 +158,7 @@ public class GestorMesas {
     }
 
     /**
-     * Devuelve la lista de jugadores que están en una mesa
+     * Devuelve la lista de jugadores que estÃ¡n en una mesa
      * @param idMesa
      * @return
      */
@@ -170,7 +170,7 @@ public class GestorMesas {
      *
      * @param idMesa  mesa en la que se coloca el jugador
      * @param idJugador identificador del jugador
-     * @return resultado de la operación.
+     * @return resultado de la operaciÃ³n.
      *          False si el jugador ya se encontraba en la mesa.
      */
     public boolean colocarJugadorEnMesa(int idMesa, int idJugador) {
@@ -197,7 +197,7 @@ public class GestorMesas {
     }
 
     /**
-     * Envía la jugada a la mesa a la que va destinada
+     * EnvÃ­a la jugada a la mesa a la que va destinada
      * @param jugada
      */
     public void procesarMensajeJugada(Jugada jugada) {

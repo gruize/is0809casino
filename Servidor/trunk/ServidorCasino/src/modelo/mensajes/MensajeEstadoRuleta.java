@@ -25,5 +25,5 @@ public class MensajeEstadoRuleta implements java.io.Serializable{
         this.parado = parado;
     }
 
-    
+
 }
