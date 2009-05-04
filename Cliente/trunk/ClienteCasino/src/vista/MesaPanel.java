@@ -1,21 +1,39 @@
-package vista;
 
+
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import modelo.Apuesta;
+import javax.swing.WindowConstants;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
+/**
+* This code was edited or generated using CloudGarden's Jigloo
+* SWT/Swing GUI Builder, which is free for non-commercial
+* use. If Jigloo is being used commercially (ie, by a corporation,
+* company or business for any purpose whatever) then you
+* should purchase a license for each developer using Jigloo.
+* Please visit www.cloudgarden.com for details.
+* Use of Jigloo implies acceptance of these licensing terms.
+* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
+* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
+* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
+*/
 public class MesaPanel extends javax.swing.JPanel {
 	//bloquea el tapiz
 	private boolean terminar=true;
-	private ImageIcon imgFondo;
+	private Image imgFondo;
 	private TapizPanel tapiz; 
     private static int ancho=430;
     private static int alto=800;
@@ -50,6 +68,9 @@ public class MesaPanel extends javax.swing.JPanel {
 	private Apuesta[] listaApuestas;
 	private int numApuestas;
 	/**
+	* Auto-generated main method to display this 
+	* JPanel inside a new JFrame.
+	*/
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
 		
@@ -60,7 +81,7 @@ public class MesaPanel extends javax.swing.JPanel {
 		
 	
 		frame.setVisible(true);
-	}*/
+	}
 	
 	public MesaPanel() {
 		super();
@@ -87,11 +108,13 @@ public class MesaPanel extends javax.swing.JPanel {
 				totalTextField = new JTextField();
 				this.add(totalTextField);
 				totalTextField.setBounds(258, 342, 46, 21);
+				totalTextField.setEditable(false);
 			}
 			{
 				apuestaTextField = new JTextField();
 				this.add(getApuestaTextField());
 				apuestaTextField.setBounds(258, 375, 46, 21);
+				apuestaTextField.setEditable(false);
 			}
 			{
 				quitar = new JCheckBox();
@@ -121,7 +144,7 @@ public class MesaPanel extends javax.swing.JPanel {
 				fichaNegra = new JLabel();
 				this.add(fichaNegra);
 				fichaNegra.setBounds(158, 729, 21, 23);
-				fichaNegra.setIcon(new ImageIcon("./recursos/ficha.png"));
+				fichaNegra.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ficha.png")));
 				fichaNegra.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
 						fichaNegraMouseClicked(evt);
@@ -131,7 +154,7 @@ public class MesaPanel extends javax.swing.JPanel {
 			{
 				ficha_azul = new JLabel();
 				this.add(ficha_azul);
-				ficha_azul.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+				ficha_azul.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ficha_azul.png")));
 				ficha_azul.setBounds(203, 729, 21, 23);
 				ficha_azul.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -142,7 +165,7 @@ public class MesaPanel extends javax.swing.JPanel {
 			{
 				ficha_blanca = new JLabel();
 				this.add(ficha_blanca);
-				ficha_blanca.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+				ficha_blanca.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ficha_blanca.png")));
 				ficha_blanca.setBounds(113, 729, 21, 23);
 				ficha_blanca.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -153,7 +176,7 @@ public class MesaPanel extends javax.swing.JPanel {
 			{
 				ficha_roja = new JLabel();
 				this.add(ficha_roja);
-				ficha_roja.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+				ficha_roja.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ficha_roja.png")));
 				ficha_roja.setBounds(68, 729, 21, 23);
 				ficha_roja.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -164,7 +187,7 @@ public class MesaPanel extends javax.swing.JPanel {
 			{
 				ficha_selecionada = new JLabel();
 				this.add(ficha_selecionada);
-				ficha_selecionada.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				ficha_selecionada.setIcon(new ImageIcon(getClass().getClassLoader().getResource("trasparente.png")));
 				ficha_selecionada.setBounds(45, 417, 23, 17);
 			}
 			{
@@ -223,11 +246,11 @@ public class MesaPanel extends javax.swing.JPanel {
 		}
 	}
 	private void preInit(){
-        imgFondo = new ImageIcon("./recursos/mesa.png");
-    }
+        imgFondo = new ImageIcon(getClass().getResource("mesa.png")).getImage();
+}
     public void paintComponent(Graphics g) {
 		   if (imgFondo != null) {
-		                g.drawImage(imgFondo.getImage(), 0, 0, ancho, alto, this);
+		                g.drawImage(imgFondo, 0, 0, ancho, alto, this);
 		            }
 		  
 		  }
@@ -247,28 +270,28 @@ public class MesaPanel extends javax.swing.JPanel {
     private void ficha_rojaMouseClicked(MouseEvent evt) {
     	System.out.println("ficha_roja.mouseClicked, event="+evt);
     	//TODO add your code for ficha_roja.mouseClicked
-    	ficha_selecionada.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+    	ficha_selecionada.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ficha_roja.png")));
     	tipoFicha=1;
     }
     
     private void ficha_blancaMouseClicked(MouseEvent evt) {
     	System.out.println("ficha_blanca.mouseClicked, event="+evt);
     	//TODO add your code for ficha_blanca.mouseClicked
-    	ficha_selecionada.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+    	ficha_selecionada.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ficha_blanca.png")));
     	tipoFicha=2;
     }
     
     private void fichaNegraMouseClicked(MouseEvent evt) {
     	System.out.println("fichaNegra.mouseClicked, event="+evt);
     	//TODO add your code for fichaNegra.mouseClicked
-    	ficha_selecionada.setIcon(new ImageIcon("./recursos/ficha.png"));
+    	ficha_selecionada.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ficha.png")));
     	tipoFicha=3;
     }
     
     private void ficha_azulMouseClicked(MouseEvent evt) {
     	System.out.println("ficha_azul.mouseClicked, event="+evt);
     	//TODO add your code for ficha_azul.mouseClicked
-    	ficha_selecionada.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+    	ficha_selecionada.setIcon(new ImageIcon(getClass().getClassLoader().getResource("ficha_azul.png")));
     	tipoFicha=4;
     }
     public void casillaPulsada(int casilla){
@@ -485,5 +508,11 @@ public class MesaPanel extends javax.swing.JPanel {
     }
     public int dameNumApuestas(){
     	return numApuestas;
+    }
+    public void limpiarTapete(){
+    	this.remove(tapiz);
+    	tapiz = new TapizPanel(this);
+		this.add(tapiz);
+		tapiz.setBounds(26, 450, 377, 244);
     }
 }
