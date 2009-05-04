@@ -6,11 +6,14 @@
 package main;
 
 import controlador.ControladorCliente;
-import vista.SplashScreen;
+import java.io.IOError;
+import java.util.Vector;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import modelo.ModeloCliente;
-import vista.VistaLogin;
+import modelo.NombreJuegos;
+import modelo.mensajes.objetos.PeticionSala;
+import vista.*;
 
 /**
  *
@@ -35,8 +38,11 @@ public class PruebaCliente {
         SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
                 ModeloCliente modelo = new ModeloCliente();
+                modelo.setUsuario("Gabi");
+                modelo.setSaldo(1000);
                 ControladorCliente controlador = new ControladorCliente(modelo);
-                VistaLogin vistalogin =new VistaLogin(controlador);
+                VistaRuleta vistalogin =new VistaRuleta(controlador);
+                vistalogin.setVisible(true);
 			}
 		});
 	}

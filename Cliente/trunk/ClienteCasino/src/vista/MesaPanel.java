@@ -34,7 +34,7 @@ import modelo.Apuesta;
 public class MesaPanel extends javax.swing.JPanel {
 	//bloquea el tapiz
 	private boolean terminar=true;
-	private Image imgFondo;
+	private ImageIcon imgFondo;
 	private TapizPanel tapiz; 
     private static int ancho=430;
     private static int alto=800;
@@ -68,21 +68,7 @@ public class MesaPanel extends javax.swing.JPanel {
 	//lista de las apuestas del usuario
 	private Apuesta[] listaApuestas;
 	private int numApuestas;
-	/**
-	* Auto-generated main method to display this 
-	* JPanel inside a new JFrame.
-	*/
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
 
-		frame.getContentPane().add(new MesaPanel());
-
-		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		frame.pack();
-
-
-		frame.setVisible(true);
-	}
 	public MesaPanel() {
 		super();
 		preInit();
@@ -246,11 +232,11 @@ public class MesaPanel extends javax.swing.JPanel {
 		}
 	}
 	private void preInit(){
-        imgFondo = new ImageIcon(getClass().getResource("mesa.png")).getImage();
+        imgFondo = new ImageIcon("./recursos/mesa.png");
 }
     public void paintComponent(Graphics g) {
 		   if (imgFondo != null) {
-		                g.drawImage(imgFondo, 0, 0, ancho, alto, this);
+		                g.drawImage(imgFondo.getImage(), 0, 0, ancho, alto, this);
 		            }
 		  
 		  }

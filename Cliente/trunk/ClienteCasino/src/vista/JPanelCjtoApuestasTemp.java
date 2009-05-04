@@ -5,6 +5,7 @@
 
 package vista;
 
+import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -36,6 +37,7 @@ public class JPanelCjtoApuestasTemp extends JPanel{
         jLabelTitulo.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTitulo.setText("Resultados");
+        jLabelTitulo.setForeground(new Color(51,153,0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -57,6 +59,7 @@ public class JPanelCjtoApuestasTemp extends JPanel{
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+        this.setOpaque(false);
     }
 
     public JLabel getJLabelTitulo() {

@@ -3024,6 +3024,8 @@ public class TapizPanel extends javax.swing.JPanel {
 				}
 
 				mesa.casillaPulsada(Apuesta.casillaAp.PAR,Apuesta.tipoAp.PARIDAD,Apuesta.proporcionAp.SIMPLE);
+                //Prueba de funcionamiento
+                System.out.println("Casilla pulsada par");
 			}
 		}
 	}

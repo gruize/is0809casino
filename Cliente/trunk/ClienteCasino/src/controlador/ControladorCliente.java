@@ -4,6 +4,7 @@
  */
 package controlador;
 
+import modelo.Apuesta;
 import modelo.mensajes.TipoMensaje;
 import modelo.mensajes.MensajeChat;
 import modelo.mensajes.MensajeJugada;
@@ -68,12 +69,22 @@ public class ControladorCliente {
        comunicador.enviarMensaje(tipo, mensaje);
     }
 
+    public String[] obtenerApuestasAnteriores() {
+        String[] strings = { "Apuesta 1", "Apuesta 2", "Apuesta 3", "Apuesta 4", "Apuesta 5", "Apuesta 6", "Apuesta 7", "Apuesta 8", "Apuesta 9", "Apuesta 10" };
+        return strings;
+    }
+
     public int obtenerSaldo() {
         return modelo.getSaldo();
     }
 
     public String obtenerUsuario() {
         return modelo.getUsuario();
+    }
+
+    public String[] obtenerUsuariosEnMesa() {
+        String[] strings = { "Jugadores 1", "Jugadores 2", "Jugadores 3", "Jugadores 4", "Jugadores 5", "Jugadores 6", "Jugadores 7", "Jugadores 8", "Jugadores 9", "Jugadores 10" };
+        return strings;
     }
 
     /**
@@ -116,35 +127,32 @@ public class ControladorCliente {
         enviarMensajeInfoSalas(TipoMensaje.INFO_SALAS,mensaje);
     }
 
-    /**
-     *
-     * @param cantidadApostada  cantidad de dinero apostada en la casilla
-     * @param valor nombre de la casilla sobre la que ha apostado
-     */
-    public void realizarApuesta(int cantidadApostada, String valor, String tipo) {
 
-        int idUsuario = modelo.getId();
+    public void realizarApuesta(Apuesta[] apuesta, int dameNumApuestas) {
+
+
+
+                int idUsuario = modelo.getId();
         int idMesa = modelo.getMesa();
         int idSala=modelo.getSala();
-        String tipoApuesta = tipo; //valores posibles (definirlos en la vista ruleta): Numero,Color,ParImpar, Docena, Linea,FaltaPasa....
+        //String tipoApuesta = tipo; //valores posibles (definirlos en la vista ruleta): Numero,Color,ParImpar, Docena, Linea,FaltaPasa....
         int casilla = 0;//casilla a la q se apuesta: al 21, al Rojo , a la 2Âº Docena,Falta, Par ...
         try { //TODO hacerlo bien
-            casilla = Integer.parseInt(valor);
+          //  casilla = Integer.parseInt(valor);
         } catch (ClassCastException e) {
             casilla = 1;
         }
 
 
         //crear el objeto Jugada
-        Jugada jugada = new Jugada(idUsuario, idSala, idMesa, tipoApuesta, casilla, cantidadApostada);
-        System.out.println("Jugada RULETA: usuario=" + idUsuario + " mesa=" + idMesa + " tipoApuesta=" + tipoApuesta + " casilla:" + casilla + " cantidadApostada:" + cantidadApostada);
+        //Jugada jugada = new Jugada(idUsuario, idSala, idMesa, tipoApuesta, casilla, cantidadApostada);
+        //System.out.println("Jugada RULETA: usuario=" + idUsuario + " mesa=" + idMesa + " tipoApuesta=" + tipoApuesta + " casilla:" + casilla + " cantidadApostada:" + cantidadApostada);
 
         //crear el objeto MensajeJugada
-        MensajeJugada mensajeJugada = new MensajeJugada(idUsuario, idMesa, jugada);
+        MensajeJugada mensajeJugada = new MensajeJugada(idUsuario, idSala, idMesa);
 
         //enviar el mensaje hacia el servidor.
         enviarMensajeJugada(TipoMensaje.MENSAJE_JUGADA, mensajeJugada);
-
     }
 
     /**
