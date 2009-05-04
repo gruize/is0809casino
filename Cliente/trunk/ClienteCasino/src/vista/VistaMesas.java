@@ -283,7 +283,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
                     botonNuevaSala.setPreferredSize(new Dimension(114,86));
                     botonNuevaSala.setName("BotonMesa"+i);
-                    botonNuevaSala.setActionCommand(Integer.toString(i));
+                    botonNuevaSala.setActionCommand(Integer.toString(peticionMesa.get(i).getIdMesa()));
                     botonNuevaSala.addActionListener(new OyenteMesas());
                     botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
                     nuevaMesa.add(botonNuevaSala);
