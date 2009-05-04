@@ -26,6 +26,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
+import modelo.mensajes.MensajeInfoMesas;
 import modelo.mensajes.objetos.PeticionMesa;
 import modelo.mensajes.objetos.PeticionSala;
 
@@ -58,6 +59,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
     private OyenteSeleccion oyenteSeleccion;
     private int mesaEntrar;
     private int orden;
+    private Vector<PeticionMesa> peticionMesa;
     // End of variables declaration
 
     /** Creates new form VistaTemporal */
@@ -69,6 +71,9 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         mesaEntrar = 0;
         rellenarOrdenes();
         agregarOyentes();
+        rellenarDatos();
+        controlador.getModelo().addObserver(this);
+        controlador.pedirNumeroMesas();
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter(){
             public void windowClosing(WindowEvent e) {
@@ -93,7 +98,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
     }
 
     public void setMesaEntrar(int mesaEntrar) {
-        this.mesaEntrar = mesaEntrar;
+        this.mesaEntrar = mesaEntrar+1;
     }
 
     public int getOrden() {
@@ -159,7 +164,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
 
         jButtonBack.setBackground(new java.awt.Color(0, 0, 0));
         jButtonBack.setIcon(new javax.swing.ImageIcon("./recursos/3flecha_izquierda-cubeg1-thumb.gif")); // NOI18N
-        jButtonBack.setText("Volver atrás");
+        jButtonBack.setText("Volver atrÃ¡s");
         jButtonBack.setBorder(null);
         jButtonBack.setBorderPainted(false);
         jButtonBack.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -233,21 +238,19 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         );
 
         pack();
-
-        rellenarMesas();
     }
 
     private void rellenarOrdenes() {
         //orden = 0;
         jOrden.add("---Elija un orden---");
         //orden = 1;
-        jOrden.add("Nº de jugadores.Creciente");
+        jOrden.add("NÂº de jugadores.Creciente");
         //orden = 2;
-        jOrden.add("Nº de jugadores.Decreciente");
+        jOrden.add("NÂº de jugadores.Decreciente");
         //orden = 3;
-        jOrden.add("Apuesta mínima.Creciente");
+        jOrden.add("Apuesta mÃ­nima.Creciente");
         //orden = 4;
-        jOrden.add("Apuesta mínima.Decreciente");
+        jOrden.add("Apuesta mÃ­nima.Decreciente");
     }
 
     private void rellenarDatos() {
@@ -256,25 +259,16 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
     }
 
     public void update(Observable o, Object arg) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (arg instanceof MensajeInfoMesas) {
+            MensajeInfoMesas mensaje = (MensajeInfoMesas)arg;
+            peticionMesa = mensaje.getMesas();
+            rellenarMesas();
+        }
     }
 
     private void rellenarMesas() {
-        //Preguntar al controlador por el numero de salas que hay
-        //El controlador manda un mensaje al servidor
-        //El servidor le comunica los datos de las salas
-        //Se recibe el mensaje y se cambiaria el estado de la vista
-        //En el metodo update se trataria el mensaje y se dibujarian las salas
-        /**
-         * Eliminar todas las salas existentes y visibles
-         */
-        rellenarDatos();
          jContenedor.removeAll();
-        /**
-         * Generar todas las nuevas salas.
-         */
 
-        Vector<PeticionMesa> peticionMesa = controlador.getPeticionMesas();
         switch(orden){
             //Ningun orden
             case 0: {
@@ -300,13 +294,13 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     jContenedor.add(nuevaMesa);
                 }
             }break;
-            //Nº Jugadores. Creciente
+            //NÂº Jugadores. Creciente
             case 1: {
-                System.out.println("Nº Jugadores. Creciente");
+                System.out.println("NÂº Jugadores. Creciente");
             }break;
-            //Nº Jugadores. Decreciente
+            //NÂº Jugadores. Decreciente
             case 2: {
-                System.out.println("Nº Jugadores. Decreciente");
+                System.out.println("NÂº Jugadores. Decreciente");
             }break;
             //Apuesta minima. Creciente
             case 3: {
@@ -336,13 +330,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
     class OyenteRefrescar implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            /**
-             * Preguntar al controlador por el numero de salas que hay
-             * El controlador manda un mensaje al servidor
-             * El servidor le comunica los datos de las salas
-             * Se recibe el mensaje y se cambiaria el estado de la vista
-             */
-            rellenarMesas();
+            controlador.pedirNumeroMesas();
         }
     }
 
@@ -359,6 +347,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         public void actionPerformed(ActionEvent e) {
             dispose();
             //Obtener el id de la mesa
+            controlador.setMesa(mesaEntrar);
             controlador.solicitudEntrarEnMesa(mesaEntrar);
             switch(juego){
                 case RULETA: {
@@ -396,11 +385,11 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     case 0:{
                         setOrden(0);
                     }break;
-                    //Nº de jugadores.Creciente
+                    //NÂº de jugadores.Creciente
                     case 1:{
                         setOrden(1);
                     }break;
-                    //Nº de jugadores.Decreciente
+                    //NÂº de jugadores.Decreciente
                     case 2:{
                         setOrden(2);
                     }break;
@@ -413,7 +402,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                         setOrden(4);
                     }break;
                 }
-            rellenarMesas();
+            controlador.pedirNumeroMesas();
 
             }
 
@@ -421,7 +410,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
 
     private void salir() {
         System.out.println("OK");
-        if (JOptionPane.showConfirmDialog(this,"¿Desea abandonar el juego?",
+        if (JOptionPane.showConfirmDialog(this,"Â¿Desea abandonar el juego?",
                 "Cierre del juego",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
 				if(controlador.cerrarConexion()){
                     System.exit(0);

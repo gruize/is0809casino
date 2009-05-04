@@ -1,8 +1,8 @@
 /**
  *
- * Mensaje que enviará el Servidor, cuando el cliente haya login y éste se haya validado.
+ * Mensaje que enviarÃ¡ el Servidor, cuando el cliente haya login y Ã©ste se haya validado.
  *
- * Contiene un vector con información de todas las salas que hay activas en el casino
+ * Contiene un vector con informaciÃ³n de todas las salas que hay activas en el casino
  *
  */
 package modelo.mensajes;
@@ -17,8 +17,14 @@ import modelo.mensajes.objetos.PeticionSala;
 public class MensajeInfoSalas implements Serializable  {
 
     private Vector<PeticionSala> salas;
+    private int id;
 
-    public MensajeInfoSalas(Vector<PeticionSala> salas){
+    public MensajeInfoSalas(int id) {
+        this.id = id;
+    }
+
+    public MensajeInfoSalas(int id,Vector<PeticionSala> salas){
+        this.id = id;
         this.salas=salas;
     }
 
@@ -30,7 +36,11 @@ public class MensajeInfoSalas implements Serializable  {
         this.salas = salas;
     }
 
+    public int getId() {
+        return id;
+    }
 
-
-
+    public void setId(int id) {
+        this.id = id;
+    }
 }

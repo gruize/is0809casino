@@ -8,18 +8,16 @@ import modelo.mensajes.TipoMensaje;
 import modelo.mensajes.MensajeChat;
 import modelo.mensajes.MensajeJugada;
 import comunicaciones.Comunicador;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.Vector;
-import modelo.*;
+import modelo.Jugada;
+import modelo.ModeloCliente;
 import modelo.mensajes.MensajeEstadoRuleta;
 import modelo.mensajes.MensajeInfoCliente;
 import modelo.mensajes.MensajeInfoMesas;
 import modelo.mensajes.MensajeInfoSalas;
 import modelo.mensajes.MensajeMesa;
 import modelo.mensajes.MensajeSala;
-import modelo.mensajes.objetos.PeticionMesa;
-import modelo.mensajes.objetos.PeticionSala;
 
 /**
  *
@@ -29,8 +27,6 @@ public class ControladorCliente {
 
     private Comunicador comunicador;
     private ModeloCliente modelo;
-    private Vector<PeticionSala> peticionSala;
-    private Vector<PeticionMesa> peticionMesas;
 
     public ControladorCliente(ModeloCliente model) {
         comunicador = new Comunicador(this);
@@ -58,13 +54,13 @@ public class ControladorCliente {
     }
 
     public void enviarMensajeChat(String mensaje) {
-        MensajeChat mensajeChat = new MensajeChat(modelo.getId(), 1, mensaje, modelo.getUsuario());
+        MensajeChat mensajeChat = new MensajeChat(modelo.getId(), modelo.getSala(),modelo.getMesa(), mensaje, modelo.getUsuario());
         comunicador.enviarMensaje(TipoMensaje.MENSAJE_CHAT, mensajeChat);
     }
 
     /**
-     * Envía un mensaje de jugada (apuesta de ruleta, etc) hacia el servidor
-     * @param tipo: 
+     * EnvÃ­a un mensaje de jugada (apuesta de ruleta, etc) hacia el servidor
+     * @param tipo:
      *  2- Mensaje de Jugada o Informacion de Salas y mesas
      * @param mensaje
      */
@@ -81,7 +77,7 @@ public class ControladorCliente {
     }
 
     /**
-     * Envía un mensaje de entrada o salida de mesa hacia el servidor
+     * EnvÃ­a un mensaje de entrada o salida de mesa hacia el servidor
      * @param tipo:
      *   *  3- Mensaje de Entrada en mesa
      *   *  4- Mensaje de Salida de Mesa
@@ -102,26 +98,26 @@ public class ControladorCliente {
         comunicador.enviarMensaje(tipo, mensaje);
     }
 
-    public Vector<PeticionMesa> getPeticionMesas() {
-        return peticionMesas;
+    private void enviarMensajeInfoSalas(int tipo,MensajeInfoSalas mensaje) {
+        comunicador.enviarMensaje(tipo, mensaje);
     }
 
-    public void setPeticionMesas(Vector<PeticionMesa> peticionMesas) {
-        this.peticionMesas = peticionMesas;
+    private void enviarMensajeInfoMesas(int tipo,MensajeInfoMesas mensaje) {
+        comunicador.enviarMensaje(tipo, mensaje);
     }
 
-    public Vector<PeticionSala> getPeticionSala() {
-        return peticionSala;
+    public void pedirNumeroMesas() {
+        MensajeInfoMesas mensaje = new MensajeInfoMesas(modelo.getId(),modelo.getSala());
+        enviarMensajeInfoMesas(TipoMensaje.INFO_MESAS,mensaje);
     }
 
-    public void setPeticionSala(Vector<PeticionSala> peticionSala) {
-        this.peticionSala = peticionSala;
+    public void pedirNumeroSalas() {
+        MensajeInfoSalas mensaje = new MensajeInfoSalas(modelo.getId());
+        enviarMensajeInfoSalas(TipoMensaje.INFO_SALAS,mensaje);
     }
-
-
 
     /**
-     * 
+     *
      * @param cantidadApostada  cantidad de dinero apostada en la casilla
      * @param valor nombre de la casilla sobre la que ha apostado
      */
@@ -131,7 +127,7 @@ public class ControladorCliente {
         int idMesa = modelo.getMesa();
         int idSala=modelo.getSala();
         String tipoApuesta = tipo; //valores posibles (definirlos en la vista ruleta): Numero,Color,ParImpar, Docena, Linea,FaltaPasa....
-        int casilla = 0;//casilla a la q se apuesta: al 21, al Rojo , a la 2º Docena,Falta, Par ...
+        int casilla = 0;//casilla a la q se apuesta: al 21, al Rojo , a la 2Âº Docena,Falta, Par ...
         try { //TODO hacerlo bien
             casilla = Integer.parseInt(valor);
         } catch (ClassCastException e) {
@@ -139,14 +135,14 @@ public class ControladorCliente {
         }
 
 
-        //crear el objeto Jugada 
+        //crear el objeto Jugada
         Jugada jugada = new Jugada(idUsuario, idSala, idMesa, tipoApuesta, casilla, cantidadApostada);
         System.out.println("Jugada RULETA: usuario=" + idUsuario + " mesa=" + idMesa + " tipoApuesta=" + tipoApuesta + " casilla:" + casilla + " cantidadApostada:" + cantidadApostada);
 
-        //crear el objeto MensajeJugada 
+        //crear el objeto MensajeJugada
         MensajeJugada mensajeJugada = new MensajeJugada(idUsuario, idMesa, jugada);
 
-        //enviar el mensaje hacia el servidor. 
+        //enviar el mensaje hacia el servidor.
         enviarMensajeJugada(TipoMensaje.MENSAJE_JUGADA, mensajeJugada);
 
     }
@@ -185,8 +181,18 @@ public class ControladorCliente {
         enviarMensajeMesa(TipoMensaje.SALIDA_MESA, mensajeMesa);
     }
 
+
+    public void setMesa(int mesaEntrar) {
+        modelo.setMesa(mesaEntrar);
+    }
+
+    public void setSala(int salonEntrar) {
+        modelo.setSala(salonEntrar);
+    }
+
+
     /**
-     * Cuando el servidor manda un mensaje al cliente. 
+     * Cuando el servidor manda un mensaje al cliente.
      * @param tipo tipo del mensaje (1=chat, 2=MensajeJugada, 3=EntradaMesa, 4=salidaMesa)
      * @param mensaje
      */
@@ -196,7 +202,7 @@ public class ControladorCliente {
         if (tipo == TipoMensaje.MENSAJE_CHAT) {
             MensajeChat m = (MensajeChat) mensaje;
             modelo.addmensajechat(m);
-            
+
         } else if (tipo == TipoMensaje.MENSAJE_JUGADA) {
             MensajeJugada mensajeJugada = (MensajeJugada) mensaje;
             modelo.addMensajeJugada(mensajeJugada);
@@ -216,24 +222,27 @@ public class ControladorCliente {
             //actualizar el modelo
             modelo.setSala(mensajeSala.getSala());
 
-        } else if (tipo== TipoMensaje.INFO_SALAS){           
-            MensajeInfoSalas mensajeIS = (MensajeInfoSalas) mensaje;
-            setPeticionSala(mensajeIS.getSalas());
-        }else if (tipo==TipoMensaje.INFO_MESAS){
-            MensajeInfoMesas mensajeIM = (MensajeInfoMesas) mensaje;
-            setPeticionMesas(mensajeIM.getMesas());
+        } else if (tipo== TipoMensaje.INFO_SALAS){
+            System.out.println("Info salas pedida");
+            MensajeInfoSalas mensajeInfoSalas = (MensajeInfoSalas) mensaje;
+            modelo.rellenarSalas(mensajeInfoSalas);
+
+        } else if (tipo==TipoMensaje.INFO_MESAS){
+            System.out.println("Info mesas pedida");
+            MensajeInfoMesas mensajeInfoMesas = (MensajeInfoMesas) mensaje;
+            modelo.rellenarMesas(mensajeInfoMesas);
 
         } else if (tipo==TipoMensaje.INFO_CLIENTE){
-            
-            //TODO interfaz: os mandaré la info del propio cliente: os interesa el saldo
+
+            //TODO interfaz: os mandarÃ© la info del propio cliente: os interesa el saldo
             MensajeInfoCliente mensajeIC=(MensajeInfoCliente)mensaje;
 
 
 
 
         }else if (tipo==TipoMensaje.ESTADO_RULETA){
-            
-            //TODO interfaz os mandaré el estado de la ruleta, para que paréis y arranquéis.
+
+            //TODO interfaz os mandarÃ© el estado de la ruleta, para que parÃ©is y arranquÃ©is.
 
             MensajeEstadoRuleta m=(MensajeEstadoRuleta)mensaje;
         }
@@ -241,7 +250,7 @@ public class ControladorCliente {
 
 
         else {
-            System.err.println("No sé que tipo de mensaje me envía!! " + tipo);
+            System.err.println("No sÃ© que tipo de mensaje me envÃ­a!! " + tipo);
         }
 
     }

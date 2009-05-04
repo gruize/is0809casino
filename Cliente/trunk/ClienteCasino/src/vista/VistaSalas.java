@@ -26,14 +26,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
+import modelo.mensajes.MensajeInfoSalas;
 import modelo.mensajes.objetos.PeticionSala;
 
 /**
  *
  * @author GabiPC
  */
-public class VistaSalas extends javax.swing.JFrame implements Observer{
-     
+public class VistaSalas extends javax.swing.JFrame implements Observer {
+
     // Variables declaration - do not modify
     private JButton jButtonNext;
     private JButton jButtonBack;
@@ -56,6 +57,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
     private OyenteVolver oyenteVolver;
     private OyenteSeleccion oyenteSeleccion;
     private int salonEntrar;
+    private Vector<PeticionSala> peticionSala;
     // End of variables declaration
 
     /** Creates new form VistaTemporal */
@@ -67,6 +69,9 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
         inicializar();
         rellenarJuegos();
         agregarOyentes();
+        rellenarDatos();
+        controlador.getModelo().addObserver(this);
+        controlador.pedirNumeroSalas();
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter(){
             public void windowClosing(WindowEvent e) {
@@ -82,7 +87,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
     }
 
     public void setSalonEntrar(int salonEntrar) {
-        this.salonEntrar = salonEntrar;
+        this.salonEntrar = salonEntrar+1;
     }
 
     public NombreJuegos getJuego() {
@@ -164,7 +169,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
 
         jButtonBack.setBackground(new java.awt.Color(0, 0, 0));
         jButtonBack.setIcon(new javax.swing.ImageIcon("./recursos/3flecha_izquierda-cubeg1-thumb.gif")); // NOI18N
-        jButtonBack.setText("Volver atrás");
+        jButtonBack.setText("Volver atrÃ¡s");
         jButtonBack.setBorder(null);
         jButtonBack.setBorderPainted(false);
         jButtonBack.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -238,18 +243,12 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
         );
 
         pack();
-
-        rellenarSalas();
-    }
-
-    public void update(Observable o, Object arg) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     private void rellenarDatos() {
         jLabelUser.setText(controlador.obtenerUsuario());
         jLabelSaldo.setText(Integer.toString(controlador.obtenerSaldo()));
-        
+
     }
 
     private void rellenarJuegos() {
@@ -259,18 +258,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
     }
 
     private void rellenarSalas() {
-
-        //Preguntar al controlador por el numero de salas que hay
-        //El controlador manda un mensaje al servidor
-        //El servidor le comunica los datos de las salas
-        //Se recibe el mensaje y se cambiaria el estado de la vista
-        //En el metodo update se trataria el mensaje y se dibujarian las salas
-        rellenarDatos();
-        //Eliminar todas las salas existentes y visibles
-         jContenedor.removeAll();
-        //Generar todas las nuevas salas.
-
-        Vector<PeticionSala> peticionSala = controlador.getPeticionSala();
+        jContenedor.removeAll();
 
         switch(juego){
             case TODOS: {
@@ -385,7 +373,15 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
         setJuego(nuevo);
         setSalonEntrar(salon);
     }
-    
+
+    public void update(Observable o, Object arg) {
+        if (arg instanceof MensajeInfoSalas) {
+            MensajeInfoSalas mensaje = (MensajeInfoSalas)arg;
+            peticionSala = mensaje.getSalas();
+            rellenarSalas();
+        }
+    }
+
     class OyenteSalas implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
@@ -404,13 +400,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
     class OyenteRefrescar implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            /**
-             * Preguntar al controlador por el numero de salas que hay
-             * El controlador manda un mensaje al servidor
-             * El servidor le comunica los datos de las salas
-             * Se recibe el mensaje y se cambiaria el estado de la vista
-             */
-            rellenarSalas();
+             controlador.pedirNumeroSalas();
         }
     }
 
@@ -426,9 +416,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
 
         public void actionPerformed(ActionEvent e) {
            dispose();
-           //TODO obtener el id de la sala seleccionada.
-           controlador.solicitudEntrarSala(salonEntrar);
-
+           controlador.setSala(salonEntrar);
            VistaMesas vistaMesas = new VistaMesas(controlador);
            vistaMesas.setJuego(juego);
            vistaMesas.setVisible(true);
@@ -460,13 +448,13 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
                     case 2: setJuego(NombreJuegos.RULETA);
                     break;
                 }
-            rellenarSalas();
+            controlador.pedirNumeroMesas();
         }
 
     }
 
     private void salir() {
-        if (JOptionPane.showConfirmDialog(this,"¿Desea abandonar el juego?",
+        if (JOptionPane.showConfirmDialog(this,"Â¿Desea abandonar el juego?",
                 "Cierre del juego",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
 				if(controlador.cerrarConexion()){
                     System.exit(0);
@@ -474,5 +462,5 @@ public class VistaSalas extends javax.swing.JFrame implements Observer{
 
 
     }
-    
+
 }

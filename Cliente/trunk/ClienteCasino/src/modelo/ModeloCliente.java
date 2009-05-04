@@ -6,6 +6,8 @@
 package modelo;
 
 import modelo.mensajes.MensajeChat;
+import modelo.mensajes.MensajeInfoMesas;
+import modelo.mensajes.MensajeInfoSalas;
 import modelo.mensajes.MensajeJugada;
 import java.util.Observable;
 /**
@@ -14,7 +16,6 @@ import java.util.Observable;
  */
 public class ModeloCliente extends Observable{
 
-    private MensajeChat chat;
     private String usuario;
     private int id;
     private int sala;
@@ -25,12 +26,26 @@ public class ModeloCliente extends Observable{
         return saldo;
     }
 
+    public void rellenarMesas(MensajeInfoMesas mensajeInfoMesas) {
+        setChanged();
+        this.notifyObservers(mensajeInfoMesas);
+    }
+
+    public void rellenarSalas(MensajeInfoSalas mensajeInfoSalas) {
+        setChanged();
+        this.notifyObservers(mensajeInfoSalas);
+    }
+
+    public void addmensajechat(MensajeChat mensajeChat){
+        setChanged();
+        notifyObservers(mensajeChat);
+    }
+
     public void setSaldo(int saldo) {
         this.saldo = saldo;
     }
 
     public void modelo(){
-        chat = null;
         id = 0;
         sala = 0;
         mesa = 0;
@@ -63,15 +78,9 @@ public class ModeloCliente extends Observable{
     public void setMesa(int mes) {
         mesa = mes;
     }
-    
+
     public void setUsuario(String usuario) {
         this.usuario = usuario;
-    }
-
-    public void addmensajechat(MensajeChat mensaje){
-        chat = mensaje;
-        setChanged();
-        notifyObservers(chat);
     }
 
     /**
@@ -79,13 +88,8 @@ public class ModeloCliente extends Observable{
      * @param mensaje
      */
     public void addMensajeJugada(MensajeJugada mensaje){
-        
         setChanged();
         notifyObservers(mensaje);
-    }
-
-    public MensajeChat getmensajechat(){
-        return chat;
     }
 
     public void ponerapuesta(){
