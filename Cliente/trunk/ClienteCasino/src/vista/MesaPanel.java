@@ -1,4 +1,4 @@
-
+package vista;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import modelo.Apuesta;
 
 /**
 * This code was edited or generated using CloudGarden's Jigloo

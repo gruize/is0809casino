@@ -6,12 +6,15 @@
 
 package vista;
 
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+
 
 /**
  *
@@ -191,7 +194,9 @@ public class VistaRuletaTemp extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+        mesa.empezar(1000);
         girarRuleta(22);
+        //listaApuestas=mesa.dameApuestas();
     }
 
     /**
@@ -200,7 +205,7 @@ public class VistaRuletaTemp extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrameUso().setVisible(true);
+                new JFrame().setVisible(true);
             }
         });
     }
