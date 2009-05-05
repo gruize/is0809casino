@@ -85,6 +85,10 @@ public class ControladorServidor {
         modelo.expulsarJugador(jugador);
     }
 
+    public void jugadorDesconectado(int identificador){
+        // TODO Realizar las tareas pertinentes en la
+        // desconexión del jugador 
+    }
     public DefaultListModel getListaUsuarios() {
         return usuarios.getUsuarios();
     }

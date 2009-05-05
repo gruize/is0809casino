@@ -95,6 +95,8 @@ public class ManejadorCliente implements Runnable {
     public void finalize () {
         _hilo = null;
         try {
+            // Avisa de la desconexión del cliente
+            _controlador.jugadorDesconectado(_identificador);
             //aqui elimina el manejador de clientes de la tabla
             _almacen.removeManejadorCliente(_identificador);
             if (_cliente.isConnected()) {
