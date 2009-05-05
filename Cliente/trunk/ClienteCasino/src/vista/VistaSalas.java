@@ -55,19 +55,19 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
     private OyenteSalir oyenteSalir;
     private OyenteEntrada oyenteEntrada;
     private OyenteVolver oyenteVolver;
-    private NombreJuegos filtro;
     private OyenteSeleccion oyenteSeleccion;
     private int salonEntrar;
     private Vector<PeticionSala> peticionSala;
+    private int eleccion;
     // End of variables declaration
 
     /** Creates new form VistaTemporal */
     public VistaSalas(ControladorCliente control) {
         super("Salas disponibles en el casino");
         controlador = control;
-        filtro = NombreJuegos.TODOS;
+        juego = NombreJuegos.TODOS;
         salonEntrar = 0; //Por defecto
-        peticionSala = new Vector<PeticionSala>();
+        eleccion = 0; //Por defecto
         inicializar();
         rellenarJuegos();
         agregarOyentes();
@@ -82,14 +82,6 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
         });
 		setVisible(true);
         setResizable(false);
-    }
-
-    public NombreJuegos getFiltro() {
-        return filtro;
-    }
-
-    public void setFiltro(NombreJuegos filtro) {
-        this.filtro = filtro;
     }
 
     public Choice getJJuegos() {
@@ -187,7 +179,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
 
         jButtonBack.setBackground(new java.awt.Color(0, 0, 0));
         jButtonBack.setIcon(new javax.swing.ImageIcon("./recursos/3flecha_izquierda-cubeg1-thumb.gif")); // NOI18N
-        jButtonBack.setText("Volver atrÃ¡s");
+        jButtonBack.setText("Volver atrÃƒÂ¡s");
         jButtonBack.setBorder(null);
         jButtonBack.setBorderPainted(false);
         jButtonBack.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -271,26 +263,17 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
 
     private void rellenarJuegos() {
         jJuegos.add("---Elija un juego---");
-        jJuegos.add(NombreJuegos.DADOS.toString());
         jJuegos.add(NombreJuegos.RULETA.toString());
+        jJuegos.add(NombreJuegos.DADOS.toString());
     }
 
     private void rellenarSalas() {
         jContenedor.removeAll();
-        /** Para pruebas
-        Vector<PeticionSala> peticion = new Vector<PeticionSala>();
-        peticion.add(new PeticionSala(1,NombreJuegos.RULETA,2));
-        peticion.add(new PeticionSala(2,NombreJuegos.RULETA,4));
-        peticion.add(new PeticionSala(3,NombreJuegos.RULETA,6));
-        peticion.add(new PeticionSala(4,NombreJuegos.RULETA,8));
-        peticion.add(new PeticionSala(5,NombreJuegos.RULETA,3));
-        peticion.add(new PeticionSala(6,NombreJuegos.DADOS,5));
-        peticion.add(new PeticionSala(7,NombreJuegos.RULETA,7));
-        peticionSala = peticion;
-         */
-        switch(filtro){
-            case TODOS: {
+        System.out.println("eleccion: "+eleccion);
+        switch(eleccion){
+            case 0: {
                 for(int i = 0; i < peticionSala.size(); i++){
+                    System.out.println("sala"+ peticionSala.get(i).getJuego());
                     JPanel nuevaSala = new JPanel();
                     nuevaSala.setBackground(Color.BLACK);
                     nuevaSala.setOpaque(true);
@@ -332,12 +315,12 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
                             textoNuevaSala.setPreferredSize(new Dimension(114,86));
                             nuevaSala.add(textoNuevaSala);
                             jContenedor.add(nuevaSala);
-                        }
+                        }break;
                     }
                 }
                 jSalas.getViewport().setView(jContenedor);
             }break;
-            case RULETA: {
+            case 1: {
                 for(int i = 0; i < peticionSala.size(); i++){
                     if(peticionSala.get(i).getJuego().equals(NombreJuegos.RULETA)){
                         JPanel nuevaSala = new JPanel();
@@ -362,7 +345,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
                 }
                 jSalas.getViewport().setView(jContenedor);
             }break;
-            case DADOS: {
+            case 2: {
                 for(int i = 0; i < peticionSala.size(); i++){
                     if(peticionSala.get(i).getJuego().equals(NombreJuegos.DADOS)){
                         // Crea un icono que referencie a la imagen en disco
@@ -462,26 +445,28 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
         }
 
     }
-
     class OyenteSeleccion implements ItemListener {
 
         public void itemStateChanged(ItemEvent e) {
             if(e.getSource() == jJuegos)
                 switch(jJuegos.getSelectedIndex()){
-                    case 0: setFiltro(NombreJuegos.TODOS);
+                    case 0: setJuego(NombreJuegos.TODOS);
+                            eleccion = 0;
                     break;
-                    case 1: setFiltro(NombreJuegos.DADOS);
+                    case 1: setJuego(NombreJuegos.RULETA);
+                            eleccion = 1;
                     break;
-                    case 2: setFiltro(NombreJuegos.RULETA);
+                    case 2: setJuego(NombreJuegos.DADOS);
+                            eleccion = 2;
                     break;
                 }
-            controlador.pedirNumeroMesas();
+            controlador.pedirNumeroSalas();
         }
 
     }
 
     private void salir() {
-        if (JOptionPane.showConfirmDialog(this,"Â¿Desea abandonar el juego?",
+        if (JOptionPane.showConfirmDialog(this,"Ã‚Â¿Desea abandonar el juego?",
                 "Cierre del juego",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
 				if(controlador.cerrarConexion()){
                     System.exit(0);
