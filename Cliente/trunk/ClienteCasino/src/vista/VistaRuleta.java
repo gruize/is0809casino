@@ -466,6 +466,10 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
             MensajeInfoCliente mensaje = (MensajeInfoCliente) arg;
             getJLabelSaldo().setText(Double.toString(mensaje.getSaldo()));
             //TODO: Falta añadir el valor de saldo a la mesa
+            /**
+            mesa.saldoUsuario= mensaje.getSaldo();
+            mesa.saldoLabel.setText(Double.toString(mensaje.getSaldo()));
+             */
          }
 
     }
