@@ -1164,7 +1164,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			}
 		}
 	}
-	//2
+	//17
 	private void jLabel2MouseClicked(MouseEvent evt) {
 		System.out.println("jLabel2.mouseClicked, event="+evt);
 		//TODO add your code for jLabel2.mouseClicked
@@ -1195,17 +1195,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel2.setIcon(new ImageIcon(getClass().getClassLoader().getResource("./recursos/trasparente.png")));
+					jLabel4.setIcon(new ImageIcon(getClass().getClassLoader().getResource("./recursos/trasparente.png")));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel2.setIcon(new ImageIcon(getClass().getClassLoader().getResource("./recursos/ficha_roja.png")));
+						jLabel4.setIcon(new ImageIcon(getClass().getClassLoader().getResource("./recursos/ficha_roja.png")));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel2.setIcon(new ImageIcon(getClass().getClassLoader().getResource("./recursos/ficha_blanca.png")));
+						jLabel4.setIcon(new ImageIcon(getClass().getClassLoader().getResource("./recursos/ficha_blanca.png")));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel2.setIcon(new ImageIcon(getClass().getClassLoader().getResource("./recursos/ficha.png")));
+						jLabel4.setIcon(new ImageIcon(getClass().getClassLoader().getResource("./recursos/ficha.png")));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel2.setIcon(new ImageIcon(getClass().getClassLoader().getResource("./recursos/ficha_azul.png")));
+						jLabel4.setIcon(new ImageIcon(getClass().getClassLoader().getResource("./recursos/ficha_azul.png")));
 				}
 
 				mesa.casillaPulsada(19,Apuesta.tipoAp.NUMERO);
