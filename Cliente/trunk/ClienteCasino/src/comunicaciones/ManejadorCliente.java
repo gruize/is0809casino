@@ -127,6 +127,7 @@ public class ManejadorCliente implements Runnable {
      */
     @Override
     public void finalize () {
+        _controlador.servidorDesconectado();
         _hilo = null;
         _conectado = false;
     }

@@ -216,6 +216,11 @@ public class ControladorCliente {
         modelo.setSala(salonEntrar);
     }
 
+    public void servidorDesconectado(){
+        // TODO Realizar las tareas pertinentes a la
+        // desconexión del Servidor
+    }
+
 
     /**
      * Cuando el servidor manda un mensaje al cliente.
