@@ -69,8 +69,17 @@ public class ControladorCliente {
        comunicador.enviarMensaje(tipo, mensaje);
     }
 
-    public String[] obtenerApuestasAnteriores() {
-        String[] strings = { "Apuesta 1", "Apuesta 2", "Apuesta 3", "Apuesta 4", "Apuesta 5", "Apuesta 6", "Apuesta 7", "Apuesta 8", "Apuesta 9", "Apuesta 10" };
+    public Vector<String> obtenerApuestasAnteriores() {
+        Vector<String> strings = new Vector<String>();
+        strings.add("Resultado 1");
+        strings.add("Resultado 2");
+        strings.add("Resultado 3");
+        strings.add("Resultado 4");
+        strings.add("Resultado 5");
+        strings.add("Resultado 6");
+        strings.add("Resultado 7");
+        strings.add("Resultado 8");
+        strings.add("Resultado 9");
         return strings;
     }
 
@@ -82,8 +91,17 @@ public class ControladorCliente {
         return modelo.getUsuario();
     }
 
-    public String[] obtenerUsuariosEnMesa() {
-        String[] strings = { "Jugadores 1", "Jugadores 2", "Jugadores 3", "Jugadores 4", "Jugadores 5", "Jugadores 6", "Jugadores 7", "Jugadores 8", "Jugadores 9", "Jugadores 10" };
+    public Vector<String> obtenerUsuariosEnMesa() {
+        Vector<String> strings = new Vector<String>();
+        strings.add("Jugadores 1");
+        strings.add("Jugadores 2");
+        strings.add("Jugadores 3");
+        strings.add("Jugadores 4");
+        strings.add("Jugadores 5");
+        strings.add("Jugadores 6");
+        strings.add("Jugadores 7");
+        strings.add("Jugadores 8");
+        strings.add("Jugadores 9");
         return strings;
     }
 
@@ -132,7 +150,7 @@ public class ControladorCliente {
 
 
 
-                int idUsuario = modelo.getId();
+        int idUsuario = modelo.getId();
         int idMesa = modelo.getMesa();
         int idSala=modelo.getSala();
         //String tipoApuesta = tipo; //valores posibles (definirlos en la vista ruleta): Numero,Color,ParImpar, Docena, Linea,FaltaPasa....
