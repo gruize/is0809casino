@@ -69,6 +69,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         inicializar();
         juego = null;
         mesaEntrar = 0;
+        peticionMesa = new Vector<PeticionMesa>();
         rellenarOrdenes();
         agregarOyentes();
         rellenarDatos();
