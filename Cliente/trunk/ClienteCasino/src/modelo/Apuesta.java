@@ -26,7 +26,7 @@ public class Apuesta {
     private double valorApostado;
 
 
-    public Apuesta(int casilla, tipoAp tipo, int valorApostado) {
+    public Apuesta(int casilla, tipoAp tipo, double valorApostado) {
         this.casilla = casilla;
         this.tipo = tipo;
         this.valorApostado = valorApostado;
