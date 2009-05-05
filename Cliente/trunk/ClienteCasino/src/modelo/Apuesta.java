@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package modelo;
 
 
@@ -12,54 +7,37 @@ package modelo;
  */
 public class Apuesta {
 
-    public enum proporcionAp {SIMPLE, DOBLE, CUADRUPLE}
+    public enum tipoAp {NUMERO, COLOR, PARIMPAR, DOCENA, FALTAPASA, LINEA, CUADRO}
 
-    public enum tipoAp {NUMERO, COLOR, DOCENA, FILA, PARIDAD, MITAD}
+    /**
+    Numero:0,1,2,3,4....,36
+    Color: rojo :1 negro:2
+    ParImpar: impar:1 par:2
+    Docena (Doce numeros contiguos) : 1,2,3
+    FaltaPasa(1-18 y 19-36): Falta:1 Pasa:2
+    Linea(Toda una columna): 1,2,3
+    Cuadro(Cuatro numeros Contiguas): 1:1,2,4,5   2:2,3,5,6     ....  22: 32,33,35,36
+     */
 
-    public enum casillaAp {PAR, IMPAR, ROJO, NEGRO, FILA1, FILA2, FILA3, DOCENA1,
-                           DOCENA2, DOCENA3, MITAD1, MITAD2}
-
-    //Indica el valor al que se apuesta. Casilla 1, 2, ..., 36, 0, Par, Impar,
-    //Rojo, Negro, Fila1, ... Docena1, ... Mitad1...
-    private String casilla;
-    //Tipo de casilla a la que se apuesta. Numero, docena, fila, color, par_impar, mitad
+    private int casilla;
+    //Tipo de casilla a la que se apuesta. Enumerado TipoAp.
     private tipoAp tipo;
-    private proporcionAp proporcion;
     //Dinero apostado
-    private int valorApostado;
+    private double valorApostado;
 
-    public Apuesta(casillaAp casilla, tipoAp tipo, proporcionAp proporcion, int valorApostado) {
-        this.casilla = casilla.toString();
+
+    public Apuesta(int casilla, tipoAp tipo, int valorApostado) {
+        this.casilla = casilla;
         this.tipo = tipo;
-        this.proporcion = proporcion;
         this.valorApostado = valorApostado;
     }
 
-        public Apuesta(int casilla, tipoAp tipo, proporcionAp proporcion, int valorApostado) {
-        this.casilla = Integer.toString(casilla);
-        this.tipo = tipo;
-        this.proporcion = proporcion;
-        this.valorApostado = valorApostado;
-    }
-
-    public String getCasilla() {
+    public int getCasilla() {
         return casilla;
     }
 
-    public void setCasilla(casillaAp casilla) {
-        this.casilla = casilla.toString();
-    }
-
     public void setCasilla(int casilla) {
-        this.casilla = Integer.toString(casilla);
-    }
-
-    public proporcionAp getProporcion() {
-        return proporcion;
-    }
-
-    public void setProporcion(proporcionAp proporcion) {
-        this.proporcion = proporcion;
+        this.casilla = casilla;
     }
 
     public tipoAp getTipo() {
@@ -70,18 +48,17 @@ public class Apuesta {
         this.tipo = tipo;
     }
 
-    public int getValorApostado() {
+    public double getValorApostado() {
         return valorApostado;
     }
 
-    public void setValorApostado(int valorApostado) {
+    public void setValorApostado(double valorApostado) {
         this.valorApostado = valorApostado;
     }
 
     public void imprimir(){
     	System.out.println("casilla=  "+casilla);
     	System.out.println("tipo=  "+tipo.toString());
-    	System.out.println("prop=  "+this.proporcion.toString());
-    	System.out.println("dinero=  "+Integer.toString(this.valorApostado));
+    	System.out.println("dinero=  "+Double.toString(this.valorApostado));
     }
 }
