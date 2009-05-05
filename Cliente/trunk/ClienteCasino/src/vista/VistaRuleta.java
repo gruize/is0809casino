@@ -111,6 +111,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
     }
 
 	public void paint(Graphics g) {
+        paintComponents(g);
         if(gira){
         if(ImagenRuleta==null)
               ImagenRuleta = loadImage("./recursos/ruleta.png");
@@ -127,6 +128,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
               } catch (InterruptedException e) {}
         }
         g3.drawImage(ImagenBola,bolaX,bolaY,this);
+        gira=false;
         }
     }
 
@@ -528,7 +530,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
             int num=mesa.dameNumApuestas();
             Apuesta aux;
             Apuesta[] lista;
-            lista=mesa.dameApuestas();
+            lista=mesa.terminarYdameListaApuestas();
             for(int i=0;i<num;i++){
                 aux=lista[i];
                 aux.imprimir();
