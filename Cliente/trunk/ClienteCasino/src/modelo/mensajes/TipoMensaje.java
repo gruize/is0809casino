@@ -42,4 +42,10 @@ public class TipoMensaje {
 
     /** Para enviar los nuevos saldos, o la info del cliente */
     public static final int INFO_CLIENTE=11;
+
+    /** Para enviar los jugadores existentes en una mesa */
+    public static final int USERS_MESA=12;
+
+    /** Para enviar los resultados de partidas anteriores */
+    public static final int RESULTS_PASADO=13;
 }
