@@ -464,7 +464,8 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
              getJPanelCjtoApuestasTemp1().getListaResultados().setListData(mensaje.getResultados());
          }else if(arg instanceof MensajeInfoCliente){
             MensajeInfoCliente mensaje = (MensajeInfoCliente) arg;
-            
+            getJLabelSaldo().setText(Double.toString(mensaje.getSaldo()));
+            //TODO: Falta añadir el valor de saldo a la mesa
          }
 
     }
