@@ -16,7 +16,6 @@ import modelo.GestorUsuarios;
 import modelo.mensajes.MensajeJugada;
 import java.util.Vector;
 import modelo.GestorSalas;
-import modelo.NombreJuegos;
 import modelo.mensajes.MensajeEstadoRuleta;
 import modelo.mensajes.MensajeInfoCliente;
 import modelo.mensajes.MensajeInfoMesas;
@@ -46,25 +45,39 @@ public class ControladorServidor {
         modelo = modeloServidor;
         comunicador = new Comunicador(this);
         chat = new GestorChatServidor(this);
-        chat.start();
-        usuarios = new GestorUsuarios(this);
-
-
+        usuarios = GestorUsuarios.getInstancia(this);
         salas = GestorSalas.getInstance(this);
-        //crear todas las salas del casino.
+        chat.start();
+        GestorJuegosServidor.getInstance(this).start();
+    }
 
+    public void inicializar() {
         salas.crearSala(1, "Ruleta 1");
         salas.crearSala(2, "Ruleta 2");
         salas.crearSala(3, "Ruleta 3");
         salas.crearSala(4, "Dados 1");
-
         log.info("ControladorServidor : constructora : se  han creado 4 salas");
-        GestorJuegosServidor.getInstance(this).start();
     }
+
+    public void crearMesas(int codigoMesa, String nombreJuego) {
+        modelo.crearMesas(codigoMesa,nombreJuego);
+    }
+
+    public void crearSalas(int codigoSala, String nombreSala) {
+        modelo.crearSala(codigoSala,nombreSala);
+    }
+
+    public void borrarSala(int sala) {
+        modelo.borrarSala(sala);
+    }
+
+    public void borrarMesa(int mesa) {
+        modelo.borrarMesa(mesa);
+    }
+
 
     public void cerrarConexion() throws IOException {
         modelo.cerrarConexion();
-        System.out.println("Borro salas");
         GestorSalas.getInstance(this).borrarSalas();
     }
 
@@ -72,28 +85,20 @@ public class ControladorServidor {
         modelo.expulsarJugador(jugador);
     }
 
-    public DefaultListModel getListaConectados() {
-        return modelo.getListaConectados();
+    public DefaultListModel getListaUsuarios() {
+        return usuarios.getUsuarios();
     }
 
     public DefaultListModel getListaMesas() {
         return modelo.getListaMesas();
     }
 
-    public DefaultListModel getListaJugadores() {
-        return modelo.getListaJugadores();
+    public DefaultListModel getListaConectados() {
+        return modelo.getListaConectados();
     }
 
     public DefaultListModel getListaSalas() {
         return modelo.getListaSalas();
-    }
-
-    public void mostrarJugadoresAsociados(String mesa) {
-        modelo.mostrarJugadoresAsociados(mesa);
-    }
-
-    public void mostrarMesasAsociadas(String sala) {
-        modelo.mostrarMesasAsociadas(sala);
     }
 
     public boolean servidorConectado() {
@@ -105,8 +110,8 @@ public class ControladorServidor {
     }
 
     /**
-     * Obtiene las salas actuales del casino y se las envÃ­a al cliente
-     * @param idUsuario usuario que acaba de logearse, y recibirÃ¡ la info de las salas del casino
+     * Obtiene las salas actuales del casino y se las envÃƒÂ­a al cliente
+     * @param idUsuario usuario que acaba de logearse, y recibirÃƒÂ¡ la info de las salas del casino
      */
     public void enviarSalasCasino(int idUsuario) {
 
@@ -119,7 +124,7 @@ public class ControladorServidor {
 
     /**
      * Obtiene las mesas que hay actualmente en una sala del casino, y se las envia al cliente
-     * @param idUsuario usuario que acaba de entrar en una sala, y recibirÃ¡ la info
+     * @param idUsuario usuario que acaba de entrar en una sala, y recibirÃƒÂ¡ la info
      *        de las mesas que hay en ella
      * @param idSala identificador de la sala en la que acaba de entrar
      */
@@ -213,8 +218,8 @@ public class ControladorServidor {
     //==================================================================================
     /**
      * Recibe el mensaje del cliente. Comprueba el usuario y lo agrega a una mesa
-     * @param mensaje vector que contiene el nombre de usuario y contraseÃ±a del cliente
-     * @return id del usuario (lo recibirÃ¡ el cliente)
+     * @param mensaje vector que contiene el nombre de usuario y contraseÃƒÂ±a del cliente
+     * @return id del usuario (lo recibirÃƒÂ¡ el cliente)
      */
     public int login(Serializable mensaje) {
 
@@ -225,7 +230,7 @@ public class ControladorServidor {
 
         modelo.login(datos.firstElement(), datos.lastElement());
 
-        //EnvÃ­o la informaciÃ³n de todas las salas del casino
+        //EnvÃƒÂ­o la informaciÃƒÂ³n de todas las salas del casino
 
         //*********************************************************
 
@@ -248,7 +253,7 @@ public class ControladorServidor {
          *  2- Mensaje de Jugada o Informacion de Salas y mesas
          *  3- Mensaje de Entrada en mesa
          *  4- Mensaje de Salida de Mesa
-         *  5- Cierre de conexiÃ³n
+         *  5- Cierre de conexiÃƒÂ³n
          *  6- Mensaje de Entrada en Sala
          *  7- Mensaje de Salida de Sala
          *
@@ -256,7 +261,7 @@ public class ControladorServidor {
         if (tipo == TipoMensaje.MENSAJE_CHAT) {
             MensajeChat mensajeChat = ((MensajeChat) mensaje);
             System.out.println("server " + mensajeChat.get_usuario());
-            GestorChatServidor.getInstance(this).dejamensaje(mensajeChat);
+            chat.dejamensaje(mensajeChat);
 
         } else if (tipo == TipoMensaje.MENSAJE_JUGADA) {
             MensajeJugada mensajeJugada = ((MensajeJugada) mensaje);
@@ -266,29 +271,23 @@ public class ControladorServidor {
         } else if (tipo == TipoMensaje.ENTRADA_MESA) {
 
             MensajeMesa m = (MensajeMesa) mensaje;
-            if (GestorUsuarios.getInstancia(this).insertarJugadorEnMesa(m.getUsuario(), m.getMesa())) //Envio mensaje de  confimacion de la entrada en la mesa
+            if (usuarios.insertarJugadorEnMesa(m.getUsuario(), m.getMesa())) //Envio mensaje de  confimacion de la entrada en la mesa
             {
-                enviarMensajeMesa(m.getUsuario(), m);//necesito saber en quÃ© mesa se ha insertado el cliente. Quito null y envio mensaje de vuelta
+                enviarMensajeMesa(m.getUsuario(), m);//necesito saber en quÃƒÂ© mesa se ha insertado el cliente. Quito null y envio mensaje de vuelta
             } else {
                 enviarMensajeMesa(m.getUsuario(), m);//TODO mirar porque devuelve false
             }
         } else if (tipo == TipoMensaje.SALIDA_MESA) {
-
             MensajeMesa m = (MensajeMesa) mensaje;
-            GestorUsuarios.getInstancia(this).eliminarJugadorEnMesa(m.getUsuario());
-
+            usuarios.eliminarJugadorEnMesa(m.getUsuario());
         } else if (tipo == TipoMensaje.CERRAR_CONEXION) {
-            //TODO cierre de conexion
         } else if (tipo == TipoMensaje.SALIDA_SALA) {
-
             MensajeSala m = (MensajeSala) mensaje;
-            GestorUsuarios.getInstancia(this).eliminarJugadorEnSala(m.getUsuario());
+            usuarios.eliminarJugadorEnSala(m.getUsuario());
         } else if (tipo == TipoMensaje.INFO_SALAS) {
-            System.out.println("OK info salas");
             MensajeInfoSalas m = (MensajeInfoSalas)mensaje;
             enviarSalasCasino(m.getId());
         } else if (tipo == TipoMensaje.INFO_MESAS) {
-            System.out.println("OK info mesas");
             MensajeInfoMesas m = (MensajeInfoMesas)mensaje;
             enviarMesasDeUnaSala(m.getId(),m.getSala());
         }

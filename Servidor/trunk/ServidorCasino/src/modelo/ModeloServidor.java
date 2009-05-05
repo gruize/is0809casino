@@ -17,25 +17,51 @@ public class ModeloServidor extends Observable {
 
 
     private DefaultListModel listaConectados;
-    private DefaultListModel listaJugadores;
     private DefaultListModel listaSalas;
     private DefaultListModel listaMesas;
 
     public ModeloServidor() {
         listaConectados = new DefaultListModel();
-        listaJugadores = new DefaultListModel();
         listaSalas = new DefaultListModel();
         listaMesas = new DefaultListModel();
     }
 
-    public void login(String usuario, String password) {
-        listaConectados.addElement(usuario);
-        MensajeLog mensaje = new MensajeLog(usuario,password);
+    public void borrarSala(int sala) {
+        listaSalas.remove(sala);
+    }
+
+    public void borrarMesa(int mesa) {
+        listaMesas.remove(mesa);
+    }
+
+    public void crearMesas(int codigoMesa, String nombreJuego) {
+        String mesa = "CODIGO MESA: "+codigoMesa+"      NOMBRE MESA: "+nombreJuego;
+        listaMesas.addElement(mesa);
+        String texto = "Nueva mesa con cÃ³digo: "+codigoMesa+" y nombre: "+nombreJuego+
+                " creada. \n";
+        MensajeLog mensaje = new MensajeLog(texto);
         setChanged();
         notifyObservers(mensaje);
     }
 
+    public void crearSala(int codigoSala, String nombreSala) {
+        String sala = "CODIGO SALA: "+codigoSala+"      NOMBRE SALA: "+nombreSala;
+        listaSalas.addElement(sala);
+        String texto = "Nueva sala con cÃ³digo: "+codigoSala+" y nombre: "+nombreSala+
+                " creada. \n";
+        MensajeLog mensaje = new MensajeLog(texto);
+        setChanged();
+        notifyObservers(mensaje);
+    }
 
+    public void login(String usuario, String password) {
+        listaConectados.addElement(usuario);
+        String texto = "Nuevo usuario: "+usuario+" con password: "+password+
+                " conectado. \n";
+        MensajeLog mensaje = new MensajeLog(texto);
+        setChanged();
+        notifyObservers(mensaje);
+    }
 
     public void cerrarConexion() throws IOException {
 
@@ -49,10 +75,6 @@ public class ModeloServidor extends Observable {
         return listaConectados;
     }
 
-    public DefaultListModel getListaJugadores() {
-        return listaJugadores;
-    }
-
     public DefaultListModel getListaMesas() {
         return listaMesas;
     }
@@ -60,14 +82,6 @@ public class ModeloServidor extends Observable {
     public DefaultListModel getListaSalas() {
 
         return listaSalas;
-    }
-
-    public void mostrarJugadoresAsociados(String mesa) {
-        System.out.println("lk");
-    }
-
-    public void mostrarMesasAsociadas(String sala) {
-        System.out.println("JAJA");
     }
 
     public boolean servidorConectado() {

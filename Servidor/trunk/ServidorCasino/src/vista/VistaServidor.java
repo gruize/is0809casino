@@ -41,9 +41,6 @@ public class VistaServidor extends JFrame implements Observer  {
     private OyenteVerEstadisticas estadisticas;
     private OyenteExpulsar expulsar;
     private OyenteCerrarVentana cerrarVentana;
-    private OyenteListaSalas salas;
-    private OyenteListaMesas mesas;
-	
 
     public VistaServidor(ControladorServidor control) {
         super("Administrador del servidor");
@@ -51,7 +48,7 @@ public class VistaServidor extends JFrame implements Observer  {
         inicializar();
         ponerOyentes();
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-	    setSize(1024,768);		
+	    setSize(1024,768);
 		setVisible(true);
         setResizable(false);
     }
@@ -76,23 +73,19 @@ public class VistaServidor extends JFrame implements Observer  {
         estadisticas = new OyenteVerEstadisticas();
         expulsar = new OyenteExpulsar();
         cerrarVentana = new OyenteCerrarVentana();
-        salas = new OyenteListaSalas();
-        mesas = new OyenteListaMesas();
         jPanelLog.getVerEstadisticas().addActionListener(estadisticas);
         jPanelLog.getExpulsar().addActionListener(expulsar);
-        jPanelSalas.getSalas().addListSelectionListener(salas);
-        jPanelMesas.getMesas().addListSelectionListener(mesas);
         addWindowListener(cerrarVentana);
     }
 
     private void salir() {
-        if (JOptionPane.showConfirmDialog(this,"¿Desea abandonar el servidor?",
+        if (JOptionPane.showConfirmDialog(this,"Â¿Desea abandonar el servidor?",
                 "Cierre del servidor",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
            //Guarda el log en un archivo. Comentado para mayor comodidad.
             /* String Texto = jPanelLog.getLog().getText();
             try{
                         JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));
-                        chooser.showSaveDialog(this); //Muestra el diálogo
+                        chooser.showSaveDialog(this); //Muestra el diÃ¡logo
                         File guardar = chooser.getSelectedFile();
                         guardar.setWritable(false);
                         if(guardar !=null){
@@ -112,16 +105,14 @@ public class VistaServidor extends JFrame implements Observer  {
 			}
             System.exit(0);
         }
-        
+
     }
 
     public void update(Observable o, Object arg) {
       if(arg instanceof MensajeLog) {
             MensajeLog mensaje = (MensajeLog)arg;
             String texto = jPanelLog.getLog().getText();
-            String nuevo = "Nuevo usuario: "+mensaje.getUsuario()+" con password: "+
-                    mensaje.getPassword()+" conectado. \n";
-            jPanelLog.getLog().setText(texto+nuevo);
+            jPanelLog.getLog().setText(texto+mensaje.getTexto());
       }
 
     }
@@ -144,7 +135,7 @@ public class VistaServidor extends JFrame implements Observer  {
             }
             else
                 JOptionPane.showMessageDialog(null,"Seleccione un cliente en conectados",
-                        "Error en selección",JOptionPane.ERROR_MESSAGE);
+                        "Error en selecciÃ³n",JOptionPane.ERROR_MESSAGE);
         }
 
     }
@@ -159,30 +150,8 @@ public class VistaServidor extends JFrame implements Observer  {
             }
             else
                 JOptionPane.showMessageDialog(null,"Seleccione un cliente en conectados",
-                        "Error en selección",JOptionPane.ERROR_MESSAGE);
+                        "Error en selecciÃ³n",JOptionPane.ERROR_MESSAGE);
         }
-    }
-
-    class OyenteListaSalas implements ListSelectionListener {
-
-        public void valueChanged(ListSelectionEvent e) {
-            JList lista = jPanelSalas.getSalas();
-            if (lista.getSelectedValue() != null) {
-                controlador.mostrarMesasAsociadas(lista.getSelectedValue().toString());
-            }
-        }
-
-    }
-
-    class OyenteListaMesas implements ListSelectionListener {
-
-        public void valueChanged(ListSelectionEvent e) {
-            JList lista = jPanelMesas.getMesas();
-            if (lista.getSelectedValue() != null) {
-                controlador.mostrarJugadoresAsociados(lista.getSelectedValue().toString());
-            }
-        }
-
     }
 }
 

@@ -26,13 +26,13 @@ public class PanelMesas extends JPanel {
 	private JPanel jPanel1;
     private JPanel jPanel2;
     private ControladorServidor controlador;
-    
+
     public PanelMesas(ControladorServidor control) {
        setLayout(new BorderLayout());
        controlador = control;
        jPanel1 = new JPanel();
        jPanel2 = new JPanel();
-       jLabelMesas = new JLabel("     Mesas en sala:");
+       jLabelMesas = new JLabel("     Mesas disponibles:");
        jMesas = new JList(controlador.getListaMesas());
        jMesas.setFont(new Font("Serif", Font.ITALIC, 12));
        jMesas.setBorder(BorderFactory.createEtchedBorder());

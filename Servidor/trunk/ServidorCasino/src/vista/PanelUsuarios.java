@@ -7,6 +7,7 @@ package vista;
 
 import controlador.ControladorServidor;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -17,21 +18,21 @@ import javax.swing.JPanel;
  *
  * @author Fiutten
  */
-public class PanelConectados extends JPanel {
+public class PanelUsuarios extends JPanel {
 
     private JLabel jLabelConectados;
     private JList jConectados;
 	private JPanel jPanel1;
     private JPanel jPanel2;
     private ControladorServidor controlador;
-    
-    public PanelConectados(ControladorServidor control) {
+
+    public PanelUsuarios(ControladorServidor control) {
        setLayout(new BorderLayout());
        controlador = control;
        jPanel1 = new JPanel();
        jPanel2 = new JPanel();
        jLabelConectados = new JLabel("    Clientes del casino:");
-       jConectados = new JList(controlador.getListaConectados());
+       jConectados = new JList(controlador.getListaUsuarios());
        jConectados.setFont(new Font("Serif", Font.ITALIC, 12));
        jConectados.setBorder(BorderFactory.createEtchedBorder());
        jConectados.setToolTipText("Clientes");

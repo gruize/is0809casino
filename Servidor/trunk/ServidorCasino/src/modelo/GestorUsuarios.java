@@ -9,7 +9,9 @@ import bbdd.gestorBBDD.InterfazBBDD;
 
 import bbdd.beans.Clientes;
 import controlador.ControladorServidor;
+import java.util.ArrayList;
 import java.util.Vector;
+import javax.swing.DefaultListModel;
 import modelo.LogicaJuegos.JugadorConectado;
 import org.apache.log4j.Logger;
 
@@ -22,11 +24,11 @@ public class GestorUsuarios {
     //--------------------------------------------------------------------------
     //          ATRIBUTOS
     //--------------------------------------------------------------------------
-    private Vector<JugadorConectado> jugadores = null;
+    private static Vector<JugadorConectado> jugadores = null;
     private InterfazBBDD bbdd;
     private ControladorServidor controlador;
-
-    //PatrÃ³n Singleton
+    private static DefaultListModel listaUsuarios;
+    //PatrÃƒÂ³n Singleton
     private static GestorUsuarios instancia;
 
     //log4j
@@ -38,6 +40,7 @@ public class GestorUsuarios {
     public static GestorUsuarios getInstancia(ControladorServidor c) {
         if (instancia == null) {
             instancia = new GestorUsuarios(c);
+            listaUsuarios = new DefaultListModel();
         }
         return instancia;
     }
@@ -50,24 +53,33 @@ public class GestorUsuarios {
 
     }
 
+    public DefaultListModel getUsuarios() {
+        ArrayList usuarios = this.bbdd.getClientes();
+        for (int i = 0;i<usuarios.size();i++) {
+            Clientes jugador = (Clientes)usuarios.get(i);
+            listaUsuarios.addElement(jugador.getUsuario());
+        }
+        return listaUsuarios;
+    }
+
     //======================================================================
     //          INSERTAR JUGADOR
     //======================================================================
     /**
      * Comprueba el login de un usuario
      * @param usuario nombre de usuario
-     * @param password contraseÃ±a
+     * @param password contraseÃƒÂ±a
      * @return identificador del usuario si los datos son correctos, y no estaba ya en la mesa, -1 e.o.c
      */
     public int hacerLogin(String usuario, String password) {
         int id = -1;
 
         id = bbdd.comprobarUsuario(usuario, password);
-        //Si el jugador aun no estÃ¡ conectado devuelve resultado = -1
+        //Si el jugador aun no estÃƒÂ¡ conectado devuelve resultado = -1
         if (getIndiceJugador(id) == -1) {
             insertarJugador(bbdd.getClientePorCodigo(id));
             log.info("GestorUsuarios : hacerLogin : Jugador con id=" + id + " logeado en el casino");
-        } else { //ya estÃ¡ conectado, devuelvo -1 hacia el comunicador
+        } else { //ya estÃƒÂ¡ conectado, devuelvo -1 hacia el comunicador
             id = -1;
         }
 
@@ -75,7 +87,7 @@ public class GestorUsuarios {
     }
 
     /**
-     * Cuando un jugador se logea y entra en el casino. AÃºn no ha entrado en sala ni mesa
+     * Cuando un jugador se logea y entra en el casino. AÃƒÂºn no ha entrado en sala ni mesa
      * @param idSala
      * @param idMesa
      * @param c
@@ -84,7 +96,7 @@ public class GestorUsuarios {
         JugadorConectado jugador = new JugadorConectado(c);
         this.jugadores.add(jugador);
 
-        //aÃºn no se inserta nada en BBDD, no se considera Participante porque aÃºn no ha entrado en sala ni mesa
+        //aÃƒÂºn no se inserta nada en BBDD, no se considera Participante porque aÃƒÂºn no ha entrado en sala ni mesa
     }
 
     /**
@@ -116,7 +128,7 @@ public class GestorUsuarios {
         //TODO hay que actualizar algo en BBDD? jugador, mesa? se le considera ya un participante?
 
         //Enviarselo al gestorSalas, y que llame a su gestorMesas y lo incluya en la mesa correspondiente
-        return GestorSalas.getInstance(controlador).añadirMesaEnSala(idMesa, getJugadorConectado(idJugador).getIdSala(), idJugador);
+        return GestorSalas.getInstance(controlador).insertarMesaEnSala(idMesa, getJugadorConectado(idJugador).getIdSala(), idJugador);
 
     }
 
@@ -125,7 +137,7 @@ public class GestorUsuarios {
     //=======================================================================
     /**
      * Busca la posicion del vector de jugadores donde se encuentra el jugador
-     * @return posicion del jugador si estÃ¡ en la lista de jugadores del casino
+     * @return posicion del jugador si estÃƒÂ¡ en la lista de jugadores del casino
      *          -1 si no lo encuentra
      */
     public int getIndiceJugador(int idJugador) {
@@ -143,9 +155,9 @@ public class GestorUsuarios {
                 if (enc) {
                     return i-1;
                 } else {
-                    return -1; //el usuario aÃºn no estÃ¡ registrado
+                    return -1; //el usuario aÃƒÂºn no estÃƒÂ¡ registrado
                 }
-            } else {//es el primer jugador del casino, tampoco se ha insertado aÃºn
+            } else {//es el primer jugador del casino, tampoco se ha insertado aÃƒÂºn
                 return -1;
             }
 
@@ -202,7 +214,7 @@ public class GestorUsuarios {
      */
     public boolean desconectarJugador(int idJugador) {
 
-        //Si todavÃ­a no ha salido de  mesa o sala
+        //Si todavÃƒÂ­a no ha salido de  mesa o sala
         if (getJugadorConectado(idJugador).getIdMesa() != -1) {
             eliminarJugadorEnMesa(idJugador);
         }
@@ -218,7 +230,7 @@ public class GestorUsuarios {
     }
 
     /**
-     * Para el mÃ³dulo de chat. Se necesitan conocer todos los jugadores que estÃ¡n en una mesa
+     * Para el mÃƒÂ³dulo de chat. Se necesitan conocer todos los jugadores que estÃƒÂ¡n en una mesa
      *
      *
      */

@@ -27,7 +27,7 @@ public class PanelLog extends JPanel {
     private JLabel jLabelLog;
     private JTextArea jLog;
     private JScrollPane jScroll;
-    private PanelConectados jConectados;
+    private PanelUsuarios jConectados;
     private JPanel jPanel2;
     private JPanel jPanel3;
     private JPanel jPanel4;
@@ -38,7 +38,7 @@ public class PanelLog extends JPanel {
     public PanelLog(ControladorServidor control) {
        setLayout(new GridLayout(1,3));
        controlador = control;
-       jConectados = new PanelConectados(controlador);
+       jConectados = new PanelUsuarios(controlador);
        jPanel2 = new JPanel();
        jPanel3 = new JPanel();
        jPanel4 = new JPanel();
@@ -56,7 +56,7 @@ public class PanelLog extends JPanel {
        jScroll = new JScrollPane(jLog);
        jScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
        jScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-       
+
        jPanel3.setLayout(new FlowLayout());
        jExpulsar.setPreferredSize(new Dimension(120,30));
        jVerEstadisticas.setPreferredSize(new Dimension(160,30));
@@ -88,7 +88,7 @@ public class PanelLog extends JPanel {
         return jExpulsar;
     }
 
-    public PanelConectados getConectados() {
+    public PanelUsuarios getConectados() {
         return jConectados;
     }
 }

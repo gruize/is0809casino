@@ -11,20 +11,15 @@ package modelo;
  */
 public class MensajeLog {
 
-    private String usuario;
-    private String password;
+    private String texto;
 
-    public MensajeLog(String usu,String pass) {
-        usuario = usu;
-        password = pass;
+    public MensajeLog(String texto) {
+        this.texto = texto;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getTexto() {
+        return texto;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
 }
