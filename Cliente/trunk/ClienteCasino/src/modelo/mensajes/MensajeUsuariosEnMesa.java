@@ -6,6 +6,7 @@
 package modelo.mensajes;
 
 import java.io.Serializable;
+import java.util.Vector;
 
 /**
  *
@@ -13,12 +14,20 @@ import java.io.Serializable;
  */
 public class MensajeUsuariosEnMesa implements Serializable{
 
-    private String[] jugadores;
+    private Vector<String> jugadores;
     private int idMesa;
 
-    public MensajeUsuariosEnMesa(String[] jugadores, int idMesa) {
+    public MensajeUsuariosEnMesa(Vector<String> jugadores, int idMesa) {
         this.jugadores = jugadores;
         this.idMesa = idMesa;
+    }
+
+    public Vector<String> getJugadores() {
+        return jugadores;
+    }
+
+    public void setJugadores(Vector<String> jugadores) {
+        this.jugadores = jugadores;
     }
 
     public int getIdMesa() {
@@ -27,16 +36,6 @@ public class MensajeUsuariosEnMesa implements Serializable{
 
     public void setIdMesa(int idMesa) {
         this.idMesa = idMesa;
-    }
-
-    public String[] getJugadores() {
-        return jugadores;
-    }
-
-    public void setJugadores(String[] jugadores) {
-        this.jugadores = jugadores;
-    }
-
-    
+    }   
 
 }

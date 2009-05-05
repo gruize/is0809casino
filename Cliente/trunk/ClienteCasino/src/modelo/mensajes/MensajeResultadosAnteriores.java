@@ -6,6 +6,7 @@
 package modelo.mensajes;
 
 import java.io.Serializable;
+import java.util.Vector;
 
 /**
  *
@@ -14,13 +15,21 @@ import java.io.Serializable;
 public class MensajeResultadosAnteriores implements Serializable{
 
     private int idmesa;
-    private String[] resultados;
+    private Vector<String> resultados;
 
-    public MensajeResultadosAnteriores(int idmesa, String[] resultados) {
+    public MensajeResultadosAnteriores(int idmesa, Vector<String> resultados) {
         this.idmesa = idmesa;
         this.resultados = resultados;
     }
 
+    public Vector<String> getResultados() {
+        return resultados;
+    }
+
+    public void setResultados(Vector<String> resultados) {
+        this.resultados = resultados;
+    }
+  
     public int getIdmesa() {
         return idmesa;
     }
@@ -28,13 +37,4 @@ public class MensajeResultadosAnteriores implements Serializable{
     public void setIdmesa(int idmesa) {
         this.idmesa = idmesa;
     }
-
-    public String[] getResultados() {
-        return resultados;
-    }
-
-    public void setResultados(String[] resultados) {
-        this.resultados = resultados;
-    }
-    
 }

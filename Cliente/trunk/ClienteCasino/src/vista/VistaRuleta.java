@@ -20,6 +20,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -31,7 +32,10 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import modelo.Apuesta;
 import modelo.mensajes.MensajeChat;
+import modelo.mensajes.MensajeInfoCliente;
 import modelo.mensajes.MensajeJugada;
+import modelo.mensajes.MensajeResultadosAnteriores;
+import modelo.mensajes.MensajeUsuariosEnMesa;
 
 /**
  *
@@ -55,7 +59,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
 	private BufferedImage ImagenRuleta = null;
 	private BufferedImage ImagenBola = null;
 	private boolean gira=false;
-	private MesaPanel mesa;
+	//private MesaPanel mesa;
 	private int bolaX, bolaY;
 	private static int numVueltas = 3;
     private ControladorCliente controlador;
@@ -65,8 +69,10 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
     private OyenteSalir exit;
     private OyenteTerminarApuestas terminarApuestas;
     private OyenteVolver oyenteVolver;
+    /** Para probar la lista de usuarios y de apuestas
     private OyenteUsuarios oyenteUsuarios;
     private OyenteApuestas oyenteApuestas;
+     */
 
     /** Creates new form FrameUso */
     public VistaRuleta(ControladorCliente control) {
@@ -85,8 +91,8 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         setLocation(200, 0);
 
         //Temporal
-        mesa.limpiarTapete();
-		mesa.empezar(10000);
+//        mesa.limpiarTapete();
+//		mesa.empezar(10000);
     }
 
     public JPanelCjtoApuestasTemp getJPanelCjtoApuestasTemp1() {
@@ -229,9 +235,9 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         jPanelDatos.setBounds(50, 20, 280, 190);
         jLayeredPane1.add(jPanelDatos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        mesa = new MesaPanel();
-        mesa.setBounds(365, 0, 430, 800);
-        jLayeredPane1.add(mesa, javax.swing.JLayeredPane.DEFAULT_LAYER);
+//        mesa = new MesaPanel();
+  //      mesa.setBounds(365, 0, 430, 800);
+    //    jLayeredPane1.add(mesa, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonFinish.setIcon(new javax.swing.ImageIcon("C:\\Documents and Settings\\GabiPC\\Escritorio\\II\\Practica IS\\Repositorio\\Cliente\\trunk\\ClienteCasino\\recursos\\TgC_boton142.gif")); // NOI18N
         jButtonFinish.setText("Terminar");
@@ -414,16 +420,19 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         exit = new OyenteSalir();
         terminarApuestas = new OyenteTerminarApuestas();
         oyenteVolver = new OyenteVolver();
+        /** Para probar la lista de usuarios y de apuestas
         oyenteUsuarios = new OyenteUsuarios();
         oyenteApuestas = new OyenteApuestas();
-
+         */
         PanelChat.getBotonBloquear().addActionListener(bloquearChat);
         PanelChat.getBotonEnviar().addActionListener(enviarMensajeChat);
         getJButtonSalir().addActionListener(exit);
         getJButtonFinish().addActionListener(terminarApuestas);
+        /** Para probar la lista de usuarios y de apuestas
         getJButtonFinish().addActionListener(oyenteApuestas);
         getJButtonFinish().addActionListener(oyenteUsuarios);
         getJButtonBack().addActionListener(oyenteVolver);
+         */
     }
 
      public void update(Observable o, Object arg) {
@@ -445,6 +454,17 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
              */
              //Despues de una jugada, debe actualizarse el saldo actual del jugador.
              getJLabelSaldo().setText(Integer.toString(controlador.obtenerSaldo()));
+         }else if(arg instanceof MensajeUsuariosEnMesa){
+             MensajeUsuariosEnMesa mensaje = (MensajeUsuariosEnMesa) arg;
+             getJPanelUsuariosTemp1().getListaUsuarios().setListData(mensaje.getJugadores());
+             //String[] jugadores = controlador.obtenerUsuariosEnMesa();
+             //getJPanelUsuariosTemp1().getlistaUsuarios().setListData(jugadores);
+         }else if(arg instanceof MensajeResultadosAnteriores){
+             MensajeResultadosAnteriores mensaje = (MensajeResultadosAnteriores) arg;
+             getJPanelCjtoApuestasTemp1().getListaResultados().setListData(mensaje.getResultados());
+         }else if(arg instanceof MensajeInfoCliente){
+            MensajeInfoCliente mensaje = (MensajeInfoCliente) arg;
+            
          }
 
     }
@@ -487,12 +507,11 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
     class OyenteTerminarApuestas implements ActionListener{
 
         public void actionPerformed(ActionEvent e) {            
-            System.out.println("jButton2.mouseClicked, event="+e);
-            bloquearApuestas();
+//            bloquearApuestas();
         }
 
     }
-
+/**
     private void bloquearApuestas(){
         /** Para pruebas
         Apuesta[] apuesta = new Apuesta[5];
@@ -500,7 +519,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
             apuesta[i] = new Apuesta(i, tipoAp.NUMERO,proporcionAp.SIMPLE, 10 * i);
         }
         */
-        if (JOptionPane.showConfirmDialog(this,"No podra realizar mas apuestas","Cierre de apuestas",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION){            		                
+/**        if (JOptionPane.showConfirmDialog(this,"No podra realizar mas apuestas","Cierre de apuestas",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION){
             int num=mesa.dameNumApuestas();
             Apuesta aux;
             Apuesta[] lista;
@@ -509,11 +528,11 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
                 aux=lista[i];
                 aux.imprimir();
             }
-            girarRuleta(3);
+            girarRuleta(1);
             mesa.limpiarTapete();
             mesa.empezar(Integer.parseInt(mesa.getSaldoLabel().getText()));
         }
-    }
+    }*/
 
     class OyenteEnviarMensajeChat implements ActionListener{
 
@@ -556,23 +575,22 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
 
     }
 
+    /** Para probar la lista de usuarios y de apuestas
     class OyenteUsuarios implements ActionListener{
         public void actionPerformed(ActionEvent e) {
-            String[] jugadores = controlador.obtenerUsuariosEnMesa();
+            Vector<String> jugadores = controlador.obtenerUsuariosEnMesa();
             getJPanelUsuariosTemp1().getlistaUsuarios().setListData(jugadores);
-            getJButtonFinish().addActionListener(oyenteApuestas);
         }
     }
 
     class OyenteApuestas implements ActionListener{
 
         public void actionPerformed(ActionEvent e) {
-            String[] apuestasAnteriores = controlador.obtenerApuestasAnteriores();
+            Vector<String> apuestasAnteriores = controlador.obtenerApuestasAnteriores();
             getJPanelCjtoApuestasTemp1().getListaResultados().setListData(apuestasAnteriores);
-            getJButtonFinish().addActionListener(terminarApuestas);
         }
 
-    }
+    }*/
 
     private void salir() {
         if (JOptionPane.showConfirmDialog(this,"¿Desea abandonar el juego?",
