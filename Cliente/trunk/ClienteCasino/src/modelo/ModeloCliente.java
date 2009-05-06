@@ -10,6 +10,7 @@ import modelo.mensajes.MensajeInfoMesas;
 import modelo.mensajes.MensajeInfoSalas;
 import modelo.mensajes.MensajeJugada;
 import java.util.Observable;
+import modelo.mensajes.MensajeInfoCliente;
 /**
  *
  * @author david
@@ -20,9 +21,15 @@ public class ModeloCliente extends Observable{
     private int id;
     private int sala;
     private int mesa;
-    private int saldo;
+    private double saldo;
 
-    public int getSaldo() {
+    public void actualizarSaldo(MensajeInfoCliente mensajeInfoCliente) {
+        setSaldo(mensajeInfoCliente.getSaldo());
+        setChanged();
+        this.notifyObservers(mensajeInfoCliente);
+    }
+
+    public double getSaldo() {
         return saldo;
     }
 
@@ -41,7 +48,7 @@ public class ModeloCliente extends Observable{
         notifyObservers(mensajeChat);
     }
 
-    public void setSaldo(int saldo) {
+    public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
 

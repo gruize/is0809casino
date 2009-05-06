@@ -18,7 +18,9 @@ import modelo.mensajes.MensajeInfoCliente;
 import modelo.mensajes.MensajeInfoMesas;
 import modelo.mensajes.MensajeInfoSalas;
 import modelo.mensajes.MensajeMesa;
+import modelo.mensajes.MensajeResultadosAnteriores;
 import modelo.mensajes.MensajeSala;
+import modelo.mensajes.MensajeUsuariosEnMesa;
 
 /**
  *
@@ -49,8 +51,6 @@ public class ControladorCliente {
         return false;
     }
 
-
-
     public void enviarMensajeChat(String mensaje) {
         MensajeChat mensajeChat = new MensajeChat(modelo.getId(), modelo.getSala(),modelo.getMesa(), mensaje, modelo.getUsuario());
         comunicador.enviarMensaje(TipoMensaje.MENSAJE_CHAT, mensajeChat);
@@ -80,7 +80,7 @@ public class ControladorCliente {
         return strings;
     }
 
-    public int obtenerSaldo() {
+    public double obtenerSaldo() {
         return modelo.getSaldo();
     }
 
@@ -147,8 +147,8 @@ public class ControladorCliente {
 
         int idUsuario = modelo.getId();
         int idMesa = modelo.getMesa();
-        int idSala=modelo.getSala();        
-        for(int i = 0; i < num; i++){            
+        int idSala=modelo.getSala();
+        for(int i = 0; i < num; i++){
             Jugada jugadaAux = new Jugada(idUsuario,idSala,idMesa,apuesta[i].getTipo().toString(),apuesta[i].getCasilla(),(int) apuesta[i].getValorApostado());
             MensajeJugada mensaje = new MensajeJugada(idUsuario,idMesa, jugadaAux);
             enviarMensajeJugada(TipoMensaje.MENSAJE_JUGADA,mensaje);
@@ -210,7 +210,7 @@ public class ControladorCliente {
      * Cuando el servidor del casino se desconecta
      */
     public void servidorDesconectado(){
-      
+
         modelo.setMesa(-1);
         modelo.setSala(-1);
 
@@ -224,68 +224,54 @@ public class ControladorCliente {
         return true;
     }
 
-
     /**
      * Cuando el servidor manda un mensaje al cliente.
      * @param tipo tipo del mensaje (1=chat, 2=MensajeJugada, 3=EntradaMesa, 4=salidaMesa)
      * @param mensaje
      */
     public synchronized void mensajeRecibido(int tipo, Serializable mensaje) {
-
         System.out.println("ControladorCliente : mensajeRecibido : tipo="+tipo+" mensaje="+mensaje.toString());
         if (tipo == TipoMensaje.MENSAJE_CHAT) {
             MensajeChat m = (MensajeChat) mensaje;
             modelo.addmensajechat(m);
-
         } else if (tipo == TipoMensaje.MENSAJE_JUGADA) {
             MensajeJugada mensajeJugada = (MensajeJugada) mensaje;
             modelo.addMensajeJugada(mensajeJugada);
-
         } else if (tipo == TipoMensaje.ENTRADA_MESA) {
-
             //El servidor me confirma la entrada en la mesa
             MensajeMesa mensajeMesa = (MensajeMesa) mensaje;
             //actualizar el modelo
             modelo.setMesa(mensajeMesa.getMesa());
-
         } else if (tipo == TipoMensaje.ENTRADA_SALA) {
-
             //el servidor confirma la entrada en la sala
             MensajeSala mensajeSala = (MensajeSala) mensaje;
-
             //actualizar el modelo
             modelo.setSala(mensajeSala.getSala());
-
         } else if (tipo== TipoMensaje.INFO_SALAS){
             System.out.println("Info salas pedida");
             MensajeInfoSalas mensajeInfoSalas = (MensajeInfoSalas) mensaje;
             modelo.rellenarSalas(mensajeInfoSalas);
-
         } else if (tipo==TipoMensaje.INFO_MESAS){
             System.out.println("Info mesas pedida");
             MensajeInfoMesas mensajeInfoMesas = (MensajeInfoMesas) mensaje;
             modelo.rellenarMesas(mensajeInfoMesas);
-
         } else if (tipo==TipoMensaje.INFO_CLIENTE){
-
             //TODO interfaz: os mandarÃ© la info del propio cliente: os interesa el saldo
             //TODO LLega con el saldo y la ultima Bola Lanzada, para ponerla en la interfaz
             MensajeInfoCliente mensajeIC=(MensajeInfoCliente)mensaje;
-
-
-
-
+            modelo.actualizarSaldo(mensajeIC);
         }else if (tipo==TipoMensaje.ESTADO_RULETA){
-
             //TODO interfaz os mandarÃ© el estado de la ruleta, para que parÃ©is y arranquÃ©is.
-
             MensajeEstadoRuleta m=(MensajeEstadoRuleta)mensaje;
-        }
-
-
-
-        else {
-            System.err.println("No sÃ© que tipo de mensaje me envÃ­a!! " + tipo);
+            //TODO: modelo.modificarEstadoRuleta
+        }else if (tipo==TipoMensaje.USERS_MESA){
+            MensajeUsuariosEnMesa mensajeUEM = (MensajeUsuariosEnMesa)mensaje;
+            //TODO:
+        }else if (tipo==TipoMensaje.RESULTS_PASADO){
+            MensajeResultadosAnteriores mensajeRA = (MensajeResultadosAnteriores)mensaje;
+            //TODO:
+        }else {
+            System.err.println("No se que tipo de mensaje me envia!! " + tipo);
         }
 
     }

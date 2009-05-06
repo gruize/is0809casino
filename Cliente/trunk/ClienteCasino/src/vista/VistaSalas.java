@@ -257,7 +257,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
 
     private void rellenarDatos() {
         jLabelUser.setText(controlador.obtenerUsuario());
-        jLabelSaldo.setText(Integer.toString(controlador.obtenerSaldo()));
+        jLabelSaldo.setText(Double.toString(controlador.obtenerSaldo()));
 
     }
 
