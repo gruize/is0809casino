@@ -95,6 +95,9 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         inicializar();
         ponerOyentes();
         rellenarDatos();
+
+        controlador.getModelo().addObserver(this);
+
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter(){
             public void windowClosing(WindowEvent e) {
