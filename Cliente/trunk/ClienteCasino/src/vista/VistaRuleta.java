@@ -26,6 +26,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import modelo.Apuesta;
 import modelo.mensajes.MensajeChat;
+import modelo.mensajes.MensajeEstadoRuleta;
 import modelo.mensajes.MensajeInfoCliente;
 import modelo.mensajes.MensajeJugada;
 import modelo.mensajes.MensajeResultadosAnteriores;
@@ -40,7 +41,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
     private javax.swing.JButton jButtonFinish;
     private javax.swing.JButton jButtonBack;
     private javax.swing.JButton jButtonSalir;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelEstado;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelSaldo;
@@ -138,7 +139,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         jLabelUsuario = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabelSaldo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelEstado = new javax.swing.JLabel();
         jButtonFinish = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -186,10 +187,10 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         jLabelSaldo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelSaldo.setText("Leuros");
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 18));
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("5 Segundos restantes");
+        jLabelEstado.setFont(new java.awt.Font("Century Gothic", 1, 18));
+        jLabelEstado.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelEstado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelEstado.setText("");
 
         javax.swing.GroupLayout jPanelDatosLayout = new javax.swing.GroupLayout(jPanelDatos);
         jPanelDatos.setLayout(jPanelDatosLayout);
@@ -198,7 +199,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
             .addGroup(jPanelDatosLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelDatosLayout.createSequentialGroup()
                         .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -223,7 +224,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -260,6 +261,14 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         getJButtonSalir().setForeground(new Color(255,0,0));
 
         pack();
+    }
+
+    public JLabel getJLabelEstado() {
+        return jLabelEstado;
+    }
+
+    public void setJLabelEstado(JLabel jLabelEstado) {
+        this.jLabelEstado = jLabelEstado;
     }
 
     private BufferedImage loadImage(String string) {
@@ -434,7 +443,15 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
                MensajeChat mensaje = (MensajeChat)arg;
                String textoadd = PanelChat.getAreaTextoChat().getText() + "\n" + mensaje.get_usuario() + ": " + mensaje.get_men();
                PanelChat.getAreaTextoChat().setText(textoadd);
-         }else if (arg instanceof MensajeJugada){
+         }else if (arg instanceof MensajeEstadoRuleta){
+             MensajeEstadoRuleta mensaje = (MensajeEstadoRuleta) arg;
+             if (mensaje.isParado()){
+                 getJLabelEstado().setText("No puede realizar mas apuestas");
+                 JOptionPane.showMessageDialog( this,"Ha finalizado el turno de apuestas.", "Turno de apuestas", JOptionPane.WARNING_MESSAGE );
+             }else{
+                 getJLabelEstado().setText("Realice sus apuestas");
+                 JOptionPane.showMessageDialog( this,"Puede realizar sus apuestas.", "Turno de apuestas", JOptionPane.WARNING_MESSAGE );
+             }
              //TODO descomponer el mensaje
              /*
              * Puedo obtener...
@@ -500,7 +517,6 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
     class OyenteTerminarApuestas implements ActionListener{
 
         public void actionPerformed(ActionEvent e) {            
-
             enviarApuestas();
         }
 
@@ -510,9 +526,14 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         if (JOptionPane.showConfirmDialog(this,"No podra realizar mas apuestas","Cierre de apuestas",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION){
             int num=mesa.dameNumApuestas();
             Apuesta[] lista;
-            lista=mesa.terminarYdameListaApuestas();
-            controlador.realizarApuestaRuleta(lista, num);
-            girarRuleta(4);
+            lista=mesa.terminarYdameListaApuestas();            
+            //getJLabelEstado().setText("Finalizado turno de apuestas");
+            //JOptionPane.showMessageDialog( this,"Finalizado el turno de apuestas.", "Turno de apuestas", JOptionPane.WARNING_MESSAGE );
+            getJLabelEstado().setText("Suerte!!!");
+            controlador.realizarApuestaRuleta(lista, num);                                    
+            //girarRuleta(5);
+            //JOptionPane.showMessageDialog( this,"Puede realizar sus apuestas.", "Turno de apuestas", JOptionPane.WARNING_MESSAGE );
+            //getJLabelEstado().setText("Realice sus apuestas.");
         }
     }
 
