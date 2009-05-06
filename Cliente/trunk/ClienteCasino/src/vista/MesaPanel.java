@@ -379,6 +379,11 @@ public class MesaPanel extends javax.swing.JPanel {
 		this.add(tapiz);
 		tapiz.setBounds(26, 439, 377, 264);
     	}
+        getFicha_selecionada().setIcon(null);
+    }
+
+    public JLabel getFicha_selecionada() {
+        return ficha_selecionada;
     }
     public void setTerminar(boolean t){
     	this.terminar=t;

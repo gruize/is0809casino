@@ -63,6 +63,26 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
     private OyenteSalir exit;
     private OyenteTerminarApuestas terminarApuestas;
     private OyenteVolver oyenteVolver;
+
+    public JPanelChat getPanelChat() {
+        return PanelChat;
+    }
+
+    public ControladorCliente getControlador() {
+        return controlador;
+    }
+
+    public boolean getGira() {
+        return gira;
+    }
+
+    public MesaPanel getMesa() {
+        return mesa;
+    }
+
+    public static int getNumVueltas() {
+        return numVueltas;
+    }
     /** Para probar la lista de usuarios y de apuestas
     private OyenteUsuarios oyenteUsuarios;
     private OyenteApuestas oyenteApuestas;
@@ -427,8 +447,9 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         oyenteUsuarios = new OyenteUsuarios();
         oyenteApuestas = new OyenteApuestas();
          */
-        PanelChat.getBotonBloquear().addActionListener(bloquearChat);
-        PanelChat.getBotonEnviar().addActionListener(enviarMensajeChat);
+
+        getPanelChat().getBotonBloquear().addActionListener(bloquearChat);
+        getPanelChat().getBotonEnviar().addActionListener(enviarMensajeChat);
         getJButtonSalir().addActionListener(exit);
         getJButtonFinish().addActionListener(terminarApuestas);
         /** Para probar la lista de usuarios y de apuestas
@@ -441,15 +462,17 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
      public void update(Observable o, Object arg) {
          if (arg instanceof MensajeChat) {
                MensajeChat mensaje = (MensajeChat)arg;
-               String textoadd = PanelChat.getAreaTextoChat().getText() + "\n" + mensaje.get_usuario() + ": " + mensaje.get_men();
-               PanelChat.getAreaTextoChat().setText(textoadd);
+               String textoadd = getPanelChat().getAreaTextoChat().getText() + "\n" + mensaje.get_usuario() + ": " + mensaje.get_men();
+               getPanelChat().getAreaTextoChat().setText(textoadd);
          }else if (arg instanceof MensajeEstadoRuleta){
              MensajeEstadoRuleta mensaje = (MensajeEstadoRuleta) arg;
              if (mensaje.isParado()){
-                 getJLabelEstado().setText("No puede realizar mas apuestas");
-                 JOptionPane.showMessageDialog( this,"Ha finalizado el turno de apuestas.", "Turno de apuestas", JOptionPane.WARNING_MESSAGE );
+                 getJLabelEstado().setText("No puede realizar mas apuestas");                 
+                 enviarApuestas();                 
              }else{
                  getJLabelEstado().setText("Realice sus apuestas");
+                 getMesa().setEnabled(true);
+                 getMesa().limpiarTapete();
                  JOptionPane.showMessageDialog( this,"Puede realizar sus apuestas.", "Turno de apuestas", JOptionPane.WARNING_MESSAGE );
              }
          }else if(arg instanceof MensajeUsuariosEnMesa){
@@ -463,9 +486,9 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
          }else if(arg instanceof MensajeInfoCliente){
             MensajeInfoCliente mensaje = (MensajeInfoCliente) arg;
             getJLabelSaldo().setText(Double.toString(mensaje.getSaldo()));            
-            mesa.setSaldoUsuario(mensaje.getSaldo());
+            getMesa().setSaldoUsuario(mensaje.getSaldo());
+            getMesa().empezar(mensaje.getSaldo());
          }
-
     }
 
     class OyenteBloquearChat implements ActionListener{
@@ -485,20 +508,20 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
     }
 
     private void bloqueoChat(){
-        PanelChat.getBotonBloquear().setActionCommand(PanelChat.DESBLOQUEO);
-        PanelChat.getBotonBloquear().setText("Desbloquear");
-        PanelChat.getAreaTextoChat().setVisible(false);
-        PanelChat.getBotonEnviar().setVisible(false);
-        PanelChat.getTextfieldFrase().setVisible(false);
+        getPanelChat().getBotonBloquear().setActionCommand(PanelChat.DESBLOQUEO);
+        getPanelChat().getBotonBloquear().setText("Desbloquear");
+        getPanelChat().getAreaTextoChat().setVisible(false);
+        getPanelChat().getBotonEnviar().setVisible(false);
+        getPanelChat().getTextfieldFrase().setVisible(false);
         //controlador.inhabilitarChat();
     }
 
     private void desbloqueoChat(){
-        PanelChat.getBotonBloquear().setActionCommand(PanelChat.BLOQUEO);
-        PanelChat.getBotonBloquear().setText("Bloquear");
-        PanelChat.getAreaTextoChat().setVisible(true);
-        PanelChat.getBotonEnviar().setVisible(true);
-        PanelChat.getTextfieldFrase().setVisible(true);
+        getPanelChat().getBotonBloquear().setActionCommand(PanelChat.BLOQUEO);
+        getPanelChat().getBotonBloquear().setText("Bloquear");
+        getPanelChat().getAreaTextoChat().setVisible(true);
+        getPanelChat().getBotonEnviar().setVisible(true);
+        getPanelChat().getTextfieldFrase().setVisible(true);
         //controlador.habilitarChat();
 
     }
@@ -512,27 +535,33 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
     }
 
     private void enviarApuestas(){
-        if (JOptionPane.showConfirmDialog(this,"No podra realizar mas apuestas","Cierre de apuestas",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION){
-            int num=mesa.dameNumApuestas();
-            Apuesta[] lista;
-            lista=mesa.terminarYdameListaApuestas();            
-            //getJLabelEstado().setText("Finalizado turno de apuestas");
-            //JOptionPane.showMessageDialog( this,"Finalizado el turno de apuestas.", "Turno de apuestas", JOptionPane.WARNING_MESSAGE );
-            getJLabelEstado().setText("Suerte!!!");
-            controlador.realizarApuestaRuleta(lista, num);                                    
-            //girarRuleta(5);
-            //JOptionPane.showMessageDialog( this,"Puede realizar sus apuestas.", "Turno de apuestas", JOptionPane.WARNING_MESSAGE );
-            //getJLabelEstado().setText("Realice sus apuestas.");
-        }
+        JOptionPane.showMessageDialog( this,"No puede realizar mas apuestas", "Turno de apuestas", JOptionPane.WARNING_MESSAGE );
+        int num = getMesa().dameNumApuestas();
+        Apuesta[] lista;
+        lista=getMesa().terminarYdameListaApuestas();
+        getControlador().realizarApuestaRuleta(lista, num);
+
+        /** Ejemplo de uso
+        getJLabelEstado().setText("Finalizado turno de apuestas");
+        getJButtonFinish().removeActionListener(terminarApuestas);
+        JOptionPane.showMessageDialog( this,"Finalizado el turno de apuestas.", "Turno de apuestas", JOptionPane.WARNING_MESSAGE );
+        getJLabelEstado().setText("Suerte!!!");
+        girarRuleta(5);
+        getJButtonFinish().addActionListener(terminarApuestas);
+        getMesa().limpiarTapete();
+        getMesa().empezar(999);
+        JOptionPane.showMessageDialog( this,"Puede realizar sus apuestas.", "Turno de apuestas", JOptionPane.WARNING_MESSAGE );
+        getJLabelEstado().setText("Realice sus apuestas.");
+         */
     }
 
     class OyenteEnviarMensajeChat implements ActionListener{
 
         public void actionPerformed(ActionEvent e) {
-            if(!PanelChat.getTextfieldFrase().getText().equals("")){
-               String mensaje = PanelChat.getTextfieldFrase().getText();
-               controlador.enviarMensajeChat(mensaje);
-               PanelChat.setTextfieldFrase("");
+            if(!getPanelChat().getTextfieldFrase().getText().equals("")){
+               String mensaje = getPanelChat().getTextfieldFrase().getText();
+               getControlador().enviarMensajeChat(mensaje);
+               getPanelChat().setTextfieldFrase("");
             }
             else
                  JOptionPane.showMessageDialog(PanelChat,"Debe escribir un mensaje","Error en el envio",JOptionPane.ERROR_MESSAGE);
@@ -551,9 +580,9 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
     class OyenteVolver implements ActionListener{
 
         public void actionPerformed(ActionEvent e) {
-            controlador.salirDeMesa();            
+            getControlador().salirDeMesa();
             dispose();
-            VistaMesas vista = new VistaMesas(controlador);
+            VistaMesas vista = new VistaMesas(getControlador());
             vista.setVisible(true);
         }
 
