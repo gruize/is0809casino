@@ -94,7 +94,7 @@ public class MesaRuleta implements Mesa {
             public void run() {
                 // Aquí el código que queremos ejecutar.
 
-                //TODO enviar mensaje al cliente para que pare su ruleta
+                //enviar mensaje al cliente para que pare su ruleta
                 
                 lanzaBola();//lanza bola, comprueba resultados y busca ganador
                 enviarPararRuleta();
@@ -112,7 +112,7 @@ public class MesaRuleta implements Mesa {
 
                     crearPartida();
 
-                    //TODO enviar mensaje al cliente para que reanude su ruleta
+                    //enviar mensaje al cliente para que reanude su ruleta
 
                     enviarReiniciarRuleta();
                 } catch (InterruptedException ex) {
@@ -385,6 +385,8 @@ public class MesaRuleta implements Mesa {
 
 
         this.idPartidaActual = codigoPartida;
+
+        //para las proximas partidas
         codigoPartida++;
 
     }
@@ -395,13 +397,19 @@ public class MesaRuleta implements Mesa {
      */
     private void modificarPartida() {
 
+        try {
         Partidas partidaActual = bbdd.getPartida(idPartidaActual);
         partidaActual.setNumjugadores(numParticipantes);
         partidaActual.setGanador(this.idGanador);
 
-        bbdd.modificarPartida(partidaActual);
-
+        if (bbdd.modificarPartida(partidaActual))
         log.info("MesaRuleta : modificarPartida : partida guardada en BBDD. Ganador=" + idGanador + " y numParticipantes=" + numParticipantes);
+        else
+            log.error("MesaRuleta : modificarPartida : La partida no se ha podido actualizar : " + idPartidaActual);
+
+        }catch (Exception e){
+            log.error("MesaRuleta : modificarPartida : error al actualizar la partida "+idPartidaActual+". Motivo: "+e.getMessage());
+        }
     }
 
     /**

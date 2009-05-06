@@ -27,7 +27,7 @@ public class testParticipantes {
         bbdd = new GestorBBDDImp();
        //borrarParticipante();
         
-        obtenerJugPorPartida();
+        getParticipantes();
     }
 
     private static void borrarParticipante() {
