@@ -500,7 +500,7 @@ public class MesaRuleta implements Mesa {
             pos++;
         }
         if (enc) {
-            return pos;
+            return pos-1;
         } else {
             return -1;
         }

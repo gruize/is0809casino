@@ -142,12 +142,7 @@ public class GestorMesas {
      * @return
      */
     public boolean existeMesa(int idMesa) {
-        System.out.println("GESTORMESAS: idSala="+sala.getCodigo()+" busco mesa="+idMesa);
-        System.out.println("GESTORMESAS: las mesas que hay abiertas son");
-        for (int i=0;i<mesas.size();i++)
-            System.out.println(" mesa "+mesas.get(i).getCodigoMesa());
-
-        
+            
         return getMesaJuego(idMesa) != null;
     }
 
@@ -170,11 +165,7 @@ public class GestorMesas {
      * @return
      */
     public Vector<Clientes> getJugadores_Mesa(int idMesa) {
-        System.err.println("GestorMesas: getJugadoresMesa : busco los jugadores de la mesa "+idMesa);
-        System.out.println("Gestor mesas: las mesas abiertas en esta sala ("+this.sala.getCodigo()+") son:");
-        for (int i=0; i<mesas.size();i++)
-            System.out.println(" mesa "+mesas.get(i).getCodigoMesa());
-        
+      
         return getMesaJuego(idMesa).getJugadores_Mesa();
     }
 
