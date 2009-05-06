@@ -155,6 +155,14 @@ public class ControladorCliente {
         for(int i = 0; i < num; i++){
             MensajeJugada mensaje = new MensajeJugadaRuleta(idUsuario, idSala, idMesa, apuesta[i]);
             enviarMensajeJugada(TipoMensaje.MENSAJE_JUGADA,mensaje);
+            /** Util para probar
+            System.out.println(idUsuario);
+            System.out.println(idMesa);
+            System.out.println(idSala);
+            System.out.println(apuesta[i].getCasilla());
+            System.out.println(apuesta[i].getTipo().toString());
+            System.out.println(apuesta[i].getValorApostado());
+             */
         }
     }
 

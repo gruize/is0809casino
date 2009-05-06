@@ -446,8 +446,6 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
              * Para los dados:
              *  - ...
              */
-             //Despues de una jugada, debe actualizarse el saldo actual del jugador.
-             getJLabelSaldo().setText(Integer.toString(controlador.obtenerSaldo()));
          }else if(arg instanceof MensajeUsuariosEnMesa){
              MensajeUsuariosEnMesa mensaje = (MensajeUsuariosEnMesa) arg;
              getJPanelUsuariosTemp1().getListaUsuarios().setListData(mensaje.getJugadores());
