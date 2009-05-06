@@ -523,6 +523,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         getPanelChat().getAreaTextoChat().setVisible(false);
         getPanelChat().getBotonEnviar().setVisible(false);
         getPanelChat().getTextfieldFrase().setVisible(false);
+        getPanelChat().getAreaTextoChat().setText("");
         //controlador.inhabilitarChat();
     }
 
@@ -571,7 +572,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
             if(!getPanelChat().getTextfieldFrase().getText().equals("")){
                String mensaje = getPanelChat().getTextfieldFrase().getText();
                getControlador().enviarMensajeChat(mensaje);
-               getPanelChat().setTextfieldFrase("");
+               getPanelChat().getTextfieldFrase().setText("");
             }
             else
                  JOptionPane.showMessageDialog(PanelChat,"Debe escribir un mensaje","Error en el envio",JOptionPane.ERROR_MESSAGE);
