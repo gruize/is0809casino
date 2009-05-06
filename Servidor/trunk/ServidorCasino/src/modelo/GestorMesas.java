@@ -59,7 +59,7 @@ public class GestorMesas {
         this.mesas = new Vector<Mesa>();
         this.nombreJuego = sala.getNombre();
 
-        this.bbdd = new GestorBBDDImp();
+        bbdd = new GestorBBDDImp();
 
         //Abrir la primera mesa
         codigoMesa++;
@@ -146,6 +146,8 @@ public class GestorMesas {
         System.out.println("GESTORMESAS: las mesas que hay abiertas son");
         for (int i=0;i<mesas.size();i++)
             System.out.println(" mesa "+mesas.get(i).getCodigoMesa());
+
+        
         return getMesaJuego(idMesa) != null;
     }
 

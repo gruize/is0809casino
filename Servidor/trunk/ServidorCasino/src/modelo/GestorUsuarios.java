@@ -47,7 +47,7 @@ public class GestorUsuarios {
 
     public GestorUsuarios(ControladorServidor c) {
 
-        this.jugadores = new Vector<JugadorConectado>();
+        jugadores = new Vector<JugadorConectado>();
         this.controlador = c;
         this.bbdd = new GestorBBDDImp();
 
@@ -69,7 +69,7 @@ public class GestorUsuarios {
      * Comprueba el login de un usuario
      * @param usuario nombre de usuario
      * @param password contraseÃƒÂ±a
-     * @return identificador del usuario si los datos son correctos, y no estaba ya en la mesa, -1 e.o.c
+     * @return identificador del usuario si los datos son correctos, y no estaba ya en el casino, -1 e.o.c
      */
     public int hacerLogin(String usuario, String password) {
         int id = -1;
@@ -94,7 +94,7 @@ public class GestorUsuarios {
      */
     public void insertarJugador(Clientes c) {
         JugadorConectado jugador = new JugadorConectado(c);
-        this.jugadores.add(jugador);
+        jugadores.add(jugador);
 
         //aÃƒÂºn no se inserta nada en BBDD, no se considera Participante porque aÃƒÂºn no ha entrado en sala ni mesa
     }
@@ -108,9 +108,9 @@ public class GestorUsuarios {
 
         //buscar el jugador en la lista de jugadores del casino
         int posJugador = getIndiceJugador(idJugador);
-        JugadorConectado jugador = this.jugadores.get(posJugador);
+        JugadorConectado jugador = jugadores.get(posJugador);
         jugador.setIdSala(idSala);
-        this.jugadores.add(posJugador, jugador);
+        jugadores.add(posJugador, jugador);
 
 
         log.info("GestorUsuarios : insertarJugadorEnSala : Jugador=" + idJugador + " insertado en sala=" + idSala);
@@ -124,8 +124,6 @@ public class GestorUsuarios {
     public boolean insertarJugadorEnMesa(int idJugador, int idMesa) {
 
         getJugadorConectado(idJugador).setIdMesa(idMesa);
-
-        //TODO hay que actualizar algo en BBDD? jugador, mesa? se le considera ya un participante?
 
         //Enviarselo al gestorSalas, y que llame a su gestorMesas y lo incluya en la mesa correspondiente
         return GestorSalas.getInstance(controlador).insertarMesaEnSala(idMesa, getJugadorConectado(idJugador).getIdSala(), idJugador);
@@ -143,12 +141,12 @@ public class GestorUsuarios {
     public int getIndiceJugador(int idJugador) {
 
         try {
-            if (this.jugadores != null && this.jugadores.size() > 0) {
+            if (jugadores != null && jugadores.size() > 0) {
 
                 int i = 0;
                 boolean enc = false;
                 while (!enc && i < jugadores.size()) {
-                    enc = this.jugadores.get(i).getIdJugador() == idJugador;
+                    enc = jugadores.get(i).getIdJugador() == idJugador;
                     i++;
                 }
 
@@ -223,7 +221,7 @@ public class GestorUsuarios {
         }
 
         //eliminar de la lista de jugadores conectados
-        this.jugadores.remove(getJugadorConectado(idJugador));
+        jugadores.remove(getJugadorConectado(idJugador));
 
         log.info("GestorUsuarios : desconectarJugador : Jugador=" + idJugador + " desconectado correctamente");
         return true;
@@ -236,5 +234,14 @@ public class GestorUsuarios {
      */
     public Vector<Clientes> getJugadoresMesa(int idSala, int idMesa) {
         return GestorSalas.getInstance(controlador).getMesas(idSala).getJugadores_Mesa(idMesa);
+    }
+
+    /**
+     * Busca en BBDD el nombre de un cliente a partir de su Id
+     * @param idJugador
+     * @return nombre de usuario (login)
+     */
+    public String getNombreUsuario(int idJugador){
+        return bbdd.getClientePorCodigo(idJugador).getUsuario();
     }
 }

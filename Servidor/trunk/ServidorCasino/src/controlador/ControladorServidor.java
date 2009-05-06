@@ -60,11 +60,11 @@ public class ControladorServidor {
     }
 
     public void crearMesas(int codigoMesa, String nombreJuego) {
-        modelo.crearMesas(codigoMesa,nombreJuego);
+        modelo.crearMesas(codigoMesa, nombreJuego);
     }
 
     public void crearSalas(int codigoSala, String nombreSala) {
-        modelo.crearSala(codigoSala,nombreSala);
+        modelo.crearSala(codigoSala, nombreSala);
     }
 
     public void borrarSala(int sala) {
@@ -75,7 +75,6 @@ public class ControladorServidor {
         modelo.borrarMesa(mesa);
     }
 
-
     public void cerrarConexion() throws IOException {
         modelo.cerrarConexion();
         GestorSalas.getInstance(this).borrarSalas();
@@ -85,10 +84,24 @@ public class ControladorServidor {
         modelo.expulsarJugador(jugador);
     }
 
-    public void jugadorDesconectado(int identificador){
-        // TODO Realizar las tareas pertinentes en la
-        // desconexión del jugador 
+    /**
+     * Cuando un cliente se desconecta (sale de la aplicación del casino)
+     * @param identificador
+     */
+    public void jugadorDesconectado(int identificador) {
+
+        try {
+            usuarios.desconectarJugador(identificador);
+            //quitarlo de la interfaz del servidor
+            expulsarJugador(usuarios.getNombreUsuario(identificador));
+            log.info("ControladorServidor : jugadorDesconectado : jugador=" + identificador + " desconectado del casino");
+
+        } catch (Exception e) {
+            log.error("ControladorServidor : jugadorDesconectado : no se ha podido desconectar al jugador=" + identificador + ". Motivo: " + e.getMessage());
+        }
+
     }
+
     public DefaultListModel getListaUsuarios() {
         return usuarios.getUsuarios();
     }
@@ -120,10 +133,10 @@ public class ControladorServidor {
     public void enviarSalasCasino(int idUsuario) {
 
         Vector<PeticionSala> salasCasino = GestorSalas.getInstance(this).getInfoSalas();
-        System.out.println("Salas:"+salasCasino.toString());
-        MensajeInfoSalas mensaje = new MensajeInfoSalas(idUsuario,salasCasino);
+        System.out.println("Salas:" + salasCasino.toString());
+        MensajeInfoSalas mensaje = new MensajeInfoSalas(idUsuario, salasCasino);
         enviarMensajeInfoSalas(idUsuario, mensaje);
-        log.info("ControladorServidor : enviarSalasCasino : info de salas enviado al cliente "+idUsuario+". Total salas abiertas "+salasCasino.size());
+        log.info("ControladorServidor : enviarSalasCasino : info de salas enviado al cliente " + idUsuario + ". Total salas abiertas " + salasCasino.size());
     }
 
     /**
@@ -135,9 +148,9 @@ public class ControladorServidor {
     public void enviarMesasDeUnaSala(int idUsuario, int idSala) {
 
         Vector<PeticionMesa> mesas = GestorSalas.getInstance(this).getMesas(idSala).getInfoMesas();
-        MensajeInfoMesas mensaje = new MensajeInfoMesas(idUsuario,idSala,mesas);
+        MensajeInfoMesas mensaje = new MensajeInfoMesas(idUsuario, idSala, mesas);
         enviarMensajeInfoMesas(idUsuario, mensaje);
-        log.info("ControladorServidor : enviarMesasDeUnaSala : info de mesas de la sala="+idSala+" enviado al cliente "+idUsuario+". Total mesas abiertas "+mesas.size());
+        log.info("ControladorServidor : enviarMesasDeUnaSala : info de mesas de la sala=" + idSala + " enviado al cliente " + idUsuario + ". Total mesas abiertas " + mesas.size());
     }
     //==================================================================================
     //          ENVIO DE MENSAJES A LOS CLIENTES
@@ -191,7 +204,7 @@ public class ControladorServidor {
      * @param idUsuario
      * @param mensaje
      */
-    public void enviarMensajeEstadoRuleta(int idUsuario, MensajeEstadoRuleta mensaje){
+    public void enviarMensajeEstadoRuleta(int idUsuario, MensajeEstadoRuleta mensaje) {
 
         comunicador.enviarMensaje(idUsuario, TipoMensaje.ESTADO_RULETA, mensaje);
     }
@@ -203,9 +216,10 @@ public class ControladorServidor {
      * @param idUsuario
      * @param mensaje
      */
-    public void enviarMensajeInfoCliente(int idUsuario, MensajeInfoCliente mensaje){
+    public void enviarMensajeInfoCliente(int idUsuario, MensajeInfoCliente mensaje) {
         comunicador.enviarMensaje(idUsuario, TipoMensaje.INFO_CLIENTE, mensaje);
     }
+
     /**
      * Envia al cliente un mensaje con la informacion de todas las mesas abiertas en una sala
      * @param idUsuario identificador de usuario a quien va dirigido el mensaje
@@ -233,12 +247,6 @@ public class ControladorServidor {
         log.info("ControladorServidor : login : usuario=" + datos.firstElement() + " password=" + datos.lastElement() + " -->id=" + id);
 
         modelo.login(datos.firstElement(), datos.lastElement());
-
-        //EnvÃƒÂ­o la informaciÃƒÂ³n de todas las salas del casino
-
-        //*********************************************************
-
-       // enviarSalasCasino(id);
 
         return id;
     }
@@ -289,11 +297,11 @@ public class ControladorServidor {
             MensajeSala m = (MensajeSala) mensaje;
             usuarios.eliminarJugadorEnSala(m.getUsuario());
         } else if (tipo == TipoMensaje.INFO_SALAS) {
-            MensajeInfoSalas m = (MensajeInfoSalas)mensaje;
+            MensajeInfoSalas m = (MensajeInfoSalas) mensaje;
             enviarSalasCasino(m.getId());
         } else if (tipo == TipoMensaje.INFO_MESAS) {
-            MensajeInfoMesas m = (MensajeInfoMesas)mensaje;
-            enviarMesasDeUnaSala(m.getId(),m.getSala());
+            MensajeInfoMesas m = (MensajeInfoMesas) mensaje;
+            enviarMesasDeUnaSala(m.getId(), m.getSala());
         }
     }
 }

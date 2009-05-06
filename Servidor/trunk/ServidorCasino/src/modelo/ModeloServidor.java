@@ -35,10 +35,10 @@ public class ModeloServidor extends Observable {
     }
 
     public void crearMesas(int codigoMesa, String nombreJuego) {
-        String mesa = "CODIGO MESA: "+codigoMesa+"      NOMBRE MESA: "+nombreJuego;
+        String mesa = "CODIGO MESA: "+codigoMesa+"      NOMBRE SALA: "+nombreJuego;
         listaMesas.addElement(mesa);
-        String texto = "Nueva mesa con cÃ³digo: "+codigoMesa+" y nombre: "+nombreJuego+
-                " creada. \n";
+        String texto = "Nueva mesa con codigo: "+codigoMesa+" donde se juega: '"+nombreJuego+
+                "' creada. \n";
         MensajeLog mensaje = new MensajeLog(texto);
         setChanged();
         notifyObservers(mensaje);
@@ -47,8 +47,8 @@ public class ModeloServidor extends Observable {
     public void crearSala(int codigoSala, String nombreSala) {
         String sala = "CODIGO SALA: "+codigoSala+"      NOMBRE SALA: "+nombreSala;
         listaSalas.addElement(sala);
-        String texto = "Nueva sala con cÃ³digo: "+codigoSala+" y nombre: "+nombreSala+
-                " creada. \n";
+        String texto = "Nueva sala con codigo: "+codigoSala+" y nombre: '"+nombreSala+
+                "' creada. \n";
         MensajeLog mensaje = new MensajeLog(texto);
         setChanged();
         notifyObservers(mensaje);
