@@ -247,37 +247,87 @@ public class MesaRuleta implements Mesa {
     private int apuestaGanadora(Jugada apuesta, Numero casillaBola) {
         String tipo = apuesta.getTipo();
         if (casillaBola.getNumero() != 0) {
-            //apuesta a N�MERO
-            if ((tipo.equals("numero")) && (apuesta.getCasilla() == casillaBola.getNumero())) {
-                return apuesta.getCantidad() * 36;
-            //apuesta a COLOR (0=>Negro, 1 =>ROJO
-            } else if (tipo.equalsIgnoreCase("COLOR")) {
-                if ((apuesta.getCasilla() == 1) && casillaBola.getColor().equalsIgnoreCase("ROJO")) {
-                    return apuesta.getCantidad() * 2;
-                } else if ((apuesta.getCasilla() == 0) && casillaBola.getColor().equalsIgnoreCase("NEGRO")) {
-                    return apuesta.getCantidad() * 2;
+            //NUMERO
+                if ((tipo.equalsIgnoreCase("NUMERO")) && (apuesta.getCasilla() == casillaBola.getNumero())) {
+                    return apuesta.getCantidad() * 36;
+            //COLOR
+                } else if (tipo.equalsIgnoreCase("COLOR")) {
+                    if ((apuesta.getCasilla() == 1) && casillaBola.getColor().equalsIgnoreCase("ROJO")) {
+                        return apuesta.getCantidad() * 2;
+                    } else if ((apuesta.getCasilla() == 0) && casillaBola.getColor().equalsIgnoreCase("NEGRO")) {
+                        return apuesta.getCantidad() * 2;
+                    }
+            //DOCENA
+                } else if (tipo.equals("DOCENA")){
+                    //PRIMERA DOCENA
+                    if ((casillaBola.getNumero() >= 1) && (casillaBola.getNumero() <= 12)&& (apuesta.getCasilla()==1)) {
+                    return apuesta.getCantidad() * 3;
+                    }
+                    //SEGUNDA DOCENA
+                    else if ((casillaBola.getNumero() >= 13) && (casillaBola.getNumero() <= 24)&& (apuesta.getCasilla()==2)){
+                        return apuesta.getCantidad() * 3;
+                    //TERCERA DOCENA
+                    } else if ((casillaBola.getNumero() >= 25) && (casillaBola.getNumero() <= 36)&& (apuesta.getCasilla()==3)) {
+                        return apuesta.getCantidad() * 3;
+                    }
                 }
-            //apuesta a 1� DOCENA
-            } else if (tipo.equals("1docena") && casillaBola.getNumero() >= 1 && casillaBola.getNumero() <= 12) {
-                return apuesta.getCantidad() * 3;
-            //apeusta a 2� DOCENA
-            } else if (tipo.equals("2docena") && casillaBola.getNumero() > 12 && casillaBola.getNumero() <= 24) {
-                return apuesta.getCantidad() * 3;
-            //apuesta a 3� DOCENA
-            } else if (tipo.equals("3docena") && casillaBola.getNumero() > 24 && casillaBola.getNumero() <= 36) {
-                return apuesta.getCantidad() * 3;
+             //PARIMPAR
+                else if (tipo.equals("PARIMPAR")){
+                    //PAR
+                    if ((casillaBola.getTipo_parImpar().equalsIgnoreCase("PAR")) && (apuesta.getCasilla()==2)) {
+                    return apuesta.getCantidad() * 2;
+                    }
+                    //IMPAR
+                    else if ((casillaBola.getTipo_parImpar().equalsIgnoreCase("IMPAR")) && (apuesta.getCasilla()==1)){
+                        return apuesta.getCantidad() * 2;
+                    }
+                }
+              //FALTAPASA
+                else if (tipo.equals("FALTAPASA")){
+                    //FALTA
+                    if ((casillaBola.getNumero()<19) && (apuesta.getCasilla()==1)) {
+                    return apuesta.getCantidad() * 2;
+                    }
+                    //PASA
+                    else if ((casillaBola.getNumero()>18) && (apuesta.getCasilla()==2)){
+                        return apuesta.getCantidad() * 2;
+                    }
 
-            }
-        } else {//la bola lanzada es CERO: si la apuesta es al color se devuelte la mitad.
-            if (apuesta.getTipo().equals("COLOR")) {
-                return apuesta.getCantidad() / 2;
-            } else if (apuesta.getTipo().equals("numero") && (apuesta.getCasilla() == casillaBola.getNumero())) {
-                return apuesta.getCantidad() * 36;
-            }
-        }
+                }
+              //LINEA
+                 else if (tipo.equals("LINEA")){
+                    //PRIMERA LINEA
+                    if ((casillaBola.getLinea().equalsIgnoreCase("LINEA_UNO")) && (apuesta.getCasilla()==1)) {
+                    return apuesta.getCantidad() * 3;
+                    }
+                    //PASA
+                    else if ((casillaBola.getLinea().equalsIgnoreCase("LINEA_DOS")) && (apuesta.getCasilla()==2)){
+                        return apuesta.getCantidad() * 3;
+                    }
+                    else if ((casillaBola.getLinea().equalsIgnoreCase("LINEA_TRES")) && (apuesta.getCasilla()==3)){
+                        return apuesta.getCantidad() * 3;
+                    }
+
+                }
+             //CUADRO
+                 else if (tipo.equals("CUADRO")){
+                    //CUADRO
+                    if (estaEnCuadro( casillaBola.getNumero(), apuesta.getCasilla())) {
+                    return apuesta.getCantidad() * 8;
+                   }
+                 }
+
+                }
+            //La bola lanzada es CERO: si la apuesta es simple se devuelte la mitad.
+            else {
+                    if (apuesta.getTipo().equalsIgnoreCase("PARIMPAR")||apuesta.getTipo().equalsIgnoreCase("COLOR")||apuesta.getTipo().equalsIgnoreCase("FALTAPASA")) {
+                        return apuesta.getCantidad() / 2;
+                    } else if (apuesta.getTipo().equalsIgnoreCase("NUMERO") && (apuesta.getCasilla() == casillaBola.getNumero())) {
+                        return apuesta.getCantidad() * 36;
+                    }
+                }
         return 0;
     }
-    //Envia los saldos nuevos a los jugadores de la mesa
 
     /**
      * Comprueba si es la primera apuesta que realiza un jugador en la partida.
@@ -537,5 +587,15 @@ public class MesaRuleta implements Mesa {
     enc = jugadores.get(i).getCodigo() == idJugador;
     }
     return enc;^*/
+    }
+    
+    /**
+     * Comprueba si el numero esta en el cuadro apostado
+     * @param numero cuadro
+     * @return true si numero esta en el cuadro cuadro.
+     */
+    private boolean estaEnCuadro(int numero, int cuadro){
+
+    return true;
     }
 }
