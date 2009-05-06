@@ -97,7 +97,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
     }
 
     public void setSalonEntrar(int salonEntrar) {
-        this.salonEntrar = salonEntrar+1;
+        this.salonEntrar = salonEntrar;
     }
 
     public NombreJuegos getJuego() {

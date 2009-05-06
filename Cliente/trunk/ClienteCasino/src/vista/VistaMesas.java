@@ -99,7 +99,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
     }
 
     public void setMesaEntrar(int mesaEntrar) {
-        this.mesaEntrar = mesaEntrar+1;
+        this.mesaEntrar = mesaEntrar;
     }
 
     public int getOrden() {

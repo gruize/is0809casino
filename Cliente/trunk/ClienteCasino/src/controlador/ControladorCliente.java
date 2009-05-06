@@ -54,6 +54,7 @@ public class ControladorCliente {
     public void enviarMensajeChat(String mensaje) {
         MensajeChat mensajeChat = new MensajeChat(modelo.getId(), modelo.getSala(),modelo.getMesa(), mensaje, modelo.getUsuario());
         comunicador.enviarMensaje(TipoMensaje.MENSAJE_CHAT, mensajeChat);
+        System.out.println("*** mensaje chat enviado. tipo="+TipoMensaje.MENSAJE_CHAT+", mesnaje="+mensaje);
     }
 
     /**
@@ -214,7 +215,11 @@ public class ControladorCliente {
         modelo.setMesa(-1);
         modelo.setSala(-1);
 
-        //TODO que mas hay que hacer? desconectar comunicaciones?
+        //TODO mostrar un mensaje avisando de que se cerrara porque el servidor se ha caido
+
+
+        System.exit(-1);
+
 
     }
 
