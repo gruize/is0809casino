@@ -95,8 +95,9 @@ public class MesaRuleta implements Mesa {
                 // Aquí el código que queremos ejecutar.
 
                 //TODO enviar mensaje al cliente para que pare su ruleta
-                enviarPararRuleta();
+                
                 lanzaBola();//lanza bola, comprueba resultados y busca ganador
+                enviarPararRuleta();
                 enviarSaldos(); //envía a cada cliente su nuevo saldo
                 modificarPartida(); //actualiza la partida en BBDD
                 try {
@@ -105,7 +106,7 @@ public class MesaRuleta implements Mesa {
 
                     reiniciar();
 
-                    Thread.sleep(100000);
+                    Thread.sleep(10000); //paro 10 seg
 
                     //nuevo ronda: volver a crear una partida
 

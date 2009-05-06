@@ -37,7 +37,7 @@ public class GestorMesas {
     private static InterfazBBDD bbdd = null;
 
     //contador para identificar de forma ÃƒÂºnica todas las mesas
-    private static int codigoMesa;
+    private static int codigoMesa=0;
 
     //contador para identificar de forma ÃƒÂºnica todas las partidas que se vayan creando en las mesas
     private static int codigoPartida=0;
@@ -53,7 +53,7 @@ public class GestorMesas {
      */
     public GestorMesas(ControladorServidor c, Salas sala) {
 
-        log.debug("GestorMesas : constructora : init");
+        log.debug("GestorMesas : constructora : init. Se va a crear mesa con codigo "+codigoMesa+1);
         this.controlador = c;
         this.sala = sala;
         this.mesas = new Vector<Mesa>();
@@ -170,6 +170,11 @@ public class GestorMesas {
      * @return
      */
     public Vector<Clientes> getJugadores_Mesa(int idMesa) {
+        System.err.println("GestorMesas: getJugadoresMesa : busco los jugadores de la mesa "+idMesa);
+        System.out.println("Gestor mesas: las mesas abiertas en esta sala ("+this.sala.getCodigo()+") son:");
+        for (int i=0; i<mesas.size();i++)
+            System.out.println(" mesa "+mesas.get(i).getCodigoMesa());
+        
         return getMesaJuego(idMesa).getJugadores_Mesa();
     }
 

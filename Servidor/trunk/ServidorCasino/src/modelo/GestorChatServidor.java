@@ -41,7 +41,9 @@ public class GestorChatServidor extends Thread {
                if (cola.size() != 0){
                     recibido = cola.firstElement();
                     cola.remove(0);
+                    System.out.println("GestorChatServidor : run : busco los jug de la sala "+ recibido.get_sala()+" y mesa "+ recibido.get_mesa());
                     tios= usuarios.getJugadoresMesa(recibido.get_sala(), recibido.get_mesa());
+                     System.out.println("GestorChatServidor : run : total jugadores encontrados "+tios.size());
                     for (int i = 0; i < tios.size(); i++) {
                         MensajeChat mensajeChat = new MensajeChat(recibido.get_tio(),recibido.get_sala(),recibido.get_mesa(),recibido.get_men(),recibido.get_usuario());
                         controlador.enviarMensajeChat(tios.get(i).getCodigo(),mensajeChat);

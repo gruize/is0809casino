@@ -76,8 +76,14 @@ public class ControladorServidor {
     }
 
     public void cerrarConexion() throws IOException {
-        modelo.cerrarConexion();
-        GestorSalas.getInstance(this).borrarSalas();
+        try {
+            modelo.cerrarConexion();
+
+            GestorSalas.getInstance(this).borrarSalas();
+            System.out.println("salas borradas");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void expulsarJugador(String jugador) {
@@ -273,6 +279,7 @@ public class ControladorServidor {
         if (tipo == TipoMensaje.MENSAJE_CHAT) {
             MensajeChat mensajeChat = ((MensajeChat) mensaje);
             System.out.println("server " + mensajeChat.get_usuario());
+            System.out.println(" *** mensaje chat recibido en sala "+mensajeChat.get_sala() +" y mesa "+mensajeChat.get_mesa() );
             chat.dejamensaje(mensajeChat);
 
         } else if (tipo == TipoMensaje.MENSAJE_JUGADA) {
@@ -280,7 +287,9 @@ public class ControladorServidor {
             GestorJuegosServidor.getInstance(this).dejamensaje(mensajeJugada);
         //TODO Devolver la confirmacion de la jugada
 
-        } else if (tipo == TipoMensaje.ENTRADA_MESA) {
+        }
+        //             MESAS (entradas y salidas)
+        else if (tipo == TipoMensaje.ENTRADA_MESA) {
 
             MensajeMesa m = (MensajeMesa) mensaje;
             if (usuarios.insertarJugadorEnMesa(m.getUsuario(), m.getMesa())) //Envio mensaje de  confimacion de la entrada en la mesa
@@ -293,6 +302,15 @@ public class ControladorServidor {
             MensajeMesa m = (MensajeMesa) mensaje;
             usuarios.eliminarJugadorEnMesa(m.getUsuario());
         } else if (tipo == TipoMensaje.CERRAR_CONEXION) {
+            //TODO que tenfo que hacer?
+
+        }
+        //          SALAS  (entradas y salidas)
+        else if (tipo == TipoMensaje.ENTRADA_SALA) {
+
+            MensajeSala m = (MensajeSala) mensaje;
+            usuarios.insertarJugadorEnSala(m.getUsuario(), m.getSala());
+
         } else if (tipo == TipoMensaje.SALIDA_SALA) {
             MensajeSala m = (MensajeSala) mensaje;
             usuarios.eliminarJugadorEnSala(m.getUsuario());

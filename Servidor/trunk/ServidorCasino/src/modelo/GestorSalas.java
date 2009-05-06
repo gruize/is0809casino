@@ -74,10 +74,10 @@ public class GestorSalas {
         Salas sala = new Salas();
         sala.setCodigo(codigoSala);
         sala.setNombre(nombreSala);
-        sala.setJuegos(dameJuegoAsociado(nombreSala));// NO puedo introducir valores nulos en BBDD??
+        sala.setJuegos(dameJuegoAsociado(nombreSala));// NO puedo introducir valores nulos en BBDD
         //Guardo en bbdd (si no existÃƒÂ­a ya)
         if (bbdd.insertarSala(sala)) {
-            System.out.println("valeee  creando sala");
+           
             controlador.crearSalas(codigoSala,nombreSala);
             log.info("GestorSalas : crearSala : Sala con id=" + codigoSala + " guardada en BBDD");
             //guardo en mi vector de salas

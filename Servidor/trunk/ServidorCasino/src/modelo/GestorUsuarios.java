@@ -55,8 +55,8 @@ public class GestorUsuarios {
 
     public DefaultListModel getUsuarios() {
         ArrayList usuarios = this.bbdd.getClientes();
-        for (int i = 0;i<usuarios.size();i++) {
-            Clientes jugador = (Clientes)usuarios.get(i);
+        for (int i = 0; i < usuarios.size(); i++) {
+            Clientes jugador = (Clientes) usuarios.get(i);
             listaUsuarios.addElement(jugador.getUsuario());
         }
         return listaUsuarios;
@@ -96,7 +96,7 @@ public class GestorUsuarios {
         JugadorConectado jugador = new JugadorConectado(c);
         jugadores.add(jugador);
 
-        //aÃƒÂºn no se inserta nada en BBDD, no se considera Participante porque aÃƒÂºn no ha entrado en sala ni mesa
+    //aÃƒÂºn no se inserta nada en BBDD, no se considera Participante porque aÃƒÂºn no ha entrado en sala ni mesa
     }
 
     /**
@@ -125,9 +125,15 @@ public class GestorUsuarios {
 
         getJugadorConectado(idJugador).setIdMesa(idMesa);
 
-        //Enviarselo al gestorSalas, y que llame a su gestorMesas y lo incluya en la mesa correspondiente
-        return GestorSalas.getInstance(controlador).insertarMesaEnSala(idMesa, getJugadorConectado(idJugador).getIdSala(), idJugador);
 
+        //Enviarselo al gestorSalas, y que llame a su gestorMesas y lo incluya en la mesa correspondiente
+        if (GestorSalas.getInstance(controlador).insertarJugadorEnMesa(getJugadorConectado(idJugador).getIdSala(),idMesa, idJugador)) {
+            log.info("GestorUsuarios : insertarJugadorEnMesa : Jugador=" + idJugador + " insertado en mesa=" + idMesa);
+            return true;
+        } else {
+            log.info("GestorUsuarios : insertarJugadorEnMesa : Jugador=" + idJugador + " NO se ha insertado en mesa=" + idMesa);
+            return false;
+        }
     }
 
     //=======================================================================
@@ -151,7 +157,7 @@ public class GestorUsuarios {
                 }
 
                 if (enc) {
-                    return i-1;
+                    return i - 1;
                 } else {
                     return -1; //el usuario aÃƒÂºn no estÃƒÂ¡ registrado
                 }
@@ -241,7 +247,7 @@ public class GestorUsuarios {
      * @param idJugador
      * @return nombre de usuario (login)
      */
-    public String getNombreUsuario(int idJugador){
+    public String getNombreUsuario(int idJugador) {
         return bbdd.getClientePorCodigo(idJugador).getUsuario();
     }
 }
