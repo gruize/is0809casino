@@ -49,10 +49,7 @@ public class ControladorCliente {
         return false;
     }
 
-    public boolean cerrarConexion() {
-        //return modelo.cerrarConexion();
-        return true;
-    }
+
 
     public void enviarMensajeChat(String mensaje) {
         MensajeChat mensajeChat = new MensajeChat(modelo.getId(), modelo.getSala(),modelo.getMesa(), mensaje, modelo.getUsuario());
@@ -209,9 +206,22 @@ public class ControladorCliente {
         modelo.setSala(salonEntrar);
     }
 
+    /**
+     * Cuando el servidor del casino se desconecta
+     */
     public void servidorDesconectado(){
-        // TODO Realizar las tareas pertinentes a la
-        // desconexión del Servidor
+      
+        modelo.setMesa(-1);
+        modelo.setSala(-1);
+
+        //TODO que mas hay que hacer? desconectar comunicaciones?
+
+    }
+
+    //TODO hace lo mismo que cuando se cae el servidor???
+    public boolean cerrarConexion(){
+        servidorDesconectado();
+        return true;
     }
 
 
