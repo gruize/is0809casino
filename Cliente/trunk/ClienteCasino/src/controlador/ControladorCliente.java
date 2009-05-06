@@ -17,6 +17,7 @@ import modelo.mensajes.MensajeEstadoRuleta;
 import modelo.mensajes.MensajeInfoCliente;
 import modelo.mensajes.MensajeInfoMesas;
 import modelo.mensajes.MensajeInfoSalas;
+import modelo.mensajes.MensajeJugadaRuleta;
 import modelo.mensajes.MensajeMesa;
 import modelo.mensajes.MensajeSala;
 
@@ -146,31 +147,15 @@ public class ControladorCliente {
     }
 
 
-    public void realizarApuesta(Apuesta[] apuesta, int dameNumApuestas) {
-
-
+    public void realizarApuestaRuleta(Apuesta[] apuesta, int num) {
 
         int idUsuario = modelo.getId();
         int idMesa = modelo.getMesa();
         int idSala=modelo.getSala();
-        //String tipoApuesta = tipo; //valores posibles (definirlos en la vista ruleta): Numero,Color,ParImpar, Docena, Linea,FaltaPasa....
-        int casilla = 0;//casilla a la q se apuesta: al 21, al Rojo , a la 2Âº Docena,Falta, Par ...
-        try { //TODO hacerlo bien
-          //  casilla = Integer.parseInt(valor);
-        } catch (ClassCastException e) {
-            casilla = 1;
+        for(int i = 0; i < num; i++){
+            MensajeJugada mensaje = new MensajeJugadaRuleta(idUsuario, idSala, idMesa, apuesta[i]);
+            enviarMensajeJugada(TipoMensaje.MENSAJE_JUGADA,mensaje);
         }
-
-
-        //crear el objeto Jugada
-        //Jugada jugada = new Jugada(idUsuario, idSala, idMesa, tipoApuesta, casilla, cantidadApostada);
-        //System.out.println("Jugada RULETA: usuario=" + idUsuario + " mesa=" + idMesa + " tipoApuesta=" + tipoApuesta + " casilla:" + casilla + " cantidadApostada:" + cantidadApostada);
-
-        //crear el objeto MensajeJugada
-        MensajeJugada mensajeJugada = new MensajeJugada(idUsuario, idSala, idMesa);
-
-        //enviar el mensaje hacia el servidor.
-        enviarMensajeJugada(TipoMensaje.MENSAJE_JUGADA, mensajeJugada);
     }
 
     /**

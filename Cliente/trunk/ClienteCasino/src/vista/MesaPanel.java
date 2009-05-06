@@ -66,6 +66,14 @@ public class MesaPanel extends javax.swing.JPanel {
 		frame.setVisible(true);
 	}
 
+    public double getSaldoUsuario() {
+        return saldoUsuario;
+    }
+
+    public void setSaldoUsuario(double saldoUsuario) {
+        this.saldoUsuario = saldoUsuario;
+    }
+
 	public MesaPanel() {
 		super();
 		preInit();
@@ -352,7 +360,7 @@ public class MesaPanel extends javax.swing.JPanel {
     	this.terminar=true;
     	return this.listaApuestas;
     }
-    public void empezar( int saldo){
+    public void empezar(double saldo){
     	this.terminar=false;
     	this.saldoUsuario=saldo;
     	this.totalTextField.setText("0");
