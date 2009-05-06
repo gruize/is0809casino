@@ -282,11 +282,11 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
                     nuevaSala.setBorder(null);
                     switch(peticionSala.get(i).getJuego()){
                         case RULETA: {
-                            nuevaSala.setName("SalaRuleta"+i);
+                            nuevaSala.setName("SalaRuleta"+peticionSala.get(i).getIdSala());
                             JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/ruletaSala.jpg"));
                             botonNuevaSala.setPreferredSize(new Dimension(114,86));
                             botonNuevaSala.setName("BotonSalaRuleta"+i);
-                            botonNuevaSala.setActionCommand("SalaRuleta"+i);
+                            botonNuevaSala.setActionCommand("SalaRuleta"+peticionSala.get(i).getIdSala());
                             botonNuevaSala.addActionListener(new OyenteSalas());
                             botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
                             nuevaSala.add(botonNuevaSala);
@@ -302,12 +302,12 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
                             int ancho = 114;
                             // alto (para que conserve la proporcion pasamos -1)
                             int alto = 86;
-                            nuevaSala.setName("SalaDados"+i);
+                            nuevaSala.setName("SalaDados"+peticionSala.get(i).getIdSala());
                                                                 // Obtiene un icono en escala con las dimensiones especificadas
                             JButton botonNuevaSala = new JButton(new ImageIcon(iconoOriginal.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
                             botonNuevaSala.setPreferredSize(new Dimension(114,86));
                             botonNuevaSala.setName("BotonSalaDaddos"+i);
-                            botonNuevaSala.setActionCommand("SalaDados"+i);
+                            botonNuevaSala.setActionCommand("SalaDados"+peticionSala.get(i).getIdSala());
                             botonNuevaSala.addActionListener(new OyenteSalas());
                             botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
                             nuevaSala.add(botonNuevaSala);
@@ -329,11 +329,11 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
                         nuevaSala.setPreferredSize(new Dimension(250,120));
                         nuevaSala.setSize(new Dimension(250,120));
                         nuevaSala.setBorder(null);
-                        nuevaSala.setName("SalaRuleta"+i);
+                        nuevaSala.setName("SalaRuleta"+peticionSala.get(i).getIdSala());
                         JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/ruletaSala.jpg"));
                         botonNuevaSala.setPreferredSize(new Dimension(114,86));
                         botonNuevaSala.setName("BotonSalaRuleta"+i);
-                        botonNuevaSala.setActionCommand("SalaRuleta"+i);
+                        botonNuevaSala.setActionCommand("SalaRuleta"+peticionSala.get(i).getIdSala());
                         botonNuevaSala.addActionListener(new OyenteSalas());
                         botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
                         nuevaSala.add(botonNuevaSala);
@@ -359,12 +359,12 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
                         nuevaSala.setOpaque(true);
                         nuevaSala.setPreferredSize(new Dimension(250,120));
                         nuevaSala.setSize(new Dimension(250,120));
-                        nuevaSala.setName("SalaDados"+i);
+                        nuevaSala.setName("SalaDados"+peticionSala.get(i).getIdSala());
                         nuevaSala.setBorder(null);                                                             // Obtiene un icono en escala con las dimensiones especificadas
                         JButton botonNuevaSala = new JButton(new ImageIcon(icono.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
                         botonNuevaSala.setPreferredSize(new Dimension(114,86));
                         botonNuevaSala.setName("BotonSalaDaddos"+i);
-                        botonNuevaSala.setActionCommand("SalaDados"+i);
+                        botonNuevaSala.setActionCommand("SalaDados"+peticionSala.get(i).getIdSala());
                         botonNuevaSala.addActionListener(new OyenteSalas());
                         botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
                         nuevaSala.add(botonNuevaSala);
@@ -427,6 +427,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
         public void actionPerformed(ActionEvent e) {
            dispose();
            controlador.setSala(salonEntrar);
+           controlador.solicitudEntrarSala(getSalonEntrar());
            VistaMesas vistaMesas = new VistaMesas(controlador);
            vistaMesas.setJuego(juego);
            vistaMesas.setVisible(true);
