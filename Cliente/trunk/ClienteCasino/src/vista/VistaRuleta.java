@@ -452,17 +452,6 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
                  getJLabelEstado().setText("Realice sus apuestas");
                  JOptionPane.showMessageDialog( this,"Puede realizar sus apuestas.", "Turno de apuestas", JOptionPane.WARNING_MESSAGE );
              }
-             //TODO descomponer el mensaje
-             /*
-             * Puedo obtener...
-             *              *
-             * Para la ruleta:
-             *  - mensaje diciendo que ya no se puede apostar más porque se va a lanzar la bola
-             *  - mensaje de actualizacion de saldo, tras el lanzamiento de la bola
-             *
-             * Para los dados:
-             *  - ...
-             */
          }else if(arg instanceof MensajeUsuariosEnMesa){
              MensajeUsuariosEnMesa mensaje = (MensajeUsuariosEnMesa) arg;
              getJPanelUsuariosTemp1().getListaUsuarios().setListData(mensaje.getJugadores());

@@ -13,22 +13,27 @@ import java.io.Serializable;
  */
 public class MensajeJugada implements Serializable{
     private int usuario;
-    private int sala;
     private int mesa;
-
-    public MensajeJugada() {
-    }
+    private Jugada jugada;
 
     public MensajeJugada(MensajeJugada j) {
-       this.usuario = j.getUsuario();
-       this.sala = j.getSala();
-       this.mesa = j.getMesa();
+       this.usuario = j.usuario;
+        this.mesa = j.mesa;
+        this.jugada = j.jugada;
     }
 
-    public MensajeJugada(int usuario, int sala, int mesa) {
+    public MensajeJugada(int usuario, int mesa, Jugada jugada) {
         this.usuario = usuario;
-        this.sala = sala;
         this.mesa = mesa;
+        this.jugada = jugada;
+    }
+
+    public Jugada getJugada() {
+        return jugada;
+    }
+
+    public void setJugada(Jugada jugada) {
+        this.jugada = jugada;
     }
 
     public int getMesa() {
@@ -46,16 +51,6 @@ public class MensajeJugada implements Serializable{
     public void setUsuario(int usuario) {
         this.usuario = usuario;
     }
-
-    public int getSala() {
-        return sala;
-    }
-
-    public void setSala(int sala) {
-        this.sala = sala;
-    }
-
-
 
 }
 

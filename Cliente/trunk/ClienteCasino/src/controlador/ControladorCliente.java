@@ -17,7 +17,6 @@ import modelo.mensajes.MensajeEstadoRuleta;
 import modelo.mensajes.MensajeInfoCliente;
 import modelo.mensajes.MensajeInfoMesas;
 import modelo.mensajes.MensajeInfoSalas;
-import modelo.mensajes.MensajeJugadaRuleta;
 import modelo.mensajes.MensajeMesa;
 import modelo.mensajes.MensajeSala;
 
@@ -151,9 +150,10 @@ public class ControladorCliente {
 
         int idUsuario = modelo.getId();
         int idMesa = modelo.getMesa();
-        int idSala=modelo.getSala();
-        for(int i = 0; i < num; i++){
-            MensajeJugada mensaje = new MensajeJugadaRuleta(idUsuario, idSala, idMesa, apuesta[i]);
+        int idSala=modelo.getSala();        
+        for(int i = 0; i < num; i++){            
+            Jugada jugadaAux = new Jugada(idUsuario,idSala,idMesa,apuesta[i].getTipo().toString(),apuesta[i].getCasilla(),(int) apuesta[i].getValorApostado());
+            MensajeJugada mensaje = new MensajeJugada(idUsuario,idMesa, jugadaAux);
             enviarMensajeJugada(TipoMensaje.MENSAJE_JUGADA,mensaje);
             /** Util para probar
             System.out.println(idUsuario);
