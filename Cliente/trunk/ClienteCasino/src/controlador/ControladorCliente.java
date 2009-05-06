@@ -259,6 +259,7 @@ public class ControladorCliente {
         } else if (tipo==TipoMensaje.INFO_CLIENTE){
 
             //TODO interfaz: os mandarÃ© la info del propio cliente: os interesa el saldo
+            //TODO LLega con el saldo y la ultima Bola Lanzada, para ponerla en la interfaz
             MensajeInfoCliente mensajeIC=(MensajeInfoCliente)mensaje;
 
 
