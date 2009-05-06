@@ -16,7 +16,9 @@ public class MensajeInfoCliente implements java.io.Serializable {
     private double saldo;
     private int bola;
 
-    public MensajeInfoCliente(){}
+    public MensajeInfoCliente(){
+        bola=-1;
+    }
 
 
         public int getIdUsuario() {

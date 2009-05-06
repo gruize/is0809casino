@@ -141,6 +141,7 @@ public class MesaRuleta implements Mesa {
             MensajeInfoCliente mensaje = new MensajeInfoCliente();
             mensaje.setIdUsuario(jugadores.get(i).getCodigo());
             mensaje.setSaldo(jugadores.get(i).getSaldo());
+            mensaje.setBola(ultimaBola);
             controlador.enviarMensajeInfoCliente(jugadores.get(i).getCodigo(), mensaje);
         }
     }
