@@ -23,7 +23,7 @@ import modelo.Apuesta;
 public class MesaPanel extends javax.swing.JPanel {
 	//bloquea el tapiz
 	private boolean terminar=true;
-	private Image imgFondo;
+	private ImageIcon imgFondo;
 	private TapizPanel tapiz;
     private static int ancho=430;
     private static int alto=800;
@@ -133,7 +133,7 @@ public class MesaPanel extends javax.swing.JPanel {
 				fichaNegra = new JLabel();
 				this.add(fichaNegra);
 				fichaNegra.setBounds(157, 724, 21, 23);
-				fichaNegra.setIcon(new ImageIcon(getClass().getClassLoader().getResource("./recursos/ficha.png")));
+				fichaNegra.setIcon(new ImageIcon("./recursos/ficha.png"));
 				fichaNegra.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
 						fichaNegraMouseClicked(evt);
@@ -143,7 +143,7 @@ public class MesaPanel extends javax.swing.JPanel {
 			{
 				ficha_azul = new JLabel();
 				this.add(ficha_azul);
-				ficha_azul.setIcon(new ImageIcon(getClass().getClassLoader().getResource("./recursos/ficha_azul.png")));
+				ficha_azul.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
 				ficha_azul.setBounds(220, 724, 21, 23);
 				ficha_azul.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -154,7 +154,7 @@ public class MesaPanel extends javax.swing.JPanel {
 			{
 				ficha_blanca = new JLabel();
 				this.add(ficha_blanca);
-				ficha_blanca.setIcon(new ImageIcon(getClass().getClassLoader().getResource("./recursos/ficha_blanca.png")));
+				ficha_blanca.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
 				ficha_blanca.setBounds(94, 724, 21, 23);
 				ficha_blanca.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -165,7 +165,7 @@ public class MesaPanel extends javax.swing.JPanel {
 			{
 				ficha_roja = new JLabel();
 				this.add(ficha_roja);
-				ficha_roja.setIcon(new ImageIcon(getClass().getClassLoader().getResource("./recursos/ficha_roja.png")));
+				ficha_roja.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
 				ficha_roja.setBounds(38, 724, 21, 23);
 				ficha_roja.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -176,7 +176,7 @@ public class MesaPanel extends javax.swing.JPanel {
 			{
 				ficha_selecionada = new JLabel();
 				this.add(ficha_selecionada);
-				ficha_selecionada.setIcon(new ImageIcon(getClass().getClassLoader().getResource("./recursos/trasparente.png")));
+				ficha_selecionada.setIcon(new ImageIcon("./recursos/trasparente.png"));
 				ficha_selecionada.setBounds(170, 419, 23, 17);
 			}
 				this.totalTextField.setText(Double.toString(apuestaTotal));
@@ -186,11 +186,11 @@ public class MesaPanel extends javax.swing.JPanel {
 		}
 	}
 	private void preInit(){
-        imgFondo = new ImageIcon(getClass().getResource("mesa.png")).getImage();
+        imgFondo = new ImageIcon("./recursos/mesa.png");
 }
     public void paintComponent(Graphics g) {
 		   if (imgFondo != null) {
-		                g.drawImage(imgFondo, 0, 0, ancho, alto, this);
+		                g.drawImage(imgFondo.getImage(), 0, 0, ancho, alto, this);
 		            }
 
 		  }
@@ -210,28 +210,28 @@ public class MesaPanel extends javax.swing.JPanel {
     private void ficha_rojaMouseClicked(MouseEvent evt) {
     	System.out.println("ficha_roja.mouseClicked, event="+evt);
     	//TODO add your code for ficha_roja.mouseClicked
-    	ficha_selecionada.setIcon(new ImageIcon(getClass().getClassLoader().getResource("./recursos/ficha_roja.png")));
+    	ficha_selecionada.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
     	tipoFicha=1;
     }
 
     private void ficha_blancaMouseClicked(MouseEvent evt) {
     	System.out.println("ficha_blanca.mouseClicked, event="+evt);
     	//TODO add your code for ficha_blanca.mouseClicked
-    	ficha_selecionada.setIcon(new ImageIcon(getClass().getClassLoader().getResource("./recursos/ficha_blanca.png")));
+    	ficha_selecionada.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
     	tipoFicha=2;
     }
 
     private void fichaNegraMouseClicked(MouseEvent evt) {
     	System.out.println("fichaNegra.mouseClicked, event="+evt);
     	//TODO add your code for fichaNegra.mouseClicked
-    	ficha_selecionada.setIcon(new ImageIcon(getClass().getClassLoader().getResource("./recursos/ficha.png")));
+    	ficha_selecionada.setIcon(new ImageIcon("./recursos/ficha.png"));
     	tipoFicha=3;
     }
 
     private void ficha_azulMouseClicked(MouseEvent evt) {
     	System.out.println("ficha_azul.mouseClicked, event="+evt);
     	//TODO add your code for ficha_azul.mouseClicked
-    	ficha_selecionada.setIcon(new ImageIcon(getClass().getClassLoader().getResource("./recursos/ficha_azul.png")));
+    	ficha_selecionada.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
     	tipoFicha=4;
     }
     public void casillaPulsada(int casilla,Apuesta.tipoAp tipo){

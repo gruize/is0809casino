@@ -466,7 +466,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
     }
 
     private void salir() {
-        if (JOptionPane.showConfirmDialog(this,"Ã‚Â¿Desea abandonar el juego?",
+        if (JOptionPane.showConfirmDialog(this,"¿Desea abandonar el juego?",
                 "Cierre del juego",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
 				if(controlador.cerrarConexion()){
                     System.exit(0);

@@ -152,14 +152,14 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         jPanelUsuariosTemp1.setBounds(20, 420, 150, 200);
         jLayeredPane1.add(jPanelUsuariosTemp1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonBack.setIcon(new javax.swing.ImageIcon("C:\\Documents and Settings\\GabiPC\\Escritorio\\II\\Practica IS\\Repositorio\\Cliente\\trunk\\ClienteCasino\\recursos\\3flecha_izquierda-cubeg1-thumb.gif")); // NOI18N
+        jButtonBack.setIcon(new javax.swing.ImageIcon("./recursos/3flecha_izquierda-cubeg1-thumb.gif")); // NOI18N
         jButtonBack.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonBack.setLabel("Volver");
         jButtonBack.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         jButtonBack.setBounds(40, 660, 73, 80);
         jLayeredPane1.add(jButtonBack, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonSalir.setIcon(new javax.swing.ImageIcon("C:\\Documents and Settings\\GabiPC\\Escritorio\\II\\Practica IS\\Repositorio\\Cliente\\trunk\\ClienteCasino\\recursos\\TgC_boton142.gif")); // NOI18N
+        jButtonSalir.setIcon(new javax.swing.ImageIcon("./recursos/TgC_boton142.gif")); // NOI18N
         jButtonSalir.setText("Salir");
         jButtonSalir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonSalir.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
@@ -234,7 +234,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         mesa.setBounds(365, 0, 430, 800);
         jLayeredPane1.add(mesa, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButtonFinish.setIcon(new javax.swing.ImageIcon("C:\\Documents and Settings\\GabiPC\\Escritorio\\II\\Practica IS\\Repositorio\\Cliente\\trunk\\ClienteCasino\\recursos\\TgC_boton142.gif")); // NOI18N
+        jButtonFinish.setIcon(new javax.swing.ImageIcon("./recursos/TgC_boton142.gif")); // NOI18N
         jButtonFinish.setText("Terminar");
         jButtonFinish.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonFinish.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
@@ -512,6 +512,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
             Apuesta[] lista;
             lista=mesa.terminarYdameListaApuestas();
             controlador.realizarApuestaRuleta(lista, num);
+            girarRuleta(4);
         }
     }
 

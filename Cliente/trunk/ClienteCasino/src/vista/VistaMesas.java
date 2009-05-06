@@ -245,13 +245,13 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         //orden = 0;
         jOrden.add("---Elija un orden---");
         //orden = 1;
-        jOrden.add("NÂº de jugadores.Creciente");
+        jOrden.add("Nº de jugadores.Creciente");
         //orden = 2;
-        jOrden.add("NÂº de jugadores.Decreciente");
+        jOrden.add("Nº de jugadores.Decreciente");
         //orden = 3;
-        jOrden.add("Apuesta mÃ­nima.Creciente");
+        jOrden.add("Apuesta minima.Creciente");
         //orden = 4;
-        jOrden.add("Apuesta mÃ­nima.Decreciente");
+        jOrden.add("Apuesta minima.Decreciente");
     }
 
     private void rellenarDatos() {
