@@ -604,7 +604,7 @@ public class MesaRuleta implements Mesa {
     private boolean estaEnCuadro(int numero, int cuadro){
         int resultado= cuadro+ cuadro/2;
         if ((cuadro%2)== 0) resultado--;
-        if ((resultado==numero)||(resultado==numero+1)||(resultado==numero+3)||(resultado==numero+4))return true;
+        if ((resultado==numero)||(resultado+1==numero)||(resultado+3==numero)||(resultado+4==numero))return true;
         return false;
     }
 }
