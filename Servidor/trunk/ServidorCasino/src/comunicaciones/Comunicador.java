@@ -106,17 +106,13 @@ public class Comunicador extends Thread{
 
 
     public boolean enviarMensaje (int identificadorUsuario, int tipo, Serializable mensaje) {
-        ManejadorCliente destino = _almacen.getManejadorCliente(identificador);
+        ManejadorCliente destino = _almacen.getManejadorCliente(identificadorUsuario);
         MensajeComunicaciones temp = new MensajeComunicaciones();
         temp.setRemitente(0);
-        temp.setDestino(identificador); 
+        temp.setDestino(identificadorUsuario);
         temp.setTipo(tipo);
-        /*if (mensaje instanceof MensajeChat)
-            temp.setTipo(1);
-        else if (mensaje instanceof MensajeJugada)
-            temp.setTipo(2);*/
         temp.setMensaje(mensaje);
-        if (destino != null /*&& destino.isConectado()*/){
+        if (destino != null){
             return destino.enviarMensaje(temp);
         }
         else return false;
