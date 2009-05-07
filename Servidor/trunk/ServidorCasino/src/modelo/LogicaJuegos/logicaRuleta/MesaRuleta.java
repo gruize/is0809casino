@@ -92,13 +92,11 @@ public class MesaRuleta implements Mesa {
         TimerTask timerTask = new TimerTask() {
 
             public void run() {
-                // Aquí el código que queremos ejecutar.
-
-                //enviar mensaje al cliente para que pare su ruleta
-                
-                lanzaBola();//lanza bola, comprueba resultados y busca ganador
-                enviarPararRuleta();
-                enviarSaldos(); //envía a cada cliente su nuevo saldo
+                // Aqui va el codigo que queremos ejecutar.
+                lanzaBola();//lanza bola
+                enviarPararRuleta(); //enviar mensaje al cliente para que pare su ruleta
+                comprobarApuestas(ultimaBola); //Comprueba las apuestas y paga a los ganadores
+                enviarSaldos(); //envia a cada cliente su nuevo saldo
                 modificarPartida(); //actualiza la partida en BBDD
                 try {
 
@@ -203,14 +201,13 @@ public class MesaRuleta implements Mesa {
     }
 
     /**
-     * Lanza una bola y comprueba todas las apuestas de los jugadores.
+     * Lanza una bola
      */
     public void lanzaBola() {
 
         System.out.println("****** BOLA LANZADA ********");
-
         ultimaBola = (int) Math.round((Math.random() * 36));
-        comprobarApuestas(ultimaBola);
+        
 
     }
 
@@ -605,7 +602,9 @@ public class MesaRuleta implements Mesa {
      * @return true si numero esta en el cuadro cuadro.
      */
     private boolean estaEnCuadro(int numero, int cuadro){
-
-    return true;
+        int resultado= cuadro+ cuadro/2;
+        if ((cuadro%2)== 0) resultado--;
+        if ((resultado==numero)||(resultado==numero+1)||(resultado==numero+3)||(resultado==numero+4))return true;
+        return false;
     }
 }
