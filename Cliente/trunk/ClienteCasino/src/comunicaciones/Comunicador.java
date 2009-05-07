@@ -48,7 +48,10 @@ public class Comunicador {
             ObjectInputStream entrada = new ObjectInputStream(conexion.getInputStream());
             _cliente = new ManejadorCliente(_controlador, conexion, entrada, salida, usuario, password);
             _identificador = _cliente.getIdentificador();
-            conectado = true;
+            if (_identificador == -1)
+                conectado = false;
+            else
+                conectado = true;
         } catch (UnknownHostException ex) {
             System.out.println("Comunicaciones::El servidor no existe o no se puede establecer conexión");
             conectado = false;
