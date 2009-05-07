@@ -68,7 +68,11 @@ public class ModeloServidor extends Observable {
     }
 
     public void expulsarJugador(String jugador) {
-
+        listaConectados.removeElement(jugador);
+        String texto = "Usuario desconectado: "+jugador+"\n";
+        MensajeLog mensaje = new MensajeLog(texto);
+        setChanged();
+        notifyObservers(mensaje);
     }
 
     public DefaultListModel getListaConectados() {
