@@ -481,7 +481,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
                MensajeChat mensaje = (MensajeChat)arg;
                String textoadd = getPanelChat().getAreaTextoChat().getText() + "\n" + mensaje.get_usuario() + ": " + mensaje.get_men();
                getPanelChat().getAreaTextoChat().setText(textoadd);
-               getPanelChat().getJScrollPane1().getVerticalScrollBar().setValue(getPanelChat().getJScrollPane1().getVerticalScrollBar().getMaximum());
+               
          }else if (arg instanceof MensajeEstadoRuleta){
              MensajeEstadoRuleta mensaje = (MensajeEstadoRuleta) arg;
              if (mensaje.isParado()){
