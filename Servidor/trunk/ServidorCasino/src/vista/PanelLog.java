@@ -56,7 +56,6 @@ public class PanelLog extends JPanel {
        jScroll = new JScrollPane(jLog);
        jScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
        jScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-
        jPanel3.setLayout(new FlowLayout());
        jExpulsar.setPreferredSize(new Dimension(120,30));
        jVerEstadisticas.setPreferredSize(new Dimension(160,30));

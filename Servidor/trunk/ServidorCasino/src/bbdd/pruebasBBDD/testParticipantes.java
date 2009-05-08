@@ -25,7 +25,7 @@ public class testParticipantes {
     public static void main(String[] args) {
        
         bbdd = new GestorBBDDImp();
-       //borrarParticipante();
+       borrarParticipante();
         
         getParticipantes();
     }

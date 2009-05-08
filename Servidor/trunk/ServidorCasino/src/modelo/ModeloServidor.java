@@ -8,6 +8,7 @@ package modelo;
 import java.io.IOException;
 import java.util.Observable;
 import javax.swing.DefaultListModel;
+import modelo.mensajes.MensajeChat;
 
 /**
  *
@@ -67,7 +68,7 @@ public class ModeloServidor extends Observable {
 
     }
 
-    public void expulsarJugador(String jugador) {
+    public void cerrarJugador(String jugador) {
         listaConectados.removeElement(jugador);
         String texto = "Usuario desconectado: "+jugador+"\n";
         MensajeLog mensaje = new MensajeLog(texto);
@@ -92,8 +93,32 @@ public class ModeloServidor extends Observable {
         return true;
     }
 
-    public void verEstadisticas(String usuario) {
+    public boolean tratarMensaje(MensajeChat mensajeChat) {
+        String texto = mensajeChat.get_men();
+        boolean resultado = true;
+        if (texto.trim().contains("gilipollas"))
+                resultado = false;
+        else if (texto.trim().contains("cabron"))
+                resultado = false;
+        else if (texto.trim().contains("cabrones"))
+                resultado = false;
+        else if (texto.trim().contains("puta"))
+                resultado = false;
+        else if (texto.trim().contains("putas"))
+                resultado = false;
+        else if (texto.trim().contains("zorra"))
+                resultado = false;
+        else if (texto.trim().contains("zorras"))
+                resultado = false;
+        else if (texto.trim().contains("hijodeputa"))
+                resultado = false;
+        else if (texto.trim().contains("hijoputa"))
+                resultado = false;
+        return resultado;
+    }
 
+    public void verEstadisticas(String usuario) {
+        
     }
 
 }

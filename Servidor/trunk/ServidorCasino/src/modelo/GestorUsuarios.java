@@ -77,6 +77,8 @@ public class GestorUsuarios {
         id = bbdd.comprobarUsuario(usuario, password);
         //Si el jugador aun no estÃƒÂ¡ conectado devuelve resultado = -1
         if (getIndiceJugador(id) == -1) {
+            if (!listaUsuarios.contains(usuario))
+                listaUsuarios.addElement(usuario);
             insertarJugador(bbdd.getClientePorCodigo(id));
             log.info("GestorUsuarios : hacerLogin : Jugador con id=" + id + " logeado en el casino");
         } else { //ya estÃƒÂ¡ conectado, devuelvo -1 hacia el comunicador
@@ -249,5 +251,9 @@ public class GestorUsuarios {
      */
     public String getNombreUsuario(int idJugador) {
         return bbdd.getClientePorCodigo(idJugador).getUsuario();
+    }
+
+    public int getIdUsuario(String usuario) {
+        return bbdd.getClientePorUsuario(usuario).getCodigo();
     }
 }

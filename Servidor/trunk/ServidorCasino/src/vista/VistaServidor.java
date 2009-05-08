@@ -26,8 +26,6 @@ import java.util.Observer;
 import javax.swing.JFileChooser;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import modelo.MensajeLog;
 
 public class VistaServidor extends JFrame implements Observer  {
@@ -82,7 +80,7 @@ public class VistaServidor extends JFrame implements Observer  {
         if (JOptionPane.showConfirmDialog(this,"Â¿Desea abandonar el servidor?",
                 "Cierre del servidor",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) {
            //Guarda el log en un archivo. Comentado para mayor comodidad.
-            /* String Texto = jPanelLog.getLog().getText();
+             String Texto = jPanelLog.getLog().getText();
             try{
                         JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));
                         chooser.showSaveDialog(this); //Muestra el diÃ¡logo
@@ -95,7 +93,7 @@ public class VistaServidor extends JFrame implements Observer  {
                         }
         } catch(IOException ioe){
             System.out.println(ioe); //Muestra por consola los errores
-        }*/
+        }
             try {
 				if(controlador.servidorConectado())
 					controlador.cerrarConexion();
@@ -135,7 +133,7 @@ public class VistaServidor extends JFrame implements Observer  {
             }
             else
                 JOptionPane.showMessageDialog(null,"Seleccione un cliente en conectados",
-                        "Error en selecciÃ³n",JOptionPane.ERROR_MESSAGE);
+                        "Error en seleccion",JOptionPane.ERROR_MESSAGE);
         }
 
     }
@@ -143,14 +141,13 @@ public class VistaServidor extends JFrame implements Observer  {
     class OyenteExpulsar implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            JList lista = jPanelLog.getConectados().getConectados();
+            JList lista = jPanelJugadores.getJugadores();
             if (lista.getSelectedValue() != null) {
-                controlador.expulsarJugador(lista.getSelectedValue().toString());
-                lista.removeSelectionInterval(lista.getSelectedIndex(),lista.getSelectedIndex());
+                controlador.expulsarManualJugador(lista.getSelectedValue().toString());
             }
             else
                 JOptionPane.showMessageDialog(null,"Seleccione un cliente en conectados",
-                        "Error en selecciÃ³n",JOptionPane.ERROR_MESSAGE);
+                        "Error en seleccion",JOptionPane.ERROR_MESSAGE);
         }
     }
 }

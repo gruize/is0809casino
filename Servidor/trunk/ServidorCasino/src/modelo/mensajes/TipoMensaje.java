@@ -48,4 +48,7 @@ public class TipoMensaje {
 
     /** Para enviar los resultados de partidas anteriores */
     public static final int RESULTS_PASADO=13;
+
+    /** Para indicar la expulsion a un cliente */
+    public static final int EXPULSAR=14;
 }

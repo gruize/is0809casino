@@ -7,12 +7,12 @@ package vista;
 
 import controlador.ControladorServidor;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -24,6 +24,7 @@ public class PanelUsuarios extends JPanel {
     private JList jConectados;
 	private JPanel jPanel1;
     private JPanel jPanel2;
+    private JScrollPane jScroll;
     private ControladorServidor controlador;
 
     public PanelUsuarios(ControladorServidor control) {
@@ -36,8 +37,11 @@ public class PanelUsuarios extends JPanel {
        jConectados.setFont(new Font("Serif", Font.ITALIC, 12));
        jConectados.setBorder(BorderFactory.createEtchedBorder());
        jConectados.setToolTipText("Clientes");
+       jScroll = new JScrollPane(jConectados);
+       jScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+       jScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
        add(jLabelConectados,BorderLayout.NORTH);
-       add(jConectados,BorderLayout.CENTER);
+       add(jScroll,BorderLayout.CENTER);
        add(jPanel1,BorderLayout.EAST);
        add(jPanel2,BorderLayout.WEST);
     }

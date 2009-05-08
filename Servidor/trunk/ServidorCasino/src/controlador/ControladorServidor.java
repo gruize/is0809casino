@@ -17,6 +17,7 @@ import modelo.mensajes.MensajeJugada;
 import java.util.Vector;
 import modelo.GestorSalas;
 import modelo.mensajes.MensajeEstadoRuleta;
+import modelo.mensajes.MensajeExpulsion;
 import modelo.mensajes.MensajeInfoCliente;
 import modelo.mensajes.MensajeInfoMesas;
 import modelo.mensajes.MensajeInfoSalas;
@@ -78,7 +79,6 @@ public class ControladorServidor {
     public void cerrarConexion() throws IOException {
         try {
             modelo.cerrarConexion();
-
             GestorSalas.getInstance(this).borrarSalas();
             System.out.println("salas borradas");
         } catch (Exception e) {
@@ -86,8 +86,17 @@ public class ControladorServidor {
         }
     }
 
-    public void expulsarJugador(String jugador) {
-        modelo.expulsarJugador(jugador);
+    public void expulsarManualJugador(String usuario) {
+        int id = usuarios.getIdUsuario(usuario);
+        enviarMensajeExpulsion(id);
+    }
+
+    public void expulsarJugador(int id) {
+        enviarMensajeExpulsion(id);
+    }
+
+    public void cerrarJugador(String usuario) {
+        modelo.cerrarJugador(usuario);
     }
 
     /**
@@ -99,7 +108,7 @@ public class ControladorServidor {
         try {
             usuarios.desconectarJugador(identificador);
             //quitarlo de la interfaz del servidor
-            expulsarJugador(usuarios.getNombreUsuario(identificador));
+            cerrarJugador(usuarios.getNombreUsuario(identificador));
             log.info("ControladorServidor : jugadorDesconectado : jugador=" + identificador + " desconectado del casino");
 
         } catch (Exception e) {
@@ -237,6 +246,11 @@ public class ControladorServidor {
 
     }
 
+    private void enviarMensajeExpulsion(int id) {
+        MensajeExpulsion mensajeExpulsion = new MensajeExpulsion(id);
+        comunicador.enviarMensaje(id,TipoMensaje.EXPULSAR,mensajeExpulsion);
+    }
+
     //==================================================================================
     //          RECEPCION DE MENSAJES DE LOS CLIENTES
     //==================================================================================
@@ -248,12 +262,11 @@ public class ControladorServidor {
     public int login(Serializable mensaje) {
 
         Vector<String> datos = (Vector<String>) mensaje;
-        int id = GestorUsuarios.getInstancia(this).hacerLogin(datos.firstElement(), datos.lastElement());
+        int id = usuarios.hacerLogin(datos.firstElement(), datos.lastElement());
 
         log.info("ControladorServidor : login : usuario=" + datos.firstElement() + " password=" + datos.lastElement() + " -->id=" + id);
-
-        modelo.login(datos.firstElement(), datos.lastElement());
-
+        if (id != -1)
+            modelo.login(datos.firstElement(), datos.lastElement());
         return id;
     }
 
@@ -278,9 +291,13 @@ public class ControladorServidor {
          */
         if (tipo == TipoMensaje.MENSAJE_CHAT) {
             MensajeChat mensajeChat = ((MensajeChat) mensaje);
-            System.out.println("server " + mensajeChat.get_usuario());
-            System.out.println(" *** mensaje chat recibido en sala "+mensajeChat.get_sala() +" y mesa "+mensajeChat.get_mesa() );
-            chat.dejamensaje(mensajeChat);
+            if (modelo.tratarMensaje(mensajeChat)) {
+                System.out.println("server " + mensajeChat.get_usuario());
+                System.out.println(" *** mensaje chat recibido en sala "+mensajeChat.get_sala() +" y mesa "+mensajeChat.get_mesa() );
+                chat.dejamensaje(mensajeChat);
+            } else {
+                expulsarJugador(mensajeChat.get_tio());
+            }
 
         } else if (tipo == TipoMensaje.MENSAJE_JUGADA) {
             MensajeJugada mensajeJugada = ((MensajeJugada) mensaje);
@@ -322,4 +339,5 @@ public class ControladorServidor {
             enviarMesasDeUnaSala(m.getId(), m.getSala());
         }
     }
+
 }
