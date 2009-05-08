@@ -26,6 +26,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
+import modelo.mensajes.MensajeExpulsion;
 import modelo.mensajes.MensajeInfoSalas;
 import modelo.mensajes.objetos.PeticionSala;
 
@@ -389,6 +390,9 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
             MensajeInfoSalas mensaje = (MensajeInfoSalas)arg;
             peticionSala = mensaje.getSalas();
             rellenarSalas();
+        } else if (arg instanceof MensajeExpulsion) {
+            JOptionPane.showMessageDialog(null,"¡¡ESTAS EXPULSADO!!","Expulsion de usuario",JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
         }
     }
 

@@ -1,8 +1,6 @@
 package vista;
 
 
-
-
 public class tApuesta {
 
 	private int cantidad;

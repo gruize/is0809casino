@@ -27,6 +27,7 @@ import javax.swing.JOptionPane;
 import modelo.Apuesta;
 import modelo.mensajes.MensajeChat;
 import modelo.mensajes.MensajeEstadoRuleta;
+import modelo.mensajes.MensajeExpulsion;
 import modelo.mensajes.MensajeInfoCliente;
 import modelo.mensajes.MensajeJugada;
 import modelo.mensajes.MensajeResultadosAnteriores;
@@ -463,7 +464,10 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
     }
 
      public void update(Observable o, Object arg) {
-         if (arg instanceof MensajeChat) {
+         if (arg instanceof MensajeExpulsion) {
+             JOptionPane.showMessageDialog(null,"¡¡ESTAS EXPULSADO!!","Expulsion de usuario",JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
+         }else if (arg instanceof MensajeChat) {
                MensajeChat mensaje = (MensajeChat)arg;
                String textoadd = getPanelChat().getAreaTextoChat().getText() + "\n" + mensaje.get_usuario() + ": " + mensaje.get_men();
                getPanelChat().getAreaTextoChat().setText(textoadd);

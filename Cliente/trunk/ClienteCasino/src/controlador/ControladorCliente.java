@@ -14,6 +14,7 @@ import java.util.Vector;
 import modelo.Jugada;
 import modelo.ModeloCliente;
 import modelo.mensajes.MensajeEstadoRuleta;
+import modelo.mensajes.MensajeExpulsion;
 import modelo.mensajes.MensajeInfoCliente;
 import modelo.mensajes.MensajeInfoMesas;
 import modelo.mensajes.MensajeInfoSalas;
@@ -275,7 +276,11 @@ public class ControladorCliente {
         }else if (tipo==TipoMensaje.RESULTS_PASADO){
             MensajeResultadosAnteriores mensajeRA = (MensajeResultadosAnteriores)mensaje;
             //TODO:
-        }else {
+        } else if (tipo==TipoMensaje.EXPULSAR) {
+            MensajeExpulsion mensajeExpulsion = (MensajeExpulsion)mensaje;
+            modelo.expulsado(mensajeExpulsion);
+        }
+        else {
             System.err.println("No se que tipo de mensaje me envia!! " + tipo);
         }
 

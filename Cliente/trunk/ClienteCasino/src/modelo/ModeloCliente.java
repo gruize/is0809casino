@@ -6,6 +6,7 @@
 package modelo;
 
 import modelo.mensajes.MensajeChat;
+import modelo.mensajes.MensajeExpulsion;
 import modelo.mensajes.MensajeInfoMesas;
 import modelo.mensajes.MensajeInfoSalas;
 import modelo.mensajes.MensajeJugada;
@@ -31,6 +32,11 @@ public class ModeloCliente extends Observable{
 
     public double getSaldo() {
         return saldo;
+    }
+
+    public void expulsado(MensajeExpulsion mensajeExpulsion) {
+        setChanged();
+        this.notifyObservers(mensajeExpulsion);
     }
 
     public void rellenarMesas(MensajeInfoMesas mensajeInfoMesas) {

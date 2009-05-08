@@ -26,6 +26,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
+import modelo.mensajes.MensajeExpulsion;
 import modelo.mensajes.MensajeInfoMesas;
 import modelo.mensajes.objetos.PeticionMesa;
 import modelo.mensajes.objetos.PeticionSala;
@@ -264,6 +265,9 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
             MensajeInfoMesas mensaje = (MensajeInfoMesas)arg;
             peticionMesa = mensaje.getMesas();
             rellenarMesas();
+        } else if (arg instanceof MensajeExpulsion) {
+             JOptionPane.showMessageDialog(null,"¡¡ESTAS EXPULSADO!!","Expulsion de usuario",JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
         }
     }
 
