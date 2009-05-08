@@ -380,9 +380,131 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
         }
     }
 
+    private void rellenarSalasColoreado(int sala) {
+        jContenedor.removeAll();
+        System.out.println("eleccion: "+ eleccion);
+        switch(eleccion){
+            case 0: {
+                for(int i = 0; i < peticionSala.size(); i++){
+                    System.out.println("sala"+ peticionSala.get(i).getJuego());
+                    JPanel nuevaSala = new JPanel();
+                    if(i == sala)
+                        nuevaSala.setBackground(new Color(128,128,128));
+                    else
+                        nuevaSala.setBackground(Color.BLACK);
+                    nuevaSala.setOpaque(true);
+                    nuevaSala.setPreferredSize(new Dimension(250,120));
+                    nuevaSala.setSize(new Dimension(250,120));
+                    nuevaSala.setBorder(null);
+                    switch(peticionSala.get(i).getJuego()){
+                        case RULETA: {
+                            nuevaSala.setName("SalaRuleta"+peticionSala.get(i).getIdSala());
+                            JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/ruletaSala.jpg"));
+                            botonNuevaSala.setPreferredSize(new Dimension(114,86));
+                            botonNuevaSala.setName("BotonSalaRuleta"+i);
+                            botonNuevaSala.setActionCommand("SalaRuleta"+peticionSala.get(i).getIdSala());
+                            botonNuevaSala.addActionListener(new OyenteSalas());
+                            botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
+                            nuevaSala.add(botonNuevaSala);
+                            JTextArea textoNuevaSala = new JTextArea("Mesas disponibles\n"+peticionSala.get(i).getNumMesas());
+                            textoNuevaSala.setPreferredSize(new Dimension(114,86));
+                            nuevaSala.add(textoNuevaSala);
+                            jContenedor.add(nuevaSala);
+                        }break;
+                        case DADOS: {
+                            // Crea un icono que referencie a la imagen en disco
+                            ImageIcon iconoOriginal = new ImageIcon("./recursos/dadosSala.jpg");
+                            // ancho en pixeles que tendra el icono escalado
+                            int ancho = 114;
+                            // alto (para que conserve la proporcion pasamos -1)
+                            int alto = 86;
+                            nuevaSala.setName("SalaDados"+peticionSala.get(i).getIdSala());
+                                                                // Obtiene un icono en escala con las dimensiones especificadas
+                            JButton botonNuevaSala = new JButton(new ImageIcon(iconoOriginal.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
+                            botonNuevaSala.setPreferredSize(new Dimension(114,86));
+                            botonNuevaSala.setName("BotonSalaDaddos"+i);
+                            botonNuevaSala.setActionCommand("SalaDados"+peticionSala.get(i).getIdSala());
+                            botonNuevaSala.addActionListener(new OyenteSalas());
+                            botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
+                            nuevaSala.add(botonNuevaSala);
+                            JTextArea textoNuevaSala = new JTextArea("Mesas disponibles\n"+peticionSala.get(i).getNumMesas());
+                            textoNuevaSala.setPreferredSize(new Dimension(114,86));
+                            nuevaSala.add(textoNuevaSala);
+                            jContenedor.add(nuevaSala);
+                        }break;
+                    }
+                }
+                jSalas.getViewport().setView(jContenedor);
+            }break;
+            case 1: {
+                for(int i = 0; i < peticionSala.size(); i++){
+                    if(peticionSala.get(i).getJuego().equals(NombreJuegos.RULETA)){
+                        JPanel nuevaSala = new JPanel();
+                        if(i == sala)
+                            nuevaSala.setBackground(new Color(128,128,128));
+                        else
+                            nuevaSala.setBackground(Color.BLACK);
+                        nuevaSala.setOpaque(true);
+                        nuevaSala.setPreferredSize(new Dimension(250,120));
+                        nuevaSala.setSize(new Dimension(250,120));
+                        nuevaSala.setBorder(null);
+                        nuevaSala.setName("SalaRuleta"+peticionSala.get(i).getIdSala());
+                        JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/ruletaSala.jpg"));
+                        botonNuevaSala.setPreferredSize(new Dimension(114,86));
+                        botonNuevaSala.setName("BotonSalaRuleta"+i);
+                        botonNuevaSala.setActionCommand("SalaRuleta"+peticionSala.get(i).getIdSala());
+                        botonNuevaSala.addActionListener(new OyenteSalas());
+                        botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
+                        nuevaSala.add(botonNuevaSala);
+                        JTextArea textoNuevaSala = new JTextArea("Mesas disponibles\n"+peticionSala.get(i).getNumMesas());
+                        textoNuevaSala.setPreferredSize(new Dimension(114,86));
+                        nuevaSala.add(textoNuevaSala);
+                        jContenedor.add(nuevaSala);
+                    }
+                }
+                jSalas.getViewport().setView(jContenedor);
+            }break;
+            case 2: {
+                for(int i = 0; i < peticionSala.size(); i++){
+                    if(peticionSala.get(i).getJuego().equals(NombreJuegos.DADOS)){
+                        // Crea un icono que referencie a la imagen en disco
+                        ImageIcon icono = new ImageIcon("./recursos/dadosSala.jpg");
+                        // ancho en pixeles que tendra el icono escalado
+                        int ancho = 114;
+                        // alto (para que conserve la proporcion pasamos -1)
+                        int alto = 86;
+                        JPanel nuevaSala = new JPanel();
+                        if(i == sala)
+                            nuevaSala.setBackground(new Color(128,128,128));
+                        else
+                            nuevaSala.setBackground(Color.BLACK);
+                        nuevaSala.setOpaque(true);
+                        nuevaSala.setPreferredSize(new Dimension(250,120));
+                        nuevaSala.setSize(new Dimension(250,120));
+                        nuevaSala.setName("SalaDados"+peticionSala.get(i).getIdSala());
+                        nuevaSala.setBorder(null);                                                             // Obtiene un icono en escala con las dimensiones especificadas
+                        JButton botonNuevaSala = new JButton(new ImageIcon(icono.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_DEFAULT)));
+                        botonNuevaSala.setPreferredSize(new Dimension(114,86));
+                        botonNuevaSala.setName("BotonSalaDaddos"+i);
+                        botonNuevaSala.setActionCommand("SalaDados"+peticionSala.get(i).getIdSala());
+                        botonNuevaSala.addActionListener(new OyenteSalas());
+                        botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
+                        nuevaSala.add(botonNuevaSala);
+                        JTextArea textoNuevaSala = new JTextArea("Mesas disponibles\n"+ peticionSala.get(i).getNumMesas());
+                        textoNuevaSala.setPreferredSize(new Dimension(114,86));
+                        nuevaSala.add(textoNuevaSala);
+                        jContenedor.add(nuevaSala);
+                }
+                }
+                jSalas.getViewport().setView(jContenedor);
+            }break;
+        }
+    }    
+    
     private void modificarEntrada(NombreJuegos nuevo, int salon){
         setJuego(nuevo);
         setSalonEntrar(salon);
+        rellenarSalasColoreado(salon-1);
     }
 
     public void update(Observable o, Object arg) {

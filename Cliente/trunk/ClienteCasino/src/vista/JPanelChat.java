@@ -6,8 +6,10 @@
 package vista;
 
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 
 /**
  *
@@ -35,6 +37,14 @@ public class JPanelChat extends javax.swing.JPanel {
         initComponents();
     }
 
+    public JScrollPane getJScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public void setJScrollPane1(JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
     private void initComponents() {
 
         jSeparator1 = new javax.swing.JSeparator();
@@ -52,13 +62,14 @@ public class JPanelChat extends javax.swing.JPanel {
         areaTextoChat.setColumns(20);
         areaTextoChat.setRows(5);
         areaTextoChat.setBorder(null);
-        jScrollPane1.setViewportView(areaTextoChat);
-
+        areaTextoChat.setWrapStyleWord(true);
+        areaTextoChat.setLineWrap(true);
+        jScrollPane1.setViewportView(areaTextoChat);        
+        jScrollPane1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);       
         jScrollPane2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
         textfieldFrase.setBorder(null);
         jScrollPane2.setViewportView(textfieldFrase);
-
+        jScrollPane2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         botonEnviar.setText("Enviar");
         botonEnviar.setActionCommand("enviarMensajeChat");
         botonEnviar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -100,7 +111,7 @@ public class JPanelChat extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonEnviar, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
     }

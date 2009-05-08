@@ -52,18 +52,19 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
     private vista.JPanelCjtoApuestasTemp jPanelCjtoApuestasTemp1;
     private javax.swing.JPanel jPanelDatos;
     private vista.JPanelUsuariosTemp jPanelUsuariosTemp1;
-	private BufferedImage ImagenRuleta = null;
-	private BufferedImage ImagenBola = null;
-	private boolean gira=false;
-	private MesaPanel mesa;
-	private int bolaX, bolaY;
-	private static int numVueltas = 3;
+    private BufferedImage ImagenRuleta = null;
+    private BufferedImage ImagenBola = null;
+    private boolean gira=false;
+    private MesaPanel mesa;
+    private int bolaX, bolaY;
+    private static int numVueltas = 3;
     private ControladorCliente controlador;
     private OyenteBloquearChat bloquearChat;
     private OyenteEnviarMensajeChat enviarMensajeChat;  
     private OyenteSalir exit;
     private OyenteTerminarApuestas terminarApuestas;
     private OyenteVolver oyenteVolver;
+    private boolean apuestaHecha;
 
     public JPanelChat getPanelChat() {
         return PanelChat;
@@ -93,6 +94,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
     public VistaRuleta(ControladorCliente control) {
         super("Ruleta");
         controlador = control;
+        apuestaHecha = false;
         inicializar();
         ponerOyentes();
         rellenarDatos();
@@ -115,6 +117,14 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
 
     public JPanelCjtoApuestasTemp getJPanelCjtoApuestasTemp1() {
         return jPanelCjtoApuestasTemp1;
+    }
+
+    public boolean isApuestaHecha() {
+        return apuestaHecha;
+    }
+
+    public void setApuestaHecha(boolean apuestaHecha) {
+        this.apuestaHecha = apuestaHecha;
     }
 
     public JPanelUsuariosTemp getJPanelUsuariosTemp1() {
@@ -466,11 +476,12 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
      public void update(Observable o, Object arg) {
          if (arg instanceof MensajeExpulsion) {
              JOptionPane.showMessageDialog(null,"¡¡ESTAS EXPULSADO!!","Expulsion de usuario",JOptionPane.ERROR_MESSAGE);
-            System.exit(0);
+                System.exit(0);
          }else if (arg instanceof MensajeChat) {
                MensajeChat mensaje = (MensajeChat)arg;
                String textoadd = getPanelChat().getAreaTextoChat().getText() + "\n" + mensaje.get_usuario() + ": " + mensaje.get_men();
                getPanelChat().getAreaTextoChat().setText(textoadd);
+               getPanelChat().getJScrollPane1().getVerticalScrollBar().setValue(getPanelChat().getJScrollPane1().getVerticalScrollBar().getMaximum());
          }else if (arg instanceof MensajeEstadoRuleta){
              MensajeEstadoRuleta mensaje = (MensajeEstadoRuleta) arg;
              if (mensaje.isParado()){
@@ -498,13 +509,16 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
             getMesa().setSaldoUsuario(mensaje.getSaldo());
             getMesa().limpiarTapete();
             getMesa().empezar(mensaje.getSaldo());
-            if(mensaje.getBola() != -1 ){
-                girarRuleta(mensaje.getBola());
-                if(valorAux < mensaje.getSaldo())//GANA
-                    JOptionPane.showMessageDialog( this,"El resultado es " + Integer.toString(mensaje.getBola()) + "Ha incrementado su saldo a "+Double.toString(mensaje.getSaldo()), "FELICIDADES!", JOptionPane.WARNING_MESSAGE );
-                else
-                    JOptionPane.showMessageDialog( this,"El resultado es " + Integer.toString(mensaje.getBola()) +  "su saldo actual es " + Double.toString(mensaje.getSaldo()), "Resultados", JOptionPane.WARNING_MESSAGE );
-            }
+            if(isApuestaHecha()){
+                setApuestaHecha(false);                
+                if(mensaje.getBola() != -1 ){
+                    girarRuleta(mensaje.getBola());
+                    if(valorAux < mensaje.getSaldo())//GANA
+                        JOptionPane.showMessageDialog( this,"El resultado es " + Integer.toString(mensaje.getBola()) + "Ha incrementado su saldo a "+Double.toString(mensaje.getSaldo()), "FELICIDADES!", JOptionPane.WARNING_MESSAGE );
+                    else
+                        JOptionPane.showMessageDialog( this,"El resultado es " + Integer.toString(mensaje.getBola()) +  "su saldo actual es " + Double.toString(mensaje.getSaldo()), "Resultados", JOptionPane.WARNING_MESSAGE );
+                }
+            }    
          }
     }
 
@@ -553,6 +567,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
     }
 
     private void enviarApuestas(){
+        setApuestaHecha(true);
         JOptionPane.showMessageDialog( this,"Sus apuestas han sido enviadas", "Turno de apuestas", JOptionPane.WARNING_MESSAGE );
         int num = getMesa().dameNumApuestas();
         Apuesta[] lista;

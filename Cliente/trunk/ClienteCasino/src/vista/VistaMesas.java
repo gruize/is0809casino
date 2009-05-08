@@ -430,8 +430,183 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         jSalas.getViewport().setView(jContenedor);
     }
 
+    private void rellenarMesasColoreado(int mesa) {
+         jContenedor.removeAll();
+
+        switch(orden){
+            //Ningun orden
+            case 0: {
+                for (int i = 0; i < peticionMesa.size(); i++){
+                    JPanel nuevaMesa = new JPanel();
+                    if(i == mesa)
+                        nuevaMesa.setBackground(new Color(128,128,128));
+                    else
+                        nuevaMesa.setBackground(Color.BLACK);
+                    nuevaMesa.setOpaque(true);
+                    nuevaMesa.setPreferredSize(new Dimension(250,120));
+                    nuevaMesa.setSize(new Dimension(250,120));
+                    nuevaMesa.setName("Mesa"+i);
+                    nuevaMesa.setBorder(null);
+                    JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
+                    botonNuevaSala.setPreferredSize(new Dimension(114,86));
+                    botonNuevaSala.setName("BotonMesa"+i);
+                    botonNuevaSala.setActionCommand(Integer.toString(peticionMesa.get(i).getIdMesa()));
+                    botonNuevaSala.addActionListener(new OyenteMesas());
+                    botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
+                    nuevaMesa.add(botonNuevaSala);
+                    JTextArea textoNuevaMesa = new JTextArea("Usuarios: \n"+peticionMesa.get(i).getNumJugadores()+"\nApuestaMinima: \n"+peticionMesa.get(i).getApuestaMin());
+                    textoNuevaMesa.setPreferredSize(new Dimension(114,86));
+                    nuevaMesa.add(textoNuevaMesa);
+                    jContenedor.add(nuevaMesa);
+                }
+            }break;
+            //Nº Jugadores. Creciente
+            case 1: {
+                while(!peticionMesa.isEmpty()){
+                    int index = 0;
+                    PeticionMesa tmp = peticionMesa.get(index);
+                    for(int i = 1; i < peticionMesa.size(); i++){
+                        if(tmp.getNumJugadores() < peticionMesa.get(i).getNumJugadores()){
+                            index = i;
+                            tmp = peticionMesa.get(index);
+                        }
+                    }
+                    JPanel nuevaMesa = new JPanel();
+                    if(index == mesa)
+                        nuevaMesa.setBackground(new Color(128,128,128));
+                    else
+                        nuevaMesa.setBackground(Color.BLACK);
+                    nuevaMesa.setOpaque(true);
+                    nuevaMesa.setPreferredSize(new Dimension(250,120));
+                    nuevaMesa.setSize(new Dimension(250,120));
+                    nuevaMesa.setName("Mesa"+tmp.getIdMesa());
+                    nuevaMesa.setBorder(null);
+                    JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
+                    botonNuevaSala.setPreferredSize(new Dimension(114,86));
+                    botonNuevaSala.setName("BotonMesa"+index);
+                    botonNuevaSala.setActionCommand(Integer.toString(tmp.getIdMesa()));
+                    botonNuevaSala.addActionListener(new OyenteMesas());
+                    botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
+                    nuevaMesa.add(botonNuevaSala);
+                    JTextArea textoNuevaMesa = new JTextArea("Usuarios: \n"+tmp.getNumJugadores()+"\nApuestaMinima: \n"+tmp.getApuestaMin());
+                    textoNuevaMesa.setPreferredSize(new Dimension(114,86));
+                    nuevaMesa.add(textoNuevaMesa);
+                    jContenedor.add(nuevaMesa);
+                    peticionMesa.remove(tmp);
+                }
+            }break;
+            //Nº Jugadores. Decreciente
+            case 2: {
+                while(!peticionMesa.isEmpty()){
+                    int index = 0;
+                    PeticionMesa tmp = peticionMesa.get(index);
+                    for(int i = 1; i < peticionMesa.size(); i++){
+                        if(tmp.getNumJugadores() > peticionMesa.get(i).getNumJugadores()){
+                            index = i;
+                            tmp = peticionMesa.get(index);
+                        }
+                    }
+                    JPanel nuevaMesa = new JPanel();
+                    if(index == mesa)
+                        nuevaMesa.setBackground(new Color(128,128,128));
+                    else
+                        nuevaMesa.setBackground(Color.BLACK);
+                    nuevaMesa.setOpaque(true);
+                    nuevaMesa.setPreferredSize(new Dimension(250,120));
+                    nuevaMesa.setSize(new Dimension(250,120));
+                    nuevaMesa.setName("Mesa"+tmp.getIdMesa());
+                    nuevaMesa.setBorder(null);
+                    JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
+                    botonNuevaSala.setPreferredSize(new Dimension(114,86));
+                    botonNuevaSala.setName("BotonMesa"+index);
+                    botonNuevaSala.setActionCommand(Integer.toString(tmp.getIdMesa()));
+                    botonNuevaSala.addActionListener(new OyenteMesas());
+                    botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
+                    nuevaMesa.add(botonNuevaSala);
+                    JTextArea textoNuevaMesa = new JTextArea("Usuarios: \n"+tmp.getNumJugadores()+"\nApuestaMinima: \n"+tmp.getApuestaMin());
+                    textoNuevaMesa.setPreferredSize(new Dimension(114,86));
+                    nuevaMesa.add(textoNuevaMesa);
+                    jContenedor.add(nuevaMesa);
+                    peticionMesa.remove(tmp);
+                }
+            }break;
+            //Apuesta minima. Creciente
+            case 3: {
+                while(!peticionMesa.isEmpty()){
+                    int index = 0;
+                    PeticionMesa tmp = peticionMesa.get(index);
+                    for(int i = 1; i < peticionMesa.size(); i++){
+                        if(tmp.getApuestaMin() > peticionMesa.get(i).getApuestaMin()){
+                            index = i;
+                            tmp = peticionMesa.get(index);
+                        }
+                    }
+                    JPanel nuevaMesa = new JPanel();
+                    if(index == mesa)
+                        nuevaMesa.setBackground(new Color(128,128,128));
+                    else
+                        nuevaMesa.setBackground(Color.BLACK);
+                    nuevaMesa.setOpaque(true);
+                    nuevaMesa.setPreferredSize(new Dimension(250,120));
+                    nuevaMesa.setSize(new Dimension(250,120));
+                    nuevaMesa.setName("Mesa"+tmp.getIdMesa());
+                    nuevaMesa.setBorder(null);
+                    JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
+                    botonNuevaSala.setPreferredSize(new Dimension(114,86));
+                    botonNuevaSala.setName("BotonMesa"+index);
+                    botonNuevaSala.setActionCommand(Integer.toString(tmp.getIdMesa()));
+                    botonNuevaSala.addActionListener(new OyenteMesas());
+                    botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
+                    nuevaMesa.add(botonNuevaSala);
+                    JTextArea textoNuevaMesa = new JTextArea("Usuarios: \n"+tmp.getNumJugadores()+"\nApuestaMinima: \n"+tmp.getApuestaMin());
+                    textoNuevaMesa.setPreferredSize(new Dimension(114,86));
+                    nuevaMesa.add(textoNuevaMesa);
+                    jContenedor.add(nuevaMesa);
+                    peticionMesa.remove(tmp);
+                }
+            }break;
+            //Apuesta minima. Decreciente
+            case 4: {
+                while(!peticionMesa.isEmpty()){
+                    int index = 0;
+                    PeticionMesa tmp = peticionMesa.get(index);
+                    for(int i = 1; i < peticionMesa.size(); i++){
+                        if(tmp.getApuestaMin() < peticionMesa.get(i).getApuestaMin()){
+                            index = i;
+                            tmp = peticionMesa.get(index);
+                        }
+                    }
+                    JPanel nuevaMesa = new JPanel();
+                    if(index == mesa)
+                        nuevaMesa.setBackground(new Color(128,128,128));
+                    else
+                        nuevaMesa.setBackground(Color.BLACK);
+                    nuevaMesa.setOpaque(true);
+                    nuevaMesa.setPreferredSize(new Dimension(250,120));
+                    nuevaMesa.setSize(new Dimension(250,120));
+                    nuevaMesa.setName("Mesa"+tmp.getIdMesa());
+                    nuevaMesa.setBorder(null);
+                    JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
+                    botonNuevaSala.setPreferredSize(new Dimension(114,86));
+                    botonNuevaSala.setName("BotonMesa"+index);
+                    botonNuevaSala.setActionCommand(Integer.toString(tmp.getIdMesa()));
+                    botonNuevaSala.addActionListener(new OyenteMesas());
+                    botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
+                    nuevaMesa.add(botonNuevaSala);
+                    JTextArea textoNuevaMesa = new JTextArea("Usuarios: \n"+tmp.getNumJugadores()+"\nApuestaMinima: \n"+tmp.getApuestaMin());
+                    textoNuevaMesa.setPreferredSize(new Dimension(114,86));
+                    nuevaMesa.add(textoNuevaMesa);
+                    jContenedor.add(nuevaMesa);
+                    peticionMesa.remove(tmp);
+                }
+            }break;
+        }
+        jSalas.getViewport().setView(jContenedor);
+    }
+    
     private void modificarEntrada(int mesa){
         setMesaEntrar(mesa);
+        rellenarMesasColoreado(mesa - 1);
     }
 
     class OyenteMesas implements ActionListener {
