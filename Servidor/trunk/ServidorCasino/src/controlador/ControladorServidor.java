@@ -233,6 +233,7 @@ public class ControladorServidor {
      */
     public void enviarMensajeInfoCliente(int idUsuario, MensajeInfoCliente mensaje) {
         comunicador.enviarMensaje(idUsuario, TipoMensaje.INFO_CLIENTE, mensaje);
+
     }
 
     /**
@@ -265,8 +266,14 @@ public class ControladorServidor {
         int id = usuarios.hacerLogin(datos.firstElement(), datos.lastElement());
 
         log.info("ControladorServidor : login : usuario=" + datos.firstElement() + " password=" + datos.lastElement() + " -->id=" + id);
-        if (id != -1)
-            modelo.login(datos.firstElement(), datos.lastElement());
+        if (id != -1){
+            modelo.login(datos.firstElement(), datos.lastElement());           
+       //le envío el saldo.
+        /*    MensajeInfoCliente m=new MensajeInfoCliente();
+            m.setIdUsuario(id);
+            m.setSaldo(usuarios.getClienteInfo(id).getSaldo());
+            enviarMensajeInfoCliente(id, m);*/
+        }
         return id;
     }
 
@@ -277,8 +284,7 @@ public class ControladorServidor {
      */
     public synchronized void mensajeRecibido(int tipo, Serializable mensaje) {
 
-        System.out.println("ControladorServidor : mensajeRecibido : tipo=" + tipo + " mensaje=" + mensaje);
-        log.info("ControladorServidor : mensajeRecibido : tipo=" + tipo + " mensaje=" + mensaje);
+         log.info("ControladorServidor : mensajeRecibido : tipo=" + tipo + " mensaje=" + mensaje);
         /*Tipos de mensajes:
          *  1- Mensaje de Chat
          *  2- Mensaje de Jugada o Informacion de Salas y mesas
@@ -292,8 +298,6 @@ public class ControladorServidor {
         if (tipo == TipoMensaje.MENSAJE_CHAT) {
             MensajeChat mensajeChat = ((MensajeChat) mensaje);
             if (modelo.tratarMensaje(mensajeChat)) {
-                System.out.println("server " + mensajeChat.get_usuario());
-                System.out.println(" *** mensaje chat recibido en sala "+mensajeChat.get_sala() +" y mesa "+mensajeChat.get_mesa() );
                 chat.dejamensaje(mensajeChat);
             } else {
                 expulsarJugador(mensajeChat.get_tio());

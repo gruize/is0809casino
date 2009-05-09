@@ -62,7 +62,7 @@ public class DAOParticipantes {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOParticipantes: "+metodo+": Sesion liberada. Finished");
+           
         }
 
         return res;
@@ -104,7 +104,7 @@ public class DAOParticipantes {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOParticipantes: "+metodo+": Sesion liberada. Finished");
+           
         }
 
         return p;
@@ -144,7 +144,7 @@ public class DAOParticipantes {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOParticipantes: "+metodo+": Sesion liberada. Finished");
+            
         }
 
         return lista;
@@ -186,7 +186,7 @@ public class DAOParticipantes {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOParticipantes: "+metodo+": Sesion liberada. Finished");
+           
         }
 
         return lista;
@@ -228,7 +228,7 @@ public class DAOParticipantes {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOParticipantes: "+metodo+": Sesion liberada. Finished");
+           
         }
 
         return lista;
@@ -270,7 +270,7 @@ public class DAOParticipantes {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOParticipantes: "+metodo+": Sesion liberada. Finished");
+            
         }
 
     }
@@ -310,7 +310,7 @@ public class DAOParticipantes {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOParticipantes: "+metodo+": Sesion liberada. Finished");
+           
         }
 
     }

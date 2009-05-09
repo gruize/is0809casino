@@ -59,7 +59,7 @@ public class DAOMesas {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOMesas: "+ metodo+": Sesion liberada. Finished");
+          
         }
 
         return res;
@@ -99,7 +99,7 @@ public class DAOMesas {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOMesas: "+metodo+": Sesion liberada. Finished");
+           
         }
 
         return lista;
@@ -141,7 +141,7 @@ public class DAOMesas {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOMesas: " + metodo + ": Sesion liberada. Finished");
+           
         }
 
         return mesa;
@@ -182,7 +182,7 @@ public class DAOMesas {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOMesas: "+metodo+": Sesion liberada. Finished");
+           
         }
 
     }
@@ -222,7 +222,7 @@ public class DAOMesas {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOMesas: "+metodo+": Sesion liberada. Finished");
+            
         }
 
     }

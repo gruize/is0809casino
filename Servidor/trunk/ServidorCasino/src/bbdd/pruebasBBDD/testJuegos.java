@@ -33,14 +33,7 @@ public class testJuegos {
      * Inserta un juego
      */
     private static void insertarJuego() {
-       // DAOJuegos dao = new DAOJuegos();
-
-       /* Juegos juego = new Juegos();
-        juego.setCodigo(11);
-        juego.setNombre("Juego Ruleta");
-        juego.setJugadoresmin(1);
-        juego.setReglas("No hay reglas para el juego de la ruleta");*/
-        Juegos juego = new Juegos();
+     Juegos juego = new Juegos();
         juego.setCodigo(12);
         juego.setNombre("Juego Dados");
         juego.setJugadoresmin(1);

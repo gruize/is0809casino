@@ -26,7 +26,7 @@ public class testClientes {
 
         bbdd = new GestorBBDDImp();
        
-        
+       // modificarJugador();
         obtenerTodosLosJugadores();
 
     }
@@ -50,9 +50,7 @@ public class testClientes {
 
         //insertar en BBDD
         bbdd.insertarCliente(jugador);
-        //DAOClientes dao = new DAOClientes();
-       // dao.insertarNuevoCliente(jugador);
-
+   
 
 
     }
@@ -81,15 +79,8 @@ public class testClientes {
      */
     private static void modificarJugador() {
 
-        //obtener jugador que se quiere modificar
-        /*DAOClientes dao = new DAOClientes();
-        Clientes cliente = dao.getClientePorUsuario("ambrin");
-        cliente.setTelefono("916733370");
-        dao.modificarCliente(cliente);
-        mostrarDatos(dao.getClientes());*/
-        
-        Clientes cliente = bbdd.getClientePorUsuario("ambrin");
-        cliente.setTelefono("916733370");
+        Clientes cliente = bbdd.getClientePorUsuario("pepe");
+        cliente.setSaldo(1000);
         bbdd.modificarCliente(cliente);
        
 
@@ -99,14 +90,6 @@ public class testClientes {
      * borra un jugador identificandole por su nomrbe de usuario
      */
     private static void borrarJugador() {
-
-       /*DAOClientes dao = new DAOClientes();
-
-        //obtener jugador que se quiere borrar
-        Clientes c = dao.getClientePorUsuario("pp");
-        //borrarlo
-        dao.borrarCliente(c);
-        mostrarDatos(dao.getClientes());*/
         
         bbdd.borrarCliente(bbdd.getClientePorUsuario("pp"));
     }

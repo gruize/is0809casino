@@ -12,6 +12,7 @@
         <!-- Enable Hibernate's automatic session context management -->
         <property name="current_session_context_class">thread</property>
 
+<property name="hibernate.show_sql">false</property>
 
         <!-- MAPPINGS -->
         <mapping resource="bbdd/beans/Salas.hbm.xml"/>

@@ -58,7 +58,7 @@ public class DAOSalas {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOSalas: "+metodo+": Sesion liberada. Finished");
+           
         }
 
         return res;
@@ -98,7 +98,7 @@ public class DAOSalas {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOSalas: "+metodo+": Sesion liberada. Finished");
+           
         }
 
         return lista;
@@ -140,7 +140,7 @@ public class DAOSalas {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOSalas: " + metodo + ": Sesion liberada. Finished");
+          
         }
 
         return sala;
@@ -181,7 +181,7 @@ public class DAOSalas {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOSalas: "+metodo+": Sesion liberada. Finished");
+            
         }
 
     }
@@ -221,7 +221,7 @@ public class DAOSalas {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOSalas: "+metodo+": Sesion liberada. Finished");
+           
         }
 
     }

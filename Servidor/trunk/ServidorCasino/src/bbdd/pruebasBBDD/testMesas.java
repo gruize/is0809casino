@@ -60,7 +60,7 @@ public class testMesas {
 
 
         Mesas mesa = bbdd.getMesa(100);
-        mesa.setApuestamin(100.00); //TODO cómo controlamos que la apuesta min < apuesta max?
+        mesa.setApuestamin(100.00); // cómo controlamos que la apuesta min < apuesta max?
 
         mesa.setJugadores(5);
 

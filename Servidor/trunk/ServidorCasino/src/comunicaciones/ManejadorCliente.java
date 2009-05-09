@@ -115,8 +115,7 @@ public class ManejadorCliente implements Runnable {
         }
     }
 
-    @Override
-    public void run() {
+     public void run() {
         //aqui comienza la escucha de mensajes
         while(true){
             try {

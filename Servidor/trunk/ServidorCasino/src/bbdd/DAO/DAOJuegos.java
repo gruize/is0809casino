@@ -65,7 +65,7 @@ public class DAOJuegos {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOJuegos: "+metodo+": Sesion liberada. Finished");
+            
         }
 
         return res;
@@ -105,7 +105,7 @@ public class DAOJuegos {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOJuegos: " + metodo + ": Sesion liberada. Finished");
+           
         }
 
         return lista;
@@ -147,7 +147,7 @@ public class DAOJuegos {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOJuegos: " + metodo + ": Sesion liberada. Finished");
+            
         }
 
         return juego;
@@ -189,7 +189,7 @@ public class DAOJuegos {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOJuegos: " + metodo + ": Sesion liberada. Finished");
+            
         }
 
         return juego;
@@ -228,7 +228,7 @@ public class DAOJuegos {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOJuegos: " + metodo + ": Sesion liberada. Finished");
+            
         }
     }
 
@@ -265,7 +265,7 @@ public class DAOJuegos {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOJuegos: " + metodo + ": Sesion liberada. Finished");
+           
         }
     }
 }

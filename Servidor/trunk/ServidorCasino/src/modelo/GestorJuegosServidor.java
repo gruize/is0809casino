@@ -37,6 +37,7 @@ public class GestorJuegosServidor extends Thread {
         cola.add(m);
     }
 
+    @Override
     public void run() {
         try {
             MensajeJugada recibido;

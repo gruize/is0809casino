@@ -37,13 +37,13 @@ public class GestorMesas {
     private static InterfazBBDD bbdd = null;
 
     //contador para identificar de forma ÃƒÂºnica todas las mesas
-    private static int codigoMesa=0;
+    private static int codigoMesa = 0;
 
     //contador para identificar de forma ÃƒÂºnica todas las partidas que se vayan creando en las mesas
-    private static int codigoPartida=0;
+    private static int codigoPartida = 0;
 
 
-     //=======================================================================
+    //=======================================================================
     // mÃƒÂ©todos de la clase
     //=======================================================================
     /**
@@ -53,7 +53,7 @@ public class GestorMesas {
      */
     public GestorMesas(ControladorServidor c, Salas sala) {
 
-        log.debug("GestorMesas : constructora : init. Se va a crear mesa con codigo "+codigoMesa+1);
+        log.debug("GestorMesas : constructora : init. Se va a crear mesa con codigo " + codigoMesa + 1);
         this.controlador = c;
         this.sala = sala;
         this.mesas = new Vector<Mesa>();
@@ -64,7 +64,7 @@ public class GestorMesas {
         //Abrir la primera mesa
         codigoMesa++;
         crearMesa(codigoMesa);
-        controlador.crearMesas(codigoMesa,nombreJuego);
+        controlador.crearMesas(codigoMesa, nombreJuego);
 
 
     }
@@ -82,7 +82,7 @@ public class GestorMesas {
         //miro que tipo de mesa es, a partir del nombre
         //TODO mirar Juegos.java que iba a hacer gabi
         if (this.nombreJuego.contains("ruleta") || this.nombreJuego.contains("Ruleta")) {
-            mesa_juego = new MesaRuleta(idMesa, this.sala,this.controlador);
+            mesa_juego = new MesaRuleta(idMesa, this.sala, this.controlador);
         } else {
             //TODO comprobar y crear el resto de mesas
 
@@ -131,7 +131,7 @@ public class GestorMesas {
         }
 
         if (enc) {
-            mesa_juego = mesas.get(i-1);
+            mesa_juego = mesas.get(i - 1);
         }
 
         return mesa_juego;
@@ -142,7 +142,7 @@ public class GestorMesas {
      * @return
      */
     public boolean existeMesa(int idMesa) {
-            
+
         return getMesaJuego(idMesa) != null;
     }
 
@@ -165,7 +165,7 @@ public class GestorMesas {
      * @return
      */
     public Vector<Clientes> getJugadores_Mesa(int idMesa) {
-      
+
         return getMesaJuego(idMesa).getJugadores_Mesa();
     }
 
@@ -177,12 +177,84 @@ public class GestorMesas {
      *          False si el jugador ya se encontraba en la mesa.
      */
     public boolean colocarJugadorEnMesa(int idMesa, int idJugador) {
-        return getMesaJuego(idMesa).colocarJugador(bbdd.getClientePorCodigo(idJugador));
+        boolean resultado = getMesaJuego(idMesa).colocarJugador(bbdd.getClientePorCodigo(idJugador));
+
+        //GESTION AUTOMATICA DE MESAS: si no quedan mesas vacías crear una nueva
+        creacionAutomaticaMesas();
+
+        return resultado;
 
     }
 
+    /**
+     * Borra una mesa.
+     * @param codigoMesa
+     */
+    private void borrarMesa(int codigoMesa) {
+
+        getMesaJuego(codigoMesa).borrarMesa();
+        mesas.removeElement(getMesaJuego(codigoMesa));
+
+    }
+
+    /**
+     * Comprueba si hay alguna mesa vacía, es decir, sin jugadores. 
+     * Si no la hay, hay que crearse una nueva mesa
+     */
+    private void creacionAutomaticaMesas() {
+        boolean existeMesaVacia=false;
+        int i=0;
+        while (!existeMesaVacia && i<mesas.size()){
+            existeMesaVacia=mesas.get(i).getJugadores_Mesa().size()==0;
+            i++;
+        }
+
+        if (!existeMesaVacia){
+            //creo una nueva mesa
+            codigoMesa++;
+            crearMesa(codigoMesa);
+            log.info("GestorMesas : creacionAutomaticaMesas : se ha creado una nueva mesa ["+codigoMesa+"] en la sala "+sala.getCodigo());
+        }
+    }
+
+    /**
+     * Comprueba si hay alguna mas de una mesa vacía, es decir, sin jugadores.
+     * Si hay mas de una, las borra. Solo debe quedar una mesa abierta vacia
+     */
+    private void eliminacionAutomaticaMesas() {
+        
+        int cont=0;
+        
+        for (int i=0; i<mesas.size();i++){
+            
+            if (mesas.get(i).getJugadores_Mesa().size()==0)
+                cont++;
+            if (cont>1){
+                //elimino esta mesa, porque ya hay una vacia
+                borrarMesa(mesas.get(i).getCodigoMesa());
+                
+            }
+            
+            
+        }
+
+
+    }
+
+
+    /**
+     * Elimina al jugador de la mesa
+     * @param idMesa
+     * @param idJugador
+     * @return resultado de la operacion
+     */
     public boolean eliminarJugadorDeMesa(int idMesa, int idJugador) {
-        return getMesaJuego(idMesa).eliminarJugador(idJugador);
+        boolean res= getMesaJuego(idMesa).eliminarJugador(idJugador);
+
+        //miro a ver si sobran mesas
+        eliminacionAutomaticaMesas();
+
+        return res;
     }
 
     /**

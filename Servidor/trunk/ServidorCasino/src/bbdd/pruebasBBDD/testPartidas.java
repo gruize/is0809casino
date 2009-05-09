@@ -31,8 +31,6 @@ public class testPartidas {
     }
 
     private static void borrarPartida() {
-      //  DAOPartidas dao = new DAOPartidas();
-       // dao.borrarPartida(dao.getPartidaPorCodigo(70));
         bbdd.borrarPartida(bbdd.getPartida(70));
 
     }

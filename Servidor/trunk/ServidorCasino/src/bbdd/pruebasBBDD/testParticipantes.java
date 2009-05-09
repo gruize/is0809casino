@@ -31,9 +31,7 @@ public class testParticipantes {
     }
 
     private static void borrarParticipante() {
-       //  DAOParticipantes dao = new DAOParticipantes();
-        // dao.borrarParticipante(dao.getParticipante(3, 21));//borro el jugador de prueba (3) que estaba en la partida de la ruleta (21)
-       bbdd.borrarParticipante(bbdd.getParticipante(3, 21));
+      bbdd.borrarParticipante(bbdd.getParticipante(3, 21));
     }
 
     /**
@@ -55,10 +53,6 @@ public class testParticipantes {
         participante.setId(pId);
         
         bbdd.insertarParticipante(participante);
-        //DAOParticipantes dao=new DAOParticipantes();
-        //dao.insertarNuevoParticipante(participante);
-        //cuando se inserta un participante, se debería aumentar el nº de jugadores de la partida, sino habrían inconsistencias.
-        //tb habría que aumentarlo en la mesa, atributo "jugadores"
     }
 
     private static void modificarParticipante() {

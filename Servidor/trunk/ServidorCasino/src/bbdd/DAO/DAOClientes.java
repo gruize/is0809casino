@@ -58,7 +58,7 @@ public class DAOClientes {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOClientes: "+metodo+": Sesion liberada. Finished");
+            
         }
 
         return res;
@@ -98,7 +98,7 @@ public class DAOClientes {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOClientes: "+metodo+": Sesion liberada. Finished");
+           
         }
 
         return lista;
@@ -140,7 +140,7 @@ public class DAOClientes {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOClientes: " + metodo + ": Sesion liberada. Finished");
+            
         }
 
         return cliente;
@@ -182,7 +182,7 @@ public class DAOClientes {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOClientes: " + metodo + ": Sesion liberada. Finished");
+            
         }
 
         return cliente;
@@ -223,7 +223,7 @@ public class DAOClientes {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOClientes: "+metodo+": Sesion liberada. Finished");
+           
         }
 
     }
@@ -263,7 +263,7 @@ public class DAOClientes {
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
-            log.info("DAOClientes: "+metodo+": Sesion liberada. Finished");
+            
         }
 
     }

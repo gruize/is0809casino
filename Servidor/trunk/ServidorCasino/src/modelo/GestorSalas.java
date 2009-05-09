@@ -22,7 +22,7 @@ public class GestorSalas {
 
     private static Vector<Salas> salas;
     private static Hashtable<Integer, GestorMesas> mesas_sala;//<idSala, GestorMesas>
-    private ControladorServidor controlador; //TODO Ã‚Â¿realmente necesito el controlador?
+    private ControladorServidor controlador;
 
     //log4j
     private static Logger log = Logger.getLogger(GestorSalas.class);
@@ -87,6 +87,13 @@ public class GestorSalas {
         }
     }
 
+    /**
+     * Dependiendo del nombre de la sala, identifica el juego que se jugará en ella.
+     * Si la sala es "Ruleta x", asocia el juego de la Ruleta
+     * Si la sala es "Dados x", asocia el juego de los Dados.
+     * @param nombreSala
+     * @return
+     */
     private Juegos dameJuegoAsociado(String nombreSala) {
         //TODO el resto de juegos. Comprobar el nombre por una clase que subiÃƒÂ³ Gabi
         if (nombreSala.contains("Ruleta")) {
@@ -101,6 +108,10 @@ public class GestorSalas {
 
     }
 
+    /**
+     * Busca en BBDD el juego de la Ruleta. Si no está creado, lo crea
+     * @return
+     */
     private Juegos dameJuegoRuleta() {
         Juegos j = bbdd.getJuegoPorNombre("Juego Ruleta");
         if (j == null) {
@@ -119,6 +130,10 @@ public class GestorSalas {
 
     }
 
+    /**
+     * Busca en BBDD el juego de los Dados Si no está creado, lo crea
+     * @return
+     */
     private Juegos dameJuegoDados() {
         Juegos j = bbdd.getJuegoPorNombre("Juego Dados");
         if (j == null) {
@@ -164,11 +179,7 @@ public class GestorSalas {
      */
     public void borrarSalas() {
 
-        //Borrar todas las mesas de BBDD --> invocar al GestorMesas
-       /* for (int i = 0; i < mesas_sala.size(); i++) {
-            mesas_sala.get(i).borrarMesas();
-        }*/
-
+       //Al borrar salas, se borran las mesas y las partidas que estan asociadas. 
         //borro la tabla hash de salas
         mesas_sala.clear();
 
@@ -200,7 +211,6 @@ public class GestorSalas {
      */
     private boolean estaMesaEnSala(int idSala, int idMesa) {
         try {
-            System.err.println("estaMEsaEnSala : sala="+idSala+" mesa="+idMesa );
             return mesas_sala.get(idSala).existeMesa(idMesa);
         } catch (Exception e) {
 
@@ -268,9 +278,9 @@ public class GestorSalas {
         int idSala = jugada.getSala();
         int idMesa = jugada.getMesa();
 
-        // TODO los de la interfaz me lo estan mandando al reves!!!
+
         log.debug("GestorSalas : procesaMensaje : jugada de la sala " + idSala + " en la mesa " + idMesa);
-        //compruebo que la mesa estÃƒÂ¡ en la sala. Solo por seguridad...
+        //compruebo que la mesa esta en la sala. Solo por seguridad...
         if (estaMesaEnSala(idSala, idMesa)) {
             //enviarselo al GestorMesas
             mesas_sala.get(idSala).procesarMensajeJugada(jugada);

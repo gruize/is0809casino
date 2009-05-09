@@ -77,12 +77,14 @@ public class GestorUsuarios {
         id = bbdd.comprobarUsuario(usuario, password);
         //Si el jugador aun no estÃƒÂ¡ conectado devuelve resultado = -1
         if (getIndiceJugador(id) == -1) {
-            if (!listaUsuarios.contains(usuario))
+            if (!listaUsuarios.contains(usuario)) {
                 listaUsuarios.addElement(usuario);
+            }
             insertarJugador(bbdd.getClientePorCodigo(id));
             log.info("GestorUsuarios : hacerLogin : Jugador con id=" + id + " logeado en el casino");
         } else { //ya estÃƒÂ¡ conectado, devuelvo -1 hacia el comunicador
             id = -1;
+            log.error("GestorUsuarios : hacerLogin : El jugador con id=" + id + " YA ESTABA. getIndiceJugador es != -1");
         }
 
         return id;
@@ -108,12 +110,7 @@ public class GestorUsuarios {
      */
     public void insertarJugadorEnSala(int idJugador, int idSala) {
 
-        //buscar el jugador en la lista de jugadores del casino
-        int posJugador = getIndiceJugador(idJugador);
-        JugadorConectado jugador = jugadores.get(posJugador);
-        jugador.setIdSala(idSala);
-        jugadores.add(posJugador, jugador);
-
+        jugadores.get(getIndiceJugador(idJugador)).setIdSala(idSala);
 
         log.info("GestorUsuarios : insertarJugadorEnSala : Jugador=" + idJugador + " insertado en sala=" + idSala);
     }
@@ -126,10 +123,9 @@ public class GestorUsuarios {
     public boolean insertarJugadorEnMesa(int idJugador, int idMesa) {
 
         getJugadorConectado(idJugador).setIdMesa(idMesa);
-
-
+        
         //Enviarselo al gestorSalas, y que llame a su gestorMesas y lo incluya en la mesa correspondiente
-        if (GestorSalas.getInstance(controlador).insertarJugadorEnMesa(getJugadorConectado(idJugador).getIdSala(),idMesa, idJugador)) {
+        if (GestorSalas.getInstance(controlador).insertarJugadorEnMesa(getJugadorConectado(idJugador).getIdSala(), idMesa, idJugador)) {
             log.info("GestorUsuarios : insertarJugadorEnMesa : Jugador=" + idJugador + " insertado en mesa=" + idMesa);
             return true;
         } else {
@@ -149,6 +145,7 @@ public class GestorUsuarios {
     public int getIndiceJugador(int idJugador) {
 
         try {
+            log.info("GestorUsuarios : getIndiceJugador : buscando la pos del jugador con id=" + idJugador);
             if (jugadores != null && jugadores.size() > 0) {
 
                 int i = 0;
@@ -186,8 +183,7 @@ public class GestorUsuarios {
     //          ELIMINAR JUGADOR
     //======================================================================
     /**
-     * TODO hacer
-     *
+     * 
      * Elimina al jugador de la mesa en la que se encontraba.
      * @param jugador
      * @return
@@ -220,19 +216,26 @@ public class GestorUsuarios {
      */
     public boolean desconectarJugador(int idJugador) {
 
-        //Si todavÃƒÂ­a no ha salido de  mesa o sala
-        if (getJugadorConectado(idJugador).getIdMesa() != -1) {
-            eliminarJugadorEnMesa(idJugador);
-        }
-        if (getJugadorConectado(idJugador).getIdSala() != -1) {
-            eliminarJugadorEnSala(idJugador);
-        }
+        log.info("GestorUsuarios : desconectarJugador : se va a desconectar al jugador "+idJugador);
+        try {
+            //Si todavia no ha salido de  mesa o sala
+            if (getJugadorConectado(idJugador).getIdMesa() != -1) {
+                eliminarJugadorEnMesa(idJugador);
+            }
+            if (getJugadorConectado(idJugador).getIdSala() != -1) {
+                eliminarJugadorEnSala(idJugador);
+            }
 
-        //eliminar de la lista de jugadores conectados
-        jugadores.remove(getJugadorConectado(idJugador));
+             //eliminar de la lista de jugadores conectados
+            jugadores.removeElement(getJugadorConectado(idJugador));
+             
+            log.info("GestorUsuarios : desconectarJugador : Jugador=" + idJugador + " desconectado correctamente");
+            return true;
 
-        log.info("GestorUsuarios : desconectarJugador : Jugador=" + idJugador + " desconectado correctamente");
-        return true;
+        } catch (Exception e) {
+            log.error("GestorUsuarios : desconectarJugador : El jugador=" + idJugador + " NO se ha desconectado. Motivo: " + e.getMessage());
+            return false;
+        }
     }
 
     /**
@@ -255,5 +258,14 @@ public class GestorUsuarios {
 
     public int getIdUsuario(String usuario) {
         return bbdd.getClientePorUsuario(usuario).getCodigo();
+    }
+
+    /**
+     * Busca la info de un cliente desde BBDD
+     * @param id
+     * @return
+     */
+    public Clientes getClienteInfo(int id){
+        return bbdd.getClientePorCodigo(id);
     }
 }

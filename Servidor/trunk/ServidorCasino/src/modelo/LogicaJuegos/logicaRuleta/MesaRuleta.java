@@ -34,7 +34,7 @@ public class MesaRuleta implements Mesa {
     public static int puestosMax = 100; //nº maximo de personas que pueden estar jugando en una mesa
 
     //para enviar los mensajes hacia los clientes por el controlador
-    private ControladorServidor controlador;//TODO otra forma de hablar con el controlador
+    private ControladorServidor controlador;
     // su homólogo en BBDD
     private Mesas mesa_bbdd;
 
@@ -46,9 +46,10 @@ public class MesaRuleta implements Mesa {
 
     //lista de jugadores que están en la mesa
     private Vector<Clientes> jugadores = null;
-    //nº de participantes de cada partida
-    private int numParticipantes = 0;
+
+    // Por cada partida tendremos lo siguiente:
     private Vector<Jugada> apuestas = null; //lista de apuestas de cada partida!!! tras lanzar la bola se vaciará
+    private Vector<Clientes> participantes = null; //lista de participantes
     private int ultimaBola = 0;
     private int idGanador = -1; //Id del jugador que gana cada partida
     private CreaRuleta ruleta;
@@ -77,11 +78,33 @@ public class MesaRuleta implements Mesa {
         crearMesaBBDD(idMesa, sala);
 
         this.jugadores = new Vector<Clientes>();
+        this.participantes=new Vector<Clientes>();
         this.apuestas = new Vector<Jugada>();
         this.ruleta = new CreaRuleta();
         this.ruleta.InicializarRuleta();
 
 
+
+    }
+
+    /**
+     * Crea una nueva mesa y la guarda en bbdd
+     * @param idMesa
+     * @param idSala
+     */
+    private void crearMesaBBDD(int idMesa, Salas sala) {
+        mesa_bbdd = new Mesas();
+        mesa_bbdd.setCodigo(idMesa);
+        mesa_bbdd.setApuestamax(apuestaMax);
+        mesa_bbdd.setApuestamin(apuestaMin);
+        mesa_bbdd.setPuestos(puestosMax);
+        mesa_bbdd.setSalas(sala);
+
+        if (bbdd.insertarMesa(mesa_bbdd)) {
+            log.info("MesaRuleta : crearMesaBBDD : mesa " + idMesa + " guardada en BBDD");
+        } else {
+            log.error("MesaRuleta : crearMesaBBDD : No se ha podido guardar la mesa " + idMesa + " en BBDD");
+        }
 
     }
 
@@ -92,33 +115,37 @@ public class MesaRuleta implements Mesa {
         TimerTask timerTask = new TimerTask() {
 
             public void run() {
-                // Aqui va el codigo que queremos ejecutar.
-                lanzaBola();//lanza bola
-                enviarPararRuleta(); //enviar mensaje al cliente para que pare su ruleta
-                comprobarApuestas(ultimaBola); //Comprueba las apuestas y paga a los ganadores
-                enviarSaldos(); //envia a cada cliente su nuevo saldo
-                modificarPartida(); //actualiza la partida en BBDD
-                try {
 
-                    //paro 20s,para q de tiempo de enviar los nuevos saldos
+                //si no hay jugadores en la mesa, parar el timer!!!
+                if (jugadores.size() <= 0) {
+                    timer.cancel();
+                    log.info("***** NO HAY JUGADORES EN LA MESA... PARO TIMER");
+                } else {
+                    log.info("***** timer activado. Total jugadores: "+jugadores.size());
 
-                    reiniciar();
+                    lanzaBola();//lanza bola de la ruleta
+                    enviarPararRuleta(); //enviar mensaje al cliente para que pare su ruleta
+                    comprobarApuestas(ultimaBola); //Comprueba las apuestas y paga a los ganadores
+                    enviarSaldos(); //envia a cada cliente su nuevo saldo
+                    modificarPartida(); //actualiza la partida en BBDD
+                    try {
+                        //paro 10s, para que de tiempo de enviar los nuevos saldos, y de que los clientes muestren los resultados
 
-                    Thread.sleep(10000); //paro 10 seg
+                        reiniciar();
+                        Thread.sleep(10000); //paro 10 seg
+                        //nuevo ronda: volver a crear una partida
+                        crearPartida();
+                        //enviar mensaje al cliente para que reanude su ruleta
+                        enviarReiniciarRuleta();
 
-                    //nuevo ronda: volver a crear una partida
+                    } catch (InterruptedException ex) {
+                        java.util.logging.Logger.getLogger(MesaRuleta.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
-                    crearPartida();
-
-                    //enviar mensaje al cliente para que reanude su ruleta
-
-                    enviarReiniciarRuleta();
-                } catch (InterruptedException ex) {
-                    java.util.logging.Logger.getLogger(MesaRuleta.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         };
-        // Aquí se pone en marcha el timer cada segundo.
+        // Aquí se pone en marcha el timer cada minuto.
         this.timer = new Timer();
         // Dentro de 1min ejecútate cada 1min
         this.timer.scheduleAtFixedRate(timerTask, 1000 * 60, 1000 * 60);
@@ -130,21 +157,25 @@ public class MesaRuleta implements Mesa {
     //==================================================================
     /**
      * 
-     * Envia los saldos nuevos a los jugadores de la mesa
+     * Envia al controlador un vector de MensajeInfoClientes en el que para todos los
+     * "participantes" de la partida se envía el nuevo saldo, y la casilla donde ha caido la bola
      */
     public void enviarSaldos() {
 
-
         //recorro todos los jugadores y envío su saldo... (no se lo envio sólo a quienes se le haya modificado)
-        for (int i = 0; i < jugadores.size(); i++) {
+        for (int i = 0; i < participantes.size(); i++) {
             MensajeInfoCliente mensaje = new MensajeInfoCliente();
-            mensaje.setIdUsuario(jugadores.get(i).getCodigo());
-            mensaje.setSaldo(jugadores.get(i).getSaldo());
+            mensaje.setIdUsuario(participantes.get(i).getCodigo());
+            mensaje.setSaldo(participantes.get(i).getSaldo());
             mensaje.setBola(ultimaBola);
-            controlador.enviarMensajeInfoCliente(jugadores.get(i).getCodigo(), mensaje);
+            controlador.enviarMensajeInfoCliente(participantes.get(i).getCodigo(), mensaje);
         }
     }
 
+    /**
+     * Envia un mensaje al controlador para que los "jugadores" paren su ruleta.
+     * Tipo de Mensaje enviado: MensajeEstadoRuleta
+     */
     private void enviarPararRuleta() {
 
         MensajeEstadoRuleta mensaje = new MensajeEstadoRuleta();
@@ -155,6 +186,10 @@ public class MesaRuleta implements Mesa {
         }
     }
 
+    /**
+     * Envia un mensaje al controlador para que los "jugadores" vuelvan a arrancar su ruleta.
+     * Tipo de Mensaje enviado: MensajeEstadoRuleta
+     */
     private void enviarReiniciarRuleta() {
         MensajeEstadoRuleta mensaje = new MensajeEstadoRuleta();
         mensaje.setParado(false);
@@ -164,9 +199,17 @@ public class MesaRuleta implements Mesa {
         }
     }
 
+    //========================================================================
+    //          TRATAMIENTO DE APUESTAS
+    //========================================================================
+
+
     /**
      * Si la apuesta es válida para el jugador (si este tiene saldo suficiente), se le guarda en
-     * el array de apuestas
+     * el array de apuestas.
+     *
+     * Si era la 1ª apuesta del jugador en la partida, se inserta como participante
+     *
      * @param jugada
      * @return 1 si la apuesta es correcta, -1 si no le queda saldo al jugador
      */
@@ -177,7 +220,7 @@ public class MesaRuleta implements Mesa {
         if ((jugada.getCantidad()) <= saldoJugador) {
             apuestas.add(jugada);
             actualizaSaldoJugador(jugada.getUsuario(), saldoJugador - jugada.getCantidad());
-            //TODO crear participante si era su 1ª apuesta
+            //crear participante si era su 1ª apuesta
             if (primeraApuestaDeParticipante(jugada.getUsuario())) {
                 log.debug("MesaRuleta : colocarApuesta : 1ª apuesta del jugador " + jugada.getUsuario() + ". se crea el participante");
                 crearParticipante(idPartidaActual, jugada.getUsuario());
@@ -207,13 +250,13 @@ public class MesaRuleta implements Mesa {
 
         System.out.println("****** BOLA LANZADA ********");
         ultimaBola = (int) Math.round((Math.random() * 36));
-        
+
 
     }
 
     /**
      * Recorre todas las apuestas de la mesa, y comprueba si han resultado premiadas
-     * @param bolaLanzada n�mero de la ruleta donde ha ca�do la bola
+     * @param bolaLanzada numero de la ruleta donde ha caido la bola
      * @return
      */
     private void comprobarApuestas(int bolaLanzada) {
@@ -232,9 +275,6 @@ public class MesaRuleta implements Mesa {
     }
 
     /**
-     * TODO completar con el resto de jugadas posibles de la ruleta
-     *
-     *
      * 
      * Comprueba si la apuesta que hizo el jugador ha resultado premiada o no, a partir de la
      * bola de la ruleta
@@ -247,84 +287,74 @@ public class MesaRuleta implements Mesa {
         String tipo = apuesta.getTipo();
         if (casillaBola.getNumero() != 0) {
             //NUMERO
-                if ((tipo.equalsIgnoreCase("NUMERO")) && (apuesta.getCasilla() == casillaBola.getNumero())) {
-                    return apuesta.getCantidad() * 36;
+            if ((tipo.equalsIgnoreCase("NUMERO")) && (apuesta.getCasilla() == casillaBola.getNumero())) {
+                return apuesta.getCantidad() * 36;
             //COLOR
-                } else if (tipo.equalsIgnoreCase("COLOR")) {
-                    if ((apuesta.getCasilla() == 1) && casillaBola.getColor().equalsIgnoreCase("ROJO")) {
-                        return apuesta.getCantidad() * 2;
-                    } else if ((apuesta.getCasilla() == 0) && casillaBola.getColor().equalsIgnoreCase("NEGRO")) {
-                        return apuesta.getCantidad() * 2;
-                    }
+            } else if (tipo.equalsIgnoreCase("COLOR")) {
+                if ((apuesta.getCasilla() == 1) && casillaBola.getColor().equalsIgnoreCase("ROJO")) {
+                    return apuesta.getCantidad() * 2;
+                } else if ((apuesta.getCasilla() == 0) && casillaBola.getColor().equalsIgnoreCase("NEGRO")) {
+                    return apuesta.getCantidad() * 2;
+                }
             //DOCENA
-                } else if (tipo.equals("DOCENA")){
-                    //PRIMERA DOCENA
-                    if ((casillaBola.getNumero() >= 1) && (casillaBola.getNumero() <= 12)&& (apuesta.getCasilla()==1)) {
+            } else if (tipo.equals("DOCENA")) {
+                //PRIMERA DOCENA
+                if ((casillaBola.getNumero() >= 1) && (casillaBola.getNumero() <= 12) && (apuesta.getCasilla() == 1)) {
                     return apuesta.getCantidad() * 3;
-                    }
-                    //SEGUNDA DOCENA
-                    else if ((casillaBola.getNumero() >= 13) && (casillaBola.getNumero() <= 24)&& (apuesta.getCasilla()==2)){
-                        return apuesta.getCantidad() * 3;
-                    //TERCERA DOCENA
-                    } else if ((casillaBola.getNumero() >= 25) && (casillaBola.getNumero() <= 36)&& (apuesta.getCasilla()==3)) {
-                        return apuesta.getCantidad() * 3;
-                    }
-                }
-             //PARIMPAR
-                else if (tipo.equals("PARIMPAR")){
-                    //PAR
-                    if ((casillaBola.getTipo_parImpar().equalsIgnoreCase("PAR")) && (apuesta.getCasilla()==2)) {
-                    return apuesta.getCantidad() * 2;
-                    }
-                    //IMPAR
-                    else if ((casillaBola.getTipo_parImpar().equalsIgnoreCase("IMPAR")) && (apuesta.getCasilla()==1)){
-                        return apuesta.getCantidad() * 2;
-                    }
-                }
-              //FALTAPASA
-                else if (tipo.equals("FALTAPASA")){
-                    //FALTA
-                    if ((casillaBola.getNumero()<19) && (apuesta.getCasilla()==1)) {
-                    return apuesta.getCantidad() * 2;
-                    }
-                    //PASA
-                    else if ((casillaBola.getNumero()>18) && (apuesta.getCasilla()==2)){
-                        return apuesta.getCantidad() * 2;
-                    }
-
-                }
-              //LINEA
-                 else if (tipo.equals("LINEA")){
-                    //PRIMERA LINEA
-                    if ((casillaBola.getLinea().equalsIgnoreCase("LINEA_UNO")) && (apuesta.getCasilla()==1)) {
+                } //SEGUNDA DOCENA
+                else if ((casillaBola.getNumero() >= 13) && (casillaBola.getNumero() <= 24) && (apuesta.getCasilla() == 2)) {
                     return apuesta.getCantidad() * 3;
-                    }
-                    //PASA
-                    else if ((casillaBola.getLinea().equalsIgnoreCase("LINEA_DOS")) && (apuesta.getCasilla()==2)){
-                        return apuesta.getCantidad() * 3;
-                    }
-                    else if ((casillaBola.getLinea().equalsIgnoreCase("LINEA_TRES")) && (apuesta.getCasilla()==3)){
-                        return apuesta.getCantidad() * 3;
-                    }
-
+                //TERCERA DOCENA
+                } else if ((casillaBola.getNumero() >= 25) && (casillaBola.getNumero() <= 36) && (apuesta.getCasilla() == 3)) {
+                    return apuesta.getCantidad() * 3;
                 }
-             //CUADRO
-                 else if (tipo.equals("CUADRO")){
-                    //CUADRO
-                    if (estaEnCuadro( casillaBola.getNumero(), apuesta.getCasilla())) {
+            } //PARIMPAR
+            else if (tipo.equals("PARIMPAR")) {
+                //PAR
+                if ((casillaBola.getTipo_parImpar().equalsIgnoreCase("PAR")) && (apuesta.getCasilla() == 2)) {
+                    return apuesta.getCantidad() * 2;
+                } //IMPAR
+                else if ((casillaBola.getTipo_parImpar().equalsIgnoreCase("IMPAR")) && (apuesta.getCasilla() == 1)) {
+                    return apuesta.getCantidad() * 2;
+                }
+            } //FALTAPASA
+            else if (tipo.equals("FALTAPASA")) {
+                //FALTA
+                if ((casillaBola.getNumero() < 19) && (apuesta.getCasilla() == 1)) {
+                    return apuesta.getCantidad() * 2;
+                } //PASA
+                else if ((casillaBola.getNumero() > 18) && (apuesta.getCasilla() == 2)) {
+                    return apuesta.getCantidad() * 2;
+                }
+
+            } //LINEA
+            else if (tipo.equals("LINEA")) {
+                //PRIMERA LINEA
+                if ((casillaBola.getLinea().equalsIgnoreCase("LINEA_UNO")) && (apuesta.getCasilla() == 1)) {
+                    return apuesta.getCantidad() * 3;
+                } //PASA
+                else if ((casillaBola.getLinea().equalsIgnoreCase("LINEA_DOS")) && (apuesta.getCasilla() == 2)) {
+                    return apuesta.getCantidad() * 3;
+                } else if ((casillaBola.getLinea().equalsIgnoreCase("LINEA_TRES")) && (apuesta.getCasilla() == 3)) {
+                    return apuesta.getCantidad() * 3;
+                }
+
+            } //CUADRO
+            else if (tipo.equals("CUADRO")) {
+                //CUADRO
+                if (estaEnCuadro(casillaBola.getNumero(), apuesta.getCasilla())) {
                     return apuesta.getCantidad() * 8;
-                   }
-                 }
+                }
+            }
 
-                }
-            //La bola lanzada es CERO: si la apuesta es simple se devuelte la mitad.
-            else {
-                    if (apuesta.getTipo().equalsIgnoreCase("PARIMPAR")||apuesta.getTipo().equalsIgnoreCase("COLOR")||apuesta.getTipo().equalsIgnoreCase("FALTAPASA")) {
-                        return apuesta.getCantidad() / 2;
-                    } else if (apuesta.getTipo().equalsIgnoreCase("NUMERO") && (apuesta.getCasilla() == casillaBola.getNumero())) {
-                        return apuesta.getCantidad() * 36;
-                    }
-                }
+        } //La bola lanzada es CERO: si la apuesta es simple se devuelte la mitad.
+        else {
+            if (apuesta.getTipo().equalsIgnoreCase("PARIMPAR") || apuesta.getTipo().equalsIgnoreCase("COLOR") || apuesta.getTipo().equalsIgnoreCase("FALTAPASA")) {
+                return apuesta.getCantidad() / 2;
+            } else if (apuesta.getTipo().equalsIgnoreCase("NUMERO") && (apuesta.getCasilla() == casillaBola.getNumero())) {
+                return apuesta.getCantidad() * 36;
+            }
+        }
         return 0;
     }
 
@@ -354,7 +384,7 @@ public class MesaRuleta implements Mesa {
      */
     private void reiniciar() {
         this.apuestas = new Vector<Jugada>();
-        this.numParticipantes = 0;
+        this.participantes = new Vector<Clientes>();
         this.idGanador = -1;
         this.idPartidaActual = -1;
     }
@@ -368,23 +398,24 @@ public class MesaRuleta implements Mesa {
      */
     public void crearPartida() {
 
-        this.numParticipantes = 0; //al crear la partida siempre será 0
-
         Partidas p = new Partidas();
         p.setCodigo(codigoPartida);
         p.setMesas(mesa_bbdd);
-        p.setNumjugadores(numParticipantes);
+        p.setNumjugadores(this.participantes.size());//al principio siempre sera 0
         p.setGanador(-1); //al crear la partida, aún no hay ganador
 
+        try{
         //insertar en BBDD
         bbdd.insertarPartida(p);
-
-
 
         this.idPartidaActual = codigoPartida;
 
         //para las proximas partidas
         codigoPartida++;
+
+        }catch (Exception e){
+            log.error("MesaRuleta : crearPartida : error al crear la partida "+codigoPartida+" en BBDD. Motivo: "+e.getMessage());
+        }
 
     }
 
@@ -395,17 +426,18 @@ public class MesaRuleta implements Mesa {
     private void modificarPartida() {
 
         try {
-        Partidas partidaActual = bbdd.getPartida(idPartidaActual);
-        partidaActual.setNumjugadores(numParticipantes);
-        partidaActual.setGanador(this.idGanador);
+            Partidas partidaActual = bbdd.getPartida(idPartidaActual);
+            partidaActual.setNumjugadores(this.participantes.size());
+            partidaActual.setGanador(this.idGanador);
 
-        if (bbdd.modificarPartida(partidaActual))
-        log.info("MesaRuleta : modificarPartida : partida guardada en BBDD. Ganador=" + idGanador + " y numParticipantes=" + numParticipantes);
-        else
-            log.error("MesaRuleta : modificarPartida : La partida no se ha podido actualizar : " + idPartidaActual);
+            if (bbdd.modificarPartida(partidaActual)) {
+                log.info("MesaRuleta : modificarPartida : partida guardada en BBDD. Ganador=" + idGanador + " y numParticipantes=" + this.participantes.size());
+            } else {
+                log.error("MesaRuleta : modificarPartida : La partida NO se ha podido actualizar : " + idPartidaActual);
+            }
 
-        }catch (Exception e){
-            log.error("MesaRuleta : modificarPartida : error al actualizar la partida "+idPartidaActual+". Motivo: "+e.getMessage());
+        } catch (Exception e) {
+            log.error("MesaRuleta : modificarPartida : error al actualizar la partida " + idPartidaActual + ". Motivo: " + e.getMessage());
         }
     }
 
@@ -413,7 +445,7 @@ public class MesaRuleta implements Mesa {
      * Inserta un nuevo participante en la partida actual.
      * Se considera participante si ha realizado una apuesta.
      *
-     * TODO un partipante puede hacer varias apuesta..antes de insertar, comprobar que no está ya (solo en la 1ª apuesta)
+     * NOTA: un partipante puede hacer varias apuesta..antes de insertar, comprobar que no está ya (solo en la 1ª apuesta)
      *
      * NOTA: puede ser jugador y estar en la mesa, pero no haber participado en la ronda (no ha apostado)
      * @param idPartida
@@ -431,7 +463,41 @@ public class MesaRuleta implements Mesa {
         bbdd.insertarParticipante(p);
 
 
-        this.numParticipantes++;
+        //guardo en el vector de participantes
+        this.participantes.add(jugadores.get(getPosicionJugador(idJugador)));
+
+    }
+
+    // ======================================================================
+    //              Getters
+    // ======================================================================
+    /**
+     * Devuelve la posicion que ocupa en jugador en el vector de jugadores de la mesa
+     * @param idJugador
+     * @return pos si lo encuentra, -1 si no
+     */
+    private int getPosicionJugador(int idJugador) {
+
+        int pos = 0;
+        boolean enc = false;
+        while (!enc && pos < this.jugadores.size()) {
+            enc = this.jugadores.get(pos).getCodigo() == idJugador;
+            pos++;
+        }
+        if (enc) {
+            return pos - 1;
+        } else {
+            return -1;
+        }
+    }
+
+    /**
+     * Devuelve un jugador de la mesa
+     * @param idJugador
+     * @return objeto Clientes
+     */
+    private Clientes getJugador(int idJugador) {
+        return this.jugadores.get(getPosicionJugador(idJugador));
     }
 
     // ======================================================================
@@ -444,6 +510,14 @@ public class MesaRuleta implements Mesa {
         } else {
             return false;
         }
+    }
+
+    /**
+     * Devuelve el código que identifica a la mesa (coincide con el de BBDD)
+     * @return idMesa
+     */
+    public int getCodigoMesa() {
+        return this.mesa_bbdd.getCodigo();
     }
 
     public Mesas getMesaBBDD() {
@@ -460,64 +534,6 @@ public class MesaRuleta implements Mesa {
 
     public int getPuestosMax() {
         return puestosMax;
-    }
-
-    /**
-     * Crea una nueva mesa y la guarda en bbdd
-     * @param idMesa
-     * @param idSala
-     */
-    private void crearMesaBBDD(int idMesa, Salas sala) {
-        mesa_bbdd = new Mesas();
-        mesa_bbdd.setCodigo(idMesa);
-        mesa_bbdd.setApuestamax(apuestaMax);
-        mesa_bbdd.setApuestamin(apuestaMin);
-        mesa_bbdd.setPuestos(puestosMax);
-        mesa_bbdd.setSalas(sala);
-
-        if (bbdd.insertarMesa(mesa_bbdd)) {
-            log.info("MesaRuleta : crearMesaBBDD : mesa " + idMesa + " guardada en BBDD");
-        } else {
-            log.error("MesaRuleta : crearMesaBBDD : No se ha podido guardar la mesa " + idMesa + " en BBDD");
-        }
-
-    }
-
-    /**
-     * Devuelve el código que identifica a la mesa (coincide con el de BBDD)
-     * @return idMesa
-     */
-    public int getCodigoMesa() {
-        return this.mesa_bbdd.getCodigo();
-    }
-
-    /**
-     * Devuelve la posicion que ocupa en jugador en el vector de jugadores de la mesa
-     * @param idJugador
-     * @return pos si lo encuentra, -1 si no
-     */
-    private int getPosicionJugador(int idJugador) {
-
-        int pos = 0;
-        boolean enc = false;
-        while (!enc && pos < this.jugadores.size()) {
-            enc = this.jugadores.get(pos).getCodigo() == idJugador;
-            pos++;
-        }
-        if (enc) {
-            return pos-1;
-        } else {
-            return -1;
-        }
-    }
-
-    /**
-     * Devuelve un jugador de la mesa
-     * @param idJugador
-     * @return objeto Clientes
-     */
-    private Clientes getJugador(int idJugador) {
-        return this.jugadores.get(getPosicionJugador(idJugador));
     }
 
     /**
@@ -543,9 +559,17 @@ public class MesaRuleta implements Mesa {
             //Si era el primer jugador... activo el timer para crear una nueva
 
             if (primerJugador) {
+                log.info("***** ERA EL PRIMER JUGADOR DE LA MESA... CREO PARTIDA Y ACTIVO EL TIMER");
                 crearPartida();
                 activarReloj();
             }
+
+                 //enviarle el saldo, en un mensajeInfoCliente
+
+            MensajeInfoCliente mensajeIC=new MensajeInfoCliente();
+            mensajeIC.setIdUsuario(jugador.getCodigo());
+            mensajeIC.setSaldo(jugador.getSaldo());
+            controlador.enviarMensajeInfoCliente(jugador.getCodigo(), mensajeIC);
 
             return true;
         }
@@ -563,7 +587,16 @@ public class MesaRuleta implements Mesa {
 
         //por seguridad, compruebo si realmente está en la mesa
         if (existeJugadorEnMesa(idJugador)) {
-            return jugadores.remove(getJugador(idJugador));
+
+            //puede desconectarse y no ser participante, por lo que no chekeo este error
+            participantes.removeElement(getJugador(idJugador));
+            
+            if (!jugadores.removeElement(getJugador(idJugador)))
+                return false;
+             else log.info("MesaRuleta : eliminarJugador : jugador ["+idJugador+"] eliminado de la lista de jugadores. ");
+
+
+            return true;
         } else {
             log.info("MesaRuleta : eliminarJugador : El jugador " + idJugador + " NO estaba en la mesa " + getCodigoMesa());
             return false;
@@ -587,24 +620,29 @@ public class MesaRuleta implements Mesa {
     public boolean existeJugadorEnMesa(int idJugador) {
 
         return (getPosicionJugador(idJugador) != -1);
-    /*int i = 0;
-    boolean enc = jugadores.get(i).getCodigo() == idJugador;
-    while (!enc && i < jugadores.size()) {
-    i++;
-    enc = jugadores.get(i).getCodigo() == idJugador;
+
     }
-    return enc;^*/
-    }
-    
+
     /**
      * Comprueba si el numero esta en el cuadro apostado
      * @param numero cuadro
      * @return true si numero esta en el cuadro cuadro.
      */
-    private boolean estaEnCuadro(int numero, int cuadro){
-        int resultado= cuadro+ cuadro/2;
-        if ((cuadro%2)== 0) resultado--;
-        if ((resultado==numero)||(resultado+1==numero)||(resultado+3==numero)||(resultado+4==numero))return true;
+    private boolean estaEnCuadro(int numero, int cuadro) {
+
+        int resultado = cuadro + cuadro / 2;
+        if ((cuadro % 2) == 0) {
+            resultado--;
+        }
+        if ((resultado == numero) || (resultado + 1 == numero) || (resultado + 3 == numero) || (resultado + 4 == numero)) {
+            return true;
+        }
         return false;
+
+    }
+
+    public void borrarMesa() {
+        bbdd.borrarMesa(mesa_bbdd);
+        
     }
 }
