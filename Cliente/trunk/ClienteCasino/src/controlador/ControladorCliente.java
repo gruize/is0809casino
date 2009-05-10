@@ -19,7 +19,6 @@ import modelo.mensajes.MensajeInfoCliente;
 import modelo.mensajes.MensajeInfoMesas;
 import modelo.mensajes.MensajeInfoSalas;
 import modelo.mensajes.MensajeMesa;
-import modelo.mensajes.MensajeResultadosAnteriores;
 import modelo.mensajes.MensajeSala;
 import modelo.mensajes.MensajeUsuariosEnMesa;
 
@@ -281,9 +280,6 @@ public class ControladorCliente {
         }else if (tipo==TipoMensaje.USERS_MESA){
             MensajeUsuariosEnMesa mensajeUEM = (MensajeUsuariosEnMesa)mensaje;
             System.out.println("**************** mensaje usuarios en mesa recibido. Totsl usuarios: "+mensajeUEM.getJugadores().size());
-            //TODO:
-        }else if (tipo==TipoMensaje.RESULTS_PASADO){
-            MensajeResultadosAnteriores mensajeRA = (MensajeResultadosAnteriores)mensaje;
             //TODO:
         } else if (tipo==TipoMensaje.EXPULSAR) {
             MensajeExpulsion mensajeExpulsion = (MensajeExpulsion)mensaje;

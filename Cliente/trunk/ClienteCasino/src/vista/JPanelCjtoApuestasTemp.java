@@ -28,7 +28,7 @@ public class JPanelCjtoApuestasTemp extends JPanel{
         jLabelTitulo = new javax.swing.JLabel();
 
         listaResultados.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = {};
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });

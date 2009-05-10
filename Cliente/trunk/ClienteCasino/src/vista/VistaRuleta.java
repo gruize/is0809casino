@@ -22,6 +22,7 @@ import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
 import javax.imageio.ImageIO;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -31,7 +32,6 @@ import modelo.mensajes.MensajeChat;
 import modelo.mensajes.MensajeEstadoRuleta;
 import modelo.mensajes.MensajeExpulsion;
 import modelo.mensajes.MensajeInfoCliente;
-import modelo.mensajes.MensajeResultadosAnteriores;
 import modelo.mensajes.MensajeUsuariosEnMesa;
 
 /**
@@ -68,6 +68,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
     private OyenteTerminarApuestas terminarApuestas;
     private OyenteVolver oyenteVolver;
     private boolean apuestaHecha;
+    private DefaultListModel listResultados;
 
     public JPanelChat getPanelChat() {
         return PanelChat;
@@ -181,6 +182,8 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         jLabel3 = new javax.swing.JLabel();
         jLabelSaldo = new javax.swing.JLabel();
         jButtonFinish = new javax.swing.JButton();
+        listResultados = new DefaultListModel();
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -538,9 +541,6 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
              getJPanelUsuariosTemp1().getListaUsuarios().setListData(mensaje.getJugadores());
              //String[] jugadores = controlador.obtenerUsuariosEnMesa();
              //getJPanelUsuariosTemp1().getlistaUsuarios().setListData(jugadores);
-         }else if(arg instanceof MensajeResultadosAnteriores){
-             MensajeResultadosAnteriores mensaje = (MensajeResultadosAnteriores) arg;
-             getJPanelCjtoApuestasTemp1().getListaResultados().setListData(mensaje.getResultados());
          }else if(arg instanceof MensajeInfoCliente){
             MensajeInfoCliente mensaje = (MensajeInfoCliente) arg;
             Double valorAux = Double.parseDouble(getJLabelSaldo().getText());
@@ -548,6 +548,8 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
             getMesa().setSaldoUsuario(mensaje.getSaldo());
             if(mensaje.getBola() != -1){
                 girarRuleta(mensaje.getBola());
+                listResultados.addElement(Integer.toString(mensaje.getBola()));
+                getJPanelCjtoApuestasTemp1().getListaResultados().setModel(listResultados);
                 if(isApuestaHecha()){
                     setApuestaHecha(false);
                     if(valorAux < mensaje.getSaldo())//GANA
@@ -576,7 +578,6 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         }
 
     }
-
 
     private void bloqueoChat(){
         getPanelChat().getBotonBloquear().setActionCommand(PanelChat.DESBLOQUEO);
