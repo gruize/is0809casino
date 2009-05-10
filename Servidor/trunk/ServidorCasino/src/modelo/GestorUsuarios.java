@@ -74,6 +74,10 @@ public class GestorUsuarios {
     public int hacerLogin(String usuario, String password) {
         int id = -1;
 
+        //No pueden llegar valores nulos
+        if (usuario.equals("") || password.equals(""))
+            return -1; 
+
         id = bbdd.comprobarUsuario(usuario, password);
         //Si el jugador aun no estÃƒÂ¡ conectado devuelve resultado = -1
         if (getIndiceJugador(id) == -1) {

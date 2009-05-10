@@ -4,6 +4,7 @@
  */
 package controlador;
 
+import bbdd.beans.Clientes;
 import comunicaciones.Comunicador;
 import java.io.IOException;
 import java.io.Serializable;
@@ -24,6 +25,7 @@ import modelo.mensajes.MensajeInfoSalas;
 import modelo.mensajes.TipoMensaje;
 import modelo.mensajes.MensajeMesa;
 import modelo.mensajes.MensajeSala;
+import modelo.mensajes.MensajeUsuariosEnMesa;
 import modelo.mensajes.objetos.PeticionMesa;
 import modelo.mensajes.objetos.PeticionSala;
 import org.apache.log4j.Logger;
@@ -89,6 +91,13 @@ public class ControladorServidor {
     public void expulsarManualJugador(String usuario) {
         int id = usuarios.getIdUsuario(usuario);
         enviarMensajeExpulsion(id);
+
+        //le saco de la mesa y sala donde estaba.
+        int idSala = usuarios.getJugadorConectado(id).getIdSala();
+        int idMesa = usuarios.getJugadorConectado(id).getIdMesa();
+        usuarios.desconectarJugador(id);
+        //Envío al resto de usuarios de su mesa el listado
+        enviarUsuariosEnMesa(idSala, idMesa);
     }
 
     public void expulsarJugador(int id) {
@@ -106,10 +115,21 @@ public class ControladorServidor {
     public void jugadorDesconectado(int identificador) {
 
         try {
+            //obtengo la sala y mesa donde estaba
+            int idSala = usuarios.getJugadorConectado(identificador).getIdSala();
+            int idMesa = usuarios.getJugadorConectado(identificador).getIdMesa();
+
+            //le saco de la sala y mesa
             usuarios.desconectarJugador(identificador);
             //quitarlo de la interfaz del servidor
             cerrarJugador(usuarios.getNombreUsuario(identificador));
+
+            //enviar un mensaje al resto de jugadores de la mesa para que actualicen su lista de jugadores
+            enviarUsuariosEnMesa(idSala, idMesa);
+
             log.info("ControladorServidor : jugadorDesconectado : jugador=" + identificador + " desconectado del casino");
+
+
 
         } catch (Exception e) {
             log.error("ControladorServidor : jugadorDesconectado : no se ha podido desconectar al jugador=" + identificador + ". Motivo: " + e.getMessage());
@@ -141,6 +161,9 @@ public class ControladorServidor {
         modelo.verEstadisticas(usuario);
     }
 
+    //========================================================================
+    //               ENVIO DE MENSAJES A LOS CLIENTES
+    //========================================================================
     /**
      * Obtiene las salas actuales del casino y se las envÃƒÂ­a al cliente
      * @param idUsuario usuario que acaba de logearse, y recibirÃƒÂ¡ la info de las salas del casino
@@ -148,7 +171,6 @@ public class ControladorServidor {
     public void enviarSalasCasino(int idUsuario) {
 
         Vector<PeticionSala> salasCasino = GestorSalas.getInstance(this).getInfoSalas();
-        System.out.println("Salas:" + salasCasino.toString());
         MensajeInfoSalas mensaje = new MensajeInfoSalas(idUsuario, salasCasino);
         enviarMensajeInfoSalas(idUsuario, mensaje);
         log.info("ControladorServidor : enviarSalasCasino : info de salas enviado al cliente " + idUsuario + ". Total salas abiertas " + salasCasino.size());
@@ -167,9 +189,6 @@ public class ControladorServidor {
         enviarMensajeInfoMesas(idUsuario, mensaje);
         log.info("ControladorServidor : enviarMesasDeUnaSala : info de mesas de la sala=" + idSala + " enviado al cliente " + idUsuario + ". Total mesas abiertas " + mesas.size());
     }
-    //==================================================================================
-    //          ENVIO DE MENSAJES A LOS CLIENTES
-    //==================================================================================
 
     /**
      *
@@ -199,6 +218,11 @@ public class ControladorServidor {
     //no se enviaran las salidas de mesa
     }
 
+    /**
+     * Envía al cliente un mensaje de Sala
+     * @param id
+     * @param mensaje
+     */
     public void enviarMensajeSala(int id, MensajeSala mensaje) {
         comunicador.enviarMensaje(id, TipoMensaje.ENTRADA_SALA, mensaje);
     //no se enviaran las salidas de sala
@@ -249,7 +273,35 @@ public class ControladorServidor {
 
     private void enviarMensajeExpulsion(int id) {
         MensajeExpulsion mensajeExpulsion = new MensajeExpulsion(id);
-        comunicador.enviarMensaje(id,TipoMensaje.EXPULSAR,mensajeExpulsion);
+        comunicador.enviarMensaje(id, TipoMensaje.EXPULSAR, mensajeExpulsion);
+    }
+
+    /**
+     * Envía a todos los jugadores de una mesa, un mensaje (MensajeUsuariosEnMesa) con el nombre
+     * de usuario de todos los jugadores
+     * @param idSala identificador de la sala en la que está la mesa
+     * @param idMesa identificador de la mesa
+     */
+    public void enviarUsuariosEnMesa(int idSala, int idMesa) {
+
+        //Obtengo todos los jugadores que están en la mesa.
+        Vector<Clientes> jugadoresMesa = usuarios.getJugadoresMesa(idSala, idMesa);
+
+        //Creo un vector solo con el nombre de los usuarios
+        Vector<String> nombreJugadores = new Vector<String>();
+        for (int i = 0; i < jugadoresMesa.size(); i++) {
+            nombreJugadores.add(jugadoresMesa.get(i).getUsuario());
+        }
+
+        //creo el mensaje
+        MensajeUsuariosEnMesa mensaje = new MensajeUsuariosEnMesa(nombreJugadores, idMesa);
+
+        //envio a cada jugador el mensaje
+        for (int i = 0; i < jugadoresMesa.size(); i++) {
+            comunicador.enviarMensaje(jugadoresMesa.get(i).getCodigo(), TipoMensaje.USERS_MESA, mensaje);
+        }
+
+
     }
 
     //==================================================================================
@@ -266,13 +318,9 @@ public class ControladorServidor {
         int id = usuarios.hacerLogin(datos.firstElement(), datos.lastElement());
 
         log.info("ControladorServidor : login : usuario=" + datos.firstElement() + " password=" + datos.lastElement() + " -->id=" + id);
-        if (id != -1){
-            modelo.login(datos.firstElement(), datos.lastElement());           
-       //le envío el saldo.
-        /*    MensajeInfoCliente m=new MensajeInfoCliente();
-            m.setIdUsuario(id);
-            m.setSaldo(usuarios.getClienteInfo(id).getSaldo());
-            enviarMensajeInfoCliente(id, m);*/
+        if (id != -1) {
+            modelo.login(datos.firstElement(), datos.lastElement());
+
         }
         return id;
     }
@@ -284,7 +332,7 @@ public class ControladorServidor {
      */
     public synchronized void mensajeRecibido(int tipo, Serializable mensaje) {
 
-         log.info("ControladorServidor : mensajeRecibido : tipo=" + tipo + " mensaje=" + mensaje);
+        log.info("ControladorServidor : mensajeRecibido : tipo=" + tipo + " mensaje=" + mensaje);
         /*Tipos de mensajes:
          *  1- Mensaje de Chat
          *  2- Mensaje de Jugada o Informacion de Salas y mesas
@@ -308,40 +356,47 @@ public class ControladorServidor {
             GestorJuegosServidor.getInstance(this).dejamensaje(mensajeJugada);
         //TODO Devolver la confirmacion de la jugada
 
-        }
-        //             MESAS (entradas y salidas)
+        } //             MESAS (entradas y salidas)
         else if (tipo == TipoMensaje.ENTRADA_MESA) {
 
             MensajeMesa m = (MensajeMesa) mensaje;
             if (usuarios.insertarJugadorEnMesa(m.getUsuario(), m.getMesa())) //Envio mensaje de  confimacion de la entrada en la mesa
             {
                 enviarMensajeMesa(m.getUsuario(), m);//necesito saber en quÃƒÂ© mesa se ha insertado el cliente. Quito null y envio mensaje de vuelta
-            } else {
-                enviarMensajeMesa(m.getUsuario(), m);//TODO mirar porque devuelve false
             }
+            //enviar a todos los clientes conectados a esa mesa un mensaje con la lista de usuarios de la mesa
+            enviarUsuariosEnMesa(m.getSala(), m.getMesa());
+
         } else if (tipo == TipoMensaje.SALIDA_MESA) {
+
             MensajeMesa m = (MensajeMesa) mensaje;
             usuarios.eliminarJugadorEnMesa(m.getUsuario());
+
+            // enviar a todos los clientes conectados a esa mesa un mensaje con la lista de usuarios de la mesa
+            enviarUsuariosEnMesa(m.getSala(), m.getMesa());
+
         } else if (tipo == TipoMensaje.CERRAR_CONEXION) {
             //TODO que tenfo que hacer?
-
-        }
-        //          SALAS  (entradas y salidas)
+        } //          SALAS  (entradas y salidas)
         else if (tipo == TipoMensaje.ENTRADA_SALA) {
 
             MensajeSala m = (MensajeSala) mensaje;
             usuarios.insertarJugadorEnSala(m.getUsuario(), m.getSala());
 
         } else if (tipo == TipoMensaje.SALIDA_SALA) {
+
             MensajeSala m = (MensajeSala) mensaje;
             usuarios.eliminarJugadorEnSala(m.getUsuario());
+
         } else if (tipo == TipoMensaje.INFO_SALAS) {
+
             MensajeInfoSalas m = (MensajeInfoSalas) mensaje;
             enviarSalasCasino(m.getId());
+
         } else if (tipo == TipoMensaje.INFO_MESAS) {
+
             MensajeInfoMesas m = (MensajeInfoMesas) mensaje;
             enviarMesasDeUnaSala(m.getId(), m.getSala());
         }
     }
-
 }

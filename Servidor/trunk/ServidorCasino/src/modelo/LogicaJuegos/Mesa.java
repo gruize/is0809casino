@@ -81,7 +81,8 @@ public interface Mesa {
     public void crearParticipante(int idPartida, int idJugador);
 
     /**
-     * Borra la mesa de BBDD, y deja el resto de atributos a null
+     * Borra la mesa de BBDD
      */
     public void borrarMesa();
+
 }

@@ -121,7 +121,7 @@ public class MesaRuleta implements Mesa {
                     timer.cancel();
                     log.info("***** NO HAY JUGADORES EN LA MESA... PARO TIMER");
                 } else {
-                    log.info("***** timer activado. Total jugadores: "+jugadores.size());
+                    log.debug("***** Timer activado. Total jugadores: "+jugadores.size());
 
                     lanzaBola();//lanza bola de la ruleta
                     enviarPararRuleta(); //enviar mensaje al cliente para que pare su ruleta
@@ -216,8 +216,16 @@ public class MesaRuleta implements Mesa {
     private int colocarApuesta(Jugada jugada) {
 
 
+        //comprobar que la apuesta es mayor a la apuestaMinima
+        if (jugada.getCantidad()<apuestaMin)
+            return -1;
+
+        //comprobar que el jugador tiene saldo suficiente para realizar su apuesta
         int saldoJugador = getJugador(jugada.getUsuario()).getSaldo();
         if ((jugada.getCantidad()) <= saldoJugador) {
+
+            //se considera participante. Se añade su apuesta y se actualiza su saldo
+
             apuestas.add(jugada);
             actualizaSaldoJugador(jugada.getUsuario(), saldoJugador - jugada.getCantidad());
             //crear participante si era su 1ª apuesta
@@ -596,6 +604,8 @@ public class MesaRuleta implements Mesa {
              else log.info("MesaRuleta : eliminarJugador : jugador ["+idJugador+"] eliminado de la lista de jugadores. ");
 
 
+            //Envio a todos los clientes 
+
             return true;
         } else {
             log.info("MesaRuleta : eliminarJugador : El jugador " + idJugador + " NO estaba en la mesa " + getCodigoMesa());
@@ -641,8 +651,12 @@ public class MesaRuleta implements Mesa {
 
     }
 
+    /**
+     * Borra la mesa de BBDD
+     */
     public void borrarMesa() {
         bbdd.borrarMesa(mesa_bbdd);
         
     }
+
 }
