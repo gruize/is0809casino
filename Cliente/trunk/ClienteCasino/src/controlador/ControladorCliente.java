@@ -272,6 +272,7 @@ public class ControladorCliente {
             //TODO: modelo.modificarEstadoRuleta
         }else if (tipo==TipoMensaje.USERS_MESA){
             MensajeUsuariosEnMesa mensajeUEM = (MensajeUsuariosEnMesa)mensaje;
+            System.out.println("**************** mensaje usuarios en mesa recibido. Totsl usuarios: "+mensajeUEM.getJugadores().size());
             //TODO:
         }else if (tipo==TipoMensaje.RESULTS_PASADO){
             MensajeResultadosAnteriores mensajeRA = (MensajeResultadosAnteriores)mensaje;
