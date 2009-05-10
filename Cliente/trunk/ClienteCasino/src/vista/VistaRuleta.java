@@ -12,6 +12,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
@@ -29,7 +31,6 @@ import modelo.mensajes.MensajeChat;
 import modelo.mensajes.MensajeEstadoRuleta;
 import modelo.mensajes.MensajeExpulsion;
 import modelo.mensajes.MensajeInfoCliente;
-import modelo.mensajes.MensajeJugada;
 import modelo.mensajes.MensajeResultadosAnteriores;
 import modelo.mensajes.MensajeUsuariosEnMesa;
 
@@ -41,12 +42,14 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
 
     private javax.swing.JButton jButtonFinish;
     private javax.swing.JButton jButtonBack;
-    private javax.swing.JButton jButtonSalir;
-    private javax.swing.JLabel jLabelEstado;
+    private javax.swing.JButton jButtonSalir;    
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelSaldo;
     private javax.swing.JLabel jLabelUsuario;
+    private javax.swing.JLabel jLabelTiempo;
+    private javax.swing.JLabel jLabelMesa;
+    private javax.swing.JLabel jLabelSala;
     private javax.swing.JLayeredPane jLayeredPane1;
     private vista.JPanelChat PanelChat;
     private vista.JPanelCjtoApuestasTemp jPanelCjtoApuestasTemp1;
@@ -98,7 +101,6 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         inicializar();
         ponerOyentes();
         rellenarDatos();
-
         controlador.getModelo().addObserver(this);
 
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -136,6 +138,8 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
     public void rellenarDatos(){
         getJLabelUsuario().setText(controlador.obtenerUsuario());
         getJLabelSaldo().setText(Double.toString(controlador.obtenerSaldo()));
+        getJLabelMesa().setText("Mesa "+controlador.obtenerMesa());
+        getJLabelSala().setText("Sala "+controlador.obtenerSala());
     }
 
 	public void paint(Graphics g) {
@@ -171,9 +175,11 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         jPanelDatos = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabelUsuario = new javax.swing.JLabel();
+        jLabelTiempo = new javax.swing.JLabel();
+        jLabelSala = new javax.swing.JLabel();
+        jLabelMesa = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabelSaldo = new javax.swing.JLabel();
-        jLabelEstado = new javax.swing.JLabel();
         jButtonFinish = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -203,63 +209,82 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
 
         jPanelDatos.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 12));
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Usuario:");
+        jLabel2.setText("Usuario");
 
-        jLabelUsuario.setFont(new java.awt.Font("Century Gothic", 1, 16));
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Saldo Actual");
+
+        jLabelMesa.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabelMesa.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelMesa.setText("Mesa XXX");
+
+        jLabelSala.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        jLabelSala.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelSala.setText("Sala XXX");
+
+        jLabelTiempo.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabelTiempo.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelTiempo.setText("Segundos");
+
+        jLabelUsuario.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         jLabelUsuario.setForeground(new java.awt.Color(255, 255, 255));
         jLabelUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelUsuario.setText("Usuario");
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 12));
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Saldo actual");
-
-        jLabelSaldo.setFont(new java.awt.Font("Century Gothic", 1, 16));
+        jLabelSaldo.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         jLabelSaldo.setForeground(new java.awt.Color(255, 255, 255));
         jLabelSaldo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelSaldo.setText("Leuros");
-
-        jLabelEstado.setFont(new java.awt.Font("Century Gothic", 1, 18));
-        jLabelEstado.setForeground(new java.awt.Color(255, 0, 0));
-        jLabelEstado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelEstado.setText("");
+        jLabelSaldo.setText("Saldo");
 
         javax.swing.GroupLayout jPanelDatosLayout = new javax.swing.GroupLayout(jPanelDatos);
         jPanelDatos.setLayout(jPanelDatosLayout);
         jPanelDatosLayout.setHorizontalGroup(
             jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDatosLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(47, 47, 47)
+                .addComponent(jLabelMesa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addComponent(jLabelSala)
+                .addGap(62, 62, 62))
+            .addGroup(jPanelDatosLayout.createSequentialGroup()
+                .addGap(111, 111, 111)
+                .addComponent(jLabelTiempo)
+                .addContainerGap(104, Short.MAX_VALUE))
+            .addGroup(jPanelDatosLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
                 .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelDatosLayout.createSequentialGroup()
-                        .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelDatosLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabelSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(25, 25, 25))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addComponent(jLabelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(jPanelDatosLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(34, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanelDatosLayout.setVerticalGroup(
             jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDatosLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(21, 21, 21)
                 .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabelUsuario))
+                .addGap(18, 18, 18)
                 .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabelSaldo))
+                .addGap(30, 30, 30)
+                .addGroup(jPanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelMesa)
+                    .addComponent(jLabelSala))
+                .addGap(18, 18, 18)
+                .addComponent(jLabelTiempo)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jPanelDatos.setBounds(50, 20, 280, 190);
@@ -297,12 +322,28 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         pack();
     }
 
-    public JLabel getJLabelEstado() {
-        return jLabelEstado;
+    public JLabel getJLabelMesa() {
+        return jLabelMesa;
     }
 
-    public void setJLabelEstado(JLabel jLabelEstado) {
-        this.jLabelEstado = jLabelEstado;
+    public void setJLabelMesa(JLabel jLabelMesa) {
+        this.jLabelMesa = jLabelMesa;
+    }
+
+    public JLabel getJLabelSala() {
+        return jLabelSala;
+    }
+
+    public void setJLabelSala(JLabel jLabelSala) {
+        this.jLabelSala = jLabelSala;
+    }
+
+    public JLabel getJLabelTiempo() {
+        return jLabelTiempo;
+    }
+
+    public void setJLabelTiempo(JLabel jLabelTiempo) {
+        this.jLabelTiempo = jLabelTiempo;
     }
 
     private BufferedImage loadImage(String string) {
@@ -318,7 +359,6 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
     }
 
     public void girarRuleta(int numRuleta) {
-
 
 		switch (numRuleta){
 
@@ -461,7 +501,6 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         oyenteUsuarios = new OyenteUsuarios();
         oyenteApuestas = new OyenteApuestas();
          */
-
         getPanelChat().getBotonBloquear().addActionListener(bloquearChat);
         getPanelChat().getBotonEnviar().addActionListener(enviarMensajeChat);
         getJButtonSalir().addActionListener(exit);
@@ -470,7 +509,9 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         getJButtonFinish().addActionListener(oyenteApuestas);
         getJButtonFinish().addActionListener(oyenteUsuarios);
          */
-        getJButtonBack().addActionListener(oyenteVolver);         
+        getJButtonBack().addActionListener(oyenteVolver);
+        getPanelChat().getTextfieldFrase().addKeyListener(new FocoBotonEnviar());
+        getPanelChat().getBotonEnviar().addKeyListener(new FocoBotonEnviar());
     }
 
      public void update(Observable o, Object arg) {
@@ -481,15 +522,13 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
                MensajeChat mensaje = (MensajeChat)arg;
                String textoadd = getPanelChat().getAreaTextoChat().getText() + "\n" + mensaje.get_usuario() + ": " + mensaje.get_men();
                getPanelChat().getAreaTextoChat().setText(textoadd);
-               
+               getPanelChat().getJScrollPane1().getVerticalScrollBar().setValue(getPanelChat().getJScrollPane1().getVerticalScrollBar().getMaximum());
          }else if (arg instanceof MensajeEstadoRuleta){
              MensajeEstadoRuleta mensaje = (MensajeEstadoRuleta) arg;
-             if (mensaje.isParado()){
-                 getJLabelEstado().setText("No puede realizar mas apuestas");                 
+             if (mensaje.isParado()){                 
                  getJButtonFinish().setVisible(false);
                  //Mover la ruleta muxas veces sin destino
              }else{
-                 getJLabelEstado().setText("Realice sus apuestas");
                  getMesa().setEnabled(true);
                  getJButtonFinish().setVisible(true);
                  JOptionPane.showMessageDialog( this,"Puede realizar sus apuestas.", "Turno de apuestas", JOptionPane.WARNING_MESSAGE );
@@ -507,18 +546,18 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
             Double valorAux = Double.parseDouble(getJLabelSaldo().getText());
             getJLabelSaldo().setText(Double.toString(mensaje.getSaldo()));            
             getMesa().setSaldoUsuario(mensaje.getSaldo());
+            if(mensaje.getBola() != -1){
+                girarRuleta(mensaje.getBola());
+                if(isApuestaHecha()){
+                    setApuestaHecha(false);
+                    if(valorAux < mensaje.getSaldo())//GANA
+                        JOptionPane.showMessageDialog( this,"El resultado es " + Integer.toString(mensaje.getBola()) + "   Ha incrementado su saldo a "+Double.toString(mensaje.getSaldo()), "FELICIDADES!", JOptionPane.WARNING_MESSAGE );
+                    else
+                        JOptionPane.showMessageDialog( this,"El resultado es " + Integer.toString(mensaje.getBola()) +  "   Su saldo actual es " + Double.toString(mensaje.getSaldo()), "Resultados", JOptionPane.WARNING_MESSAGE );
+                }
+            }
             getMesa().limpiarTapete();
             getMesa().empezar(mensaje.getSaldo());
-            if(isApuestaHecha()){
-                setApuestaHecha(false);                
-                if(mensaje.getBola() != -1 ){
-                    girarRuleta(mensaje.getBola());
-                    if(valorAux < mensaje.getSaldo())//GANA
-                        JOptionPane.showMessageDialog( this,"El resultado es " + Integer.toString(mensaje.getBola()) + "Ha incrementado su saldo a "+Double.toString(mensaje.getSaldo()), "FELICIDADES!", JOptionPane.WARNING_MESSAGE );
-                    else
-                        JOptionPane.showMessageDialog( this,"El resultado es " + Integer.toString(mensaje.getBola()) +  "su saldo actual es " + Double.toString(mensaje.getSaldo()), "Resultados", JOptionPane.WARNING_MESSAGE );
-                }
-            }    
          }
     }
 
@@ -537,6 +576,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         }
 
     }
+
 
     private void bloqueoChat(){
         getPanelChat().getBotonBloquear().setActionCommand(PanelChat.DESBLOQUEO);
@@ -588,18 +628,36 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
          */
     }
 
+private void enviarMensaje(){
+            if(!getPanelChat().getTextfieldFrase().getText().equals("")){
+                String mensaje = getPanelChat().getTextfieldFrase().getText();
+                getControlador().enviarMensajeChat(mensaje);
+                getPanelChat().getTextfieldFrase().setText("");
+            }
+            else
+                 JOptionPane.showMessageDialog(PanelChat,"Debe escribir un mensaje","Error en el envio",JOptionPane.ERROR_MESSAGE);
+    }
+
     class OyenteEnviarMensajeChat implements ActionListener{
 
         public void actionPerformed(ActionEvent e) {
             if(!getPanelChat().getTextfieldFrase().getText().equals("")){
-               String mensaje = getPanelChat().getTextfieldFrase().getText();
-               getControlador().enviarMensajeChat(mensaje);
-               getPanelChat().getTextfieldFrase().setText("");
+                String mensaje = getPanelChat().getTextfieldFrase().getText();
+                getControlador().enviarMensajeChat(mensaje);
+                getPanelChat().getTextfieldFrase().setText("");
             }
             else
                  JOptionPane.showMessageDialog(PanelChat,"Debe escribir un mensaje","Error en el envio",JOptionPane.ERROR_MESSAGE);
         }
 
+    }
+
+    class FocoBotonEnviar extends KeyAdapter{
+       public void keyPressed(KeyEvent evt){
+           if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+               enviarMensaje();
+           }
+       }
     }
 
     class OyenteSalir implements ActionListener{

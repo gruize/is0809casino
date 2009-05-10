@@ -82,6 +82,14 @@ public class ControladorCliente {
         return strings;
     }
 
+    public String obtenerMesa() {
+        return Integer.toString(modelo.getMesa());
+    }
+
+    public String obtenerSala() {
+        return Integer.toString(modelo.getSala());
+    }
+
     public double obtenerSaldo() {
         return modelo.getSaldo();
     }
