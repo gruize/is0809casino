@@ -33,7 +33,8 @@ import modelo.mensajes.MensajeEstadoRuleta;
 import modelo.mensajes.MensajeExpulsion;
 import modelo.mensajes.MensajeInfoCliente;
 import modelo.mensajes.MensajeUsuariosEnMesa;
-
+import java.util.Timer;
+import java.util.TimerTask;
 /**
  *
  * @author GabiPC
@@ -69,6 +70,43 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
     private OyenteVolver oyenteVolver;
     private boolean apuestaHecha;
     private DefaultListModel listResultados;
+    private int segundos;
+    private boolean frozen;
+    private Timer timer;
+
+    public Timer getTimer() {
+        return timer;
+    }
+
+    public void setTimer(Timer timer) {
+        this.timer = timer;
+    }
+
+
+    class RemindTask extends TimerTask {
+
+        public void run() {
+            if(getSegundos() > 0){
+                setSegundos(getSegundos() - 1);
+                getJLabelTiempo().setText(String.valueOf(getSegundos()));
+                if(frozen){
+                    System.out.println("Terminamos la ejecucion del timer");
+                    getTimer().cancel();
+                }
+            }else{
+                getJLabelTiempo().setText("Tiempo agotado");
+                getJButtonFinish().setVisible(false);
+            }
+        }
+    }
+
+    public int getSegundos() {
+        return segundos;
+    }
+
+    public void setSegundos(int segundos) {
+        this.segundos = segundos;
+    }
 
     public JPanelChat getPanelChat() {
         return PanelChat;
@@ -99,6 +137,8 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         super("Ruleta");
         controlador = control;
         apuestaHecha = false;
+        segundos = 30;
+        frozen = false;
         inicializar();
         ponerOyentes();
         rellenarDatos();
@@ -184,7 +224,6 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         jButtonFinish = new javax.swing.JButton();
         listResultados = new DefaultListModel();
 
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLayeredPane1.setBackground(new java.awt.Color(0, 0, 0));
@@ -230,7 +269,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
 
         jLabelTiempo.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabelTiempo.setForeground(new java.awt.Color(255, 0, 0));
-        jLabelTiempo.setText("Segundos");
+        jLabelTiempo.setText("60 segundos");
 
         jLabelUsuario.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
         jLabelUsuario.setForeground(new java.awt.Color(255, 255, 255));
@@ -298,13 +337,15 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         jLayeredPane1.add(mesa, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonFinish.setIcon(new javax.swing.ImageIcon("./recursos/TgC_boton142.gif")); // NOI18N
-        jButtonFinish.setText("Terminar");
+        jButtonFinish.setText("Apostar");
         jButtonFinish.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonFinish.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         jButtonFinish.setBounds(700, 305, 80, 80);
         jButtonFinish.setContentAreaFilled(false);
+        jButtonFinish.setForeground(Color.WHITE);
         jLayeredPane1.add(jButtonFinish, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.moveToFront(jButtonFinish);
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -323,6 +364,9 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         getJButtonSalir().setForeground(new Color(255,0,0));
 
         pack();
+
+        timer = new Timer();
+        timer.schedule(new RemindTask(),0,1*1000);
     }
 
     public JLabel getJLabelMesa() {
@@ -517,6 +561,14 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         getPanelChat().getBotonEnviar().addKeyListener(new FocoBotonEnviar());
     }
 
+    public boolean isFrozen() {
+        return frozen;
+    }
+
+    public void setFrozen(boolean frozen) {
+        this.frozen = frozen;
+    }
+
      public void update(Observable o, Object arg) {
          if (arg instanceof MensajeExpulsion) {
              JOptionPane.showMessageDialog(null,"¡¡ESTAS EXPULSADO!!","Expulsion de usuario",JOptionPane.ERROR_MESSAGE);
@@ -530,17 +582,20 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
              MensajeEstadoRuleta mensaje = (MensajeEstadoRuleta) arg;
              if (mensaje.isParado()){                 
                  getJButtonFinish().setVisible(false);
+                 setFrozen(true);
                  //Mover la ruleta muxas veces sin destino
              }else{
                  getMesa().setEnabled(true);
                  getJButtonFinish().setVisible(true);
                  JOptionPane.showMessageDialog( this,"Puede realizar sus apuestas.", "Turno de apuestas", JOptionPane.WARNING_MESSAGE );
+                 setSegundos(60);
+                 setFrozen(false);
+                 timer = new Timer();
+                 timer.schedule(new RemindTask(),0,1*1000);
              }
          }else if(arg instanceof MensajeUsuariosEnMesa){
              MensajeUsuariosEnMesa mensaje = (MensajeUsuariosEnMesa) arg;
              getJPanelUsuariosTemp1().getListaUsuarios().setListData(mensaje.getJugadores());
-             //String[] jugadores = controlador.obtenerUsuariosEnMesa();
-             //getJPanelUsuariosTemp1().getlistaUsuarios().setListData(jugadores);
          }else if(arg instanceof MensajeInfoCliente){
             MensajeInfoCliente mensaje = (MensajeInfoCliente) arg;
             Double valorAux = Double.parseDouble(getJLabelSaldo().getText());
@@ -629,7 +684,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
          */
     }
 
-private void enviarMensaje(){
+    private void enviarMensaje(){
             if(!getPanelChat().getTextfieldFrase().getText().equals("")){
                 String mensaje = getPanelChat().getTextfieldFrase().getText();
                 getControlador().enviarMensajeChat(mensaje);

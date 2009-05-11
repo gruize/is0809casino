@@ -250,37 +250,27 @@ public class ControladorCliente {
         } else if (tipo == TipoMensaje.MENSAJE_JUGADA) {
             MensajeJugada mensajeJugada = (MensajeJugada) mensaje;
             modelo.addMensajeJugada(mensajeJugada);
-        } else if (tipo == TipoMensaje.ENTRADA_MESA) {
-            //El servidor me confirma la entrada en la mesa
-            MensajeMesa mensajeMesa = (MensajeMesa) mensaje;
-            //actualizar el modelo
+        } else if (tipo == TipoMensaje.ENTRADA_MESA) {            
+            MensajeMesa mensajeMesa = (MensajeMesa) mensaje;            
             modelo.setMesa(mensajeMesa.getMesa());
-        } else if (tipo == TipoMensaje.ENTRADA_SALA) {
-            //el servidor confirma la entrada en la sala
-            MensajeSala mensajeSala = (MensajeSala) mensaje;
-            //actualizar el modelo
+        } else if (tipo == TipoMensaje.ENTRADA_SALA) {            
+            MensajeSala mensajeSala = (MensajeSala) mensaje;            
             modelo.setSala(mensajeSala.getSala());
         } else if (tipo== TipoMensaje.INFO_SALAS){
-            System.out.println("Info salas pedida");
             MensajeInfoSalas mensajeInfoSalas = (MensajeInfoSalas) mensaje;
             modelo.rellenarSalas(mensajeInfoSalas);
-        } else if (tipo==TipoMensaje.INFO_MESAS){
-            System.out.println("Info mesas pedida");
+        } else if (tipo==TipoMensaje.INFO_MESAS){            
             MensajeInfoMesas mensajeInfoMesas = (MensajeInfoMesas) mensaje;
             modelo.rellenarMesas(mensajeInfoMesas);
         } else if (tipo==TipoMensaje.INFO_CLIENTE){
-            //TODO interfaz: os mandarÃ© la info del propio cliente: os interesa el saldo
-            //TODO LLega con el saldo y la ultima Bola Lanzada, para ponerla en la interfaz
             MensajeInfoCliente mensajeIC=(MensajeInfoCliente)mensaje;
             modelo.actualizarSaldo(mensajeIC);
         }else if (tipo==TipoMensaje.ESTADO_RULETA){
-            //TODO interfaz os mandarÃ© el estado de la ruleta, para que parÃ©is y arranquÃ©is.
             MensajeEstadoRuleta m=(MensajeEstadoRuleta)mensaje;
-            //TODO: modelo.modificarEstadoRuleta
+            modelo.actualizaEstadoRuleta(m);
         }else if (tipo==TipoMensaje.USERS_MESA){
             MensajeUsuariosEnMesa mensajeUEM = (MensajeUsuariosEnMesa)mensaje;
-            System.out.println("**************** mensaje usuarios en mesa recibido. Totsl usuarios: "+mensajeUEM.getJugadores().size());
-            //TODO:
+            modelo.actualizaUsuariosEnMesa(mensajeUEM);
         } else if (tipo==TipoMensaje.EXPULSAR) {
             MensajeExpulsion mensajeExpulsion = (MensajeExpulsion)mensaje;
             modelo.expulsado(mensajeExpulsion);

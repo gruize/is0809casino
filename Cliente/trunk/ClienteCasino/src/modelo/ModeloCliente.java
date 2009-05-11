@@ -6,12 +6,14 @@
 package modelo;
 
 import modelo.mensajes.MensajeChat;
+import modelo.mensajes.MensajeEstadoRuleta;
 import modelo.mensajes.MensajeExpulsion;
 import modelo.mensajes.MensajeInfoMesas;
 import modelo.mensajes.MensajeInfoSalas;
 import modelo.mensajes.MensajeJugada;
 import java.util.Observable;
 import modelo.mensajes.MensajeInfoCliente;
+import modelo.mensajes.MensajeUsuariosEnMesa;
 /**
  *
  * @author david
@@ -23,6 +25,16 @@ public class ModeloCliente extends Observable{
     private int sala;
     private int mesa;
     private double saldo;
+
+    public void actualizaEstadoRuleta(MensajeEstadoRuleta m) {
+        setChanged();
+        this.notifyObservers(m);
+    }
+
+    public void actualizaUsuariosEnMesa(MensajeUsuariosEnMesa mensajeUEM) {
+        setChanged();
+        this.notifyObservers(mensajeUEM);
+    }
 
     public void actualizarSaldo(MensajeInfoCliente mensajeInfoCliente) {
         setSaldo(mensajeInfoCliente.getSaldo());
