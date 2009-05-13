@@ -53,6 +53,34 @@ public class GestorUsuarios {
 
     }
 
+    public DefaultListModel estadisticasClientes() {
+        DefaultListModel texto = new DefaultListModel();
+        texto.addElement("CLIENTES:");
+        ArrayList listaClientes = this.getListaUsuarios();
+        for(int i=0;i<listaClientes.size();i++) {
+            Clientes cliente = (Clientes) listaClientes.get(i);
+            texto.addElement("");
+            texto.addElement(" ------------------");
+            texto.addElement("Codigo:"+cliente.getCodigo());
+            texto.addElement("Nombre: "+cliente.getNombre());
+            texto.addElement("Apellidos: "+cliente.getApellidos());
+            texto.addElement("DNI: "+cliente.getDni());
+            texto.addElement("Usuario: "+cliente.getUsuario());
+            texto.addElement("Password: "+cliente.getPassword());
+            texto.addElement("Direccion: "+cliente.getDireccion());
+            texto.addElement("Numero de cuenta: "+cliente.getNumerocuenta());
+            texto.addElement("Saldo: "+cliente.getSaldo());
+            texto.addElement("Telefono: "+cliente.getTelefono());
+            texto.addElement("Recargas: "+cliente.getRecargas());
+            texto.addElement("Fecha de ingreso: "+cliente.getFechaingreso().toString());
+        }
+        return  texto;
+    }
+
+    public ArrayList getListaUsuarios() {
+        return bbdd.getClientes();
+    }
+
     public DefaultListModel getUsuarios() {
         ArrayList usuarios = this.bbdd.getClientes();
         for (int i = 0; i < usuarios.size(); i++) {

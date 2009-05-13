@@ -6,7 +6,6 @@ package controlador;
 
 import bbdd.beans.Clientes;
 import comunicaciones.Comunicador;
-import java.io.IOException;
 import java.io.Serializable;
 import javax.swing.DefaultListModel;
 import modelo.GestorChatServidor;
@@ -78,9 +77,8 @@ public class ControladorServidor {
         modelo.borrarMesa(mesa);
     }
 
-    public void cerrarConexion() throws IOException {
+    public void cerrarConexion() {
         try {
-            modelo.cerrarConexion();
             GestorSalas.getInstance(this).borrarSalas();
             System.out.println("salas borradas");
         } catch (Exception e) {
@@ -102,6 +100,12 @@ public class ControladorServidor {
 
     public void expulsarJugador(int id) {
         enviarMensajeExpulsion(id);
+         //le saco de la mesa y sala donde estaba.
+        int idSala = usuarios.getJugadorConectado(id).getIdSala();
+        int idMesa = usuarios.getJugadorConectado(id).getIdMesa();
+        usuarios.desconectarJugador(id);
+        //Envío al resto de usuarios de su mesa el listado
+        enviarUsuariosEnMesa(idSala, idMesa);
     }
 
     public void cerrarJugador(String usuario) {
@@ -122,6 +126,7 @@ public class ControladorServidor {
             //le saco de la sala y mesa
             usuarios.desconectarJugador(identificador);
             //quitarlo de la interfaz del servidor
+
             cerrarJugador(usuarios.getNombreUsuario(identificador));
 
             //enviar un mensaje al resto de jugadores de la mesa para que actualicen su lista de jugadores
@@ -157,8 +162,26 @@ public class ControladorServidor {
         return modelo.servidorConectado();
     }
 
-    public void verEstadisticas(String usuario) {
-        modelo.verEstadisticas(usuario);
+    public DefaultListModel verEstadisticas(int eleccion) {
+        DefaultListModel texto = null;
+        switch(eleccion) {
+            case 1:
+                texto = usuarios.estadisticasClientes();
+                break;
+            case 2:
+                texto = salas.estadisticasSalas();
+                break;
+            case 3:
+                texto = salas.estadisticasPartidas();
+                break;
+        }
+        
+        /*ArrayList listaSalas = salas.getSalas();
+        ArrayList listaPartidas = salas.getPartidas();
+        Vector listaMesas ;
+        for(int i=0;i<listaSalas.size();i++)
+            listaMesas = salas.getMesas(i).getIndiceMesas();*/
+        return texto;
     }
 
     //========================================================================
@@ -399,4 +422,5 @@ public class ControladorServidor {
             enviarMesasDeUnaSala(m.getId(), m.getSala());
         }
     }
+
 }

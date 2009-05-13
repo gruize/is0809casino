@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Observer;
+import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -94,13 +95,8 @@ public class VistaServidor extends JFrame implements Observer  {
         } catch(IOException ioe){
             System.out.println(ioe); //Muestra por consola los errores
         }
-            try {
-				if(controlador.servidorConectado())
-					controlador.cerrarConexion();
-			}
-            catch (IOException e1) {
-                e1.printStackTrace();
-			}
+            if(controlador.servidorConectado())
+                controlador.cerrarConexion();
             System.exit(0);
         }
 
@@ -126,16 +122,19 @@ public class VistaServidor extends JFrame implements Observer  {
     class OyenteVerEstadisticas implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-            JList lista = jPanelLog.getConectados().getConectados();
-            if (lista.getSelectedValue() != null) {
-                controlador.verEstadisticas(lista.getSelectedValue().toString());
-                 lista.removeSelectionInterval(lista.getSelectedIndex(),lista.getSelectedIndex());
+            int opcion = -1;
+            int pulsacion = -1;
+            do {
+                PanelEleccion eleccion = new PanelEleccion();
+                pulsacion = JOptionPane.showConfirmDialog(getParent(),eleccion,"Opciones",JOptionPane.OK_CANCEL_OPTION);
+                opcion = eleccion.getSeleccionado();
+            } while (opcion == -1 && pulsacion == JOptionPane.OK_OPTION );
+            if (pulsacion == JOptionPane.OK_OPTION) {
+                DefaultListModel texto = controlador.verEstadisticas(opcion);
+                PanelEstadisticas estadisticas = new PanelEstadisticas(texto);
+                JOptionPane.showMessageDialog(null,estadisticas,"Estadisticas casino",JOptionPane.PLAIN_MESSAGE);
             }
-            else
-                JOptionPane.showMessageDialog(null,"Seleccione un cliente en conectados",
-                        "Error en seleccion",JOptionPane.ERROR_MESSAGE);
         }
-
     }
 
     class OyenteExpulsar implements ActionListener {

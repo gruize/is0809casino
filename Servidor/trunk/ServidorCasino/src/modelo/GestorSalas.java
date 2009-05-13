@@ -5,12 +5,17 @@
 package modelo;
 
 import bbdd.beans.Juegos;
+import bbdd.beans.Mesas;
+import bbdd.beans.Partidas;
 import bbdd.beans.Salas;
 import bbdd.gestorBBDD.GestorBBDDImp;
 import bbdd.gestorBBDD.InterfazBBDD;
 import controlador.ControladorServidor;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Vector;
+import javax.swing.DefaultListModel;
+import modelo.LogicaJuegos.Mesa;
 import modelo.mensajes.objetos.PeticionSala;
 import org.apache.log4j.Logger;
 
@@ -31,7 +36,7 @@ public class GestorSalas {
     private static GestorSalas instance = null;
 
     //para sincronizar con bbdd
-    private static InterfazBBDD bbdd = null;
+    private InterfazBBDD bbdd = null;
 
 
     //=====================================================================
@@ -64,6 +69,65 @@ public class GestorSalas {
         return instance;
     }
 
+    public DefaultListModel estadisticasPartidas() {
+        DefaultListModel texto = new DefaultListModel();
+        texto.addElement("PARTIDAS: ");
+        ArrayList partidas = this.bbdd.getPartidas();
+        for(int i=0;i<partidas.size();i++) {
+            Partidas partida = (Partidas) partidas.get(i);
+            texto.addElement("");
+            texto.addElement(" ------------------");
+            texto.addElement("Codigo:"+partida.getCodigo());
+          
+            texto.addElement("Jugadores maximos: "+partida.getNumjugadores());
+            texto.addElement("Ganador: "+partida.getGanador());
+            int codigo = partida.getMesas().getCodigo();
+            ArrayList listaSalas = this.bbdd.getSalas();
+            Mesas mesaBBDD = null;
+            boolean encontrado = false;
+            for(int j=0;j<listaSalas.size() && !encontrado;j++) {
+                Salas sala = (Salas)listaSalas.get(j);
+                Vector<Integer> posiblesMesas = mesas_sala.get(sala.getCodigo()).getIndiceMesas();
+                if (posiblesMesas.contains(codigo)) {
+                    Mesa mesa = mesas_sala.get(sala.getCodigo()).getMesaJuego(codigo);
+                    mesaBBDD = mesa.getMesaBBDD();
+                    encontrado = true;
+                }
+            }
+            texto.addElement("Jugadores: "+mesaBBDD.getJugadores());
+            texto.addElement("Mesa de juego: "+ mesaBBDD.getCodigo());
+            texto.addElement("Tipo de juego: "+ mesaBBDD.getSalas().getJuegos().getNombre());
+        }
+        return texto;
+    }
+
+    public DefaultListModel estadisticasSalas() {
+        DefaultListModel texto = new DefaultListModel();
+        texto.addElement("SALAS: ");
+        ArrayList listaSalas = this.bbdd.getSalas();
+        for(int i=0;i<listaSalas.size();i++) {
+            Salas sala = (Salas) listaSalas.get(i);
+            texto.addElement("");
+            texto.addElement(" ------------------");
+            texto.addElement("Codigo: "+sala.getCodigo());
+            texto.addElement("Nombre: "+sala.getNombre());
+            texto.addElement("Mesas en propiedad: ");
+            Vector<Integer> indiceMesas = mesas_sala.get(sala.getCodigo()).getIndiceMesas();
+            ArrayList listaMesas = this.bbdd.getMesas();
+            for(int j=0;j<listaMesas.size();j++) {
+                Mesas mesa = (Mesas) listaMesas.get(j);
+                if (indiceMesas.contains(mesa.getCodigo())) {
+                    texto.addElement("");
+                    texto.addElement("Codigo: "+mesa.getCodigo());
+                    texto.addElement("Puestos:"+mesa.getPuestos());
+                    texto.addElement("Numero de jugadores total: "+mesa.getJugadores());
+                    texto.addElement("Apuesta minima: "+mesa.getApuestamin());
+                }
+            }
+        }
+        return texto;
+    }
+    
     /**
      * Crea una nueva sala. La guarda en BBDD y en el propio gestor de salas
      * @param codigoSala

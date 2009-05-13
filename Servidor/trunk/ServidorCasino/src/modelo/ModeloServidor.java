@@ -64,9 +64,6 @@ public class ModeloServidor extends Observable {
         notifyObservers(mensaje);
     }
 
-    public void cerrarConexion() throws IOException {
-
-    }
 
     public void cerrarJugador(String jugador) {
         listaConectados.removeElement(jugador);
@@ -92,7 +89,7 @@ public class ModeloServidor extends Observable {
     public boolean servidorConectado() {
         return true;
     }
-
+    
     public boolean tratarMensaje(MensajeChat mensajeChat) {
         String texto = mensajeChat.get_men();
         boolean resultado = true;
@@ -100,7 +97,11 @@ public class ModeloServidor extends Observable {
                 resultado = false;
         else if (texto.trim().contains("cabron"))
                 resultado = false;
+        else if (texto.trim().contains("cabrona"))
+                resultado = false;
         else if (texto.trim().contains("cabrones"))
+                resultado = false;
+        else if (texto.trim().contains("cabronas"))
                 resultado = false;
         else if (texto.trim().contains("puta"))
                 resultado = false;
@@ -114,11 +115,13 @@ public class ModeloServidor extends Observable {
                 resultado = false;
         else if (texto.trim().contains("hijoputa"))
                 resultado = false;
+        else if (texto.trim().contains("hijadeputa"))
+                resultado = false;
+        else if (texto.trim().contains("hijaputa"))
+                resultado = false;
+        else if (texto.trim().contains("puto"))
+                resultado = false;
         return resultado;
-    }
-
-    public void verEstadisticas(String usuario) {
-        
     }
 
 }
