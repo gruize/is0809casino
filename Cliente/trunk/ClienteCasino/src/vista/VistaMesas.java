@@ -246,13 +246,13 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         //orden = 0;
         jOrden.add("---Elija un orden---");
         //orden = 1;
-        jOrden.add("Nº de jugadores.Creciente");
-        //orden = 2;
         jOrden.add("Nº de jugadores.Decreciente");
+        //orden = 2;
+        jOrden.add("Nº de jugadores.Creciente");
         //orden = 3;
-        jOrden.add("Apuesta minima.Creciente");
-        //orden = 4;
         jOrden.add("Apuesta minima.Decreciente");
+        //orden = 4;
+        jOrden.add("Apuesta minima.Creciente");
     }
 
     private void rellenarDatos() {
@@ -300,13 +300,14 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
             }break;
             //Nº Jugadores. Creciente
             case 1: {
-                while(!peticionMesa.isEmpty()){
+                Vector<PeticionMesa> auxpeticionMesa = new Vector<PeticionMesa>(peticionMesa);
+                while(!auxpeticionMesa.isEmpty()){
                     int index = 0;
-                    PeticionMesa tmp = peticionMesa.get(index);
-                    for(int i = 1; i < peticionMesa.size(); i++){
-                        if(tmp.getNumJugadores() < peticionMesa.get(i).getNumJugadores()){
+                    PeticionMesa tmp = auxpeticionMesa.get(index);
+                    for(int i = 1; i < auxpeticionMesa.size(); i++){
+                        if(tmp.getNumJugadores() < auxpeticionMesa.get(i).getNumJugadores()){
                             index = i;
-                            tmp = peticionMesa.get(index);
+                            tmp = auxpeticionMesa.get(index);
                         }
                     }
                     JPanel nuevaMesa = new JPanel();
@@ -319,7 +320,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
                     botonNuevaSala.setPreferredSize(new Dimension(114,86));
                     botonNuevaSala.setName("BotonMesa"+index);
-                    botonNuevaSala.setActionCommand(Integer.toString(tmp.getIdMesa()));
+                    botonNuevaSala.setActionCommand(Integer.toString(auxpeticionMesa.get(index).getIdMesa()));
                     botonNuevaSala.addActionListener(new OyenteMesas());
                     botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
                     nuevaMesa.add(botonNuevaSala);
@@ -327,18 +328,19 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     textoNuevaMesa.setPreferredSize(new Dimension(114,86));
                     nuevaMesa.add(textoNuevaMesa);
                     jContenedor.add(nuevaMesa);
-                    peticionMesa.remove(tmp);
+                    auxpeticionMesa.remove(tmp);
                 }
             }break;
             //Nº Jugadores. Decreciente
             case 2: {
-                while(!peticionMesa.isEmpty()){
+                Vector<PeticionMesa> auxpeticionMesa = new Vector<PeticionMesa>(peticionMesa);
+                while(!auxpeticionMesa.isEmpty()){
                     int index = 0;
-                    PeticionMesa tmp = peticionMesa.get(index);
-                    for(int i = 1; i < peticionMesa.size(); i++){
-                        if(tmp.getNumJugadores() > peticionMesa.get(i).getNumJugadores()){
+                    PeticionMesa tmp = auxpeticionMesa.get(index);
+                    for(int i = 1; i < auxpeticionMesa.size(); i++){
+                        if(tmp.getNumJugadores() > auxpeticionMesa.get(i).getNumJugadores()){
                             index = i;
-                            tmp = peticionMesa.get(index);
+                            tmp = auxpeticionMesa.get(index);
                         }
                     }
                     JPanel nuevaMesa = new JPanel();
@@ -351,7 +353,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
                     botonNuevaSala.setPreferredSize(new Dimension(114,86));
                     botonNuevaSala.setName("BotonMesa"+index);
-                    botonNuevaSala.setActionCommand(Integer.toString(tmp.getIdMesa()));
+                    botonNuevaSala.setActionCommand(Integer.toString(auxpeticionMesa.get(index).getIdMesa()));
                     botonNuevaSala.addActionListener(new OyenteMesas());
                     botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
                     nuevaMesa.add(botonNuevaSala);
@@ -359,18 +361,19 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     textoNuevaMesa.setPreferredSize(new Dimension(114,86));
                     nuevaMesa.add(textoNuevaMesa);
                     jContenedor.add(nuevaMesa);
-                    peticionMesa.remove(tmp);
+                    auxpeticionMesa.remove(tmp);
                 }
             }break;
             //Apuesta minima. Creciente
             case 3: {
-                while(!peticionMesa.isEmpty()){
+                Vector<PeticionMesa> auxpeticionMesa = new Vector<PeticionMesa>(peticionMesa);
+                while(!auxpeticionMesa.isEmpty()){
                     int index = 0;
-                    PeticionMesa tmp = peticionMesa.get(index);
-                    for(int i = 1; i < peticionMesa.size(); i++){
-                        if(tmp.getApuestaMin() > peticionMesa.get(i).getApuestaMin()){
+                    PeticionMesa tmp = auxpeticionMesa.get(index);
+                    for(int i = 1; i < auxpeticionMesa.size(); i++){
+                        if(tmp.getApuestaMin() > auxpeticionMesa.get(i).getApuestaMin()){
                             index = i;
-                            tmp = peticionMesa.get(index);
+                            tmp = auxpeticionMesa.get(index);
                         }
                     }
                     JPanel nuevaMesa = new JPanel();
@@ -383,7 +386,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
                     botonNuevaSala.setPreferredSize(new Dimension(114,86));
                     botonNuevaSala.setName("BotonMesa"+index);
-                    botonNuevaSala.setActionCommand(Integer.toString(tmp.getIdMesa()));
+                    botonNuevaSala.setActionCommand(Integer.toString(auxpeticionMesa.get(index).getIdMesa()));
                     botonNuevaSala.addActionListener(new OyenteMesas());
                     botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
                     nuevaMesa.add(botonNuevaSala);
@@ -391,18 +394,19 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     textoNuevaMesa.setPreferredSize(new Dimension(114,86));
                     nuevaMesa.add(textoNuevaMesa);
                     jContenedor.add(nuevaMesa);
-                    peticionMesa.remove(tmp);
+                    auxpeticionMesa.remove(tmp);
                 }
             }break;
             //Apuesta minima. Decreciente
             case 4: {
-                while(!peticionMesa.isEmpty()){
+                Vector<PeticionMesa> auxpeticionMesa = new Vector<PeticionMesa>(peticionMesa);
+                while(!auxpeticionMesa.isEmpty()){
                     int index = 0;
-                    PeticionMesa tmp = peticionMesa.get(index);
-                    for(int i = 1; i < peticionMesa.size(); i++){
-                        if(tmp.getApuestaMin() < peticionMesa.get(i).getApuestaMin()){
+                    PeticionMesa tmp = auxpeticionMesa.get(index);
+                    for(int i = 1; i < auxpeticionMesa.size(); i++){
+                        if(tmp.getApuestaMin() < auxpeticionMesa.get(i).getApuestaMin()){
                             index = i;
-                            tmp = peticionMesa.get(index);
+                            tmp = auxpeticionMesa.get(index);
                         }
                     }
                     JPanel nuevaMesa = new JPanel();
@@ -415,7 +419,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
                     botonNuevaSala.setPreferredSize(new Dimension(114,86));
                     botonNuevaSala.setName("BotonMesa"+index);
-                    botonNuevaSala.setActionCommand(Integer.toString(tmp.getIdMesa()));
+                    botonNuevaSala.setActionCommand(Integer.toString(auxpeticionMesa.get(index).getIdMesa()));
                     botonNuevaSala.addActionListener(new OyenteMesas());
                     botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
                     nuevaMesa.add(botonNuevaSala);
@@ -423,7 +427,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     textoNuevaMesa.setPreferredSize(new Dimension(114,86));
                     nuevaMesa.add(textoNuevaMesa);
                     jContenedor.add(nuevaMesa);
-                    peticionMesa.remove(tmp);
+                    auxpeticionMesa.remove(tmp);
                 }
             }break;
         }
@@ -432,13 +436,12 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
 
     private void rellenarMesasColoreado(int mesa) {
          jContenedor.removeAll();
-
         switch(orden){
             //Ningun orden
             case 0: {
                 for (int i = 0; i < peticionMesa.size(); i++){
                     JPanel nuevaMesa = new JPanel();
-                    if(i == mesa)
+                    if(peticionMesa.get(i).getIdMesa() == mesa)
                         nuevaMesa.setBackground(new Color(128,128,128));
                     else
                         nuevaMesa.setBackground(Color.BLACK);
@@ -462,17 +465,18 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
             }break;
             //Nº Jugadores. Creciente
             case 1: {
-                while(!peticionMesa.isEmpty()){
+                Vector<PeticionMesa> auxpeticionMesa = new Vector<PeticionMesa>(peticionMesa);
+                while(!auxpeticionMesa.isEmpty()){
                     int index = 0;
-                    PeticionMesa tmp = peticionMesa.get(index);
-                    for(int i = 1; i < peticionMesa.size(); i++){
-                        if(tmp.getNumJugadores() < peticionMesa.get(i).getNumJugadores()){
+                    PeticionMesa tmp = auxpeticionMesa.get(index);
+                    for(int i = 1; i < auxpeticionMesa.size(); i++){
+                        if(tmp.getNumJugadores() < auxpeticionMesa.get(i).getNumJugadores()){
                             index = i;
-                            tmp = peticionMesa.get(index);
+                            tmp = auxpeticionMesa.get(index);
                         }
                     }
                     JPanel nuevaMesa = new JPanel();
-                    if(index == mesa)
+                    if(tmp.getIdMesa() == mesa)
                         nuevaMesa.setBackground(new Color(128,128,128));
                     else
                         nuevaMesa.setBackground(Color.BLACK);
@@ -484,7 +488,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
                     botonNuevaSala.setPreferredSize(new Dimension(114,86));
                     botonNuevaSala.setName("BotonMesa"+index);
-                    botonNuevaSala.setActionCommand(Integer.toString(tmp.getIdMesa()));
+                    botonNuevaSala.setActionCommand(Integer.toString(auxpeticionMesa.get(index).getIdMesa()));
                     botonNuevaSala.addActionListener(new OyenteMesas());
                     botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
                     nuevaMesa.add(botonNuevaSala);
@@ -492,22 +496,23 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     textoNuevaMesa.setPreferredSize(new Dimension(114,86));
                     nuevaMesa.add(textoNuevaMesa);
                     jContenedor.add(nuevaMesa);
-                    peticionMesa.remove(tmp);
+                    auxpeticionMesa.remove(tmp);
                 }
             }break;
             //Nº Jugadores. Decreciente
             case 2: {
-                while(!peticionMesa.isEmpty()){
+                Vector<PeticionMesa> auxpeticionMesa = new Vector<PeticionMesa>(peticionMesa);
+                while(!auxpeticionMesa.isEmpty()){
                     int index = 0;
-                    PeticionMesa tmp = peticionMesa.get(index);
-                    for(int i = 1; i < peticionMesa.size(); i++){
-                        if(tmp.getNumJugadores() > peticionMesa.get(i).getNumJugadores()){
+                    PeticionMesa tmp = auxpeticionMesa.get(index);
+                    for(int i = 1; i < auxpeticionMesa.size(); i++){
+                        if(tmp.getNumJugadores() > auxpeticionMesa.get(i).getNumJugadores()){
                             index = i;
-                            tmp = peticionMesa.get(index);
+                            tmp = auxpeticionMesa.get(index);
                         }
                     }
                     JPanel nuevaMesa = new JPanel();
-                    if(index == mesa)
+                    if(tmp.getIdMesa() == mesa)
                         nuevaMesa.setBackground(new Color(128,128,128));
                     else
                         nuevaMesa.setBackground(Color.BLACK);
@@ -519,7 +524,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
                     botonNuevaSala.setPreferredSize(new Dimension(114,86));
                     botonNuevaSala.setName("BotonMesa"+index);
-                    botonNuevaSala.setActionCommand(Integer.toString(tmp.getIdMesa()));
+                    botonNuevaSala.setActionCommand(Integer.toString(auxpeticionMesa.get(index).getIdMesa()));
                     botonNuevaSala.addActionListener(new OyenteMesas());
                     botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
                     nuevaMesa.add(botonNuevaSala);
@@ -527,22 +532,23 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     textoNuevaMesa.setPreferredSize(new Dimension(114,86));
                     nuevaMesa.add(textoNuevaMesa);
                     jContenedor.add(nuevaMesa);
-                    peticionMesa.remove(tmp);
+                    auxpeticionMesa.remove(tmp);
                 }
             }break;
             //Apuesta minima. Creciente
             case 3: {
-                while(!peticionMesa.isEmpty()){
+                Vector<PeticionMesa> auxpeticionMesa = new Vector<PeticionMesa>(peticionMesa);
+                while(!auxpeticionMesa.isEmpty()){
                     int index = 0;
-                    PeticionMesa tmp = peticionMesa.get(index);
-                    for(int i = 1; i < peticionMesa.size(); i++){
-                        if(tmp.getApuestaMin() > peticionMesa.get(i).getApuestaMin()){
+                    PeticionMesa tmp = auxpeticionMesa.get(index);
+                    for(int i = 1; i < auxpeticionMesa.size(); i++){
+                        if(tmp.getApuestaMin() > auxpeticionMesa.get(i).getApuestaMin()){
                             index = i;
-                            tmp = peticionMesa.get(index);
+                            tmp = auxpeticionMesa.get(index);
                         }
                     }
                     JPanel nuevaMesa = new JPanel();
-                    if(index == mesa)
+                    if(tmp.getIdMesa() == mesa)
                         nuevaMesa.setBackground(new Color(128,128,128));
                     else
                         nuevaMesa.setBackground(Color.BLACK);
@@ -554,7 +560,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
                     botonNuevaSala.setPreferredSize(new Dimension(114,86));
                     botonNuevaSala.setName("BotonMesa"+index);
-                    botonNuevaSala.setActionCommand(Integer.toString(tmp.getIdMesa()));
+                    botonNuevaSala.setActionCommand(Integer.toString(auxpeticionMesa.get(index).getIdMesa()));
                     botonNuevaSala.addActionListener(new OyenteMesas());
                     botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
                     nuevaMesa.add(botonNuevaSala);
@@ -562,22 +568,23 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     textoNuevaMesa.setPreferredSize(new Dimension(114,86));
                     nuevaMesa.add(textoNuevaMesa);
                     jContenedor.add(nuevaMesa);
-                    peticionMesa.remove(tmp);
+                    auxpeticionMesa.remove(tmp);
                 }
             }break;
             //Apuesta minima. Decreciente
             case 4: {
-                while(!peticionMesa.isEmpty()){
+                Vector<PeticionMesa> auxpeticionMesa = new Vector<PeticionMesa>(peticionMesa);
+                while(!auxpeticionMesa.isEmpty()){
                     int index = 0;
-                    PeticionMesa tmp = peticionMesa.get(index);
-                    for(int i = 1; i < peticionMesa.size(); i++){
-                        if(tmp.getApuestaMin() < peticionMesa.get(i).getApuestaMin()){
+                    PeticionMesa tmp = auxpeticionMesa.get(index);
+                    for(int i = 1; i < auxpeticionMesa.size(); i++){
+                        if(tmp.getApuestaMin() < auxpeticionMesa.get(i).getApuestaMin()){
                             index = i;
-                            tmp = peticionMesa.get(index);
+                            tmp = auxpeticionMesa.get(index);
                         }
                     }
                     JPanel nuevaMesa = new JPanel();
-                    if(index == mesa)
+                    if(tmp.getIdMesa() == mesa)
                         nuevaMesa.setBackground(new Color(128,128,128));
                     else
                         nuevaMesa.setBackground(Color.BLACK);
@@ -589,7 +596,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
                     botonNuevaSala.setPreferredSize(new Dimension(114,86));
                     botonNuevaSala.setName("BotonMesa"+index);
-                    botonNuevaSala.setActionCommand(Integer.toString(tmp.getIdMesa()));
+                    botonNuevaSala.setActionCommand(Integer.toString(auxpeticionMesa.get(index).getIdMesa()));
                     botonNuevaSala.addActionListener(new OyenteMesas());
                     botonNuevaSala.setBorder(new SoftBevelBorder(BevelBorder.RAISED));
                     nuevaMesa.add(botonNuevaSala);
@@ -597,7 +604,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     textoNuevaMesa.setPreferredSize(new Dimension(114,86));
                     nuevaMesa.add(textoNuevaMesa);
                     jContenedor.add(nuevaMesa);
-                    peticionMesa.remove(tmp);
+                    auxpeticionMesa.remove(tmp);
                 }
             }break;
         }
@@ -606,7 +613,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
     
     private void modificarEntrada(int mesa){
         setMesaEntrar(mesa);
-        rellenarMesasColoreado(mesa - 1);
+        rellenarMesasColoreado(mesa);
     }
 
     class OyenteMesas implements ActionListener {
@@ -673,6 +680,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     //Ninguno
                     case 0:{
                         setOrden(0);
+                        
                     }break;
                     //NÂº de jugadores.Creciente
                     case 1:{
@@ -692,6 +700,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     }break;
                 }
             controlador.pedirNumeroMesas();
+            rellenarMesas();
             }
 
     }
