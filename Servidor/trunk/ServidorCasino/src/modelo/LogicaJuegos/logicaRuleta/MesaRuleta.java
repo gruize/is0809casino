@@ -98,6 +98,7 @@ public class MesaRuleta implements Mesa {
         mesa_bbdd.setApuestamax(apuestaMax);
         mesa_bbdd.setApuestamin(apuestaMin);
         mesa_bbdd.setPuestos(puestosMax);
+        mesa_bbdd.setJugadores(0);
         mesa_bbdd.setSalas(sala);
 
         if (bbdd.insertarMesa(mesa_bbdd)) {
@@ -566,6 +567,12 @@ public class MesaRuleta implements Mesa {
             jugadores.add(jugador);
             log.info("MesaRuleta : colocarJugador : Jugador " + jugador.getCodigo() + " colocado en la mesa " + getCodigoMesa());
 
+            //13/05/09 - aumentar el numero de jugadores de la mesa
+            int jug=mesa_bbdd.getJugadores();
+            jug++; 
+            mesa_bbdd.setJugadores(jug);
+            bbdd.modificarMesa(mesa_bbdd);
+            
             //Si era el primer jugador... activo el timer para crear una nueva
 
             if (primerJugador) {
@@ -605,8 +612,12 @@ public class MesaRuleta implements Mesa {
                 return false;
              else log.info("MesaRuleta : eliminarJugador : jugador ["+idJugador+"] eliminado de la lista de jugadores. ");
 
-
-            //Envio a todos los clientes 
+            //13/05/09 - disminuir el numero de jugadores de la mesa
+            int jug=mesa_bbdd.getJugadores();
+            jug--; 
+            mesa_bbdd.setJugadores(jug);
+            bbdd.modificarMesa(mesa_bbdd);
+            
 
             return true;
         } else {
