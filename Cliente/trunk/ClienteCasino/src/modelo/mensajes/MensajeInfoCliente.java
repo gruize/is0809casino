@@ -14,14 +14,13 @@ public class MensajeInfoCliente implements java.io.Serializable {
 
     private int idUsuario;
     private double saldo;
-    private int bola;
 
     public MensajeInfoCliente(){
-        bola=-1;
+
     }
 
 
-        public int getIdUsuario() {
+    public int getIdUsuario() {
         return idUsuario;
     }
 
@@ -36,15 +35,5 @@ public class MensajeInfoCliente implements java.io.Serializable {
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
-
-    public int getBola() {
-        return bola;
-    }
-
-    public void setBola(int bola) {
-        this.bola = bola;
-    }
-
-
 
 }

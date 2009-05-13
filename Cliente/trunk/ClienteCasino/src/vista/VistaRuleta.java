@@ -583,6 +583,11 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
              if (mensaje.isParado()){                 
                  getJButtonFinish().setVisible(false);
                  setFrozen(true);
+            if(mensaje.getBola() != -1){
+                girarRuleta(mensaje.getBola());
+                listResultados.addElement(Integer.toString(mensaje.getBola()));
+                getJPanelCjtoApuestasTemp1().getListaResultados().setModel(listResultados);
+            }                 
                  //Mover la ruleta muxas veces sin destino
              }else{
                  getMesa().setEnabled(true);
@@ -601,20 +606,15 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
             Double valorAux = Double.parseDouble(getJLabelSaldo().getText());
             getJLabelSaldo().setText(Double.toString(mensaje.getSaldo()));            
             getMesa().setSaldoUsuario(mensaje.getSaldo());
-            if(mensaje.getBola() != -1){
-                girarRuleta(mensaje.getBola());
-                listResultados.addElement(Integer.toString(mensaje.getBola()));
-                getJPanelCjtoApuestasTemp1().getListaResultados().setModel(listResultados);
-                if(isApuestaHecha()){
-                    setApuestaHecha(false);
-                    if(valorAux < mensaje.getSaldo())//GANA
-                        JOptionPane.showMessageDialog( this,"El resultado es " + Integer.toString(mensaje.getBola()) + "   Ha incrementado su saldo a "+Double.toString(mensaje.getSaldo()), "FELICIDADES!", JOptionPane.WARNING_MESSAGE );
-                    else
-                        JOptionPane.showMessageDialog( this,"El resultado es " + Integer.toString(mensaje.getBola()) +  "   Su saldo actual es " + Double.toString(mensaje.getSaldo()), "Resultados", JOptionPane.WARNING_MESSAGE );
-                }
-            }
             getMesa().limpiarTapete();
             getMesa().empezar(mensaje.getSaldo());
+            if(isApuestaHecha()){
+                    setApuestaHecha(false);
+                    if(valorAux < mensaje.getSaldo())//GANA
+                        JOptionPane.showMessageDialog( this,"   Ha incrementado su saldo a "+Double.toString(mensaje.getSaldo()), "FELICIDADES!", JOptionPane.WARNING_MESSAGE );
+                    else
+                        JOptionPane.showMessageDialog( this,"   Su saldo actual es " + Double.toString(mensaje.getSaldo()), "Resultados", JOptionPane.WARNING_MESSAGE );
+            }
          }
     }
 

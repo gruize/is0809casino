@@ -12,9 +12,18 @@ package modelo.mensajes;
 public class MensajeEstadoRuleta implements java.io.Serializable{
 
     private boolean parado=false;
+    private int bola;
 
     public MensajeEstadoRuleta(){
+        bola = -1;
+    }
 
+    public int getBola() {
+        return bola;
+    }
+
+    public void setBola(int bola) {
+        this.bola = bola;
     }
 
     public boolean isParado() {
