@@ -167,7 +167,7 @@ public class MesaRuleta implements Mesa {
             MensajeInfoCliente mensaje = new MensajeInfoCliente();
             mensaje.setIdUsuario(participantes.get(i).getCodigo());
             mensaje.setSaldo(participantes.get(i).getSaldo());
-            mensaje.setBola(ultimaBola);
+           // mensaje.setBola(ultimaBola);
             controlador.enviarMensajeInfoCliente(participantes.get(i).getCodigo(), mensaje);
         }
     }
@@ -180,6 +180,7 @@ public class MesaRuleta implements Mesa {
 
         MensajeEstadoRuleta mensaje = new MensajeEstadoRuleta();
         mensaje.setParado(true);
+        mensaje.setBola(ultimaBola);
         //recorro todos los jugadores y envío un mensaje para que paren la ruleta)
         for (int i = 0; i < jugadores.size(); i++) {
             controlador.enviarMensajeEstadoRuleta(jugadores.get(i).getCodigo(), mensaje);
@@ -193,6 +194,7 @@ public class MesaRuleta implements Mesa {
     private void enviarReiniciarRuleta() {
         MensajeEstadoRuleta mensaje = new MensajeEstadoRuleta();
         mensaje.setParado(false);
+        mensaje.setBola(ultimaBola);
         //recorro todos los jugadores y envío un mensaje para que reanuden la ruleta
         for (int i = 0; i < jugadores.size(); i++) {
             controlador.enviarMensajeEstadoRuleta(jugadores.get(i).getCodigo(), mensaje);
