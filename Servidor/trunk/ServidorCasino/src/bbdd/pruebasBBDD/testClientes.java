@@ -26,7 +26,7 @@ public class testClientes {
 
         bbdd = new GestorBBDDImp();
        
-       // modificarJugador();
+       crearJugador();
         obtenerTodosLosJugadores();
 
     }
@@ -37,16 +37,17 @@ public class testClientes {
     private static void crearJugador() {
         Clientes jugador = new Clientes();
         
-        jugador.setNombre("Prueba");
-        jugador.setApellidos("sin apellidos");
+        jugador.setNombre("prueba");
+        jugador.setApellidos("prueba");
         jugador.setDni("12345678Z");
-        jugador.setUsuario("pp");
-        jugador.setPassword("pp");
+        jugador.setUsuario("m");
+        jugador.setPassword("m");
         jugador.setFechaingreso(new java.util.Date());
+        jugador.setFecharecarga(new java.util.Date());
         jugador.setNumerocuenta("012893872223879236");
-        jugador.setDireccion("españa");
-        jugador.setTelefono("916799856");
-        jugador.setRecargas(150);
+        jugador.setDireccion("España");
+        jugador.setTelefono("916664455");
+        jugador.setSaldo(1000);
 
         //insertar en BBDD
         bbdd.insertarCliente(jugador);

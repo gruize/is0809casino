@@ -20,6 +20,7 @@ public class Clientes  implements java.io.Serializable {
      private Date fechaingreso;
      private String numerocuenta;
      private int recargas;
+     private Date fecharecarga;
      private int saldo;
      private String telefono;
      private Set partidases = new HashSet(0);
@@ -125,6 +126,15 @@ public class Clientes  implements java.io.Serializable {
     public void setRecargas(int recargas) {
         this.recargas = recargas;
     }
+
+    public Date getFecharecarga() {
+        return fecharecarga;
+    }
+
+    public void setFecharecarga(Date fecharecarga) {
+        this.fecharecarga = fecharecarga;
+    }
+    
     public String getTelefono() {
         return this.telefono;
     }
