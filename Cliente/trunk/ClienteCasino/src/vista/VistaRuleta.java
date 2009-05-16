@@ -89,6 +89,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
             if(getSegundos() > 0){
                 setSegundos(getSegundos() - 1);
                 getJLabelTiempo().setText(String.valueOf(getSegundos()));
+                getJButtonFinish().setVisible(true);
                 if(frozen){
                     System.out.println("Terminamos la ejecucion del timer");
                     getTimer().cancel();
@@ -137,13 +138,14 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         super("Ruleta");
         controlador = control;
         apuestaHecha = false;
-        segundos = 30;
+        segundos = 0;
         frozen = false;
         inicializar();
         ponerOyentes();
         rellenarDatos();
-        controlador.getModelo().addObserver(this);
+        getJLabelTiempo().setText("Debe esperar a la sig. ronda");
 
+        controlador.getModelo().addObserver(this);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter(){
             public void windowClosing(WindowEvent e) {
@@ -152,7 +154,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         });
         setResizable(false);
         setLocation(200, 0);
-
+        getJButtonFinish().setVisible(false);
         //Temporal
         mesa.limpiarTapete();
 		mesa.empezar(10000);
@@ -292,7 +294,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
                 .addComponent(jLabelSala)
                 .addGap(62, 62, 62))
             .addGroup(jPanelDatosLayout.createSequentialGroup()
-                .addGap(111, 111, 111)
+                .addGap(90, 90, 90)
                 .addComponent(jLabelTiempo)
                 .addContainerGap(104, Short.MAX_VALUE))
             .addGroup(jPanelDatosLayout.createSequentialGroup()
@@ -583,18 +585,19 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
              if (mensaje.isParado()){                 
                  getJButtonFinish().setVisible(false);
                  setFrozen(true);
-            if(mensaje.getBola() != -1){
-                girarRuleta(mensaje.getBola());
-                listResultados.addElement(Integer.toString(mensaje.getBola()));
-                getJPanelCjtoApuestasTemp1().getListaResultados().setModel(listResultados);
-            }                 
+                 if(mensaje.getBola() != -1){
+                    girarRuleta(mensaje.getBola());
+                    listResultados.addElement(Integer.toString(mensaje.getBola()));
+                    getJPanelCjtoApuestasTemp1().getListaResultados().setModel(listResultados);
+                }
                  //Mover la ruleta muxas veces sin destino
              }else{
                  getMesa().setEnabled(true);
                  getJButtonFinish().setVisible(true);
-                 JOptionPane.showMessageDialog( this,"Puede realizar sus apuestas.", "Turno de apuestas", JOptionPane.WARNING_MESSAGE );
+                 //JOptionPane.showMessageDialog( this,"Puede realizar sus apuestas.", "Turno de apuestas", JOptionPane.WARNING_MESSAGE );
                  setSegundos(60);
                  setFrozen(false);
+                 getMesa().limpiarTapete();
                  timer = new Timer();
                  timer.schedule(new RemindTask(),0,1*1000);
              }
@@ -606,7 +609,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
             Double valorAux = Double.parseDouble(getJLabelSaldo().getText());
             getJLabelSaldo().setText(Double.toString(mensaje.getSaldo()));            
             getMesa().setSaldoUsuario(mensaje.getSaldo());
-            getMesa().limpiarTapete();
+
             getMesa().empezar(mensaje.getSaldo());
             if(isApuestaHecha()){
                     setApuestaHecha(false);
