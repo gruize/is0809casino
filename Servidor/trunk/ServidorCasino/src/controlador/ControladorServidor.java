@@ -96,16 +96,25 @@ public class ControladorServidor {
         usuarios.desconectarJugador(id);
         //Envío al resto de usuarios de su mesa el listado
         enviarUsuariosEnMesa(idSala, idMesa);
+
+        //lo quiyo de la vista del servidor
+        cerrarJugador(usuario);
+        
     }
 
     public void expulsarJugador(int id) {
         enviarMensajeExpulsion(id);
+
          //le saco de la mesa y sala donde estaba.
         int idSala = usuarios.getJugadorConectado(id).getIdSala();
         int idMesa = usuarios.getJugadorConectado(id).getIdMesa();
         usuarios.desconectarJugador(id);
         //Envío al resto de usuarios de su mesa el listado
         enviarUsuariosEnMesa(idSala, idMesa);
+
+        //lo quiyo de la vista del servidor
+        cerrarJugador(usuarios.getNombreUsuario(id));
+
     }
 
     public void cerrarJugador(String usuario) {
