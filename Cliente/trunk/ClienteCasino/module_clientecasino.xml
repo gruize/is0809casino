@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_clientecasino" default="compile.module.clientecasino">
+    <dirname property="module.clientecasino.basedir" file="${ant.file.module_clientecasino}"/>
+
+    <property name="module.jdk.home.clientecasino" value="${project.jdk.home}"/>
+    <property name="module.jdk.bin.clientecasino" value="${project.jdk.bin}"/>
+    <property name="module.jdk.classpath.clientecasino" value="${project.jdk.classpath}"/>
+
+    <property name="compiler.args.clientecasino" value="${compiler.args}"/>
+
+    <property name="clientecasino.output.dir" value="${module.clientecasino.basedir}/build/ClienteCasino"/>
+    <property name="jar.dir" value="${module.clientecasino.basedir}/dist"/>
+    <property name="jar.name" value="ClienteCasino.jar"/>
+    <property name="recursos.dir" value="${basedir}/recursos"/>
+    <property name="build.dir" value="${basedir}/build"/>
+    <!-- los .class ya generados al compilar -->
+    <property name="build.dir.recursos" value="${basedir}/build/recursos"/>
+
+    <path id="clientecasino.module.bootclasspath">
+        <!-- Paths to be included in compilation bootclasspath -->
+    </path>
+
+    <path id="clientecasino.module.classpath">
+        <path refid="${module.jdk.classpath.clientecasino}"/>
+    </path>
+
+    <path id="clientecasino.runtime.module.classpath">
+        <pathelement location="${clientecasino.output.dir}"/>
+    </path>
+
+
+    <patternset id="excluded.from.module.clientecasino">
+        <patternset refid="ignored.files"/>
+    </patternset>
+
+    <patternset id="excluded.from.compilation.clientecasino">
+        <patternset refid="excluded.from.module.clientecasino"/>
+    </patternset>
+
+    <path id="clientecasino.module.sourcepath">
+        <dirset dir="${module.clientecasino.basedir}">
+            <include name="src"/>
+        </dirset>
+    </path>
+
+
+    <target name="compile.module.clientecasino"
+            depends="compile.module.clientecasino.production,compile.module.clientecasino.tests"
+            description="Compile module ClienteCasino"/>
+
+    <target name="compile.module.clientecasino.production"
+            description="Compile module ClienteCasino; production classes">
+        <mkdir dir="${clientecasino.output.dir}"/>
+        <javac destdir="${clientecasino.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}"
+               memorymaximumsize="${compiler.max.memory}" fork="true"
+               executable="${module.jdk.bin.clientecasino}/javac">
+            <compilerarg line="${compiler.args.clientecasino}"/>
+            <bootclasspath refid="clientecasino.module.bootclasspath"/>
+            <classpath refid="clientecasino.module.classpath"/>
+            <src refid="clientecasino.module.sourcepath"/>
+            <patternset refid="excluded.from.compilation.clientecasino"/>
+        </javac>
+
+        <copy todir="${clientecasino.output.dir}">
+            <fileset dir="${module.clientecasino.basedir}/src">
+                <patternset refid="compiler.resources"/>
+                <type type="file"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="compile.module.clientecasino.tests" depends="compile.module.clientecasino.production"
+            description="compile module ClienteCasino; test classes" unless="skip.tests"/>
+
+    <target name="clean.module.clientecasino" description="cleanup module">
+        <delete dir="${clientecasino.output.dir}"/>
+    </target>
+
+
+    <!-- CREAR EL JAR -->
+    <target name="createJar" description="Build JAR file">
+
+        <!-- COPIAR en /build/recursos el contenido de la carpeta /recursos -->
+        <delete dir="${build.dir.recursos}" quiet="true"/>
+        <mkdir dir="${build.dir.recursos}"/>
+
+        <copy todir="${build.dir.recursos}" overwrite="true">
+            <fileset dir="${recursos.dir}">
+                <type type="file"/>
+            </fileset>
+        </copy>
+
+        <!-- CREAR JAR, copiando lo que hay en build (ClienteCasino +  recursos) -->
+        <mkdir dir="${jar.dir}"/>
+        <jar destfile="${jar.dir}/${jar.name}">
+            <manifest>
+                <attribute name="Created-By" value="Grupo Casino IS0809"/>
+                <attribute name="Manifest-Version" value="1.0"/>
+                <attribute name="Main-Class" value="ClienteCasino.main.PruebaCliente"/>
+            </manifest>
+
+            <fileset dir="${build.dir}">
+                <include name="**/*.*"/>
+            </fileset>
+
+        </jar>
+    </target>
+</project>
