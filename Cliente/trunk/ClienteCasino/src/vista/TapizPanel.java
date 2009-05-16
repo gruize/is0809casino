@@ -113,7 +113,7 @@ public class TapizPanel extends javax.swing.JPanel {
 	}
 
 	private void preInit(){
-        imgFondo = new ImageIcon("./recursos/tapete.png");
+        imgFondo = new ImageIcon("./src/recursos/tapete.png");
 }
     public void paintComponent(Graphics g) {
 		   if (imgFondo != null) {
@@ -130,7 +130,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel1 = new JLabel();
 				this.add(jLabel1);
-				jLabel1.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel1.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel1.setBounds(66, 50, 16, 18);
 				jLabel1.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -141,7 +141,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel3 = new JLabel();
 				this.add(jLabel3);
-				jLabel3.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel3.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel3.setBounds(66, 87, 16, 18);
 				jLabel3.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -152,7 +152,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel5 = new JLabel();
 				this.add(jLabel5);
-				jLabel5.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel5.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel5.setBounds(66, 124, 16, 18);
 				jLabel5.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -163,7 +163,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel6 = new JLabel();
 				this.add(jLabel6);
-				jLabel6.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel6.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel6.setBounds(44, 87, 16, 18);
 				jLabel6.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -174,7 +174,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel7 = new JLabel();
 				this.add(jLabel7);
-				jLabel7.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel7.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel7.setBounds(92, 50, 16, 18);
 				jLabel7.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -185,7 +185,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel8 = new JLabel();
 				this.add(jLabel8);
-				jLabel8.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel8.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel8.setBounds(79, 69, 16, 18);
 				jLabel8.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -196,7 +196,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel11 = new JLabel();
 				this.add(jLabel11);
-				jLabel11.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel11.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel11.setBounds(92, 86, 16, 18);
 				jLabel11.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -207,7 +207,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel13 = new JLabel();
 				this.add(jLabel13);
-				jLabel13.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel13.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel13.setBounds(78, 106, 16, 18);
 				jLabel13.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -218,7 +218,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel15 = new JLabel();
 				this.add(jLabel15);
-				jLabel15.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel15.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel15.setBounds(93, 123, 16, 18);
 				jLabel15.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -229,7 +229,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel17 = new JLabel();
 				this.add(jLabel17);
-				jLabel17.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel17.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel17.setBounds(104, 106, 16, 18);
 				jLabel17.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -240,7 +240,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel19 = new JLabel();
 				this.add(jLabel19);
-				jLabel19.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel19.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel19.setBounds(103, 69, 16, 18);
 				jLabel19.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -251,7 +251,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel22 = new JLabel();
 				this.add(jLabel22);
-				jLabel22.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel22.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel22.setBounds(139, 123, 16, 18);
 				jLabel22.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -262,7 +262,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel24 = new JLabel();
 				this.add(jLabel24);
-				jLabel24.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel24.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel24.setBounds(117, 123, 16, 18);
 				jLabel24.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -273,7 +273,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel26 = new JLabel();
 				this.add(jLabel26);
-				jLabel26.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel26.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel26.setBounds(127, 106, 16, 18);
 				jLabel26.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -284,7 +284,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel28 = new JLabel();
 				this.add(jLabel28);
-				jLabel28.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel28.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel28.setBounds(150, 106, 16, 18);
 				jLabel28.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -295,7 +295,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel30 = new JLabel();
 				this.add(jLabel30);
-				jLabel30.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel30.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel30.setBounds(138, 86, 16, 18);
 				jLabel30.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -306,7 +306,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel32 = new JLabel();
 				this.add(jLabel32);
-				jLabel32.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel32.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel32.setBounds(115, 86, 16, 18);
 				jLabel32.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -317,7 +317,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel34 = new JLabel();
 				this.add(jLabel34);
-				jLabel34.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel34.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel34.setBounds(124, 69, 16, 18);
 				jLabel34.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -328,7 +328,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel36 = new JLabel();
 				this.add(jLabel36);
-				jLabel36.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel36.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel36.setBounds(149, 69, 16, 18);
 				jLabel36.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -339,7 +339,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel38 = new JLabel();
 				this.add(jLabel38);
-				jLabel38.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel38.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel38.setBounds(138, 50, 16, 18);
 				jLabel38.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -350,7 +350,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel40 = new JLabel();
 				this.add(jLabel40);
-				jLabel40.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel40.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel40.setBounds(116, 50, 16, 18);
 				jLabel40.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -361,7 +361,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel42 = new JLabel();
 				this.add(jLabel42);
-				jLabel42.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel42.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel42.setBounds(229, 50, 16, 18);
 				jLabel42.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -372,7 +372,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel44 = new JLabel();
 				this.add(jLabel44);
-				jLabel44.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel44.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel44.setBounds(207, 50, 16, 18);
 				jLabel44.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -383,7 +383,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel46 = new JLabel();
 				this.add(jLabel46);
-				jLabel46.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel46.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel46.setBounds(184, 49, 16, 18);
 				jLabel46.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -394,7 +394,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel48 = new JLabel();
 				this.add(jLabel48);
-				jLabel48.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel48.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel48.setBounds(161, 50, 16, 18);
 				jLabel48.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -405,7 +405,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel49 = new JLabel();
 				this.add(jLabel49);
-				jLabel49.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel49.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel49.setBounds(240, 70, 16, 18);
 				jLabel49.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -416,7 +416,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel51 = new JLabel();
 				this.add(jLabel51);
-				jLabel51.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel51.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel51.setBounds(218, 70, 16, 18);
 				jLabel51.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -427,7 +427,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel53 = new JLabel();
 				this.add(jLabel53);
-				jLabel53.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel53.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel53.setBounds(196, 70, 16, 18);
 				jLabel53.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -438,7 +438,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel55 = new JLabel();
 				this.add(jLabel55);
-				jLabel55.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel55.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel55.setBounds(172, 69, 16, 18);
 				jLabel55.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -449,7 +449,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel59 = new JLabel();
 				this.add(jLabel59);
-				jLabel59.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel59.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel59.setBounds(229, 86, 16, 18);
 				jLabel59.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -460,7 +460,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel61 = new JLabel();
 				this.add(jLabel61);
-				jLabel61.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel61.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel61.setBounds(207, 86, 16, 18);
 				jLabel61.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -471,7 +471,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel65 = new JLabel();
 				this.add(jLabel65);
-				jLabel65.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel65.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel65.setBounds(239, 106, 16, 18);
 				jLabel65.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -482,7 +482,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel67 = new JLabel();
 				this.add(jLabel67);
-				jLabel67.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel67.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel67.setBounds(217, 106, 16, 18);
 				jLabel67.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -493,7 +493,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel69 = new JLabel();
 				this.add(jLabel69);
-				jLabel69.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel69.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel69.setBounds(195, 106, 16, 18);
 				jLabel69.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -504,7 +504,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel71 = new JLabel();
 				this.add(jLabel71);
-				jLabel71.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel71.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel71.setBounds(171, 106, 16, 18);
 				jLabel71.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -515,7 +515,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel74 = new JLabel();
 				this.add(jLabel74);
-				jLabel74.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel74.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel74.setBounds(228, 123, 16, 18);
 				jLabel74.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -526,7 +526,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel78 = new JLabel();
 				this.add(jLabel78);
-				jLabel78.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel78.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel78.setBounds(183, 123, 16, 18);
 				jLabel78.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -537,7 +537,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel80 = new JLabel();
 				this.add(jLabel80);
-				jLabel80.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel80.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel80.setBounds(160, 123, 16, 18);
 				jLabel80.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -550,7 +550,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel95 = new JLabel();
 				this.add(jLabel95);
-				jLabel95.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel95.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel95.setBounds(161, 86, 16, 18);
 				jLabel95.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -562,7 +562,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel115 = new JLabel();
 				this.add(jLabel115);
-				jLabel115.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel115.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel115.setBounds(263, 70, 16, 18);
 				jLabel115.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -573,7 +573,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel117 = new JLabel();
 				this.add(jLabel117);
-				jLabel117.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel117.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel117.setBounds(286, 71, 16, 18);
 				jLabel117.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -584,7 +584,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel119 = new JLabel();
 				this.add(jLabel119);
-				jLabel119.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel119.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel119.setBounds(308, 71, 16, 18);
 				jLabel119.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -595,7 +595,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel121 = new JLabel();
 				this.add(jLabel121);
-				jLabel121.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel121.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel121.setBounds(251, 50, 16, 18);
 				jLabel121.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -606,7 +606,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel123 = new JLabel();
 				this.add(jLabel123);
-				jLabel123.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel123.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel123.setBounds(275, 51, 16, 18);
 				jLabel123.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -617,7 +617,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel125 = new JLabel();
 				this.add(jLabel125);
-				jLabel125.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel125.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel125.setBounds(297, 51, 16, 18);
 				jLabel125.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -628,7 +628,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel127 = new JLabel();
 				this.add(jLabel127);
-				jLabel127.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel127.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel127.setBounds(319, 51, 16, 18);
 				jLabel127.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -639,7 +639,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel128 = new JLabel();
 				this.add(jLabel128);
-				jLabel128.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel128.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel128.setBounds(251, 123, 16, 18);
 				jLabel128.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -650,7 +650,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel130 = new JLabel();
 				this.add(jLabel130);
-				jLabel130.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel130.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel130.setBounds(275, 123, 16, 18);
 				jLabel130.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -661,7 +661,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel132 = new JLabel();
 				this.add(jLabel132);
-				jLabel132.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel132.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel132.setBounds(297, 123, 16, 18);
 				jLabel132.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -672,7 +672,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel134 = new JLabel();
 				this.add(jLabel134);
-				jLabel134.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel134.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel134.setBounds(319, 123, 16, 18);
 				jLabel134.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -683,7 +683,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel136 = new JLabel();
 				this.add(jLabel136);
-				jLabel136.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel136.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel136.setBounds(308, 106, 16, 18);
 				jLabel136.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -694,7 +694,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel138 = new JLabel();
 				this.add(jLabel138);
-				jLabel138.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel138.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel138.setBounds(286, 106, 16, 18);
 				jLabel138.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -705,7 +705,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel140 = new JLabel();
 				this.add(jLabel140);
-				jLabel140.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel140.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel140.setBounds(263, 106, 16, 18);
 				jLabel140.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -716,7 +716,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel142 = new JLabel();
 				this.add(jLabel142);
-				jLabel142.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel142.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel142.setBounds(252, 86, 16, 18);
 				jLabel142.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -727,7 +727,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel144 = new JLabel();
 				this.add(jLabel144);
-				jLabel144.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel144.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel144.setBounds(276, 86, 16, 18);
 				jLabel144.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -738,7 +738,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel146 = new JLabel();
 				this.add(jLabel146);
-				jLabel146.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel146.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel146.setBounds(298, 86, 16, 18);
 				jLabel146.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -749,7 +749,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel148 = new JLabel();
 				this.add(jLabel148);
-				jLabel148.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel148.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel148.setBounds(320, 86, 16, 18);
 				jLabel148.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -760,7 +760,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel149 = new JLabel();
 				this.add(jLabel149);
-				jLabel149.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel149.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel149.setBounds(340, 52, 16, 18);
 				jLabel149.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -771,7 +771,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel150 = new JLabel();
 				this.add(jLabel150);
-				jLabel150.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel150.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel150.setBounds(340, 87, 16, 18);
 				jLabel150.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -782,7 +782,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel151 = new JLabel();
 				this.add(jLabel151);
-				jLabel151.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel151.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel151.setBounds(340, 122, 16, 18);
 				jLabel151.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -793,7 +793,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel152 = new JLabel();
 				this.add(jLabel152);
-				jLabel152.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel152.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel152.setBounds(84, 153, 62, 18);
 				jLabel152.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -804,7 +804,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel153 = new JLabel();
 				this.add(jLabel153);
-				jLabel153.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel153.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel153.setBounds(168, 153, 72, 18);
 				jLabel153.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -815,7 +815,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel154 = new JLabel();
 				this.add(jLabel154);
-				jLabel154.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel154.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel154.setBounds(259, 153, 72, 18);
 				jLabel154.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -826,7 +826,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel155 = new JLabel();
 				this.add(jLabel155);
-				jLabel155.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel155.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel155.setBounds(78, 191, 30, 26);
 				jLabel155.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -837,7 +837,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel156 = new JLabel();
 				this.add(jLabel156);
-				jLabel156.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel156.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel156.setBounds(120, 191, 35, 26);
 				jLabel156.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -848,7 +848,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel157 = new JLabel();
 				this.add(jLabel157);
-				jLabel157.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel157.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel157.setBounds(169, 191, 27, 26);
 				jLabel157.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -859,7 +859,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel158 = new JLabel();
 				this.add(jLabel158);
-				jLabel158.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel158.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel158.setBounds(213, 191, 30, 26);
 				jLabel158.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -870,7 +870,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel159 = new JLabel();
 				this.add(jLabel159);
-				jLabel159.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel159.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel159.setBounds(255, 191, 35, 26);
 				jLabel159.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -881,7 +881,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel160 = new JLabel();
 				this.add(jLabel160);
-				jLabel160.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel160.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel160.setBounds(306, 191, 27, 26);
 				jLabel160.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -892,7 +892,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel2 = new JLabel();
 				this.add(jLabel2);
-				jLabel2.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel2.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel2.setBounds(182, 86, 16, 18);
 				jLabel2.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -903,7 +903,7 @@ public class TapizPanel extends javax.swing.JPanel {
 			{
 				jLabel4 = new JLabel();
 				this.add(jLabel4);
-				jLabel4.setIcon(new ImageIcon("./recursos/trasparente.png"));
+				jLabel4.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				jLabel4.setBounds(206, 124, 16, 18);
 				jLabel4.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
@@ -924,17 +924,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel1.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel1.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel1.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel1.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel1.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel1.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel1.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel1.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel1.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel1.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(3,Apuesta.tipoAp.NUMERO);
@@ -950,17 +950,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel3.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel3.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel3.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel3.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel3.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel3.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel3.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel3.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel3.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel3.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(2,Apuesta.tipoAp.NUMERO);
@@ -976,17 +976,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel5.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel5.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel5.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel5.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel5.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel5.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel5.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel5.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel5.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel5.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(1,Apuesta.tipoAp.NUMERO);
@@ -1000,17 +1000,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel6.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel6.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel6.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel6.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel6.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel6.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel6.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel6.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel6.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel6.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(0,Apuesta.tipoAp.NUMERO);
@@ -1024,17 +1024,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel7.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel7.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel7.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel7.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel7.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel7.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel7.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel7.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel7.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel7.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(6,Apuesta.tipoAp.NUMERO);
@@ -1048,17 +1048,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel8.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel8.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel8.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel8.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel8.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel8.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel8.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel8.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel8.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel8.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(2,Apuesta.tipoAp.CUADRO);
@@ -1072,17 +1072,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel11.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel11.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel11.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel11.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel11.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel11.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel11.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel11.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel11.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel11.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(5,Apuesta.tipoAp.NUMERO);
@@ -1097,17 +1097,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel13.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel13.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel13.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel13.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel13.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel13.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel13.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel13.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel13.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel13.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(1,Apuesta.tipoAp.CUADRO);
@@ -1122,17 +1122,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel15.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel15.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel15.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel15.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel15.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel15.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel15.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel15.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel15.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel15.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(4,Apuesta.tipoAp.NUMERO);
@@ -1147,17 +1147,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel17.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel17.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel17.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel17.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel17.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel17.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel17.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel17.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel17.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel17.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(3,Apuesta.tipoAp.CUADRO);
@@ -1171,17 +1171,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel2.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel2.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel2.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel2.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel2.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel2.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel2.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel2.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel2.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel2.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(17,Apuesta.tipoAp.NUMERO);
@@ -1195,17 +1195,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel4.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel4.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel4.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel4.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel4.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel4.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel4.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel4.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel4.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel4.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(19,Apuesta.tipoAp.NUMERO);
@@ -1219,17 +1219,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel19.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel19.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel19.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel19.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel19.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel19.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel19.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel19.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel19.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel19.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(4,Apuesta.tipoAp.CUADRO);
@@ -1245,17 +1245,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel22.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel22.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel22.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel22.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel22.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel22.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel22.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel22.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel22.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel22.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(10,Apuesta.tipoAp.NUMERO);
@@ -1270,17 +1270,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel24.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel24.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel24.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel24.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel24.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel24.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel24.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel24.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel24.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel24.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(7,Apuesta.tipoAp.NUMERO);
@@ -1295,17 +1295,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel26.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel26.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel26.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel26.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel26.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel26.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel26.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel26.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel26.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel26.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(5,Apuesta.tipoAp.CUADRO);
@@ -1321,17 +1321,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel28.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel28.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel28.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel28.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel28.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel28.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel28.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel28.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel28.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel28.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(7,Apuesta.tipoAp.CUADRO);
@@ -1347,17 +1347,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel30.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel30.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel30.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel30.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel30.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel30.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel30.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel30.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel30.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel30.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(11,Apuesta.tipoAp.NUMERO);
@@ -1373,17 +1373,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel32.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel32.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel32.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel32.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel32.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel32.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel32.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel32.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel32.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel32.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(8,Apuesta.tipoAp.NUMERO);
@@ -1398,17 +1398,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel34.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel34.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel34.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel34.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel34.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel34.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel34.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel34.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel34.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel34.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(6,Apuesta.tipoAp.CUADRO);
@@ -1423,17 +1423,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel36.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel36.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel36.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel36.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel36.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel36.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel36.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel36.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel36.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel36.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(8,Apuesta.tipoAp.CUADRO);
@@ -1449,17 +1449,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel38.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel38.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel38.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel38.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel38.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel38.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel38.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel38.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel38.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel38.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(12,Apuesta.tipoAp.NUMERO);
@@ -1475,17 +1475,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel40.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel40.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel40.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel40.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel40.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel40.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel40.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel40.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel40.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel40.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(9,Apuesta.tipoAp.NUMERO);
@@ -1500,17 +1500,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel42.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel42.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel42.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel42.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel42.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel42.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel42.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel42.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel42.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel42.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(24,Apuesta.tipoAp.NUMERO);
@@ -1526,17 +1526,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel44.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel44.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel44.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel44.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel44.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel44.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel44.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel44.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel44.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel44.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(21,Apuesta.tipoAp.NUMERO);
@@ -1551,17 +1551,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel46.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel46.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel46.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel46.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel46.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel46.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel46.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel46.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel46.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel46.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(18,Apuesta.tipoAp.NUMERO);
@@ -1577,17 +1577,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel48.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel48.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel48.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel48.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel48.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel48.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel48.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel48.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel48.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel48.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(15,Apuesta.tipoAp.NUMERO);
@@ -1601,17 +1601,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel49.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel49.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel49.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel49.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel49.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel49.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel49.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel49.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel49.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel49.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(16,Apuesta.tipoAp.CUADRO);
@@ -1627,17 +1627,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel51.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel51.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel51.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel51.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel51.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel51.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel51.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel51.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel51.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel51.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(14,Apuesta.tipoAp.CUADRO);
@@ -1653,17 +1653,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel53.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel53.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel53.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel53.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel53.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel53.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel53.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel53.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel53.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel53.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(12,Apuesta.tipoAp.CUADRO);
@@ -1678,17 +1678,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel55.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel55.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel55.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel55.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel55.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel55.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel55.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel55.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel55.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel55.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(10,Apuesta.tipoAp.CUADRO);
@@ -1706,17 +1706,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel59.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel59.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel59.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel59.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel59.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel59.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel59.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel59.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel59.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel59.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(23,Apuesta.tipoAp.NUMERO);
@@ -1732,17 +1732,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel61.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel61.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel61.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel61.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel61.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel61.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel61.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel61.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel61.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel61.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(20,Apuesta.tipoAp.NUMERO);
@@ -1757,17 +1757,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel65.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel65.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel65.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel65.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel65.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel65.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel65.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel65.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel65.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel65.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(15,Apuesta.tipoAp.CUADRO);
@@ -1783,17 +1783,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel67.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel67.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel67.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel67.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel67.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel67.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel67.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel67.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel67.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel67.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(13,Apuesta.tipoAp.CUADRO);
@@ -1809,17 +1809,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel69.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel69.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel69.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel69.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel69.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel69.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel69.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel69.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel69.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel69.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(11,Apuesta.tipoAp.CUADRO);
@@ -1835,17 +1835,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel71.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel71.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel71.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel71.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel71.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel71.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel71.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel71.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel71.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel71.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(9,Apuesta.tipoAp.CUADRO);
@@ -1863,17 +1863,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel74.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel74.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel74.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel74.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel74.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel74.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel74.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel74.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel74.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel74.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(22,Apuesta.tipoAp.NUMERO);
@@ -1889,17 +1889,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel78.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel78.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel78.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel78.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel78.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel78.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel78.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel78.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel78.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel78.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(16,Apuesta.tipoAp.NUMERO);
@@ -1915,17 +1915,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel80.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel80.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel80.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel80.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel80.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel80.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel80.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel80.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel80.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel80.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(13,Apuesta.tipoAp.NUMERO);
@@ -1940,17 +1940,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel95.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel95.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel95.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel95.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel95.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel95.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel95.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel95.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel95.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel95.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(14,Apuesta.tipoAp.NUMERO);
@@ -1966,17 +1966,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel115.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel115.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel115.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel115.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel115.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel115.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel115.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel115.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel115.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel115.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(18,Apuesta.tipoAp.CUADRO);
@@ -1992,17 +1992,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel117.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel117.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel117.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel117.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel117.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel117.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel117.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel117.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel117.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel117.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(20,Apuesta.tipoAp.CUADRO);
@@ -2018,17 +2018,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel119.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel119.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel119.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel119.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel119.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel119.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel119.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel119.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel119.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel119.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(22,Apuesta.tipoAp.CUADRO);
@@ -2044,17 +2044,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel121.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel121.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel121.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel121.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel121.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel121.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel121.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel121.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel121.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel121.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(27,Apuesta.tipoAp.NUMERO);
@@ -2069,17 +2069,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel123.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel123.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel123.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel123.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel123.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel123.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel123.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel123.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel123.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel123.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(30,Apuesta.tipoAp.NUMERO);
@@ -2094,17 +2094,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel125.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel125.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel125.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel125.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel125.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel125.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel125.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel125.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel125.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel125.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(33,Apuesta.tipoAp.NUMERO);
@@ -2119,17 +2119,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel127.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel127.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel127.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel127.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel127.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel127.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel127.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel127.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel127.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel127.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(36,Apuesta.tipoAp.NUMERO);
@@ -2143,17 +2143,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel128.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel128.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel128.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel128.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel128.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel128.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel128.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel128.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel128.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel128.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(25,Apuesta.tipoAp.NUMERO);
@@ -2168,17 +2168,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel130.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel130.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel130.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel130.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel130.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel130.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel130.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel130.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel130.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel130.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(28,Apuesta.tipoAp.NUMERO);
@@ -2193,17 +2193,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel132.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel132.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel132.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel132.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel132.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel132.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel132.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel132.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel132.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel132.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(31,Apuesta.tipoAp.NUMERO);
@@ -2219,17 +2219,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel134.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel134.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel134.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel134.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel134.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel134.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel134.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel134.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel134.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel134.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(34,Apuesta.tipoAp.NUMERO);
@@ -2245,17 +2245,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel136.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel136.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel136.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel136.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel136.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel136.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel136.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel136.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel136.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel136.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(21,Apuesta.tipoAp.CUADRO);
@@ -2269,17 +2269,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel138.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel138.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel138.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel138.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel138.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel138.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel138.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel138.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel138.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel138.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(19,Apuesta.tipoAp.CUADRO);
@@ -2294,17 +2294,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel140.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel140.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel140.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel140.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel140.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel140.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel140.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel140.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel140.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel140.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(17,Apuesta.tipoAp.CUADRO);
@@ -2319,17 +2319,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel142.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel142.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel142.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel142.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel142.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel142.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel142.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel142.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel142.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel142.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(26,Apuesta.tipoAp.NUMERO);
@@ -2345,17 +2345,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel144.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel144.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel144.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel144.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel144.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel144.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel144.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel144.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel144.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel144.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(29,Apuesta.tipoAp.NUMERO);
@@ -2370,17 +2370,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel146.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel146.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel146.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel146.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel146.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel146.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel146.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel146.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel146.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel146.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(32,Apuesta.tipoAp.NUMERO);
@@ -2395,17 +2395,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel148.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel148.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel148.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel148.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel148.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel148.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel148.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel148.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel148.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel148.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(35,Apuesta.tipoAp.NUMERO);
@@ -2419,17 +2419,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel149.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel149.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel149.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel149.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel149.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel149.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel149.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel149.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel149.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel149.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(3,Apuesta.tipoAp.LINEA);
@@ -2443,17 +2443,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel150.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel150.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel150.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel150.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel150.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel150.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel150.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel150.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel150.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel150.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(2,Apuesta.tipoAp.LINEA);
@@ -2467,17 +2467,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel151.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel151.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel151.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel151.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel151.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel151.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel151.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel151.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel151.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel151.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(1,Apuesta.tipoAp.LINEA);
@@ -2491,17 +2491,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel152.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel152.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel152.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel152.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel152.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel152.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel152.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel152.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel152.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel152.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(1,Apuesta.tipoAp.DOCENA);
@@ -2515,17 +2515,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel153.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel153.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel153.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel153.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel153.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel153.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel153.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel153.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel153.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel153.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(2,Apuesta.tipoAp.DOCENA);
@@ -2539,17 +2539,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel154.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel154.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel154.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel154.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel154.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel154.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel154.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel154.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel154.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel154.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(3,Apuesta.tipoAp.DOCENA);
@@ -2563,17 +2563,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel155.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel155.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel155.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel155.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel155.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel155.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel155.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel155.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel155.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel155.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(1,Apuesta.tipoAp.FALTAPASA);
@@ -2587,17 +2587,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel156.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel156.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel156.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel156.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel156.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel156.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel156.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel156.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel156.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel156.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(2,Apuesta.tipoAp.PARIMPAR);
@@ -2611,17 +2611,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel157.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel157.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel157.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel157.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel157.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel157.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel157.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel157.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel157.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel157.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(1,Apuesta.tipoAp.COLOR);
@@ -2635,17 +2635,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel158.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel158.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel158.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel158.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel158.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel158.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel158.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel158.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel158.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel158.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(2,Apuesta.tipoAp.COLOR);
@@ -2659,17 +2659,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel159.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel159.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel159.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel159.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel159.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel159.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel159.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel159.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel159.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel159.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(1,Apuesta.tipoAp.PARIMPAR);
@@ -2683,17 +2683,17 @@ public class TapizPanel extends javax.swing.JPanel {
 		if (mesa.tieneDinero() || mesa.quitarApuesta() ){
 			if(!mesa.aTerminado()){
 				if(mesa.quitarApuesta()){
-					jLabel160.setIcon(new ImageIcon("./recursos/trasparente.png"));
+					jLabel160.setIcon(new ImageIcon("./src/recursos/trasparente.png"));
 				}
 				else{
 					if(mesa.dameFichaApuesta()==1)
-						jLabel160.setIcon(new ImageIcon("./recursos/ficha_roja.png"));
+						jLabel160.setIcon(new ImageIcon("./src/recursos/ficha_roja.png"));
 					if(mesa.dameFichaApuesta()==2)
-						jLabel160.setIcon(new ImageIcon("./recursos/ficha_blanca.png"));
+						jLabel160.setIcon(new ImageIcon("./src/recursos/ficha_blanca.png"));
 					if(mesa.dameFichaApuesta()==3)
-						jLabel160.setIcon(new ImageIcon("./recursos/ficha.png"));
+						jLabel160.setIcon(new ImageIcon("./src/recursos/ficha.png"));
 					if(mesa.dameFichaApuesta()==4)
-						jLabel160.setIcon(new ImageIcon("./recursos/ficha_azul.png"));
+						jLabel160.setIcon(new ImageIcon("./src/recursos/ficha_azul.png"));
 				}
 
 				mesa.casillaPulsada(2,Apuesta.tipoAp.FALTAPASA);

@@ -149,12 +149,12 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         jLayeredPane1.add(jOrden,javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTapete.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jTapete.setIcon(new javax.swing.ImageIcon("./recursos/mesaVaciaPaint.PNG")); // NOI18N
+        jTapete.setIcon(new javax.swing.ImageIcon("./src/recursos/mesaVaciaPaint.PNG")); // NOI18N
         jTapete.setBounds(0, 50, 1020, 600);
         jLayeredPane1.add(jTapete, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonNext.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonNext.setIcon(new javax.swing.ImageIcon("./recursos/3flecha_derecha-cubed1-thumb.gif")); // NOI18N
+        jButtonNext.setIcon(new javax.swing.ImageIcon("./src/recursos/3flecha_derecha-cubed1-thumb.gif")); // NOI18N
         jButtonNext.setText("Siguiente");
         jButtonNext.setBorder(null);
         jButtonNext.setBorderPainted(false);
@@ -165,7 +165,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         jLayeredPane1.add(jButtonNext, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonBack.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonBack.setIcon(new javax.swing.ImageIcon("./recursos/3flecha_izquierda-cubeg1-thumb.gif")); // NOI18N
+        jButtonBack.setIcon(new javax.swing.ImageIcon("./src/recursos/3flecha_izquierda-cubeg1-thumb.gif")); // NOI18N
         jButtonBack.setText("Volver atrÃ¡s");
         jButtonBack.setBorder(null);
         jButtonBack.setBorderPainted(false);
@@ -175,7 +175,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         jLayeredPane1.add(jButtonBack, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonRefresh.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonRefresh.setIcon(new javax.swing.ImageIcon("./recursos/TgC_boton142.gif")); // NOI18N
+        jButtonRefresh.setIcon(new javax.swing.ImageIcon("./src/recursos/TgC_boton142.gif")); // NOI18N
         jButtonRefresh.setText("Refrescar");
         jButtonRefresh.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonRefresh.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
@@ -183,7 +183,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
         jLayeredPane1.add(jButtonRefresh, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonSalir.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonSalir.setIcon(new javax.swing.ImageIcon("./recursos/TgC_boton142.gif")); // NOI18N
+        jButtonSalir.setIcon(new javax.swing.ImageIcon("./src/recursos/TgC_boton142.gif")); // NOI18N
         jButtonSalir.setText("Salir");
         jButtonSalir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonSalir.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
@@ -285,7 +285,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     nuevaMesa.setSize(new Dimension(250,120));
                     nuevaMesa.setName("Mesa"+i);
                     nuevaMesa.setBorder(null);
-                    JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
+                    JButton botonNuevaSala = new JButton(new ImageIcon("./src/recursos/mesas.jpg"));
                     botonNuevaSala.setPreferredSize(new Dimension(114,86));
                     botonNuevaSala.setName("BotonMesa"+i);
                     botonNuevaSala.setActionCommand(Integer.toString(peticionMesa.get(i).getIdMesa()));
@@ -317,7 +317,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     nuevaMesa.setSize(new Dimension(250,120));
                     nuevaMesa.setName("Mesa"+tmp.getIdMesa());
                     nuevaMesa.setBorder(null);
-                    JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
+                    JButton botonNuevaSala = new JButton(new ImageIcon("./src/recursos/mesas.jpg"));
                     botonNuevaSala.setPreferredSize(new Dimension(114,86));
                     botonNuevaSala.setName("BotonMesa"+index);
                     botonNuevaSala.setActionCommand(Integer.toString(auxpeticionMesa.get(index).getIdMesa()));
@@ -350,7 +350,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     nuevaMesa.setSize(new Dimension(250,120));
                     nuevaMesa.setName("Mesa"+tmp.getIdMesa());
                     nuevaMesa.setBorder(null);
-                    JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
+                    JButton botonNuevaSala = new JButton(new ImageIcon("./src/recursos/mesas.jpg"));
                     botonNuevaSala.setPreferredSize(new Dimension(114,86));
                     botonNuevaSala.setName("BotonMesa"+index);
                     botonNuevaSala.setActionCommand(Integer.toString(auxpeticionMesa.get(index).getIdMesa()));
@@ -383,7 +383,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     nuevaMesa.setSize(new Dimension(250,120));
                     nuevaMesa.setName("Mesa"+tmp.getIdMesa());
                     nuevaMesa.setBorder(null);
-                    JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
+                    JButton botonNuevaSala = new JButton(new ImageIcon("./src/recursos/mesas.jpg"));
                     botonNuevaSala.setPreferredSize(new Dimension(114,86));
                     botonNuevaSala.setName("BotonMesa"+index);
                     botonNuevaSala.setActionCommand(Integer.toString(auxpeticionMesa.get(index).getIdMesa()));
@@ -416,7 +416,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     nuevaMesa.setSize(new Dimension(250,120));
                     nuevaMesa.setName("Mesa"+tmp.getIdMesa());
                     nuevaMesa.setBorder(null);
-                    JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
+                    JButton botonNuevaSala = new JButton(new ImageIcon("./src/recursos/mesas.jpg"));
                     botonNuevaSala.setPreferredSize(new Dimension(114,86));
                     botonNuevaSala.setName("BotonMesa"+index);
                     botonNuevaSala.setActionCommand(Integer.toString(auxpeticionMesa.get(index).getIdMesa()));
@@ -450,7 +450,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     nuevaMesa.setSize(new Dimension(250,120));
                     nuevaMesa.setName("Mesa"+i);
                     nuevaMesa.setBorder(null);
-                    JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
+                    JButton botonNuevaSala = new JButton(new ImageIcon("./src/recursos/mesas.jpg"));
                     botonNuevaSala.setPreferredSize(new Dimension(114,86));
                     botonNuevaSala.setName("BotonMesa"+i);
                     botonNuevaSala.setActionCommand(Integer.toString(peticionMesa.get(i).getIdMesa()));
@@ -485,7 +485,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     nuevaMesa.setSize(new Dimension(250,120));
                     nuevaMesa.setName("Mesa"+tmp.getIdMesa());
                     nuevaMesa.setBorder(null);
-                    JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
+                    JButton botonNuevaSala = new JButton(new ImageIcon("./src/recursos/mesas.jpg"));
                     botonNuevaSala.setPreferredSize(new Dimension(114,86));
                     botonNuevaSala.setName("BotonMesa"+index);
                     botonNuevaSala.setActionCommand(Integer.toString(auxpeticionMesa.get(index).getIdMesa()));
@@ -521,7 +521,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     nuevaMesa.setSize(new Dimension(250,120));
                     nuevaMesa.setName("Mesa"+tmp.getIdMesa());
                     nuevaMesa.setBorder(null);
-                    JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
+                    JButton botonNuevaSala = new JButton(new ImageIcon("./src/recursos/mesas.jpg"));
                     botonNuevaSala.setPreferredSize(new Dimension(114,86));
                     botonNuevaSala.setName("BotonMesa"+index);
                     botonNuevaSala.setActionCommand(Integer.toString(auxpeticionMesa.get(index).getIdMesa()));
@@ -557,7 +557,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     nuevaMesa.setSize(new Dimension(250,120));
                     nuevaMesa.setName("Mesa"+tmp.getIdMesa());
                     nuevaMesa.setBorder(null);
-                    JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
+                    JButton botonNuevaSala = new JButton(new ImageIcon("./src/recursos/mesas.jpg"));
                     botonNuevaSala.setPreferredSize(new Dimension(114,86));
                     botonNuevaSala.setName("BotonMesa"+index);
                     botonNuevaSala.setActionCommand(Integer.toString(auxpeticionMesa.get(index).getIdMesa()));
@@ -593,7 +593,7 @@ public class VistaMesas extends javax.swing.JFrame implements Observer{
                     nuevaMesa.setSize(new Dimension(250,120));
                     nuevaMesa.setName("Mesa"+tmp.getIdMesa());
                     nuevaMesa.setBorder(null);
-                    JButton botonNuevaSala = new JButton(new ImageIcon("./recursos/mesas.jpg"));
+                    JButton botonNuevaSala = new JButton(new ImageIcon("./src/recursos/mesas.jpg"));
                     botonNuevaSala.setPreferredSize(new Dimension(114,86));
                     botonNuevaSala.setName("BotonMesa"+index);
                     botonNuevaSala.setActionCommand(Integer.toString(auxpeticionMesa.get(index).getIdMesa()));
