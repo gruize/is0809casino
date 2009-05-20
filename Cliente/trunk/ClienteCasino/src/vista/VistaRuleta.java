@@ -21,6 +21,8 @@ import java.io.File;
 import java.net.URL;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -83,10 +85,28 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
     }
 
 
-    class RemindTask extends TimerTask {
+    class RemindTask implements Runnable {
 
         public void run() {
-            if(getSegundos() > 0){
+            int segundos = 45;
+            while (segundos > 0){
+                setSegundos(segundos);
+                getJLabelTiempo().setText(String.valueOf(segundos));                
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(VistaRuleta.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                segundos--;
+                if (frozen){
+                    System.out.println("Terminamos la ejecucion del timer");
+                    return;
+                }
+            }
+            getJLabelTiempo().setText("Tiempo agotado");
+            getJButtonFinish().setVisible(false);
+                
+            /*if(getSegundos() > 0){
                 setSegundos(getSegundos() - 1);
                 getJLabelTiempo().setText(String.valueOf(getSegundos()));
                 getJButtonFinish().setVisible(true);
@@ -97,7 +117,7 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
             }else{
                 getJLabelTiempo().setText("Tiempo agotado");
                 getJButtonFinish().setVisible(false);
-            }
+            }*/
         }
     }
 
@@ -368,7 +388,9 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
         pack();
 
         timer = new Timer();
-        timer.schedule(new RemindTask(),0,1*1000);
+        //timer.schedule(new RemindTask(),0,1*1000);
+        //Thread h = new Thread(new RemindTask());
+        //h.start();
     }
 
     public JLabel getJLabelMesa() {
@@ -599,7 +621,9 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
                  setFrozen(false);
                  getMesa().limpiarTapete();
                  timer = new Timer();
-                 timer.schedule(new RemindTask(),0,1*1000);
+                 //timer.schedule(new RemindTask(),0,1500);
+                 Thread h = new Thread(new RemindTask());
+                 h.start();
              }
          }else if(arg instanceof MensajeUsuariosEnMesa){
              MensajeUsuariosEnMesa mensaje = (MensajeUsuariosEnMesa) arg;
@@ -661,12 +685,13 @@ public class VistaRuleta extends javax.swing.JFrame implements Observer{
 
         public void actionPerformed(ActionEvent e) {            
             enviarApuestas();
+            getJButtonFinish().setVisible(false);
         }
 
     }
 
     private void enviarApuestas(){
-        setApuestaHecha(true);
+        setApuestaHecha(true);        
         JOptionPane.showMessageDialog( this,"Sus apuestas han sido enviadas", "Turno de apuestas", JOptionPane.WARNING_MESSAGE );
         int num = getMesa().dameNumApuestas();
         Apuesta[] lista;
