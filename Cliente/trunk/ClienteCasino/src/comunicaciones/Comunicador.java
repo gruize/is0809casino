@@ -16,7 +16,7 @@ public class Comunicador {
     
     private ManejadorCliente _cliente;
 
-    private String _direccion = "localhost";
+    private String _direccion = "147.96.83.73";
         
     private int _puerto = 10000;
     

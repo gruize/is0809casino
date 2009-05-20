@@ -163,12 +163,12 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
         jLayeredPane1.add(jJuegos,javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTapete.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jTapete.setIcon(new javax.swing.ImageIcon("./src/recursos/mesaVaciaPaint.PNG")); // NOI18N
+        jTapete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/mesaVaciaPaint.PNG"))); // NOI18N
         jTapete.setBounds(0, 50, 1020, 600);
         jLayeredPane1.add(jTapete, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonNext.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonNext.setIcon(new javax.swing.ImageIcon("./src/recursos/3flecha_derecha-cubed1-thumb.gif")); // NOI18N
+        jButtonNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/3flecha_derecha-cubed1-thumb.gif"))); // NOI18N
         jButtonNext.setText("Siguiente");
         jButtonNext.setBorder(null);
         jButtonNext.setBorderPainted(false);
@@ -179,7 +179,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
         jLayeredPane1.add(jButtonNext, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonBack.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonBack.setIcon(new javax.swing.ImageIcon("./src/recursos/3flecha_izquierda-cubeg1-thumb.gif")); // NOI18N
+        jButtonBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/3flecha_izquierda-cubeg1-thumb.gif"))); // NOI18N
         jButtonBack.setText("Volver atrÃƒÂ¡s");
         jButtonBack.setBorder(null);
         jButtonBack.setBorderPainted(false);
@@ -189,7 +189,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
         jLayeredPane1.add(jButtonBack, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonRefresh.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonRefresh.setIcon(new javax.swing.ImageIcon("./src/recursos/TgC_boton142.gif")); // NOI18N
+        jButtonRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/TgC_boton142.gif"))); // NOI18N
         jButtonRefresh.setText("Refrescar");
         jButtonRefresh.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonRefresh.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
@@ -197,7 +197,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
         jLayeredPane1.add(jButtonRefresh, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jButtonSalir.setBackground(new java.awt.Color(0, 0, 0));
-        jButtonSalir.setIcon(new javax.swing.ImageIcon("./src/recursos/TgC_boton142.gif")); // NOI18N
+        jButtonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/TgC_boton142.gif"))); // NOI18N
         jButtonSalir.setText("Salir");
         jButtonSalir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonSalir.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
@@ -284,7 +284,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
                     switch(peticionSala.get(i).getJuego()){
                         case RULETA: {
                             nuevaSala.setName("SalaRuleta"+peticionSala.get(i).getIdSala());
-                            JButton botonNuevaSala = new JButton(new ImageIcon("./src/recursos/ruletaSala.jpg"));
+                            JButton botonNuevaSala = new JButton(new ImageIcon(getClass().getResource("/recursos/ruletaSala.jpg")));
                             botonNuevaSala.setPreferredSize(new Dimension(114,86));
                             botonNuevaSala.setName("BotonSalaRuleta"+i);
                             botonNuevaSala.setActionCommand("SalaRuleta"+peticionSala.get(i).getIdSala());
@@ -298,7 +298,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
                         }break;
                         case DADOS: {
                             // Crea un icono que referencie a la imagen en disco
-                            ImageIcon iconoOriginal = new ImageIcon("./src/recursos/dadosSala.jpg");
+                            ImageIcon iconoOriginal = new ImageIcon(getClass().getResource("/recursos/dadosSala.jpg"));
                             // ancho en pixeles que tendra el icono escalado
                             int ancho = 114;
                             // alto (para que conserve la proporcion pasamos -1)
@@ -331,7 +331,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
                         nuevaSala.setSize(new Dimension(250,120));
                         nuevaSala.setBorder(null);
                         nuevaSala.setName("SalaRuleta"+peticionSala.get(i).getIdSala());
-                        JButton botonNuevaSala = new JButton(new ImageIcon("./src/recursos/ruletaSala.jpg"));
+                        JButton botonNuevaSala = new JButton(new ImageIcon(getClass().getResource("/recursos/ruletaSala.jpg")));
                         botonNuevaSala.setPreferredSize(new Dimension(114,86));
                         botonNuevaSala.setName("BotonSalaRuleta"+i);
                         botonNuevaSala.setActionCommand("SalaRuleta"+peticionSala.get(i).getIdSala());
@@ -350,7 +350,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
                 for(int i = 0; i < peticionSala.size(); i++){
                     if(peticionSala.get(i).getJuego().equals(NombreJuegos.DADOS)){
                         // Crea un icono que referencie a la imagen en disco
-                        ImageIcon icono = new ImageIcon("./src/recursos/dadosSala.jpg");
+                        ImageIcon icono = new ImageIcon(getClass().getResource("/recursos/dadosSala.jpg"));
                         // ancho en pixeles que tendra el icono escalado
                         int ancho = 114;
                         // alto (para que conserve la proporcion pasamos -1)
@@ -399,7 +399,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
                     switch(peticionSala.get(i).getJuego()){
                         case RULETA: {
                             nuevaSala.setName("SalaRuleta"+peticionSala.get(i).getIdSala());
-                            JButton botonNuevaSala = new JButton(new ImageIcon("./src/recursos/ruletaSala.jpg"));
+                            JButton botonNuevaSala = new JButton(new ImageIcon(getClass().getResource("/recursos/ruletaSala.jpg")));
                             botonNuevaSala.setPreferredSize(new Dimension(114,86));
                             botonNuevaSala.setName("BotonSalaRuleta"+i);
                             botonNuevaSala.setActionCommand("SalaRuleta"+peticionSala.get(i).getIdSala());
@@ -413,7 +413,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
                         }break;
                         case DADOS: {
                             // Crea un icono que referencie a la imagen en disco
-                            ImageIcon iconoOriginal = new ImageIcon("./src/recursos/dadosSala.jpg");
+                            ImageIcon iconoOriginal = new ImageIcon(getClass().getResource("/recursos/dadosSala.jpg"));
                             // ancho en pixeles que tendra el icono escalado
                             int ancho = 114;
                             // alto (para que conserve la proporcion pasamos -1)
@@ -449,7 +449,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
                         nuevaSala.setSize(new Dimension(250,120));
                         nuevaSala.setBorder(null);
                         nuevaSala.setName("SalaRuleta"+peticionSala.get(i).getIdSala());
-                        JButton botonNuevaSala = new JButton(new ImageIcon("./src/recursos/ruletaSala.jpg"));
+                        JButton botonNuevaSala = new JButton(new ImageIcon(getClass().getResource("/recursos/ruletaSala.jpg")));
                         botonNuevaSala.setPreferredSize(new Dimension(114,86));
                         botonNuevaSala.setName("BotonSalaRuleta"+i);
                         botonNuevaSala.setActionCommand("SalaRuleta"+peticionSala.get(i).getIdSala());
@@ -468,7 +468,7 @@ public class VistaSalas extends javax.swing.JFrame implements Observer {
                 for(int i = 0; i < peticionSala.size(); i++){
                     if(peticionSala.get(i).getJuego().equals(NombreJuegos.DADOS)){
                         // Crea un icono que referencie a la imagen en disco
-                        ImageIcon icono = new ImageIcon("./src/recursos/dadosSala.jpg");
+                        ImageIcon icono = new ImageIcon(getClass().getResource("/recursos/dadosSala.jpg"));
                         // ancho en pixeles que tendra el icono escalado
                         int ancho = 114;
                         // alto (para que conserve la proporcion pasamos -1)
