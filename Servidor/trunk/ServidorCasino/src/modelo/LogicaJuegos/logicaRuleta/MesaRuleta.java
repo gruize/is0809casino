@@ -230,6 +230,7 @@ public class MesaRuleta implements Mesa {
             //se considera participante. Se añade su apuesta y se actualiza su saldo
 
             apuestas.add(jugada);
+            System.out.println("Apuesta: "+" tipo "+jugada.getTipo()+" Casilla "+jugada.getCasilla()+" Cantidad "+jugada.getCantidad());
             actualizaSaldoJugador(jugada.getUsuario(), saldoJugador - jugada.getCantidad());
             //crear participante si era su 1ª apuesta
             if (primeraApuestaDeParticipante(jugada.getUsuario())) {
@@ -304,7 +305,7 @@ public class MesaRuleta implements Mesa {
             } else if (tipo.equalsIgnoreCase("COLOR")) {
                 if ((apuesta.getCasilla() == 1) && casillaBola.getColor().equalsIgnoreCase("ROJO")) {
                     return apuesta.getCantidad() * 2;
-                } else if ((apuesta.getCasilla() == 0) && casillaBola.getColor().equalsIgnoreCase("NEGRO")) {
+                } else if ((apuesta.getCasilla() == 2) && casillaBola.getColor().equalsIgnoreCase("NEGRO")) {
                     return apuesta.getCantidad() * 2;
                 }
             //DOCENA
