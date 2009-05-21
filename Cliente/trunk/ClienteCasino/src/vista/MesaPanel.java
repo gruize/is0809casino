@@ -354,7 +354,11 @@ public class MesaPanel extends javax.swing.JPanel {
     }
     public Apuesta[] terminarYdameListaApuestas(){
     	this.terminar=true;
-    	return this.listaApuestas;
+    	Apuesta [] apuestas=listaApuestas;
+        listaApuestas=new Apuesta[160];
+        this.numApuestas=0;
+        return apuestas;
+
     }
     public void empezar(double saldo){
     	this.terminar=false;
