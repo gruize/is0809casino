@@ -47,14 +47,17 @@ public class DAOClientes {
             res = true;
 
         } catch (org.hibernate.HibernateException he) {
-            tx.rollback();
-            log.error("DAOClientes: "+metodo+": Error de Hibernate: " + he.getMessage());
+             log.error("DAOClientes: "+metodo+": Error de Hibernate: " + he.getMessage());
+             tx.rollback();
+           
         } catch (SQLException sqle) {
-            tx.rollback();
             log.error("DAOClientes: "+metodo+": Error SQLException: " + sqle.getMessage());
-        } catch (Exception e) {
             tx.rollback();
+            
+        } catch (Exception e) {
             log.error("DAOClientes: "+metodo+": Error Exception: " + e.getMessage());
+            tx.rollback();
+            
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
@@ -87,14 +90,17 @@ public class DAOClientes {
             log.info("DAOClientes: "+metodo+": Se obtienen " + lista.size() + " clientes");
 
         } catch (org.hibernate.HibernateException he) {
-            tx.rollback();
             log.error("DAOClientes: "+metodo+": Error de Hibernate: " + he.getMessage());
+            tx.rollback();
+            
         } catch (SQLException sqle) {
-            tx.rollback();
             log.error("DAOClientes: "+metodo+": Error SQLException: " + sqle.getMessage());
-        } catch (Exception e) {
             tx.rollback();
-            log.error("DAOClientes: "+metodo+": Error Exception: " + e.getMessage());
+            
+        } catch (Exception e) {
+             log.error("DAOClientes: "+metodo+": Error Exception: " + e.getMessage());
+             tx.rollback();
+           
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
@@ -129,15 +135,17 @@ public class DAOClientes {
             log.info("DAOClientes: " + metodo + ": Jugador obtenido con CODIGO: " + cliente.getCodigo());
 
         } catch (org.hibernate.HibernateException he) {
-            tx.rollback();
             log.error("DAOClientes: " + metodo + ": Error de Hibernate: " + he.getMessage());
-        } catch (SQLException sqle) {
             tx.rollback();
+           
+        } catch (SQLException sqle) {
             log.error("DAOClientes: " + metodo + ": Error SQLException: " + sqle.getMessage());
+            tx.rollback();
+            
         } catch (Exception e) {
            // if (tx != null) tx.rollback();
             log.error("DAOClientes: " + metodo + ": Error Exception: " + e.getMessage());
-            return cliente;
+            
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();  
@@ -171,11 +179,13 @@ public class DAOClientes {
             log.info("DAOClientes: " + metodo + ": Cliente obtenido con CODIGO: " + cliente.getCodigo());
 
         } catch (org.hibernate.HibernateException he) {
-            tx.rollback();
             log.error("DAOClientes: " + metodo + ": Error de Hibernate: " + he.getMessage());
-        } catch (SQLException sqle) {
             tx.rollback();
+            
+        } catch (SQLException sqle) {
             log.error("DAOClientes: " + metodo + ": Error SQLException: " + sqle.getMessage());
+            tx.rollback();
+            
         } catch (Exception e) {
             //tx.rollback();
             log.error("DAOClientes: " + metodo + ": Error Exception: " + e.getMessage());
@@ -213,14 +223,17 @@ public class DAOClientes {
             log.info("DAOClientes: " + metodo + ": Cliente con usuario " + cliente.getUsuario() + " BORRADO");
 
         } catch (org.hibernate.HibernateException he) {
-            tx.rollback();
             log.error("DAOClientes: " + metodo + ": Error de Hibernate: " + he.getMessage());
+            tx.rollback();
+
         } catch (SQLException sqle) {
-            tx.rollback();
             log.error("DAOClientes: " + metodo + ": Error SQLException: " + sqle.getMessage());
-        } catch (Exception e) {
             tx.rollback();
+            
+        } catch (Exception e) {
             log.error("DAOClientes: " + metodo + ": Error Exception: " + e.getMessage());
+            tx.rollback();
+            
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();
@@ -253,14 +266,17 @@ public class DAOClientes {
             log.info("DAOClientes: " + metodo + ":Cliente con usuario " + cliente.getUsuario() + " MODIFICADO");
 
         } catch (org.hibernate.HibernateException he) {
-            tx.rollback();
             log.error("DAOClientes: " + metodo + ": Error de Hibernate: " + he.getMessage());
+            tx.rollback();
+            
         } catch (SQLException sqle) {
-            tx.rollback();
             log.error("DAOClientes: " + metodo + ": Error SQLException: " + sqle.getMessage());
-        } catch (Exception e) {
             tx.rollback();
+            
+        } catch (Exception e) {
             log.error("DAOClientes: " + metodo + ": Error Exception: " + e.getMessage());
+            tx.rollback();
+
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();

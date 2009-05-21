@@ -26,7 +26,7 @@ public class testClientes {
 
         bbdd = new GestorBBDDImp();
        
-       crearJugador();
+     borrarJugador("kk");
         obtenerTodosLosJugadores();
 
     }
@@ -90,28 +90,44 @@ public class testClientes {
     /**
      * borra un jugador identificandole por su nomrbe de usuario
      */
-    private static void borrarJugador() {
+    private static void borrarJugador(String user) {
         
-        bbdd.borrarCliente(bbdd.getClientePorUsuario("pp"));
+        bbdd.borrarCliente(bbdd.getClientePorUsuario(user));
     }
 
     private static void mostrarDatos(ArrayList lista) {
         String s = "  ";
+        int espacio=20;
         for (int i = 0; i < lista.size(); i++) {
             Clientes jugador = (Clientes) lista.get(i);
 
-            System.out.print("********* Codigo:" + jugador.getCodigo() + s);
-            System.out.print("Nombre:" + jugador.getNombre() + s);
-            System.out.print("Apellidos:" + jugador.getApellidos() + s);
-            System.out.print("DNI:" + jugador.getDni() + s);
-            System.out.print("Usuario:" + jugador.getUsuario() + s);
-            System.out.print("Pswd:" + jugador.getPassword() + s);
-            System.out.print("Direccion:" + jugador.getDireccion() + s);
-            System.out.print("Fecha Ingreso:" + jugador.getFechaingreso() + s);
-            System.out.print("Nº Cuenta:" + jugador.getNumerocuenta() + s);
-            System.out.print("Recargas: " + jugador.getRecargas() + s);
-            System.out.print("Saldo: " + jugador.getSaldo() + s);
-            System.out.println("Telefono:" + jugador.getTelefono() + s);
+            System.out.print("********* Codigo:" + jugador.getCodigo() + separador(espacio-10));
+            System.out.print("Nombre:" + jugador.getNombre() + separador(espacio-jugador.getNombre().length()));
+            System.out.print("Apellidos:" + jugador.getApellidos() + separador(espacio-jugador.getApellidos().length()));
+            System.out.print("DNI:" + jugador.getDni() + separador(espacio-9));
+            System.out.print("Usuario:" + jugador.getUsuario() + separador(espacio-jugador.getUsuario().length()));
+            System.out.print("Pswd:" + jugador.getPassword() + separador(espacio-jugador.getPassword().length()));
+            System.out.print("Direccion:" + jugador.getDireccion() + separador(espacio-jugador.getDireccion().length()));
+            System.out.print("Fecha Ingreso:" + jugador.getFechaingreso() + separador(espacio-11));
+            System.out.print("Nº Cuenta:" + jugador.getNumerocuenta() + separador(espacio-jugador.getNumerocuenta().length()));
+            System.out.print("Recargas: " + jugador.getRecargas() + separador(espacio-10));
+            System.out.print("Saldo: " + jugador.getSaldo() + separador(espacio-7));
+            System.out.println("Telefono:" + jugador.getTelefono() + separador(espacio-9));
         }
     }
+
+    /**
+     * crea una cadena vacia de "numEspacios" caracteres
+     * @param numEspeacios
+     * @return
+     */
+    private static String separador(int numEspeacios){
+
+        String res="";
+        for (int i=0; i<numEspeacios; i++)
+            res+=" ";
+
+        return res;
+    }
+
 }
