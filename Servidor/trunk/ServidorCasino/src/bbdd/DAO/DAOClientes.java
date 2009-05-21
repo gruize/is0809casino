@@ -109,7 +109,7 @@ public class DAOClientes {
      * @param usuario nombre de usuario (login)
      * @return objeto Clientes
      */
-    public Clientes getClientePorUsuario(String usuario) {
+    public Clientes getClientePorUsuario(String usuario)  {
 
         String metodo = "getClientePorUsuario";
 
@@ -135,12 +135,12 @@ public class DAOClientes {
             tx.rollback();
             log.error("DAOClientes: " + metodo + ": Error SQLException: " + sqle.getMessage());
         } catch (Exception e) {
-            tx.rollback();
+           // if (tx != null) tx.rollback();
             log.error("DAOClientes: " + metodo + ": Error Exception: " + e.getMessage());
+            return cliente;
         } finally {
             // Liberamos sesión
-            HibernateUtil.closeSession();
-            
+            HibernateUtil.closeSession();  
         }
 
         return cliente;
@@ -177,8 +177,9 @@ public class DAOClientes {
             tx.rollback();
             log.error("DAOClientes: " + metodo + ": Error SQLException: " + sqle.getMessage());
         } catch (Exception e) {
-            tx.rollback();
+            //tx.rollback();
             log.error("DAOClientes: " + metodo + ": Error Exception: " + e.getMessage());
+            return cliente;
         } finally {
             // Liberamos sesión
             HibernateUtil.closeSession();

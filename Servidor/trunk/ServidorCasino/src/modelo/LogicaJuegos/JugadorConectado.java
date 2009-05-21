@@ -31,7 +31,12 @@ public class JugadorConectado {
     }
 
     public JugadorConectado(Clientes cliente) {
-        this.idJugador = cliente.getCodigo();
+        if (cliente != null){
+            this.idJugador = cliente.getCodigo();
+        }else {
+            System.out.println("MAL MAL MAL");
+            this.idJugador = -1;
+        }
         this.idMesa = -1;
         this.idSala = -1;
 

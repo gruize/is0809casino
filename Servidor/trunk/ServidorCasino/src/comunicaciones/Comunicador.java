@@ -85,10 +85,15 @@ public class Comunicador extends Thread{
                     datos.add(usuario);
                     datos.add(password);
                     identificador = _controlador.login(datos);
+                   
                     _salida.flush();
                     _salida.writeUTF(Integer.toString(identificador));
                     _salida.flush();
-                    _conectado = true;
+                    
+                     if (identificador == -1)
+                        _conectado = false;
+                    else 
+                        _conectado = true;
                 } catch (IOException ex) {
                     _conectado = false;
                 }

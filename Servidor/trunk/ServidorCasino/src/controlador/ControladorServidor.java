@@ -57,7 +57,7 @@ public class ControladorServidor {
         salas.crearSala(1, "Ruleta 1");
         salas.crearSala(2, "Ruleta 2");
         salas.crearSala(3, "Ruleta 3");
-        salas.crearSala(4, "Dados 1");
+        salas.crearSala(4, "Ruleta 4");
         log.info("ControladorServidor : constructora : se  han creado 4 salas");
     }
 
