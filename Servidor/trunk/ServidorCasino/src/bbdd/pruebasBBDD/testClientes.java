@@ -26,7 +26,7 @@ public class testClientes {
 
         bbdd = new GestorBBDDImp();
        
-     borrarJugador("kk");
+    // borrarJugador("kk");
         obtenerTodosLosJugadores();
 
     }
@@ -45,7 +45,7 @@ public class testClientes {
         jugador.setFechaingreso(new java.util.Date());
         jugador.setFecharecarga(new java.util.Date());
         jugador.setNumerocuenta("012893872223879236");
-        jugador.setDireccion("España");
+        jugador.setDireccion("EspaÃ±a");
         jugador.setTelefono("916664455");
         jugador.setSaldo(1000);
 
@@ -109,7 +109,7 @@ public class testClientes {
             System.out.print("Pswd:" + jugador.getPassword() + separador(espacio-jugador.getPassword().length()));
             System.out.print("Direccion:" + jugador.getDireccion() + separador(espacio-jugador.getDireccion().length()));
             System.out.print("Fecha Ingreso:" + jugador.getFechaingreso() + separador(espacio-11));
-            System.out.print("Nº Cuenta:" + jugador.getNumerocuenta() + separador(espacio-jugador.getNumerocuenta().length()));
+            System.out.print("NÂº Cuenta:" + jugador.getNumerocuenta() + separador(espacio-jugador.getNumerocuenta().length()));
             System.out.print("Recargas: " + jugador.getRecargas() + separador(espacio-10));
             System.out.print("Saldo: " + jugador.getSaldo() + separador(espacio-7));
             System.out.println("Telefono:" + jugador.getTelefono() + separador(espacio-9));

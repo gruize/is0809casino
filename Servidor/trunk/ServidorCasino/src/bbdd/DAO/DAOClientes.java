@@ -59,7 +59,7 @@ public class DAOClientes {
             tx.rollback();
             
         } finally {
-            // Liberamos sesión
+            // Liberamos sesiÃ³n
             HibernateUtil.closeSession();
             
         }
@@ -102,7 +102,7 @@ public class DAOClientes {
              tx.rollback();
            
         } finally {
-            // Liberamos sesión
+            // Liberamos sesiÃ³n
             HibernateUtil.closeSession();
            
         }
@@ -147,7 +147,7 @@ public class DAOClientes {
             log.error("DAOClientes: " + metodo + ": Error Exception: " + e.getMessage());
             
         } finally {
-            // Liberamos sesión
+            // Liberamos sesiÃ³n
             HibernateUtil.closeSession();  
         }
 
@@ -189,9 +189,9 @@ public class DAOClientes {
         } catch (Exception e) {
             //tx.rollback();
             log.error("DAOClientes: " + metodo + ": Error Exception: " + e.getMessage());
-            return cliente;
+           
         } finally {
-            // Liberamos sesión
+            // Liberamos sesiÃ³n
             HibernateUtil.closeSession();
             
         }
@@ -202,7 +202,7 @@ public class DAOClientes {
     /**
      * Borra un cliente
      * @param cliente cliente que se quiere borrar
-     * @return resultado de la operación
+     * @return resultado de la operaciÃ³n
      */
     public void borrarCliente(Clientes cliente) {
 
@@ -235,7 +235,7 @@ public class DAOClientes {
             tx.rollback();
             
         } finally {
-            // Liberamos sesión
+            // Liberamos sesiÃ³n
             HibernateUtil.closeSession();
            
         }
@@ -278,7 +278,7 @@ public class DAOClientes {
             tx.rollback();
 
         } finally {
-            // Liberamos sesión
+            // Liberamos sesiÃ³n
             HibernateUtil.closeSession();
             
         }
