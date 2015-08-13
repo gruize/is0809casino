@@ -1,0 +1,233 @@
+**Especificación de Requisitos según el estándar de IEEE 830
+# Especificación de Requisitos según el estándar de IEEE 830 #**
+
+
+
+## IEEE Std. 830-1998 ##
+
+| _Autor_ | _Fecha_ | _Comentario_ |
+|:--------|:--------|:-------------|
+| David Fernández y Alberto Fernández |12/12/2008 |Revision de Gonzalo |
+| Casinois0809 |22/11/2008 |Generación del documento inicial |
+
+
+## 1 Introducción ##
+
+### 1.1 Propósito ###
+Este documento ha sido redactado con el fin de marcar las pautas generales y las especificaciones que deberá seguir la aplicación a desarrollar, con el objetivo final de suplir las necesidades que el cliente ha planteado en las distintas reuniones realizadas hasta la fecha.
+
+Este documento está dirigido a todas las personas con alguna relación en el proyecto con el objetivo de que realicen las funciones de desarrollo a partir de las pautas marcadas en él y en los documentos realizados posteriormente.
+
+Este documento servirá de canal de comunicación entre las distintas partes implicadas en el desarrollo de la aplicación y deberán tomar parte en su confección los miembros de cada una de estas partes. Esta especificación está sujeta a revisiones por las partes, especialmente por los potenciales usuarios, que se recogerán por medio de sucesivas revisiones del documento, hasta alcanzar su aprobación. Una vez aprobado servirá de base al equipo de desarrollo para la construcción del nuevo sistema.
+
+### 1.2 Ámbito de sistema ###
+Se ha constatado la necesidad de un sistema informático que ofrezca la posibilidad de poder jugar en un casino real en modo on-line, y permitir la gestión del mismo.
+
+La aplicación se encarga de gestionar todas las funciones relacionadas con el juego; gestión de los distintos juegos disponibles, mesas virtuales etc. y mantenimiento administración del sistema; gestión de usuarios y juegos, añadir nuevas funcionalidades etc. Esto quiere decir que se encargará de las siguientes funciones:
+
+  * **Sistema de alta de clientes** se realizara a traves de la pagina web del casino, en la que se requerirá una serie de datos como nombre, apellidos, edad, país, e-mail de contacto, etc. Sera imprescindible ser mayor de edad para poder darse de alta. Una vez dado de alta el usuario podrá acceder de forma directa a la gestión de su cuenta a traves de la pagina y jugar a traves de la aplicación casino a las distintos juegos.
+
+  * **Gestión de cuenta** donde un usuario pueda acceder a sus datos modificarlos, cancelar una cuenta y cualquier otra acción relacionada con la gestión de cuentas excluyendo la gestión monetaria.
+
+  * **Administración monetaria de cara al usuario** el usuario podra observar a través de la página web el estado actual de su cuenta y podra pedir más saldo.
+
+Añadido a la interacción del usuario con el sistema y con otros usuarios, es necesario un sistema que gestione los aspectos del casino:
+
+  * **Un sistema de gestión del casino** en el cual se incluirán opciones varias desde gestión de los juegos, estadísticas de estos, creación de eventos especiales y promociones.
+
+  * **Gestionara una base de datos de clientes** con información relevante, tales como datos personales (Nombre de usuario, clave de acceso etc.) y datos económicos, (dinero disponible para apostar, estadísticas diversas de pérdidas y ganancias, preferencias en el juego), para poder ofrecer un servicio adaptado al cliente.  Los datos de los clientes deberán gestionarse mediante cifrados para evitar la posible intrusión de personal no autorizado. La privacidad de los datos es un punto crítico, puesto que hay dinero de por medio.
+
+Un sistema de administración técnica:
+
+  * **Se añadirá un sistema de control del sistema** en el cual se pueda ver el sistema de carga, así como estadísticas que informen de posibles fallos y momentos críticos.
+
+  * **Gestión de la base de datos** permitirá ampliaciones de la gestión del casino y el desarrollo de nuevos juegos
+### 1.3 Definiciones, Acronimos y Abreviaturas ###
+#### Definiciones ####
+  * **Creditos:** elemento con el cual se hacen las transacciones, con el que se apuesta y que recoge tanto el dinero ingresado, como el invertido.
+
+  * **Dinero premiado:** dinero virtual que se ha obtenido a partir de una ganancia en un juego
+
+  * **Dinero promocional:** dinero virtual que se ha obtenido desde alguna promoción
+
+  * **Cuenta:** Deposito virtual donde está registrado la cantidad de dinero virtual disponible y otros aspectos
+
+  * **Transacción:** Acto ingresar o apartar dinero virtual de la cuenta.
+
+  * **Jugador:** cliente registrado con cuenta de usuario. Que puede acceder a los distintos juegos disponibles en el sistema
+
+  * **Juego:** sistema de apuestas en el casino on-line, incluirá desde juegos de cartas a apuestas on-line.
+
+  * **Administrador de casino:** Persona encargada de gestionar el casino a nivel administrativo. Estas personas gestionan estadísticas de juegos, estadísticas de usuarios, gestión de promociones etc.
+
+  * **Administrador de sistema:** Persona encargada de la administración del sistema y garantizar el correcto funcionamiento.
+
+  * **Apuesta:** Acción por la cual un jugador interactúa con el juego mediante el dinero virtual.
+
+  * **Cliente:** Programa que se instala en el ordenador del jugador
+
+  * **Área de juego:** Lugar "Virtual" en donde se juega a un juego concreto y se realizan apuestas
+
+#### Abreviaturas ####
+  * **ERS:** Especificación de Requisitos Software. Este documento.
+
+  * **UML:** Lenguaje Unificado de Modelado (UML, por sus siglas en inglés, Unified Modeling Language). Es un lenguaje gráfico para visualizar, especificar, construir y documentar un sistema de software.
+### 1.4 Referencias ###
+[IEEE Recommended Practice for Software Requirements Specification. ANSI/IEEE std. 830, 1998.](http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=00720574)
+### 1.5 Visión general del documento ###
+Este documento consta de tres secciones. En la primera sección se realiza una introducción al mismo y se proporciona una visión general de la especificación de recursos del sistema.
+
+En la segunda sección del documento se realiza una descripción general del sistema, con el fin de conocer las principales funciones que éste debe realizar, los datos asociados y los factores, restricciones, supuestos y dependencias que afectan al desarrollo, sin entrar en excesivos detalles.
+
+Por último, la tercera sección del documento es aquella en la que se definen detalladamente los requisitos que debe satisfacer el sistema.
+
+## 2. Descripcion General ##
+
+### 2.1. Perspectiva del Producto ###
+
+La perspectiva del Casino es que sea un casino online similar a los que existen hoy en dia en internet, y que sea totalmente funcional.
+
+### 2.2. Funciones del Producto ###
+
+> Este casino soportara la conexión simultanea de varios jugadores, permitiendo, en el caso que el juego lo posibilite, la interacción entre los mismos.
+
+> Cada jugador podrá jugar a varios juegos simultáneamente.
+
+> Existirá una web en la que, una vez realizado el registro, se podrá descargar el software necesario para poder jugar.
+
+> Las cantidades que se apuestan no se trata de dinero real.
+
+> Para recargar los leuros se realizará una solicitud a traves de la pagina web una vez el jugador haya hecho login en la página web.
+
+> Los usuarios tendrán la posibilidad de charlar durante el funcionamiento del juego mediante un Chat definido por cada mesa, ademas tendra la opcion de minimizarlo.
+
+> Los jugadores podrán visualizar estadísticas de los juegos en los que han jugado.
+
+### 2.3. Características de los Usuarios ###
+> Este casino esta pensado para mayores de edad, con un nivel cultural indiferente, y con poca experiencia en casinos online a ser posible.
+
+### 2.4. Restricciones ###
+
+  * Lenguajes y Tecnologías en uso: Java, ORACLE, XML, JSP, AJAX, JAVASCRIPT, HTML, FLASH/ACTIONSCRIPT, SWIFT3D.
+  * Todas los mensajes entre el cliente y servidor deberán estar cifradas, para evitar las trampas.
+  * Los Protocolos de Comunicación serán los definidos por los desarrolladores encargados.
+  * Los desarrolladores programarán en el IDE NetBeans.
+
+
+### 2.5. Suposiciones y Dependencias ###
+El sístema debe correr sobre cualquier plataforma gracias a la máquina virtual de java(JVM). Se realizará la página de registro y administración de usuarios cumpliendo los estándares para permitir la visualización en al menos IE,Firefox,Opera y Safari.
+
+### 2.6. Requisitos Futuros ###
+  * Mejora de la interfaz Gráfica (Imágenes, animaciones 2d, 3d).
+  * Apuestas con dinero real.
+  * Musica de ambiente.
+
+
+
+## 3. Requisitos Especificos ##
+
+
+### 3.1. Interfaces Externas ###
+En fases posteriores, el sistema podrá funcionar con dinero real, estableciendo una interfaz con un banco real.
+
+### 3.2. Funciones ###
+JUGADOR
+
+1. Alta Usuario: se podrá solicitar vía web la entrada al casino. Para ello se registrará proporcionando sus datos personales: nombre y apellidos, fecha de nacimiento, sexo, ciudad, correo electrónico, id de usuario, contraseña y nombre para mostrar (nick). Si todos sus datos tienen un formato correcto y son válidos recibira una confirmación y a partir de ese momento podra hacer login.
+
+2. Baja Usuario: un jugador podrá solicitar la baja en el casino en cualquier momento y su petición de baja sera evaluada por el sistema comprobando que no esta conectado al casino y procederá a la baja y comunicación al usuario cuando esta se realice. La confirmación será vía e-mail.
+
+3. Descargar Casino: Se podrá descargar la aplicación del casino via web en cualquier momento y lugar y cualquier persona, esta aplicación no tiene ningun valor sin login y password. Junto con la aplicación ademas vendra el manual del casino.
+
+4. Login: cuando un jugador desee entrar a jugar en el casino, deberá introducir su usuario y contraseña en la aplicación descargada. El jugador deberá estar dado de alta en el sistema y conectado a internet.
+
+5. Salir de la aplicación: el jugador podrá cerrar la aplicación cuando quiera, el sistema jugará por el usuario en las partidas pendientes de una forma pasiva(pasará y apostara lo minimo si es necesario en las rondas obligatorias para abandonar sin perjudicar al resto de usuarios).
+
+6. Modificar datos: cada jugador podrá modificar los datos siguientes: ciudad, correo electrónico, contraseña, nombre para mostrar a traves de la pagina del casino.
+
+7. Recarga saldo automática: al darse de alta en el casino el jugador recibirá automáticamente 1000 leuros que no tendran ninguna caducidad.
+
+8. Solicitar saldo: se podrá solicitar saldo siempre y cuando sea aprobada la transacción por el casino. Se insertará en la cuenta que el usuario tenga en el casino. En un principio el casino (administrador del casino) gestionara el saldo de los usuarios mas adelante seria directamente con el banco.
+
+9. Consultar datos: cada jugador podrá consultar sus datos en cualquier momento. Además de su información personal y saldo, se mostrarán las estadísticas de juego y mensajes privados enviados por la administración.
+
+10. Consulta de estadisiticas: el jugador puede observar su saldo actual, dinero ganado, dinero perdido, dinero recargado, y estadisticas particulares de juegos (partidas ganadas, perdidas, dinero apostado).
+
+11. Chat: se podrán visualizar los jugadores que estén en el casino y se podrá chatear con ellos.
+
+12. Seleccionar Sala de Juego: si el jugador tiene saldo, podrá seleccionar un juego. Los juegos que ofrece el casino son:
+
+> -  Blackjak
+
+> -  Ruleta
+
+> -  Poker
+
+> -  Dados
+
+> -  ...
+
+13. Solicitar elemento de Juego: el jugador en los distintos juegos podrá solicitar carta,tirar dados, etc.
+
+14. Salir de la Sala de Juego: el jugador podrá salir de la sala siempre que lo deseé.
+
+15. Seleccionar Mesa: el jugador podrá elegir cualquiera de las mesas disponibles.
+
+16. Salir de Mesa: el jugador podrá salir de la mesa siempre que lo deseé.
+
+17. Seleccionar tipo de apuesta: en función del juego se podrá elegir cantidad apostada y propósito de la apuesta(ej. color, docenas, par, impar...).
+
+
+
+
+
+ADMINISTRADOR DEL CASINO
+
+1. Login administrador: para acceder al servidor del casino el administrador deberá logearse en la aplicación, introduciendo su nombre de usuario y contraseña.
+
+2. Datos administrador: los datos que se guardarán para un perfil de administrador son: nombre, id de usuario, contraseña, correo electrónico, módulos a los que tiene acceso.
+
+3. Crear mesa de juego: el administrador podrá crear tantas mesas para un juego como crea oportunas. Se configurarán todos los datos de la mesa.
+
+4. Expulsar jugador de mesa: el administrador podrá expulsar al jugador que estime oportuno con causas justificadas, estas seran notificadas al usuario y estaran estipuladas en el manual del usuario.
+
+5. Observar mesa juego: el administrador podrá observar en cualquier momento el estado de una mesa de cualquier juego. Esta funcionalidad se incluye por vigilancia del casino y para mayor seguridad en torneos.
+
+6. Consultar estadísticas generales: el administrador podrá obtener un informe con los datos generales del casino, como son: dinero total recaudado en un determinado rango de fechas, usuarios activos del casino y estadisiticas personales de cada usuario.
+
+
+
+### 3.3. Requisitos de Rendimiento ###
+1. El servidor que soporta el sistema del casino deberá ser capaz de dar servicio a multiples jugadores simultáneamente, permitiendo la interacción entre ellos para jugar de una manera fluida y correcta.
+
+### 3.4. Restricciones de Diseño ###
+No aplican
+
+### 3.5. Atributos del Sistema ###
+1. El sistema solo permitirá la entrada a mayores de 18 años. Para ello, a la hora de registrarse se pedirá la fecha de nacimiento del usuario.
+
+2. El acceso al sistema será mediante login y password.
+
+3. Un jugador podrá realizar apuestas solo si tiene saldo en su cuenta.
+
+4. Los jugadores no podrán modificar los datos de sus cuentas, solo la información personal de su perfil.
+
+5. Los jugadores podrán jugar a cualquier juego disponible en el casino.
+
+6. Toda la información que se envie estará cifrada.
+
+7. El sistema correrá en todas las plataformas que dispongan de la máquina virtual de Java.
+
+8. Las reglas de los juegos estan definidas en los apendices.
+
+9. El manual del casino estará en la página web y junto con la descarga de la aplicación y se recomendará la lectura del mismo previa ejecución de la aplicación.
+
+### 3.6. Otros Requisitos ###
+
+## 4. Apendices ##
+
+Reglas de poker: http://www.reglasdelpoker.es/reglas.php
+
+Reglas Blak Jack: http://es.wikipedia.org/wiki/Blackjack
+
+Reglas Ruleta: http://www.sistemas-ruleta.com/reglas_juego_ruleta.php

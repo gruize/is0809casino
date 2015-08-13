@@ -1,0 +1,51 @@
+  * Bajar el color de la marca de agua
+  * Eliminar amarillo
+
+# Casos de uso #
+
+Alberto y David
+
+  * Evitar toda referencia tecnologica (botones, pagina web, ...)
+  * Captura de fotografias
+  * Distinguir numeracion de casos de uso
+  * Expandir
+
+# Especificación de requisitos #
+
+David
+
+  * Dividir los requisitos para hacerlos mas concretos. Por ejemplo, login y acceso
+
+# Gestion de riesgos #
+
+Gabriela
+
+  * Indice con secciones y numeracion
+  * Cambiar la tabulacion
+  * Reevaluar riegos de incapacidad de personal, falta de coordinacion en el grupo, falta de estructura jerarquica.
+  * Riesgos nuevos
+
+# Gestion de configuracion #
+
+Alberto ==**TODO HECHO**==
+
+  * Indice numerado
+  * Diagrama del sistema. Hay dos servidores.
+  * Actualizacion de la documentacion
+  * Añadir los documentos relacionados utilizados
+  * Consideracion del control de copias, relacionando cada entrega con su correspondiente revision
+
+# Arquitectura #
+
+
+Ambrin y David Hernandez
+
+Visto en clase
+
+# Planificacion #
+
+Santiago y David Hernandez
+
+# Escenarios de calidad #
+
+Santiago y David Hernandez

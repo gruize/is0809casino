@@ -1,0 +1,233 @@
+# Casos de uso #
+
+## Esquema de casos de uso ##
+![http://is0809casino.googlecode.com/files/fig129431_v2.png](http://is0809casino.googlecode.com/files/fig129431_v2.png)
+## Descripción de alto nivel ##
+### Marco externo a la aplicación ###
+| Caso de uso 1 | Descargar cliente|
+|:--------------|:-----------------|
+| Actores       | Jugador, Invitado |
+| Tipo          | Primario         |
+| Descripción   | Un usuario que haya accedido a la web se descarga el cliente |
+
+| Caso de uso 2 | Instalar cliente|
+|:--------------|:----------------|
+| Actores       | Jugador, Invitado |
+| Tipo          | Primario        |
+| Descripción   | Instalación del cliente en la maquina del Jugador o invitado |
+
+| Caso de uso 3 | Ejecutar cliente |
+|:--------------|:-----------------|
+| Actores       | Jugador, Invitado |
+| Tipo          | Primario         |
+| Descripción   | Ejecución del cliente en el sistema. Este caso de uso da lugar al marco de la aplicación  |
+
+### Marco de aplicación ###
+| Caso de uso 4 | Alta usuario |
+|:--------------|:-------------|
+|Actores        | Invitado     |
+|Tipo           | Primario     |
+|Descripción    | El usuario se introduce en el sistema en para darse de alta, introduce los campos requeridos (Nombre y apellidos, id usuario, correo electrónico, clave, etc.) y solicita darse de alta. El sistema comprobara que el id de usuario no exista y pedirá una confirmación del correo del usuario. |
+
+| Caso de uso 5 | Salir del cliente |
+|:--------------|:------------------|
+| Actores       | Jugador Invitado  |
+| Tipo          | Primario          |
+| Descripción   | El Jugador o invitado sale de la aplicación. _Es necesario haber salido de los juegos antes de salir de la aplicación_ |
+
+| Caso de uso 6 | Login |
+|:--------------|:------|
+| Actores       | Invitado |
+| Tipo          | Primario |
+| Descripción   | Un usuario no registrado en el sistema introduce su id y su password y se logea en el cliente, el sistema comprueba que los datos son correctos  |
+
+| Caso de uso 7 | Baja usuario |
+|:--------------|:-------------|
+| Actores       | Jugador      |
+| Tipo          | Secundario   |
+| Descripción   | Un usuario registrado se da de baja del sistema |
+
+| Caso de uso 8 | Acceso a datos |
+|:--------------|:---------------|
+| Actores       | Jugador        |
+| Tipo          | Primario       |
+| Descripción   | Un cliente accede a sus datos, los cuales incluyen estadísticas de juego, datos personales, mensajes privados de la administración etc... |
+
+
+| Caso de uso 9 | Modificación de datos |
+|:--------------|:----------------------|
+| Actores       | Jugador               |
+| Tipo          | Secundario            |
+| Descripción   | Modificación de los datos del cliente, previa comprobación del sistema de que son correctos |
+
+| Caso de uso 10 | Administrar créditos |
+|:---------------|:---------------------|
+| Actores        | Jugador              |
+| Tipo           | Primario             |
+| Descripción    | Administras los créditos que dispone un jugador |
+
+| Caso de uso 11 | Selección de juego |
+|:---------------|:-------------------|
+| Actores        | Jugador, Invitado  |
+| Tipo           | Primario           |
+| Descripción    | Un Jugador o un invitado entra en un juego concreto para empezar a jugar, se debe seleccionar el juego al cual se quiere entrar, los jugadores y los invitados, aunque dispongan de un mismo juego, no accederán a areas de juego comunes. Este caso de uso da paso al marco de juego |
+
+| Caso de uso 27 | Chat|
+|:---------------|:----|
+| Actores        | Jugador |
+| Tipo           | Secundario |
+| Descripción    | los jugadores de una misma mesa podran comunicarse etnre ellos a traves de este chat |
+
+
+### Marco de juego ###
+| Caso de uso 12 | Seleccionar mesa de juego |
+|:---------------|:--------------------------|
+| Actores        | Jugador invitado          |
+| Tipo           | Primario                  |
+| Descripción    | El jugador o invitado selecciona una de las mesas disponibles en ese momento, el usuario _se queda en modo observador_ |
+
+| Caso de uso 13 | Salir del juego |
+|:---------------|:----------------|
+| Actores        | Jugador Invitado |
+| Tipo           | Primario        |
+| Descripción    | Sales del marco de juego |
+
+### Marco de Mesa de juego ###
+| Caso de uso 14 | Empezar a jugar |
+|:---------------|:----------------|
+| Actores        | Jugador invitado |
+| Tipo           | Primario        |
+| Descripción    | Sales del modo observador en la mesa en la que te encuentras para comenzar a jugar |
+
+| Caso de uso 15 | Salir de la mesa |
+|:---------------|:-----------------|
+| Actores        | Jugador Invitado |
+| Tipo           | Primario         |
+| Descripción    | Te sales de la mesa de juego |
+
+## Marco de Servidor ##
+| Caso de uso 16 | Validacion de cliente |
+|:---------------|:----------------------|
+| Actores        | Servidor              |
+| Tipo           | Primario              |
+| Descripción    | Comprueba usuario y contraseña en el servidor |
+
+
+| Caso de uso 17 | Arranque de la aplicación Servidor |
+|:---------------|:-----------------------------------|
+| Actores        | Administrador                      |
+| Tipo           | Primario                           |
+| Descripción    | Ejecutar la aplicación servidor    |
+
+
+| Caso de uso 18 |Identificación del Administrador |
+|:---------------|:--------------------------------|
+| Actores        | Administrador                   |
+| Tipo           | Primario                        |
+| Descripción    | Dentro de la aplicación se deberá introducir su  contraseña. Dependiendo de los permisos se le da acceso a determinadas funcionalidades |
+
+| Caso de uso 19 |Arranque del servidor|
+|:---------------|:--------------------|
+| Actores        | Administrador       |
+| Tipo           | Primario            |
+| Descripción    |Se arrancará el servidor y los usuarios podrán conectarse. Se Crearán unas mesas predefinidas.(p.e. una de cada juego). |
+
+| Caso de uso 20 |Creación de una mesa  de juego|
+|:---------------|:-----------------------------|
+| Actores        | Administrador                |
+| Tipo           | Primario                     |
+| Descripción    |Se podrá añadir mesas de un determinado juego. Cada mesa deberá tener unas características concretas. |
+
+| Caso de uso 21 |Cierre de una Mesa de Juego |
+|:---------------|:---------------------------|
+| Actores        | Administrador              |
+| Tipo           | Primario                   |
+| Descripción    |Se podrá cerrar una mesa de cualquier juego|
+
+| Caso de uso 22 |Observar mesa|
+|:---------------|:------------|
+| Actores        | Administrador |
+| Tipo           | Primario    |
+| Descripción    |El administrador abrirá una mesa en juego y observara la partida|
+
+| Caso de uso 22 |Salir de la mesa en observación|
+|:---------------|:------------------------------|
+| Actores        | Administrador                 |
+| Tipo           | Primario                      |
+| Descripción    |El Administrador  podrá salir en cualquier momento de la mesa que está observando|
+
+| Caso de uso 23 |Consulta de estadisticas generales |
+|:---------------|:----------------------------------|
+| Actores        | Administrador                     |
+| Tipo           | Primario                          |
+| Descripción    |Dispone de un apartado con estadisticas generales (ejemplo: dinero total recaudado, usuarios activos, etc)|
+
+| Caso de uso 24 |Proporcionar crédito a jugador|
+|:---------------|:-----------------------------|
+| Actores        | Administrador , Jugador      |
+| Tipo           | Primario                     |
+| Descripción    |El Administrador podrá suministrar más crédito a la cuenta de un Jugador|
+
+| Caso de uso 25 | Expulsion de un jugador |
+|:---------------|:------------------------|
+| Actores        | Administrador,jugador,invitado |
+| Tipo           | Secundario              |
+| Descripción    | En el caso que un jugador o invitado no se comporte de manera adecuada podra ser expulsado del juego por un Administrador|
+
+
+
+## Descripción expandida ##
+  * Caso de uso 4: **Alta usuario**
+  * Actores: Invitado
+  * Propósito: Dar de alta un nuevo Jugador
+  * Visión general: Un invitado introduce sus datos en el sistema para realizar una alta en el sistema. El cliente lo da de alta tras comprobar que es posible hacerlo
+  * Referencias:
+  * Curso típico de eventos
+    1. (Actor) Se accede al apartado de alta de nuevo jugador
+    1. (Sistema) Se solicitan los datos del nuevo jugador
+    1. (Actor) Se introducen los datos del jugador. Correo electrónico, Id de usuario, clave...
+    1. (Sistema) El usuario se da de alta correctamente
+  * Cursos alternativos
+    * Línea 4: Los datos introducidos no son correctos
+    * Línea 4: El id de usuario introducido no se encuentra disponible
+
+---
+
+  * Caso de uso 6: **Login**
+  * Actores: Jugador
+  * Propósito: Logear un Jugador en el sistema de cliente
+  * Visión general: El jugador introduce su id y clave para que el sistema lo reconozca. El sistema comprueba que los datos son correctos y da la confirmación.
+  * Referencias:
+  * Curso típico de eventos
+    1. (Actor) El jugador introduce su id y clave en los campos correspondientes
+    1. (Sistema) El jugador esta logeado.
+  * Curso alternativo
+    * linea 2: Usuario incorrecto
+
+---
+
+  * Caso de uso 7: **Baja de Usuario**
+  * Actores: Jugador
+  * Propósito: borrado de los datos de un usuario en el sistema casino
+  * Visión general: El jugador elige la opcion borrado de sus datos, el sistema se encarga de su borrado
+  * Referencias:
+  * Curso típico de eventos
+    1. (Actor) El jugador selecciona la opcion de borrar su datos
+    1. (Sistema) El jugador sera borrado.
+  * Curso alternativo
+    * linea 3: Borrado incompleto de Usuario
+
+---
+
+  * Caso de uso 11: **Seleccion de Juego**
+  * Actores: Jugador
+  * Propósito: Eleccion de un juego
+  * Visión general: El jugador elige el tipo de juego al que desea jugar.
+  * Referencias:
+  * Curso típico de eventos
+    1. (Actor) El jugador selecciona el tipo de juego
+    1. (Sistema) Resgistro de jugador en ese juego.
+
+El jugador sera borrado.
+  * Curso alternativo
+    * linea : Mesa Completa, usuario no puede entrar en la mesa
